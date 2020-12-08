@@ -29,28 +29,28 @@ const u8 gCharmanderPokedexText[] = _(
     "typically leave trails of embers behind.");
 
 const u8 gCharmeleonPokedexText[] = _(
-    "Its keen nose can sniff out prey,\n"
-    "no matter where it may be hiding.\n"
-    "If one smells traces of another Rallama,\n"
+    "Its keen nose can sniff out prey,no\n"
+    "matter where it may be hiding. If one\n"
+    "smells traces of another Rallama,\n"
     "it'll grow agitated and flare its tail up.");
 
 const u8 gCharizardPokedexText[] = _(
-    "Roellama has a short fuse and is easily\n"
-    "enraged into a giant incinerating flame.\n"
-    "Legends state that it can grow stronger\n"
-    "when doused in Chaos energy…");
+    "Easily enraged, it often erupts into\n"
+	"flames and tries to burn all in its path.\n"
+	"Legends tell of a powerful Roellama\n"
+	"that was engulfed in chaos energy.");
 
 const u8 gSquirtlePokedexText[] = _(
-    "Todad spends its time playing carefreely\n"
-    "in ponds and lakes. If under attack, it\n"
-    "will Bubble its attacker away. If this\n"
-    "fails, it will cry out for help.");
+    "It spends its time playing carefree in\n"
+	"ponds and lakes. The games it plays with\n"
+	"other Todad train it for battle. When\n"
+	"threatened, it cries for its parents.");
 
 const u8 gWartortlePokedexText[] = _(
-    "Shroad require huge volumes of water to not\n"
-    "only sustain itself on land, but to fuel\n"
-    "its attacks. A group of Shroad can easily\n"
-    "swallow an entire lake overnight.");
+    "It needs large volumes of water not only\n"
+	"to sustain itself on land but to fuel its\n"
+	"attacks. A group of Shroad can easily\n"
+	"swallow an entire lake overnight.");
 
 const u8 gBlastoisePokedexText[] = _(
     "Its cannon arms can draw water from air,\n"
@@ -605,10 +605,10 @@ const u8 gVoltorbPokedexText[] = _(
     "veteran TRAINERS treat it with caution.");
 
 const u8 gElectrodePokedexText[] = _(
-    "They appear in great numbers at electric\n"
-    "power plants. Because they feed on\n"
-    "electricity, they cause massive and\n"
-    "chaotic blackouts in nearby cities.");
+    "The only part of an Eliko's body that\n"
+	"isn't full of electricity is its round\n"
+	"nose. It can gain more speed when fully\n"
+	"charged, but still can't go very fast.");
 
 const u8 gExeggcutePokedexText[] = _(
     "It consists of six eggs that care for each\n"
@@ -1949,10 +1949,10 @@ const u8 gTorkoalPokedexText[] = _(
     "similar to a locomotive's horn.");
 
 const u8 gSpoinkPokedexText[] = _(
-    "A POKéMON that manipulates psychic power\n"
-    "at will. It doesn't stop bouncing even when\n"
-    "it is asleep. It loves eating mushrooms\n"
-    "that grow underground.");
+    "It jumps out of grass to try to frighten\n"
+	"small Pokémon, but its cute appearance\n"
+	"makes it far less intimidating. Tigat are\n"
+	"a common sight in rocky areas.");
 
 const u8 gGrumpigPokedexText[] = _(
     "It stores power in the black pearls on its\n"
@@ -1960,11 +1960,11 @@ const u8 gGrumpigPokedexText[] = _(
     "performs an odd dance step. Its style of\n"
     "dancing became hugely popular overseas.");
 
-const u8 gSpindaPokedexText[] = _(
-    "It is distinguished by a pattern of\n"
-    "spots that is always different. Its\n"
-    "unsteady, tottering walk has the\n"
-    "effect of fouling its foe's aim.");
+const u8 gSpindaPokedexText[] = _( 
+	"It never stops bouncing, often making\n"
+	"onlookers dizzy as a result. Each Bounny\n"
+	"has a unique spot pattern similar to a\n"
+	"certain Pokémon from another region.");
 
 const u8 gTrapinchPokedexText[] = _(
     "Its big jaws crunch through boulders.\n"
@@ -2147,10 +2147,10 @@ const u8 gTropiusPokedexText[] = _(
     "it scatters pollen from its neck.");
 
 const u8 gChimechoPokedexText[] = _(
-    "They fly about very actively when the hot\n"
-    "season arrives. They communicate among\n"
-    "themselves using seven different and\n"
-    "distinguishing cries.");
+    "A timid Pokémon, most loud sounds\n"
+	"cause it to let out a deafening shriek.\n"
+	"Graveyards are the best place to find\n"
+	"a Gritespec, as it enjoys the quiet.");
 
 const u8 gAbsolPokedexText[] = _(
     "It sharply senses even subtle changes in\n"
@@ -2165,10 +2165,10 @@ const u8 gWynautPokedexText[] = _(
     "by the fragrance.");
 
 const u8 gSnoruntPokedexText[] = _(
-    "They tend to move about in groups of\n"
-    "around five SNORUNT. In snowy regions,\n"
-    "it is said that when they are seen late at\n"
-    "night, snowfall will arrive by morning.");
+	"A Bobeguin may lack intelligence, but\n"
+	"it always finds a way out of sticky\n"
+	"situations. Many affectionately refer\n"
+	"to it as 'the fool bird.'");
 
 const u8 gGlaliePokedexText[] = _(
     "A GLALIE has the power to instantaneously\n"
