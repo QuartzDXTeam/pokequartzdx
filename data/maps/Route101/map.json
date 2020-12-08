@@ -9,8 +9,8 @@
             "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
             "script": "Route101_EventScript_RouteSign",
             "type": "sign",
-            "x": 12,
-            "y": 22
+            "x": 5,
+            "y": 9
         }
     ],
     "connections": [
@@ -33,7 +33,7 @@
             "var": "VAR_ROUTE101_STATE",
             "var_value": "1",
             "x": 10,
-            "y": 31
+            "y": 19
         },
         {
             "elevation": 3,
@@ -42,7 +42,7 @@
             "var": "VAR_ROUTE101_STATE",
             "var_value": "1",
             "x": 11,
-            "y": 31
+            "y": 19
         },
         {
             "elevation": 3,
@@ -51,7 +51,7 @@
             "var": "VAR_ROUTE101_STATE",
             "var_value": "2",
             "x": 10,
-            "y": 30
+            "y": 18
         },
         {
             "elevation": 3,
@@ -60,7 +60,7 @@
             "var": "VAR_ROUTE101_STATE",
             "var_value": "2",
             "x": 11,
-            "y": 30
+            "y": 18
         },
         {
             "elevation": 3,
@@ -68,8 +68,8 @@
             "type": "trigger",
             "var": "VAR_ROUTE101_STATE",
             "var_value": "2",
-            "x": 9,
-            "y": 28
+            "x": 6,
+            "y": 16
         },
         {
             "elevation": 3,
@@ -77,8 +77,8 @@
             "type": "trigger",
             "var": "VAR_ROUTE101_STATE",
             "var_value": "2",
-            "x": 12,
-            "y": 28
+            "x": 6,
+            "y": 15
         },
         {
             "elevation": 3,
@@ -86,8 +86,8 @@
             "type": "trigger",
             "var": "VAR_ROUTE101_STATE",
             "var_value": "2",
-            "x": 11,
-            "y": 28
+            "x": 6,
+            "y": 17
         },
         {
             "elevation": 3,
@@ -95,8 +95,8 @@
             "type": "trigger",
             "var": "VAR_ROUTE101_STATE",
             "var_value": "2",
-            "x": 10,
-            "y": 28
+            "x": 6,
+            "y": 18
         },
         {
             "elevation": 3,
@@ -104,8 +104,8 @@
             "type": "trigger",
             "var": "VAR_ROUTE101_STATE",
             "var_value": "2",
-            "x": 9,
-            "y": 21
+            "x": 7,
+            "y": 13
         }
     ],
     "id": "MAP_ROUTE101",
@@ -124,8 +124,8 @@
             "script": "Route101_EventScript_Youngster",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 17,
-            "y": 16
+            "x": 16,
+            "y": 8
         },
         {
             "elevation": 0,
@@ -138,7 +138,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 9,
-            "y": 24
+            "y": 13
         },
         {
             "elevation": 3,
@@ -150,8 +150,8 @@
             "script": "Route101_EventScript_BirchsBag",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 9,
-            "y": 22
+            "x": 7,
+            "y": 14
         },
         {
             "elevation": 0,
@@ -164,7 +164,7 @@
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 10,
-            "y": 24
+            "y": 13
         },
         {
             "elevation": 3,
@@ -176,7 +176,7 @@
             "script": "ProfBirch_EventScript_RatePokedexOrRegister",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 6,
+            "x": 5,
             "y": 11
         },
         {
@@ -189,8 +189,8 @@
             "script": "Route101_EventScript_Boy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 8,
-            "y": 3
+            "x": 2,
+            "y": 13
         }
     ],
     "region_map_section": "MAPSEC_ROUTE_101",
