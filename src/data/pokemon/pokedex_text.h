@@ -20,7 +20,7 @@ const u8 gVenusaurPokedexText[] = _(
 	"A Denfrota's trunk is nearly impenetrable\n"
 	"due to minerals it leeches from the soil.\n"
 	"Legends state that it can grow stronger\n"
-	"when it absorbs Chaos energy.");
+	"when it absorbs chaos energy.");
 
 const u8 gCharmanderPokedexText[] = _(
     "When startled, its fur becomes hot enough\n"
@@ -29,7 +29,7 @@ const u8 gCharmanderPokedexText[] = _(
     "typically leave trails of embers behind.");
 
 const u8 gCharmeleonPokedexText[] = _(
-    "Its keen nose can sniff out prey,no\n"
+    "Its keen nose can sniff out prey, no\n"
     "matter where it may be hiding. If one\n"
     "smells traces of another Rallama,\n"
     "it'll grow agitated and flare its tail up.");
@@ -53,22 +53,22 @@ const u8 gWartortlePokedexText[] = _(
 	"swallow an entire lake overnight.");
 
 const u8 gBlastoisePokedexText[] = _(
-    "Its cannon arms can draw water from air,\n"
-    "which allows it to survive on land.\n"
-    "Legends state that it can grow stronger\n"
-    "when doused in Chaos energy…");
+	"A Bultoad's lungs can draw the water from\n"
+	"the air, allowing it to survive on land.\n"
+	"Rumors tell of Bultoad that grew violent\n"
+	"after being bathed in chaos energy.");
 
 const u8 gCaterpiePokedexText[] = _(
-    "Eating is like a competition for groups of\n"
-    "Larvet, because the more they eat, the\n"
-    "stronger they will become when they evolve.\n"
-    "Grass Pokémon avoid them at all costs.");
+    "Eating is like a competition for a\n"
+	"Larvet because it becomes stronger\n"
+	"if it evolves on a full stomach. Grass\n"
+    "Pokémon avoid Larvet at all costs.");
 
 const u8 gMetapodPokedexText[] = _(
-    "It keeps predators away with the face-like\n"
-    "markings on its body, which it needs as\n"
-    "it can't fight much on its own. The shell's\n"
-    "flexibility makes up for its brittleness.");
+    "Since it can't fight much on its own, it\n"
+	"relies on its facelike markings to scare\n"
+	"predators away. The shell's flexibility\n"
+	"makes up for its brittleness.");
 
 const u8 gButterfreePokedexText[] = _(
     "With its tiny, streamlined body, it flies\n"
@@ -83,33 +83,33 @@ const u8 gWeedlePokedexText[] = _(
     "to regulate its blood pressure.");
 
 const u8 gKakunaPokedexText[] = _(
-    "When it has gathered enough blood, Drosofly\n"
-    "will hand from a tree branch and evolve.\n"
-    "Sometimes it hangs from a leaf and falls\n"
-    "off without sustaining damage..");
+    "When it gains enough nutrients, a Drosofly\n"
+	"will encase itself wherever it's standing.\n"
+	"Metagaster sometimes fall to the ground\n"
+	"on leaves without getting hurt.");
 
 const u8 gBeedrillPokedexText[] = _(
-    "It not only has a deadly sting, but it\n"
-    "makes an awful sound like somebody badly\n"
-    "playing a trumpet before it swoops down\n"
-    "onto its prey.");
+	"Before it swoops down on its prey,\n"
+	"it lets out a loud buzzing sound like\n"
+	"a broken trumpet. Its sting is easily\n"
+	"identified by the red ring it leaves.");
 
 const u8 gPidgeyPokedexText[] = _(
-    "Ornlil can't digest its food properly, so\n"
-    "its parents regurgitate leftovers for it.\n"
-    "It tries to learn how to fly by watching\n"
-    "its parents hunt for food.");
+    "Born blind and flightless, it relies on\n"
+	"its parents to bring food to it. It tries\n"
+	"to learn how to fly by watching other\n"
+	"bird Pokémon hunting for food.");
 
 const u8 gPidgeottoPokedexText[] = _(
-    "Wasoo makes itself known by singing a\n"
-    "beautiful song. It controls sections of\n"
-    "forests to protect the Ornlil. Other Wasoo\n"
-    "compete with each other to see who's louder.");
+	"One Wasoo can control several sections\n"
+	"of a forest, protecting any Ornlil in it.\n"
+	"Other Wasoo compete for the land through\n"
+	"beautiful singing contests.");
 
 const u8 gPidgeotPokedexText[] = _(
-    "Known as the 'King of the Forest', it\n"
+    "Known as the ''King of the Forest'', it\n"
     "flies around its home defending it from\n"
-    "trouble. It threatens foes by puffing out\n"
+    "trouble. It threatens foes by puffing\n"
     "its chest and showing its belly marks.");
 
 const u8 gRattataPokedexText[] = _(

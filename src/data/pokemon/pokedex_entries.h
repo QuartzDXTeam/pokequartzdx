@@ -18,8 +18,8 @@ const struct PokedexEntry gPokedexEntries[] =
         .height = 2,
         .weight = 3,
         .description = gBulbasaurPokedexText,
-        .pokemonScale = 356,
-        .pokemonOffset = 17,
+        .pokemonScale = 706,
+        .pokemonOffset = 19,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
@@ -44,8 +44,8 @@ const struct PokedexEntry gPokedexEntries[] =
         .description = gVenusaurPokedexText,
         .pokemonScale = 256,
         .pokemonOffset = 0,
-        .trainerScale = 388,
-        .trainerOffset = 6,
+        .trainerScale = 488,
+        .trainerOffset = 8,
     },
 
     [NATIONAL_DEX_CHARMANDER] =
