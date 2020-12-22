@@ -60,7 +60,6 @@ static const u16 sUnusedUnknownPal[] = INCBIN_U16("graphics/title_screen/unk_853
 static const u32 sTitleScreenRayquazaGfx[] = INCBIN_U32("graphics/title_screen/rayquaza.4bpp.lz");
 static const u32 sTitleScreenRayquazaTilemap[] = INCBIN_U32("graphics/title_screen/rayquaza.bin.lz");
 static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/logo_shine.4bpp.lz");
-static const u32 sTitleScreenCloudsGfx[] = INCBIN_U32("graphics/title_screen/clouds.4bpp.lz");
 
 
 
@@ -456,7 +455,7 @@ static void SpriteCB_PokemonLogoShine(struct Sprite *sprite)
                 || sprite->pos1.x == DISPLAY_WIDTH / 2 + 16
                 || sprite->pos1.x == DISPLAY_WIDTH / 2 + 20
                 || sprite->pos1.x == DISPLAY_WIDTH / 2 + 24)
-                gPlttBufferFaded[0] = RGB(24, 31, 12);
+                gPlttBufferFaded[0] = RGB(20, 12, 10);
             else
                 gPlttBufferFaded[0] = backgroundColor;
         }
@@ -551,7 +550,6 @@ void CB2_InitTitleScreen(void)
         LoadPalette(gTitleScreenBgPalettes, 0, 0x1E0);
         LZ77UnCompVram(sTitleScreenRayquazaGfx, (void *)(BG_CHAR_ADDR(2)));
         LZ77UnCompVram(sTitleScreenRayquazaTilemap, (void *)(BG_SCREEN_ADDR(26)));
-        LZ77UnCompVram(sTitleScreenCloudsGfx, (void *)(BG_CHAR_ADDR(3)));
         LZ77UnCompVram(gUnknown_08DDE458, (void *)(BG_SCREEN_ADDR(27)));
         ScanlineEffect_Stop();
         ResetTasks();
@@ -701,8 +699,8 @@ static void Task_TitleScreenPhase2(u8 taskId)
                                     | DISPCNT_BG1_ON
                                     | DISPCNT_BG2_ON
                                     | DISPCNT_OBJ_ON);
-        CreatePressStartBanner(START_BANNER_X, 108);
-        CreateCopyrightBanner(START_BANNER_X, 148);
+        CreatePressStartBanner(START_BANNER_X, 142);
+        CreateCopyrightBanner(START_BANNER_X, 154);
         gTasks[taskId].data[4] = 0;
         gTasks[taskId].func = Task_TitleScreenPhase3;
     }
@@ -753,11 +751,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
         SetGpuReg(REG_OFFSET_BG2Y_H, 0);
         gTasks[taskId].tCounter++;
         if (gTasks[taskId].tCounter & 1)
-        {
-            gTasks[taskId].data[4]++;
-            gBattle_BG1_Y = gTasks[taskId].data[4] / 2;
-            gBattle_BG1_X = 0;
-        }
+
         UpdateLegendaryMarkingColor(gTasks[taskId].tCounter);
         if ((gMPlayInfo_BGM.status & 0xFFFF) == 0)
         {
