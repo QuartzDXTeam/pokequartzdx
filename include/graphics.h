@@ -3608,14 +3608,14 @@ extern const u32 gBattleFrontierGfx_PyramidBagTileMap[];
 extern const u32 gUnknown_08D9AF44[];
 extern const u16 gUnknown_0860F074[];
 
-extern const u32 gTitleScreenEmeraldVersionGfx[];
+extern const u32 gTitleScreenQuartzDXGfx[];
 extern const u32 gTitleScreenPressStartGfx[];
 extern const u32 gTitleScreenPokemonLogoGfx[];
 extern const u32 gUnknown_08DE0644[];
 extern const u32 gUnknown_08DDE458[];
 extern const u16 gTitleScreenBgPalettes[];
 extern const u16 gTitleScreenPressStartPal[];
-extern const u16 gTitleScreenEmeraldVersionPal[];
+extern const u16 gTitleScreenQuartzDXPal[];
 
 // Battle Dome
 extern const u32 gDomeTourneyInfoCard_Gfx[];

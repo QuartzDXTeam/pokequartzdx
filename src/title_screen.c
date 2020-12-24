@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_anim.h"
 #include "title_screen.h"
 #include "sprite.h"
 #include "gba/m4a_internal.h"
@@ -23,12 +24,14 @@
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
-#define VERSION_BANNER_RIGHT_TILEOFFSET 64
-#define VERSION_BANNER_LEFT_X 98
-#define VERSION_BANNER_RIGHT_X 162
-#define VERSION_BANNER_Y 2
-#define VERSION_BANNER_Y_GOAL 66
 #define START_BANNER_X 128
+
+#define QUARTZDX_INITIAL_X 172
+#define QUARTZDX_INITIAL_Y 88
+#define QUARTZDX_HALFPOINT_X 188
+#define QUARTZDX_HALFPOINT_Y 128
+#define QUARTZDX_GOAL_X 199
+#define QUARTZDX_GOAL_Y 79
 
 #define CLEAR_SAVE_BUTTON_COMBO (B_BUTTON | SELECT_BUTTON | DPAD_UP)
 #define RESET_RTC_BUTTON_COMBO (B_BUTTON | SELECT_BUTTON | DPAD_LEFT)
@@ -49,10 +52,13 @@ static void CB2_GoToBerryFixScreen(void);
 static void CB2_GoToCopyrightScreen(void);
 static void UpdateLegendaryMarkingColor(u8);
 
-static void SpriteCB_VersionBannerLeft(struct Sprite *sprite);
-static void SpriteCB_VersionBannerRight(struct Sprite *sprite);
 static void SpriteCB_PressStartCopyrightBanner(struct Sprite *sprite);
 static void SpriteCB_PokemonLogoShine(struct Sprite *sprite);
+static void SpriteCB_QuartzDX(struct Sprite *sprite);
+static void SpriteCB_QuartzDX_Step(struct Sprite *sprite);
+static void SpriteCB_QuartzDX_Step2(struct Sprite *sprite);
+static void EndQuartzDXMovement(struct Sprite *sprite);
+static void SpriteCB_QuartzDX_Flash(struct Sprite *sprite);
 
 // const rom data
 static const u16 sUnusedUnknownPal[] = INCBIN_U16("graphics/title_screen/unk_853EF78.gbapal");
@@ -98,94 +104,6 @@ const u16 gIntroWaterDropAlphaBlend[] =
     BLDALPHA_BLEND(1, 16),
     BLDALPHA_BLEND(0, 16),
     [32 ... 63] = BLDALPHA_BLEND(0, 16)
-};
-
-static const struct OamData sVersionBannerLeftOamData =
-{
-    .y = 160,
-    .affineMode = ST_OAM_AFFINE_OFF,
-    .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
-    .bpp = ST_OAM_8BPP,
-    .shape = SPRITE_SHAPE(64x32),
-    .x = 0,
-    .matrixNum = 0,
-    .size = SPRITE_SIZE(64x32),
-    .tileNum = 0,
-    .priority = 0,
-    .paletteNum = 0,
-    .affineParam = 0,
-};
-
-static const struct OamData sVersionBannerRightOamData =
-{
-    .y = 160,
-    .affineMode = ST_OAM_AFFINE_OFF,
-    .objMode = ST_OAM_OBJ_NORMAL,
-    .mosaic = 0,
-    .bpp = ST_OAM_8BPP,
-    .shape = SPRITE_SHAPE(64x32),
-    .x = 0,
-    .matrixNum = 0,
-    .size = SPRITE_SIZE(64x32),
-    .tileNum = 0,
-    .priority = 0,
-    .paletteNum = 0,
-    .affineParam = 0,
-};
-
-static const union AnimCmd sVersionBannerLeftAnimSequence[] =
-{
-    ANIMCMD_FRAME(0, 30),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sVersionBannerRightAnimSequence[] =
-{
-    ANIMCMD_FRAME(VERSION_BANNER_RIGHT_TILEOFFSET, 30),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd *const sVersionBannerLeftAnimTable[] =
-{
-    sVersionBannerLeftAnimSequence,
-};
-
-static const union AnimCmd *const sVersionBannerRightAnimTable[] =
-{
-    sVersionBannerRightAnimSequence,
-};
-
-static const struct SpriteTemplate sVersionBannerLeftSpriteTemplate =
-{
-    .tileTag = 1000,
-    .paletteTag = 1000,
-    .oam = &sVersionBannerLeftOamData,
-    .anims = sVersionBannerLeftAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_VersionBannerLeft,
-};
-
-static const struct SpriteTemplate sVersionBannerRightSpriteTemplate =
-{
-    .tileTag = 1000,
-    .paletteTag = 1000,
-    .oam = &sVersionBannerRightOamData,
-    .anims = sVersionBannerRightAnimTable,
-    .images = NULL,
-    .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_VersionBannerRight,
-};
-
-static const struct CompressedSpriteSheet sSpriteSheet_EmeraldVersion[] =
-{
-    {
-        .data = gTitleScreenEmeraldVersionGfx,
-        .size = 0x1000,
-        .tag = 1000
-    },
-    {},
 };
 
 static const struct OamData sOamData_CopyrightBanner =
@@ -281,6 +199,16 @@ static const struct SpriteTemplate sStartCopyrightBannerSpriteTemplate =
     .callback = SpriteCB_PressStartCopyrightBanner,
 };
 
+static const struct CompressedSpriteSheet sSpriteSheet_QuartzDX[]=
+{
+    {
+        .data = gTitleScreenQuartzDXGfx,
+	.size = 0x800,
+	.tag = 1000
+    },
+    {},
+};
+
 static const struct CompressedSpriteSheet sSpriteSheet_PressStart[] =
 {
     {
@@ -349,36 +277,103 @@ static const struct CompressedSpriteSheet sPokemonLogoShineSpriteSheet[] =
     {},
 };
 
-// code
-static void SpriteCB_VersionBannerLeft(struct Sprite *sprite)
+static const struct OamData sQuartzDXOamData =
 {
-    if (gTasks[sprite->data[1]].data[1] != 0)
-    {
-        sprite->oam.objMode = ST_OAM_OBJ_NORMAL;
-        sprite->pos1.y = VERSION_BANNER_Y_GOAL;
-    }
+    .y = 160,
+    .affineMode = ST_OAM_AFFINE_OFF,
+    .objMode = ST_OAM_OBJ_NORMAL,
+    .mosaic = 0,
+    .bpp = ST_OAM_4BPP,
+    .shape = SPRITE_SHAPE(64x64),
+    .x = 0,
+    .matrixNum = 0,
+    .size = SPRITE_SIZE(64x64),
+    .tileNum = 0,
+    .priority = 2,
+    .paletteNum = 15,
+    .affineParam = 0,
+};
+
+static const struct SpriteTemplate sQuartzDXSpriteTemplate =
+{
+    .tileTag = 1000,
+    .paletteTag = 1000,
+    .oam = &sQuartzDXOamData,
+    .anims = gDummySpriteAnimTable,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
+    .callback = SpriteCB_QuartzDX,
+};
+
+static void EndQuartzDXMovement(struct Sprite *sprite)
+{
+    sprite->pos1.x = QUARTZDX_GOAL_X;
+    sprite->pos1.y = QUARTZDX_GOAL_Y;
+    sprite->pos2.x = 0;
+    sprite->pos2.y = 0;
+    sprite->oam.priority = 0;
+    sprite->oam.paletteNum = 0;
+    sprite->callback = SpriteCallbackDummy;
+}
+
+static void SpriteCB_QuartzDX(struct Sprite *sprite)
+{
+    if (gTasks[sprite->sheetTileStart].data[1] != 0) //hacky as hell lmao
+        EndQuartzDXMovement(sprite);
+    
     else
     {
-        if (sprite->pos1.y != VERSION_BANNER_Y_GOAL)
-            sprite->pos1.y++;
-        if (sprite->data[0] != 0)
-            sprite->data[0]--;
-        SetGpuReg(REG_OFFSET_BLDALPHA, gIntroWaterDropAlphaBlend[sprite->data[0]]);
+        sprite->data[0] = 40;
+        sprite->data[2] = QUARTZDX_HALFPOINT_X;
+	sprite->data[4] = QUARTZDX_HALFPOINT_Y;
+	sprite->data[5] = 20;
+	InitAnimArcTranslation(sprite);
+        sprite->callback = SpriteCB_QuartzDX_Step;
     }
 }
 
-static void SpriteCB_VersionBannerRight(struct Sprite *sprite)
+static void SpriteCB_QuartzDX_Step(struct Sprite *sprite)
 {
-    if (gTasks[sprite->data[1]].data[1] != 0)
+    if (gTasks[sprite->sheetTileStart].data[1])
+        EndQuartzDXMovement(sprite);
+
+    else if (TranslateAnimVerticalArc(sprite))
     {
-        sprite->oam.objMode = ST_OAM_OBJ_NORMAL;
-        sprite->pos1.y = VERSION_BANNER_Y_GOAL;
+        sprite->pos1.x = QUARTZDX_HALFPOINT_X;
+	sprite->pos1.y = QUARTZDX_HALFPOINT_Y;
+	sprite->pos2.x = 0;
+	sprite->pos2.y = 0;
+        sprite->data[0] = 40;
+        sprite->data[2] = QUARTZDX_GOAL_X;
+	sprite->data[4] = QUARTZDX_GOAL_Y;
+	sprite->data[5] = -20;
+	sprite->oam.priority = 0;
+        InitAnimArcTranslation(sprite);
+        sprite->callback = SpriteCB_QuartzDX_Step2;
+	TranslateAnimVerticalArc(sprite);
     }
-    else
+}
+
+static void SpriteCB_QuartzDX_Step2(struct Sprite *sprite)
+{
+    if (gTasks[sprite->sheetTileStart].data[1])
+        EndQuartzDXMovement(sprite);
+
+    else if (TranslateAnimVerticalArc(sprite))
     {
-        if (sprite->pos1.y != VERSION_BANNER_Y_GOAL)
-            sprite->pos1.y++;
+        BeginNormalPaletteFade(0x80000000, 2, 0x10, 0, RGB_WHITE);
+	sprite->pos1.x = QUARTZDX_GOAL_X;
+	sprite->pos1.y = QUARTZDX_GOAL_Y;
+	sprite->pos2.x = 0;
+	sprite->pos2.y = 0;
+        sprite->callback = SpriteCB_QuartzDX_Flash;
     }
+}
+
+static void SpriteCB_QuartzDX_Flash(struct Sprite *sprite)
+{
+    if (gTasks[sprite->sheetTileStart].data[1])
+        EndQuartzDXMovement(sprite);
 }
 
 static void SpriteCB_PressStartCopyrightBanner(struct Sprite *sprite)
@@ -556,10 +551,11 @@ void CB2_InitTitleScreen(void)
         ResetSpriteData();
         FreeAllSpritePalettes();
         gReservedSpritePaletteCount = 9;
-        LoadCompressedSpriteSheet(&sSpriteSheet_EmeraldVersion[0]);
+        LoadCompressedSpriteSheet(&sSpriteSheet_QuartzDX[0]);
         LoadCompressedSpriteSheet(&sSpriteSheet_PressStart[0]);
         LoadCompressedSpriteSheet(&sPokemonLogoShineSpriteSheet[0]);
-        LoadPalette(gTitleScreenEmeraldVersionPal, 0x100, 0x20);
+        LoadPalette(gTitleScreenQuartzDXPal, 0x100, 0x20);
+	LoadPalette(gTitleScreenQuartzDXPal, 0x1F0, 0x20); //used for fade effect
         LoadSpritePalette(&sSpritePalette_PressStart[0]);
         gMain.state = 2;
         break;
@@ -656,16 +652,10 @@ static void Task_TitleScreenPhase1(u8 taskId)
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL);
         SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 0));
         SetGpuReg(REG_OFFSET_BLDY, 0);
-
-        // Create left side of version banner
-        spriteId = CreateSprite(&sVersionBannerLeftSpriteTemplate, VERSION_BANNER_LEFT_X, VERSION_BANNER_Y, 0);
-        gSprites[spriteId].data[0] = 64;
-        gSprites[spriteId].data[1] = taskId;
-
-        // Create right side of version banner
-        spriteId = CreateSprite(&sVersionBannerRightSpriteTemplate, VERSION_BANNER_RIGHT_X, VERSION_BANNER_Y, 0);
-        gSprites[spriteId].data[1] = taskId;
-
+	
+	spriteId = CreateSprite(&sQuartzDXSpriteTemplate, QUARTZDX_INITIAL_X, QUARTZDX_INITIAL_Y, 0);
+	gSprites[spriteId].sheetTileStart = taskId;
+	
         gTasks[taskId].tCounter = 144;
         gTasks[taskId].func = Task_TitleScreenPhase2;
     }

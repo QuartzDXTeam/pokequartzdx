@@ -112,6 +112,7 @@ void sub_80A6B30(struct BattleAnimBgData*);
 void sub_80A6B90(struct BattleAnimBgData*, u32 arg1);
 u8 GetBattlerSpriteSubpriority(u8 battlerId);
 bool8 TranslateAnimHorizontalArc(struct Sprite *sprite);
+bool8 TranslateAnimVerticalArc(struct Sprite *sprite);
 void sub_80A6630(struct Sprite *sprite);
 void TranslateMonSpriteLinearFixedPoint(struct Sprite *sprite);
 void ResetSpriteRotScale(u8 spriteId);
