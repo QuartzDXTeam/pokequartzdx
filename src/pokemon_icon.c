@@ -412,7 +412,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_PEEZGAL] = gMonIcon_Peezgal,
     [SPECIES_KARENDI] = gMonIcon_Karendi,
     [SPECIES_GAROTAO] = gMonIcon_Garotao,
-    [SPECIES_EGG] = gMonIcon_Chapebaya,
+    [SPECIES_EGG] = gMonIcon_Egg,
 };
 
 const u8 gMonIconPaletteIndices[] =
