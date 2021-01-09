@@ -1204,9 +1204,9 @@ const u8 gMonIcon_Magiken[] = INCBIN_U8("graphics/pokemon/magiken/icon.4bpp");
 const u8 gMonFootprint_Magiken[] = INCBIN_U8("graphics/pokemon/magiken/footprint.1bpp");
 const u32 gMonPalette_Magiken[] = INCBIN_U32("graphics/pokemon/magiken/normal.gbapal.lz");
 const u32 gMonShinyPalette_Magiken[] = INCBIN_U32("graphics/pokemon/magiken/shiny.gbapal.lz");
-const u32 gMonFrontPic_Cornscript[] = INCBIN_U32("graphics/pokemon/cornscript/front.4bpp.lz");
-const u32 gMonBackPic_Cornscript[] = INCBIN_U32("graphics/pokemon/cornscript/back.4bpp.lz");
-const u8 gMonIcon_Cornscript[] = INCBIN_U8("graphics/pokemon/cornscript/icon.4bpp");
+const u32 gMonFrontPic_CornscriptA[] = INCBIN_U32("graphics/pokemon/cornscript/a/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptA[] = INCBIN_U32("graphics/pokemon/cornscript/a/back.4bpp.lz");
+const u8 gMonIcon_CornscriptA[] = INCBIN_U8("graphics/pokemon/cornscript/a/icon.4bpp");
 const u8 gMonFootprint_Cornscript[] = INCBIN_U8("graphics/pokemon/cornscript/footprint.1bpp");
 const u32 gMonPalette_Cornscript[] = INCBIN_U32("graphics/pokemon/cornscript/normal.gbapal.lz");
 const u32 gMonShinyPalette_Cornscript[] = INCBIN_U32("graphics/pokemon/cornscript/shiny.gbapal.lz");
@@ -2323,3 +2323,111 @@ const u32 gMonShinyPalette_Garotao[] = INCBIN_U32("graphics/pokemon/garotao/shin
 
 const u32 gMonStillFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/front.4bpp.lz");
 const u32 gMonPalette_Egg[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
+
+const u32 gMonFrontPic_CornscriptB[] = INCBIN_U32("graphics/pokemon/Cornscript/b/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptB[] = INCBIN_U32("graphics/pokemon/Cornscript/b/back.4bpp.lz");
+const u8 gMonIcon_CornscriptB[] = INCBIN_U8("graphics/pokemon/Cornscript/b/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptC[] = INCBIN_U32("graphics/pokemon/Cornscript/c/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptC[] = INCBIN_U32("graphics/pokemon/Cornscript/c/back.4bpp.lz");
+const u8 gMonIcon_CornscriptC[] = INCBIN_U8("graphics/pokemon/Cornscript/c/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptD[] = INCBIN_U32("graphics/pokemon/Cornscript/d/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptD[] = INCBIN_U32("graphics/pokemon/Cornscript/d/back.4bpp.lz");
+const u8 gMonIcon_CornscriptD[] = INCBIN_U8("graphics/pokemon/Cornscript/d/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptE[] = INCBIN_U32("graphics/pokemon/Cornscript/e/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptE[] = INCBIN_U32("graphics/pokemon/Cornscript/e/back.4bpp.lz");
+const u8 gMonIcon_CornscriptE[] = INCBIN_U8("graphics/pokemon/Cornscript/e/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptF[] = INCBIN_U32("graphics/pokemon/Cornscript/f/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptF[] = INCBIN_U32("graphics/pokemon/Cornscript/f/back.4bpp.lz");
+const u8 gMonIcon_CornscriptF[] = INCBIN_U8("graphics/pokemon/Cornscript/f/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptG[] = INCBIN_U32("graphics/pokemon/Cornscript/g/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptG[] = INCBIN_U32("graphics/pokemon/Cornscript/g/back.4bpp.lz");
+const u8 gMonIcon_CornscriptG[] = INCBIN_U8("graphics/pokemon/Cornscript/g/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptH[] = INCBIN_U32("graphics/pokemon/Cornscript/h/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptH[] = INCBIN_U32("graphics/pokemon/Cornscript/h/back.4bpp.lz");
+const u8 gMonIcon_CornscriptH[] = INCBIN_U8("graphics/pokemon/Cornscript/h/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptI[] = INCBIN_U32("graphics/pokemon/Cornscript/i/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptI[] = INCBIN_U32("graphics/pokemon/Cornscript/i/back.4bpp.lz");
+const u8 gMonIcon_CornscriptI[] = INCBIN_U8("graphics/pokemon/Cornscript/i/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptJ[] = INCBIN_U32("graphics/pokemon/Cornscript/j/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptJ[] = INCBIN_U32("graphics/pokemon/Cornscript/j/back.4bpp.lz");
+const u8 gMonIcon_CornscriptJ[] = INCBIN_U8("graphics/pokemon/Cornscript/j/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptK[] = INCBIN_U32("graphics/pokemon/Cornscript/k/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptK[] = INCBIN_U32("graphics/pokemon/Cornscript/k/back.4bpp.lz");
+const u8 gMonIcon_CornscriptK[] = INCBIN_U8("graphics/pokemon/Cornscript/k/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptL[] = INCBIN_U32("graphics/pokemon/Cornscript/l/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptL[] = INCBIN_U32("graphics/pokemon/Cornscript/l/back.4bpp.lz");
+const u8 gMonIcon_CornscriptL[] = INCBIN_U8("graphics/pokemon/Cornscript/l/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptM[] = INCBIN_U32("graphics/pokemon/Cornscript/m/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptM[] = INCBIN_U32("graphics/pokemon/Cornscript/m/back.4bpp.lz");
+const u8 gMonIcon_CornscriptM[] = INCBIN_U8("graphics/pokemon/Cornscript/m/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptN[] = INCBIN_U32("graphics/pokemon/Cornscript/n/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptN[] = INCBIN_U32("graphics/pokemon/Cornscript/n/back.4bpp.lz");
+const u8 gMonIcon_CornscriptN[] = INCBIN_U8("graphics/pokemon/Cornscript/n/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptO[] = INCBIN_U32("graphics/pokemon/Cornscript/o/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptO[] = INCBIN_U32("graphics/pokemon/Cornscript/o/back.4bpp.lz");
+const u8 gMonIcon_CornscriptO[] = INCBIN_U8("graphics/pokemon/Cornscript/o/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptP[] = INCBIN_U32("graphics/pokemon/Cornscript/p/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptP[] = INCBIN_U32("graphics/pokemon/Cornscript/p/back.4bpp.lz");
+const u8 gMonIcon_CornscriptP[] = INCBIN_U8("graphics/pokemon/Cornscript/p/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptQ[] = INCBIN_U32("graphics/pokemon/Cornscript/q/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptQ[] = INCBIN_U32("graphics/pokemon/Cornscript/q/back.4bpp.lz");
+const u8 gMonIcon_CornscriptQ[] = INCBIN_U8("graphics/pokemon/Cornscript/q/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptR[] = INCBIN_U32("graphics/pokemon/Cornscript/r/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptR[] = INCBIN_U32("graphics/pokemon/Cornscript/r/back.4bpp.lz");
+const u8 gMonIcon_CornscriptR[] = INCBIN_U8("graphics/pokemon/Cornscript/r/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptS[] = INCBIN_U32("graphics/pokemon/Cornscript/s/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptS[] = INCBIN_U32("graphics/pokemon/Cornscript/s/back.4bpp.lz");
+const u8 gMonIcon_CornscriptS[] = INCBIN_U8("graphics/pokemon/Cornscript/s/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptT[] = INCBIN_U32("graphics/pokemon/Cornscript/t/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptT[] = INCBIN_U32("graphics/pokemon/Cornscript/t/back.4bpp.lz");
+const u8 gMonIcon_CornscriptT[] = INCBIN_U8("graphics/pokemon/Cornscript/t/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptU[] = INCBIN_U32("graphics/pokemon/Cornscript/u/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptU[] = INCBIN_U32("graphics/pokemon/Cornscript/u/back.4bpp.lz");
+const u8 gMonIcon_CornscriptU[] = INCBIN_U8("graphics/pokemon/Cornscript/u/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptV[] = INCBIN_U32("graphics/pokemon/Cornscript/v/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptV[] = INCBIN_U32("graphics/pokemon/Cornscript/v/back.4bpp.lz");
+const u8 gMonIcon_CornscriptV[] = INCBIN_U8("graphics/pokemon/Cornscript/v/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptW[] = INCBIN_U32("graphics/pokemon/Cornscript/w/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptW[] = INCBIN_U32("graphics/pokemon/Cornscript/w/back.4bpp.lz");
+const u8 gMonIcon_CornscriptW[] = INCBIN_U8("graphics/pokemon/Cornscript/w/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptX[] = INCBIN_U32("graphics/pokemon/Cornscript/x/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptX[] = INCBIN_U32("graphics/pokemon/Cornscript/x/back.4bpp.lz");
+const u8 gMonIcon_CornscriptX[] = INCBIN_U8("graphics/pokemon/Cornscript/x/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptY[] = INCBIN_U32("graphics/pokemon/Cornscript/y/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptY[] = INCBIN_U32("graphics/pokemon/Cornscript/y/back.4bpp.lz");
+const u8 gMonIcon_CornscriptY[] = INCBIN_U8("graphics/pokemon/Cornscript/y/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptZ[] = INCBIN_U32("graphics/pokemon/Cornscript/z/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptZ[] = INCBIN_U32("graphics/pokemon/Cornscript/z/back.4bpp.lz");
+const u8 gMonIcon_CornscriptZ[] = INCBIN_U8("graphics/pokemon/Cornscript/z/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptExclamationMark[] = INCBIN_U32("graphics/pokemon/Cornscript/exclamation_mark/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptExclamationMark[] = INCBIN_U32("graphics/pokemon/Cornscript/exclamation_mark/back.4bpp.lz");
+const u8 gMonIcon_CornscriptExclamationMark[] = INCBIN_U8("graphics/pokemon/Cornscript/exclamation_mark/icon.4bpp");
+
+const u32 gMonFrontPic_CornscriptQuestionMark[] = INCBIN_U32("graphics/pokemon/Cornscript/question_mark/front.4bpp.lz");
+const u32 gMonBackPic_CornscriptQuestionMark[] = INCBIN_U32("graphics/pokemon/Cornscript/question_mark/back.4bpp.lz");
+const u8 gMonIcon_CornscriptQuestionMark[] = INCBIN_U8("graphics/pokemon/Cornscript/question_mark/icon.4bpp");
