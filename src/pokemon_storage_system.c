@@ -1347,7 +1347,7 @@ static const u32 gWallpaperTilemap_Pikachu[] = INCBIN_U32("graphics/pokemon_stor
 
 static const u16 gWallpaperPalettes_Legendary[][16] =
 {
-    INCBIN_U16("graphics/pokemon_storage/friends_frame2.gbapal"),
+    INCBIN_U16("graphics/pokemon_storage/legendary_frame.gbapal"),
     INCBIN_U16("graphics/pokemon_storage/legendary_bg.gbapal"),
 };
 static const u32 gWallpaperTiles_Legendary[] = INCBIN_U32("graphics/pokemon_storage/legendary.4bpp.lz");

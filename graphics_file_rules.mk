@@ -666,7 +666,7 @@ $(PSSGFXDIR)/azumarill.4bpp: $(PSSGFXDIR)/friends_frame2.4bpp $(PSSGFXDIR)/azuma
 $(PSSGFXDIR)/pikachu.4bpp: $(PSSGFXDIR)/friends_frame2.4bpp $(PSSGFXDIR)/pikachu_bg.4bpp
 	@cat $^ >$@
 
-$(PSSGFXDIR)/legendary.4bpp: $(PSSGFXDIR)/friends_frame2.4bpp $(PSSGFXDIR)/legendary_bg.4bpp
+$(PSSGFXDIR)/legendary.4bpp: $(PSSGFXDIR)/legendary_frame.4bpp $(PSSGFXDIR)/legendary_bg.4bpp
 	@cat $^ >$@
 
 $(PSSGFXDIR)/dusclops.4bpp: $(PSSGFXDIR)/friends_frame2.4bpp $(PSSGFXDIR)/dusclops_bg.4bpp
