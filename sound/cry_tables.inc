@@ -1,31 +1,31 @@
 	.align 2
 gCryTable:: @ 869DCF4
-	cry Cry_Bulbasaur  @ 869DCF4
-	cry Cry_Ivysaur  @ 869DD00
-	cry Cry_Venusaur  @ 869DD0C
-	cry Cry_Charmander  @ 869DD18
-	cry Cry_Charmeleon  @ 869DD24
-	cry Cry_Charizard  @ 869DD30
-	cry Cry_Squirtle  @ 869DD3C
-	cry Cry_Wartortle  @ 869DD48
-	cry Cry_Blastoise  @ 869DD54
-	cry Cry_Caterpie  @ 869DD60
-	cry Cry_Metapod  @ 869DD6C
-	cry Cry_Butterfree  @ 869DD78
-	cry Cry_Weedle  @ 869DD84
-	cry Cry_Kakuna  @ 869DD90
-	cry Cry_Beedrill  @ 869DD9C
-	cry Cry_Pidgey  @ 869DDA8
-	cry Cry_Pidgeotto  @ 869DDB4
-	cry Cry_Pidgeot  @ 869DDC0
-	cry Cry_Rattata  @ 869DDCC
-	cry Cry_Raticate  @ 869DDD8
-	cry Cry_Spearow  @ 869DDE4
-	cry Cry_Fearow  @ 869DDF0
-	cry Cry_Ekans  @ 869DDFC
-	cry Cry_Arbok  @ 869DE08
-	cry Cry_Pikachu  @ 869DE14
-	cry Cry_Raichu  @ 869DE20
+	cry Cry_Chapebaya  @ 869DCF4
+	cry Cry_Denpecha  @ 869DD00
+	cry Cry_Denfrota  @ 869DD0C
+	cry Cry_Coalchu  @ 869DD18
+	cry Cry_Rallama  @ 869DD24
+	cry Cry_Roellama @ 869DD30
+	cry Cry_Todad  @ 869DD3C
+	cry Cry_Shroad  @ 869DD48
+	cry Cry_Bultoad  @ 869DD54
+	cry Cry_Larvet  @ 869DD60
+	cry Cry_Morfade  @ 869DD6C
+	cry Cry_Eyefly  @ 869DD78
+	cry Cry_Drosofly  @ 869DD84
+	cry Cry_Metagaster  @ 869DD90
+	cry Cry_Phylafly  @ 869DD9C
+	cry Cry_Ornlil  @ 869DDA8
+	cry Cry_Wasoo  @ 869DDB4
+	cry Cry_Volateo  @ 869DDC0
+	cry Cry_Batoka  @ 869DDCC
+	cry Cry_Mouspid  @ 869DDD8
+	cry Cry_Turkur  @ 869DDE4
+	cry Cry_Peakur  @ 869DDF0
+	cry Cry_ChukTxu  @ 869DDFC
+	cry Cry_Leeckey  @ 869DE08
+	cry Cry_Covolts  @ 869DE14
+	cry Cry_Lucivolts  @ 869DE20
 	cry Cry_Sandshrew  @ 869DE2C
 	cry Cry_Sandslash  @ 869DE38
 	cry Cry_NidoranF  @ 869DE44
@@ -258,7 +258,7 @@ gCryTable:: @ 869DCF4
 	cry Cry_Manectric  @ 869E8E8
 	cry Cry_Duskull  @ 869E8F4
 	cry Cry_Latias  @ 869E900
-	cry Cry_Wynaut  @ 869E90C
+	cry Cry_Boguon  @ 869E90C
 	cry Cry_Seviper  @ 869E918
 	cry Cry_Sharpedo  @ 869E924
 	cry Cry_Zangoose  @ 869E930
@@ -266,7 +266,7 @@ gCryTable:: @ 869DCF4
 	cry Cry_Swablu  @ 869E948
 	cry Cry_Altaria  @ 869E954
 	cry Cry_Unused265  @ 869E960
-	cry Cry_Taillow  @ 869E96C
+	cry Cry_Reabari  @ 869E96C
 	cry Cry_Swellow  @ 869E978
 	cry Cry_Unused268  @ 869E984
 	cry Cry_Spinda  @ 869E990
@@ -384,29 +384,29 @@ gCryTable:: @ 869DCF4
 	cry Cry_Wailord  @ 869EED0
 	cry Cry_Whismur  @ 869EEDC
 	cry Cry_Snorunt  @ 869EEE8
-	cry Cry_Latios  @ 869EEF4
-	cry Cry_Jirachi  @ 869EF00
-	cry Cry_Deoxys  @ 869EF0C
-	cry Cry_Chimecho  @ 869EF18
+	cry Cry_Tanord  @ 869EEF4
+	cry Cry_Karendi  @ 869EF00
+	cry Cry_Garotao  @ 869EF0C
+	cry Cry_Gritespec  @ 869EF18
 
 	.align 2
 gCryTable2:: @ 869EF24
-	cry2 Cry_Bulbasaur  @ 869EF24
-	cry2 Cry_Ivysaur  @ 869EF30
-	cry2 Cry_Venusaur  @ 869EF3C
-	cry2 Cry_Charmander  @ 869EF48
-	cry2 Cry_Charmeleon  @ 869EF54
-	cry2 Cry_Charizard  @ 869EF60
-	cry2 Cry_Squirtle  @ 869EF6C
-	cry2 Cry_Wartortle  @ 869EF78
-	cry2 Cry_Blastoise  @ 869EF84
-	cry2 Cry_Caterpie  @ 869EF90
-	cry2 Cry_Metapod  @ 869EF9C
-	cry2 Cry_Butterfree  @ 869EFA8
-	cry2 Cry_Weedle  @ 869EFB4
-	cry2 Cry_Kakuna  @ 869EFC0
-	cry2 Cry_Beedrill  @ 869EFCC
-	cry2 Cry_Pidgey  @ 869EFD8
+	cry2 Cry_Chapebaya  @ 869EF24
+	cry2 Cry_Denpecha  @ 869EF30
+	cry2 Cry_Denfrota  @ 869EF3C
+	cry2 Cry_Coalchu  @ 869EF48
+	cry2 Cry_Rallama  @ 869EF54
+	cry2 Cry_Roellama  @ 869EF60
+	cry2 Cry_Todad  @ 869EF6C
+	cry2 Cry_Shroad  @ 869EF78
+	cry2 Cry_Bultoad  @ 869EF84
+	cry2 Cry_Larvet  @ 869EF90
+	cry2 Cry_Morfade  @ 869EF9C
+	cry2 Cry_Eyefly  @ 869EFA8
+	cry2 Cry_Drosofly  @ 869EFB4
+	cry2 Cry_Metagaster  @ 869EFC0
+	cry2 Cry_Phylafly  @ 869EFCC
+	cry2 Cry_Ornlil  @ 869EFD8
 	cry2 Cry_Pidgeotto  @ 869EFE4
 	cry2 Cry_Pidgeot  @ 869EFF0
 	cry2 Cry_Rattata  @ 869EFFC
@@ -649,7 +649,7 @@ gCryTable2:: @ 869EF24
 	cry2 Cry_Manectric  @ 869FB18
 	cry2 Cry_Duskull  @ 869FB24
 	cry2 Cry_Latias  @ 869FB30
-	cry2 Cry_Wynaut  @ 869FB3C
+	cry2 Cry_Boguon  @ 869FB3C
 	cry2 Cry_Seviper  @ 869FB48
 	cry2 Cry_Sharpedo  @ 869FB54
 	cry2 Cry_Zangoose  @ 869FB60
@@ -657,7 +657,7 @@ gCryTable2:: @ 869EF24
 	cry2 Cry_Swablu  @ 869FB78
 	cry2 Cry_Altaria  @ 869FB84
 	cry2 Cry_Unused265  @ 869FB90
-	cry2 Cry_Taillow  @ 869FB9C
+	cry2 Cry_Reabari  @ 869FB9C
 	cry2 Cry_Swellow  @ 869FBA8
 	cry2 Cry_Unused268  @ 869FBB4
 	cry2 Cry_Spinda  @ 869FBC0
@@ -778,4 +778,4 @@ gCryTable2:: @ 869EF24
 	cry2 Cry_Latios  @ 86A0124
 	cry2 Cry_Jirachi  @ 86A0130
 	cry2 Cry_Deoxys  @ 86A013C
-	cry2 Cry_Chimecho  @ 86A0148
+	cry2 Cry_Gritespec  @ 86A0148
