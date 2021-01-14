@@ -1072,7 +1072,7 @@ Cry_Aenguile::
 
 	.align 2
 Cry_Gusvolts::
-	.incbin "sound/direct_sound_samples/cry_gustano.bin"
+	.incbin "sound/direct_sound_samples/cry_gusvolts.bin"
 
 	.align 2
 Cry_Airi::

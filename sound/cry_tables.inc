@@ -51,8 +51,8 @@ gCryTable:: @ 869DCF4
 	cry Cry_Deeretle  @ 869DF34
 	cry Cry_Armorito  @ 869DF40
 	cry Cry_Armorazo  @ 869DF4C
-	cry Cry_Fureep  @ 869DF58
-	cry Cry_Ankori  @ 869DF64
+	cry Cry_Ankori  @ 869DF58
+	cry Cry_Fureep  @ 869DF64
 	cry Cry_Pulsul  @ 869DF70
 	cry Cry_Koropul  @ 869DF7C
 	cry Cry_Darkoon @ 869DF88
