@@ -6674,7 +6674,7 @@ const struct BaseStats gBaseStats[] = {
         .noFlip = TRUE,
     },
 
-    [SPECIES_TRUFKIP] = {
+    [SPECIES_TRUFKIE] = {
         .baseHP        = 75,
         .baseAttack    = 70,
         .baseDefense   = 50,

@@ -5314,7 +5314,7 @@ const u32 gTMHMLearnsets[][2] =
                                             | TMHM(TM43_SECRET_POWER)
                                             | TMHM(TM44_REST)),
     
-    [SPECIES_TRUFKIP]      = TMHM_LEARNSET(TMHM(TM05_ROAR)
+    [SPECIES_TRUFKIE]      = TMHM_LEARNSET(TMHM(TM05_ROAR)
                                             | TMHM(TM06_TOXIC)
                                             | TMHM(TM09_BULLET_SEED)
                                             | TMHM(TM10_HIDDEN_POWER)

@@ -1022,7 +1022,7 @@ const u16 gEggMoves[] = {
               MOVE_LEAF_BLADE,
               MOVE_SUBSTITUTE),
 
-    egg_moves(TRUFKIP,
+    egg_moves(TRUFKIE,
               MOVE_BODY_SLAM,
               MOVE_FISSURE),
 
