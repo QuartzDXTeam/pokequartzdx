@@ -91,7 +91,7 @@
 #define DECOR_SMOOCHUM_DOLL    87
 #define DECOR_TREECKO_DOLL     88
 #define DECOR_TORCHIC_DOLL     89
-#define DECOR_MUDKIP_DOLL      90
+#define DECOR_AQUEGG_DOLL      90
 #define DECOR_DUSKULL_DOLL     91
 #define DECOR_WYNAUT_DOLL      92
 #define DECOR_BALTOY_DOLL      93

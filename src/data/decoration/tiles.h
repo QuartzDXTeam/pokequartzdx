@@ -518,8 +518,8 @@ const u16 DecorGfx_TORCHIC_DOLL[] = {
     OBJ_EVENT_GFX_TORCHIC_DOLL
 };
 
-const u16 DecorGfx_MUDKIP_DOLL[] = {
-    OBJ_EVENT_GFX_MUDKIP_DOLL
+const u16 DecorGfx_AQUEGG_DOLL[] = {
+    OBJ_EVENT_GFX_AQUEGG_DOLL
 };
 
 const u16 DecorGfx_DUSKULL_DOLL[] = {
