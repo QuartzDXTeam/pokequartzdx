@@ -1265,7 +1265,7 @@ static void Task_IntroStartBikeRide(u8 taskId)
     u8 spriteId;
 
     if (gIntroCharacterGender == 0)
-        LoadCompressedSpriteSheet(gIntro2BrendanSpriteSheet);
+        LoadCompressedSpriteSheet(gIntro2AkiraSpriteSheet);
     else
         LoadCompressedSpriteSheet(gIntro2MaySpriteSheet);
 
@@ -1283,7 +1283,7 @@ static void Task_IntroStartBikeRide(u8 taskId)
     CreateSprite(&gUnknown_085E4BA4, 0x120, 0x6E, 1);
 
     if (gIntroCharacterGender == 0)
-        spriteId = intro_create_brendan_sprite(0x110, 100);
+        spriteId = intro_create_akira_sprite(0x110, 100);
     else
         spriteId = intro_create_may_sprite(0x110, 100);
 

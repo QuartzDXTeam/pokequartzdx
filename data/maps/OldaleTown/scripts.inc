@@ -259,7 +259,7 @@ OldaleTown_EventScript_ShowRivalMessage:: @ 81E90E6
 	compare VAR_RESULT, MALE
 	goto_if_eq OldaleTown_EventScript_ShowMayMessage
 	compare VAR_RESULT, FEMALE
-	goto_if_eq OldaleTown_EventScript_ShowBrendanMessage
+	goto_if_eq OldaleTown_EventScript_ShowAkiraMessage
 	end
 
 OldaleTown_EventScript_ShowMayMessage:: @ 81E90FE
@@ -267,8 +267,8 @@ OldaleTown_EventScript_ShowMayMessage:: @ 81E90FE
 	goto OldaleTown_EventScript_RivalFinish
 	end
 
-OldaleTown_EventScript_ShowBrendanMessage:: @ 81E910C
-	msgbox OldaleTown_Text_BrendanLetsGoBack, MSGBOX_DEFAULT
+OldaleTown_EventScript_ShowAkiraMessage:: @ 81E910C
+	msgbox OldaleTown_Text_AkiraLetsGoBack, MSGBOX_DEFAULT
 	goto OldaleTown_EventScript_RivalFinish
 	end
 
@@ -392,8 +392,8 @@ OldaleTown_Text_MayLetsGoBack: @ 81E9462
 	.string "Over here!\l"
 	.string "Let's hurry home!$"
 
-OldaleTown_Text_BrendanLetsGoBack: @ 81E948A
-	.string "BRENDAN: I'm heading back to my dad's\n"
+OldaleTown_Text_AkiraLetsGoBack: @ 81E948A
+	.string "AKIRA: I'm heading back to my dad's\n"
 	.string "LAB now.\l"
 	.string "{PLAYER}, you should hustle back, too.$"
 

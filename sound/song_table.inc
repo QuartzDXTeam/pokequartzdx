@@ -422,7 +422,7 @@ gSongTable:: @ 86B49F0
 	song mus_kazanbai, 0, 0         @ Route 113
 	song mus_aqa_0, 0, 0            @ Team Aqua Appears!
 	song mus_tsuretek, 0, 0         @ Hurry Along
-	song mus_boy_sup, 0, 0          @ Brendan
+	song mus_boy_sup, 0, 0          @ Akira
 	song mus_rainbow, 0, 0          @ Evergrande City
 	song mus_ayasii, 0, 0           @ Trainers' Eyes Meet (Hex Maniac)
 	song mus_kachi4, 0, 0           @ Victory! (Team Aqua / Team Magma)
@@ -482,7 +482,7 @@ gSongTable:: @ 86B49F0
 	song mus_battle33, 0, 0         @ Battle! (Champion Wallace)
 	song mus_battle36, 0, 0         @ Battle! (Regirock/Regice/Registeel)
 	song mus_battle34, 0, 0         @ Battle! (Groudon/Kyogre)
-	song mus_battle35, 0, 0         @ Battle! (Brendan/May/Steven)
+	song mus_battle35, 0, 0         @ Battle! (Akira/May/Steven)
 	song mus_battle38, 0, 0         @ Battle! (Elite Four)
 	song mus_battle30, 0, 0         @ Battle! (Team Aqua/Team Magma Leaders)
 	song mus_rg_annai, 0, 0         @ Guide (FRLG)

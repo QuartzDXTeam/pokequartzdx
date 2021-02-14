@@ -382,7 +382,7 @@ Route110_EventScript_RivalScene:: @ 81EF76E
 	compare VAR_RESULT, MALE
 	call_if_eq Route110_EventScript_PlayMayMusic
 	compare VAR_RESULT, FEMALE
-	call_if_eq Route110_EventScript_PlayBrendanMusic
+	call_if_eq Route110_EventScript_PlayAkiraMusic
 	applymovement 28, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	applymovement 28, Common_Movement_ExclamationMark
@@ -400,7 +400,7 @@ Route110_EventScript_RivalScene:: @ 81EF76E
 	compare VAR_RESULT, MALE
 	goto_if_eq Route110_EventScript_MayBattle
 	compare VAR_RESULT, FEMALE
-	goto_if_eq Route110_EventScript_BrendanBattle
+	goto_if_eq Route110_EventScript_AkiraBattle
 	releaseall
 	end
 
@@ -408,7 +408,7 @@ Route110_EventScript_PlayMayMusic:: @ 81EF7E1
 	playbgm MUS_GIRL_SUP, 1
 	return
 
-Route110_EventScript_PlayBrendanMusic:: @ 81EF7E6
+Route110_EventScript_PlayAkiraMusic:: @ 81EF7E6
 	playbgm MUS_BOY_SUP, 1
 	return
 
@@ -442,33 +442,33 @@ Route110_EventScript_MayDefeated:: @ 81EF84A
 	goto Route110_EventScript_RivalExit
 	end
 
-Route110_EventScript_BrendanBattle:: @ 81EF865
+Route110_EventScript_AkiraBattle:: @ 81EF865
 	msgbox Route110_Text_BrendayLetsBattle, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, Route110_EventScript_BrendanBattleTreecko
-	case 1, Route110_EventScript_BrendanBattleTorchic
-	case 2, Route110_EventScript_BrendanBattleMudkip
+	case 0, Route110_EventScript_AkiraBattleTreecko
+	case 1, Route110_EventScript_AkiraBattleTorchic
+	case 2, Route110_EventScript_AkiraBattleMudkip
 	end
 
-Route110_EventScript_BrendanBattleTreecko:: @ 81EF894
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_TREECKO, Route110_Text_BrendanDefeated
-	goto Route110_EventScript_BrendanDefeated
+Route110_EventScript_AkiraBattleTreecko:: @ 81EF894
+	trainerbattle_no_intro TRAINER_AKIRA_ROUTE_110_TREECKO, Route110_Text_AkiraDefeated
+	goto Route110_EventScript_AkiraDefeated
 	end
 
-Route110_EventScript_BrendanBattleTorchic:: @ 81EF8A4
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_TORCHIC, Route110_Text_BrendanDefeated
-	goto Route110_EventScript_BrendanDefeated
+Route110_EventScript_AkiraBattleTorchic:: @ 81EF8A4
+	trainerbattle_no_intro TRAINER_AKIRA_ROUTE_110_TORCHIC, Route110_Text_AkiraDefeated
+	goto Route110_EventScript_AkiraDefeated
 	end
 
-Route110_EventScript_BrendanBattleMudkip:: @ 81EF8B4
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_110_MUDKIP, Route110_Text_BrendanDefeated
-	goto Route110_EventScript_BrendanDefeated
+Route110_EventScript_AkiraBattleMudkip:: @ 81EF8B4
+	trainerbattle_no_intro TRAINER_AKIRA_ROUTE_110_MUDKIP, Route110_Text_AkiraDefeated
+	goto Route110_EventScript_AkiraDefeated
 	end
 
-Route110_EventScript_BrendanDefeated:: @ 81EF8C4
-	msgbox Route110_Text_BrendanTakeThis, MSGBOX_DEFAULT
+Route110_EventScript_AkiraDefeated:: @ 81EF8C4
+	msgbox Route110_Text_AkiraTakeThis, MSGBOX_DEFAULT
 	call Route110_EventScript_GiveItemfinder
-	msgbox Route110_Text_BrendanExplainItemfinder, MSGBOX_DEFAULT
+	msgbox Route110_Text_AkiraExplainItemfinder, MSGBOX_DEFAULT
 	goto Route110_EventScript_RivalExit
 	end
 
@@ -810,24 +810,24 @@ Route110_Text_MayExplainItemfinder: @ 81EFD58
 	.string "harder for the next time.$"
 
 Route110_Text_BrendayLetsBattle: @ 81EFE3F
-	.string "BRENDAN: Hey, {PLAYER}.\n"
+	.string "AKIRA: Hey, {PLAYER}.\n"
 	.string "So this is where you were.\l"
 	.string "How's it going?\p"
 	.string "Have you been raising your POKéMON?\n"
 	.string "I'll check for you.$"
 
-Route110_Text_BrendanDefeated: @ 81EFEB4
+Route110_Text_AkiraDefeated: @ 81EFEB4
 	.string "Hmm…\n"
 	.string "You're pretty good.$"
 
-Route110_Text_BrendanTakeThis: @ 81EFECD
-	.string "BRENDAN: {PLAYER}, you've trained\n"
+Route110_Text_AkiraTakeThis: @ 81EFECD
+	.string "AKIRA: {PLAYER}, you've trained\n"
 	.string "without me noticing…\p"
 	.string "Good enough!\n"
 	.string "Here, take this.$"
 
-Route110_Text_BrendanExplainItemfinder: @ 81EFF1C
-	.string "BRENDAN: That's an ITEMFINDER.\p"
+Route110_Text_AkiraExplainItemfinder: @ 81EFF1C
+	.string "AKIRA: That's an ITEMFINDER.\p"
 	.string "Use it to root around for items that\n"
 	.string "aren't visible.\p"
 	.string "If it senses something, it emits\n"

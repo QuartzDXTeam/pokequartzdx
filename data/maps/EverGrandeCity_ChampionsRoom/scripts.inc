@@ -56,21 +56,21 @@ EverGrandeCity_ChampionsRoom_EventScript_Defeated:: @ 8228A61
 	compare VAR_RESULT, MALE
 	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
 	compare VAR_RESULT, FEMALE
-	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic
+	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_PlayAkiraMusic
 	addobject 2
 	call EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer
 	checkplayergender
 	compare VAR_RESULT, MALE
 	goto_if_eq EverGrandeCity_ChampionsRoom_EventScript_MayAdvice
 	compare VAR_RESULT, FEMALE
-	goto_if_eq EverGrandeCity_ChampionsRoom_EventScript_BrendanAdvice
+	goto_if_eq EverGrandeCity_ChampionsRoom_EventScript_AkiraAdvice
 	end
 
 EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic:: @ 8228ABC
 	playbgm MUS_GIRL_SUP, 0
 	return
 
-EverGrandeCity_ChampionsRoom_EventScript_PlayBrendanMusic:: @ 8228AC1
+EverGrandeCity_ChampionsRoom_EventScript_PlayAkiraMusic:: @ 8228AC1
 	playbgm MUS_BOY_SUP, 0
 	return
 
@@ -87,8 +87,8 @@ EverGrandeCity_ChampionsRoom_EventScript_MayAdvice:: @ 8228AC6
 	goto EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF
 	end
 
-EverGrandeCity_ChampionsRoom_EventScript_BrendanAdvice:: @ 8228AFB
-	msgbox EverGrandeCity_ChampionsRoom_Text_BrendanAdvice, MSGBOX_DEFAULT
+EverGrandeCity_ChampionsRoom_EventScript_AkiraAdvice:: @ 8228AFB
+	msgbox EverGrandeCity_ChampionsRoom_Text_AkiraAdvice, MSGBOX_DEFAULT
 	delay 40
 	playse SE_PIN
 	applymovement 2, Common_Movement_ExclamationMark
@@ -96,7 +96,7 @@ EverGrandeCity_ChampionsRoom_EventScript_BrendanAdvice:: @ 8228AFB
 	applymovement 2, Common_Movement_Delay48
 	waitmovement 0
 	call EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth
-	msgbox EverGrandeCity_ChampionsRoom_Text_BrendanYouveWon, MSGBOX_DEFAULT
+	msgbox EverGrandeCity_ChampionsRoom_Text_AkiraYouveWon, MSGBOX_DEFAULT
 	goto EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF
 	end
 
@@ -131,7 +131,7 @@ EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF:: @ 8228B30
 	compare VAR_RESULT, MALE
 	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations
 	compare VAR_RESULT, FEMALE
-	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations
+	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_AkiraCongratulations
 	closemessage
 	applymovement 1, EverGrandeCity_ChampionsRoom_Movement_WallaceExit
 	applymovement OBJ_EVENT_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_PlayerExit
@@ -146,8 +146,8 @@ EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations:: @ 8228BEB
 	msgbox EverGrandeCity_ChampionsRoom_Text_MayCongratulations, MSGBOX_DEFAULT
 	return
 
-EverGrandeCity_ChampionsRoom_EventScript_BrendanCongratulations:: @ 8228BF4
-	msgbox EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations, MSGBOX_DEFAULT
+EverGrandeCity_ChampionsRoom_EventScript_AkiraCongratulations:: @ 8228BF4
+	msgbox EverGrandeCity_ChampionsRoom_Text_AkiraCongratulations, MSGBOX_DEFAULT
 	return
 
 EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer:: @ 8228BFD
@@ -284,13 +284,13 @@ EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver: @ 822910B
 	.string "Could it be that…\l"
 	.string "It's already over?$"
 
-EverGrandeCity_ChampionsRoom_Text_BrendanAdvice: @ 8229152
-	.string "BRENDAN: {PLAYER}!\p"
+EverGrandeCity_ChampionsRoom_Text_AkiraAdvice: @ 8229152
+	.string "AKIRA: {PLAYER}!\p"
 	.string "How would you like some advice before\n"
 	.string "you challenge the CHAMPION?…$"
 
-EverGrandeCity_ChampionsRoom_Text_BrendanYouveWon: @ 82291A2
-	.string "BRENDAN: {PLAYER}…\p"
+EverGrandeCity_ChampionsRoom_Text_AkiraYouveWon: @ 82291A2
+	.string "AKIRA: {PLAYER}…\p"
 	.string "Are you trying to tell me…\n"
 	.string "You've beaten the CHAMPION?$"
 
@@ -337,8 +337,8 @@ EverGrandeCity_ChampionsRoom_Text_MayCongratulations: @ 8229479
 	.string "{PLAYER}{KUN}!\n"
 	.string "Honestly, congratulations!$"
 
-EverGrandeCity_ChampionsRoom_Text_BrendanCongratulations: @ 82294F5
-	.string "BRENDAN: Whaaaat?! … … … … …\n"
+EverGrandeCity_ChampionsRoom_Text_AkiraCongratulations: @ 82294F5
+	.string "AKIRA: Whaaaat?! … … … … …\n"
 	.string "… … … … … … … …\p"
 	.string "It can't be helped if that's the rule.\p"
 	.string "{PLAYER}, way to go!\n"

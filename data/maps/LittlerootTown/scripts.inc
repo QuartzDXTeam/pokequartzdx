@@ -20,7 +20,7 @@ LittlerootTown_MapScripts:: @ 81E7DCB
 	@ 7: Told to go meet rival
 
 	@ State descriptions for VAR_LITTLEROOT_HOUSES_STATE_MAY
-	@                    and VAR_LITTLEROOT_HOUSES_STATE_BRENDAN
+	@                    and VAR_LITTLEROOT_HOUSES_STATE_AKIRA
 	@ 1: On Truck (and is corresponding gender)
 	@ 2: Met Rival's Mom (and is corresponding gender)
 	@ 3: Entered Hall of Fame
@@ -44,7 +44,7 @@ LittlerootTown_OnTransition: @ 81E7DDB
 	call_if_eq LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
 	compare VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
 	call_if_eq LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
-	compare VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 4
+	compare VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 4
 	call_if_eq LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
 	compare VAR_OLDALE_RIVAL_STATE, 1
 	call_if_eq LittlerootTown_EventScript_MoveRivalFromOldale
@@ -75,7 +75,7 @@ LittlerootTown_EventScript_MoveRivalFromOldale:: @ 81E7E53
 
 LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent:: @ 81E7E5C
 	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 5
-	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 5
+	setvar VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 5
 	return
 
 LittlerootTown_EventScript_MoveMomToMaysDoor:: @ 81E7E67
@@ -123,8 +123,8 @@ LittlerootTown_EventScript_StepOffTruckMale:: @ 81E7EDB
 	setvar VAR_0x8004, 5
 	setvar VAR_0x8005, 8
 	call LittlerootTown_EventScript_GoInsideWithMom
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_TRUCK
-	warpsilent MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F, 255, 8, 8
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_AKIRAS_HOUSE_TRUCK
+	warpsilent MAP_LITTLEROOT_TOWN_AKIRAS_HOUSE_1F, 255, 8, 8
 	waitstate
 	releaseall
 	end
@@ -408,7 +408,7 @@ LittlerootTown_EventScript_BirchsLabSign:: @ 81E815A
 	msgbox LittlerootTown_Text_ProfBirchsLab, MSGBOX_SIGN
 	end
 
-LittlerootTown_EventScript_BrendansHouseSign:: @ 81E8163
+LittlerootTown_EventScript_AkirasHouseSign:: @ 81E8163
 	lockall
 	checkplayergender
 	compare VAR_RESULT, MALE

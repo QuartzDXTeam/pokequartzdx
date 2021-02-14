@@ -275,7 +275,7 @@ static const u32 sBigPokeball_Tileset[] = INCBIN_U32("graphics/battle_transition
 static const u32 sPokeballTrail_Tileset[] = INCBIN_U32("graphics/battle_transitions/pokeball_trail.4bpp");
 static const u8 sSpriteImage_85B98F0[] = INCBIN_U8("graphics/battle_transitions/pokeball.4bpp");
 static const u32 sUnknown_085B9AF0[] = INCBIN_U32("graphics/battle_transitions/elite_four_bg.4bpp");
-static const u8 sSpriteImage_85B9CD0[] = INCBIN_U8("graphics/battle_transitions/unused_brendan.4bpp");
+static const u8 sSpriteImage_85B9CD0[] = INCBIN_U8("graphics/battle_transitions/unused_akira.4bpp");
 static const u8 sSpriteImage_85BA4D0[] = INCBIN_U8("graphics/battle_transitions/unused_lass.4bpp");
 static const u32 sShrinkingBoxTileset[] = INCBIN_U32("graphics/battle_transitions/shrinking_box.4bpp");
 static const u32 sEvilTeam_Palette[] = INCBIN_U32("graphics/battle_transitions/evil_team.gbapal");
@@ -829,7 +829,7 @@ static const u16 sMugshotPal_Phoebe[] = INCBIN_U16("graphics/battle_transitions/
 static const u16 sMugshotPal_Glacia[] = INCBIN_U16("graphics/battle_transitions/glacia_bg.gbapal");
 static const u16 sMugshotPal_Drake[] = INCBIN_U16("graphics/battle_transitions/drake_bg.gbapal");
 static const u16 sMugshotPal_Champion[] = INCBIN_U16("graphics/battle_transitions/wallace_bg.gbapal");
-static const u16 sMugshotPal_Brendan[] = INCBIN_U16("graphics/battle_transitions/brendan_bg.gbapal");
+static const u16 sMugshotPal_Akira[] = INCBIN_U16("graphics/battle_transitions/akira_bg.gbapal");
 static const u16 sMugshotPal_May[] = INCBIN_U16("graphics/battle_transitions/may_bg.gbapal");
 
 static const u16 *const sOpponentMugshotsPals[MUGSHOTS_COUNT] =
@@ -843,7 +843,7 @@ static const u16 *const sOpponentMugshotsPals[MUGSHOTS_COUNT] =
 
 static const u16 *const sPlayerMugshotsPals[2] =
 {
-    sMugshotPal_Brendan,
+    sMugshotPal_Akira,
     sMugshotPal_May
 };
 

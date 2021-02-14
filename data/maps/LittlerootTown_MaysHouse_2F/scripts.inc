@@ -253,7 +253,7 @@ RivalsHouse_2F_EventScript_Rival:: @ 81F94C1
 	compare VAR_RESULT, MALE
 	goto_if_eq RivalsHouse_2F_EventScript_May
 	compare VAR_RESULT, FEMALE
-	goto_if_eq RivalsHouse_2F_EventScript_Brendan
+	goto_if_eq RivalsHouse_2F_EventScript_Akira
 	end
 
 RivalsHouse_2F_EventScript_May:: @ 81F94E3
@@ -261,8 +261,8 @@ RivalsHouse_2F_EventScript_May:: @ 81F94E3
 	releaseall
 	end
 
-RivalsHouse_2F_EventScript_Brendan:: @ 81F94ED
-	msgbox RivalsHouse_2F_Text_BrendanGettingReady, MSGBOX_DEFAULT
+RivalsHouse_2F_EventScript_Akira:: @ 81F94ED
+	msgbox RivalsHouse_2F_Text_AkiraGettingReady, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -273,7 +273,7 @@ RivalsHouse_2F_EventScript_RivalPostLilycove:: @ 81F94F7
 	compare VAR_RESULT, MALE
 	call_if_eq RivalsHouse_2F_EventScript_MayPostLilycove
 	compare VAR_RESULT, FEMALE
-	call_if_eq RivalsHouse_2F_EventScript_BrendanPostLilycove
+	call_if_eq RivalsHouse_2F_EventScript_AkiraPostLilycove
 	setflag FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE
 	releaseall
 	end
@@ -283,17 +283,17 @@ RivalsHouse_2F_EventScript_MayPostLilycove:: @ 81F951D
 	msgbox RivalsHouse_2F_Text_MayJustCheckingMyPokedex, MSGBOX_DEFAULT
 	return
 
-RivalsHouse_2F_EventScript_BrendanPostLilycove:: @ 81F952F
-	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, RivalsHouse_2F_EventScript_BrendanWhereShouldIGoNext
-	msgbox RivalsHouse_2F_Text_BrendanJustCheckingMyPokedex, MSGBOX_DEFAULT
+RivalsHouse_2F_EventScript_AkiraPostLilycove:: @ 81F952F
+	goto_if_set FLAG_MET_RIVAL_IN_HOUSE_AFTER_LILYCOVE, RivalsHouse_2F_EventScript_AkiraWhereShouldIGoNext
+	msgbox RivalsHouse_2F_Text_AkiraJustCheckingMyPokedex, MSGBOX_DEFAULT
 	return
 
 RivalsHouse_2F_EventScript_MayWhereShouldIGoNext:: @ 81F9541
 	msgbox RivalsHouse_2F_Text_MayWhereShouldIGoNext, MSGBOX_DEFAULT
 	return
 
-RivalsHouse_2F_EventScript_BrendanWhereShouldIGoNext:: @ 81F954A
-	msgbox RivalsHouse_2F_Text_BrendanWhereShouldIGoNext, MSGBOX_DEFAULT
+RivalsHouse_2F_EventScript_AkiraWhereShouldIGoNext:: @ 81F954A
+	msgbox RivalsHouse_2F_Text_AkiraWhereShouldIGoNext, MSGBOX_DEFAULT
 	return
 
 LittlerootTown_MaysHouse_2F_EventScript_PC:: @ 81F9553
@@ -355,7 +355,7 @@ RivalsHouse_2F_Text_MayGettingReady: @ 81F978A
 	.string "POKéMON fully restored!\n"
 	.string "Items ready, and…$"
 
-RivalsHouse_2F_Text_BrendanWhoAreYou: @ 81F97B4
+RivalsHouse_2F_Text_AkiraWhoAreYou: @ 81F97B4
 	.string "Hey!\n"
 	.string "You…\p"
 	.string "Who are you?\p"
@@ -365,7 +365,7 @@ RivalsHouse_2F_Text_BrendanWhoAreYou: @ 81F97B4
 	.string "Dad, PROF. BIRCH, said that our new\n"
 	.string "next-door neighbor is a GYM LEADER's\l"
 	.string "kid, so I assumed you'd be a guy.\p"
-	.string "My name's BRENDAN.\n"
+	.string "My name's AKIRA.\n"
 	.string "So, hi, neighbor!\p"
 	.string "Huh? Hey, {PLAYER}, don't you have\n"
 	.string "a POKéMON?\p"
@@ -375,7 +375,7 @@ RivalsHouse_2F_Text_BrendanWhoAreYou: @ 81F97B4
 	.string "some wild POKéMON.\p"
 	.string "Some other time, okay?$"
 
-RivalsHouse_2F_Text_BrendanGettingReady: @ 81F9962
+RivalsHouse_2F_Text_AkiraGettingReady: @ 81F9962
 	.string "POKéMON fully restored…\n"
 	.string "Items all packed, and…$"
 
@@ -399,8 +399,8 @@ RivalsHouse_2F_Text_MayWhereShouldIGoNext: @ 81F9A9E
 	.string "Wouldn't it be funny if we ran into each\n"
 	.string "other, {PLAYER}{KUN}?$"
 
-RivalsHouse_2F_Text_BrendanJustCheckingMyPokedex: @ 81F9B0D
-	.string "BRENDAN: Hey, it's {PLAYER}.\p"
+RivalsHouse_2F_Text_AkiraJustCheckingMyPokedex: @ 81F9B0D
+	.string "AKIRA: Hey, it's {PLAYER}.\p"
 	.string "I was just checking out my POKéDEX.\p"
 	.string "There are still many POKéMON that\n"
 	.string "I need to catch, I know, but this\l"
@@ -408,8 +408,8 @@ RivalsHouse_2F_Text_BrendanJustCheckingMyPokedex: @ 81F9B0D
 	.string "Checking this POKéDEX out gives me\n"
 	.string "the urge to hit the road again.$"
 
-RivalsHouse_2F_Text_BrendanWhereShouldIGoNext: @ 81F9BE7
-	.string "BRENDAN: I'm having a hard time deciding\n"
+RivalsHouse_2F_Text_AkiraWhereShouldIGoNext: @ 81F9BE7
+	.string "AKIRA: I'm having a hard time deciding\n"
 	.string "where I should catch POKéMON next.\p"
 	.string "Hey, {PLAYER}, if I see you while I'm out\n"
 	.string "catching POKéMON, I can pitch you a\l"

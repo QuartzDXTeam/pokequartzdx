@@ -401,7 +401,7 @@ u16 PlayerGenderToFrontTrainerPicId_Debug(u8 gender, bool8 getClass)
         default:
             return gFacilityClassToPicIndex[FACILITY_CLASS_MAY];
         case MALE:
-            return gFacilityClassToPicIndex[FACILITY_CLASS_BRENDAN];
+            return gFacilityClassToPicIndex[FACILITY_CLASS_AKIRA];
         }
     }
     return gender;

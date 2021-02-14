@@ -768,7 +768,7 @@ static void LoadCableCarSprites(void)
     u8 i;
 
     u8 playerGraphicsIds[2] = {
-        OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL,
+        OBJ_EVENT_GFX_RIVAL_AKIRA_NORMAL,
         OBJ_EVENT_GFX_RIVAL_MAY_NORMAL
     };
     u16 rval = Random();

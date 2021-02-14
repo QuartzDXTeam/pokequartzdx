@@ -60,7 +60,7 @@ Route111_EventScript_SetFallingPlayerGfx:: @ 81F0DC2
 	return
 
 Route111_EventScript_SetFallingPlayerGfxMale:: @ 81F0DDA
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_AKIRA_NORMAL
 	return
 
 Route111_EventScript_SetFallingPlayerGfxFemale:: @ 81F0DE0

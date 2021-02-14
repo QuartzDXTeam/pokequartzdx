@@ -45,7 +45,7 @@ Route119_EventScript_RivalEncounter:: @ 81F4488
 	compare VAR_RESULT, MALE
 	call_if_eq Route119_EventScript_PlayMayMusic
 	compare VAR_RESULT, FEMALE
-	call_if_eq Route119_EventScript_PlayBrendanMusic
+	call_if_eq Route119_EventScript_PlayAkiraMusic
 	delay 65
 	compare VAR_TEMP_1, 1
 	call_if_eq Route119_EventScript_RivalEnter1
@@ -65,7 +65,7 @@ Route119_EventScript_RivalEncounter:: @ 81F4488
 	compare VAR_RESULT, MALE
 	goto_if_eq Route119_EventScript_BattleMay
 	compare VAR_RESULT, FEMALE
-	goto_if_eq Route119_EventScript_BattleBrendan
+	goto_if_eq Route119_EventScript_BattleAkira
 	releaseall
 	end
 
@@ -73,7 +73,7 @@ Route119_EventScript_PlayMayMusic:: @ 81F4501
 	playbgm MUS_GIRL_SUP, 1
 	return
 
-Route119_EventScript_PlayBrendanMusic:: @ 81F4506
+Route119_EventScript_PlayAkiraMusic:: @ 81F4506
 	playbgm MUS_BOY_SUP, 1
 	return
 
@@ -107,33 +107,33 @@ Route119_EventScript_DefeatedMay:: @ 81F456A
 	goto Route119_EventScript_RivalExitScottArrive
 	end
 
-Route119_EventScript_BattleBrendan:: @ 81F4585
-	msgbox Route119_Text_BrendanIntro, MSGBOX_DEFAULT
+Route119_EventScript_BattleAkira:: @ 81F4585
+	msgbox Route119_Text_AkiraIntro, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, Route119_EventScript_BattleBrendanTreecko
-	case 1, Route119_EventScript_BattleBrendanTorchic
-	case 2, Route119_EventScript_BattleBrendanMudkip
+	case 0, Route119_EventScript_BattleAkiraTreecko
+	case 1, Route119_EventScript_BattleAkiraTorchic
+	case 2, Route119_EventScript_BattleAkiraMudkip
 	end
 
-Route119_EventScript_BattleBrendanTreecko:: @ 81F45B4
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_TREECKO, Route119_Text_BrendanDefeat
-	goto Route119_EventScript_DefeatedBrendan
+Route119_EventScript_BattleAkiraTreecko:: @ 81F45B4
+	trainerbattle_no_intro TRAINER_AKIRA_ROUTE_119_TREECKO, Route119_Text_AkiraDefeat
+	goto Route119_EventScript_DefeatedAkira
 	end
 
-Route119_EventScript_BattleBrendanTorchic:: @ 81F45C4
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_TORCHIC, Route119_Text_BrendanDefeat
-	goto Route119_EventScript_DefeatedBrendan
+Route119_EventScript_BattleAkiraTorchic:: @ 81F45C4
+	trainerbattle_no_intro TRAINER_AKIRA_ROUTE_119_TORCHIC, Route119_Text_AkiraDefeat
+	goto Route119_EventScript_DefeatedAkira
 	end
 
-Route119_EventScript_BattleBrendanMudkip:: @ 81F45D4
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_119_MUDKIP, Route119_Text_BrendanDefeat
-	goto Route119_EventScript_DefeatedBrendan
+Route119_EventScript_BattleAkiraMudkip:: @ 81F45D4
+	trainerbattle_no_intro TRAINER_AKIRA_ROUTE_119_MUDKIP, Route119_Text_AkiraDefeat
+	goto Route119_EventScript_DefeatedAkira
 	end
 
-Route119_EventScript_DefeatedBrendan:: @ 81F45E4
-	msgbox Route119_Text_BrendanIllGiveYouThis, MSGBOX_DEFAULT
+Route119_EventScript_DefeatedAkira:: @ 81F45E4
+	msgbox Route119_Text_AkiraIllGiveYouThis, MSGBOX_DEFAULT
 	call Route119_EventScript_GiveFlyHM
-	msgbox Route119_Text_BrendanExplainFly, MSGBOX_DEFAULT
+	msgbox Route119_Text_AkiraExplainFly, MSGBOX_DEFAULT
 	goto Route119_EventScript_RivalExitScottArrive
 	end
 
@@ -527,26 +527,26 @@ Route119_Text_MayExplainFly: @ 81F4B56
 	.string "{PLAYER}{KUN}.\p"
 	.string "Well, let's meet again somewhere!$"
 
-Route119_Text_BrendanIntro: @ 81F4C9A
-	.string "BRENDAN: {PLAYER}! So this is where\n"
+Route119_Text_AkiraIntro: @ 81F4C9A
+	.string "AKIRA: {PLAYER}! So this is where\n"
 	.string "you've been looking for POKéMON?\p"
 	.string "Let me see how good you got.\n"
 	.string "I'll test you!\p"
 	.string "Now!\n"
 	.string "It's a battle, so battle!$"
 
-Route119_Text_BrendanDefeat: @ 81F4D24
+Route119_Text_AkiraDefeat: @ 81F4D24
 	.string "Hmm…\n"
 	.string "You've gotten pretty darn decent.$"
 
-Route119_Text_BrendanIllGiveYouThis: @ 81F4D4B
-	.string "BRENDAN: I'd say you're good enough\n"
+Route119_Text_AkiraIllGiveYouThis: @ 81F4D4B
+	.string "AKIRA: I'd say you're good enough\n"
 	.string "to search for POKéMON anywhere.\p"
 	.string "Here, I'll give you this.\n"
 	.string "Try it out.$"
 
-Route119_Text_BrendanExplainFly: @ 81F4DB5
-	.string "BRENDAN: Use FLY, and your POKéMON\n"
+Route119_Text_AkiraExplainFly: @ 81F4DB5
+	.string "AKIRA: Use FLY, and your POKéMON\n"
 	.string "instantly carries you to any town\l"
 	.string "you've already visited.\p"
 	.string "But you need the FORTREE GYM BADGE \n"

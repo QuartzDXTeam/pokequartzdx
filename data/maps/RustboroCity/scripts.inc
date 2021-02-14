@@ -695,14 +695,14 @@ RustboroCity_EventScript_PlayRivalMusic:: @ 81E0DD1
 	compare VAR_RESULT, MALE
 	goto_if_eq RustboroCity_EventScript_PlayMayMusic
 	compare VAR_RESULT, FEMALE
-	goto_if_eq RustboroCity_EventScript_PlayBrendanMusic
+	goto_if_eq RustboroCity_EventScript_PlayAkiraMusic
 	return
 
 RustboroCity_EventScript_PlayMayMusic:: @ 81E0DE9
 	playbgm MUS_GIRL_SUP, 1
 	return
 
-RustboroCity_EventScript_PlayBrendanMusic:: @ 81E0DEE
+RustboroCity_EventScript_PlayAkiraMusic:: @ 81E0DEE
 	playbgm MUS_BOY_SUP, 1
 	return
 
@@ -839,7 +839,7 @@ RustboroCity_EventScript_RivalEncounter:: @ 81E0FF3
 	compare VAR_RESULT, MALE
 	goto_if_eq RustboroCity_EventScript_MayEncounter
 	compare VAR_RESULT, FEMALE
-	goto_if_eq RustboroCity_EventScript_BrendanEncounter
+	goto_if_eq RustboroCity_EventScript_AkiraEncounter
 	end
 
 RustboroCity_EventScript_MayEncounter:: @ 81E100B
@@ -913,68 +913,68 @@ RustboroCity_EventScript_BattleMayMudkip:: @ 81E1101
 	goto RustboroCity_EventScript_MayBrineyHint
 	end
 
-RustboroCity_EventScript_BrendanEncounter:: @ 81E1114
-	goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO, RustboroCity_EventScript_BrendanBrineyHint
-	goto_if_set FLAG_MET_RIVAL_RUSTBORO, RustboroCity_EventScript_BrendanAskToBattle
+RustboroCity_EventScript_AkiraEncounter:: @ 81E1114
+	goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO, RustboroCity_EventScript_AkiraBrineyHint
+	goto_if_set FLAG_MET_RIVAL_RUSTBORO, RustboroCity_EventScript_AkiraAskToBattle
 	setflag FLAG_MET_RIVAL_RUSTBORO
-	msgbox RustboroCity_Text_BrendanHiLetsRegister, MSGBOX_DEFAULT
+	msgbox RustboroCity_Text_AkiraHiLetsRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox RustboroCity_Text_RegisteredBrendan, MSGBOX_DEFAULT
+	msgbox RustboroCity_Text_RegisteredAkira, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 	setvar VAR_RUSTBORO_CITY_STATE, 8
 	setvar VAR_ROUTE104_STATE, 2
-	msgbox RustboroCity_Text_BrendanPassedBrineyWantToBattle, MSGBOX_YESNO
+	msgbox RustboroCity_Text_AkiraPassedBrineyWantToBattle, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq RustboroCity_EventScript_BattleBrendan
-	msgbox RustboroCity_Text_BrendanNoConfidenceInPokemon, MSGBOX_DEFAULT
+	goto_if_eq RustboroCity_EventScript_BattleAkira
+	msgbox RustboroCity_Text_AkiraNoConfidenceInPokemon, MSGBOX_DEFAULT
 	call RustboroCity_EventScript_RestoreBgm
 	releaseall
 	end
 
-RustboroCity_EventScript_BrendanAskToBattle:: @ 81E1174
-	msgbox RustboroCity_Text_BrendanWantToBattle, MSGBOX_YESNO
+RustboroCity_EventScript_AkiraAskToBattle:: @ 81E1174
+	msgbox RustboroCity_Text_AkiraWantToBattle, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq RustboroCity_EventScript_BattleBrendan
-	msgbox RustboroCity_Text_BrendanNoConfidenceInPokemon, MSGBOX_DEFAULT
+	goto_if_eq RustboroCity_EventScript_BattleAkira
+	msgbox RustboroCity_Text_AkiraNoConfidenceInPokemon, MSGBOX_DEFAULT
 	releaseall
 	end
 
-RustboroCity_EventScript_BattleBrendan:: @ 81E1191
-	msgbox RustboroCity_Text_BrendanIWontGoEasy, MSGBOX_DEFAULT
+RustboroCity_EventScript_BattleAkira:: @ 81E1191
+	msgbox RustboroCity_Text_AkiraIWontGoEasy, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, RustboroCity_EventScript_BattleBrendanTreecko
-	case 1, RustboroCity_EventScript_BattleBrendanTorchic
-	case 2, RustboroCity_EventScript_BattleBrendanMudkip
+	case 0, RustboroCity_EventScript_BattleAkiraTreecko
+	case 1, RustboroCity_EventScript_BattleAkiraTorchic
+	case 2, RustboroCity_EventScript_BattleAkiraMudkip
 	end
 
-RustboroCity_EventScript_BrendanBrineyHint:: @ 81E11C0
-	msgbox RustboroCity_Text_BrendanMrBrineyHint, MSGBOX_DEFAULT
+RustboroCity_EventScript_AkiraBrineyHint:: @ 81E11C0
+	msgbox RustboroCity_Text_AkiraMrBrineyHint, MSGBOX_DEFAULT
 	compare VAR_0x8008, 0
 	call_if_eq RustboroCity_EventScript_RestoreBgm
 	releaseall
 	end
 
-RustboroCity_EventScript_BattleBrendanTreecko:: @ 81E11D5
-	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TREECKO, RustboroCity_Text_BrendanDefeat
+RustboroCity_EventScript_BattleAkiraTreecko:: @ 81E11D5
+	trainerbattle_no_intro TRAINER_AKIRA_RUSTBORO_TREECKO, RustboroCity_Text_AkiraDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
-	goto RustboroCity_EventScript_BrendanBrineyHint
+	goto RustboroCity_EventScript_AkiraBrineyHint
 	end
 
-RustboroCity_EventScript_BattleBrendanTorchic:: @ 81E11E8
-	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TORCHIC, RustboroCity_Text_BrendanDefeat
+RustboroCity_EventScript_BattleAkiraTorchic:: @ 81E11E8
+	trainerbattle_no_intro TRAINER_AKIRA_RUSTBORO_TORCHIC, RustboroCity_Text_AkiraDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
-	goto RustboroCity_EventScript_BrendanBrineyHint
+	goto RustboroCity_EventScript_AkiraBrineyHint
 	end
 
-RustboroCity_EventScript_BattleBrendanMudkip:: @ 81E11FB
-	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_MUDKIP, RustboroCity_Text_BrendanDefeat
+RustboroCity_EventScript_BattleAkiraMudkip:: @ 81E11FB
+	trainerbattle_no_intro TRAINER_AKIRA_RUSTBORO_MUDKIP, RustboroCity_Text_AkiraDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
-	goto RustboroCity_EventScript_BrendanBrineyHint
+	goto RustboroCity_EventScript_AkiraBrineyHint
 	end
 
 RustboroCity_Movement_RivalApproachPlayer0: @ 81E120E
@@ -1197,20 +1197,20 @@ RustboroCity_Text_MayMrBrineyHint: @ 81E1CE7
 	.string "might not know this, but MR. BRINEY\l"
 	.string "was once a revered seafarer.$"
 
-RustboroCity_Text_BrendanHiLetsRegister: @ 81E1D7D
-	.string "BRENDAN: Oh, hey, {PLAYER}!\p"
+RustboroCity_Text_AkiraHiLetsRegister: @ 81E1D7D
+	.string "AKIRA: Oh, hey, {PLAYER}!\p"
 	.string "You had a MATCH CALL feature put\n"
 	.string "on your POKéNAV! Cool!\p"
 	.string "Let's register each other so we can\n"
 	.string "get in touch anytime!\p"
 	.string "… … … … … …$"
 
-RustboroCity_Text_RegisteredBrendan: @ 81E1E11
-	.string "Registered BRENDAN\n"
+RustboroCity_Text_RegisteredAkira: @ 81E1E11
+	.string "Registered AKIRA\n"
 	.string "in the POKéNAV.$"
 
-RustboroCity_Text_BrendanPassedBrineyWantToBattle: @ 81E1E34
-	.string "BRENDAN: By the way, {PLAYER}, I walked\n"
+RustboroCity_Text_AkiraPassedBrineyWantToBattle: @ 81E1E34
+	.string "AKIRA: By the way, {PLAYER}, I walked\n"
 	.string "by MR. BRINEY in PETALBURG WOODS.\p"
 	.string "I bet he was on his way home to his\n"
 	.string "cottage by the sea.\p"
@@ -1220,24 +1220,24 @@ RustboroCity_Text_BrendanPassedBrineyWantToBattle: @ 81E1E34
 	.string "Want to have a battle to test how\n"
 	.string "far you've progressed?$"
 
-RustboroCity_Text_BrendanNoConfidenceInPokemon: @ 81E1F2F
-	.string "BRENDAN: What's the matter? Don't have\n"
+RustboroCity_Text_AkiraNoConfidenceInPokemon: @ 81E1F2F
+	.string "AKIRA: What's the matter? Don't have\n"
 	.string "any confidence in your POKéMON?$"
 
-RustboroCity_Text_BrendanWantToBattle: @ 81E1F76
-	.string "BRENDAN: What's up?\n"
+RustboroCity_Text_AkiraWantToBattle: @ 81E1F76
+	.string "AKIRA: What's up?\n"
 	.string "Want to have a battle with me?$"
 
-RustboroCity_Text_BrendanIWontGoEasy: @ 81E1FA9
-	.string "BRENDAN: I know you just became\n"
+RustboroCity_Text_AkiraIWontGoEasy: @ 81E1FA9
+	.string "AKIRA: I know you just became\n"
 	.string "a TRAINER, but I won't go easy!$"
 
-RustboroCity_Text_BrendanDefeat: @ 81E1FE9
+RustboroCity_Text_AkiraDefeat: @ 81E1FE9
 	.string "Hmm…\n"
 	.string "You're pretty good.$"
 
-RustboroCity_Text_BrendanMrBrineyHint: @ 81E2002
-	.string "BRENDAN: By the way, you know\n"
+RustboroCity_Text_AkiraMrBrineyHint: @ 81E2002
+	.string "AKIRA: By the way, you know\n"
 	.string "MR. BRINEY? The guy I just passed?\p"
 	.string "I bet you didn't know this, since you\n"
 	.string "just moved here, {PLAYER}, but\l"

@@ -576,19 +576,19 @@ void SpawnLinkPartnerObjectEvent(void)
                 case VERSION_RUBY:
                 case VERSION_SAPPHIRE:
                     if (gLinkPlayers[i].gender == 0)
-                        linkSpriteId = OBJ_EVENT_GFX_LINK_RS_BRENDAN;
+                        linkSpriteId = OBJ_EVENT_GFX_LINK_RS_AKIRA;
                     else
                         linkSpriteId = OBJ_EVENT_GFX_LINK_RS_MAY;
                     break;
                 case VERSION_EMERALD:
                     if (gLinkPlayers[i].gender == 0)
-                        linkSpriteId = OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL;
+                        linkSpriteId = OBJ_EVENT_GFX_RIVAL_AKIRA_NORMAL;
                     else
                         linkSpriteId = OBJ_EVENT_GFX_RIVAL_MAY_NORMAL;
                     break;
                 default:
                     if (gLinkPlayers[i].gender == 0)
-                        linkSpriteId = OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL;
+                        linkSpriteId = OBJ_EVENT_GFX_RIVAL_AKIRA_NORMAL;
                     else
                         linkSpriteId = OBJ_EVENT_GFX_RIVAL_MAY_NORMAL;
                     break;
@@ -609,9 +609,9 @@ static void LoadLinkPartnerObjectEventSpritePalette(u8 graphicsId, u8 localEvent
     u8 adjustedPaletteNum;
     // Note: This temp var is necessary; paletteNum += 6 doesn't match.
     adjustedPaletteNum = paletteNum + 6;
-    if (graphicsId == OBJ_EVENT_GFX_LINK_RS_BRENDAN ||
+    if (graphicsId == OBJ_EVENT_GFX_LINK_RS_AKIRA ||
         graphicsId == OBJ_EVENT_GFX_LINK_RS_MAY ||
-        graphicsId == OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL ||
+        graphicsId == OBJ_EVENT_GFX_RIVAL_AKIRA_NORMAL ||
         graphicsId == OBJ_EVENT_GFX_RIVAL_MAY_NORMAL)
     {
         u8 obj = GetObjectEventIdByLocalIdAndMap(localEventId, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
@@ -623,13 +623,13 @@ static void LoadLinkPartnerObjectEventSpritePalette(u8 graphicsId, u8 localEvent
 
             switch (graphicsId)
             {
-                case OBJ_EVENT_GFX_LINK_RS_BRENDAN:
+                case OBJ_EVENT_GFX_LINK_RS_AKIRA:
                     LoadPalette(gObjectEventPalette33, 0x100 + (adjustedPaletteNum << 4), 0x20);
                     break;
                 case OBJ_EVENT_GFX_LINK_RS_MAY:
                     LoadPalette(gObjectEventPalette34, 0x100 + (adjustedPaletteNum << 4), 0x20);
                     break;
-                case OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL:
+                case OBJ_EVENT_GFX_RIVAL_AKIRA_NORMAL:
                     LoadPalette(gObjectEventPalette8, 0x100 + (adjustedPaletteNum << 4), 0x20);
                     break;
                 case OBJ_EVENT_GFX_RIVAL_MAY_NORMAL:
@@ -1098,13 +1098,13 @@ static void PCTurnOnEffect_1(s16 isPcTurnedOn, s8 dx, s8 dy)
         {
             tileId = METATILE_ID(Building, PC_Off);
         }
-        else if (gSpecialVar_0x8004 == PC_LOCATION_BRENDANS_HOUSE)
+        else if (gSpecialVar_0x8004 == PC_LOCATION_AKIRAS_HOUSE)
         {
-            tileId = METATILE_ID(BrendansMaysHouse, BrendanPC_Off);
+            tileId = METATILE_ID(AkirasMaysHouse, AkiraPC_Off);
         }
         else if (gSpecialVar_0x8004 == PC_LOCATION_MAYS_HOUSE)
         {
-            tileId = METATILE_ID(BrendansMaysHouse, MayPC_Off);
+            tileId = METATILE_ID(AkirasMaysHouse, MayPC_Off);
         }
     }
     else
@@ -1113,13 +1113,13 @@ static void PCTurnOnEffect_1(s16 isPcTurnedOn, s8 dx, s8 dy)
         {
             tileId = METATILE_ID(Building, PC_On);
         }
-        else if (gSpecialVar_0x8004 == PC_LOCATION_BRENDANS_HOUSE)
+        else if (gSpecialVar_0x8004 == PC_LOCATION_AKIRAS_HOUSE)
         {
-            tileId = METATILE_ID(BrendansMaysHouse, BrendanPC_On);
+            tileId = METATILE_ID(AkirasMaysHouse, AkiraPC_On);
         }
         else if (gSpecialVar_0x8004 == PC_LOCATION_MAYS_HOUSE)
         {
-            tileId = METATILE_ID(BrendansMaysHouse, MayPC_On);
+            tileId = METATILE_ID(AkirasMaysHouse, MayPC_On);
         }
     }
     MapGridSetMetatileIdAt(gSaveBlock1Ptr->pos.x + dx + 7, gSaveBlock1Ptr->pos.y + dy + 7, tileId | METATILE_COLLISION_MASK);
@@ -1157,11 +1157,11 @@ static void PCTurnOffEffect(void)
     }
     else if (gSpecialVar_0x8004 == 1)
     {
-        tileId = METATILE_ID(BrendansMaysHouse, BrendanPC_Off);
+        tileId = METATILE_ID(AkirasMaysHouse, AkiraPC_Off);
     }
     else if (gSpecialVar_0x8004 == 2)
     {
-        tileId = METATILE_ID(BrendansMaysHouse, MayPC_Off);
+        tileId = METATILE_ID(AkirasMaysHouse, MayPC_Off);
     }
     MapGridSetMetatileIdAt(gSaveBlock1Ptr->pos.x + dx + 7, gSaveBlock1Ptr->pos.y + dy + 7, tileId | METATILE_COLLISION_MASK);
     DrawWholeMapView();
@@ -2844,7 +2844,7 @@ void SetBattleTowerLinkPlayerGfx(void)
     {
         if (gLinkPlayers[i].gender == MALE)
         {
-            VarSet(VAR_OBJ_GFX_ID_F - i, OBJ_EVENT_GFX_BRENDAN_NORMAL);
+            VarSet(VAR_OBJ_GFX_ID_F - i, OBJ_EVENT_GFX_AKIRA_NORMAL);
         }
         else
         {

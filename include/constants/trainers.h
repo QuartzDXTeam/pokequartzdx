@@ -87,7 +87,7 @@
 #define TRAINER_PIC_SAILOR                68
 #define TRAINER_PIC_MAGMA_ADMIN           69
 #define TRAINER_PIC_WALLY                 70
-#define TRAINER_PIC_BRENDAN               71
+#define TRAINER_PIC_AKIRA               71
 #define TRAINER_PIC_MAY                   72
 #define TRAINER_PIC_BUG_CATCHER           73
 #define TRAINER_PIC_POKEMON_RANGER_M      74
@@ -107,14 +107,14 @@
 #define TRAINER_PIC_PYRAMID_KING_BRANDON  88
 #define TRAINER_PIC_RED                   89
 #define TRAINER_PIC_LEAF                  90
-#define TRAINER_PIC_RS_BRENDAN            91
+#define TRAINER_PIC_RS_AKIRA            91
 #define TRAINER_PIC_RS_MAY                92
 
-#define TRAINER_BACK_PIC_BRENDAN                0
+#define TRAINER_BACK_PIC_AKIRA                0
 #define TRAINER_BACK_PIC_MAY                    1
 #define TRAINER_BACK_PIC_RED                    2
 #define TRAINER_BACK_PIC_LEAF                   3
-#define TRAINER_BACK_PIC_RUBY_SAPPHIRE_BRENDAN  4
+#define TRAINER_BACK_PIC_RUBY_SAPPHIRE_AKIRA  4
 #define TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY      5
 #define TRAINER_BACK_PIC_WALLY                  6
 #define TRAINER_BACK_PIC_STEVEN                 7
@@ -179,9 +179,9 @@
 #define FACILITY_CLASS_TWINS                 0x39
 #define FACILITY_CLASS_SAILOR                0x3a
 #define FACILITY_CLASS_WALLY                 0x3b
-#define FACILITY_CLASS_BRENDAN               0x3c
-#define FACILITY_CLASS_BRENDAN_2             0x3d
-#define FACILITY_CLASS_BRENDAN_3             0x3e
+#define FACILITY_CLASS_AKIRA               0x3c
+#define FACILITY_CLASS_AKIRA_2             0x3d
+#define FACILITY_CLASS_AKIRA_3             0x3e
 #define FACILITY_CLASS_MAY                   0x3f
 #define FACILITY_CLASS_MAY_2                 0x40
 #define FACILITY_CLASS_MAY_3                 0x41
@@ -199,7 +199,7 @@
 #define FACILITY_CLASS_DOME_ACE_TUCKER       0x4d
 #define FACILITY_CLASS_RED                   0x4e
 #define FACILITY_CLASS_LEAF                  0x4f
-#define FACILITY_CLASS_RS_BRENDAN            0x50
+#define FACILITY_CLASS_RS_AKIRA            0x50
 #define FACILITY_CLASS_RS_MAY                0x51
 
 #define FACILITY_CLASSES_COUNT               0x52
@@ -262,9 +262,9 @@
 #define RS_FACILITY_CLASS_BOARDER_2             0x37
 #define RS_FACILITY_CLASS_COLLECTOR             0x38
 #define RS_FACILITY_CLASS_WALLY                 0x39
-#define RS_FACILITY_CLASS_BRENDAN_1             0x3A
-#define RS_FACILITY_CLASS_BRENDAN_2             0x3B
-#define RS_FACILITY_CLASS_BRENDAN_3             0x3C
+#define RS_FACILITY_CLASS_AKIRA_1             0x3A
+#define RS_FACILITY_CLASS_AKIRA_2             0x3B
+#define RS_FACILITY_CLASS_AKIRA_3             0x3C
 #define RS_FACILITY_CLASS_MAY_1                 0x3D
 #define RS_FACILITY_CLASS_MAY_2                 0x3E
 #define RS_FACILITY_CLASS_MAY_3                 0x3F

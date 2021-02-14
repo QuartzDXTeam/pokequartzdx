@@ -56,7 +56,7 @@ LavaridgeTown_EventScript_RivalGiveGoGoggles:: @ 81EA551
 	compare VAR_RESULT, MALE
 	call_if_eq LavaridgeTown_EventScript_PlayMayMusic
 	compare VAR_RESULT, FEMALE
-	call_if_eq LavaridgeTown_EventScript_PlayBrendanMusic
+	call_if_eq LavaridgeTown_EventScript_PlayAkiraMusic
 	compare VAR_0x8008, 9
 	call_if_eq LavaridgeTown_EventScript_RivalApproachPlayer1
 	compare VAR_0x8008, 9
@@ -65,7 +65,7 @@ LavaridgeTown_EventScript_RivalGiveGoGoggles:: @ 81EA551
 	compare VAR_RESULT, MALE
 	goto_if_eq LavaridgeTown_EventScript_MayGiveGoGoggles
 	compare VAR_RESULT, FEMALE
-	goto_if_eq LavaridgeTown_EventScript_BrendanGiveGoGoggles
+	goto_if_eq LavaridgeTown_EventScript_AkiraGiveGoGoggles
 	end
 
 LavaridgeTown_EventScript_MayGiveGoGoggles:: @ 81EA5B5
@@ -76,11 +76,11 @@ LavaridgeTown_EventScript_MayGiveGoGoggles:: @ 81EA5B5
 	goto LavaridgeTown_EventScript_RivalExit
 	end
 
-LavaridgeTown_EventScript_BrendanGiveGoGoggles:: @ 81EA5DA
-	msgbox LavaridgeTown_Text_BrendanNiceBadgesTakeThis, MSGBOX_DEFAULT
+LavaridgeTown_EventScript_AkiraGiveGoGoggles:: @ 81EA5DA
+	msgbox LavaridgeTown_Text_AkiraNiceBadgesTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_GO_GOGGLES
 	setflag FLAG_RECEIVED_GO_GOGGLES
-	msgbox LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad, MSGBOX_DEFAULT
+	msgbox LavaridgeTown_Text_AkiraExplainGoGogglesChallengeDad, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_RivalExit
 	end
 
@@ -105,7 +105,7 @@ LavaridgeTown_EventScript_PlayMayMusic:: @ 81EA630
 	playbgm MUS_GIRL_SUP, 1
 	return
 
-LavaridgeTown_EventScript_PlayBrendanMusic:: @ 81EA635
+LavaridgeTown_EventScript_PlayAkiraMusic:: @ 81EA635
 	playbgm MUS_BOY_SUP, 1
 	return
 
@@ -311,16 +311,16 @@ LavaridgeTown_Text_MayExplainGoGogglesChallengeDad: @ 81EA897
 	.string "your dad in PETALBURG GYM.\p"
 	.string "See you again!$"
 
-LavaridgeTown_Text_BrendanNiceBadgesTakeThis: @ 81EA9A2
-	.string "BRENDAN: {PLAYER}, hey, it's been a while.\n"
+LavaridgeTown_Text_AkiraNiceBadgesTakeThis: @ 81EA9A2
+	.string "AKIRA: {PLAYER}, hey, it's been a while.\n"
 	.string "How's it going?\p"
 	.string "Hmm…\n"
 	.string "That's a decent collection of BADGES.\p"
 	.string "All right, then.\n"
 	.string "You may as well have this.$"
 
-LavaridgeTown_Text_BrendanExplainGoGogglesChallengeDad: @ 81EAA2E
-	.string "BRENDAN: Keep those with you if you're\n"
+LavaridgeTown_Text_AkiraExplainGoGogglesChallengeDad: @ 81EAA2E
+	.string "AKIRA: Keep those with you if you're\n"
 	.string "planning on going into that desert near\l"
 	.string "ROUTE 111.\p"
 	.string "There should be some POKéMON that\n"

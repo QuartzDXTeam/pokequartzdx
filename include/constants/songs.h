@@ -345,7 +345,7 @@
 #define MUS_KAZANBAI 418        // Route 113
 #define MUS_AQA_0 419           // Encounter! Team Aqua
 #define MUS_TSURETEK 420        // Follow Me!
-#define MUS_BOY_SUP 421         // Encounter! Brendan
+#define MUS_BOY_SUP 421         // Encounter! Akira
 #define MUS_RAINBOW 422         // Ever Grande City
 #define MUS_AYASII 423          // Encounter! Psychic
 #define MUS_KACHI4 424          // Victory! Aqua/Magma Grunt

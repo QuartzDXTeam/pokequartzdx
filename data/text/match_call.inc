@@ -2321,10 +2321,10 @@ MatchCall_Text_MayRayquazaCall: @ 82B38C1
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
 
-MatchCall_Text_BrendanRayquazaCall: @ 82B39C6
+MatchCall_Text_AkiraRayquazaCall: @ 82B39C6
 	.string "… … … … … …\n"
 	.string "… … … … … Beep!\p"
-	.string "BRENDAN: Hey, {PLAYER}!\n"
+	.string "AKIRA: Hey, {PLAYER}!\n"
 	.string "I was in PACIFIDLOG just now.\p"
 	.string "I saw this huge green POKéMON\n"
 	.string "flying across the sky.\p"
@@ -2460,16 +2460,16 @@ MatchCall_Text_May15:: @ 2B4350
 	.string "with you, {PLAYER}{KUN}, they're all\l"
 	.string "surprised!$"
 
-MatchCall_Text_Brendan1:: @ 2B43EF
-	.string "BRENDAN: Hey, {PLAYER}!\p"
+MatchCall_Text_Akira1:: @ 2B43EF
+	.string "AKIRA: Hey, {PLAYER}!\p"
 	.string "MR. BRINEY retired as a SAILOR,\n"
 	.string "but I still see him out on the sea\l"
 	.string "with his pet PEEKO sometimes.\p"
 	.string "I guess he must love\n"
 	.string "the sea still.$"
 
-MatchCall_Text_Brendan2:: @ 2B4486
-	.string "BRENDAN: Hey, {PLAYER}!\p"
+MatchCall_Text_Akira2:: @ 2B4486
+	.string "AKIRA: Hey, {PLAYER}!\p"
 	.string "I don't get how little towns like\n"
 	.string "PETALBURG and DEWFORD have GYMS.\p"
 	.string "I mean, not when the big port of\n"
@@ -2477,8 +2477,8 @@ MatchCall_Text_Brendan2:: @ 2B4486
 	.string "When they finally build a GYM there,\n"
 	.string "I should apply to be the LEADER.$"
 
-MatchCall_Text_Brendan3:: @ 2B4560
-	.string "BRENDAN: Yo, {PLAYER}!\p"
+MatchCall_Text_Akira3:: @ 2B4560
+	.string "AKIRA: Yo, {PLAYER}!\p"
 	.string "Do you remember a guy named\n"
 	.string "the CUTTER in RUSTBORO?\l"
 	.string "He had a house there, right?\p"
@@ -2489,45 +2489,45 @@ MatchCall_Text_Brendan3:: @ 2B4560
 	.string "… … … … … …\p"
 	.string "The ROCK SMASH GUY!$"
 
-MatchCall_Text_Brendan4:: @ 2B463F
-	.string "BRENDAN: This voice… {PLAYER}?\p"
+MatchCall_Text_Akira4:: @ 2B463F
+	.string "AKIRA: This voice… {PLAYER}?\p"
 	.string "They gave RUSTURF TUNNEL its name\n"
 	.string "because it joins RUSTBORO and\l"
 	.string "VERDANTURF.\p"
 	.string "Did you know that?$"
 
-MatchCall_Text_Brendan5:: @ 2B46B7
-	.string "BRENDAN: {PLAYER}, what's up?\p"
+MatchCall_Text_Akira5:: @ 2B46B7
+	.string "AKIRA: {PLAYER}, what's up?\p"
 	.string "Hey, I'm out on ROUTE 111 now.\p"
 	.string "I'm going to rest up at an old\n"
 	.string "lady's house north of the desert.\p"
 	.string "If you're in the area, you should\n"
 	.string "visit her, too.$"
 
-MatchCall_Text_Brendan6:: @ 2B4761
-	.string "BRENDAN: Hey, {PLAYER}!\p"
+MatchCall_Text_Akira6:: @ 2B4761
+	.string "AKIRA: Hey, {PLAYER}!\p"
 	.string "Did you know about the MIRAGE\n"
 	.string "TOWER in the desert?\p"
 	.string "They say, like a mirage, it can be\n"
 	.string "seen only sometimes.\p"
 	.string "I'd like to see that!$"
 
-MatchCall_Text_Brendan7:: @ 2B47F4
-	.string "BRENDAN: Who's this? Oh, {PLAYER}?\n"
+MatchCall_Text_Akira7:: @ 2B47F4
+	.string "AKIRA: Who's this? Oh, {PLAYER}?\n"
 	.string "Guess what? I'm on ROUTE 119 now.\p"
 	.string "There's a big river here, and\n"
 	.string "it rains all the time.\p"
 	.string "I got soaked to the bone!$"
 
-MatchCall_Text_Brendan8:: @ 2B4882
-	.string "BRENDAN: {PLAYER}!\p"
+MatchCall_Text_Akira8:: @ 2B4882
+	.string "AKIRA: {PLAYER}!\p"
 	.string "MT. PYRE is a memorial to POKéMON\n"
 	.string "whose lives have ended.\p"
 	.string "That's probably why it's infested\n"
 	.string "with many GHOST-type POKéMON!$"
 
-MatchCall_Text_Brendan9:: @ 2B4909
-	.string "BRENDAN: Hey there, {PLAYER}.\p"
+MatchCall_Text_Akira9:: @ 2B4909
+	.string "AKIRA: Hey there, {PLAYER}.\p"
 	.string "I was on my way back to the hot\n"
 	.string "spring in LAVARIDGE.\p"
 	.string "But around JAGGED PASS, I ran into\n"
@@ -2535,15 +2535,15 @@ MatchCall_Text_Brendan9:: @ 2B4909
 	.string "Those creeps…\n"
 	.string "I think they were TEAM MAGMA.$"
 
-MatchCall_Text_Brendan10:: @ 2B49C4
-	.string "BRENDAN: Hi, {PLAYER}!\n"
+MatchCall_Text_Akira10:: @ 2B49C4
+	.string "AKIRA: Hi, {PLAYER}!\n"
 	.string "Did you catch the news?\p"
 	.string "They say CAPT. STERN discovered\n"
 	.string "the SEAFLOOR CAVERN while on his\l"
 	.string "submarine expedition.$"
 
-MatchCall_Text_Brendan11:: @ 2B4A44
-	.string "BRENDAN: Hey there, {PLAYER}!\n"
+MatchCall_Text_Akira11:: @ 2B4A44
+	.string "AKIRA: Hey there, {PLAYER}!\n"
 	.string "Don't you think it's awesome?\p"
 	.string "Even if you don't have a boat,\n"
 	.string "you can cross the sea using\l"
@@ -2552,8 +2552,8 @@ MatchCall_Text_Brendan11:: @ 2B4A44
 	.string "travel to the bottom of the sea.\p"
 	.string "Man, POKéMON can do anything!$"
 
-MatchCall_Text_Brendan12:: @ 2B4B28
-	.string "BRENDAN: Howdy, {PLAYER}!\n"
+MatchCall_Text_Akira12:: @ 2B4B28
+	.string "AKIRA: Howdy, {PLAYER}!\n"
 	.string "How are you holding up?\p"
 	.string "Ever found your way to the other\n"
 	.string "side blocked while on the sea?\p"
@@ -2562,8 +2562,8 @@ MatchCall_Text_Brendan12:: @ 2B4B28
 	.string "When you get to the other side,\n"
 	.string "come up to the surface. Simple!$"
 
-MatchCall_Text_Brendan13:: @ 2B4C15
-	.string "BRENDAN: Hey there, {PLAYER}!\p"
+MatchCall_Text_Akira13:: @ 2B4C15
+	.string "AKIRA: Hey there, {PLAYER}!\p"
 	.string "How's it going? Filling up your\n"
 	.string "POKéDEX successfully?\p"
 	.string "I heard a rumor that there are\n"
@@ -2571,15 +2571,15 @@ MatchCall_Text_Brendan13:: @ 2B4C15
 	.string "And not just one--three!\p"
 	.string "I'd love to catch even one…$"
 
-MatchCall_Text_Brendan14:: @ 2B4CD8
-	.string "BRENDAN: {PLAYER}!\n"
+MatchCall_Text_Akira14:: @ 2B4CD8
+	.string "AKIRA: {PLAYER}!\n"
 	.string "I heard the rumors!\p"
 	.string "You beat the SOOTOPOLIS GYM\n"
 	.string "LEADER? Awesome!\p"
 	.string "You're getting awful close now!$"
 
-MatchCall_Text_Brendan15:: @ 2B4D46
-	.string "BRENDAN: There isn't a TRAINER in\n"
+MatchCall_Text_Akira15:: @ 2B4D46
+	.string "AKIRA: There isn't a TRAINER in\n"
 	.string "all of HOENN who doesn't know who\l"
 	.string "you are, {PLAYER}!\p"
 	.string "When I tell people that I'm friends\n"

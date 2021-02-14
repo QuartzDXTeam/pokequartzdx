@@ -241,7 +241,7 @@ Route101_EventScript_BirchsBag:: @ 81EBE16
 	compare VAR_RESULT, MALE
 	call_if_eq Route101_EventScript_HideMayInBedroom
 	compare VAR_RESULT, FEMALE
-	call_if_eq Route101_EventScript_HideBrendanInBedroom
+	call_if_eq Route101_EventScript_HideAkiraInBedroom
 	warp MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 255, 6, 5
 	waitstate
 	release
@@ -251,8 +251,8 @@ Route101_EventScript_HideMayInBedroom:: @ 81EBE85
 	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
 	return
 
-Route101_EventScript_HideBrendanInBedroom:: @ 81EBE89
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
+Route101_EventScript_HideAkiraInBedroom:: @ 81EBE89
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_AKIRAS_HOUSE_RIVAL_BEDROOM
 	return
 
 Route101_Movement_BirchApproachPlayer: @ 81EBE8D

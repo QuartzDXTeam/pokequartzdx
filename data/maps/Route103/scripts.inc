@@ -23,7 +23,7 @@ Route103_EventScript_Rival:: @ 81EC3C1
 	compare VAR_RESULT, MALE
 	goto_if_eq Route103_EventScript_RivalMay
 	compare VAR_RESULT, FEMALE
-	goto_if_eq Route103_EventScript_RivalBrendan
+	goto_if_eq Route103_EventScript_RivalAkira
 	end
 
 Route103_EventScript_RivalMay:: @ 81EC3DA
@@ -43,8 +43,8 @@ Route103_EventScript_RivalMay:: @ 81EC3DA
 	case 2, Route103_EventScript_StartMayBattleMudkip
 	end
 
-Route103_EventScript_RivalBrendan:: @ 81EC434
-	msgbox Route103_Text_BrendanRoute103Pokemon, MSGBOX_DEFAULT
+Route103_EventScript_RivalAkira:: @ 81EC434
+	msgbox Route103_Text_AkiraRoute103Pokemon, MSGBOX_DEFAULT
 	closemessage
 	playbgm MUS_BOY_SUP, 1
 	applymovement 2, Common_Movement_FacePlayer
@@ -53,11 +53,11 @@ Route103_EventScript_RivalBrendan:: @ 81EC434
 	waitmovement 0
 	applymovement 2, Common_Movement_Delay48
 	waitmovement 0
-	msgbox Route103_Text_BrendanLetsBattle, MSGBOX_DEFAULT
+	msgbox Route103_Text_AkiraLetsBattle, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, Route103_EventScript_StartBrendanBattleTreecko
-	case 1, Route103_EventScript_StartBrendanBattleTorchic
-	case 2, Route103_EventScript_StartBrendanBattleMudkip
+	case 0, Route103_EventScript_StartAkiraBattleTreecko
+	case 1, Route103_EventScript_StartAkiraBattleTorchic
+	case 2, Route103_EventScript_StartAkiraBattleMudkip
 	end
 
 Route103_EventScript_StartMayBattleTreecko:: @ 81EC48E
@@ -75,19 +75,19 @@ Route103_EventScript_StartMayBattleMudkip:: @ 81EC4AE
 	goto Route103_EventScript_AfterMayBattle
 	end
 
-Route103_EventScript_StartBrendanBattleTreecko:: @ 81EC4BE
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TREECKO, Route103_Text_BrendanDefeated
-	goto Route103_EventScript_AfterBrendanBattle
+Route103_EventScript_StartAkiraBattleTreecko:: @ 81EC4BE
+	trainerbattle_no_intro TRAINER_AKIRA_ROUTE_103_TREECKO, Route103_Text_AkiraDefeated
+	goto Route103_EventScript_AfterAkiraBattle
 	end
 
-Route103_EventScript_StartBrendanBattleTorchic:: @ 81EC4CE
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_TORCHIC, Route103_Text_BrendanDefeated
-	goto Route103_EventScript_AfterBrendanBattle
+Route103_EventScript_StartAkiraBattleTorchic:: @ 81EC4CE
+	trainerbattle_no_intro TRAINER_AKIRA_ROUTE_103_TORCHIC, Route103_Text_AkiraDefeated
+	goto Route103_EventScript_AfterAkiraBattle
 	end
 
-Route103_EventScript_StartBrendanBattleMudkip:: @ 81EC4DE
-	trainerbattle_no_intro TRAINER_BRENDAN_ROUTE_103_MUDKIP, Route103_Text_BrendanDefeated
-	goto Route103_EventScript_AfterBrendanBattle
+Route103_EventScript_StartAkiraBattleMudkip:: @ 81EC4DE
+	trainerbattle_no_intro TRAINER_AKIRA_ROUTE_103_MUDKIP, Route103_Text_AkiraDefeated
+	goto Route103_EventScript_AfterAkiraBattle
 	end
 
 Route103_EventScript_AfterMayBattle:: @ 81EC4EE
@@ -95,8 +95,8 @@ Route103_EventScript_AfterMayBattle:: @ 81EC4EE
 	goto Route103_EventScript_RivalExit
 	end
 
-Route103_EventScript_AfterBrendanBattle:: @ 81EC4FC
-	msgbox Route103_Text_BrendanTimeToHeadBack, MSGBOX_DEFAULT
+Route103_EventScript_AfterAkiraBattle:: @ 81EC4FC
+	msgbox Route103_Text_AkiraTimeToHeadBack, MSGBOX_DEFAULT
 	goto Route103_EventScript_RivalExit
 	end
 
@@ -318,11 +318,11 @@ Route103_Text_MayTimeToHeadBack: @ 81EC8AE
 	.string "Well, it's time to head back to\n"
 	.string "the LAB.$"
 
-Route103_Text_BrendanRoute103Pokemon: @ 81EC989
-	.string "BRENDAN: Okay, so it's this one and\n"
+Route103_Text_AkiraRoute103Pokemon: @ 81EC989
+	.string "AKIRA: Okay, so it's this one and\n"
 	.string "that one that live on ROUTE 103…$"
 
-Route103_Text_BrendanLetsBattle: @ 81EC9CE
+Route103_Text_AkiraLetsBattle: @ 81EC9CE
 	.string "Hey, it's {PLAYER}!\p"
 	.string "…Oh, yeah, Dad gave you a POKéMON.\p"
 	.string "Since we're here, how about a little\n"
@@ -330,11 +330,11 @@ Route103_Text_BrendanLetsBattle: @ 81EC9CE
 	.string "I'll teach you what being a TRAINER's\n"
 	.string "about!$"
 
-Route103_Text_BrendanDefeated: @ 81ECA59
+Route103_Text_AkiraDefeated: @ 81ECA59
 	.string "Huh, {PLAYER}, you're not too shabby.$"
 
-Route103_Text_BrendanTimeToHeadBack: @ 81ECA79
-	.string "BRENDAN: I think I get it.\n"
+Route103_Text_AkiraTimeToHeadBack: @ 81ECA79
+	.string "AKIRA: I think I get it.\n"
 	.string "I think I know why my dad has his eye\l"
 	.string "out for you now.\p"
 	.string "Look, your POKéMON already likes you,\n"

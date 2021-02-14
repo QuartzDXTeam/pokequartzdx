@@ -76,14 +76,14 @@ Route104_EventScript_PlayRivalMusic:: @ 81ECD11
 	compare VAR_RESULT, MALE
 	goto_if_eq Route104_EventScript_PlayMayMusic
 	compare VAR_RESULT, FEMALE
-	goto_if_eq Route104_EventScript_PlayBrendanMusic
+	goto_if_eq Route104_EventScript_PlayAkiraMusic
 	return
 
 Route104_EventScript_PlayMayMusic:: @ 81ECD29
 	playbgm MUS_GIRL_SUP, 1
 	return
 
-Route104_EventScript_PlayBrendanMusic:: @ 81ECD2E
+Route104_EventScript_PlayAkiraMusic:: @ 81ECD2E
 	playbgm MUS_BOY_SUP, 1
 	return
 
@@ -92,7 +92,7 @@ Route104_EventScript_RivalEncounter:: @ 81ECD33
 	compare VAR_RESULT, MALE
 	goto_if_eq Route104_EventScript_MayEncounter
 	compare VAR_RESULT, FEMALE
-	goto_if_eq Route104_EventScript_BrendanEncounter
+	goto_if_eq Route104_EventScript_AkiraEncounter
 	end
 
 Route104_EventScript_MayEncounter:: @ 81ECD4B
@@ -184,74 +184,74 @@ Route104_EventScript_BattleMayMudkip:: @ 81ECE5C
 	goto Route104_EventScript_MayDefeated
 	end
 
-Route104_EventScript_BrendanEncounter:: @ 81ECE6F
-	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104, Route104_EventScript_BrendanDefeated
-	goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_BrendanAskToBattle
+Route104_EventScript_AkiraEncounter:: @ 81ECE6F
+	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE_104, Route104_EventScript_AkiraDefeated
+	goto_if_set FLAG_REGISTER_RIVAL_POKENAV, Route104_EventScript_AkiraAskToBattle
 	setflag FLAG_REGISTER_RIVAL_POKENAV
-	msgbox Route104_Text_BrendanWeShouldRegister, MSGBOX_DEFAULT
+	msgbox Route104_Text_AkiraWeShouldRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox Route104_Text_RegisteredBrendan, MSGBOX_DEFAULT
+	msgbox Route104_Text_RegisteredAkira, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
 	delay 30
 	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_PlayerFaceRival
 	applymovement 34, Route104_Movement_RivalWalkSlowLeft
-	msgbox Route104_Text_BrendanHowsYourPokedex, MSGBOX_DEFAULT
+	msgbox Route104_Text_AkiraHowsYourPokedex, MSGBOX_DEFAULT
 	closemessage
 	waitmovement 0
 	applymovement 34, Route104_Movement_RivalApproachPlayer
 	waitmovement 0
 	copyobjectxytoperm 34
-	msgbox Route104_Text_BrendanDoingGreatLetsBattle, MSGBOX_YESNO
+	msgbox Route104_Text_AkiraDoingGreatLetsBattle, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Route104_EventScript_BattleBrendan
-	msgbox Route104_Text_BrendanNoConfidence, MSGBOX_DEFAULT
+	goto_if_eq Route104_EventScript_BattleAkira
+	msgbox Route104_Text_AkiraNoConfidence, MSGBOX_DEFAULT
 	call Route104_EventScript_RestoreMusic
 	releaseall
 	end
 
-Route104_EventScript_BrendanAskToBattle:: @ 81ECEEC
-	msgbox Route104_Text_BrendanLetsBattle, MSGBOX_YESNO
+Route104_EventScript_AkiraAskToBattle:: @ 81ECEEC
+	msgbox Route104_Text_AkiraLetsBattle, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq Route104_EventScript_BattleBrendan
-	msgbox Route104_Text_BrendanNoConfidence, MSGBOX_DEFAULT
+	goto_if_eq Route104_EventScript_BattleAkira
+	msgbox Route104_Text_AkiraNoConfidence, MSGBOX_DEFAULT
 	releaseall
 	end
 
-Route104_EventScript_BattleBrendan:: @ 81ECF09
-	msgbox Route104_Text_BrendanIntro, MSGBOX_DEFAULT
+Route104_EventScript_BattleAkira:: @ 81ECF09
+	msgbox Route104_Text_AkiraIntro, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, Route104_EventScript_BattleBrendanTreecko
-	case 1, Route104_EventScript_BattleBrendanTorchic
-	case 2, Route104_EventScript_BattleBrendanMudkip
+	case 0, Route104_EventScript_BattleAkiraTreecko
+	case 1, Route104_EventScript_BattleAkiraTorchic
+	case 2, Route104_EventScript_BattleAkiraMudkip
 	end
 
-Route104_EventScript_BrendanDefeated:: @ 81ECF38
-	msgbox Route104_Text_BrendanPostBattle, MSGBOX_DEFAULT
+Route104_EventScript_AkiraDefeated:: @ 81ECF38
+	msgbox Route104_Text_AkiraPostBattle, MSGBOX_DEFAULT
 	compare VAR_0x8008, 0
 	call_if_eq Route104_EventScript_RestoreMusic
 	releaseall
 	end
 
-Route104_EventScript_BattleBrendanTreecko:: @ 81ECF4D
-	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TREECKO, Route104_Text_BrendanDefeat
+Route104_EventScript_BattleAkiraTreecko:: @ 81ECF4D
+	trainerbattle_no_intro TRAINER_AKIRA_RUSTBORO_TREECKO, Route104_Text_AkiraDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
-	goto Route104_EventScript_BrendanDefeated
+	goto Route104_EventScript_AkiraDefeated
 	end
 
-Route104_EventScript_BattleBrendanTorchic:: @ 81ECF60
-	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_TORCHIC, Route104_Text_BrendanDefeat
+Route104_EventScript_BattleAkiraTorchic:: @ 81ECF60
+	trainerbattle_no_intro TRAINER_AKIRA_RUSTBORO_TORCHIC, Route104_Text_AkiraDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
-	goto Route104_EventScript_BrendanDefeated
+	goto Route104_EventScript_AkiraDefeated
 	end
 
-Route104_EventScript_BattleBrendanMudkip:: @ 81ECF73
-	trainerbattle_no_intro TRAINER_BRENDAN_RUSTBORO_MUDKIP, Route104_Text_BrendanDefeat
+Route104_EventScript_BattleAkiraMudkip:: @ 81ECF73
+	trainerbattle_no_intro TRAINER_AKIRA_RUSTBORO_MUDKIP, Route104_Text_AkiraDefeat
 	setflag FLAG_DEFEATED_RIVAL_ROUTE_104
-	goto Route104_EventScript_BrendanDefeated
+	goto Route104_EventScript_AkiraDefeated
 	end
 
 Route104_Movement_PlayerBackUp: @ 81ECF86
@@ -1143,44 +1143,44 @@ Route104_Text_MayPostBattle: @ 81EDE3E
 	.string "It's important to become friends with\n"
 	.string "POKéMON, too.$"
 
-Route104_Text_BrendanWeShouldRegister: @ 81EDF04
-	.string "BRENDAN: Oh, hey, {PLAYER}!\p"
+Route104_Text_AkiraWeShouldRegister: @ 81EDF04
+	.string "AKIRA: Oh, hey, {PLAYER}!\p"
 	.string "Cool, you had DEVON install the MATCH\n"
 	.string "CALL system on your POKéNAV!\p"
 	.string "Let's register each other in our\n"
 	.string "POKéNAVS so we can keep in touch.$"
 
-Route104_Text_RegisteredBrendan: @ 81EDFA0
-	.string "{PLAYER} registered BRENDAN\n"
+Route104_Text_RegisteredAkira: @ 81EDFA0
+	.string "{PLAYER} registered AKIRA\n"
 	.string "in the POKéNAV.$"
 
-Route104_Text_BrendanHowsYourPokedex: @ 81EDFC6
-	.string "BRENDAN: {PLAYER}, how's your POKéDEX?\n"
+Route104_Text_AkiraHowsYourPokedex: @ 81EDFC6
+	.string "AKIRA: {PLAYER}, how's your POKéDEX?\n"
 	.string "Have you filled in any pages yet?$"
 
-Route104_Text_BrendanDoingGreatLetsBattle: @ 81EE009
+Route104_Text_AkiraDoingGreatLetsBattle: @ 81EE009
 	.string "Me, I'm doing great!\p"
 	.string "Want to check out how good I am with\n"
 	.string "a battle?$"
 
-Route104_Text_BrendanNoConfidence: @ 81EE04D
-	.string "BRENDAN: What's the matter? Don't have\n"
+Route104_Text_AkiraNoConfidence: @ 81EE04D
+	.string "AKIRA: What's the matter? Don't have\n"
 	.string "any confidence in your POKéMON?$"
 
-Route104_Text_BrendanLetsBattle: @ 81EE094
-	.string "BRENDAN: What's up?\n"
+Route104_Text_AkiraLetsBattle: @ 81EE094
+	.string "AKIRA: What's up?\n"
 	.string "Want to have a battle with me?$"
 
-Route104_Text_BrendanIntro: @ 81EE0C7
-	.string "BRENDAN: I know you just became\n"
+Route104_Text_AkiraIntro: @ 81EE0C7
+	.string "AKIRA: I know you just became\n"
 	.string "a TRAINER, but I won't go easy!$"
 
-Route104_Text_BrendanDefeat: @ 81EE107
+Route104_Text_AkiraDefeat: @ 81EE107
 	.string "Hmm…\n"
 	.string "You're pretty good.$"
 
-Route104_Text_BrendanPostBattle: @ 81EE120
-	.string "BRENDAN: You've gotten pretty decent\n"
+Route104_Text_AkiraPostBattle: @ 81EE120
+	.string "AKIRA: You've gotten pretty decent\n"
 	.string "at handling POKéMON.\p"
 	.string "But, you know, you shouldn't just be\n"
 	.string "making POKéMON battle.\p"

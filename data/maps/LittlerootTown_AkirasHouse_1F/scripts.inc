@@ -1,95 +1,95 @@
-LittlerootTown_BrendansHouse_1F_MapScripts:: @ 81F7755
-	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_BrendansHouse_1F_OnLoad
-	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_BrendansHouse_1F_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_BrendansHouse_1F_OnFrame
+LittlerootTown_AkirasHouse_1F_MapScripts:: @ 81F7755
+	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_AkirasHouse_1F_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_AkirasHouse_1F_OnTransition
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_AkirasHouse_1F_OnFrame
 	.byte 0
 
-LittlerootTown_BrendansHouse_1F_OnLoad: @ 81F7765
+LittlerootTown_AkirasHouse_1F_OnLoad: @ 81F7765
 	compare VAR_LITTLEROOT_INTRO_STATE, 6
-	call_if_lt LittlerootTown_BrendansHouse_1F_EventScript_SetMovingBoxes
-	call_if_set FLAG_RECEIVED_RUNNING_SHOES, LittlerootTown_BrendansHouse_1F_EventScript_CheckShowShoesManual
+	call_if_lt LittlerootTown_AkirasHouse_1F_EventScript_SetMovingBoxes
+	call_if_set FLAG_RECEIVED_RUNNING_SHOES, LittlerootTown_AkirasHouse_1F_EventScript_CheckShowShoesManual
 	end
 
-LittlerootTown_BrendansHouse_1F_EventScript_SetMovingBoxes:: @ 81F777A
-	setmetatile 5, 4, METATILE_BrendansMaysHouse_MovingBox_Open, 1
-	setmetatile 5, 2, METATILE_BrendansMaysHouse_MovingBox_Closed, 1
+LittlerootTown_AkirasHouse_1F_EventScript_SetMovingBoxes:: @ 81F777A
+	setmetatile 5, 4, METATILE_AkirasMaysHouse_MovingBox_Open, 1
+	setmetatile 5, 2, METATILE_AkirasMaysHouse_MovingBox_Closed, 1
 	return
 
-LittlerootTown_BrendansHouse_1F_EventScript_CheckShowShoesManual:: @ 81F778D
+LittlerootTown_AkirasHouse_1F_EventScript_CheckShowShoesManual:: @ 81F778D
 	checkplayergender
 	compare VAR_RESULT, MALE
-	goto_if_eq LittlerootTown_BrendansHouse_1F_EventScript_ShowRunningShoesManual
+	goto_if_eq LittlerootTown_AkirasHouse_1F_EventScript_ShowRunningShoesManual
 	return
 
-LittlerootTown_BrendansHouse_1F_EventScript_ShowRunningShoesManual:: @ 81F779A
-	setmetatile 3, 7, METATILE_BrendansMaysHouse_BookOnTable, 1
+LittlerootTown_AkirasHouse_1F_EventScript_ShowRunningShoesManual:: @ 81F779A
+	setmetatile 3, 7, METATILE_AkirasMaysHouse_BookOnTable, 1
 	return
 
-LittlerootTown_BrendansHouse_1F_OnTransition: @ 81F77A4
+LittlerootTown_AkirasHouse_1F_OnTransition: @ 81F77A4
 	compare VAR_LITTLEROOT_INTRO_STATE, 3
-	call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor
+	call_if_eq LittlerootTown_AkirasHouse_1F_EventScript_MoveMomToDoor
 	compare VAR_LITTLEROOT_INTRO_STATE, 5
-	call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToStairs
+	call_if_eq LittlerootTown_AkirasHouse_1F_EventScript_MoveMomToStairs
 	compare VAR_LITTLEROOT_INTRO_STATE, 6
-	call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToTV
+	call_if_eq LittlerootTown_AkirasHouse_1F_EventScript_MoveMomToTV
 	end
 
-LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToStairs:: @ 81F77C6
+LittlerootTown_AkirasHouse_1F_EventScript_MoveMomToStairs:: @ 81F77C6
 	setobjectxyperm 1, 8, 4
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_UP
 	return
 
-LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToTV:: @ 81F77D2
+LittlerootTown_AkirasHouse_1F_EventScript_MoveMomToTV:: @ 81F77D2
 	setobjectxyperm 1, 4, 5
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_UP
 	return
 
-LittlerootTown_BrendansHouse_1F_EventScript_MoveMomToDoor:: @ 81F77DE
+LittlerootTown_AkirasHouse_1F_EventScript_MoveMomToDoor:: @ 81F77DE
 	setobjectxyperm 1, 9, 8
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_UP
 	return
 
 @ Many of the below scripts have no gender check because they assume youre in the correct house
 @ The below SS Ticket script uses Mays house state by accident(?), but theyre both set identically after the intro
-LittlerootTown_BrendansHouse_1F_OnFrame: @ 81F77EA
-	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn
-	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock
-	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport
-	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 1, LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor
+LittlerootTown_AkirasHouse_1F_OnFrame: @ 81F77EA
+	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_AkirasHouse_1F_EventScript_EnterHouseMovingIn
+	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_AkirasHouse_1F_EventScript_GoUpstairsToSetClock
+	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_AkirasHouse_1F_EventScript_PetalburgGymReport
+	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 1, LittlerootTown_AkirasHouse_1F_EventScript_YoureNewNeighbor
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
 	.2byte 0
 
-LittlerootTown_BrendansHouse_1F_EventScript_GoUpstairsToSetClock:: @ 81F7814
+LittlerootTown_AkirasHouse_1F_EventScript_GoUpstairsToSetClock:: @ 81F7814
 	lockall
 	msgbox PlayersHouse_1F_Text_GoSetTheClock, MSGBOX_DEFAULT
 	closemessage
-	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PushTowardStairs
-	applymovement 1, LittlerootTown_BrendansHouse_1F_Movement_PushTowardStairs
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_AkirasHouse_1F_Movement_PushTowardStairs
+	applymovement 1, LittlerootTown_AkirasHouse_1F_Movement_PushTowardStairs
 	waitmovement 0
-	warp MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F, 255, 7, 1
+	warp MAP_LITTLEROOT_TOWN_AKIRAS_HOUSE_2F, 255, 7, 1
 	waitstate
 	releaseall
 	end
 
-LittlerootTown_BrendansHouse_1F_Movement_PushTowardStairs: @ 81F783A
+LittlerootTown_AkirasHouse_1F_Movement_PushTowardStairs: @ 81F783A
 	walk_up
 	step_end
 
-LittlerootTown_BrendansHouse_1F_EventScript_EnterHouseMovingIn:: @ 81F783C
+LittlerootTown_AkirasHouse_1F_EventScript_EnterHouseMovingIn:: @ 81F783C
 	lockall
 	setvar VAR_0x8004, 1
 	setvar VAR_0x8005, MALE
 	goto PlayersHouse_1F_EventScript_EnterHouseMovingIn
 	end
 
-LittlerootTown_BrendansHouse_1F_EventScript_PetalburgGymReport:: @ 81F784D
+LittlerootTown_AkirasHouse_1F_EventScript_PetalburgGymReport:: @ 81F784D
 	lockall
 	setvar VAR_0x8004, 0
 	setvar VAR_0x8005, 1  @ Object event ID for Mom
 	goto PlayersHouse_1F_EventScript_PetalburgGymReportMale
 	end
 
-LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor:: @ 81F785E
+LittlerootTown_AkirasHouse_1F_EventScript_YoureNewNeighbor:: @ 81F785E
 	lockall
 	playse SE_PIN
 	applymovement 4, Common_Movement_ExclamationMark
@@ -97,7 +97,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor:: @ 81F785E
 	applymovement 4, Common_Movement_Delay48
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
-	applymovement 4, LittlerootTown_BrendansHouse_1F_Movement_RivalMomApproach
+	applymovement 4, LittlerootTown_AkirasHouse_1F_Movement_RivalMomApproach
 	waitmovement 0
 	special GetRivalSonDaughterString
 	msgbox RivalsHouse_1F_Text_OhYoureTheNewNeighbor, MSGBOX_DEFAULT
@@ -106,7 +106,7 @@ LittlerootTown_BrendansHouse_1F_EventScript_YoureNewNeighbor:: @ 81F785E
 	releaseall
 	end
 
-LittlerootTown_BrendansHouse_1F_Movement_RivalMomApproach: @ 81F789C
+LittlerootTown_AkirasHouse_1F_Movement_RivalMomApproach: @ 81F789C
 	walk_down
 	walk_right
 	walk_right
@@ -115,7 +115,7 @@ LittlerootTown_BrendansHouse_1F_Movement_RivalMomApproach: @ 81F789C
 	walk_right
 	step_end
 
-LittlerootTown_BrendansHouse_1F_EventScript_GoSeeRoom:: @ 81F78A3
+LittlerootTown_AkirasHouse_1F_EventScript_GoSeeRoom:: @ 81F78A3
 	lockall
 	setvar VAR_0x8004, 1
 	setvar VAR_0x8005, MALE
@@ -124,25 +124,25 @@ LittlerootTown_BrendansHouse_1F_EventScript_GoSeeRoom:: @ 81F78A3
 	goto PlayersHouse_1F_EventScript_MomGoSeeRoom
 	end
 
-LittlerootTown_BrendansHouse_1F_EventScript_MeetRival0:: @ 81F78BE
+LittlerootTown_AkirasHouse_1F_EventScript_MeetRival0:: @ 81F78BE
 	lockall
 	setvar VAR_0x8008, 0
-	goto LittlerootTown_BrendansHouse_1F_EventScript_MeetRival
+	goto LittlerootTown_AkirasHouse_1F_EventScript_MeetRival
 	end
 
-LittlerootTown_BrendansHouse_1F_EventScript_MeetRival1:: @ 81F78CA
+LittlerootTown_AkirasHouse_1F_EventScript_MeetRival1:: @ 81F78CA
 	lockall
 	setvar VAR_0x8008, 1
-	goto LittlerootTown_BrendansHouse_1F_EventScript_MeetRival
+	goto LittlerootTown_AkirasHouse_1F_EventScript_MeetRival
 	end
 
-LittlerootTown_BrendansHouse_1F_EventScript_MeetRival2:: @ 81F78D6
+LittlerootTown_AkirasHouse_1F_EventScript_MeetRival2:: @ 81F78D6
 	lockall
 	setvar VAR_0x8008, 2
-	goto LittlerootTown_BrendansHouse_1F_EventScript_MeetRival
+	goto LittlerootTown_AkirasHouse_1F_EventScript_MeetRival
 	end
 
-LittlerootTown_BrendansHouse_1F_EventScript_MeetRival:: @ 81F78E2
+LittlerootTown_AkirasHouse_1F_EventScript_MeetRival:: @ 81F78E2
 	playse SE_KAIDAN
 	delay 10
 	addobject 7
@@ -153,27 +153,27 @@ LittlerootTown_BrendansHouse_1F_EventScript_MeetRival:: @ 81F78E2
 	applymovement 7, Common_Movement_Delay48
 	waitmovement 0
 	compare VAR_0x8008, 1
-	call_if_ne LittlerootTown_BrendansHouse_1F_EventScript_PlayerFaceBrendan
+	call_if_ne LittlerootTown_AkirasHouse_1F_EventScript_PlayerFaceAkira
 	playbgm MUS_BOY_SUP, 1
 	compare VAR_0x8008, 0
-	call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_BrendanApproachPlayer0
+	call_if_eq LittlerootTown_AkirasHouse_1F_EventScript_AkiraApproachPlayer0
 	compare VAR_0x8008, 1
-	call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_BrendanApproachPlayer1
+	call_if_eq LittlerootTown_AkirasHouse_1F_EventScript_AkiraApproachPlayer1
 	compare VAR_0x8008, 2
-	call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_BrendanApproachPlayer2
-	msgbox RivalsHouse_1F_Text_BrendanWhoAreYou, MSGBOX_DEFAULT
+	call_if_eq LittlerootTown_AkirasHouse_1F_EventScript_AkiraApproachPlayer2
+	msgbox RivalsHouse_1F_Text_AkiraWhoAreYou, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_0x8008, 0
-	call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_BrendanGoUpstairs0
+	call_if_eq LittlerootTown_AkirasHouse_1F_EventScript_AkiraGoUpstairs0
 	compare VAR_0x8008, 1
-	call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_BrendanGoUpstairs1
+	call_if_eq LittlerootTown_AkirasHouse_1F_EventScript_AkiraGoUpstairs1
 	compare VAR_0x8008, 2
-	call_if_eq LittlerootTown_BrendansHouse_1F_EventScript_BrendanGoUpstairs2
+	call_if_eq LittlerootTown_AkirasHouse_1F_EventScript_AkiraGoUpstairs2
 	playse SE_KAIDAN
 	removeobject 7
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_BRENDAN
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_AKIRAS_HOUSE_AKIRA
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_AKIRAS_HOUSE_2F_POKE_BALL
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_AKIRAS_HOUSE_RIVAL_BEDROOM
 	delay 30
 	setvar VAR_LITTLEROOT_RIVAL_STATE, 3
 	setvar VAR_LITTLEROOT_TOWN_STATE, 1
@@ -182,27 +182,27 @@ LittlerootTown_BrendansHouse_1F_EventScript_MeetRival:: @ 81F78E2
 	releaseall
 	end
 
-LittlerootTown_BrendansHouse_1F_EventScript_PlayerFaceBrendan:: @ 81F7981
+LittlerootTown_AkirasHouse_1F_EventScript_PlayerFaceAkira:: @ 81F7981
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	return
 
-LittlerootTown_BrendansHouse_1F_EventScript_BrendanApproachPlayer0:: @ 81F798C
-	applymovement 7, LittlerootTown_BrendansHouse_1F_Movement_BrendanApproachPlayer0
+LittlerootTown_AkirasHouse_1F_EventScript_AkiraApproachPlayer0:: @ 81F798C
+	applymovement 7, LittlerootTown_AkirasHouse_1F_Movement_AkiraApproachPlayer0
 	waitmovement 0
 	return
 
-LittlerootTown_BrendansHouse_1F_EventScript_BrendanApproachPlayer1:: @ 81F7997
-	applymovement 7, LittlerootTown_BrendansHouse_1F_Movement_BrendanApproachPlayer1
+LittlerootTown_AkirasHouse_1F_EventScript_AkiraApproachPlayer1:: @ 81F7997
+	applymovement 7, LittlerootTown_AkirasHouse_1F_Movement_AkiraApproachPlayer1
 	waitmovement 0
 	return
 
-LittlerootTown_BrendansHouse_1F_EventScript_BrendanApproachPlayer2:: @ 81F79A2
-	applymovement 7, LittlerootTown_BrendansHouse_1F_Movement_BrendanApproachPlayer2
+LittlerootTown_AkirasHouse_1F_EventScript_AkiraApproachPlayer2:: @ 81F79A2
+	applymovement 7, LittlerootTown_AkirasHouse_1F_Movement_AkiraApproachPlayer2
 	waitmovement 0
 	return
 
-LittlerootTown_BrendansHouse_1F_Movement_BrendanApproachPlayer0: @ 81F79AD
+LittlerootTown_AkirasHouse_1F_Movement_AkiraApproachPlayer0: @ 81F79AD
 	walk_in_place_fastest_left
 	walk_left
 	walk_in_place_fastest_up
@@ -212,13 +212,13 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanApproachPlayer0: @ 81F79AD
 	walk_up
 	step_end
 
-LittlerootTown_BrendansHouse_1F_Movement_BrendanApproachPlayer1: @ 81F79B5
+LittlerootTown_AkirasHouse_1F_Movement_AkiraApproachPlayer1: @ 81F79B5
 	walk_up
 	walk_up
 	walk_up
 	step_end
 
-LittlerootTown_BrendansHouse_1F_Movement_BrendanApproachPlayer2: @ 81F79B9
+LittlerootTown_AkirasHouse_1F_Movement_AkiraApproachPlayer2: @ 81F79B9
 	walk_in_place_fastest_right
 	walk_right
 	walk_in_place_fastest_up
@@ -228,31 +228,31 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanApproachPlayer2: @ 81F79B9
 	walk_up
 	step_end
 
-LittlerootTown_BrendansHouse_1F_EventScript_BrendanGoUpstairs0:: @ 81F79C1
-	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit0
-	applymovement 7, LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs0
+LittlerootTown_AkirasHouse_1F_EventScript_AkiraGoUpstairs0:: @ 81F79C1
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_AkirasHouse_1F_Movement_PlayerWatchAkiraExit0
+	applymovement 7, LittlerootTown_AkirasHouse_1F_Movement_AkiraGoUpstairs0
 	waitmovement 0
 	return
 
-LittlerootTown_BrendansHouse_1F_EventScript_BrendanGoUpstairs1:: @ 81F79D3
-	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit1
-	applymovement 7, LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs1
+LittlerootTown_AkirasHouse_1F_EventScript_AkiraGoUpstairs1:: @ 81F79D3
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_AkirasHouse_1F_Movement_PlayerWatchAkiraExit1
+	applymovement 7, LittlerootTown_AkirasHouse_1F_Movement_AkiraGoUpstairs1
 	waitmovement 0
 	return
 
-LittlerootTown_BrendansHouse_1F_EventScript_BrendanGoUpstairs2:: @ 81F79E5
-	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit2
-	applymovement 7, LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs2
+LittlerootTown_AkirasHouse_1F_EventScript_AkiraGoUpstairs2:: @ 81F79E5
+	applymovement OBJ_EVENT_ID_PLAYER, LittlerootTown_AkirasHouse_1F_Movement_PlayerWatchAkiraExit2
+	applymovement 7, LittlerootTown_AkirasHouse_1F_Movement_AkiraGoUpstairs2
 	waitmovement 0
 	return
 
-LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit0: @ 81F79F7
+LittlerootTown_AkirasHouse_1F_Movement_PlayerWatchAkiraExit0: @ 81F79F7
 	delay_16
 	delay_8
 	walk_in_place_fastest_right
 	step_end
 
-LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit1: @ 81F79FB
+LittlerootTown_AkirasHouse_1F_Movement_PlayerWatchAkiraExit1: @ 81F79FB
 	delay_16
 	delay_8
 	walk_in_place_fastest_right
@@ -261,13 +261,13 @@ LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit1: @ 81F79FB
 	walk_in_place_fastest_up
 	step_end
 
-LittlerootTown_BrendansHouse_1F_Movement_PlayerWatchBrendanExit2: @ 81F7A02
+LittlerootTown_AkirasHouse_1F_Movement_PlayerWatchAkiraExit2: @ 81F7A02
 	delay_16
 	delay_8
 	walk_in_place_fastest_left
 	step_end
 
-LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs0: @ 81F7A06
+LittlerootTown_AkirasHouse_1F_Movement_AkiraGoUpstairs0: @ 81F7A06
 	walk_in_place_fastest_right
 	walk_right
 	walk_in_place_fastest_up
@@ -275,7 +275,7 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs0: @ 81F7A06
 	walk_up
 	step_end
 
-LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs1: @ 81F7A0C
+LittlerootTown_AkirasHouse_1F_Movement_AkiraGoUpstairs1: @ 81F7A0C
 	walk_in_place_fastest_right
 	walk_right
 	walk_in_place_fastest_up
@@ -287,7 +287,7 @@ LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs1: @ 81F7A0C
 	walk_up
 	step_end
 
-LittlerootTown_BrendansHouse_1F_Movement_BrendanGoUpstairs2: @ 81F7A16
+LittlerootTown_AkirasHouse_1F_Movement_AkiraGoUpstairs2: @ 81F7A16
 	walk_in_place_fastest_left
 	walk_left
 	walk_in_place_fastest_up

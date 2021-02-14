@@ -11,8 +11,8 @@ LittlerootTown_MaysHouse_1F_OnLoad: @ 81F88B5
 	end
 
 LittlerootTown_MaysHouse_1F_EventScript_SetMovingBoxes:: @ 81F88CA
-	setmetatile 5, 4, METATILE_BrendansMaysHouse_MovingBox_Open, 1
-	setmetatile 5, 2, METATILE_BrendansMaysHouse_MovingBox_Closed, 1
+	setmetatile 5, 4, METATILE_AkirasMaysHouse_MovingBox_Open, 1
+	setmetatile 5, 2, METATILE_AkirasMaysHouse_MovingBox_Closed, 1
 	return
 
 LittlerootTown_MaysHouse_1F_EventScript_CheckShowShoesManual:: @ 81F88DD
@@ -22,7 +22,7 @@ LittlerootTown_MaysHouse_1F_EventScript_CheckShowShoesManual:: @ 81F88DD
 	return
 
 LittlerootTown_MaysHouse_1F_EventScript_ShowRunningShoesManual:: @ 81F88EA
-	setmetatile 6, 7, METATILE_BrendansMaysHouse_BookOnTable, 1
+	setmetatile 6, 7, METATILE_AkirasMaysHouse_BookOnTable, 1
 	return
 
 LittlerootTown_MaysHouse_1F_OnTransition: @ 81F88F4
@@ -54,7 +54,7 @@ LittlerootTown_MaysHouse_1F_OnFrame: @ 81F893A
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_MaysHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_MaysHouse_1F_EventScript_PetalburgGymReport
-	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 1, LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor
+	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 1, LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor
 	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
 	.2byte 0
 
@@ -101,7 +101,7 @@ LittlerootTown_MaysHouse_1F_EventScript_YoureNewNeighbor:: @ 81F89AE
 	special GetRivalSonDaughterString
 	msgbox RivalsHouse_1F_Text_OhYoureTheNewNeighbor, MSGBOX_DEFAULT
 	setflag FLAG_MET_RIVAL_MOM
-	setvar VAR_LITTLEROOT_HOUSES_STATE_BRENDAN, 2
+	setvar VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 2
 	releaseall
 	end
 
@@ -392,7 +392,7 @@ RivalsHouse_1F_Text_MayWhoAreYou: @ 81F8EC6
 	.string "some wild POKéMON!\p"
 	.string "{PLAYER}{KUN}, I'll catch you later!$"
 
-RivalsHouse_1F_Text_BrendanWhoAreYou: @ 81F90B4
+RivalsHouse_1F_Text_AkiraWhoAreYou: @ 81F90B4
 	.string "Hey!\n"
 	.string "You…\p"
 	.string "Who are you?\p"
@@ -402,7 +402,7 @@ RivalsHouse_1F_Text_BrendanWhoAreYou: @ 81F90B4
 	.string "Dad, PROF. BIRCH, said that our new\n"
 	.string "next-door neighbor is a GYM LEADER's\l"
 	.string "kid, so I assumed you'd be a guy.\p"
-	.string "My name's BRENDAN.\n"
+	.string "My name's AKIRA.\n"
 	.string "So, hi, neighbor!\p"
 	.string "Huh? Hey, {PLAYER}, don't you have\n"
 	.string "a POKéMON?\p"

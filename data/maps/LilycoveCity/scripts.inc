@@ -234,7 +234,7 @@ LilycoveCity_EventScript_Rival:: @ 81E2DDE
 	compare VAR_RESULT, MALE
 	goto_if_eq LilycoveCity_EventScript_May
 	compare VAR_RESULT, FEMALE
-	goto_if_eq LilycoveCity_EventScript_Brendan
+	goto_if_eq LilycoveCity_EventScript_Akira
 	end
 
 LilycoveCity_EventScript_May:: @ 81E2DF8
@@ -266,30 +266,30 @@ LilycoveCity_EventScript_DeclineMayBattle:: @ 81E2E5A
 	release
 	end
 
-LilycoveCity_EventScript_Brendan:: @ 81E2E6B
+LilycoveCity_EventScript_Akira:: @ 81E2E6B
 	playbgm MUS_BOY_SUP, 1
-	call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_BrendanAskToBattleAgain
-	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_BrendanAskToBattle
+	call_if_set FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_AkiraAskToBattleAgain
+	call_if_unset FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE, LilycoveCity_EventScript_AkiraAskToBattle
 	compare VAR_RESULT, NO
-	goto_if_eq LilycoveCity_EventScript_DeclineBrendanBattle
-	msgbox LilycoveCity_Text_BrendanWontBeBeaten, MSGBOX_DEFAULT
+	goto_if_eq LilycoveCity_EventScript_DeclineAkiraBattle
+	msgbox LilycoveCity_Text_AkiraWontBeBeaten, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, LilycoveCity_EventScript_BattleBrendanTreecko
-	case 1, LilycoveCity_EventScript_BattleBrendanTorchic
-	case 2, LilycoveCity_EventScript_BattleBrendanMudkip
+	case 0, LilycoveCity_EventScript_BattleAkiraTreecko
+	case 1, LilycoveCity_EventScript_BattleAkiraTorchic
+	case 2, LilycoveCity_EventScript_BattleAkiraMudkip
 	end
 
-LilycoveCity_EventScript_BrendanAskToBattleAgain:: @ 81E2EBB
-	msgbox LilycoveCity_Text_BrendanBattleMe, MSGBOX_YESNO
+LilycoveCity_EventScript_AkiraAskToBattleAgain:: @ 81E2EBB
+	msgbox LilycoveCity_Text_AkiraBattleMe, MSGBOX_YESNO
 	return
 
-LilycoveCity_EventScript_BrendanAskToBattle:: @ 81E2EC4
-	msgbox LilycoveCity_Text_BrendanShoppingLetsBattle, MSGBOX_YESNO
+LilycoveCity_EventScript_AkiraAskToBattle:: @ 81E2EC4
+	msgbox LilycoveCity_Text_AkiraShoppingLetsBattle, MSGBOX_YESNO
 	return
 
-LilycoveCity_EventScript_DeclineBrendanBattle:: @ 81E2ECD
+LilycoveCity_EventScript_DeclineAkiraBattle:: @ 81E2ECD
 	setflag FLAG_DECLINED_RIVAL_BATTLE_LILYCOVE
-	msgbox LilycoveCity_Text_BrendanNoConfidence, MSGBOX_DEFAULT
+	msgbox LilycoveCity_Text_AkiraNoConfidence, MSGBOX_DEFAULT
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	release
@@ -310,19 +310,19 @@ LilycoveCity_EventScript_BattleMayMudkip:: @ 81E2EFE
 	goto LilycoveCity_EventScript_DefeatedMay
 	end
 
-LilycoveCity_EventScript_BattleBrendanTreecko:: @ 81E2F0E
-	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_TREECKO, LilycoveCity_Text_BrendanDefeat
-	goto LilycoveCity_EventScript_DefeatedBrendan
+LilycoveCity_EventScript_BattleAkiraTreecko:: @ 81E2F0E
+	trainerbattle_no_intro TRAINER_AKIRA_LILYCOVE_TREECKO, LilycoveCity_Text_AkiraDefeat
+	goto LilycoveCity_EventScript_DefeatedAkira
 	end
 
-LilycoveCity_EventScript_BattleBrendanTorchic:: @ 81E2F1E
-	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_TORCHIC, LilycoveCity_Text_BrendanDefeat
-	goto LilycoveCity_EventScript_DefeatedBrendan
+LilycoveCity_EventScript_BattleAkiraTorchic:: @ 81E2F1E
+	trainerbattle_no_intro TRAINER_AKIRA_LILYCOVE_TORCHIC, LilycoveCity_Text_AkiraDefeat
+	goto LilycoveCity_EventScript_DefeatedAkira
 	end
 
-LilycoveCity_EventScript_BattleBrendanMudkip:: @ 81E2F2E
-	trainerbattle_no_intro TRAINER_BRENDAN_LILYCOVE_MUDKIP, LilycoveCity_Text_BrendanDefeat
-	goto LilycoveCity_EventScript_DefeatedBrendan
+LilycoveCity_EventScript_BattleAkiraMudkip:: @ 81E2F2E
+	trainerbattle_no_intro TRAINER_AKIRA_LILYCOVE_MUDKIP, LilycoveCity_Text_AkiraDefeat
+	goto LilycoveCity_EventScript_DefeatedAkira
 	end
 
 LilycoveCity_EventScript_DefeatedMay:: @ 81E2F3E
@@ -359,30 +359,30 @@ LilycoveCity_EventScript_MayBattleFrontier:: @ 81E2FA1
 	msgbox LilycoveCity_Text_MayYouGoingToBattleFrontier, MSGBOX_DEFAULT
 	return
 
-LilycoveCity_EventScript_DefeatedBrendan:: @ 81E2FAA
-	msgbox LilycoveCity_Text_BrendanGoingBackToLittleroot, MSGBOX_DEFAULT
+LilycoveCity_EventScript_DefeatedAkira:: @ 81E2FAA
+	msgbox LilycoveCity_Text_AkiraGoingBackToLittleroot, MSGBOX_DEFAULT
 	setvar VAR_RESULT, FALSE
 	call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_CheckFinalBadge
 	compare VAR_RESULT, FALSE
-	call_if_eq LilycoveCity_EventScript_BrendanCollectBadges
+	call_if_eq LilycoveCity_EventScript_AkiraCollectBadges
 	compare VAR_RESULT, TRUE
-	call_if_eq LilycoveCity_EventScript_BrendanPokemonLeague
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_RIVAL_BEDROOM
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_SWABLU_DOLL
+	call_if_eq LilycoveCity_EventScript_AkiraPokemonLeague
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_AKIRAS_HOUSE_RIVAL_BEDROOM
+	clearflag FLAG_HIDE_LITTLEROOT_TOWN_AKIRAS_HOUSE_2F_SWABLU_DOLL
 	goto LilycoveCity_EventScript_RivalFlyAway
 	end
 
-LilycoveCity_EventScript_BrendanCollectBadges:: @ 81E2FE2
-	msgbox LilycoveCity_Text_BrendanYouGoingToCollectBadges, MSGBOX_DEFAULT
+LilycoveCity_EventScript_AkiraCollectBadges:: @ 81E2FE2
+	msgbox LilycoveCity_Text_AkiraYouGoingToCollectBadges, MSGBOX_DEFAULT
 	return
 
-LilycoveCity_EventScript_BrendanPokemonLeague:: @ 81E2FEB
-	goto_if_set FLAG_SYS_GAME_CLEAR, LilycoveCity_EventScript_BrendanBattleFrontier
-	msgbox LilycoveCity_Text_BrendanYouGoingToPokemonLeague, MSGBOX_DEFAULT
+LilycoveCity_EventScript_AkiraPokemonLeague:: @ 81E2FEB
+	goto_if_set FLAG_SYS_GAME_CLEAR, LilycoveCity_EventScript_AkiraBattleFrontier
+	msgbox LilycoveCity_Text_AkiraYouGoingToPokemonLeague, MSGBOX_DEFAULT
 	return
 
-LilycoveCity_EventScript_BrendanBattleFrontier:: @ 81E2FFD
-	msgbox LilycoveCity_Text_BrendanYouGoingToBattleFrontier, MSGBOX_DEFAULT
+LilycoveCity_EventScript_AkiraBattleFrontier:: @ 81E2FFD
+	msgbox LilycoveCity_Text_AkiraYouGoingToBattleFrontier, MSGBOX_DEFAULT
 	return
 
 LilycoveCity_EventScript_RivalFlyAway:: @ 81E3006
@@ -490,47 +490,47 @@ LilycoveCity_Text_MayYouGoingToBattleFrontier: @ 81E353A
 	.string "but I'll finish my POKéDEX before you!\p"
 	.string "See you!$"
 
-LilycoveCity_Text_BrendanShoppingLetsBattle: @ 81E3608
-	.string "BRENDAN: Oh, hey, it's {PLAYER}.\p"
+LilycoveCity_Text_AkiraShoppingLetsBattle: @ 81E3608
+	.string "AKIRA: Oh, hey, it's {PLAYER}.\p"
 	.string "I'm running an errand for my dad.\n"
 	.string "No, I'm not buying any DOLLS.\p"
 	.string "Anyways, it's been a while.\p"
 	.string "Want to have a battle to see who's been\n"
 	.string "raising POKéMON better?$"
 
-LilycoveCity_Text_BrendanNoConfidence: @ 81E36BF
-	.string "BRENDAN: Oh, what's the matter?\n"
+LilycoveCity_Text_AkiraNoConfidence: @ 81E36BF
+	.string "AKIRA: Oh, what's the matter?\n"
 	.string "Don't have the confidence?$"
 
-LilycoveCity_Text_BrendanBattleMe: @ 81E36FA
-	.string "BRENDAN: Want to battle to see who's\n"
+LilycoveCity_Text_AkiraBattleMe: @ 81E36FA
+	.string "AKIRA: Want to battle to see who's\n"
 	.string "been raising POKéMON better?$"
 
-LilycoveCity_Text_BrendanWontBeBeaten: @ 81E373C
-	.string "BRENDAN: Aww, but you know I'm not\n"
+LilycoveCity_Text_AkiraWontBeBeaten: @ 81E373C
+	.string "AKIRA: Aww, but you know I'm not\n"
 	.string "going to lose to no {PLAYER}.$"
 
-LilycoveCity_Text_BrendanDefeat: @ 81E3777
+LilycoveCity_Text_AkiraDefeat: @ 81E3777
 	.string "Humph…\n"
 	.string "You've done a lot of raising.\p"
 	.string "That stings a bit--I had a head start\n"
 	.string "on you as a TRAINER…$"
 
-LilycoveCity_Text_BrendanGoingBackToLittleroot: @ 81E37D7
-	.string "BRENDAN: I…\n"
+LilycoveCity_Text_AkiraGoingBackToLittleroot: @ 81E37D7
+	.string "AKIRA: I…\n"
 	.string "I plan on going home to LITTLEROOT.\p"
 	.string "You know I'm helping out my dad on his\n"
 	.string "POKéDEX. It's coming together pretty\l"
 	.string "decently, so I should go show him.$"
 
-LilycoveCity_Text_BrendanYouGoingToCollectBadges: @ 81E3876
+LilycoveCity_Text_AkiraYouGoingToCollectBadges: @ 81E3876
 	.string "{PLAYER}, what are you going to do?\p"
 	.string "Collect all the GYM BADGES and take\n"
 	.string "the POKéMON LEAGUE challenge?\p"
 	.string "Maybe I'll do that, too…\p"
 	.string "Well, anyway, hang in there!$"
 
-LilycoveCity_Text_BrendanYouGoingToPokemonLeague: @ 81E390C
+LilycoveCity_Text_AkiraYouGoingToPokemonLeague: @ 81E390C
 	.string "{PLAYER}, what are you going to do?\p"
 	.string "Since you're that strong, are you\n"
 	.string "taking the POKéMON LEAGUE challenge?\p"
@@ -539,7 +539,7 @@ LilycoveCity_Text_BrendanYouGoingToPokemonLeague: @ 81E390C
 	.string "you, {PLAYER}.\p"
 	.string "Well, anyway, hang in there!$"
 
-LilycoveCity_Text_BrendanYouGoingToBattleFrontier: @ 81E39E3
+LilycoveCity_Text_AkiraYouGoingToBattleFrontier: @ 81E39E3
 	.string "{PLAYER}, what are you going to do?\p"
 	.string "Are you taking the BATTLE FRONTIER\n"
 	.string "challenge?\p"

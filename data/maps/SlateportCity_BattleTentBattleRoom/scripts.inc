@@ -20,7 +20,7 @@ SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfx:: @ 8209976
 	return
 
 SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxMale:: @ 820998E
-	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_RIVAL_BRENDAN_NORMAL
+	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_RIVAL_AKIRA_NORMAL
 	return
 
 SlateportCity_BattleTentBattleRoom_EventScript_SetPlayerGfxFemale:: @ 8209994

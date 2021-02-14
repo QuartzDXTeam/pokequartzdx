@@ -41,8 +41,8 @@ static const u32 gUnknown_085F235C[] = INCBIN_U32("graphics/intro/intro2_bgnight
 static const u16 gUnknown_085F2548[] = INCBIN_U16("graphics/intro/intro2_bgnight.gbapal");
 static const u32 gUnknown_085F2568[] = INCBIN_U32("graphics/intro/intro2_bgnight_map.bin.lz");
 static const u32 gIntro2NightTiles[] = INCBIN_U32("graphics/intro/intro2_night.4bpp.lz");
-static const u16 gIntro2BrendanPalette[] = INCBIN_U16("graphics/intro/intro2_brendan.gbapal");
-static const u32 gIntro2BrendanTiles[] = INCBIN_U32("graphics/intro/intro2_brendan.4bpp.lz");
+static const u16 gIntro2AkiraPalette[] = INCBIN_U16("graphics/intro/intro2_akira.gbapal");
+static const u32 gIntro2AkiraTiles[] = INCBIN_U32("graphics/intro/intro2_akira.4bpp.lz");
 static const u16 gIntro2MayPalette[] = INCBIN_U16("graphics/intro/intro2_may.gbapal");
 static const u16 gUnknown_085F3490[0xF0] = {0};
 static const u32 gIntro2MayTiles[] = INCBIN_U32("graphics/intro/intro2_may.4bpp.lz");
@@ -557,10 +557,10 @@ static const struct SpriteTemplate gUnknown_085F52A4 =
     .callback = nullsub_66
 };
 
-const struct CompressedSpriteSheet gIntro2BrendanSpriteSheet[] =
+const struct CompressedSpriteSheet gIntro2AkiraSpriteSheet[] =
 {
     {
-        .data = gIntro2BrendanNoTurnGfx,
+        .data = gIntro2AkiraNoTurnGfx,
         .size = 0x2000,
         .tag = 1002
     },
@@ -609,8 +609,8 @@ const struct CompressedSpriteSheet gIntro2FlygonSpriteSheet[] =
 
 const struct SpritePalette gIntroBikeAndFlygonPalette[] =
 {
-    { .data = gIntro2BrendanNoTurnPal, .tag = 1002 },
-    { .data = gIntro2BrendanNoTurnPal, .tag = 1003 },
+    { .data = gIntro2AkiraNoTurnPal, .tag = 1002 },
+    { .data = gIntro2AkiraNoTurnPal, .tag = 1003 },
     { .data = gIntro2FlygonPal,        .tag = 1004 },
     { .data = gIntro2FlygonPal,        .tag = 1005 },
     {}
@@ -619,7 +619,7 @@ const struct SpritePalette gIntroBikeAndFlygonPalette[] =
 const struct CompressedSpriteSheet gUnknown_085F5334[] =
 {
     {
-        .data = gIntro2BrendanTiles,
+        .data = gIntro2AkiraTiles,
         .size = 0x3800,
         .tag = 1002
     },
@@ -668,7 +668,7 @@ static const struct CompressedSpriteSheet gUnknown_085F5374[] =
 
 const struct SpritePalette gUnknown_085F5384[] =
 {
-    { .data = gIntro2BrendanPalette, .tag = 1002 },
+    { .data = gIntro2AkiraPalette, .tag = 1002 },
     { .data = gIntro2MayPalette,     .tag = 1003 },
     { .data = gIntro2LatiosPalette,  .tag = 1004 },
     { .data = gIntro2LatiasPalette,  .tag = 1005 },
@@ -678,7 +678,7 @@ const struct SpritePalette gUnknown_085F5384[] =
 const struct CompressedSpriteSheet gUnknown_085F53AC[] =
 {
     {
-        .data = gIntro2BrendanTiles,
+        .data = gIntro2AkiraTiles,
         .size = 0x2000,
         .tag = 1002
     },
@@ -1067,11 +1067,11 @@ static void sub_817B7C4(struct Sprite* sprite)
     sprite->pos2.y = gSprites[sprite->data[0]].pos2.y;
 }
 
-u8 intro_create_brendan_sprite(s16 a, s16 b)
+u8 intro_create_akira_sprite(s16 a, s16 b)
 {
     u8 sprite = CreateSprite(&gUnknown_085F51EC, a, b, 2);
-    u8 brendan = CreateSprite(&gUnknown_085F523C, a, b + 8, 3);
-    gSprites[brendan].data[0] = sprite;
+    u8 akira = CreateSprite(&gUnknown_085F523C, a, b + 8, 3);
+    gSprites[akira].data[0] = sprite;
     return sprite;
 }
 

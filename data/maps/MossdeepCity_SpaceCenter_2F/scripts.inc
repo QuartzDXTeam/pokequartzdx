@@ -350,7 +350,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall:: @ 8224175
 	compare VAR_RESULT, MALE
 	call_if_eq MossdeepCity_SpaceCenter_2F_EventScript_MayRayquazaCall
 	compare VAR_RESULT, FEMALE
-	call_if_eq MossdeepCity_SpaceCenter_2F_EventScript_BrendanRayquazaCall
+	call_if_eq MossdeepCity_SpaceCenter_2F_EventScript_AkiraRayquazaCall
 	closemessage
 	clearflag FLAG_DEFEATED_MAGMA_SPACE_CENTER
 	releaseall
@@ -361,8 +361,8 @@ MossdeepCity_SpaceCenter_2F_EventScript_MayRayquazaCall:: @ 8224193
 	waitmessage
 	return
 
-MossdeepCity_SpaceCenter_2F_EventScript_BrendanRayquazaCall:: @ 822419A
-	pokenavcall MatchCall_Text_BrendanRayquazaCall
+MossdeepCity_SpaceCenter_2F_EventScript_AkiraRayquazaCall:: @ 822419A
+	pokenavcall MatchCall_Text_AkiraRayquazaCall
 	waitmessage
 	return
 

@@ -1973,7 +1973,7 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
             LoadCompressedSpriteSheet(gUnknown_085F5354);
             LoadSpritePalettes(gUnknown_085F5384);
 
-            spriteId = intro_create_brendan_sprite(120, 46);
+            spriteId = intro_create_akira_sprite(120, 46);
             gTasks[taskIdA].data[TDA_PLAYER_CYCLIST] = spriteId;
             gSprites[spriteId].callback = sub_8176EE8;
             gSprites[spriteId].anims = gUnknown_085E6FD0;
@@ -1995,7 +1995,7 @@ static bool8 sub_8176AB0(u8 data, u8 taskIdA)
             gSprites[spriteId].callback = sub_8176EE8;
             gSprites[spriteId].anims = gUnknown_085E6FD0;
 
-            spriteId = intro_create_brendan_sprite(272, 46);
+            spriteId = intro_create_akira_sprite(272, 46);
             gTasks[taskIdA].data[TDA_RIVAL_CYCLIST] = spriteId;
             gSprites[spriteId].callback = sub_8176F90;
             gSprites[spriteId].anims = gUnknown_085E7010;
