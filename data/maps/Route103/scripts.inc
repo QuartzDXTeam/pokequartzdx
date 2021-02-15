@@ -21,13 +21,13 @@ Route103_EventScript_Rival:: @ 81EC3C1
 	lockall
 	checkplayergender
 	compare VAR_RESULT, MALE
-	goto_if_eq Route103_EventScript_RivalMay
+	goto_if_eq Route103_EventScript_RivalRan
 	compare VAR_RESULT, FEMALE
 	goto_if_eq Route103_EventScript_RivalAkira
 	end
 
-Route103_EventScript_RivalMay:: @ 81EC3DA
-	msgbox Route103_Text_MayRoute103Pokemon, MSGBOX_DEFAULT
+Route103_EventScript_RivalRan:: @ 81EC3DA
+	msgbox Route103_Text_RanRoute103Pokemon, MSGBOX_DEFAULT
 	closemessage
 	playbgm MUS_GIRL_SUP, 1
 	applymovement 2, Common_Movement_FacePlayer
@@ -36,11 +36,11 @@ Route103_EventScript_RivalMay:: @ 81EC3DA
 	waitmovement 0
 	applymovement 2, Common_Movement_Delay48
 	waitmovement 0
-	msgbox Route103_Text_MayLetsBattle, MSGBOX_DEFAULT
+	msgbox Route103_Text_RanLetsBattle, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, Route103_EventScript_StartMayBattleTreecko
-	case 1, Route103_EventScript_StartMayBattleTorchic
-	case 2, Route103_EventScript_StartMayBattleMudkip
+	case 0, Route103_EventScript_StartRanBattleTreecko
+	case 1, Route103_EventScript_StartRanBattleTorchic
+	case 2, Route103_EventScript_StartRanBattleMudkip
 	end
 
 Route103_EventScript_RivalAkira:: @ 81EC434
@@ -60,19 +60,19 @@ Route103_EventScript_RivalAkira:: @ 81EC434
 	case 2, Route103_EventScript_StartAkiraBattleMudkip
 	end
 
-Route103_EventScript_StartMayBattleTreecko:: @ 81EC48E
-	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TREECKO, Route103_Text_MayDefeated
-	goto Route103_EventScript_AfterMayBattle
+Route103_EventScript_StartRanBattleTreecko:: @ 81EC48E
+	trainerbattle_no_intro TRAINER_RAN_ROUTE_103_TREECKO, Route103_Text_RanDefeated
+	goto Route103_EventScript_AfterRanBattle
 	end
 
-Route103_EventScript_StartMayBattleTorchic:: @ 81EC49E
-	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_TORCHIC, Route103_Text_MayDefeated
-	goto Route103_EventScript_AfterMayBattle
+Route103_EventScript_StartRanBattleTorchic:: @ 81EC49E
+	trainerbattle_no_intro TRAINER_RAN_ROUTE_103_TORCHIC, Route103_Text_RanDefeated
+	goto Route103_EventScript_AfterRanBattle
 	end
 
-Route103_EventScript_StartMayBattleMudkip:: @ 81EC4AE
-	trainerbattle_no_intro TRAINER_MAY_ROUTE_103_MUDKIP, Route103_Text_MayDefeated
-	goto Route103_EventScript_AfterMayBattle
+Route103_EventScript_StartRanBattleMudkip:: @ 81EC4AE
+	trainerbattle_no_intro TRAINER_RAN_ROUTE_103_MUDKIP, Route103_Text_RanDefeated
+	goto Route103_EventScript_AfterRanBattle
 	end
 
 Route103_EventScript_StartAkiraBattleTreecko:: @ 81EC4BE
@@ -90,8 +90,8 @@ Route103_EventScript_StartAkiraBattleMudkip:: @ 81EC4DE
 	goto Route103_EventScript_AfterAkiraBattle
 	end
 
-Route103_EventScript_AfterMayBattle:: @ 81EC4EE
-	msgbox Route103_Text_MayTimeToHeadBack, MSGBOX_DEFAULT
+Route103_EventScript_AfterRanBattle:: @ 81EC4EE
+	msgbox Route103_Text_RanTimeToHeadBack, MSGBOX_DEFAULT
 	goto Route103_EventScript_RivalExit
 	end
 
@@ -291,11 +291,11 @@ Route103_EventScript_Isabelle:: @ 81EC78F
 	msgbox Route103_Text_IsabellePostBattle, MSGBOX_AUTOCLOSE
 	end
 
-Route103_Text_MayRoute103Pokemon: @ 81EC7A6
-	.string "MAY: Let's see… The POKéMON found\n"
+Route103_Text_RanRoute103Pokemon: @ 81EC7A6
+	.string "RAN: Let's see… The POKéMON found\n"
 	.string "on ROUTE 103 include…$"
 
-Route103_Text_MayLetsBattle: @ 81EC7DE
+Route103_Text_RanLetsBattle: @ 81EC7DE
 	.string "Oh, hi, {PLAYER}{KUN}!\p"
 	.string "…Oh, I see, my dad gave you\n"
 	.string "a POKéMON as a gift.\p"
@@ -304,12 +304,12 @@ Route103_Text_MayLetsBattle: @ 81EC7DE
 	.string "I'll give you a taste of what being\n"
 	.string "a TRAINER is like.$"
 
-Route103_Text_MayDefeated: @ 81EC881
+Route103_Text_RanDefeated: @ 81EC881
 	.string "Wow! That's great!\n"
 	.string "{PLAYER}{KUN}, you're pretty good!$"
 
-Route103_Text_MayTimeToHeadBack: @ 81EC8AE
-	.string "MAY: I think I know why my dad has\n"
+Route103_Text_RanTimeToHeadBack: @ 81EC8AE
+	.string "RAN: I think I know why my dad has\n"
 	.string "an eye out for you now.\p"
 	.string "I mean, you just got that POKéMON,\n"
 	.string "but it already likes you.\p"

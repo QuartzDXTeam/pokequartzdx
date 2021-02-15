@@ -2546,7 +2546,7 @@ extern const u32 gTrainerFrontPic_Sailor[];
 extern const u32 gTrainerFrontPic_MagmaAdmin[];
 extern const u32 gTrainerFrontPic_Wally[];
 extern const u32 gTrainerFrontPic_Akira[];
-extern const u32 gTrainerFrontPic_May[];
+extern const u32 gTrainerFrontPic_Ran[];
 extern const u32 gTrainerFrontPic_BugCatcher[];
 extern const u32 gTrainerFrontPic_PokemonRangerM[];
 extern const u32 gTrainerFrontPic_PokemonRangerF[];
@@ -2566,7 +2566,7 @@ extern const u32 gTrainerFrontPic_PyramidKingBrandon[];
 extern const u32 gTrainerFrontPic_Red[];
 extern const u32 gTrainerFrontPic_Leaf[];
 extern const u32 gTrainerFrontPic_RubySapphireAkira[];
-extern const u32 gTrainerFrontPic_RubySapphireMay[];
+extern const u32 gTrainerFrontPic_RubySapphireRan[];
 
 extern const u32 gTrainerPalette_Hiker[];
 extern const u32 gTrainerPalette_AquaGruntM[];
@@ -2640,7 +2640,7 @@ extern const u32 gTrainerPalette_Sailor[];
 extern const u32 gTrainerPalette_MagmaAdmin[];
 extern const u32 gTrainerPalette_Wally[];
 extern const u32 gTrainerPalette_Akira[];
-extern const u32 gTrainerPalette_May[];
+extern const u32 gTrainerPalette_Ran[];
 extern const u32 gTrainerPalette_BugCatcher[];
 extern const u32 gTrainerPalette_PokemonRangerM[];
 extern const u32 gTrainerPalette_PokemonRangerF[];
@@ -2660,14 +2660,14 @@ extern const u32 gTrainerPalette_PyramidKingBrandon[];
 extern const u32 gTrainerPalette_Red[];
 extern const u32 gTrainerPalette_Leaf[];
 extern const u32 gTrainerPalette_RubySapphireAkira[];
-extern const u32 gTrainerPalette_RubySapphireMay[];
+extern const u32 gTrainerPalette_RubySapphireRan[];
 
 extern const u8 gTrainerBackPic_Akira[];
-extern const u8 gTrainerBackPic_May[];
+extern const u8 gTrainerBackPic_Ran[];
 extern const u8 gTrainerBackPic_Red[];
 extern const u8 gTrainerBackPic_Leaf[];
 extern const u8 gTrainerBackPic_RubySapphireAkira[];
-extern const u8 gTrainerBackPic_RubySapphireMay[];
+extern const u8 gTrainerBackPic_RubySapphireRan[];
 extern const u8 gTrainerBackPic_Wally[];
 extern const u8 gTrainerBackPic_Steven[];
 
@@ -3514,7 +3514,7 @@ extern const u16 gIntro1GameFreakTextFadePal[];
 
 //intro/credits graphics
 extern const u32 gIntro2AkiraNoTurnGfx[];
-extern const u32 gIntro2MayNoTurnGfx[];
+extern const u32 gIntro2RanNoTurnGfx[];
 extern const u16 gIntro2AkiraNoTurnPal[];
 extern const u16 gIntro2FlygonPal[];
 extern const u32 gIntro2FlygonGfx[];

@@ -88,7 +88,7 @@
 #define TRAINER_PIC_MAGMA_ADMIN           69
 #define TRAINER_PIC_WALLY                 70
 #define TRAINER_PIC_AKIRA               71
-#define TRAINER_PIC_MAY                   72
+#define TRAINER_PIC_RAN                   72
 #define TRAINER_PIC_BUG_CATCHER           73
 #define TRAINER_PIC_POKEMON_RANGER_M      74
 #define TRAINER_PIC_POKEMON_RANGER_F      75
@@ -108,14 +108,14 @@
 #define TRAINER_PIC_RED                   89
 #define TRAINER_PIC_LEAF                  90
 #define TRAINER_PIC_RS_AKIRA            91
-#define TRAINER_PIC_RS_MAY                92
+#define TRAINER_PIC_RS_RAN                92
 
 #define TRAINER_BACK_PIC_AKIRA                0
-#define TRAINER_BACK_PIC_MAY                    1
+#define TRAINER_BACK_PIC_RAN                    1
 #define TRAINER_BACK_PIC_RED                    2
 #define TRAINER_BACK_PIC_LEAF                   3
 #define TRAINER_BACK_PIC_RUBY_SAPPHIRE_AKIRA  4
-#define TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY      5
+#define TRAINER_BACK_PIC_RUBY_SAPPHIRE_RAN      5
 #define TRAINER_BACK_PIC_WALLY                  6
 #define TRAINER_BACK_PIC_STEVEN                 7
 
@@ -182,9 +182,9 @@
 #define FACILITY_CLASS_AKIRA               0x3c
 #define FACILITY_CLASS_AKIRA_2             0x3d
 #define FACILITY_CLASS_AKIRA_3             0x3e
-#define FACILITY_CLASS_MAY                   0x3f
-#define FACILITY_CLASS_MAY_2                 0x40
-#define FACILITY_CLASS_MAY_3                 0x41
+#define FACILITY_CLASS_RAN                   0x3f
+#define FACILITY_CLASS_RAN_2                 0x40
+#define FACILITY_CLASS_RAN_3                 0x41
 #define FACILITY_CLASS_PKMN_BREEDER_M        0x42
 #define FACILITY_CLASS_BUG_CATCHER           0x43
 #define FACILITY_CLASS_PKMN_RANGER_M         0x44
@@ -200,7 +200,7 @@
 #define FACILITY_CLASS_RED                   0x4e
 #define FACILITY_CLASS_LEAF                  0x4f
 #define FACILITY_CLASS_RS_AKIRA            0x50
-#define FACILITY_CLASS_RS_MAY                0x51
+#define FACILITY_CLASS_RS_RAN                0x51
 
 #define FACILITY_CLASSES_COUNT               0x52
 
@@ -265,9 +265,9 @@
 #define RS_FACILITY_CLASS_AKIRA_1             0x3A
 #define RS_FACILITY_CLASS_AKIRA_2             0x3B
 #define RS_FACILITY_CLASS_AKIRA_3             0x3C
-#define RS_FACILITY_CLASS_MAY_1                 0x3D
-#define RS_FACILITY_CLASS_MAY_2                 0x3E
-#define RS_FACILITY_CLASS_MAY_3                 0x3F
+#define RS_FACILITY_CLASS_RAN_1                 0x3D
+#define RS_FACILITY_CLASS_RAN_2                 0x3E
+#define RS_FACILITY_CLASS_RAN_3                 0x3F
 #define RS_FACILITY_CLASS_PKMN_BREEDER_M        0x40
 #define RS_FACILITY_CLASS_PKMN_BREEDER_F        0x41
 #define RS_FACILITY_CLASS_PKMN_RANGER_M         0x42

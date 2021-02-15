@@ -447,14 +447,14 @@ LilycoveCity_ContestLobby_EventScript_SetPlayerGfx:: @ 823BEB6
 	compare VAR_RESULT, MALE
 	goto_if_eq LilycoveCity_ContestLobby_EventScript_SetPlayerGfxAkira
 	compare VAR_RESULT, FEMALE
-	goto_if_eq LilycoveCity_ContestLobby_EventScript_SetPlayerGfxMay
+	goto_if_eq LilycoveCity_ContestLobby_EventScript_SetPlayerGfxRan
 	return
 
 LilycoveCity_ContestLobby_EventScript_SetPlayerGfxAkira:: @ 823BECE
 	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_AKIRA_NORMAL
 	return
 
-LilycoveCity_ContestLobby_EventScript_SetPlayerGfxMay:: @ 823BED4
-	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL
+LilycoveCity_ContestLobby_EventScript_SetPlayerGfxRan:: @ 823BED4
+	setvar VAR_OBJ_GFX_ID_3, OBJ_EVENT_GFX_RIVAL_RAN_NORMAL
 	return
 

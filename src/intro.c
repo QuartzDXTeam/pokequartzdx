@@ -1267,7 +1267,7 @@ static void Task_IntroStartBikeRide(u8 taskId)
     if (gIntroCharacterGender == 0)
         LoadCompressedSpriteSheet(gIntro2AkiraSpriteSheet);
     else
-        LoadCompressedSpriteSheet(gIntro2MaySpriteSheet);
+        LoadCompressedSpriteSheet(gIntro2RanSpriteSheet);
 
     LoadCompressedSpriteSheet(gIntro2BicycleSpriteSheet);
     LoadCompressedSpriteSheet(gIntro2FlygonSpriteSheet);
@@ -1285,7 +1285,7 @@ static void Task_IntroStartBikeRide(u8 taskId)
     if (gIntroCharacterGender == 0)
         spriteId = intro_create_akira_sprite(0x110, 100);
     else
-        spriteId = intro_create_may_sprite(0x110, 100);
+        spriteId = intro_create_ran_sprite(0x110, 100);
 
     gSprites[spriteId].callback = SpriteCB_IntroGraphicsBicycle;
     gSprites[spriteId].anims = gIntroBicycleAnimationCommands;

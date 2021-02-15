@@ -11,8 +11,8 @@ LittlerootTown_AkirasHouse_1F_OnLoad: @ 81F7765
 	end
 
 LittlerootTown_AkirasHouse_1F_EventScript_SetMovingBoxes:: @ 81F777A
-	setmetatile 5, 4, METATILE_AkirasMaysHouse_MovingBox_Open, 1
-	setmetatile 5, 2, METATILE_AkirasMaysHouse_MovingBox_Closed, 1
+	setmetatile 5, 4, METATILE_AkirasRansHouse_MovingBox_Open, 1
+	setmetatile 5, 2, METATILE_AkirasRansHouse_MovingBox_Closed, 1
 	return
 
 LittlerootTown_AkirasHouse_1F_EventScript_CheckShowShoesManual:: @ 81F778D
@@ -22,7 +22,7 @@ LittlerootTown_AkirasHouse_1F_EventScript_CheckShowShoesManual:: @ 81F778D
 	return
 
 LittlerootTown_AkirasHouse_1F_EventScript_ShowRunningShoesManual:: @ 81F779A
-	setmetatile 3, 7, METATILE_AkirasMaysHouse_BookOnTable, 1
+	setmetatile 3, 7, METATILE_AkirasRansHouse_BookOnTable, 1
 	return
 
 LittlerootTown_AkirasHouse_1F_OnTransition: @ 81F77A4
@@ -50,13 +50,13 @@ LittlerootTown_AkirasHouse_1F_EventScript_MoveMomToDoor:: @ 81F77DE
 	return
 
 @ Many of the below scripts have no gender check because they assume youre in the correct house
-@ The below SS Ticket script uses Mays house state by accident(?), but theyre both set identically after the intro
+@ The below SS Ticket script uses Rans house state by accident(?), but theyre both set identically after the intro
 LittlerootTown_AkirasHouse_1F_OnFrame: @ 81F77EA
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, LittlerootTown_AkirasHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, LittlerootTown_AkirasHouse_1F_EventScript_GoUpstairsToSetClock
 	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, LittlerootTown_AkirasHouse_1F_EventScript_PetalburgGymReport
-	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 1, LittlerootTown_AkirasHouse_1F_EventScript_YoureNewNeighbor
-	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
+	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_RAN, 1, LittlerootTown_AkirasHouse_1F_EventScript_YoureNewNeighbor
+	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_RAN, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
 	.2byte 0
 
 LittlerootTown_AkirasHouse_1F_EventScript_GoUpstairsToSetClock:: @ 81F7814
@@ -102,7 +102,7 @@ LittlerootTown_AkirasHouse_1F_EventScript_YoureNewNeighbor:: @ 81F785E
 	special GetRivalSonDaughterString
 	msgbox RivalsHouse_1F_Text_OhYoureTheNewNeighbor, MSGBOX_DEFAULT
 	setflag FLAG_MET_RIVAL_MOM
-	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2
+	setvar VAR_LITTLEROOT_HOUSES_STATE_RAN, 2
 	releaseall
 	end
 

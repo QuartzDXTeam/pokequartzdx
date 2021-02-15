@@ -83,7 +83,7 @@ BattleFrontier_ScottsHouse_EventScript_FrontierBrainComment:: @ 8263807
 	end
 
 BattleFrontier_ScottsHouse_EventScript_ArtisanCaveComment:: @ 8263811
-	msgbox BattleFrontier_ScottsHouse_Text_MayFindWildMonsInFrontier, MSGBOX_DEFAULT
+	msgbox BattleFrontier_ScottsHouse_Text_RanFindWildMonsInFrontier, MSGBOX_DEFAULT
 	release
 	end
 
@@ -290,7 +290,7 @@ BattleFrontier_ScottsHouse_Text_HaveYouMetFrontierBrain: @ 8263F12
 	.string "But I'm sure that seeing how tough\n"
 	.string "you are will startle even them!$"
 
-BattleFrontier_ScottsHouse_Text_MayFindWildMonsInFrontier: @ 8263FFE
+BattleFrontier_ScottsHouse_Text_RanFindWildMonsInFrontier: @ 8263FFE
 	.string "SCOTT: You don't just train for battle,\n"
 	.string "right?\p"
 	.string "I think I remember you working on\n"

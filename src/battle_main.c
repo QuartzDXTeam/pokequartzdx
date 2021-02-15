@@ -4164,7 +4164,7 @@ enum
     STATE_WAIT_ACTION_CONFIRMED,
     STATE_SELECTION_SCRIPT,
     STATE_WAIT_SET_BEFORE_ACTION,
-    STATE_SELECTION_SCRIPT_MAY_RUN
+    STATE_SELECTION_SCRIPT_RAN_RUN
 };
 
 static void HandleTurnActionSelectionState(void)
@@ -4365,7 +4365,7 @@ static void HandleTurnActionSelectionState(void)
                     && gBattleBufferB[gActiveBattler][1] == B_ACTION_RUN)
                 {
                     gSelectionBattleScripts[gActiveBattler] = BattleScript_AskIfWantsToForfeitMatch;
-                    gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT_MAY_RUN;
+                    gBattleCommunication[gActiveBattler] = STATE_SELECTION_SCRIPT_RAN_RUN;
                     *(gBattleStruct->selectionScriptFinished + gActiveBattler) = FALSE;
                     *(gBattleStruct->stateIdAfterSelScript + gActiveBattler) = STATE_BEFORE_ACTION_CHOSEN;
                     return;
@@ -4550,7 +4550,7 @@ static void HandleTurnActionSelectionState(void)
                 gBattleCommunication[gActiveBattler] = STATE_BEFORE_ACTION_CHOSEN;
             }
             break;
-        case STATE_SELECTION_SCRIPT_MAY_RUN:
+        case STATE_SELECTION_SCRIPT_RAN_RUN:
             if (*(gBattleStruct->selectionScriptFinished + gActiveBattler))
             {
                 if (gBattleBufferB[gActiveBattler][1] == B_ACTION_NOTHING_FAINTED)

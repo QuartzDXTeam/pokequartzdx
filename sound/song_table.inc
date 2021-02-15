@@ -416,7 +416,7 @@ gSongTable:: @ 86B49F0
 	song mus_kachi1, 0, 0           @ Victory! (Trainer Battle)
 	song mus_title3, 0, 0           @ Title Screen
 	song mus_demo1, 0, 0            @ Opening Movie: Setting out on a Journey in the Hoenn Region
-	song mus_girl_sup, 0, 0         @ May
+	song mus_girl_sup, 0, 0         @ Ran
 	song mus_hageshii, 0, 0         @ Trainers' Eyes Meet (Psychic)
 	song mus_kakkoii, 0, 0          @ Trainers' Eyes Meet (Cooltrainer)
 	song mus_kazanbai, 0, 0         @ Route 113
@@ -482,7 +482,7 @@ gSongTable:: @ 86B49F0
 	song mus_battle33, 0, 0         @ Battle! (Champion Wallace)
 	song mus_battle36, 0, 0         @ Battle! (Regirock/Regice/Registeel)
 	song mus_battle34, 0, 0         @ Battle! (Groudon/Kyogre)
-	song mus_battle35, 0, 0         @ Battle! (Akira/May/Steven)
+	song mus_battle35, 0, 0         @ Battle! (Akira/Ran/Steven)
 	song mus_battle38, 0, 0         @ Battle! (Elite Four)
 	song mus_battle30, 0, 0         @ Battle! (Team Aqua/Team Magma Leaders)
 	song mus_rg_annai, 0, 0         @ Guide (FRLG)

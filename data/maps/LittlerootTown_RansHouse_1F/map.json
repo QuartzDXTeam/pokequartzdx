@@ -1,7 +1,7 @@
 {
-  "id": "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F",
-  "name": "LittlerootTown_MaysHouse_1F",
-  "layout": "LAYOUT_LITTLEROOT_TOWN_MAYS_HOUSE_1F",
+  "id": "MAP_LITTLEROOT_TOWN_RANS_HOUSE_1F",
+  "name": "LittlerootTown_RansHouse_1F",
+  "layout": "LAYOUT_LITTLEROOT_TOWN_RANS_HOUSE_1F",
   "music": "MUS_MISHIRO",
   "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
   "requires_flash": false,
@@ -25,7 +25,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PlayersHouse_1F_EventScript_Mom",
-      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MOM"
+      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_RANS_HOUSE_MOM"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_VIGOROTH_FACING_AWAY",
@@ -64,7 +64,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RivalsHouse_1F_EventScript_RivalMom",
-      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_MOM"
+      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_RANS_HOUSE_RIVAL_MOM"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_NORMAN",
@@ -90,10 +90,10 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RivalsHouse_1F_EventScript_RivalSibling",
-      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_SIBLING"
+      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_RANS_HOUSE_RIVAL_SIBLING"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_RIVAL_MAY_NORMAL",
+      "graphics_id": "OBJ_EVENT_GFX_RIVAL_RAN_NORMAL",
       "x": 2,
       "y": 8,
       "elevation": 3,
@@ -103,7 +103,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_MAY"
+      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_RANS_HOUSE_RAN"
     }
   ],
   "warp_events": [
@@ -125,7 +125,7 @@
       "x": 2,
       "y": 2,
       "elevation": 0,
-      "dest_map": "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_2F",
+      "dest_map": "MAP_LITTLEROOT_TOWN_RANS_HOUSE_2F",
       "dest_warp_id": 0
     }
   ],
@@ -137,7 +137,7 @@
       "elevation": 0,
       "var": "VAR_LITTLEROOT_INTRO_STATE",
       "var_value": "4",
-      "script": "LittlerootTown_MaysHouse_1F_EventScript_GoSeeRoom"
+      "script": "LittlerootTown_RansHouse_1F_EventScript_GoSeeRoom"
     },
     {
       "type": "trigger",
@@ -146,7 +146,7 @@
       "elevation": 0,
       "var": "VAR_LITTLEROOT_RIVAL_STATE",
       "var_value": "2",
-      "script": "LittlerootTown_MaysHouse_1F_EventScript_MeetRival0"
+      "script": "LittlerootTown_RansHouse_1F_EventScript_MeetRival0"
     },
     {
       "type": "trigger",
@@ -155,7 +155,7 @@
       "elevation": 0,
       "var": "VAR_LITTLEROOT_RIVAL_STATE",
       "var_value": "2",
-      "script": "LittlerootTown_MaysHouse_1F_EventScript_MeetRival1"
+      "script": "LittlerootTown_RansHouse_1F_EventScript_MeetRival1"
     },
     {
       "type": "trigger",
@@ -164,7 +164,7 @@
       "elevation": 0,
       "var": "VAR_LITTLEROOT_RIVAL_STATE",
       "var_value": "2",
-      "script": "LittlerootTown_MaysHouse_1F_EventScript_MeetRival2"
+      "script": "LittlerootTown_RansHouse_1F_EventScript_MeetRival2"
     }
   ],
   "bg_events": []

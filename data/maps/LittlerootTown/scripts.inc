@@ -19,7 +19,7 @@ LittlerootTown_MapScripts:: @ 81E7DCB
 	@ 6: Set clock
 	@ 7: Told to go meet rival
 
-	@ State descriptions for VAR_LITTLEROOT_HOUSES_STATE_MAY
+	@ State descriptions for VAR_LITTLEROOT_HOUSES_STATE_RAN
 	@                    and VAR_LITTLEROOT_HOUSES_STATE_AKIRA
 	@ 1: On Truck (and is corresponding gender)
 	@ 2: Met Rival's Mom (and is corresponding gender)
@@ -38,11 +38,11 @@ LittlerootTown_OnTransition: @ 81E7DDB
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
 	call Common_EventScript_SetupRivalGfxId
 	compare VAR_LITTLEROOT_INTRO_STATE, 2
-	call_if_eq LittlerootTown_EventScript_MoveMomToMaysDoor
+	call_if_eq LittlerootTown_EventScript_MoveMomToRansDoor
 	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
 	compare VAR_LITTLEROOT_TOWN_STATE, 3
 	call_if_eq LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
-	compare VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
+	compare VAR_LITTLEROOT_HOUSES_STATE_RAN, 4
 	call_if_eq LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
 	compare VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 4
 	call_if_eq LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
@@ -74,11 +74,11 @@ LittlerootTown_EventScript_MoveRivalFromOldale:: @ 81E7E53
 	return
 
 LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent:: @ 81E7E5C
-	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 5
+	setvar VAR_LITTLEROOT_HOUSES_STATE_RAN, 5
 	setvar VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 5
 	return
 
-LittlerootTown_EventScript_MoveMomToMaysDoor:: @ 81E7E67
+LittlerootTown_EventScript_MoveMomToRansDoor:: @ 81E7E67
 	setobjectxyperm 4, 14, 8
 	return
 
@@ -134,8 +134,8 @@ LittlerootTown_EventScript_StepOffTruckFemale:: @ 81E7EF9
 	setvar VAR_0x8004, 14
 	setvar VAR_0x8005, 8
 	call LittlerootTown_EventScript_GoInsideWithMom
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK
-	warpsilent MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F, 255, 2, 8
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_RANS_HOUSE_TRUCK
+	warpsilent MAP_LITTLEROOT_TOWN_RANS_HOUSE_1F, 255, 2, 8
 	waitstate
 	releaseall
 	end
@@ -426,7 +426,7 @@ LittlerootTown_EventScript_BirchsHouseSignFemale:: @ 81E8186
 	msgbox LittlerootTown_Text_ProfBirchsHouse, MSGBOX_DEFAULT
 	return
 
-LittlerootTown_EventScript_MaysHouseSign:: @ 81E818F
+LittlerootTown_EventScript_RansHouseSign:: @ 81E818F
 	lockall
 	checkplayergender
 	compare VAR_RESULT, MALE

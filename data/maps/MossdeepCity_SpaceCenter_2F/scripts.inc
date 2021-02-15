@@ -348,7 +348,7 @@ MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall:: @ 8224175
 	lockall
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq MossdeepCity_SpaceCenter_2F_EventScript_MayRayquazaCall
+	call_if_eq MossdeepCity_SpaceCenter_2F_EventScript_RanRayquazaCall
 	compare VAR_RESULT, FEMALE
 	call_if_eq MossdeepCity_SpaceCenter_2F_EventScript_AkiraRayquazaCall
 	closemessage
@@ -356,8 +356,8 @@ MossdeepCity_SpaceCenter_2F_EventScript_RivalRayquazaCall:: @ 8224175
 	releaseall
 	end
 
-MossdeepCity_SpaceCenter_2F_EventScript_MayRayquazaCall:: @ 8224193
-	pokenavcall MatchCall_Text_MayRayquazaCall
+MossdeepCity_SpaceCenter_2F_EventScript_RanRayquazaCall:: @ 8224193
+	pokenavcall MatchCall_Text_RanRayquazaCall
 	waitmessage
 	return
 

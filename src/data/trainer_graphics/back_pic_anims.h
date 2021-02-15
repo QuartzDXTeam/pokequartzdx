@@ -8,7 +8,7 @@ static const union AnimCmd gAnimCmd_Akira_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd gAnimCmd_May_Steven_1[] =
+static const union AnimCmd gAnimCmd_Ran_Steven_1[] =
 {
     ANIMCMD_FRAME(0, 24),
     ANIMCMD_FRAME(1, 9),
@@ -58,7 +58,7 @@ static const union AnimCmd gAnimCmd_RubySapphireAkira_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd gAnimCmd_RubySapphireMay_1[] =
+static const union AnimCmd gAnimCmd_RubySapphireRan_1[] =
 {
     ANIMCMD_FRAME(0, 24),
     ANIMCMD_FRAME(1, 9),
@@ -74,10 +74,10 @@ static const union AnimCmd *const sBackAnims_Akira[] =
     gAnimCmd_Akira_1,
 };
 
-static const union AnimCmd *const sBackAnims_May[] =
+static const union AnimCmd *const sBackAnims_Ran[] =
 {
     sAnim_GeneralFrame3,
-    gAnimCmd_May_Steven_1,
+    gAnimCmd_Ran_Steven_1,
 };
 
 static const union AnimCmd *const sBackAnims_Red[] =
@@ -98,10 +98,10 @@ static const union AnimCmd *const sBackAnims_RubySapphireAkira[] =
     gAnimCmd_RubySapphireAkira_1,
 };
 
-static const union AnimCmd *const sBackAnims_RubySapphireMay[] =
+static const union AnimCmd *const sBackAnims_RubySapphireRan[] =
 {
     sAnim_GeneralFrame3,
-    gAnimCmd_RubySapphireMay_1,
+    gAnimCmd_RubySapphireRan_1,
 };
 
 static const union AnimCmd *const sBackAnims_Wally[] =
@@ -113,17 +113,17 @@ static const union AnimCmd *const sBackAnims_Wally[] =
 static const union AnimCmd *const sBackAnims_Steven[] =
 {
     sAnim_GeneralFrame3,
-    gAnimCmd_May_Steven_1,
+    gAnimCmd_Ran_Steven_1,
 };
 
 const union AnimCmd *const *const gTrainerBackAnimsPtrTable[] =
 {
     [TRAINER_BACK_PIC_AKIRA] = sBackAnims_Akira,
-    [TRAINER_BACK_PIC_MAY] = sBackAnims_May,
+    [TRAINER_BACK_PIC_RAN] = sBackAnims_Ran,
     [TRAINER_BACK_PIC_RED] = sBackAnims_Red,
     [TRAINER_BACK_PIC_LEAF] = sBackAnims_Leaf,
     [TRAINER_BACK_PIC_RUBY_SAPPHIRE_AKIRA] = sBackAnims_RubySapphireAkira,
-    [TRAINER_BACK_PIC_RUBY_SAPPHIRE_MAY] = sBackAnims_RubySapphireMay,
+    [TRAINER_BACK_PIC_RUBY_SAPPHIRE_RAN] = sBackAnims_RubySapphireRan,
     [TRAINER_BACK_PIC_WALLY] = sBackAnims_Wally,
     [TRAINER_BACK_PIC_STEVEN] = sBackAnims_Steven,
 };

@@ -25,7 +25,7 @@ LittlerootTown_AkirasHouse_2F_EventScript_TryUpdateAkiraPos:: @ 81F8433
 	compare VAR_RESULT, MALE
 	goto_if_eq LittlerootTown_AkirasHouse_2F_EventScript_Ret
 	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2
-	goto_if_ge LittlerootTown_MaysHouse_2F_EventScript_Ret  @ Odd that the MaysHouse equivalent was used here instead
+	goto_if_ge LittlerootTown_RansHouse_2F_EventScript_Ret  @ Odd that the RansHouse equivalent was used here instead
 	setobjectxyperm 1, 0, 2
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_UP
 	return

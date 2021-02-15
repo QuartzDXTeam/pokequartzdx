@@ -255,33 +255,33 @@ static const struct MatchCallStructNPC sStevenMatchCallHeader =
     .textData = sStevenTextScripts
 };
 
-static const match_call_text_data_t sMayTextScripts[] = {
-    { MatchCall_Text_May1,  0xFFFF,                              0xFFFF },
-    { MatchCall_Text_May2,  FLAG_DEFEATED_DEWFORD_GYM,           0xFFFF },
-    { MatchCall_Text_May3,  FLAG_DELIVERED_DEVON_GOODS,          0xFFFF },
-    { MatchCall_Text_May4,  FLAG_HIDE_MAUVILLE_CITY_WALLY,       0xFFFF },
-    { MatchCall_Text_May5,  FLAG_RECEIVED_HM04,                  0xFFFF },
-    { MatchCall_Text_May6,  FLAG_DEFEATED_LAVARIDGE_GYM,         0xFFFF },
-    { MatchCall_Text_May7,  FLAG_DEFEATED_PETALBURG_GYM,         0xFFFF },
-    { MatchCall_Text_May8,  FLAG_RECEIVED_CASTFORM,              0xFFFF },
-    { MatchCall_Text_May9,  FLAG_RECEIVED_RED_OR_BLUE_ORB,       0xFFFF },
-    { MatchCall_Text_May10, FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, 0xFFFF },
-    { MatchCall_Text_May11, FLAG_MET_TEAM_AQUA_HARBOR,           0xFFFF },
-    { MatchCall_Text_May12, FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, 0xFFFF },
-    { MatchCall_Text_May13, FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, 0xFFFF },
-    { MatchCall_Text_May14, FLAG_DEFEATED_SOOTOPOLIS_GYM,        0xFFFF },
-    { MatchCall_Text_May15, FLAG_SYS_GAME_CLEAR,                 0xFFFF },
+static const match_call_text_data_t sRanTextScripts[] = {
+    { MatchCall_Text_Ran1,  0xFFFF,                              0xFFFF },
+    { MatchCall_Text_Ran2,  FLAG_DEFEATED_DEWFORD_GYM,           0xFFFF },
+    { MatchCall_Text_Ran3,  FLAG_DELIVERED_DEVON_GOODS,          0xFFFF },
+    { MatchCall_Text_Ran4,  FLAG_HIDE_MAUVILLE_CITY_WALLY,       0xFFFF },
+    { MatchCall_Text_Ran5,  FLAG_RECEIVED_HM04,                  0xFFFF },
+    { MatchCall_Text_Ran6,  FLAG_DEFEATED_LAVARIDGE_GYM,         0xFFFF },
+    { MatchCall_Text_Ran7,  FLAG_DEFEATED_PETALBURG_GYM,         0xFFFF },
+    { MatchCall_Text_Ran8,  FLAG_RECEIVED_CASTFORM,              0xFFFF },
+    { MatchCall_Text_Ran9,  FLAG_RECEIVED_RED_OR_BLUE_ORB,       0xFFFF },
+    { MatchCall_Text_Ran10, FLAG_GROUDON_AWAKENED_MAGMA_HIDEOUT, 0xFFFF },
+    { MatchCall_Text_Ran11, FLAG_MET_TEAM_AQUA_HARBOR,           0xFFFF },
+    { MatchCall_Text_Ran12, FLAG_TEAM_AQUA_ESCAPED_IN_SUBMARINE, 0xFFFF },
+    { MatchCall_Text_Ran13, FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN, 0xFFFF },
+    { MatchCall_Text_Ran14, FLAG_DEFEATED_SOOTOPOLIS_GYM,        0xFFFF },
+    { MatchCall_Text_Ran15, FLAG_SYS_GAME_CLEAR,                 0xFFFF },
     { NULL,                 0xFFFF,                              0xFFFF }
 };
 
-static const struct MatchCallRival sMayMatchCallHeader =
+static const struct MatchCallRival sRanMatchCallHeader =
 {
     .type = MC_TYPE_RIVAL,
     .playerGender = MALE,
     .flag = FLAG_ENABLE_RIVAL_MATCH_CALL,
-    .desc = gText_MayAkiraMatchCallDesc,
-    .name = gText_ExpandedPlaceholder_May,
-    .textData = sMayTextScripts
+    .desc = gText_RanAkiraMatchCallDesc,
+    .name = gText_ExpandedPlaceholder_Ran,
+    .textData = sRanTextScripts
 };
 
 static const match_call_text_data_t sAkiraTextScripts[] = {
@@ -308,7 +308,7 @@ static const struct MatchCallRival sAkiraMatchCallHeader =
     .type = MC_TYPE_RIVAL,
     .playerGender = FEMALE,
     .flag = FLAG_ENABLE_RIVAL_MATCH_CALL,
-    .desc = gText_MayAkiraMatchCallDesc,
+    .desc = gText_RanAkiraMatchCallDesc,
     .name = gText_ExpandedPlaceholder_Akira,
     .textData = sAkiraTextScripts
 };
@@ -581,7 +581,7 @@ static const match_call_t sMatchCallHeaders[] = {
     [MC_HEADER_MR_STONE]   = {.npc    = &sMrStoneMatchCallHeader},
     [MC_HEADER_PROF_BIRCH] = {.birch  = &sProfBirchMatchCallHeader},
     [MC_HEADER_AKIRA]    = {.rival  = &sAkiraMatchCallHeader},
-    [MC_HEADER_MAY]        = {.rival  = &sMayMatchCallHeader},
+    [MC_HEADER_RAN]        = {.rival  = &sRanMatchCallHeader},
     [MC_HEADER_WALLY]      = {.wally  = &sWallyMatchCallHeader},
     [MC_HEADER_NORMAN]     = {.leader = &sNormanMatchCallHeader},
     [MC_HEADER_MOM]        = {.npc    = &sMomMatchCallHeader},
@@ -687,10 +687,10 @@ static const struct MatchCallCheckPageOverride sCheckPageOverrides[] = {
         .flavorTexts = MCFLAVOR(Akira)
     },
     { 
-        .idx = MC_HEADER_MAY,     
-        .facilityClass = FACILITY_CLASS_MAY,     
+        .idx = MC_HEADER_RAN,     
+        .facilityClass = FACILITY_CLASS_RAN,     
         .flag = 0xFFFF,                     
-        .flavorTexts = MCFLAVOR(May)
+        .flavorTexts = MCFLAVOR(Ran)
     }
 };
 

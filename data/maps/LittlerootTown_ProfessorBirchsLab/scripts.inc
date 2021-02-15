@@ -189,7 +189,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex:: @ 81F9E80
 	waitmovement 0
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_MayUpgradeComment
+	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_RanUpgradeComment
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_AkiraUpgradeComment
 	playse SE_PC_ON
@@ -217,8 +217,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex:: @ 81F9E80
 	releaseall
 	end
 
-LittlerootTown_ProfessorBirchsLab_EventScript_MayUpgradeComment:: @ 81F9F32
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_MayUpgradeSoCool, MSGBOX_DEFAULT
+LittlerootTown_ProfessorBirchsLab_EventScript_RanUpgradeComment:: @ 81F9F32
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_RanUpgradeSoCool, MSGBOX_DEFAULT
 	closemessage
 	return
 
@@ -550,7 +550,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex:: @ 81FA2F8
 	waitmovement 0
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls
+	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_RanGivePokeBalls
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_AkiraGivePokeBalls
 	setvar VAR_BIRCH_LAB_STATE, 5
@@ -561,11 +561,11 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex:: @ 81FA2F8
 	releaseall
 	end
 
-LittlerootTown_ProfessorBirchsLab_EventScript_MayGivePokeBalls:: @ 81FA352
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese, MSGBOX_DEFAULT
+LittlerootTown_ProfessorBirchsLab_EventScript_RanGivePokeBalls:: @ 81FA352
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_RanGotPokedexTooTakeThese, MSGBOX_DEFAULT
 	giveitem ITEM_POKE_BALL, 5
 	compare VAR_RESULT, FALSE
-	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_MayNoRoomForPokeBalls
+	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_RanNoRoomForPokeBalls
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls, MSGBOX_DEFAULT
 	setvar VAR_RESULT, 0
 	return
@@ -594,7 +594,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_PokemonAwait:: @ 81FA3C4
 	release
 	end
 
-LittlerootTown_ProfessorBirchsLab_EventScript_MayNoRoomForPokeBalls:: @ 81FA3CE
+LittlerootTown_ProfessorBirchsLab_EventScript_RanNoRoomForPokeBalls:: @ 81FA3CE
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_OhYourBagsFull, MSGBOX_DEFAULT
 	return
 
@@ -622,14 +622,14 @@ LittlerootTown_ProfessorBirchsLab_EventScript_Rival:: @ 81FA3EC
 	goto_if_ge LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_MayWhereShouldIGoNext
+	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_RanWhereShouldIGoNext
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_AkiraWhereShouldIGoNext
 	release
 	end
 
-LittlerootTown_ProfessorBirchsLab_EventScript_MayWhereShouldIGoNext:: @ 81FA428
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_MayWhereShouldIGoNext, MSGBOX_DEFAULT
+LittlerootTown_ProfessorBirchsLab_EventScript_RanWhereShouldIGoNext:: @ 81FA428
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_RanWhereShouldIGoNext, MSGBOX_DEFAULT
 	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_AkiraWhereShouldIGoNext:: @ 81FA431
@@ -639,14 +639,14 @@ LittlerootTown_ProfessorBirchsLab_EventScript_AkiraWhereShouldIGoNext:: @ 81FA43
 LittlerootTown_ProfessorBirchsLab_EventScript_RivalFuturePlans:: @ 81FA43A
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_MayWhatNextImStayingHere
+	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_RanWhatNextImStayingHere
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_AkiraPreferCollectingSlowly
 	release
 	end
 
-LittlerootTown_ProfessorBirchsLab_EventScript_MayWhatNextImStayingHere:: @ 81FA453
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_MayWhatNextImStayingHere, MSGBOX_DEFAULT
+LittlerootTown_ProfessorBirchsLab_EventScript_RanWhatNextImStayingHere:: @ 81FA453
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_RanWhatNextImStayingHere, MSGBOX_DEFAULT
 	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_AkiraPreferCollectingSlowly: @ 81FA45C
@@ -656,14 +656,14 @@ LittlerootTown_ProfessorBirchsLab_EventScript_AkiraPreferCollectingSlowly: @ 81F
 LittlerootTown_ProfessorBirchsLab_EventScript_RivalHaveYouGoneToBattleFrontier:: @ 81FA465
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_MayHaveYouGoneToBattleFrontier
+	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_RanHaveYouGoneToBattleFrontier
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_AkiraHaveYouGoneToBattleFrontier
 	release
 	end
 
-LittlerootTown_ProfessorBirchsLab_EventScript_MayHaveYouGoneToBattleFrontier:: @ 81FA47E
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_MayHaveYouGoneToBattleFrontier, MSGBOX_DEFAULT
+LittlerootTown_ProfessorBirchsLab_EventScript_RanHaveYouGoneToBattleFrontier:: @ 81FA47E
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_RanHaveYouGoneToBattleFrontier, MSGBOX_DEFAULT
 	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_AkiraHaveYouGoneToBattleFrontier:: @ 81FA487
@@ -673,14 +673,14 @@ LittlerootTown_ProfessorBirchsLab_EventScript_AkiraHaveYouGoneToBattleFrontier::
 LittlerootTown_ProfessorBirchsLab_EventScript_RivalTakeBreakFromFieldwork:: @ 81FA490
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork
+	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_RanTakeBreakFromFieldwork
 	compare VAR_RESULT, FEMALE
 	call_if_eq LittlerootTown_ProfessorBirchsLab_EventScript_AkiraTakeBreakFromFieldwork
 	release
 	end
 
-LittlerootTown_ProfessorBirchsLab_EventScript_MayTakeBreakFromFieldwork:: @ 81FA4A9
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_MayTakeBreakFromFieldwork, MSGBOX_DEFAULT
+LittlerootTown_ProfessorBirchsLab_EventScript_RanTakeBreakFromFieldwork:: @ 81FA4A9
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_RanTakeBreakFromFieldwork, MSGBOX_DEFAULT
 	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_AkiraTakeBreakFromFieldwork:: @ 81FA4B2
@@ -810,14 +810,14 @@ LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait: @ 81FAD6F
 	.string "Argh, I'm getting the itch to get out\n"
 	.string "and do fieldwork again!$"
 
-LittlerootTown_ProfessorBirchsLab_Text_MayGotPokedexTooTakeThese: @ 81FADD7
-	.string "MAY: Oh, wow, {PLAYER}{KUN}!\n"
+LittlerootTown_ProfessorBirchsLab_Text_RanGotPokedexTooTakeThese: @ 81FADD7
+	.string "RAN: Oh, wow, {PLAYER}{KUN}!\n"
 	.string "You got a POKéDEX, too!\p"
 	.string "That's great! Just like me!\n"
 	.string "I've got something for you, too!$"
 
 LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls: @ 81FAE40
-	.string "MAY: It's fun if you can get a lot of\n"
+	.string "RAN: It's fun if you can get a lot of\n"
 	.string "POKéMON!\p"
 	.string "I'm going to look all over the place\n"
 	.string "because I want different POKéMON.\p"
@@ -827,8 +827,8 @@ LittlerootTown_ProfessorBirchsLab_Text_CatchCutePokemonWithPokeBalls: @ 81FAE40
 LittlerootTown_ProfessorBirchsLab_Text_OhYourBagsFull: @ 81FAEF3
 	.string "Oh? Your BAG's full.$"
 
-LittlerootTown_ProfessorBirchsLab_Text_MayWhereShouldIGoNext: @ 81FAF08
-	.string "MAY: I wonder where I should go look\n"
+LittlerootTown_ProfessorBirchsLab_Text_RanWhereShouldIGoNext: @ 81FAF08
+	.string "RAN: I wonder where I should go look\n"
 	.string "for POKéMON next?$"
 
 LittlerootTown_ProfessorBirchsLab_Text_AkiraGotPokedexTooTakeThese: @ 81FAF3F
@@ -883,8 +883,8 @@ LittlerootTown_ProfessorBirchsLab_Text_OtherRegionsUpgradeToNational: @ 81FB16D
 	.string "the NATIONAL Mode.\p"
 	.string "Here, let me see your POKéDEX units.$"
 
-LittlerootTown_ProfessorBirchsLab_Text_MayUpgradeSoCool: @ 81FB30F
-	.string "MAY: Eheheh!\p"
+LittlerootTown_ProfessorBirchsLab_Text_RanUpgradeSoCool: @ 81FB30F
+	.string "RAN: Eheheh!\p"
 	.string "It's so cool that even my POKéDEX\n"
 	.string "is getting updated!\p"
 	.string "It's because you went out and caught\n"
@@ -913,8 +913,8 @@ LittlerootTown_ProfessorBirchsLab_Text_GrassyPatchWaiting2: @ 81FB466
 	.string "Somewhere, there is a grassy patch\n"
 	.string "that's waiting for you!$"
 
-LittlerootTown_ProfessorBirchsLab_Text_MayTakeBreakFromFieldwork: @ 81FB528
-	.string "MAY: I think I'll take a short break\n"
+LittlerootTown_ProfessorBirchsLab_Text_RanTakeBreakFromFieldwork: @ 81FB528
+	.string "RAN: I think I'll take a short break\n"
 	.string "from fieldwork.\p"
 	.string "I think I'll help the PROF here for\n"
 	.string "a while.$"
@@ -1003,8 +1003,8 @@ LittlerootTown_ProfessorBirchsLab_Text_DontHaveAnyRoomForPokemon: @ 81FBB3A
 	.string "Oh, you don't have any room for\n"
 	.string "this POKéMON.$"
 
-LittlerootTown_ProfessorBirchsLab_Text_MayWhatNextImStayingHere: @ 81FBB68
-	.string "MAY: {PLAYER}{KUN}, after this…\n"
+LittlerootTown_ProfessorBirchsLab_Text_RanWhatNextImStayingHere: @ 81FBB68
+	.string "RAN: {PLAYER}{KUN}, after this…\n"
 	.string "What are you going to do?\p"
 	.string "Are you going to keep battling\n"
 	.string "and sharpening your skills?\p"
@@ -1017,8 +1017,8 @@ LittlerootTown_ProfessorBirchsLab_Text_AkiraPreferCollectingSlowly: @ 81FBC2D
 	.string "POKéMON, I prefer slowly and \l"
 	.string "steadily raising the one I chose.$"
 
-LittlerootTown_ProfessorBirchsLab_Text_MayHaveYouGoneToBattleFrontier: @ 81FBC8D
-	.string "MAY: Oh, hi, {PLAYER}{KUN}!\n"
+LittlerootTown_ProfessorBirchsLab_Text_RanHaveYouGoneToBattleFrontier: @ 81FBC8D
+	.string "RAN: Oh, hi, {PLAYER}{KUN}!\n"
 	.string "Have you gone to that place,\l"
 	.string "the BATTLE FRONTIER?$"
 

@@ -59,7 +59,7 @@ EverGrandeCity_HallOfFame_EventScript_GameClearMale:: @ 82298E9
 	end
 
 EverGrandeCity_HallOfFame_EventScript_GameClearFemale:: @ 82298F5
-	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F
+	setrespawn HEAL_LOCATION_LITTLEROOT_TOWN_RANS_HOUSE_2F
 	fadescreenspeed FADE_TO_BLACK, 24
 	special GameClear
 	waitstate

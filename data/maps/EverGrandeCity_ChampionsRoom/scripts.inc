@@ -54,19 +54,19 @@ EverGrandeCity_ChampionsRoom_EventScript_Defeated:: @ 8228A61
 	playse SE_DOOR
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic
+	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_PlayRanMusic
 	compare VAR_RESULT, FEMALE
 	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_PlayAkiraMusic
 	addobject 2
 	call EverGrandeCity_ChampionsRoom_EventScript_RivalApproachPlayer
 	checkplayergender
 	compare VAR_RESULT, MALE
-	goto_if_eq EverGrandeCity_ChampionsRoom_EventScript_MayAdvice
+	goto_if_eq EverGrandeCity_ChampionsRoom_EventScript_RanAdvice
 	compare VAR_RESULT, FEMALE
 	goto_if_eq EverGrandeCity_ChampionsRoom_EventScript_AkiraAdvice
 	end
 
-EverGrandeCity_ChampionsRoom_EventScript_PlayMayMusic:: @ 8228ABC
+EverGrandeCity_ChampionsRoom_EventScript_PlayRanMusic:: @ 8228ABC
 	playbgm MUS_GIRL_SUP, 0
 	return
 
@@ -74,8 +74,8 @@ EverGrandeCity_ChampionsRoom_EventScript_PlayAkiraMusic:: @ 8228AC1
 	playbgm MUS_BOY_SUP, 0
 	return
 
-EverGrandeCity_ChampionsRoom_EventScript_MayAdvice:: @ 8228AC6
-	msgbox EverGrandeCity_ChampionsRoom_Text_MayAdvice, MSGBOX_DEFAULT
+EverGrandeCity_ChampionsRoom_EventScript_RanAdvice:: @ 8228AC6
+	msgbox EverGrandeCity_ChampionsRoom_Text_RanAdvice, MSGBOX_DEFAULT
 	delay 40
 	playse SE_PIN
 	applymovement 2, Common_Movement_ExclamationMark
@@ -83,7 +83,7 @@ EverGrandeCity_ChampionsRoom_EventScript_MayAdvice:: @ 8228AC6
 	applymovement 2, Common_Movement_Delay48
 	waitmovement 0
 	call EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth
-	msgbox EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver, MSGBOX_DEFAULT
+	msgbox EverGrandeCity_ChampionsRoom_Text_RanItsAlreadyOver, MSGBOX_DEFAULT
 	goto EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF
 	end
 
@@ -129,7 +129,7 @@ EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF:: @ 8228B30
 	msgbox EverGrandeCity_ChampionsRoom_Text_WallaceWaitOutside, MSGBOX_DEFAULT
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations
+	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_RanCongratulations
 	compare VAR_RESULT, FEMALE
 	call_if_eq EverGrandeCity_ChampionsRoom_EventScript_AkiraCongratulations
 	closemessage
@@ -142,8 +142,8 @@ EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF:: @ 8228B30
 	releaseall
 	end
 
-EverGrandeCity_ChampionsRoom_EventScript_MayCongratulations:: @ 8228BEB
-	msgbox EverGrandeCity_ChampionsRoom_Text_MayCongratulations, MSGBOX_DEFAULT
+EverGrandeCity_ChampionsRoom_EventScript_RanCongratulations:: @ 8228BEB
+	msgbox EverGrandeCity_ChampionsRoom_Text_RanCongratulations, MSGBOX_DEFAULT
 	return
 
 EverGrandeCity_ChampionsRoom_EventScript_AkiraCongratulations:: @ 8228BF4
@@ -272,13 +272,13 @@ EverGrandeCity_ChampionsRoom_Text_PostBattleSpeech: @ 8228F66
 	.string "I now proclaim you to be the new\n"
 	.string "HOENN region…$"
 
-EverGrandeCity_ChampionsRoom_Text_MayAdvice: @ 82290CA
-	.string "MAY: {PLAYER}{KUN}!\p"
+EverGrandeCity_ChampionsRoom_Text_RanAdvice: @ 82290CA
+	.string "RAN: {PLAYER}{KUN}!\p"
 	.string "Here's some advice before you challenge\n"
 	.string "the CHAMPION…$"
 
-EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver: @ 822910B
-	.string "MAY: Huh?\n"
+EverGrandeCity_ChampionsRoom_Text_RanItsAlreadyOver: @ 822910B
+	.string "RAN: Huh?\n"
 	.string "What, what, what?\p"
 	.string "{PLAYER}{KUN}…\n"
 	.string "Could it be that…\l"
@@ -328,8 +328,8 @@ EverGrandeCity_ChampionsRoom_Text_WallaceWaitOutside: @ 82293EB
 	.string "You'll have to wait outside with\n"
 	.string "PROF. BIRCH.$"
 
-EverGrandeCity_ChampionsRoom_Text_MayCongratulations: @ 8229479
-	.string "MAY: Groan…\p"
+EverGrandeCity_ChampionsRoom_Text_RanCongratulations: @ 8229479
+	.string "RAN: Groan…\p"
 	.string "… … … … … … … …\n"
 	.string "… … … … … … … …\p"
 	.string "I'm just joking! That's okay!\n"
