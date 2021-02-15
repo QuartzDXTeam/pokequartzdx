@@ -43,7 +43,7 @@ Route119_EventScript_RivalEncounter:: @ 81F4488
 	addobject 25  @ Rival on bike
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq Route119_EventScript_PlayRanMusic
+	call_if_eq Route119_EventScript_PlayMayMusic
 	compare VAR_RESULT, FEMALE
 	call_if_eq Route119_EventScript_PlayAkiraMusic
 	delay 65
@@ -63,13 +63,13 @@ Route119_EventScript_RivalEncounter:: @ 81F4488
 	delay 30
 	checkplayergender
 	compare VAR_RESULT, MALE
-	goto_if_eq Route119_EventScript_BattleRan
+	goto_if_eq Route119_EventScript_BattleMay
 	compare VAR_RESULT, FEMALE
 	goto_if_eq Route119_EventScript_BattleAkira
 	releaseall
 	end
 
-Route119_EventScript_PlayRanMusic:: @ 81F4501
+Route119_EventScript_PlayMayMusic:: @ 81F4501
 	playbgm MUS_GIRL_SUP, 1
 	return
 
@@ -77,33 +77,33 @@ Route119_EventScript_PlayAkiraMusic:: @ 81F4506
 	playbgm MUS_BOY_SUP, 1
 	return
 
-Route119_EventScript_BattleRan:: @ 81F450B
-	msgbox Route119_Text_RanIntro, MSGBOX_DEFAULT
+Route119_EventScript_BattleMay:: @ 81F450B
+	msgbox Route119_Text_MayIntro, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, Route119_EventScript_BattleRanTreecko
-	case 1, Route119_EventScript_BattleRanTorchic
-	case 2, Route119_EventScript_BattleRanMudkip
+	case 0, Route119_EventScript_BattleMayTreecko
+	case 1, Route119_EventScript_BattleMayTorchic
+	case 2, Route119_EventScript_BattleMayMudkip
 	end
 
-Route119_EventScript_BattleRanTreecko:: @ 81F453A
-	trainerbattle_no_intro TRAINER_RAN_ROUTE_119_TREECKO, Route119_Text_RanDefeat
-	goto Route119_EventScript_DefeatedRan
+Route119_EventScript_BattleMayTreecko:: @ 81F453A
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_TREECKO, Route119_Text_MayDefeat
+	goto Route119_EventScript_DefeatedMay
 	end
 
-Route119_EventScript_BattleRanTorchic:: @ 81F454A
-	trainerbattle_no_intro TRAINER_RAN_ROUTE_119_TORCHIC, Route119_Text_RanDefeat
-	goto Route119_EventScript_DefeatedRan
+Route119_EventScript_BattleMayTorchic:: @ 81F454A
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_TORCHIC, Route119_Text_MayDefeat
+	goto Route119_EventScript_DefeatedMay
 	end
 
-Route119_EventScript_BattleRanMudkip:: @ 81F455A
-	trainerbattle_no_intro TRAINER_RAN_ROUTE_119_MUDKIP, Route119_Text_RanDefeat
-	goto Route119_EventScript_DefeatedRan
+Route119_EventScript_BattleMayMudkip:: @ 81F455A
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_119_MUDKIP, Route119_Text_MayDefeat
+	goto Route119_EventScript_DefeatedMay
 	end
 
-Route119_EventScript_DefeatedRan:: @ 81F456A
-	msgbox Route119_Text_RanPresentForYou, MSGBOX_DEFAULT
+Route119_EventScript_DefeatedMay:: @ 81F456A
+	msgbox Route119_Text_MayPresentForYou, MSGBOX_DEFAULT
 	call Route119_EventScript_GiveFlyHM
-	msgbox Route119_Text_RanExplainFly, MSGBOX_DEFAULT
+	msgbox Route119_Text_MayExplainFly, MSGBOX_DEFAULT
 	goto Route119_EventScript_RivalExitScottArrive
 	end
 
@@ -495,27 +495,27 @@ Route119_EventScript_ScottWonAtFortreeGymCall:: @ 81F49EC
 	releaseall
 	end
 
-Route119_Text_RanIntro: @ 81F49FD
-	.string "RAN: {PLAYER}{KUN}!\n"
+Route119_Text_MayIntro: @ 81F49FD
+	.string "MAY: {PLAYER}{KUN}!\n"
 	.string "Where were you? I was looking for you!\p"
 	.string "How much stronger have you gotten?\n"
 	.string "Let me check for you!\p"
 	.string "Ready with your POKéMON?\n"
 	.string "Of course you are! Go!$"
 
-Route119_Text_RanDefeat: @ 81F4A98
+Route119_Text_MayDefeat: @ 81F4A98
 	.string "Achah!\n"
 	.string "{PLAYER}{KUN}, you're strong!\p"
 	.string "I was worried that you might be\n"
 	.string "struggling with your training.$"
 
-Route119_Text_RanPresentForYou: @ 81F4AF3
-	.string "RAN: But I had absolutely nothing to\n"
+Route119_Text_MayPresentForYou: @ 81F4AF3
+	.string "MAY: But I had absolutely nothing to\n"
 	.string "worry about! Keep it up!\p"
 	.string "And, here! I have a present for you.$"
 
-Route119_Text_RanExplainFly: @ 81F4B56
-	.string "RAN: Use FLY, and your POKéMON will\n"
+Route119_Text_MayExplainFly: @ 81F4B56
+	.string "MAY: Use FLY, and your POKéMON will\n"
 	.string "instantly carry you to any town you've\l"
 	.string "already visited.\p"
 	.string "But, to use FLY, you have to get\n"

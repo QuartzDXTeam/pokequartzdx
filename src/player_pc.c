@@ -424,7 +424,7 @@ static void PlayerPC_TurnOff(u8 taskId)
         if (gSaveBlock2Ptr->playerGender == MALE)
             ScriptContext1_SetupScript(LittlerootTown_AkirasHouse_2F_EventScript_TurnOffPlayerPC);
         else
-            ScriptContext1_SetupScript(LittlerootTown_RansHouse_2F_EventScript_TurnOffPlayerPC);
+            ScriptContext1_SetupScript(LittlerootTown_MaysHouse_2F_EventScript_TurnOffPlayerPC);
     }
     else
     {

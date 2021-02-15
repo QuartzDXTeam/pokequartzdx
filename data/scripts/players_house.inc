@@ -48,7 +48,7 @@ LittlerootTown_AkirasHouse_2F_EventScript_WallClock:: @ 8292781
 	goto PlayersHouse_2F_EventScript_WallClock
 	end
 
-LittlerootTown_RansHouse_2F_EventScript_WallClock:: @ 829278D
+LittlerootTown_MaysHouse_2F_EventScript_WallClock:: @ 829278D
 	lockall
 	setvar VAR_0x8004, FEMALE
 	goto PlayersHouse_2F_EventScript_WallClock
@@ -305,7 +305,7 @@ PlayersHouse_1F_Movement_MomReturnToSeatFemale: @ 82929C1
 PlayersHouse_1F_EventScript_Mom:: @ 82929C5
 	lock
 	faceplayer
-	compare VAR_LITTLEROOT_HOUSES_STATE_RAN, 4
+	compare VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
 	goto_if_eq PlayersHouse_1F_EventScript_DontPushYourselfTooHard
 	compare VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 4
 	goto_if_eq PlayersHouse_1F_EventScript_DontPushYourselfTooHard
@@ -502,7 +502,7 @@ PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV:: @ 8292AF2
 	copyvar VAR_ROAMER_POKEMON, VAR_RESULT
 	msgbox PlayersHouse_1F_Text_StillUnknownPokemon, MSGBOX_DEFAULT
 	closemessage
-	setvar VAR_LITTLEROOT_HOUSES_STATE_RAN, 4
+	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
 	setvar VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 4
 	releaseall
 	end

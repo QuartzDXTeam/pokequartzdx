@@ -379,7 +379,7 @@ extern const u8 EventScript_FldEffRockSmash[];
 
 //player pc
 extern const u8 LittlerootTown_AkirasHouse_2F_EventScript_TurnOffPlayerPC[];
-extern const u8 LittlerootTown_RansHouse_2F_EventScript_TurnOffPlayerPC[];
+extern const u8 LittlerootTown_MaysHouse_2F_EventScript_TurnOffPlayerPC[];
 
 //mauville_old_man
 extern const u8 gOtherText_Is[];
@@ -512,7 +512,7 @@ extern const u8 MauvilleCity_PokemonCenter_1F_Text_HotSpringsAction[];
 extern const u8 MauvilleCity_PokemonCenter_1F_Text_HotSpringsStory[];
 
 extern const u8 LittlerootTown_AkirasHouse_2F_EventScript_PC[];
-extern const u8 LittlerootTown_RansHouse_2F_EventScript_PC[];
+extern const u8 LittlerootTown_MaysHouse_2F_EventScript_PC[];
 extern const u8 EventScript_PC[];
 extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_HiddenItemScript[];

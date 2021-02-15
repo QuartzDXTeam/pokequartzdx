@@ -43,9 +43,9 @@ static const u32 gUnknown_085F2568[] = INCBIN_U32("graphics/intro/intro2_bgnight
 static const u32 gIntro2NightTiles[] = INCBIN_U32("graphics/intro/intro2_night.4bpp.lz");
 static const u16 gIntro2AkiraPalette[] = INCBIN_U16("graphics/intro/intro2_akira.gbapal");
 static const u32 gIntro2AkiraTiles[] = INCBIN_U32("graphics/intro/intro2_akira.4bpp.lz");
-static const u16 gIntro2RanPalette[] = INCBIN_U16("graphics/intro/intro2_ran.gbapal");
+static const u16 gIntro2MayPalette[] = INCBIN_U16("graphics/intro/intro2_may.gbapal");
 static const u16 gUnknown_085F3490[0xF0] = {0};
-static const u32 gIntro2RanTiles[] = INCBIN_U32("graphics/intro/intro2_ran.4bpp.lz");
+static const u32 gIntro2MayTiles[] = INCBIN_U32("graphics/intro/intro2_may.4bpp.lz");
 static const u32 gIntro2BicycleTiles[] = INCBIN_U32("graphics/intro/intro2_bicycle.4bpp.lz");
 static const u16 gIntro2LatiosPalette[] = INCBIN_U16("graphics/intro/intro2_latios.gbapal");
 static const u32 gIntro2LatiosTiles[] = INCBIN_U32("graphics/intro/intro2_latios.4bpp.lz");
@@ -567,10 +567,10 @@ const struct CompressedSpriteSheet gIntro2AkiraSpriteSheet[] =
     {}
 };
 
-const struct CompressedSpriteSheet gIntro2RanSpriteSheet[] =
+const struct CompressedSpriteSheet gIntro2MaySpriteSheet[] =
 {
     {
-        .data = gIntro2RanNoTurnGfx,
+        .data = gIntro2MayNoTurnGfx,
         .size = 0x2000,
         .tag = 1003
     },
@@ -629,7 +629,7 @@ const struct CompressedSpriteSheet gUnknown_085F5334[] =
 const struct CompressedSpriteSheet gUnknown_085F5344[] =
 {
     {
-        .data = gIntro2RanTiles,
+        .data = gIntro2MayTiles,
         .size = 0x3800,
         .tag = 1003
     },
@@ -669,7 +669,7 @@ static const struct CompressedSpriteSheet gUnknown_085F5374[] =
 const struct SpritePalette gUnknown_085F5384[] =
 {
     { .data = gIntro2AkiraPalette, .tag = 1002 },
-    { .data = gIntro2RanPalette,     .tag = 1003 },
+    { .data = gIntro2MayPalette,     .tag = 1003 },
     { .data = gIntro2LatiosPalette,  .tag = 1004 },
     { .data = gIntro2LatiasPalette,  .tag = 1005 },
     {}
@@ -688,7 +688,7 @@ const struct CompressedSpriteSheet gUnknown_085F53AC[] =
 const struct CompressedSpriteSheet gUnknown_085F53BC[] =
 {
     {
-        .data = gIntro2RanTiles,
+        .data = gIntro2MayTiles,
         .size = 0x2000,
         .tag = 1003
     },
@@ -1075,11 +1075,11 @@ u8 intro_create_akira_sprite(s16 a, s16 b)
     return sprite;
 }
 
-u8 intro_create_ran_sprite(s16 a, s16 b)
+u8 intro_create_may_sprite(s16 a, s16 b)
 {
     u8 sprite = CreateSprite(&gUnknown_085F5204, a, b, 2);
-    u8 ran = CreateSprite(&gUnknown_085F5254, a, b + 8, 3);
-    gSprites[ran].data[0] = sprite;
+    u8 may = CreateSprite(&gUnknown_085F5254, a, b + 8, 3);
+    gSprites[may].data[0] = sprite;
     return sprite;
 }
 

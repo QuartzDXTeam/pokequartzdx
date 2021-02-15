@@ -90,11 +90,11 @@
 #define OBJ_EVENT_GFX_BREAKABLE_ROCK              86
 #define OBJ_EVENT_GFX_PUSHABLE_BOULDER            87
 #define OBJ_EVENT_GFX_MR_BRINEYS_BOAT             88
-#define OBJ_EVENT_GFX_RAN_NORMAL                  89
-#define OBJ_EVENT_GFX_RAN_MACH_BIKE               90
-#define OBJ_EVENT_GFX_RAN_ACRO_BIKE               91
-#define OBJ_EVENT_GFX_RAN_SURFING                 92
-#define OBJ_EVENT_GFX_RAN_FIELD_MOVE              93
+#define OBJ_EVENT_GFX_MAY_NORMAL                  89
+#define OBJ_EVENT_GFX_MAY_MACH_BIKE               90
+#define OBJ_EVENT_GFX_MAY_ACRO_BIKE               91
+#define OBJ_EVENT_GFX_MAY_SURFING                 92
+#define OBJ_EVENT_GFX_MAY_FIELD_MOVE              93
 #define OBJ_EVENT_GFX_TRUCK                       94
 #define OBJ_EVENT_GFX_VIGOROTH_CARRYING_BOX       95
 #define OBJ_EVENT_GFX_VIGOROTH_FACING_AWAY        96
@@ -106,14 +106,14 @@
 #define OBJ_EVENT_GFX_RIVAL_AKIRA_ACRO_BIKE    102
 #define OBJ_EVENT_GFX_RIVAL_AKIRA_SURFING      103
 #define OBJ_EVENT_GFX_RIVAL_AKIRA_FIELD_MOVE   104
-#define OBJ_EVENT_GFX_RIVAL_RAN_NORMAL           105
-#define OBJ_EVENT_GFX_RIVAL_RAN_MACH_BIKE        106
-#define OBJ_EVENT_GFX_RIVAL_RAN_ACRO_BIKE        107
-#define OBJ_EVENT_GFX_RIVAL_RAN_SURFING          108
-#define OBJ_EVENT_GFX_RIVAL_RAN_FIELD_MOVE       109
+#define OBJ_EVENT_GFX_RIVAL_MAY_NORMAL           105
+#define OBJ_EVENT_GFX_RIVAL_MAY_MACH_BIKE        106
+#define OBJ_EVENT_GFX_RIVAL_MAY_ACRO_BIKE        107
+#define OBJ_EVENT_GFX_RIVAL_MAY_SURFING          108
+#define OBJ_EVENT_GFX_RIVAL_MAY_FIELD_MOVE       109
 #define OBJ_EVENT_GFX_CAMERAMAN                  110
 #define OBJ_EVENT_GFX_AKIRA_UNDERWATER         111
-#define OBJ_EVENT_GFX_RAN_UNDERWATER             112
+#define OBJ_EVENT_GFX_MAY_UNDERWATER             112
 #define OBJ_EVENT_GFX_MOVING_BOX                 113
 #define OBJ_EVENT_GFX_CABLE_CAR                  114
 #define OBJ_EVENT_GFX_SCIENTIST_2                115
@@ -139,7 +139,7 @@
 #define OBJ_EVENT_GFX_WALLY                      135
 #define OBJ_EVENT_GFX_LITTLE_BOY_3               136
 #define OBJ_EVENT_GFX_AKIRA_FISHING            137
-#define OBJ_EVENT_GFX_RAN_FISHING                138
+#define OBJ_EVENT_GFX_MAY_FISHING                138
 #define OBJ_EVENT_GFX_HOT_SPRINGS_OLD_WOMAN      139
 #define OBJ_EVENT_GFX_SS_TIDAL                   140
 #define OBJ_EVENT_GFX_SUBMARINE_SHADOW           141
@@ -193,9 +193,9 @@
 #define OBJ_EVENT_GFX_GAMEBOY_KID                189
 #define OBJ_EVENT_GFX_CONTEST_JUDGE              190
 #define OBJ_EVENT_GFX_AKIRA_WATERING           191
-#define OBJ_EVENT_GFX_RAN_WATERING               192
+#define OBJ_EVENT_GFX_MAY_WATERING               192
 #define OBJ_EVENT_GFX_AKIRA_DECORATING         193
-#define OBJ_EVENT_GFX_RAN_DECORATING             194
+#define OBJ_EVENT_GFX_MAY_DECORATING             194
 #define OBJ_EVENT_GFX_ARCHIE                     195
 #define OBJ_EVENT_GFX_MAXIE                      196
 #define OBJ_EVENT_GFX_KYOGRE_1                   197
@@ -218,7 +218,7 @@
 #define OBJ_EVENT_GFX_AZURILL                    214
 #define OBJ_EVENT_GFX_MOM                        215
 #define OBJ_EVENT_GFX_LINK_AKIRA               216
-#define OBJ_EVENT_GFX_LINK_RAN                   217
+#define OBJ_EVENT_GFX_LINK_MAY                   217
 #define OBJ_EVENT_GFX_JUAN                       218
 #define OBJ_EVENT_GFX_SCOTT                      219
 #define OBJ_EVENT_GFX_POOCHYENA                  220
@@ -237,7 +237,7 @@
 #define OBJ_EVENT_GFX_DEOXYS_TRIANGLE            233
 #define OBJ_EVENT_GFX_BRANDON                    234
 #define OBJ_EVENT_GFX_LINK_RS_AKIRA            235
-#define OBJ_EVENT_GFX_LINK_RS_RAN                236
+#define OBJ_EVENT_GFX_LINK_RS_MAY                236
 #define OBJ_EVENT_GFX_LUGIA                      237
 #define OBJ_EVENT_GFX_HOOH                       238
 

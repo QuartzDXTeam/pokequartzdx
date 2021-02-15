@@ -693,12 +693,12 @@ RustboroCity_EventScript_Rival:: @ 81E0DB8
 RustboroCity_EventScript_PlayRivalMusic:: @ 81E0DD1
 	checkplayergender
 	compare VAR_RESULT, MALE
-	goto_if_eq RustboroCity_EventScript_PlayRanMusic
+	goto_if_eq RustboroCity_EventScript_PlayMayMusic
 	compare VAR_RESULT, FEMALE
 	goto_if_eq RustboroCity_EventScript_PlayAkiraMusic
 	return
 
-RustboroCity_EventScript_PlayRanMusic:: @ 81E0DE9
+RustboroCity_EventScript_PlayMayMusic:: @ 81E0DE9
 	playbgm MUS_GIRL_SUP, 1
 	return
 
@@ -837,20 +837,20 @@ RustboroCity_EventScript_RivalTrigger7:: @ 81E0FB3
 RustboroCity_EventScript_RivalEncounter:: @ 81E0FF3
 	checkplayergender
 	compare VAR_RESULT, MALE
-	goto_if_eq RustboroCity_EventScript_RanEncounter
+	goto_if_eq RustboroCity_EventScript_MayEncounter
 	compare VAR_RESULT, FEMALE
 	goto_if_eq RustboroCity_EventScript_AkiraEncounter
 	end
 
-RustboroCity_EventScript_RanEncounter:: @ 81E100B
-	goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO, RustboroCity_EventScript_RanBrineyHint
-	goto_if_set FLAG_MET_RIVAL_RUSTBORO, RustboroCity_EventScript_RanAskToBattle
+RustboroCity_EventScript_MayEncounter:: @ 81E100B
+	goto_if_set FLAG_DEFEATED_RIVAL_RUSTBORO, RustboroCity_EventScript_MayBrineyHint
+	goto_if_set FLAG_MET_RIVAL_RUSTBORO, RustboroCity_EventScript_MayAskToBattle
 	setflag FLAG_MET_RIVAL_RUSTBORO
-	msgbox RustboroCity_Text_RanHiLetsRegister, MSGBOX_DEFAULT
+	msgbox RustboroCity_Text_MayHiLetsRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox RustboroCity_Text_RegisteredRan, MSGBOX_DEFAULT
+	msgbox RustboroCity_Text_RegisteredMay, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
 	delay 30
@@ -858,33 +858,33 @@ RustboroCity_EventScript_RanEncounter:: @ 81E100B
 	setvar VAR_RUSTBORO_CITY_STATE, 8
 	setvar VAR_ROUTE104_STATE, 2
 	setvar VAR_0x8008, 0
-	msgbox RustboroCity_Text_RanPassedBrineyWantToBattle, MSGBOX_YESNO
+	msgbox RustboroCity_Text_MayPassedBrineyWantToBattle, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq RustboroCity_EventScript_BattleRan
-	msgbox RustboroCity_Text_RanOhHaventRaisedPokemonEnough, MSGBOX_DEFAULT
+	goto_if_eq RustboroCity_EventScript_BattleMay
+	msgbox RustboroCity_Text_MayOhHaventRaisedPokemonEnough, MSGBOX_DEFAULT
 	call RustboroCity_EventScript_RestoreBgm
 	releaseall
 	end
 
-RustboroCity_EventScript_RanAskToBattle:: @ 81E1070
+RustboroCity_EventScript_MayAskToBattle:: @ 81E1070
 	setvar VAR_0x8008, 1
-	msgbox RustboroCity_Text_RanWantToBattle, MSGBOX_YESNO
+	msgbox RustboroCity_Text_MayWantToBattle, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq RustboroCity_EventScript_BattleRan
-	msgbox RustboroCity_Text_RanOhHaventRaisedPokemonEnough, MSGBOX_DEFAULT
+	goto_if_eq RustboroCity_EventScript_BattleMay
+	msgbox RustboroCity_Text_MayOhHaventRaisedPokemonEnough, MSGBOX_DEFAULT
 	releaseall
 	end
 
-RustboroCity_EventScript_BattleRan:: @ 81E1092
-	msgbox RustboroCity_Text_RanImNotGoingToLose, MSGBOX_DEFAULT
+RustboroCity_EventScript_BattleMay:: @ 81E1092
+	msgbox RustboroCity_Text_MayImNotGoingToLose, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, RustboroCity_EventScript_BattleRanTreecko
-	case 1, RustboroCity_EventScript_BattleRanTorchic
-	case 2, RustboroCity_EventScript_BattleRanMudkip
+	case 0, RustboroCity_EventScript_BattleMayTreecko
+	case 1, RustboroCity_EventScript_BattleMayTorchic
+	case 2, RustboroCity_EventScript_BattleMayMudkip
 	end
 
-RustboroCity_EventScript_RanBrineyHint:: @ 81E10C1
-	msgbox RustboroCity_Text_RanMrBrineyHint, MSGBOX_DEFAULT
+RustboroCity_EventScript_MayBrineyHint:: @ 81E10C1
+	msgbox RustboroCity_Text_MayMrBrineyHint, MSGBOX_DEFAULT
 	compare VAR_0x8008, 0
 	call_if_eq RustboroCity_EventScript_RestoreBgm
 	releaseall
@@ -895,22 +895,22 @@ RustboroCity_EventScript_RestoreBgm:: @ 81E10D6
 	fadedefaultbgm
 	return
 
-RustboroCity_EventScript_BattleRanTreecko:: @ 81E10DB
-	trainerbattle_no_intro TRAINER_RAN_RUSTBORO_TREECKO, RustboroCity_Text_RanDefeat
+RustboroCity_EventScript_BattleMayTreecko:: @ 81E10DB
+	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TREECKO, RustboroCity_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
-	goto RustboroCity_EventScript_RanBrineyHint
+	goto RustboroCity_EventScript_MayBrineyHint
 	end
 
-RustboroCity_EventScript_BattleRanTorchic:: @ 81E10EE
-	trainerbattle_no_intro TRAINER_RAN_RUSTBORO_TORCHIC, RustboroCity_Text_RanDefeat
+RustboroCity_EventScript_BattleMayTorchic:: @ 81E10EE
+	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_TORCHIC, RustboroCity_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
-	goto RustboroCity_EventScript_RanBrineyHint
+	goto RustboroCity_EventScript_MayBrineyHint
 	end
 
-RustboroCity_EventScript_BattleRanMudkip:: @ 81E1101
-	trainerbattle_no_intro TRAINER_RAN_RUSTBORO_MUDKIP, RustboroCity_Text_RanDefeat
+RustboroCity_EventScript_BattleMayMudkip:: @ 81E1101
+	trainerbattle_no_intro TRAINER_MAY_RUSTBORO_MUDKIP, RustboroCity_Text_MayDefeat
 	setflag FLAG_DEFEATED_RIVAL_RUSTBORO
-	goto RustboroCity_EventScript_RanBrineyHint
+	goto RustboroCity_EventScript_MayBrineyHint
 	end
 
 RustboroCity_EventScript_AkiraEncounter:: @ 81E1114
@@ -1150,20 +1150,20 @@ RustboroCity_Text_PleaseComeWithMe: @ 81E1A21
 	.string "Excuse me, please!\n"
 	.string "Please come with me!$"
 
-RustboroCity_Text_RanHiLetsRegister: @ 81E1A49
-	.string "RAN: Oh, hi, {PLAYER}{KUN}!\p"
+RustboroCity_Text_MayHiLetsRegister: @ 81E1A49
+	.string "MAY: Oh, hi, {PLAYER}{KUN}!\p"
 	.string "You had a MATCH CALL feature put\n"
 	.string "on your POKéNAV!\p"
 	.string "Let's register each other so we can\n"
 	.string "contact one another anytime!\p"
 	.string "… … … … … …$"
 
-RustboroCity_Text_RegisteredRan: @ 81E1ADB
-	.string "Registered RAN\n"
+RustboroCity_Text_RegisteredMay: @ 81E1ADB
+	.string "Registered MAY\n"
 	.string "in the POKéNAV.$"
 
-RustboroCity_Text_RanPassedBrineyWantToBattle: @ 81E1AFA
-	.string "RAN: Oh, by the way, I passed\n"
+RustboroCity_Text_MayPassedBrineyWantToBattle: @ 81E1AFA
+	.string "MAY: Oh, by the way, I passed\n"
 	.string "MR. BRINEY in PETALBURG WOODS.\p"
 	.string "I guess he's on his way home to his\n"
 	.string "cottage by the sea.\p"
@@ -1172,26 +1172,26 @@ RustboroCity_Text_RanPassedBrineyWantToBattle: @ 81E1AFA
 	.string "So…\n"
 	.string "How about a little battle?$"
 
-RustboroCity_Text_RanOhHaventRaisedPokemonEnough: @ 81E1BD3
-	.string "RAN: Oh, what's the matter?\p"
+RustboroCity_Text_MayOhHaventRaisedPokemonEnough: @ 81E1BD3
+	.string "MAY: Oh, what's the matter?\p"
 	.string "Haven't you caught or raised your\n"
 	.string "POKéMON very much?\p"
 	.string "That's not very good for a TRAINER!$"
 
-RustboroCity_Text_RanWantToBattle: @ 81E1C48
-	.string "RAN: So, what do you think?\n"
+RustboroCity_Text_MayWantToBattle: @ 81E1C48
+	.string "MAY: So, what do you think?\n"
 	.string "How about a little battle here?$"
 
-RustboroCity_Text_RanImNotGoingToLose: @ 81E1C84
-	.string "RAN: You just became a TRAINER,\n"
+RustboroCity_Text_MayImNotGoingToLose: @ 81E1C84
+	.string "MAY: You just became a TRAINER,\n"
 	.string "{PLAYER}{KUN}. I'm not going to lose!$"
 
-RustboroCity_Text_RanDefeat: @ 81E1CC1
+RustboroCity_Text_MayDefeat: @ 81E1CC1
 	.string "Yikes!\n"
 	.string "You're better than I expected!$"
 
-RustboroCity_Text_RanMrBrineyHint: @ 81E1CE7
-	.string "RAN: Oh, by the way, MR. BRINEY, who\n"
+RustboroCity_Text_MayMrBrineyHint: @ 81E1CE7
+	.string "MAY: Oh, by the way, MR. BRINEY, who\n"
 	.string "I just passed…\p"
 	.string "{PLAYER}{KUN}, you just moved here so you\n"
 	.string "might not know this, but MR. BRINEY\l"

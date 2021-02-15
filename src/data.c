@@ -54,12 +54,12 @@ const struct SpriteFrameImage gTrainerBackPicTable_Akira[] =
     gTrainerBackPic_Akira + 0x1800, 0x0800,
 };
 
-const struct SpriteFrameImage gTrainerBackPicTable_Ran[] =
+const struct SpriteFrameImage gTrainerBackPicTable_May[] =
 {
-    gTrainerBackPic_Ran, 0x0800,
-    gTrainerBackPic_Ran + 0x0800, 0x0800,
-    gTrainerBackPic_Ran + 0x1000, 0x0800,
-    gTrainerBackPic_Ran + 0x1800, 0x0800,
+    gTrainerBackPic_May, 0x0800,
+    gTrainerBackPic_May + 0x0800, 0x0800,
+    gTrainerBackPic_May + 0x1000, 0x0800,
+    gTrainerBackPic_May + 0x1800, 0x0800,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Red[] =
@@ -88,12 +88,12 @@ const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireAkira[] =
     gTrainerBackPic_RubySapphireAkira + 0x1800, 0x0800,
 };
 
-const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireRan[] =
+const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireMay[] =
 {
-    gTrainerBackPic_RubySapphireRan, 0x0800,
-    gTrainerBackPic_RubySapphireRan + 0x0800, 0x0800,
-    gTrainerBackPic_RubySapphireRan + 0x1000, 0x0800,
-    gTrainerBackPic_RubySapphireRan + 0x1800, 0x0800,
+    gTrainerBackPic_RubySapphireMay, 0x0800,
+    gTrainerBackPic_RubySapphireMay + 0x0800, 0x0800,
+    gTrainerBackPic_RubySapphireMay + 0x1000, 0x0800,
+    gTrainerBackPic_RubySapphireMay + 0x1800, 0x0800,
 };
 
 const struct SpriteFrameImage gTrainerBackPicTable_Wally[] =

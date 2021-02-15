@@ -2306,10 +2306,10 @@ MatchCall_Text_Wallace:: @ 82B3790
 	.string "But what is a rare stone exactly?\n"
 	.string "All I can think of is a METEORITE…$"
 
-MatchCall_Text_RanRayquazaCall: @ 82B38C1
+MatchCall_Text_MayRayquazaCall: @ 82B38C1
 	.string "… … … … … …\n"
 	.string "… … … … … Beep!\p"
-	.string "RAN: Hi, {PLAYER}{KUN}!\p"
+	.string "MAY: Hi, {PLAYER}{KUN}!\p"
 	.string "I was just in PACIFIDLOG a little\n"
 	.string "while ago.\p"
 	.string "I saw a giant green POKéMON\n"
@@ -2335,15 +2335,15 @@ MatchCall_Text_AkiraRayquazaCall: @ 82B39C6
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
 
-MatchCall_Text_Ran1:: @ 2B3AB3
-	.string "RAN: Hi, {PLAYER}{KUN}!\p"
+MatchCall_Text_May1:: @ 2B3AB3
+	.string "MAY: Hi, {PLAYER}{KUN}!\p"
 	.string "MR. BRINEY retired as a SAILOR,\n"
 	.string "but I still see him out on the sea\l"
 	.string "with his pet PEEKO sometimes.\p"
 	.string "He must love the sea still.$"
 
-MatchCall_Text_Ran2:: @ 2B3B3F
-	.string "RAN: Hi, {PLAYER}{KUN}!\p"
+MatchCall_Text_May2:: @ 2B3B3F
+	.string "MAY: Hi, {PLAYER}{KUN}!\p"
 	.string "You know how little towns like\n"
 	.string "PETALBURG and DEWFORD have GYMS?\p"
 	.string "For some reason, the big port of\n"
@@ -2351,8 +2351,8 @@ MatchCall_Text_Ran2:: @ 2B3B3F
 	.string "When they finally build a GYM there,\n"
 	.string "I should apply to be the LEADER.$"
 
-MatchCall_Text_Ran3:: @ 2B3C13
-	.string "RAN: Hi, {PLAYER}{KUN}!\p"
+MatchCall_Text_May3:: @ 2B3C13
+	.string "MAY: Hi, {PLAYER}{KUN}!\p"
 	.string "Do you remember a man named\n"
 	.string "the CUTTER in RUSTBORO?\l"
 	.string "He had a house there, remember?\p"
@@ -2363,59 +2363,59 @@ MatchCall_Text_Ran3:: @ 2B3C13
 	.string "… … … … … …\p"
 	.string "The ROCK SMASH GUY!$"
 
-MatchCall_Text_Ran4:: @ 2B3CF3
-	.string "RAN: {PLAYER}{KUN}?\p"
+MatchCall_Text_May4:: @ 2B3CF3
+	.string "MAY: {PLAYER}{KUN}?\p"
 	.string "RUSTURF TUNNEL…\n"
 	.string "They named it that because it\l"
 	.string "joins RUSTBORO and VERDANTURF.$"
 
-MatchCall_Text_Ran5:: @ 2B3D4B
-	.string "RAN: {PLAYER}{KUN}, how are you?\p"
+MatchCall_Text_May5:: @ 2B3D4B
+	.string "MAY: {PLAYER}{KUN}, how are you?\p"
 	.string "I'm out on ROUTE 111 now.\p"
 	.string "I'm going to get a rest at an old\n"
 	.string "lady's house.\p"
 	.string "She lives just north of\n"
 	.string "the desert.$"
 
-MatchCall_Text_Ran6:: @ 2B3DD1
-	.string "RAN: Hi, {PLAYER}{KUN}!\p"
+MatchCall_Text_May6:: @ 2B3DD1
+	.string "MAY: Hi, {PLAYER}{KUN}!\p"
 	.string "Did you know about the MIRAGE\n"
 	.string "TOWER in the desert?\p"
 	.string "They say, like a mirage, it seems\n"
 	.string "to mysteriously come and go.\p"
 	.string "I wish I could see it.$"
 
-MatchCall_Text_Ran7:: @ 2B3E69
-	.string "RAN: {PLAYER}{KUN}, yahoo!\n"
+MatchCall_Text_May7:: @ 2B3E69
+	.string "MAY: {PLAYER}{KUN}, yahoo!\n"
 	.string "I'm on ROUTE 119 now.\p"
 	.string "There's a big river here, and\n"
 	.string "it often rains.\p"
 	.string "I got soaked!$"
 
-MatchCall_Text_Ran8:: @ 2B3ECD
-	.string "RAN: {PLAYER}{KUN}, hi.\p"
+MatchCall_Text_May8:: @ 2B3ECD
+	.string "MAY: {PLAYER}{KUN}, hi.\p"
 	.string "MT. PYRE is a memorial to POKéMON\n"
 	.string "whose lives have ended.\p"
 	.string "Maybe as a result, it's infested\n"
 	.string "with many GHOST-type POKéMON!$"
 
-MatchCall_Text_Ran9:: @ 2B3F2B
-	.string "RAN: Hi, {PLAYER}{KUN}!\p"
+MatchCall_Text_May9:: @ 2B3F2B
+	.string "MAY: Hi, {PLAYER}{KUN}!\p"
 	.string "I was thinking of going to the hot\n"
 	.string "spring in LAVARIDGE.\p"
 	.string "But on the way, around JAGGED\n"
 	.string "PASS, I ran into some bad-looking\l"
 	.string "characters. The mood was ugly!$"
 
-MatchCall_Text_Ran10:: @ 2B3FFB
-	.string "RAN: Hi, {PLAYER}{KUN}!\n"
+MatchCall_Text_May10:: @ 2B3FFB
+	.string "MAY: Hi, {PLAYER}{KUN}!\n"
 	.string "Did you see the news?\p"
 	.string "They say CAPT. STERN discovered\n"
 	.string "the SEAFLOOR CAVERN while on his\l"
 	.string "submarine expedition.$"
 
-MatchCall_Text_Ran11:: @ 2B402B
-	.string "RAN: Hi, {PLAYER}{KUN}!\n"
+MatchCall_Text_May11:: @ 2B402B
+	.string "MAY: Hi, {PLAYER}{KUN}!\n"
 	.string "Don't you think it's neat?\p"
 	.string "Even if you don't have a boat,\n"
 	.string "you can cross the sea using\l"
@@ -2424,8 +2424,8 @@ MatchCall_Text_Ran11:: @ 2B402B
 	.string "There's a POKéMON move that lets\n"
 	.string "you go to the bottom of the sea.$"
 
-MatchCall_Text_Ran12:: @ 2B414B
-	.string "RAN: Hi, {PLAYER}{KUN}!\n"
+MatchCall_Text_May12:: @ 2B414B
+	.string "MAY: Hi, {PLAYER}{KUN}!\n"
 	.string "Hope things are okay!\p"
 	.string "Have you been on the sea and\n"
 	.string "found your way to the other side\l"
@@ -2435,8 +2435,8 @@ MatchCall_Text_Ran12:: @ 2B414B
 	.string "When you get to the other side,\n"
 	.string "come up to the surface. Easy!$"
 
-MatchCall_Text_Ran13:: @ 2B4228
-	.string "RAN: Hi, {PLAYER}{KUN}!\p"
+MatchCall_Text_May13:: @ 2B4228
+	.string "MAY: Hi, {PLAYER}{KUN}!\p"
 	.string "How's it going?\n"
 	.string "Are you filling your POKéDEX?\p"
 	.string "I heard a rumor that there are\n"
@@ -2444,16 +2444,16 @@ MatchCall_Text_Ran13:: @ 2B4228
 	.string "And there are three of them!\p"
 	.string "I would love to see even one…$"
 
-MatchCall_Text_Ran14:: @ 2B42E0
-	.string "RAN: {PLAYER}{KUN}!\n"
+MatchCall_Text_May14:: @ 2B42E0
+	.string "MAY: {PLAYER}{KUN}!\n"
 	.string "I heard the rumors!\p"
 	.string "You beat the SOOTOPOLIS GYM\n"
 	.string "LEADER?\p"
 	.string "That means you don't have far\n"
 	.string "to go, do you?$"
 
-MatchCall_Text_Ran15:: @ 2B4350
-	.string "RAN: There isn't a single TRAINER\n"
+MatchCall_Text_May15:: @ 2B4350
+	.string "MAY: There isn't a single TRAINER\n"
 	.string "left in HOENN who doesn't know who\l"
 	.string "you are, {PLAYER}{KUN}!\p"
 	.string "When I tell people that I'm friends\n"

@@ -1994,7 +1994,7 @@ static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
-        .images = gTrainerBackPicTable_Ran,
+        .images = gTrainerBackPicTable_May,
         .affineAnims = gUnknown_082FF618,
         .callback = sub_8039BB4,
     },
@@ -2030,7 +2030,7 @@ static const struct SpriteTemplate gSpriteTemplateTable_TrainerBackSprites[] =
         .paletteTag = 0,
         .oam = &gOamData_831ACB0,
         .anims = NULL,
-        .images = gTrainerBackPicTable_RubySapphireRan,
+        .images = gTrainerBackPicTable_RubySapphireMay,
         .affineAnims = gUnknown_082FF618,
         .callback = sub_8039BB4,
     },
@@ -6726,7 +6726,7 @@ u16 FacilityClassToPicIndex(u16 facilityClass)
 u16 PlayerGenderToFrontTrainerPicId(u8 playerGender)
 {
     if (playerGender != MALE)
-        return FacilityClassToPicIndex(FACILITY_CLASS_RAN);
+        return FacilityClassToPicIndex(FACILITY_CLASS_MAY);
     else
         return FacilityClassToPicIndex(FACILITY_CLASS_AKIRA);
 }

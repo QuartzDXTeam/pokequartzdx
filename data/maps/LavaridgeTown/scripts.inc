@@ -54,7 +54,7 @@ LavaridgeTown_EventScript_RivalGiveGoGoggles:: @ 81EA551
 	delay 20
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq LavaridgeTown_EventScript_PlayRanMusic
+	call_if_eq LavaridgeTown_EventScript_PlayMayMusic
 	compare VAR_RESULT, FEMALE
 	call_if_eq LavaridgeTown_EventScript_PlayAkiraMusic
 	compare VAR_0x8008, 9
@@ -63,16 +63,16 @@ LavaridgeTown_EventScript_RivalGiveGoGoggles:: @ 81EA551
 	call_if_ne LavaridgeTown_EventScript_RivalApproachPlayer2
 	checkplayergender
 	compare VAR_RESULT, MALE
-	goto_if_eq LavaridgeTown_EventScript_RanGiveGoGoggles
+	goto_if_eq LavaridgeTown_EventScript_MayGiveGoGoggles
 	compare VAR_RESULT, FEMALE
 	goto_if_eq LavaridgeTown_EventScript_AkiraGiveGoGoggles
 	end
 
-LavaridgeTown_EventScript_RanGiveGoGoggles:: @ 81EA5B5
-	msgbox LavaridgeTown_Text_RanNiceBadgesTakeThis, MSGBOX_DEFAULT
+LavaridgeTown_EventScript_MayGiveGoGoggles:: @ 81EA5B5
+	msgbox LavaridgeTown_Text_MayNiceBadgesTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_GO_GOGGLES
 	setflag FLAG_RECEIVED_GO_GOGGLES
-	msgbox LavaridgeTown_Text_RanExplainGoGogglesChallengeDad, MSGBOX_DEFAULT
+	msgbox LavaridgeTown_Text_MayExplainGoGogglesChallengeDad, MSGBOX_DEFAULT
 	goto LavaridgeTown_EventScript_RivalExit
 	end
 
@@ -101,7 +101,7 @@ LavaridgeTown_EventScript_RivalExit:: @ 81EA5FF
 	releaseall
 	end
 
-LavaridgeTown_EventScript_PlayRanMusic:: @ 81EA630
+LavaridgeTown_EventScript_PlayMayMusic:: @ 81EA630
 	playbgm MUS_GIRL_SUP, 1
 	return
 
@@ -289,8 +289,8 @@ LavaridgeTown_EventScript_HerbShopSign:: @ 81EA7B7
 	msgbox LavaridgeTown_Text_HerbShopSign, MSGBOX_SIGN
 	end
 
-LavaridgeTown_Text_RanNiceBadgesTakeThis: @ 81EA7C0
-	.string "RAN: {PLAYER}{KUN}! Long time no see!\p"
+LavaridgeTown_Text_MayNiceBadgesTakeThis: @ 81EA7C0
+	.string "MAY: {PLAYER}{KUN}! Long time no see!\p"
 	.string "Oh? While I visited the hot springs,\n"
 	.string "you got the LAVARIDGE GYM BADGE.\p"
 	.string "You must have collected\n"
@@ -299,8 +299,8 @@ LavaridgeTown_Text_RanNiceBadgesTakeThis: @ 81EA7C0
 	.string "I guess it would be okay for you to\n"
 	.string "have this.$"
 
-LavaridgeTown_Text_RanExplainGoGogglesChallengeDad: @ 81EA897
-	.string "RAN: With those GO-GOGGLES, you'll\n"
+LavaridgeTown_Text_MayExplainGoGogglesChallengeDad: @ 81EA897
+	.string "MAY: With those GO-GOGGLES, you'll\n"
 	.string "have no trouble getting through the\l"
 	.string "desert near ROUTE 111.\p"
 	.string "But, wow, {PLAYER}{KUN}…\n"

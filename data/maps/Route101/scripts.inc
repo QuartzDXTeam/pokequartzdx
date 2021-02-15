@@ -239,7 +239,7 @@ Route101_EventScript_BirchsBag:: @ 81EBE16
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq Route101_EventScript_HideRanInBedroom
+	call_if_eq Route101_EventScript_HideMayInBedroom
 	compare VAR_RESULT, FEMALE
 	call_if_eq Route101_EventScript_HideAkiraInBedroom
 	warp MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB, 255, 6, 5
@@ -247,8 +247,8 @@ Route101_EventScript_BirchsBag:: @ 81EBE16
 	release
 	end
 
-Route101_EventScript_HideRanInBedroom:: @ 81EBE85
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_RANS_HOUSE_RIVAL_BEDROOM
+Route101_EventScript_HideMayInBedroom:: @ 81EBE85
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
 	return
 
 Route101_EventScript_HideAkiraInBedroom:: @ 81EBE89

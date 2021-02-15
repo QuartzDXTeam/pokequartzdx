@@ -426,7 +426,7 @@ static const u16 sDecorShapeSizes[] = {
 
 static const u16 sAkiraPalette[] = INCBIN_U16("graphics/decorations/akira.gbapal");
 
-static const u16 sRanPalette[] = INCBIN_U16("graphics/decorations/ran.gbapal");
+static const u16 sMayPalette[] = INCBIN_U16("graphics/decorations/may.gbapal");
 
 static const struct YesNoFuncTable sReturnDecorationYesNoFunctions =
 {
@@ -448,9 +448,9 @@ static const struct SpritePalette sSpritePal_PuttingAwayCursorAkira =
     .tag = PLACE_DECORATION_PLAYER_TAG,
 };
 
-static const struct SpritePalette sSpritePal_PuttingAwayCursorRan =
+static const struct SpritePalette sSpritePal_PuttingAwayCursorMay =
 {
-    .data = sRanPalette,
+    .data = sMayPalette,
     .tag = PLACE_DECORATION_PLAYER_TAG,
 };
 
@@ -1397,7 +1397,7 @@ static void SetUpPlacingDecorationPlayerAvatar(u8 taskId, struct PlaceDecoration
     if (gSaveBlock2Ptr->playerGender == MALE)
         sDecor_CameraSpriteObjectIdx2 = AddPseudoObjectEvent(OBJ_EVENT_GFX_AKIRA_DECORATING, SpriteCallbackDummy, x, 72, 0);
     else
-        sDecor_CameraSpriteObjectIdx2 = AddPseudoObjectEvent(OBJ_EVENT_GFX_RAN_DECORATING, SpriteCallbackDummy, x, 72, 0);
+        sDecor_CameraSpriteObjectIdx2 = AddPseudoObjectEvent(OBJ_EVENT_GFX_MAY_DECORATING, SpriteCallbackDummy, x, 72, 0);
 
     gSprites[sDecor_CameraSpriteObjectIdx2].oam.priority = 1;
     DestroySprite(&gSprites[sDecor_CameraSpriteObjectIdx1]);
@@ -2286,7 +2286,7 @@ static void SetUpPuttingAwayDecorationPlayerAvatar(void)
     if (gSaveBlock2Ptr->playerGender == MALE)
         sDecor_CameraSpriteObjectIdx2 = AddPseudoObjectEvent(OBJ_EVENT_GFX_AKIRA_DECORATING, SpriteCallbackDummy, 136, 72, 0);
     else
-        sDecor_CameraSpriteObjectIdx2 = AddPseudoObjectEvent(OBJ_EVENT_GFX_RAN_DECORATING, SpriteCallbackDummy, 136, 72, 0);
+        sDecor_CameraSpriteObjectIdx2 = AddPseudoObjectEvent(OBJ_EVENT_GFX_MAY_DECORATING, SpriteCallbackDummy, 136, 72, 0);
 
     gSprites[sDecor_CameraSpriteObjectIdx2].oam.priority = 1;
     DestroySprite(&gSprites[sDecor_CameraSpriteObjectIdx1]);
@@ -2681,7 +2681,7 @@ static void LoadPlayerSpritePalette(void)
     if (gSaveBlock2Ptr->playerGender == MALE)
         LoadSpritePalette(&sSpritePal_PuttingAwayCursorAkira);
     else
-        LoadSpritePalette(&sSpritePal_PuttingAwayCursorRan);
+        LoadSpritePalette(&sSpritePal_PuttingAwayCursorMay);
 }
 
 static void FreePlayerSpritePalette(void)

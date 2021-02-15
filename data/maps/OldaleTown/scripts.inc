@@ -257,13 +257,13 @@ OldaleTown_EventScript_RivalTrigger3:: @ 81E90C6
 OldaleTown_EventScript_ShowRivalMessage:: @ 81E90E6
 	checkplayergender
 	compare VAR_RESULT, MALE
-	goto_if_eq OldaleTown_EventScript_ShowRanMessage
+	goto_if_eq OldaleTown_EventScript_ShowMayMessage
 	compare VAR_RESULT, FEMALE
 	goto_if_eq OldaleTown_EventScript_ShowAkiraMessage
 	end
 
-OldaleTown_EventScript_ShowRanMessage:: @ 81E90FE
-	msgbox OldaleTown_Text_RanLetsGoBack, MSGBOX_DEFAULT
+OldaleTown_EventScript_ShowMayMessage:: @ 81E90FE
+	msgbox OldaleTown_Text_MayLetsGoBack, MSGBOX_DEFAULT
 	goto OldaleTown_EventScript_RivalFinish
 	end
 
@@ -387,8 +387,8 @@ OldaleTown_Text_FinishedSketchingFootprints: @ 81E93F8
 	.string "But it turns out they were only my\n"
 	.string "own footprints…$"
 
-OldaleTown_Text_RanLetsGoBack: @ 81E9462
-	.string "RAN: {PLAYER}{KUN}!\n"
+OldaleTown_Text_MayLetsGoBack: @ 81E9462
+	.string "MAY: {PLAYER}{KUN}!\n"
 	.string "Over here!\l"
 	.string "Let's hurry home!$"
 

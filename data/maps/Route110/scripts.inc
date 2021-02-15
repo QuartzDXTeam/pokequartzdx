@@ -380,7 +380,7 @@ Route110_EventScript_RivalScene:: @ 81EF76E
 	lockall
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq Route110_EventScript_PlayRanMusic
+	call_if_eq Route110_EventScript_PlayMayMusic
 	compare VAR_RESULT, FEMALE
 	call_if_eq Route110_EventScript_PlayAkiraMusic
 	applymovement 28, Common_Movement_WalkInPlaceFastestDown
@@ -398,13 +398,13 @@ Route110_EventScript_RivalScene:: @ 81EF76E
 	call_if_eq Route110_EventScript_RivalApproachPlayer3
 	checkplayergender
 	compare VAR_RESULT, MALE
-	goto_if_eq Route110_EventScript_RanBattle
+	goto_if_eq Route110_EventScript_MayBattle
 	compare VAR_RESULT, FEMALE
 	goto_if_eq Route110_EventScript_AkiraBattle
 	releaseall
 	end
 
-Route110_EventScript_PlayRanMusic:: @ 81EF7E1
+Route110_EventScript_PlayMayMusic:: @ 81EF7E1
 	playbgm MUS_GIRL_SUP, 1
 	return
 
@@ -412,33 +412,33 @@ Route110_EventScript_PlayAkiraMusic:: @ 81EF7E6
 	playbgm MUS_BOY_SUP, 1
 	return
 
-Route110_EventScript_RanBattle:: @ 81EF7EB
-	msgbox Route110_Text_RanLetsBattle, MSGBOX_DEFAULT
+Route110_EventScript_MayBattle:: @ 81EF7EB
+	msgbox Route110_Text_MayLetsBattle, MSGBOX_DEFAULT
 	switch VAR_STARTER_MON
-	case 0, Route110_EventScript_RanBattleTreecko
-	case 1, Route110_EventScript_RanBattleTorchic
-	case 2, Route110_EventScript_RanBattleMudkip
+	case 0, Route110_EventScript_MayBattleTreecko
+	case 1, Route110_EventScript_MayBattleTorchic
+	case 2, Route110_EventScript_MayBattleMudkip
 	end
 
-Route110_EventScript_RanBattleTreecko:: @ 81EF81A
-	trainerbattle_no_intro TRAINER_RAN_ROUTE_110_TREECKO, Route110_Text_RanDefeated
-	goto Route110_EventScript_RanDefeated
+Route110_EventScript_MayBattleTreecko:: @ 81EF81A
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_110_TREECKO, Route110_Text_MayDefeated
+	goto Route110_EventScript_MayDefeated
 	end
 
-Route110_EventScript_RanBattleTorchic:: @ 81EF82A
-	trainerbattle_no_intro TRAINER_RAN_ROUTE_110_TORCHIC, Route110_Text_RanDefeated
-	goto Route110_EventScript_RanDefeated
+Route110_EventScript_MayBattleTorchic:: @ 81EF82A
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_110_TORCHIC, Route110_Text_MayDefeated
+	goto Route110_EventScript_MayDefeated
 	end
 
-Route110_EventScript_RanBattleMudkip:: @ 81EF83A
-	trainerbattle_no_intro TRAINER_RAN_ROUTE_110_MUDKIP, Route110_Text_RanDefeated
-	goto Route110_EventScript_RanDefeated
+Route110_EventScript_MayBattleMudkip:: @ 81EF83A
+	trainerbattle_no_intro TRAINER_MAY_ROUTE_110_MUDKIP, Route110_Text_MayDefeated
+	goto Route110_EventScript_MayDefeated
 	end
 
-Route110_EventScript_RanDefeated:: @ 81EF84A
-	msgbox Route110_Text_RanTakeThis, MSGBOX_DEFAULT
+Route110_EventScript_MayDefeated:: @ 81EF84A
+	msgbox Route110_Text_MayTakeThis, MSGBOX_DEFAULT
 	call Route110_EventScript_GiveItemfinder
-	msgbox Route110_Text_RanExplainItemfinder, MSGBOX_DEFAULT
+	msgbox Route110_Text_MayExplainItemfinder, MSGBOX_DEFAULT
 	goto Route110_EventScript_RivalExit
 	end
 
@@ -783,25 +783,25 @@ Route110_Text_AquaActionsBringSmiles: @ 81EFC0D
 	.string "TEAM AQUA's actions should bring\n"
 	.string "smiles to people's faces!$"
 
-Route110_Text_RanLetsBattle: @ 81EFC48
-	.string "RAN: Hi, {PLAYER}{KUN}, long time no see!\p"
+Route110_Text_MayLetsBattle: @ 81EFC48
+	.string "MAY: Hi, {PLAYER}{KUN}, long time no see!\p"
 	.string "While I was searching for other\n"
 	.string "POKéMON, my POKéMON grew stronger.\p"
 	.string "So…\n"
 	.string "How about a little battle?$"
 
-Route110_Text_RanDefeated: @ 81EFCCB
+Route110_Text_MayDefeated: @ 81EFCCB
 	.string "Yikes!\n"
 	.string "You're better than I expected!$"
 
-Route110_Text_RanTakeThis: @ 81EFCF1
-	.string "RAN: {PLAYER}{KUN}, you've been busy\n"
+Route110_Text_MayTakeThis: @ 81EFCF1
+	.string "MAY: {PLAYER}{KUN}, you've been busy\n"
 	.string "training, too, haven't you?\p"
 	.string "I think you deserve a reward!\n"
 	.string "This is from me!$"
 
-Route110_Text_RanExplainItemfinder: @ 81EFD58
-	.string "RAN: That's an ITEMFINDER.\p"
+Route110_Text_MayExplainItemfinder: @ 81EFD58
+	.string "MAY: That's an ITEMFINDER.\p"
 	.string "Try it out. If there is an item that's\n"
 	.string "not visible, it emits a sound.\p"
 	.string "Okay, {PLAYER}{KUN}, let's meet again!\p"

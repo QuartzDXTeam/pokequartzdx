@@ -37,15 +37,15 @@ SouthernIsland_Interior_EventScript_SetUpPlayerGfx:: @ 8242AA0
 	compare VAR_RESULT, MALE
 	goto_if_eq SouthernIsland_Interior_EventScript_SetAkiraGfx
 	compare VAR_RESULT, FEMALE
-	goto_if_eq SouthernIsland_Interior_EventScript_SetRanGfx
+	goto_if_eq SouthernIsland_Interior_EventScript_SetMayGfx
 	end
 
 SouthernIsland_Interior_EventScript_SetAkiraGfx:: @ 8242AB8
 	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_AKIRA_NORMAL
 	return
 
-SouthernIsland_Interior_EventScript_SetRanGfx:: @ 8242ABE
-	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_RAN_NORMAL
+SouthernIsland_Interior_EventScript_SetMayGfx:: @ 8242ABE
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_RIVAL_MAY_NORMAL
 	return
 
 SouthernIsland_Interior_EventScript_TryLatiEncounter:: @ 8242AC4

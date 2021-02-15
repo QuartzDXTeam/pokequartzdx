@@ -830,7 +830,7 @@ static const u16 sMugshotPal_Glacia[] = INCBIN_U16("graphics/battle_transitions/
 static const u16 sMugshotPal_Drake[] = INCBIN_U16("graphics/battle_transitions/drake_bg.gbapal");
 static const u16 sMugshotPal_Champion[] = INCBIN_U16("graphics/battle_transitions/wallace_bg.gbapal");
 static const u16 sMugshotPal_Akira[] = INCBIN_U16("graphics/battle_transitions/akira_bg.gbapal");
-static const u16 sMugshotPal_Ran[] = INCBIN_U16("graphics/battle_transitions/ran_bg.gbapal");
+static const u16 sMugshotPal_May[] = INCBIN_U16("graphics/battle_transitions/may_bg.gbapal");
 
 static const u16 *const sOpponentMugshotsPals[MUGSHOTS_COUNT] =
 {
@@ -844,7 +844,7 @@ static const u16 *const sOpponentMugshotsPals[MUGSHOTS_COUNT] =
 static const u16 *const sPlayerMugshotsPals[2] =
 {
     sMugshotPal_Akira,
-    sMugshotPal_Ran
+    sMugshotPal_May
 };
 
 static const u16 sUnusedTrainerPalette[] = INCBIN_U16("graphics/battle_transitions/unused_trainer.gbapal");

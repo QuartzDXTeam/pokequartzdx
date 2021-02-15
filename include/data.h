@@ -78,11 +78,11 @@ extern const struct SpriteFrameImage gUnknown_082FF3C8[];
 extern const struct SpriteFrameImage gUnknown_082FF3E8[];
 extern const struct SpriteFrameImage gUnknown_082FF408[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_Akira[];
-extern const struct SpriteFrameImage gTrainerBackPicTable_Ran[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_May[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_Red[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_Leaf[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireAkira[];
-extern const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireRan[];
+extern const struct SpriteFrameImage gTrainerBackPicTable_RubySapphireMay[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_Wally[];
 extern const struct SpriteFrameImage gTrainerBackPicTable_Steven[];
 
