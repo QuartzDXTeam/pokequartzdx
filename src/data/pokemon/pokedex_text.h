@@ -1589,10 +1589,10 @@ const u8 gLinoonePokedexText[] = _(
     "in and catches it with its sharp claws.");
 
 const u8 gWurmplePokedexText[] = _(
-    "It sticks to tree branches and eats\n"
-    "leaves. The thread it spits from its mouth,\n"
-    "which becomes gooey when it touches\n"
-    "air, slows the movement of its foes.");
+    "Absent-minded, Larvly have a habit of\n"
+	"injuring and disorienting themselves.\n"
+	"Because of this clumsiness, Larvly often\n"
+	"end up as a growing Ornlil's first catch.");
 
 const u8 gSilcoonPokedexText[] = _(
     "It prepares for evolution using the\n"

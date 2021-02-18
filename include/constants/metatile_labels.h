@@ -1,6 +1,15 @@
 #ifndef GUARD_METATILE_LABELS_H
 #define GUARD_METATILE_LABELS_H
 
+// gTileset_AkirasMaysHouse
+#define METATILE_AkirasMaysHouse_AkiraPC_Off       0x25A
+#define METATILE_AkirasMaysHouse_AkiraPC_On        0x27F
+#define METATILE_AkirasMaysHouse_BookOnTable       0x293
+#define METATILE_AkirasMaysHouse_MayPC_Off         0x259
+#define METATILE_AkirasMaysHouse_MayPC_On          0x27E
+#define METATILE_AkirasMaysHouse_MovingBox_Closed  0x268
+#define METATILE_AkirasMaysHouse_MovingBox_Open    0x270
+
 // gTileset_BattleArena
 #define METATILE_BattleArena_Door  0x21B
 
@@ -97,15 +106,6 @@
 #define METATILE_BikeShop_Generator_Off_Tile6      0x2F6
 #define METATILE_BikeShop_Generator_Off_Tile7      0x2F7
 #define METATILE_BikeShop_Wall_Edge_Top            0x281
-
-// gTileset_AkirasMaysHouse
-#define METATILE_AkirasMaysHouse_BookOnTable       0x293
-#define METATILE_AkirasMaysHouse_AkiraPC_Off     0x25A
-#define METATILE_AkirasMaysHouse_AkiraPC_On      0x27F
-#define METATILE_AkirasMaysHouse_MayPC_Off         0x259
-#define METATILE_AkirasMaysHouse_MayPC_On          0x27E
-#define METATILE_AkirasMaysHouse_MovingBox_Closed  0x268
-#define METATILE_AkirasMaysHouse_MovingBox_Open    0x270
 
 // gTileset_Building
 #define METATILE_Building_PC_Off  0x004
