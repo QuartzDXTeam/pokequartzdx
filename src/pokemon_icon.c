@@ -446,7 +446,7 @@ const u8 gMonIconPaletteIndices[] =
 {
     [SPECIES_NONE] = 0,
     [SPECIES_BULBASAUR] = 1,
-    [SPECIES_IVYSAUR] = 1,
+    [SPECIES_IVYSAUR] = 5,
     [SPECIES_VENUSAUR] = 1,
     [SPECIES_CHARMANDER] = 5,
     [SPECIES_CHARMELEON] = 5,
@@ -498,7 +498,7 @@ const u8 gMonIconPaletteIndices[] =
     [SPECIES_DUGTRIO] = 2,
     [SPECIES_MEOWTH] = 1,
     [SPECIES_PERSIAN] = 1,
-    [SPECIES_PSYDUCK] = 1,
+    [SPECIES_PSYDUCK] = 3,
     [SPECIES_GOLDUCK] = 2,
     [SPECIES_MANKEY] = 1,
     [SPECIES_PRIMEAPE] = 2,
