@@ -7,9 +7,9 @@ ProfBirch_EventScript_UpdateLocation:: @ 82720AD
 	compare VAR_BIRCH_STATE, 1
 	call_if_eq ProfBirch_EventScript_MoveToLab
 	compare VAR_BIRCH_STATE, 2
-	call_if_eq ProfBirch_EventScript_MoveToRoute101
+	call_if_eq ProfBirch_EventScript_MoveToBreezeWay
 	compare VAR_BIRCH_STATE, 3
-	call_if_eq ProfBirch_EventScript_MoveToRoute101
+	call_if_eq ProfBirch_EventScript_MoveToBreezeWay
 	compare VAR_BIRCH_STATE, 4
 	call_if_eq ProfBirch_EventScript_MoveToRoute103
 	compare VAR_BIRCH_STATE, 5
@@ -21,24 +21,24 @@ ProfBirch_EventScript_UpdateLocation:: @ 82720AD
 	return
 
 ProfBirch_EventScript_MoveToLab:: @ 827211A
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380
-	setflag FLAG_HIDE_ROUTE_101_BIRCH
+	clearflag FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_BIRCH
+	clearflag FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_UNKNOWN_0x380
+	setflag FLAG_HIDE_BREEZE_WAY_BIRCH
 	setflag FLAG_HIDE_ROUTE_103_BIRCH
 	return
 
-ProfBirch_EventScript_MoveToRoute101:: @ 8272127
-	clearflag FLAG_HIDE_ROUTE_101_BIRCH
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380
+ProfBirch_EventScript_MoveToBreezeWay:: @ 8272127
+	clearflag FLAG_HIDE_BREEZE_WAY_BIRCH
+	setflag FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_BIRCH
+	setflag FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_UNKNOWN_0x380
 	setflag FLAG_HIDE_ROUTE_103_BIRCH
 	return
 
 ProfBirch_EventScript_MoveToRoute103:: @ 8272134
 	clearflag FLAG_HIDE_ROUTE_103_BIRCH
-	setflag FLAG_HIDE_ROUTE_101_BIRCH
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_BIRCH
-	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_UNKNOWN_0x380
+	setflag FLAG_HIDE_BREEZE_WAY_BIRCH
+	setflag FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_BIRCH
+	setflag FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_UNKNOWN_0x380
 	return
 
 ProfBirch_EventScript_RatePokedexOrRegister:: @ 8272141

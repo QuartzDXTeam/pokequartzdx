@@ -89,7 +89,7 @@
 
 #define VAR_SOOTOPOLIS_STATE       0x405E
 
-#define VAR_ROUTE101_STATE         0x4060
+#define VAR_BREEZEWAY_STATE         0x4060
 
 #define VAR_ROUTE103_STATE         0x4062
 

@@ -46,14 +46,14 @@
     "MossdeepCity",
     "SootopolisCity",
     "EverGrandeCity",
-    "LittlerootTown",
+    "BreezeTown",
     "OldaleTown",
     "DewfordTown",
     "LavaridgeTown",
     "FallarborTown",
     "VerdanturfTown",
     "PacifidlogTown",
-    "Route101",
+    "BreezeWay",
     "Route102",
     "Route103",
     "Route104",
@@ -96,11 +96,11 @@
     "Underwater7"
   ],
   "gMapGroup1": [
-    "LittlerootTown_AkirasHouse_1F",
-    "LittlerootTown_AkirasHouse_2F",
-    "LittlerootTown_MaysHouse_1F",
-    "LittlerootTown_MaysHouse_2F",
-    "LittlerootTown_ProfessorBirchsLab"
+    "BreezeTown_AkirasHouse_1F",
+    "BreezeTown_AkirasHouse_2F",
+    "BreezeTown_MaysHouse_1F",
+    "BreezeTown_MaysHouse_2F",
+    "BreezeTown_ProfessorBirchsLab"
   ],
   "gMapGroup2": [
     "OldaleTown_House1",

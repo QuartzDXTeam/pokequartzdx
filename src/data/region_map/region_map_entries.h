@@ -1,7 +1,7 @@
 #ifndef GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
 #define GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
 
-static const u8 sMapName_LittlerootTown[] = _("BREEZE TOWN");
+static const u8 sMapName_BreezeTown[] = _("BREEZE TOWN");
 static const u8 sMapName_OldaleTown[] = _("PINK TOWN");
 static const u8 sMapName_DewfordTown[] = _("GOLDEN ISLAND");
 static const u8 sMapName_LavaridgeTown[] = _("MAROON TOWN");
@@ -17,7 +17,7 @@ static const u8 sMapName_LilycoveCity[] = _("WHITE PORT CITY");
 static const u8 sMapName_MossdeepCity[] = _("GREY STONE CITY");
 static const u8 sMapName_SootopolisCity[] = _("QUARTZTOWER TOWN");
 static const u8 sMapName_EverGrandeCity[] = _("OLYMPIC VILLAGE");
-static const u8 sMapName_Route101[] = _("BREEZE WAY");
+static const u8 sMapName_BreezeWay[] = _("BREEZE WAY");
 static const u8 sMapName_Route102[] = _("CLOUD WAY");
 static const u8 sMapName_Route103[] = _("ROCK CANAL");
 static const u8 sMapName_Route104[] = _("CLOUD BEACH");
@@ -200,7 +200,7 @@ static const u8 sMapName_DesertUnderpass[] = _("DESERT UNDERPASS");
 static const u8 sMapName_TrainerHill[] = _("TRAINER HILL");
 
 const struct RegionMapLocation gRegionMapEntries[] = {
-    [MAPSEC_LITTLEROOT_TOWN]           = { 4, 11, 1, 1, sMapName_LittlerootTown},
+    [MAPSEC_BREEZE_TOWN]           = { 4, 11, 1, 1, sMapName_BreezeTown},
     [MAPSEC_OLDALE_TOWN]               = { 4,  9, 1, 1, sMapName_OldaleTown},
     [MAPSEC_DEWFORD_TOWN]              = { 2, 14, 1, 1, sMapName_DewfordTown},
     [MAPSEC_LAVARIDGE_TOWN]            = { 5,  3, 1, 1, sMapName_LavaridgeTown},
@@ -216,7 +216,7 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_MOSSDEEP_CITY]             = {24,  5, 2, 1, sMapName_MossdeepCity},
     [MAPSEC_SOOTOPOLIS_CITY]           = {21,  7, 1, 1, sMapName_SootopolisCity},
     [MAPSEC_EVER_GRANDE_CITY]          = {27,  8, 1, 2, sMapName_EverGrandeCity},
-    [MAPSEC_ROUTE_101]                 = { 4, 10, 1, 1, sMapName_Route101},
+    [MAPSEC_BREEZE_WAY]                 = { 4, 10, 1, 1, sMapName_BreezeWay},
     [MAPSEC_ROUTE_102]                 = { 2,  9, 2, 1, sMapName_Route102},
     [MAPSEC_ROUTE_103]                 = { 4,  8, 4, 1, sMapName_Route103},
     [MAPSEC_ROUTE_104]                 = { 0,  7, 1, 3, sMapName_Route104},

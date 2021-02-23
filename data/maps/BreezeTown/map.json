@@ -1,9 +1,9 @@
 {
-  "id": "MAP_LITTLEROOT_TOWN",
-  "name": "LittlerootTown",
-  "layout": "LAYOUT_LITTLEROOT_TOWN",
+  "id": "MAP_BREEZE_TOWN",
+  "name": "BreezeTown",
+  "layout": "LAYOUT_BREEZE_TOWN",
   "music": "MUS_THANKFOR",
-  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "region_map_section": "MAPSEC_BREEZE_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
   "map_type": "MAP_TYPE_TOWN",
@@ -16,7 +16,7 @@
     {
       "direction": "up",
       "offset": 0,
-      "map": "MAP_ROUTE101"
+      "map": "MAP_BREEZEWAY"
     }
   ],
   "object_events": [
@@ -30,7 +30,7 @@
       "movement_range_y": 2,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_EventScript_Twin",
+      "script": "BreezeTown_EventScript_Twin",
       "flag": "0"
     },
     {
@@ -43,8 +43,8 @@
       "movement_range_y": 1,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_EventScript_FatMan",
-      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_FAT_MAN"
+      "script": "BreezeTown_EventScript_FatMan",
+      "flag": "FLAG_HIDE_BREEZE_TOWN_FAT_MAN"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BOY_2",
@@ -56,7 +56,7 @@
       "movement_range_y": 1,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_EventScript_Boy",
+      "script": "BreezeTown_EventScript_Boy",
       "flag": "0"
     },
     {
@@ -69,8 +69,8 @@
       "movement_range_y": 0,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "LittlerootTown_EventScript_Mom",
-      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_MOM_OUTSIDE"
+      "script": "BreezeTown_EventScript_Mom",
+      "flag": "FLAG_HIDE_BREEZE_TOWN_MOM_OUTSIDE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_TRUCK",
@@ -83,7 +83,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_AKIRAS_HOUSE_TRUCK"
+      "flag": "FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_TRUCK"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_TRUCK",
@@ -96,7 +96,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_TRUCK"
+      "flag": "FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_TRUCK"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_VAR_0",
@@ -109,7 +109,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_RIVAL"
+      "flag": "FLAG_HIDE_BREEZE_TOWN_RIVAL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
@@ -122,7 +122,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_LITTLEROOT_TOWN_BIRCH"
+      "flag": "FLAG_HIDE_BREEZE_TOWN_BIRCH"
     }
   ],
   "warp_events": [
@@ -130,21 +130,21 @@
       "x": 24,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_LITTLEROOT_TOWN_MAYS_HOUSE_1F",
+      "dest_map": "MAP_BREEZE_TOWN_MAYS_HOUSE_1F",
       "dest_warp_id": 1
     },
     {
       "x": 15,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_LITTLEROOT_TOWN_AKIRAS_HOUSE_1F",
+      "dest_map": "MAP_BREEZE_TOWN_AKIRAS_HOUSE_1F",
       "dest_warp_id": 1
     },
     {
       "x": 21,
       "y": 17,
       "elevation": 0,
-      "dest_map": "MAP_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB",
+      "dest_map": "MAP_BREEZE_TOWN_PROFESSOR_BIRCHS_LAB",
       "dest_warp_id": 0
     }
   ],
@@ -154,81 +154,81 @@
       "x": 16,
       "y": 0,
       "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
+      "var": "VAR_BREEZE_TOWN_STATE",
       "var_value": "0",
-      "script": "LittlerootTown_EventScript_NeedPokemonTriggerLeft"
+      "script": "BreezeTown_EventScript_NeedPokemonTriggerLeft"
     },
     {
       "type": "trigger",
       "x": 15,
       "y": 0,
       "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
+      "var": "VAR_BREEZE_TOWN_STATE",
       "var_value": "0",
-      "script": "LittlerootTown_EventScript_NeedPokemonTriggerRight"
+      "script": "BreezeTown_EventScript_NeedPokemonTriggerRight"
     },
     {
       "type": "trigger",
       "x": 18,
       "y": 0,
       "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
+      "var": "VAR_BREEZE_TOWN_STATE",
       "var_value": "1",
-      "script": "LittlerootTown_EventScript_GoSaveBirchTrigger"
+      "script": "BreezeTown_EventScript_GoSaveBirchTrigger"
     },
     {
       "type": "trigger",
       "x": 18,
       "y": 7,
       "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
+      "var": "VAR_BREEZE_TOWN_STATE",
       "var_value": "3",
-      "script": "LittlerootTown_EventScript_GiveRunningShoesTrigger4"
+      "script": "BreezeTown_EventScript_GiveRunningShoesTrigger4"
     },
     {
       "type": "trigger",
       "x": 20,
       "y": 7,
       "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
+      "var": "VAR_BREEZE_TOWN_STATE",
       "var_value": "3",
-      "script": "LittlerootTown_EventScript_GiveRunningShoesTrigger5"
+      "script": "BreezeTown_EventScript_GiveRunningShoesTrigger5"
     },
     {
       "type": "trigger",
       "x": 21,
       "y": 7,
       "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
+      "var": "VAR_BREEZE_TOWN_STATE",
       "var_value": "3",
-      "script": "LittlerootTown_EventScript_GiveRunningShoesTrigger2"
+      "script": "BreezeTown_EventScript_GiveRunningShoesTrigger2"
     },
     {
       "type": "trigger",
       "x": 22,
       "y": 7,
       "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
+      "var": "VAR_BREEZE_TOWN_STATE",
       "var_value": "3",
-      "script": "LittlerootTown_EventScript_GiveRunningShoesTrigger3"
+      "script": "BreezeTown_EventScript_GiveRunningShoesTrigger3"
     },
     {
       "type": "trigger",
       "x": 19,
       "y": 7,
       "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
+      "var": "VAR_BREEZE_TOWN_STATE",
       "var_value": "3",
-      "script": "LittlerootTown_EventScript_GiveRunningShoesTrigger0"
+      "script": "BreezeTown_EventScript_GiveRunningShoesTrigger0"
     },
     {
       "type": "trigger",
       "x": 17,
       "y": 0,
       "elevation": 3,
-      "var": "VAR_LITTLEROOT_TOWN_STATE",
+      "var": "VAR_BREEZE_TOWN_STATE",
       "var_value": "3",
-      "script": "LittlerootTown_EventScript_GiveRunningShoesTrigger1"
+      "script": "BreezeTown_EventScript_GiveRunningShoesTrigger1"
     }
   ],
   "bg_events": [
@@ -238,7 +238,7 @@
       "y": 4,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LittlerootTown_EventScript_TownSign"
+      "script": "BreezeTown_EventScript_TownSign"
     },
     {
       "type": "sign",
@@ -246,7 +246,7 @@
       "y": 18,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LittlerootTown_EventScript_BirchsLabSign"
+      "script": "BreezeTown_EventScript_BirchsLabSign"
     },
     {
       "type": "sign",
@@ -254,7 +254,7 @@
       "y": 8,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LittlerootTown_EventScript_AkirasHouseSign"
+      "script": "BreezeTown_EventScript_AkirasHouseSign"
     },
     {
       "type": "sign",
@@ -262,7 +262,7 @@
       "y": 8,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "LittlerootTown_EventScript_MaysHouseSign"
+      "script": "BreezeTown_EventScript_MaysHouseSign"
     }
   ],
   "allow_bike": "",

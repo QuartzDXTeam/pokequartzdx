@@ -92,14 +92,14 @@
       "blockdata_filepath": "data/layouts/EverGrandeCity/map.bin"
     },
     {
-      "id": "LAYOUT_LITTLEROOT_TOWN",
-      "name": "LittlerootTown_Layout",
+      "id": "LAYOUT_BREEZE_TOWN",
+      "name": "BreezeTown_Layout",
       "width": 34,
       "height": 22,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
-      "border_filepath": "data/layouts/LittlerootTown/border.bin",
-      "blockdata_filepath": "data/layouts/LittlerootTown/map.bin"
+      "border_filepath": "data/layouts/BreezeTown/border.bin",
+      "blockdata_filepath": "data/layouts/BreezeTown/map.bin"
     },
     {
       "id": "LAYOUT_OLDALE_TOWN",
@@ -162,14 +162,14 @@
       "blockdata_filepath": "data/layouts/PacifidlogTown/map.bin"
     },
     {
-      "id": "LAYOUT_ROUTE101",
-      "name": "Route101_Layout",
+      "id": "LAYOUT_BREEZEWAY",
+      "name": "BreezeWay_Layout",
       "width": 38,
       "height": 30,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
-      "border_filepath": "data/layouts/Route101/border.bin",
-      "blockdata_filepath": "data/layouts/Route101/map.bin"
+      "border_filepath": "data/layouts/BreezeWay/border.bin",
+      "blockdata_filepath": "data/layouts/BreezeWay/map.bin"
     },
     {
       "id": "LAYOUT_ROUTE102",
@@ -532,54 +532,54 @@
       "blockdata_filepath": "data/layouts/Underwater4/map.bin"
     },
     {
-      "id": "LAYOUT_LITTLEROOT_TOWN_AKIRAS_HOUSE_1F",
-      "name": "LittlerootTown_AkirasHouse_1F_Layout",
+      "id": "LAYOUT_BREEZE_TOWN_AKIRAS_HOUSE_1F",
+      "name": "BreezeTown_AkirasHouse_1F_Layout",
       "width": 11,
       "height": 9,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_AkirasMaysHouse",
-      "border_filepath": "data/layouts/LittlerootTown_AkirasHouse_1F/border.bin",
-      "blockdata_filepath": "data/layouts/LittlerootTown_AkirasHouse_1F/map.bin"
+      "border_filepath": "data/layouts/BreezeTown_AkirasHouse_1F/border.bin",
+      "blockdata_filepath": "data/layouts/BreezeTown_AkirasHouse_1F/map.bin"
     },
     {
-      "id": "LAYOUT_LITTLEROOT_TOWN_AKIRAS_HOUSE_2F",
-      "name": "LittlerootTown_AkirasHouse_2F_Layout",
+      "id": "LAYOUT_BREEZE_TOWN_AKIRAS_HOUSE_2F",
+      "name": "BreezeTown_AkirasHouse_2F_Layout",
       "width": 9,
       "height": 8,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_AkirasMaysHouse",
-      "border_filepath": "data/layouts/LittlerootTown_AkirasHouse_2F/border.bin",
-      "blockdata_filepath": "data/layouts/LittlerootTown_AkirasHouse_2F/map.bin"
+      "border_filepath": "data/layouts/BreezeTown_AkirasHouse_2F/border.bin",
+      "blockdata_filepath": "data/layouts/BreezeTown_AkirasHouse_2F/map.bin"
     },
     {
-      "id": "LAYOUT_LITTLEROOT_TOWN_MAYS_HOUSE_1F",
-      "name": "LittlerootTown_MaysHouse_1F_Layout",
+      "id": "LAYOUT_BREEZE_TOWN_MAYS_HOUSE_1F",
+      "name": "BreezeTown_MaysHouse_1F_Layout",
       "width": 11,
       "height": 9,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_AkirasMaysHouse",
-      "border_filepath": "data/layouts/LittlerootTown_MaysHouse_1F/border.bin",
-      "blockdata_filepath": "data/layouts/LittlerootTown_MaysHouse_1F/map.bin"
+      "border_filepath": "data/layouts/BreezeTown_MaysHouse_1F/border.bin",
+      "blockdata_filepath": "data/layouts/BreezeTown_MaysHouse_1F/map.bin"
     },
     {
-      "id": "LAYOUT_LITTLEROOT_TOWN_MAYS_HOUSE_2F",
-      "name": "LittlerootTown_MaysHouse_2F_Layout",
+      "id": "LAYOUT_BREEZE_TOWN_MAYS_HOUSE_2F",
+      "name": "BreezeTown_MaysHouse_2F_Layout",
       "width": 9,
       "height": 8,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_AkirasMaysHouse",
-      "border_filepath": "data/layouts/LittlerootTown_MaysHouse_2F/border.bin",
-      "blockdata_filepath": "data/layouts/LittlerootTown_MaysHouse_2F/map.bin"
+      "border_filepath": "data/layouts/BreezeTown_MaysHouse_2F/border.bin",
+      "blockdata_filepath": "data/layouts/BreezeTown_MaysHouse_2F/map.bin"
     },
     {
-      "id": "LAYOUT_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB",
-      "name": "LittlerootTown_ProfessorBirchsLab_Layout",
+      "id": "LAYOUT_BREEZE_TOWN_PROFESSOR_BIRCHS_LAB",
+      "name": "BreezeTown_ProfessorBirchsLab_Layout",
       "width": 13,
       "height": 13,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Lab",
-      "border_filepath": "data/layouts/LittlerootTown_ProfessorBirchsLab/border.bin",
-      "blockdata_filepath": "data/layouts/LittlerootTown_ProfessorBirchsLab/map.bin"
+      "border_filepath": "data/layouts/BreezeTown_ProfessorBirchsLab/border.bin",
+      "blockdata_filepath": "data/layouts/BreezeTown_ProfessorBirchsLab/map.bin"
     },
     {
       "id": "LAYOUT_HOUSE1",
@@ -4312,14 +4312,14 @@
       "blockdata_filepath": "data/layouts/MeteorFalls_StevensCave/map.bin"
     },
     {
-      "id": "LAYOUT_LITTLEROOT_TOWN_PROFESSOR_BIRCHS_LAB_WITH_TABLE",
-      "name": "LittlerootTown_ProfessorBirchsLabWithTable_Layout",
+      "id": "LAYOUT_BREEZE_TOWN_PROFESSOR_BIRCHS_LAB_WITH_TABLE",
+      "name": "BreezeTown_ProfessorBirchsLabWithTable_Layout",
       "width": 13,
       "height": 13,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Lab",
-      "border_filepath": "data/layouts/LittlerootTown_ProfessorBirchsLabWithTable/border.bin",
-      "blockdata_filepath": "data/layouts/LittlerootTown_ProfessorBirchsLabWithTable/map.bin"
+      "border_filepath": "data/layouts/BreezeTown_ProfessorBirchsLabWithTable/border.bin",
+      "blockdata_filepath": "data/layouts/BreezeTown_ProfessorBirchsLabWithTable/map.bin"
     },
     {
       "id": "LAYOUT_SKY_PILLAR_1F_CLEAN",

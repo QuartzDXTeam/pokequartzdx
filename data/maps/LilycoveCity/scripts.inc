@@ -333,8 +333,8 @@ LilycoveCity_EventScript_DefeatedMay:: @ 81E2F3E
 	call_if_eq LilycoveCity_EventScript_MayCollectBadges
 	compare VAR_RESULT, TRUE
 	call_if_eq LilycoveCity_EventScript_MayPokemonLeague
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_PICHU_DOLL
+	clearflag FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_RIVAL_BEDROOM
+	clearflag FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_2F_PICHU_DOLL
 	goto LilycoveCity_EventScript_RivalFlyAway
 	end
 
@@ -367,8 +367,8 @@ LilycoveCity_EventScript_DefeatedAkira:: @ 81E2FAA
 	call_if_eq LilycoveCity_EventScript_AkiraCollectBadges
 	compare VAR_RESULT, TRUE
 	call_if_eq LilycoveCity_EventScript_AkiraPokemonLeague
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_AKIRAS_HOUSE_RIVAL_BEDROOM
-	clearflag FLAG_HIDE_LITTLEROOT_TOWN_AKIRAS_HOUSE_2F_SWABLU_DOLL
+	clearflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_RIVAL_BEDROOM
+	clearflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_2F_SWABLU_DOLL
 	goto LilycoveCity_EventScript_RivalFlyAway
 	end
 

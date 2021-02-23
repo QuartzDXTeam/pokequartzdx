@@ -4678,8 +4678,8 @@
           }
         },
         {
-          "map": "MAP_ROUTE101",
-          "base_label": "gRoute101",
+          "map": "MAP_BREEZEWAY",
+          "base_label": "gBreezeWay",
           "land_mons": {
             "encounter_rate": 20,
             "mons": [
