@@ -260,28 +260,26 @@ Route101_Movement_BirchApproachPlayer: @ 81EBE8D
 	step_end
 
 Route101_Text_HelpMe: @ 81EBE8F
-	.string "H-help me!$"
+	.string "¡JODEEEER!$"
 
 Route101_Text_PleaseHelp: @ 81EBE9A
-	.string "Hello! You over there!\n"
-	.string "Please! Help!\p"
-	.string "In my BAG!\n"
-	.string "There's a POKé BALL!$"
+	.string "{PLAYER}!\n"
+	.string "Thanks for coming!\p"
+	.string "Help me pliz!\n"
+	.string "Use a POKéBALL from my bag, tú!$"
 
 Route101_Text_DontLeaveMe: @ 81EBEDF
-	.string "Wh-Where are you going?!\n"
-	.string "Don't leave me like this!$"
+	.string "¡La madre que te parió!\n"
+	.string "Don't leave me alone, {PLAYER}!$"
 
 Route101_Text_YouSavedMe: @ 81EBF12
-	.string "PROF. BIRCH: Whew…\p"
-	.string "I was in the tall grass studying wild\n"
-	.string "POKéMON when I was jumped.\p"
-	.string "You saved me.\n"
-	.string "Thanks a lot!\p"
-	.string "Oh?\p"
-	.string "Hi, you're {PLAYER}{KUN}!\p"
-	.string "This is not the place to chat, so come\n"
-	.string "by my POKéMON LAB later, okay?$"
+	.string "PROF. BARO: wow! That was close!\p"
+	.string "¡Putos SEVER de los...!\p"
+	.string "Uh? Just thinking aloud, you don't\n"
+	.string " have to know what does that mean!\p"
+	.string "Hey, {PLAYER}, is better to return\n"
+	.string "to the LAB.\p"
+	.string "Sever can fight back anytime...  No?$"
 
 Route101_Text_TakeTiredPokemonToPokeCenter: @ 81EBFDD
 	.string "If POKéMON get tired, take them to\n"
@@ -296,6 +294,6 @@ Route101_Text_WildPokemonInTallGrass: @ 81EC04A
 	.string "to go into the tall grass and search.$"
 
 Route101_Text_RouteSign: @ 81EC0C8
-	.string "ROUTE 101\n"
-	.string "{UP_ARROW} OLDALE TOWN$"
+	.string "Breeze Way\n"
+	.string "{UP_ARROW} Pink Town$"
 
