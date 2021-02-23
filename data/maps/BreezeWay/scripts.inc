@@ -284,7 +284,7 @@ BreezeWay_Text_YouSavedMe: @ 81EBF12
 BreezeWay_Text_TakeTiredPokemonToPokeCenter: @ 81EBFDD
 	.string "If POKéMON get tired, take them to\n"
 	.string "a POKéMON CENTER.\p"
-	.string "There's a POKéMON CENTER in OLDALE\n"
+	.string "There's a POKéMON CENTER in PINK\n"
 	.string "TOWN right close by.$"
 
 BreezeWay_Text_WildPokemonInTallGrass: @ 81EC04A

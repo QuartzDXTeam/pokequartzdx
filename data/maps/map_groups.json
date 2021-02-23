@@ -47,14 +47,14 @@
     "SootopolisCity",
     "EverGrandeCity",
     "BreezeTown",
-    "OldaleTown",
-    "DewfordTown",
-    "LavaridgeTown",
+    "PinkTown",
+    "GoldenIsland",
+    "MaroonTown",
     "FallarborTown",
     "VerdanturfTown",
     "PacifidlogTown",
     "BreezeWay",
-    "Route102",
+    "CloudWay",
     "Route103",
     "Route104",
     "Route105",
@@ -103,28 +103,28 @@
     "BreezeTown_ProfessorBirchsLab"
   ],
   "gMapGroup2": [
-    "OldaleTown_House1",
-    "OldaleTown_House2",
-    "OldaleTown_PokemonCenter_1F",
-    "OldaleTown_PokemonCenter_2F",
-    "OldaleTown_Mart"
+    "PinkTown_House1",
+    "PinkTown_House2",
+    "PinkTown_PokemonCenter_1F",
+    "PinkTown_PokemonCenter_2F",
+    "PinkTown_Mart"
   ],
   "gMapGroup3": [
-    "DewfordTown_House1",
-    "DewfordTown_PokemonCenter_1F",
-    "DewfordTown_PokemonCenter_2F",
-    "DewfordTown_Gym",
-    "DewfordTown_Hall",
-    "DewfordTown_House2"
+    "GoldenIsland_House1",
+    "GoldenIsland_PokemonCenter_1F",
+    "GoldenIsland_PokemonCenter_2F",
+    "GoldenIsland_Gym",
+    "GoldenIsland_Hall",
+    "GoldenIsland_House2"
   ],
   "gMapGroup4": [
-    "LavaridgeTown_HerbShop",
-    "LavaridgeTown_Gym_1F",
-    "LavaridgeTown_Gym_B1F",
-    "LavaridgeTown_House",
-    "LavaridgeTown_Mart",
-    "LavaridgeTown_PokemonCenter_1F",
-    "LavaridgeTown_PokemonCenter_2F"
+    "MaroonTown_HerbShop",
+    "MaroonTown_Gym_1F",
+    "MaroonTown_Gym_B1F",
+    "MaroonTown_House",
+    "MaroonTown_Mart",
+    "MaroonTown_PokemonCenter_1F",
+    "MaroonTown_PokemonCenter_2F"
   ],
   "gMapGroup5": [
     "FallarborTown_Mart",

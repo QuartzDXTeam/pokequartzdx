@@ -10,7 +10,7 @@ BreezeTown_MapScripts:: @ 81E7DCB
 	@ 3: Received Pokedex
 	@ 4: Received Running Shoes
 
-	@ State descriptions for VAR_LITTLEROOT_INTRO_STATE
+	@ State descriptions for VAR_BREEZE_INTRO_STATE
 	@ 1: In truck male
 	@ 2: In truck female
 	@ 3: Entered house
@@ -19,15 +19,15 @@ BreezeTown_MapScripts:: @ 81E7DCB
 	@ 6: Set clock
 	@ 7: Told to go meet rival
 
-	@ State descriptions for VAR_LITTLEROOT_HOUSES_STATE_MAY
-	@                    and VAR_LITTLEROOT_HOUSES_STATE_AKIRA
+	@ State descriptions for VAR_BREEZE_HOUSES_STATE_MAY
+	@                    and VAR_BREEZE_HOUSES_STATE_AKIRA
 	@ 1: On Truck (and is corresponding gender)
 	@ 2: Met Rival's Mom (and is corresponding gender)
 	@ 3: Entered Hall of Fame
 	@ 4: Completed Lati TV / SS Ticket event
 	@ 5: Exited house after above event
 
-	@ State descriptions for VAR_LITTLEROOT_RIVAL_STATE
+	@ State descriptions for VAR_BREEZE_RIVAL_STATE
 	@ 1: Never occurs
 	@ 2: Entered Rival's bedroom
 	@ 3: Met Rival
@@ -37,18 +37,18 @@ BreezeTown_MapScripts:: @ 81E7DCB
 BreezeTown_OnTransition: @ 81E7DDB
 	setflag FLAG_VISITED_BREEZE_TOWN
 	call Common_EventScript_SetupRivalGfxId
-	compare VAR_LITTLEROOT_INTRO_STATE, 2
+	compare VAR_BREEZE_INTRO_STATE, 2
 	call_if_eq BreezeTown_EventScript_MoveMomToMaysDoor
 	call_if_unset FLAG_RESCUED_BIRCH, BreezeTown_EventScript_SetTwinPos
 	compare VAR_BREEZE_TOWN_STATE, 3
 	call_if_eq BreezeTown_EventScript_SetMomStandingInFrontOfDoorPos
-	compare VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
+	compare VAR_BREEZE_HOUSES_STATE_MAY, 4
 	call_if_eq BreezeTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
-	compare VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 4
+	compare VAR_BREEZE_HOUSES_STATE_AKIRA, 4
 	call_if_eq BreezeTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
-	compare VAR_OLDALE_RIVAL_STATE, 1
+	compare VAR_PINK_RIVAL_STATE, 1
 	call_if_eq BreezeTown_EventScript_MoveRivalFromOldale
-	compare VAR_LITTLEROOT_RIVAL_STATE, 3
+	compare VAR_BREEZE_RIVAL_STATE, 3
 	call_if_eq BreezeTown_EventScript_SetRivalLeftForRoute103
 	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1
 	call_if_eq BreezeTown_EventScript_HideMapNamePopup
@@ -69,13 +69,13 @@ BreezeTown_EventScript_SetRivalLeftForRoute103:: @ 81E7E4F
 	return
 
 BreezeTown_EventScript_MoveRivalFromOldale:: @ 81E7E53
-	setvar VAR_OLDALE_RIVAL_STATE, 2
-	setflag FLAG_HIDE_OLDALE_TOWN_RIVAL
+	setvar VAR_PINK_RIVAL_STATE, 2
+	setflag FLAG_HIDE_PINK_TOWN_RIVAL
 	return
 
 BreezeTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent:: @ 81E7E5C
-	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 5
-	setvar VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 5
+	setvar VAR_BREEZE_HOUSES_STATE_MAY, 5
+	setvar VAR_BREEZE_HOUSES_STATE_AKIRA, 5
 	return
 
 BreezeTown_EventScript_MoveMomToMaysDoor:: @ 81E7E67
@@ -113,8 +113,8 @@ BreezeTown_EventScript_SetMomInFrontOfDoorFemale:: @ 81E7EB9
 	return
 
 BreezeTown_OnFrame: @ 81E7EC1
-	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 1, BreezeTown_EventScript_StepOffTruckMale
-	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 2, BreezeTown_EventScript_StepOffTruckFemale
+	map_script_2 VAR_BREEZE_INTRO_STATE, 1, BreezeTown_EventScript_StepOffTruckMale
+	map_script_2 VAR_BREEZE_INTRO_STATE, 2, BreezeTown_EventScript_StepOffTruckFemale
 	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, BreezeTown_EventScript_BeginDexUpgradeScene
 	.2byte 0
 
@@ -166,7 +166,7 @@ BreezeTown_EventScript_GoInsideWithMom:: @ 81E7F17
 	applymovement OBJ_EVENT_ID_PLAYER, BreezeTown_Movement_PlayerEnterHouse
 	waitmovement 0
 	setflag FLAG_HIDE_BREEZE_TOWN_MOM_OUTSIDE
-	setvar VAR_LITTLEROOT_INTRO_STATE, 3
+	setvar VAR_BREEZE_INTRO_STATE, 3
 	hideobjectat OBJ_EVENT_ID_PLAYER, 0
 	closedoor VAR_0x8004, VAR_0x8005
 	waitdooranim
@@ -959,7 +959,7 @@ BreezeTown_Text_OurNewHomeLetsGoInside: @ 81E86BC
 	.string "MOM: {PLAYER}, we're here, honey!\p"
 	.string "It must be tiring riding with our things\n"
 	.string "in the moving truck.\p"
-	.string "Well, this is LITTLEROOT TOWN.\p"
+	.string "Well, this is BREEZE TOWN.\p"
 	.string "How do you like it?\n"
 	.string "This is our new home!\p"
 	.string "It has a quaint feel, but it seems to be\n"
@@ -1042,7 +1042,7 @@ BreezeTown_Text_GoodLuckCatchingPokemon: @ 81E8D07
 	.string "Good luck!$"
 
 BreezeTown_Text_TownSign: @ 81E8D32
-	.string "LITTLEROOT TOWN\n"
+	.string "BREEZE TOWN\n"
 	.string "“A town that can't be shaded any hue.”$"
 
 BreezeTown_Text_ProfBirchsLab: @ 81E8D69

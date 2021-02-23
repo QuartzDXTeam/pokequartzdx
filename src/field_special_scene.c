@@ -230,13 +230,13 @@ void Task_HandleTruckSequence(u8 taskId)
 
 void ExecuteTruckSequence(void)
 {
-    MapGridSetMetatileIdAt(11, 8, METATILE_ID(InsideOfTruck, DoorClosedFloor_Top));
+       /*  MapGridSetMetatileIdAt(11, 8, METATILE_ID(InsideOfTruck, DoorClosedFloor_Top));
     MapGridSetMetatileIdAt(11, 9, METATILE_ID(InsideOfTruck, DoorClosedFloor_Mid));
     MapGridSetMetatileIdAt(11, 10, METATILE_ID(InsideOfTruck, DoorClosedFloor_Bottom));
     DrawWholeMapView();
     ScriptContext2_Enable();
     CpuFastFill(0, gPlttBufferFaded, 0x400);
-    CreateTask(Task_HandleTruckSequence, 0xA);
+    CreateTask(Task_HandleTruckSequence, 0xA);*/
 }
 
 void EndTruckSequence(u8 taskId)

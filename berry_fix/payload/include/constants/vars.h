@@ -76,8 +76,8 @@
 #define VAR_LOTTERY_RND_H          0x404C
 
 #define VAR_BARBOACH_SIZE_RECORD   0x404F
-#define VAR_LITTLEROOT_STATE       0x4050
-#define VAR_ROUTE102_ACCESSIBLE    0x4051
+#define VAR_BREEZE_STATE       0x4050
+#define VAR_CLOUDWAY_ACCESSIBLE    0x4051
 
 #define VAR_LAVARIDGE_RIVAL_STATE  0x4053
 #define VAR_CURRENT_SECRET_BASE    0x4054
@@ -103,7 +103,7 @@
 #define VAR_ROUTE121_STATE         0x4074
 #define VAR_ROUTE128_STATE         0x407B
 
-#define VAR_LITTLEROOT_HOUSES_STATE 0x4082 // TODO: needs more investigation
+#define VAR_BREEZE_HOUSES_STATE 0x4082 // TODO: needs more investigation
 
 #define VAR_BIRCH_LAB_STATE         0x4084
 #define VAR_PETALBURG_GYM_STATE     0x4085
@@ -113,13 +113,13 @@
 #define VAR_MAP_SCENE_SIX_ISLAND_POKEMON_CENTER_1F                  0x4089 // TODO: related to decorations
 #define VAR_CONTEST_PRIZE_PICKUP    0x408A
 
-#define VAR_LITTLEROOT_HOUSES_STATE_2 0x408C // TODO: needs more investigation
-#define VAR_LITTLEROOT_RIVAL_STATE    0x408D
+#define VAR_BREEZE_HOUSES_STATE_2 0x408C // TODO: needs more investigation
+#define VAR_BREEZE_RIVAL_STATE    0x408D
 #define VAR_BOARD_BRINEY_BOAT_ROUTE104_STATE 0x408E
 #define VAR_DEVON_CORP_3F_STATE       0x408F
 #define VAR_BRINEY_HOUSE_STATE        0x4090
 
-#define VAR_LITTLEROOT_INTRO_STATE   0x4092
+#define VAR_BREEZE_INTRO_STATE   0x4092
 #define VAR_MAUVILLE_GYM_STATE       0x4093
 #define VAR_LILYCOVE_MUSEUM_2F_STATE 0x4094
 #define VAR_LILYCOVE_FAN_CLUB_STATE  0x4095
@@ -170,7 +170,7 @@
 #define VAR_FOSSIL_RESURRECTION_STATE        0x40C4
 #define VAR_WHICH_FOSSIL_REVIVED             0x40C5
 #define VAR_STEVENS_HOUSE_STATE              0x40C6
-#define VAR_OLDALE_STATE                     0x40C7
+#define VAR_PINK_STATE                     0x40C7
 
 // special vars
 // They are commonly used as parameters to commands, or return values from commands.

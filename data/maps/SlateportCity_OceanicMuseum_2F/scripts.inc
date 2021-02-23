@@ -406,7 +406,7 @@ SlateportCity_OceanicMuseum_2F_Text_HoennModel: @ 820C6C7
 	.string "“MODEL OF HOENN REGION”\p"
 	.string "It's a miniature diorama of the\n"
 	.string "HOENN region.\p"
-	.string "Where is LITTLEROOT TOWN on this?$"
+	.string "Where is BREEZE TOWN on this?$"
 
 SlateportCity_OceanicMuseum_2F_Text_DeepSeawaterDisplay: @ 820C72F
 	.string "It's a display on the flow of seawater.\p"

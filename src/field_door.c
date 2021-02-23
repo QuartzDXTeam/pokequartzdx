@@ -31,7 +31,7 @@ struct DoorAnimFrame
 
 static bool8 ShouldUseMultiCorridorDoor(void);
 
-static const u8 sDoorAnimTiles_Littleroot[] = INCBIN_U8("graphics/door_anims/littleroot.4bpp");
+static const u8 sDoorAnimTiles_Breeze[] = INCBIN_U8("graphics/door_anims/breeze.4bpp");
 static const u16 sDoorNullPalette1[16] = {};
 static const u8 sDoorAnimTiles_BirchsLab[] = INCBIN_U8("graphics/door_anims/birchs_lab.4bpp");
 static const u16 sDoorNullPalette2[16] = {};
@@ -50,7 +50,7 @@ static const u8 sDoorAnimTiles_RustboroTan[] = INCBIN_U8("graphics/door_anims/ru
 static const u16 sDoorNullPalette7[16] = {};
 static const u8 sDoorAnimTiles_RustboroGray[] = INCBIN_U8("graphics/door_anims/rustboro_gray.4bpp");
 static const u16 sDoorNullPalette8[16] = {};
-static const u8 sDoorAnimTiles_Oldale[] = INCBIN_U8("graphics/door_anims/oldale.4bpp");
+static const u8 sDoorAnimTiles_Oldale[] = INCBIN_U8("graphics/door_anims/pink.4bpp");
 static const u8 sFiller1[0x5900] = {};
 static const u8 sDoorAnimTiles_UnusedTops[] = INCBIN_U8("graphics/door_anims/unused_top.4bpp");
 static const u8 sFiller2[0x140] = {};
@@ -62,7 +62,7 @@ static const u8 sDoorAnimTiles_Verdanturf[] = INCBIN_U8("graphics/door_anims/ver
 static const u16 sDoorNullPalette13[16] = {};
 static const u8 sDoorAnimTiles_Slateport[] = INCBIN_U8("graphics/door_anims/slateport.4bpp");
 static const u16 sDoorNullPalette14[16] = {};
-static const u8 sDoorAnimTiles_Dewford[] = INCBIN_U8("graphics/door_anims/dewford.4bpp");
+static const u8 sDoorAnimTiles_Dewford[] = INCBIN_U8("graphics/door_anims/golden.4bpp");
 static const u16 sDoorNullPalette15[16] = {};
 static const u8 sDoorAnimTiles_Contest[] = INCBIN_U8("graphics/door_anims/contest.4bpp");
 static const u16 sDoorNullPalette16[16] = {};
@@ -174,7 +174,7 @@ static const u8 sDoorAnimPalettes_General[] = {1, 1, 1, 1, 1, 1, 1, 1};
 static const u8 sDoorAnimPalettes_PokeCenter[] = {1, 1, 1, 1, 1, 1, 1, 1};
 static const u8 sDoorAnimPalettes_Gym[] = {5, 5, 5, 5, 5, 5, 5, 5};
 static const u8 sDoorAnimPalettes_PokeMart[] = {0, 0, 1, 1, 1, 1, 1, 1};
-static const u8 sDoorAnimPalettes_Littleroot[] = {10, 10, 6, 6, 6, 6, 6, 6};
+static const u8 sDoorAnimPalettes_Breeze[] = {10, 10, 6, 6, 6, 6, 6, 6};
 static const u8 sDoorAnimPalettes_BirchsLab[] = {8, 8, 8, 8, 8, 8, 8, 8};
 static const u8 sDoorAnimPalettes_RustboroTan[] = {11, 11, 11, 11, 11, 11, 11, 11};
 static const u8 sDoorAnimPalettes_RustboroGray[] = {10, 10, 10, 10, 10, 10, 10, 10};
@@ -228,7 +228,7 @@ static const struct DoorGraphics sDoorAnimGraphicsTable[] =
     {METATILE_General_Door_PokeCenter,                      DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_PokeCenter, sDoorAnimPalettes_PokeCenter},
     {METATILE_General_Door_Gym,                             DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_Gym, sDoorAnimPalettes_Gym},
     {METATILE_General_Door_PokeMart,                        DOOR_SOUND_SLIDING, 1, sDoorAnimTiles_PokeMart, sDoorAnimPalettes_PokeMart},
-    {METATILE_Petalburg_Door_Littleroot,                    DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_Littleroot, sDoorAnimPalettes_Littleroot},
+    {METATILE_Petalburg_Door_Breeze,                    DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_Breeze, sDoorAnimPalettes_Breeze},
     {METATILE_Petalburg_Door_BirchsLab,                     DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_BirchsLab, sDoorAnimPalettes_BirchsLab},
     {METATILE_Rustboro_Door_Tan,                            DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_RustboroTan, sDoorAnimPalettes_RustboroTan},
     {METATILE_Rustboro_Door_Gray,                           DOOR_SOUND_NORMAL,  1, sDoorAnimTiles_RustboroGray, sDoorAnimPalettes_RustboroGray},

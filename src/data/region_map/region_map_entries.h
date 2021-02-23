@@ -2,9 +2,9 @@
 #define GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H
 
 static const u8 sMapName_BreezeTown[] = _("BREEZE TOWN");
-static const u8 sMapName_OldaleTown[] = _("PINK TOWN");
-static const u8 sMapName_DewfordTown[] = _("GOLDEN ISLAND");
-static const u8 sMapName_LavaridgeTown[] = _("MAROON TOWN");
+static const u8 sMapName_PinkTown[] = _("PINK TOWN");
+static const u8 sMapName_GoldenIsland[] = _("GOLDEN ISLAND");
+static const u8 sMapName_MaroonTown[] = _("MAROON TOWN");
 static const u8 sMapName_FallarborTown[] = _("POLKADOT TOWN");
 static const u8 sMapName_VerdanturfTown[] = _("GREENIE VILLE");
 static const u8 sMapName_PacifidlogTown[] = _("MUDDY ISLAND");
@@ -18,7 +18,7 @@ static const u8 sMapName_MossdeepCity[] = _("GREY STONE CITY");
 static const u8 sMapName_SootopolisCity[] = _("QUARTZTOWER TOWN");
 static const u8 sMapName_EverGrandeCity[] = _("OLYMPIC VILLAGE");
 static const u8 sMapName_BreezeWay[] = _("BREEZE WAY");
-static const u8 sMapName_Route102[] = _("CLOUD WAY");
+static const u8 sMapName_CloudWay[] = _("CLOUD WAY");
 static const u8 sMapName_Route103[] = _("ROCK CANAL");
 static const u8 sMapName_Route104[] = _("CLOUD BEACH");
 static const u8 sMapName_Route105[] = _("BROKE SEA");
@@ -201,9 +201,9 @@ static const u8 sMapName_TrainerHill[] = _("TRAINER HILL");
 
 const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_BREEZE_TOWN]           = { 4, 11, 1, 1, sMapName_BreezeTown},
-    [MAPSEC_OLDALE_TOWN]               = { 4,  9, 1, 1, sMapName_OldaleTown},
-    [MAPSEC_DEWFORD_TOWN]              = { 2, 14, 1, 1, sMapName_DewfordTown},
-    [MAPSEC_LAVARIDGE_TOWN]            = { 5,  3, 1, 1, sMapName_LavaridgeTown},
+    [MAPSEC_PINK_TOWN]               = { 4,  9, 1, 1, sMapName_PinkTown},
+    [MAPSEC_GOLDEN_ISLAND]              = { 2, 14, 1, 1, sMapName_GoldenIsland},
+    [MAPSEC_MAROON_TOWN]            = { 5,  3, 1, 1, sMapName_MaroonTown},
     [MAPSEC_FALLARBOR_TOWN]            = { 3,  0, 1, 1, sMapName_FallarborTown},
     [MAPSEC_VERDANTURF_TOWN]           = { 4,  6, 1, 1, sMapName_VerdanturfTown},
     [MAPSEC_PACIFIDLOG_TOWN]           = {17, 10, 1, 1, sMapName_PacifidlogTown},
@@ -217,7 +217,7 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_SOOTOPOLIS_CITY]           = {21,  7, 1, 1, sMapName_SootopolisCity},
     [MAPSEC_EVER_GRANDE_CITY]          = {27,  8, 1, 2, sMapName_EverGrandeCity},
     [MAPSEC_BREEZE_WAY]                 = { 4, 10, 1, 1, sMapName_BreezeWay},
-    [MAPSEC_ROUTE_102]                 = { 2,  9, 2, 1, sMapName_Route102},
+    [MAPSEC_CLOUD_WAY]                 = { 2,  9, 2, 1, sMapName_CloudWay},
     [MAPSEC_ROUTE_103]                 = { 4,  8, 4, 1, sMapName_Route103},
     [MAPSEC_ROUTE_104]                 = { 0,  7, 1, 3, sMapName_Route104},
     [MAPSEC_ROUTE_105]                 = { 0, 10, 1, 3, sMapName_Route105},

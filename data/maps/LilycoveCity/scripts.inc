@@ -326,7 +326,7 @@ LilycoveCity_EventScript_BattleAkiraMudkip:: @ 81E2F2E
 	end
 
 LilycoveCity_EventScript_DefeatedMay:: @ 81E2F3E
-	msgbox LilycoveCity_Text_MayGoingBackToLittleroot, MSGBOX_DEFAULT
+	msgbox LilycoveCity_Text_MayGoingBackToBreeze, MSGBOX_DEFAULT
 	setvar VAR_RESULT, FALSE
 	call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_CheckFinalBadge
 	compare VAR_RESULT, FALSE
@@ -360,7 +360,7 @@ LilycoveCity_EventScript_MayBattleFrontier:: @ 81E2FA1
 	return
 
 LilycoveCity_EventScript_DefeatedAkira:: @ 81E2FAA
-	msgbox LilycoveCity_Text_AkiraGoingBackToLittleroot, MSGBOX_DEFAULT
+	msgbox LilycoveCity_Text_AkiraGoingBackToBreeze, MSGBOX_DEFAULT
 	setvar VAR_RESULT, FALSE
 	call_if_set FLAG_BADGE06_GET, LilycoveCity_EventScript_CheckFinalBadge
 	compare VAR_RESULT, FALSE
@@ -454,9 +454,9 @@ LilycoveCity_Text_MayDefeat: @ 81E3275
 	.string "That battle helped you become this\n"
 	.string "strong, {PLAYER}{KUN}, didn't it?$"
 
-LilycoveCity_Text_MayGoingBackToLittleroot: @ 81E32FB
+LilycoveCity_Text_MayGoingBackToBreeze: @ 81E32FB
 	.string "MAY: I'm thinking of going back to\n"
-	.string "LITTLEROOT soon.\p"
+	.string "BREEZE soon.\p"
 	.string "I've caught a decent group of POKéMON,\n"
 	.string "and my POKéDEX is coming along, so\l"
 	.string "I'm going home to show my dad.$"
@@ -516,9 +516,9 @@ LilycoveCity_Text_AkiraDefeat: @ 81E3777
 	.string "That stings a bit--I had a head start\n"
 	.string "on you as a TRAINER…$"
 
-LilycoveCity_Text_AkiraGoingBackToLittleroot: @ 81E37D7
+LilycoveCity_Text_AkiraGoingBackToBreeze: @ 81E37D7
 	.string "AKIRA: I…\n"
-	.string "I plan on going home to LITTLEROOT.\p"
+	.string "I plan on going home to BREEZE.\p"
 	.string "You know I'm helping out my dad on his\n"
 	.string "POKéDEX. It's coming together pretty\l"
 	.string "decently, so I should go show him.$"

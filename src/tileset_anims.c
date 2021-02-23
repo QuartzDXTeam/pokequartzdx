@@ -149,10 +149,10 @@ const u16 *const gTilesetAnims_General_LandWaterEdge[] = {
     gTilesetAnims_General_LandWaterEdge_Frame3
 };
 
-const u16 gTilesetAnims_Lavaridge_Steam_Frame0[] = INCBIN_U16("data/tilesets/secondary/lavaridge/anim/steam/0.4bpp");
-const u16 gTilesetAnims_Lavaridge_Steam_Frame1[] = INCBIN_U16("data/tilesets/secondary/lavaridge/anim/steam/1.4bpp");
-const u16 gTilesetAnims_Lavaridge_Steam_Frame2[] = INCBIN_U16("data/tilesets/secondary/lavaridge/anim/steam/2.4bpp");
-const u16 gTilesetAnims_Lavaridge_Steam_Frame3[] = INCBIN_U16("data/tilesets/secondary/lavaridge/anim/steam/3.4bpp");
+const u16 gTilesetAnims_Lavaridge_Steam_Frame0[] = INCBIN_U16("data/tilesets/secondary/maroon/anim/steam/0.4bpp");
+const u16 gTilesetAnims_Lavaridge_Steam_Frame1[] = INCBIN_U16("data/tilesets/secondary/maroon/anim/steam/1.4bpp");
+const u16 gTilesetAnims_Lavaridge_Steam_Frame2[] = INCBIN_U16("data/tilesets/secondary/maroon/anim/steam/2.4bpp");
+const u16 gTilesetAnims_Lavaridge_Steam_Frame3[] = INCBIN_U16("data/tilesets/secondary/maroon/anim/steam/3.4bpp");
 
 const u16 *const gTilesetAnims_Lavaridge_Steam[] = {
     gTilesetAnims_Lavaridge_Steam_Frame0,
@@ -371,10 +371,10 @@ const u16 *const gTilesetAnims_EverGrande_Flowers[] = {
     gTilesetAnims_EverGrande_Flowers_Frame7
 };
 
-const u16 gTilesetAnims_Dewford_Flag_Frame0[] = INCBIN_U16("data/tilesets/secondary/dewford/anim/flag/0.4bpp");
-const u16 gTilesetAnims_Dewford_Flag_Frame1[] = INCBIN_U16("data/tilesets/secondary/dewford/anim/flag/1.4bpp");
-const u16 gTilesetAnims_Dewford_Flag_Frame2[] = INCBIN_U16("data/tilesets/secondary/dewford/anim/flag/2.4bpp");
-const u16 gTilesetAnims_Dewford_Flag_Frame3[] = INCBIN_U16("data/tilesets/secondary/dewford/anim/flag/3.4bpp");
+const u16 gTilesetAnims_Dewford_Flag_Frame0[] = INCBIN_U16("data/tilesets/secondary/golden/anim/flag/0.4bpp");
+const u16 gTilesetAnims_Dewford_Flag_Frame1[] = INCBIN_U16("data/tilesets/secondary/golden/anim/flag/1.4bpp");
+const u16 gTilesetAnims_Dewford_Flag_Frame2[] = INCBIN_U16("data/tilesets/secondary/golden/anim/flag/2.4bpp");
+const u16 gTilesetAnims_Dewford_Flag_Frame3[] = INCBIN_U16("data/tilesets/secondary/golden/anim/flag/3.4bpp");
 
 const u16 *const gTilesetAnims_Dewford_Flag[] = {
     gTilesetAnims_Dewford_Flag_Frame0,

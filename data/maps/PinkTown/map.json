@@ -1,0 +1,198 @@
+{
+  "id": "MAP_PINK_TOWN",
+  "name": "PinkTown",
+  "layout": "LAYOUT_PINK_TOWN",
+  "music": "MUS_MACHI_S4",
+  "region_map_section": "MAPSEC_PINK_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_TOWN",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "up",
+      "offset": 0,
+      "map": "MAP_ROUTE103"
+    },
+    {
+      "direction": "down",
+      "offset": 0,
+      "map": "MAP_BREEZEWAY"
+    },
+    {
+      "direction": "left",
+      "offset": 0,
+      "map": "MAP_CLOUDWAY"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_GIRL_3",
+      "x": 15,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PinkTown_EventScript_Girl",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
+      "x": 10,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PinkTown_EventScript_MartEmployee",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MANIAC",
+      "x": 1,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PinkTown_EventScript_FootprintsMan",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+      "x": 11,
+      "y": 19,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PinkTown_EventScript_Rival",
+      "flag": "FLAG_HIDE_PINK_TOWN_RIVAL"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 3,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_PINK_TOWN_HOUSE1",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 6,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_PINK_TOWN_HOUSE2",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 16,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_PINK_TOWN_POKEMON_CENTER_1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 11,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_PINK_TOWN_MART",
+      "dest_warp_id": 0
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 11,
+      "elevation": 3,
+      "var": "VAR_PINK_TOWN_STATE",
+      "var_value": "0",
+      "script": "PinkTown_EventScript_BlockedPath"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 23,
+      "elevation": 3,
+      "var": "VAR_PINK_RIVAL_STATE",
+      "var_value": "1",
+      "script": "PinkTown_EventScript_RivalTrigger1"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 23,
+      "elevation": 3,
+      "var": "VAR_PINK_RIVAL_STATE",
+      "var_value": "1",
+      "script": "PinkTown_EventScript_RivalTrigger2"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 23,
+      "elevation": 3,
+      "var": "VAR_PINK_RIVAL_STATE",
+      "var_value": "1",
+      "script": "PinkTown_EventScript_RivalTrigger3"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 15,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PinkTown_EventScript_CitySign"
+    },
+    {
+      "type": "sign",
+      "x": 18,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "Common_EventScript_ShowPokemonCenterSign"
+    },
+    {
+      "type": "sign",
+      "x": 12,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "Common_EventScript_ShowPokemartSign"
+    },
+    {
+      "type": "sign",
+      "x": 17,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "Common_EventScript_ShowPokemonCenterSign"
+    },
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 5,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "Common_EventScript_ShowPokemartSign"
+    }
+  ],
+  "allow_bike": "",
+  "allow_escape_rope": ""
+}

@@ -46,26 +46,26 @@ gTilesetPalettes_Rustboro:: @ 833BEC0
 
 	.align 2
 gTilesetTiles_Dewford:: @ 833C0C0
-	.incbin "data/tilesets/secondary/dewford/tiles.4bpp.lz"
+	.incbin "data/tilesets/secondary/golden/tiles.4bpp.lz"
 
 	.align 2
 gTilesetPalettes_Dewford:: @ 833D540
-	.incbin "data/tilesets/secondary/dewford/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/dewford/palettes/15.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/golden/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_Slateport:: @ 833D740
@@ -115,26 +115,26 @@ gTilesetPalettes_Mauville:: @ 834172C
 
 	.align 2
 gTilesetTiles_Lavaridge:: @ 834192C
-	.incbin "data/tilesets/secondary/lavaridge/tiles.4bpp.lz"
+	.incbin "data/tilesets/secondary/maroon/tiles.4bpp.lz"
 
 	.align 2
 gTilesetPalettes_Lavaridge:: @ 8342E28
-	.incbin "data/tilesets/secondary/lavaridge/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge/palettes/15.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/maroon/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_Fallarbor:: @ 8343028
@@ -1108,26 +1108,26 @@ gTilesetPalettes_RustboroGym:: @ 8374F34
 
 	.align 2
 gTilesetTiles_DewfordGym:: @ 8375134
-	.incbin "data/tilesets/secondary/dewford_gym/tiles.4bpp.lz"
+	.incbin "data/tilesets/secondary/golden_gym/tiles.4bpp.lz"
 
 	.align 2
 gTilesetPalettes_DewfordGym:: @ 8375400
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/dewford_gym/palettes/15.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/golden_gym/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_MauvilleGym:: @ 8375600
@@ -1154,26 +1154,26 @@ gTilesetPalettes_MauvilleGym:: @ 8375D84
 
 	.align 2
 gTilesetTiles_LavaridgeGym:: @ 8375F84
-	.incbin "data/tilesets/secondary/lavaridge_gym/tiles.4bpp.lz"
+	.incbin "data/tilesets/secondary/maroon_gym/tiles.4bpp.lz"
 
 	.align 2
 gTilesetPalettes_LavaridgeGym:: @ 83762AC
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/15.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/maroon_gym/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_PetalburgGym:: @ 83764AC

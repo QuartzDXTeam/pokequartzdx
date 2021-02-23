@@ -274,7 +274,7 @@
 #define SE_CURTAIN1 268         // Battle Pike Curtain Close
 #define SE_USSOKI 269           // Sudowoodo
 
-#define MUS_TETSUJI 350         // Littleroot Town Test 'TETSUJI'
+#define MUS_TETSUJI 350         // Breeze Town Test 'TETSUJI'
 #define MUS_FIELD13 351         // GSC - Route 38
 #define MUS_KACHI22 352         // Wild Pokémon Defeated
 #define MUS_KACHI2 353          // Wild Pokémon Defeated with Intro
@@ -329,7 +329,7 @@
 #define MUS_GRANROAD 402        // Route 119
 #define MUS_CYCLING 403         // Cycling
 #define MUS_FRIENDLY 404        // Pokémart
-#define MUS_MISHIRO 405         // Littleroot Town
+#define MUS_MISHIRO 405         // Breeze Town
 #define MUS_TOZAN 406           // Sky Pillar
 #define MUS_GIRLEYE 407         // Encounter! Girl
 #define MUS_MINAMO 408          // Lilycove City

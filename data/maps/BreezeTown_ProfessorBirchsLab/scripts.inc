@@ -555,8 +555,8 @@ BreezeTown_ProfessorBirchsLab_EventScript_GivePokedex:: @ 81FA2F8
 	call_if_eq BreezeTown_ProfessorBirchsLab_EventScript_AkiraGivePokeBalls
 	setvar VAR_BIRCH_LAB_STATE, 5
 	setflag FLAG_ADVENTURE_STARTED
-	setvar VAR_OLDALE_TOWN_STATE, 1
-	setvar VAR_LITTLEROOT_RIVAL_STATE, 4
+	setvar VAR_PINK_TOWN_STATE, 1
+	setvar VAR_BREEZE_RIVAL_STATE, 4
 	setvar VAR_BREEZE_TOWN_STATE, 3
 	releaseall
 	end

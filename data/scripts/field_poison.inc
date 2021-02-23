@@ -22,7 +22,7 @@ EventScript_FieldWhiteOut:: @ 82736D9
 	end
 
 EventScript_SetRespawnLavaridgePkmnCenter:: @ 82736F4
-	setrespawn HEAL_LOCATION_LAVARIDGE_TOWN
+	setrespawn HEAL_LOCATION_MAROON_TOWN
 	return
 
 EventScript_FrontierFieldWhiteOut:: @ 82736F8

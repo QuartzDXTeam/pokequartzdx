@@ -1,0 +1,172 @@
+{
+  "id": "MAP_CLOUDWAY",
+  "name": "CloudWay",
+  "layout": "LAYOUT_CLOUDWAY",
+  "music": "MUS_DOORO1",
+  "region_map_section": "MAPSEC_CLOUD_WAY",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "direction": "left",
+      "offset": -10,
+      "map": "MAP_PETALBURG_CITY"
+    },
+    {
+      "direction": "right",
+      "offset": 0,
+      "map": "MAP_PINK_TOWN"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY",
+      "x": 9,
+      "y": 17,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CloudWay_EventScript_LittleBoy",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "x": 33,
+      "y": 14,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "1",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "CloudWay_EventScript_Calvin",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
+      "x": 25,
+      "y": 15,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "1",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "CloudWay_EventScript_Rick",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_LASS",
+      "x": 6,
+      "y": 8,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "1",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "CloudWay_EventScript_Tiana",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BOY_1",
+      "x": 45,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CloudWay_EventScript_Boy",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 9,
+      "y": 19,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "CloudWay_EventScript_ItemPotion",
+      "flag": "FLAG_ITEM_CLOUD_WAY_POTION"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
+      "x": 41,
+      "y": 19,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "2",
+      "script": "BerryTreeScript",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
+      "x": 42,
+      "y": 19,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "1",
+      "script": "BerryTreeScript",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+      "x": 16,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "1",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "CloudWay_EventScript_Allen",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 0,
+      "y": 8,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CloudWay_EventScript_RouteSignPetalburg"
+    },
+    {
+      "type": "sign",
+      "x": 40,
+      "y": 13,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "CloudWay_EventScript_RouteSignOldale"
+    }
+  ],
+  "allow_bike": "",
+  "allow_escape_rope": ""
+}

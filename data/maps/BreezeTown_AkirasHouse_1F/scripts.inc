@@ -5,7 +5,7 @@ BreezeTown_AkirasHouse_1F_MapScripts:: @ 81F7755
 	.byte 0
 
 BreezeTown_AkirasHouse_1F_OnLoad: @ 81F7765
-	compare VAR_LITTLEROOT_INTRO_STATE, 6
+	compare VAR_BREEZE_INTRO_STATE, 6
 	call_if_lt BreezeTown_AkirasHouse_1F_EventScript_SetMovingBoxes
 	call_if_set FLAG_RECEIVED_RUNNING_SHOES, BreezeTown_AkirasHouse_1F_EventScript_CheckShowShoesManual
 	end
@@ -26,11 +26,11 @@ BreezeTown_AkirasHouse_1F_EventScript_ShowRunningShoesManual:: @ 81F779A
 	return
 
 BreezeTown_AkirasHouse_1F_OnTransition: @ 81F77A4
-	compare VAR_LITTLEROOT_INTRO_STATE, 3
+	compare VAR_BREEZE_INTRO_STATE, 3
 	call_if_eq BreezeTown_AkirasHouse_1F_EventScript_MoveMomToDoor
-	compare VAR_LITTLEROOT_INTRO_STATE, 5
+	compare VAR_BREEZE_INTRO_STATE, 5
 	call_if_eq BreezeTown_AkirasHouse_1F_EventScript_MoveMomToStairs
-	compare VAR_LITTLEROOT_INTRO_STATE, 6
+	compare VAR_BREEZE_INTRO_STATE, 6
 	call_if_eq BreezeTown_AkirasHouse_1F_EventScript_MoveMomToTV
 	end
 
@@ -52,11 +52,11 @@ BreezeTown_AkirasHouse_1F_EventScript_MoveMomToDoor:: @ 81F77DE
 @ Many of the below scripts have no gender check because they assume youre in the correct house
 @ The below SS Ticket script uses Mays house state by accident(?), but theyre both set identically after the intro
 BreezeTown_AkirasHouse_1F_OnFrame: @ 81F77EA
-	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 3, BreezeTown_AkirasHouse_1F_EventScript_EnterHouseMovingIn
-	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 5, BreezeTown_AkirasHouse_1F_EventScript_GoUpstairsToSetClock
-	map_script_2 VAR_LITTLEROOT_INTRO_STATE, 6, BreezeTown_AkirasHouse_1F_EventScript_PetalburgGymReport
-	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 1, BreezeTown_AkirasHouse_1F_EventScript_YoureNewNeighbor
-	map_script_2 VAR_LITTLEROOT_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
+	map_script_2 VAR_BREEZE_INTRO_STATE, 3, BreezeTown_AkirasHouse_1F_EventScript_EnterHouseMovingIn
+	map_script_2 VAR_BREEZE_INTRO_STATE, 5, BreezeTown_AkirasHouse_1F_EventScript_GoUpstairsToSetClock
+	map_script_2 VAR_BREEZE_INTRO_STATE, 6, BreezeTown_AkirasHouse_1F_EventScript_PetalburgGymReport
+	map_script_2 VAR_BREEZE_HOUSES_STATE_MAY, 1, BreezeTown_AkirasHouse_1F_EventScript_YoureNewNeighbor
+	map_script_2 VAR_BREEZE_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
 	.2byte 0
 
 BreezeTown_AkirasHouse_1F_EventScript_GoUpstairsToSetClock:: @ 81F7814
@@ -102,7 +102,7 @@ BreezeTown_AkirasHouse_1F_EventScript_YoureNewNeighbor:: @ 81F785E
 	special GetRivalSonDaughterString
 	msgbox RivalsHouse_1F_Text_OhYoureTheNewNeighbor, MSGBOX_DEFAULT
 	setflag FLAG_MET_RIVAL_MOM
-	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 2
+	setvar VAR_BREEZE_HOUSES_STATE_MAY, 2
 	releaseall
 	end
 
@@ -175,7 +175,7 @@ BreezeTown_AkirasHouse_1F_EventScript_MeetRival:: @ 81F78E2
 	setflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_2F_POKE_BALL
 	clearflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_RIVAL_BEDROOM
 	delay 30
-	setvar VAR_LITTLEROOT_RIVAL_STATE, 3
+	setvar VAR_BREEZE_RIVAL_STATE, 3
 	setvar VAR_BREEZE_TOWN_STATE, 1
 	savebgm MUS_DUMMY
 	fadedefaultbgm
