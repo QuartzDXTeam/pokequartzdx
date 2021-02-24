@@ -22,11 +22,8 @@ BreezeWay_EventScript_StartBirchRescue:: @ 81EBCDE
 	msgbox BreezeWay_Text_HelpMe, MSGBOX_DEFAULT
 	closemessage
 	setobjectxyperm 2, 0, 23
-	setobjectxyperm 4, 0, 23
+	setobjectxyperm 4, 0, 21
 	applymovement OBJ_EVENT_ID_PLAYER, BreezeWay_Movement_EnterScene
-	applymovement 4, BreezeWay_Movement_PoochyenaChaseInCircles
-	applymovement 2, BreezeWay_Movement_BirchRunInCircles
-	waitmovement 0
 	applymovement 4, BreezeWay_Movement_PoochyenaChaseInCircles
 	applymovement 2, BreezeWay_Movement_BirchRunInCircles
 	waitmovement 0
