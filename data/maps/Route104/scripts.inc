@@ -400,23 +400,23 @@ Route104_EventScript_ArriveInDewford:: @ 81ED139
 	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_PlayerExitBoat
 	waitmovement 0
 	call Common_EventScript_StopBrineysBoatMusic
-	showobjectat OBJ_EVENT_ID_PLAYER, MAP_GOLDEN_ISLAND
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN
 	applymovement OBJ_EVENT_ID_PLAYER, Route104_Movement_PlayerMoveForBriney
 	waitmovement 0
 	setobjectxyperm 2, 12, 8
 	addobject 2
-	setobjectpriority 2, MAP_GOLDEN_ISLAND, 0
-	clearflag FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND
+	setobjectpriority 2, MAP_DEWFORD_TOWN, 0
+	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
 	applymovement 2, Route104_Movement_BrineyExitBoat
 	waitmovement 0
 	addobject 4
-	clearflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
+	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	call Common_EventScript_StopBrineysBoatMusic
 	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
 	hideobjectat 7, MAP_ROUTE104
 	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
 	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_ROUTE104
-	resetobjectpriority 2, MAP_GOLDEN_ISLAND
+	resetobjectpriority 2, MAP_DEWFORD_TOWN
 	copyobjectxytoperm 2
 	setvar VAR_BOARD_BRINEY_BOAT_STATE, 0
 	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, Route104_EventScript_DeliverLetterReminder
@@ -429,7 +429,7 @@ Route104_EventScript_DeliverLetterReminder:: @ 81ED1B4
 	end
 
 Route104_EventScript_LandedInDewford:: @ 81ED1BE
-	msgbox GoldenIsland_Text_BrineyLandedInDewford, MSGBOX_DEFAULT
+	msgbox DewfordTown_Text_BrineyLandedInDewford, MSGBOX_DEFAULT
 	releaseall
 	end
 

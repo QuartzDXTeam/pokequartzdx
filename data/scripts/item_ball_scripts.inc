@@ -1,4 +1,4 @@
-CloudWay_EventScript_ItemPotion:: @ 8290CD8
+Route102_EventScript_ItemPotion:: @ 8290CD8
 	finditem ITEM_POTION
 	end
 

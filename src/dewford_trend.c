@@ -1,5 +1,5 @@
 #include "global.h"
-#include "golden_trend.h"
+#include "dewford_trend.h"
 #include "easy_chat.h"
 #include "event_data.h"
 #include "link.h"

@@ -4,7 +4,7 @@
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
-#include "golden_trend.h"
+#include "dewford_trend.h"
 #include "dynamic_placeholder_text_util.h"
 #include "easy_chat.h"
 #include "event_data.h"

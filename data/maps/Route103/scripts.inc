@@ -143,8 +143,8 @@ Route103_EventScript_RivalEnd:: @ 81EC5A2
 	setvar VAR_BIRCH_LAB_STATE, 4
 	clearflag FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_RIVAL
 	setflag FLAG_DEFEATED_RIVAL_ROUTE103
-	setvar VAR_PINK_RIVAL_STATE, 1
-	clearflag FLAG_HIDE_PINK_TOWN_RIVAL
+	setvar VAR_OLDALE_RIVAL_STATE, 1
+	clearflag FLAG_HIDE_OLDALE_TOWN_RIVAL
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	releaseall
@@ -207,39 +207,39 @@ Route103_EventScript_Daisy:: @ 81EC5F4
 	end
 
 Route103_EventScript_Amy:: @ 81EC60B
-	trainerbattle_double TRAINER_AMY_AND_LIV_1, Route103_Text_AmyIntro, Route103_Text_AmyDefeated, Route103_Text_AmyNotEnoughPokemon, CloudWay_EventScript_AmyRegisterMatchCallAfterBattle
+	trainerbattle_double TRAINER_AMY_AND_LIV_1, Route103_Text_AmyIntro, Route103_Text_AmyDefeated, Route103_Text_AmyNotEnoughPokemon, Route102_EventScript_AmyRegisterMatchCallAfterBattle
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
-	goto_if_eq CloudWay_EventScript_AmyRematch
+	goto_if_eq Route102_EventScript_AmyRematch
 	msgbox Route103_Text_AmyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-CloudWay_EventScript_AmyRegisterMatchCallAfterBattle:: @ 81EC63A
+Route102_EventScript_AmyRegisterMatchCallAfterBattle:: @ 81EC63A
 	msgbox Route103_Text_AmyLivRegister, MSGBOX_DEFAULT
 	register_matchcall TRAINER_AMY_AND_LIV_1
 	release
 	end
 
-CloudWay_EventScript_AmyRematch:: @ 81EC653
+Route102_EventScript_AmyRematch:: @ 81EC653
 	trainerbattle_rematch_double TRAINER_AMY_AND_LIV_1, Route103_Text_AmyRematchIntro, Route103_Text_AmyRematchDefeated, Route103_Text_AmyRematchNotEnoughPokemon
 	msgbox Route103_Text_AmyRematchPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route103_EventScript_Liv:: @ 81EC66E
-	trainerbattle_double TRAINER_AMY_AND_LIV_1, Route103_Text_LivIntro, Route103_Text_LivDefeated, Route103_Text_LivNotEnoughPokemon, CloudWay_EventScript_LivRegisterMatchCallAfterBattle
+	trainerbattle_double TRAINER_AMY_AND_LIV_1, Route103_Text_LivIntro, Route103_Text_LivDefeated, Route103_Text_LivNotEnoughPokemon, Route102_EventScript_LivRegisterMatchCallAfterBattle
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
-	goto_if_eq CloudWay_EventScript_LivRematch
+	goto_if_eq Route102_EventScript_LivRematch
 	msgbox Route103_Text_LivPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-CloudWay_EventScript_LivRegisterMatchCallAfterBattle:: @ 81EC69D
+Route102_EventScript_LivRegisterMatchCallAfterBattle:: @ 81EC69D
 	msgbox Route103_Text_AmyLivRegister, MSGBOX_DEFAULT
 	register_matchcall TRAINER_AMY_AND_LIV_1
 	release
 	end
 
-CloudWay_EventScript_LivRematch:: @ 81EC6B6
+Route102_EventScript_LivRematch:: @ 81EC6B6
 	trainerbattle_rematch_double TRAINER_AMY_AND_LIV_1, Route103_Text_LivRematchIntro, Route103_Text_LivRematchDefeated, Route103_Text_LivRematchNotEnoughPokemon
 	msgbox Route103_Text_LivRematchPostBattle, MSGBOX_AUTOCLOSE
 	end
@@ -250,7 +250,7 @@ Route103_EventScript_Andrew:: @ 81EC6D1
 	end
 
 Route103_EventScript_Miguel:: @ 81EC6E8
-	trainerbattle_single TRAINER_MIGUEL_1, Route103_Text_MiguelIntro, Route103_Text_MiguelDefeated, CloudWay_EventScript_MiguelRegisterMatchCallAfterBattle
+	trainerbattle_single TRAINER_MIGUEL_1, Route103_Text_MiguelIntro, Route103_Text_MiguelDefeated, Route102_EventScript_MiguelRegisterMatchCallAfterBattle
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
 	goto_if_eq Route103_EventScript_MiguelRematch
@@ -258,7 +258,7 @@ Route103_EventScript_Miguel:: @ 81EC6E8
 	release
 	end
 
-CloudWay_EventScript_MiguelRegisterMatchCallAfterBattle:: @ 81EC714
+Route102_EventScript_MiguelRegisterMatchCallAfterBattle:: @ 81EC714
 	special PlayerFaceTrainerAfterBattle
 	waitmovement 0
 	msgbox Route103_Text_MiguelRegister, MSGBOX_DEFAULT
@@ -349,10 +349,10 @@ Route103_Text_ShouldHaveBroughtPotion: @ 81ECB73
 
 Route103_Text_ShortcutToOldale: @ 81ECBB5
 	.string "If you cross the sea from here,\n"
-	.string "it'll be a shortcut to PINK TOWN.\p"
+	.string "it'll be a shortcut to OLDALE TOWN.\p"
 	.string "Fufufu, that's useful, isn't it?$"
 
 Route103_Text_RouteSign: @ 81ECC1A
 	.string "ROUTE 103\n"
-	.string "{DOWN_ARROW} PINK TOWN$"
+	.string "{DOWN_ARROW} OLDALE TOWN$"
 

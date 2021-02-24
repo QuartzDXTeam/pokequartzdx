@@ -1,5 +1,5 @@
 PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet:: @ 82926FE
-	setvar VAR_BREEZE_INTRO_STATE, 5
+	setvar VAR_LITTLEROOT_INTRO_STATE, 5
 	return
 
 PlayersHouse_1F_EventScript_EnterHouseMovingIn:: @ 8292704
@@ -12,7 +12,7 @@ PlayersHouse_1F_EventScript_EnterHouseMovingIn:: @ 8292704
 	call_if_eq PlayersHouse_1F_EventScript_MomFacePlayerMovingInFemale
 	msgbox PlayersHouse_1F_Text_MoversPokemonGoSetClock, MSGBOX_DEFAULT
 	closemessage
-	setvar VAR_BREEZE_INTRO_STATE, 4
+	setvar VAR_LITTLEROOT_INTRO_STATE, 4
 	applymovement OBJ_EVENT_ID_PLAYER, PlayersHouse_1F_Movement_PlayerWalkIn
 	applymovement VAR_0x8004, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
@@ -59,7 +59,7 @@ PlayersHouse_2F_EventScript_WallClock:: @ 8292799
 	msgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT
 	call PlayersHouse_2F_EventScript_SetWallClock
 	delay 30
-	setvar VAR_BREEZE_INTRO_STATE, 6
+	setvar VAR_LITTLEROOT_INTRO_STATE, 6
 	setflag FLAG_SET_WALL_CLOCK
 	setflag FLAG_HIDE_BREEZE_TOWN_PLAYERS_HOUSE_VIGOROTH_1
 	setflag FLAG_HIDE_BREEZE_TOWN_PLAYERS_HOUSE_VIGOROTH_2
@@ -144,7 +144,7 @@ PlayersHouse_2F_Movement_MomExitsFemale: @ 8292862
 	step_end
 
 PlayersHouse_1F_EventScript_SetWatchedBroadcast:: @ 8292866
-	setvar VAR_BREEZE_INTRO_STATE, 7
+	setvar VAR_LITTLEROOT_INTRO_STATE, 7
 	releaseall
 	end
 
@@ -305,15 +305,15 @@ PlayersHouse_1F_Movement_MomReturnToSeatFemale: @ 82929C1
 PlayersHouse_1F_EventScript_Mom:: @ 82929C5
 	lock
 	faceplayer
-	compare VAR_BREEZE_HOUSES_STATE_MAY, 4
+	compare VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
 	goto_if_eq PlayersHouse_1F_EventScript_DontPushYourselfTooHard
-	compare VAR_BREEZE_HOUSES_STATE_AKIRA, 4
+	compare VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 4
 	goto_if_eq PlayersHouse_1F_EventScript_DontPushYourselfTooHard
 	goto_if_set FLAG_HAS_MATCH_CALL, PlayersHouse_1F_EventScript_TryRegisterMom
 	goto_if_set FLAG_RESCUED_BIRCH, PlayersHouse_1F_EventScript_MomHealsParty
 	compare VAR_TEMP_1, 1
 	goto_if_eq PlayersHouse_1F_EventScript_SeeYouHoney
-	compare VAR_BREEZE_INTRO_STATE, 7
+	compare VAR_LITTLEROOT_INTRO_STATE, 7
 	goto_if_eq PlayersHouse_1F_EventScript_DidYouMeetProfBirch
 	msgbox PlayersHouse_1F_Text_IsntItNiceInHere, MSGBOX_DEFAULT
 	release
@@ -502,8 +502,8 @@ PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV:: @ 8292AF2
 	copyvar VAR_ROAMER_POKEMON, VAR_RESULT
 	msgbox PlayersHouse_1F_Text_StillUnknownPokemon, MSGBOX_DEFAULT
 	closemessage
-	setvar VAR_BREEZE_HOUSES_STATE_MAY, 4
-	setvar VAR_BREEZE_HOUSES_STATE_AKIRA, 4
+	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
+	setvar VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 4
 	releaseall
 	end
 

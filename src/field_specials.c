@@ -2029,9 +2029,9 @@ bool8 UsedPokemonCenterWarp(void)
 {
     static const u16 sPokemonCenters[] = 
     { 
-        MAP_PINK_TOWN_POKEMON_CENTER_1F, 
-        MAP_GOLDEN_ISLAND_POKEMON_CENTER_1F, 
-        MAP_MAROON_TOWN_POKEMON_CENTER_1F, 
+        MAP_OLDALE_TOWN_POKEMON_CENTER_1F, 
+        MAP_DEWFORD_TOWN_POKEMON_CENTER_1F, 
+        MAP_LAVARIDGE_TOWN_POKEMON_CENTER_1F, 
         MAP_FALLARBOR_TOWN_POKEMON_CENTER_1F, 
         MAP_VERDANTURF_TOWN_POKEMON_CENTER_1F, 
         MAP_PACIFIDLOG_TOWN_POKEMON_CENTER_1F, 
@@ -3693,8 +3693,8 @@ u32 GetMartEmployeeObjectEventId(void)
 {
     static const u8 sPokeMarts[][3] =
     {
-        { MAP_GROUP(PINK_TOWN_MART),     MAP_NUM(PINK_TOWN_MART),     1 },
-        { MAP_GROUP(MAROON_TOWN_MART),  MAP_NUM(MAROON_TOWN_MART),  1 }, 
+        { MAP_GROUP(OLDALE_TOWN_MART),     MAP_NUM(OLDALE_TOWN_MART),     1 },
+        { MAP_GROUP(LAVARIDGE_TOWN_MART),  MAP_NUM(LAVARIDGE_TOWN_MART),  1 }, 
         { MAP_GROUP(FALLARBOR_TOWN_MART),  MAP_NUM(FALLARBOR_TOWN_MART),  1 },
         { MAP_GROUP(VERDANTURF_TOWN_MART), MAP_NUM(VERDANTURF_TOWN_MART), 1 },
         { MAP_GROUP(PETALBURG_CITY_MART),  MAP_NUM(PETALBURG_CITY_MART),  1 },
@@ -3972,7 +3972,7 @@ void GetBattlePyramidHint(void)
 // Used to avoid a potential softlock if the player respawns on Dewford with no way off
 void ResetHealLocationFromDewford(void)
 {
-    if (gSaveBlock1Ptr->lastHealLocation.mapGroup == MAP_GROUP(GOLDEN_ISLAND) && gSaveBlock1Ptr->lastHealLocation.mapNum == MAP_NUM(GOLDEN_ISLAND))
+    if (gSaveBlock1Ptr->lastHealLocation.mapGroup == MAP_GROUP(DEWFORD_TOWN) && gSaveBlock1Ptr->lastHealLocation.mapNum == MAP_NUM(DEWFORD_TOWN))
     {
         SetLastHealLocationWarp(HEAL_LOCATION_PETALBURG_CITY);
     }
@@ -3982,9 +3982,9 @@ bool8 InPokemonCenter(void)
 {
     static const u16 sPokemonCenters[] =
     {
-        MAP_PINK_TOWN_POKEMON_CENTER_1F,
-        MAP_GOLDEN_ISLAND_POKEMON_CENTER_1F,
-        MAP_MAROON_TOWN_POKEMON_CENTER_1F,
+        MAP_OLDALE_TOWN_POKEMON_CENTER_1F,
+        MAP_DEWFORD_TOWN_POKEMON_CENTER_1F,
+        MAP_LAVARIDGE_TOWN_POKEMON_CENTER_1F,
         MAP_FALLARBOR_TOWN_POKEMON_CENTER_1F,
         MAP_VERDANTURF_TOWN_POKEMON_CENTER_1F,
         MAP_PACIFIDLOG_TOWN_POKEMON_CENTER_1F,

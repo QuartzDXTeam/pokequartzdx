@@ -40,24 +40,24 @@ Route109_EventScript_DoSailToDewford:: @ 81EE7D5
 	waitmovement 0
 	delay 50
 	call Common_EventScript_StopBrineysBoatMusic
-	showobjectat OBJ_EVENT_ID_PLAYER, MAP_GOLDEN_ISLAND
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN
 	applymovement OBJ_EVENT_ID_PLAYER, Route109_Movement_PlayerExitBoat
 	waitmovement 0
 	addobject 4
-	clearflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
+	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	setobjectxyperm 2, 12, 8
 	addobject 2
-	setobjectpriority 2, MAP_GOLDEN_ISLAND, 0
+	setobjectpriority 2, MAP_DEWFORD_TOWN, 0
 	applymovement 2, Route109_Movement_BrineyExitBoat
 	waitmovement 0
-	clearflag FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND
+	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	hideobjectat 1, MAP_ROUTE109
-	msgbox GoldenIsland_Text_BrineyLandedInDewford, MSGBOX_DEFAULT
+	msgbox DewfordTown_Text_BrineyLandedInDewford, MSGBOX_DEFAULT
 	closemessage
 	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
 	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_ROUTE109
-	resetobjectpriority 2, MAP_GOLDEN_ISLAND
+	resetobjectpriority 2, MAP_DEWFORD_TOWN
 	copyobjectxytoperm 2
 	release
 	end
@@ -477,7 +477,7 @@ Route109_EventScript_Elijah:: @ 81EEC06
 	msgbox Route109_Text_ElijahPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-GoldenIsland_Text_BrineyLandedInSlateportDeliverGoods: @ 81EEC1D
+DewfordTown_Text_BrineyLandedInSlateportDeliverGoods: @ 81EEC1D
 	.string "MR. BRINEY: Ahoy!\n"
 	.string "We've made land in SLATEPORT!\p"
 	.string "I suppose you're going to visit CAPT.\n"
@@ -498,7 +498,7 @@ Route109_Text_BrineyDeliverDevonGoods: @ 81EED5E
 	.string "MR. BRINEY: Then you go on and deliver\n"
 	.string "the DEVON GOODS. I'll be waiting.$"
 
-GoldenIsland_Text_BrineyLandedInSlateport: @ 81EEDA7
+DewfordTown_Text_BrineyLandedInSlateport: @ 81EEDA7
 	.string "MR. BRINEY: Ahoy! We've made land in\n"
 	.string "SLATEPORT!\p"
 	.string "You just go on and tell me whenever\n"

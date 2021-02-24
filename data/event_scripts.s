@@ -110,14 +110,14 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/SootopolisCity/scripts.inc"
 	.include "data/maps/EverGrandeCity/scripts.inc"
 	.include "data/maps/BreezeTown/scripts.inc"
-	.include "data/maps/PinkTown/scripts.inc"
-	.include "data/maps/GoldenIsland/scripts.inc"
-	.include "data/maps/MaroonTown/scripts.inc"
+	.include "data/maps/OldaleTown/scripts.inc"
+	.include "data/maps/DewfordTown/scripts.inc"
+	.include "data/maps/LavaridgeTown/scripts.inc"
 	.include "data/maps/FallarborTown/scripts.inc"
 	.include "data/maps/VerdanturfTown/scripts.inc"
 	.include "data/maps/PacifidlogTown/scripts.inc"
 	.include "data/maps/BreezeWay/scripts.inc"
-	.include "data/maps/CloudWay/scripts.inc"
+	.include "data/maps/Route102/scripts.inc"
 	.include "data/maps/Route103/scripts.inc"
 	.include "data/maps/Route104/scripts.inc"
 	.include "data/maps/Route105/scripts.inc"
@@ -162,24 +162,24 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/BreezeTown_MaysHouse_1F/scripts.inc"
 	.include "data/maps/BreezeTown_MaysHouse_2F/scripts.inc"
 	.include "data/maps/BreezeTown_ProfessorBirchsLab/scripts.inc"
-	.include "data/maps/PinkTown_House1/scripts.inc"
-	.include "data/maps/PinkTown_House2/scripts.inc"
-	.include "data/maps/PinkTown_PokemonCenter_1F/scripts.inc"
-	.include "data/maps/PinkTown_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/PinkTown_Mart/scripts.inc"
-	.include "data/maps/GoldenIsland_House1/scripts.inc"
-	.include "data/maps/GoldenIsland_PokemonCenter_1F/scripts.inc"
-	.include "data/maps/GoldenIsland_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/GoldenIsland_Gym/scripts.inc"
-	.include "data/maps/GoldenIsland_Hall/scripts.inc"
-	.include "data/maps/GoldenIsland_House2/scripts.inc"
-	.include "data/maps/MaroonTown_HerbShop/scripts.inc"
-	.include "data/maps/MaroonTown_Gym_1F/scripts.inc"
-	.include "data/maps/MaroonTown_Gym_B1F/scripts.inc"
-	.include "data/maps/MaroonTown_House/scripts.inc"
-	.include "data/maps/MaroonTown_Mart/scripts.inc"
-	.include "data/maps/MaroonTown_PokemonCenter_1F/scripts.inc"
-	.include "data/maps/MaroonTown_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/OldaleTown_House1/scripts.inc"
+	.include "data/maps/OldaleTown_House2/scripts.inc"
+	.include "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/OldaleTown_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/OldaleTown_Mart/scripts.inc"
+	.include "data/maps/DewfordTown_House1/scripts.inc"
+	.include "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/DewfordTown_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/DewfordTown_Gym/scripts.inc"
+	.include "data/maps/DewfordTown_Hall/scripts.inc"
+	.include "data/maps/DewfordTown_House2/scripts.inc"
+	.include "data/maps/LavaridgeTown_HerbShop/scripts.inc"
+	.include "data/maps/LavaridgeTown_Gym_1F/scripts.inc"
+	.include "data/maps/LavaridgeTown_Gym_B1F/scripts.inc"
+	.include "data/maps/LavaridgeTown_House/scripts.inc"
+	.include "data/maps/LavaridgeTown_Mart/scripts.inc"
+	.include "data/maps/LavaridgeTown_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/LavaridgeTown_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/FallarborTown_Mart/scripts.inc"
 	.include "data/maps/FallarborTown_BattleTentLobby/scripts.inc"
 	.include "data/maps/FallarborTown_BattleTentCorridor/scripts.inc"
@@ -590,8 +590,8 @@ EventScript_ResetMrBriney:: @ 8271862
 	end
 
 EventScript_MoveMrBrineyToHouse:: @ 8271884
-	setflag FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
+	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	clearflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
@@ -606,8 +606,8 @@ EventScript_MoveMrBrineyToDewford:: @ 827189A
 	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	clearflag FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND
-	clearflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
+	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	end
 
 EventScript_MoveMrBrineyToRoute109:: @ 82718B3
@@ -615,8 +615,8 @@ EventScript_MoveMrBrineyToRoute109:: @ 82718B3
 	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	setflag FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
+	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	end
@@ -633,7 +633,7 @@ Common_EventScript_UpdateBrineyLocation:: @ 82718DE
 	goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
 	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
 	goto_if_unset FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT, EventScript_SetBrineyLocation_House
-	goto_if_unset FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND, EventScript_SetBrineyLocation_Dewford
+	goto_if_unset FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN, EventScript_SetBrineyLocation_Dewford
 	goto_if_unset FLAG_HIDE_ROUTE_109_MR_BRINEY, EventScript_SetBrineyLocation_Route109
 	return
 
@@ -763,8 +763,8 @@ Movement_FerryDepart: @ 82721F0
 	step_end
 
 EventScript_HideMrBriney:: @ 82721F8
-	setflag FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
+	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
+	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY

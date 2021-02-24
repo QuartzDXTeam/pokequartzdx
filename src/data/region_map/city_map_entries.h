@@ -3,20 +3,20 @@ static const struct CityMapEntry sPokenavCityMaps[NUM_CITY_MAPS] =
     {
         .mapSecId = MAPSEC_BREEZE_TOWN,
         .index = 0,
-        .tilemap = gPokenavCityMap_Breeze_0,
+        .tilemap = gPokenavCityMap_Littleroot_0,
     },
     {
-        .mapSecId = MAPSEC_PINK_TOWN,
+        .mapSecId = MAPSEC_OLDALE_TOWN,
         .index = 0,
         .tilemap = gPokenavCityMap_Oldale_0,
     },
     {
-        .mapSecId = MAPSEC_GOLDEN_ISLAND,
+        .mapSecId = MAPSEC_DEWFORD_TOWN,
         .index = 0,
         .tilemap = gPokenavCityMap_Dewford_0,
     },
     {
-        .mapSecId = MAPSEC_MAROON_TOWN,
+        .mapSecId = MAPSEC_LAVARIDGE_TOWN,
         .index = 0,
         .tilemap = gPokenavCityMap_Lavarige_0,
     },

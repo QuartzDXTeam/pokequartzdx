@@ -372,7 +372,7 @@
 
 // gTileset_Petalburg
 #define METATILE_Petalburg_Door_BirchsLab   0x249
-#define METATILE_Petalburg_Door_Breeze  0x248
+#define METATILE_Petalburg_Door_Littleroot  0x248
 #define METATILE_Petalburg_Door_Oldale      0x287
 
 // gTileset_PokemonCenter

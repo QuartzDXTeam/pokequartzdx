@@ -1428,8 +1428,8 @@
           }
         },
         {
-          "map": "MAP_GOLDEN_ISLAND",
-          "base_label": "gGoldenIsland",
+          "map": "MAP_DEWFORD_TOWN",
+          "base_label": "gDewfordTown",
           "fishing_mons": {
             "encounter_rate": 10,
             "mons": [
@@ -4747,8 +4747,8 @@
           }
         },
         {
-          "map": "MAP_CLOUDWAY",
-          "base_label": "gCloudWay",
+          "map": "MAP_ROUTE102",
+          "base_label": "gRoute102",
           "fishing_mons": {
             "encounter_rate": 30,
             "mons": [

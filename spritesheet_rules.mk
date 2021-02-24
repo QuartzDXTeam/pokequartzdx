@@ -654,7 +654,7 @@ $(FLDEFFGFXDIR)/unknown_20.4bpp: %.4bpp: %.png
 $(FLDEFFGFXDIR)/unknown_29.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 1
 
-$(FLDEFFGFXDIR)/maroon_gym_warp.4bpp: %.4bpp: %.png
+$(FLDEFFGFXDIR)/lavaridge_gym_warp.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
 $(FLDEFFGFXDIR)/unknown_35.4bpp: %.4bpp: %.png

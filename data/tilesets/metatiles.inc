@@ -24,11 +24,11 @@ gMetatileAttributes_Rustboro:: @ 839A4F0
 
 	.align 1
 gMetatiles_Dewford:: @ 839A7AC
-	.incbin "data/tilesets/secondary/golden/metatiles.bin"
+	.incbin "data/tilesets/secondary/dewford/metatiles.bin"
 
 	.align 1
 gMetatileAttributes_Dewford:: @ 839BF5C
-	.incbin "data/tilesets/secondary/golden/metatile_attributes.bin"
+	.incbin "data/tilesets/secondary/dewford/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Slateport:: @ 839C252
@@ -48,11 +48,11 @@ gMetatileAttributes_Mauville:: @ 839FEBE
 
 	.align 1
 gMetatiles_Lavaridge:: @ 83A02BA
-	.incbin "data/tilesets/secondary/maroon/metatiles.bin"
+	.incbin "data/tilesets/secondary/lavaridge/metatiles.bin"
 
 	.align 1
 gMetatileAttributes_Lavaridge:: @ 83A1E4A
-	.incbin "data/tilesets/secondary/maroon/metatile_attributes.bin"
+	.incbin "data/tilesets/secondary/lavaridge/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Fallarbor:: @ 83A21BC
@@ -344,11 +344,11 @@ gMetatileAttributes_RustboroGym:: @ 83C47C6
 
 	.align 1
 gMetatiles_DewfordGym:: @ 83C4836
-	.incbin "data/tilesets/secondary/golden_gym/metatiles.bin"
+	.incbin "data/tilesets/secondary/dewford_gym/metatiles.bin"
 
 	.align 1
 gMetatileAttributes_DewfordGym:: @ 83C4C86
-	.incbin "data/tilesets/secondary/golden_gym/metatile_attributes.bin"
+	.incbin "data/tilesets/secondary/dewford_gym/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_MauvilleGym:: @ 83C4D10
@@ -360,11 +360,11 @@ gMetatileAttributes_MauvilleGym:: @ 83C5460
 
 	.align 1
 gMetatiles_LavaridgeGym:: @ 83C554A
-	.incbin "data/tilesets/secondary/maroon_gym/metatiles.bin"
+	.incbin "data/tilesets/secondary/lavaridge_gym/metatiles.bin"
 
 	.align 1
 gMetatileAttributes_LavaridgeGym:: @ 83C591A
-	.incbin "data/tilesets/secondary/maroon_gym/metatile_attributes.bin"
+	.incbin "data/tilesets/secondary/lavaridge_gym/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_PetalburgGym:: @ 83C5994

@@ -85,7 +85,7 @@ MoveTutor_EventScript_FuryCutterTaught:: @ 82C8044
 	release
 	end
 
-MaroonTown_House_EventScript_MimicTutor:: @ 82C804E
+LavaridgeTown_House_EventScript_MimicTutor:: @ 82C804E
 	lock
 	faceplayer
 	goto_if_set FLAG_MOVE_TUTOR_TAUGHT_MIMIC, MoveTutor_EventScript_MimicTaught

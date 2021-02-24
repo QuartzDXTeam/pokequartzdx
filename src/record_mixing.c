@@ -34,7 +34,7 @@
 #include "daycare.h"
 #include "international_string_util.h"
 #include "constants/battle_frontier.h"
-#include "golden_trend.h"
+#include "dewford_trend.h"
 
 
 // Static type declarations
