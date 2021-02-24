@@ -19,14 +19,14 @@
       "map": "MAP_ROUTE103"
     },
     {
-      "direction": "down",
-      "offset": 0,
-      "map": "MAP_BREEZEWAY"
-    },
-    {
       "direction": "left",
       "offset": 0,
       "map": "MAP_ROUTE102"
+    },
+    {
+      "direction": "down",
+      "offset": 0,
+      "map": "MAP_BREEZE_WAY"
     }
   ],
   "object_events": [

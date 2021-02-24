@@ -8,12 +8,12 @@ BreezeWay_OnTransition: @ 81EBCC5
 	end
 
 BreezeWay_OnFrame: @ 81EBCCB
-	map_script_2 VAR_BREEZEWAY_STATE, 0, BreezeWay_EventScript_HideMapNamePopup
+	map_script_2 VAR_BREEZE_WAY_STATE, 0, BreezeWay_EventScript_HideMapNamePopup
 	.2byte 0
 
 BreezeWay_EventScript_HideMapNamePopup:: @ 81EBCD5
 	setflag FLAG_HIDE_MAP_NAME_POPUP
-	setvar VAR_BREEZEWAY_STATE, 1
+	setvar VAR_BREEZE_WAY_STATE, 1
 	end
 
 BreezeWay_EventScript_StartBirchRescue:: @ 81EBCDE
@@ -21,11 +21,11 @@ BreezeWay_EventScript_StartBirchRescue:: @ 81EBCDE
 	playbgm MUS_EVENT0, 1
 	msgbox BreezeWay_Text_HelpMe, MSGBOX_DEFAULT
 	closemessage
-	setobjectxy 2, 0, 15
-	setobjectxy 4, 0, 16
+	setobjectxyperm 2, 0, 23
+	setobjectxyperm 4, 0, 23
 	applymovement OBJ_EVENT_ID_PLAYER, BreezeWay_Movement_EnterScene
-	applymovement 2, BreezeWay_Movement_BirchRunAway1
-	applymovement 4, BreezeWay_Movement_PoochyenaChase1
+	applymovement 4, BreezeWay_Movement_PoochyenaChaseInCircles
+	applymovement 2, BreezeWay_Movement_BirchRunInCircles
 	waitmovement 0
 	applymovement 4, BreezeWay_Movement_PoochyenaChaseInCircles
 	applymovement 2, BreezeWay_Movement_BirchRunInCircles
@@ -37,7 +37,7 @@ BreezeWay_EventScript_StartBirchRescue:: @ 81EBCDE
 	waitmovement 0
 	msgbox BreezeWay_Text_PleaseHelp, MSGBOX_DEFAULT
 	closemessage
-	setvar VAR_BREEZEWAY_STATE, 2
+	setvar VAR_BREEZE_WAY_STATE, 2
 	releaseall
 	end
 
@@ -235,7 +235,7 @@ BreezeWay_EventScript_BirchsBag:: @ 81EBE16
 	clearflag FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_BIRCH
 	setflag FLAG_HIDE_BREEZE_WAY_BIRCH_STARTERS_BAG
 	setvar VAR_BIRCH_LAB_STATE, 2
-	setvar VAR_BREEZEWAY_STATE, 3
+	setvar VAR_BREEZE_WAY_STATE, 3
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	checkplayergender
 	compare VAR_RESULT, MALE
