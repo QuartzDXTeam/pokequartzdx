@@ -205,7 +205,7 @@ BreezeWay_EventScript_Youngster:: @ 81EBDFB
 	end
 
 BreezeWay_EventScript_Boy:: @ 81EBE04
-	msgbox BreezeWay_Text_WildPokemonInTallGrass, MSGBOX_NPC
+	msgbox BreezeWay_Text_LookingForPokemon, MSGBOX_NPC
 	end
 
 BreezeWay_EventScript_RouteSign:: @ 81EBE0D
@@ -226,7 +226,7 @@ BreezeWay_EventScript_BirchsBag:: @ 81EBE16
 	waitstate
 	applymovement 2, BreezeWay_Movement_BirchApproachPlayer
 	waitmovement 0
-	msgbox BreezeWay_Text_YouSavedMe, MSGBOX_DEFAULT
+	msgbox BreezeWay_Text_PutosSeverDeLos, MSGBOX_DEFAULT
 	special HealPlayerParty
 	setflag FLAG_HIDE_BREEZE_WAY_BIRCH_ZIGZAGOON_BATTLE
 	clearflag FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_BIRCH
@@ -269,7 +269,7 @@ BreezeWay_Text_DontLeaveMe: @ 81EBEDF
 	.string "¡La madre que te parió!\n"
 	.string "Don't leave me alone, {PLAYER}!$"
 
-BreezeWay_Text_YouSavedMe: @ 81EBF12
+BreezeWay_Text_PutosSeverDeLos: @ 81EBF12
 	.string "PROF. BARO: wow! That was close!\p"
 	.string "¡Putos SEVER de los...!\p"
 	.string "Uh? Just thinking aloud, you don't\n"
@@ -279,16 +279,16 @@ BreezeWay_Text_YouSavedMe: @ 81EBF12
 	.string "Sever can fight back anytime...  No?$"
 
 BreezeWay_Text_TakeTiredPokemonToPokeCenter: @ 81EBFDD
-	.string "If POKéMON get tired, take them to\n"
-	.string "a POKéMON CENTER.\p"
-	.string "There's a POKéMON CENTER in OLDALE\n"
-	.string "TOWN right close by.$"
+	.string "Oh, my poor Pokémon looks tired!\p"
+	.string "I should take it to the Center\n"
+	.string "in Pink Town...\p"
+	.string "Just hang in there, Reabari!$"
 
-BreezeWay_Text_WildPokemonInTallGrass: @ 81EC04A
-	.string "Wild POKéMON will jump out at you in\n"
-	.string "tall grass.\p"
-	.string "If you want to catch POKéMON, you have\n"
-	.string "to go into the tall grass and search.$"
+BreezeWay_Text_LookingForPokemon: @ 81EC04A
+	.string "Hey pal, you looking for Pokémon?\n"
+	.string "Just look in the tall grass!\p"
+	.string "You might find wild Pokémon in there...\n"
+	.string "Heh, or you'll just get chased by Sever!$"
 
 BreezeWay_Text_RouteSign: @ 81EC0C8
 	.string "Breeze Way\n"

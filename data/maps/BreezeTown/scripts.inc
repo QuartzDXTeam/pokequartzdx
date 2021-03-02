@@ -1046,13 +1046,13 @@ BreezeTown_Text_TownSign: @ 81E8D32
 	.string "“A town that can't be shaded any hue.”$"
 
 BreezeTown_Text_ProfBirchsLab: @ 81E8D69
-	.string "PROF. BIRCH'S POKéMON LAB$"
+	.string "Prof. Baro's Pokémon Lab$"
 
 BreezeTown_Text_PlayersHouse: @ 81E8D83
-	.string "{PLAYER}'s HOUSE$"
+	.string "{PLAYER}'s House$"
 
 BreezeTown_Text_ProfBirchsHouse: @ 81E8D8E
-	.string "PROF. BIRCH'S HOUSE$"
+	.string "{RIVAL}'s House$"
 
 BreezeTown_Text_BirchSomethingToShowYouAtLab: @ 81E8DA2
 	.string "PROF. BIRCH: Well, well, {PLAYER}{KUN}!\n"
