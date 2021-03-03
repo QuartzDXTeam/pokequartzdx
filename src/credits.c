@@ -213,10 +213,10 @@ static const u8 sTheEnd_LetterDMap[] =
 };
 
 static const u8 gCreditsText_EmptyString[] = _("");
-static const u8 gCreditsText_PkmnEmeraldVersion[] = _("POKéMON EMERALD VERSION");
+static const u8 gCreditsText_PkmnEmeraldVersion[] = _("POKéMON QUARTZ DX");
 static const u8 gCreditsText_Credits[] = _("Credits");
-static const u8 gCreditsText_ExecutiveDirector[] = _("Executive Director");
-static const u8 gCreditsText_Director[] = _("Director");
+static const u8 gCreditsText_ThanksBaro[] = _("Original Quartz Author");
+static const u8 gCreditsText_Director[] = _("Project Lead");
 static const u8 gCreditsText_ArtDirector[] = _("Art Director");
 static const u8 gCreditsText_BattleDirector[] = _("Battle Director");
 static const u8 gCreditsText_MainProgrammer[] = _("Main Programmer");
@@ -227,7 +227,7 @@ static const u8 gCreditsText_MainGraphicDesigner[] = _("Main Graphic Designer");
 static const u8 gCreditsText_GraphicDesigners[] = _("Graphic Designers");
 static const u8 gCreditsText_PkmnDesigners[] = _("POKéMON Designers");
 static const u8 gCreditsText_MusicComposition[] = _("Music Composition");
-static const u8 gCreditsText_SoundEffectsAndPkmnVoices[] = _("Sound Effects & POKéMON Voices");
+static const u8 gCreditsText_SoundEffectsAndPkmnVoices[] = _("Sound Effects & Pokémon Voices");
 static const u8 gCreditsText_GameDesigners[] = _("Game Designers");
 static const u8 gCreditsText_ScenarioPlot[] = _("Scenario Plot");
 static const u8 gCreditsText_Scenario[] = _("Scenario");
@@ -251,10 +251,10 @@ static const u8 gCreditsText_SupportProgrammers[] = _("Support Programmers");
 static const u8 gCreditsText_Artwork[] = _("Artwork");
 static const u8 gCreditsText_LeadProgrammer[] = _("Lead Programmer");
 static const u8 gCreditsText_LeadGraphicArtist[] = _("Lead Graphic Artist");
-static const u8 gCreditsText_SatoshiTajiri[] = _("Satoshi Tajiri");
-static const u8 gCreditsText_JunichiMasuda[] = _("Junichi Masuda");
+static const u8 gCreditsText_TehBaro[] = _("Baro");
+static const u8 gCreditsText_Camerupt[] = _("Camerupt");
 static const u8 gCreditsText_KenSugimori[] = _("Ken Sugimori");
-static const u8 gCreditsText_ShigekiMorimoto[] = _("Shigeki Morimoto");
+static const u8 gCreditsText_StarGazaar[] = _("StarGazaar");
 static const u8 gCreditsText_TetsuyaWatanabe[] = _("Tetsuya Watanabe");
 static const u8 gCreditsText_HisashiSogabe[] = _("Hisashi Sogabe");
 static const u8 gCreditsText_SosukeTamada[] = _("Sosuke Tamada");
@@ -374,7 +374,7 @@ static const u8 gCreditsText_ErikJohnson[] = _("Erik Johnson");
 static const struct CreditsEntry gCreditsEntry_EmptyString[] = {0, FALSE, gCreditsText_EmptyString};
 static const struct CreditsEntry gCreditsEntry_PkmnEmeraldVersion[] = {7, TRUE, gCreditsText_PkmnEmeraldVersion};
 static const struct CreditsEntry gCreditsEntry_Credits[] = {11, TRUE, gCreditsText_Credits};
-static const struct CreditsEntry gCreditsEntry_ExecutiveDirector[] = {8, TRUE, gCreditsText_ExecutiveDirector};
+static const struct CreditsEntry gCreditsEntry_ThanksBaro[] = {8, TRUE, gCreditsText_ThanksBaro};
 static const struct CreditsEntry gCreditsEntry_Director[] = {12, TRUE, gCreditsText_Director};
 static const struct CreditsEntry gCreditsEntry_ArtDirector[] = {10, TRUE, gCreditsText_ArtDirector};
 static const struct CreditsEntry gCreditsEntry_BattleDirector[] = {10, TRUE, gCreditsText_BattleDirector};
@@ -410,10 +410,10 @@ static const struct CreditsEntry gCreditsEntry_SupportProgrammers[] = {10, TRUE,
 static const struct CreditsEntry gCreditsEntry_Artwork[] = {12, TRUE, gCreditsText_Artwork};
 static const struct CreditsEntry gCreditsEntry_LeadProgrammer[] = {10, TRUE, gCreditsText_LeadProgrammer};
 static const struct CreditsEntry gCreditsEntry_LeadGraphicArtist[] = {9, TRUE, gCreditsText_LeadGraphicArtist};
-static const struct CreditsEntry gCreditsEntry_SatoshiTajiri[] = {11, FALSE, gCreditsText_SatoshiTajiri};
-static const struct CreditsEntry gCreditsEntry_JunichiMasuda[] = {11, FALSE, gCreditsText_JunichiMasuda};
+static const struct CreditsEntry gCreditsEntry_TehBaro[] = {11, FALSE, gCreditsText_TehBaro};
+static const struct CreditsEntry gCreditsEntry_Camerupt[] = {11, FALSE, gCreditsText_Camerupt};
 static const struct CreditsEntry gCreditsEntry_KenSugimori[] = {11, FALSE, gCreditsText_KenSugimori};
-static const struct CreditsEntry gCreditsEntry_ShigekiMorimoto[] = {11, FALSE, gCreditsText_ShigekiMorimoto};
+static const struct CreditsEntry gCreditsEntry_StarGazaar[] = {11, FALSE, gCreditsText_StarGazaar};
 static const struct CreditsEntry gCreditsEntry_TetsuyaWatanabe[] = {11, FALSE, gCreditsText_TetsuyaWatanabe};
 static const struct CreditsEntry gCreditsEntry_HisashiSogabe[] = {11, FALSE, gCreditsText_HisashiSogabe};
 static const struct CreditsEntry gCreditsEntry_SosukeTamada[] = {11, FALSE, gCreditsText_SosukeTamada};
@@ -544,21 +544,21 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][5] =
     {
         _,
         gCreditsEntry_Director,
-        gCreditsEntry_ShigekiMorimoto,
-        _,
+        gCreditsEntry_StarGazaar,
+		gCreditsEntry_Camerupt,
         _,
     },
     {
         _,
         gCreditsEntry_ArtDirector,
-        gCreditsEntry_KenSugimori,
+        gCreditsEntry_StarGazaar,
         _,
         _,
     },
     {
         _,
         gCreditsEntry_WorldDirector,
-        gCreditsEntry_JunichiMasuda,
+        gCreditsEntry_Camerupt,
         _,
         _,
     },
@@ -621,7 +621,7 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][5] =
     {
         gCreditsEntry_MusicComposition,
         gCreditsEntry_GoIchinose,
-        gCreditsEntry_JunichiMasuda,
+        gCreditsEntry_Camerupt,
         gCreditsEntry_MorikazuAoki,
         gCreditsEntry_HitomiSato,
     },
@@ -634,7 +634,7 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][5] =
     },
     {
         gCreditsEntry_GameDesigners,
-        gCreditsEntry_ShigekiMorimoto,
+        gCreditsEntry_StarGazaar,
         gCreditsEntry_TeruyukiShimoyamada,
         gCreditsEntry_TakeshiKawachimaru,
         gCreditsEntry_AkihitoTomisawa,
@@ -648,7 +648,7 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][5] =
     },
     {
         gCreditsEntry_GameDesigners,
-        gCreditsEntry_JunichiMasuda,
+        gCreditsEntry_Camerupt,
         gCreditsEntry_KojiNishino,
         gCreditsEntry_ShigeruOhmori,
         gCreditsEntry_TadashiTakahashi,
@@ -656,7 +656,7 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][5] =
     {
         gCreditsEntry_ScenarioPlot,
         gCreditsEntry_AkihitoTomisawa,
-        gCreditsEntry_JunichiMasuda,
+        gCreditsEntry_Camerupt,
         gCreditsEntry_KojiNishino,
         _,
     },
@@ -691,7 +691,7 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][5] =
     {
         gCreditsEntry_ParametricDesigners,
         gCreditsEntry_TeruyukiShimoyamada,
-        gCreditsEntry_ShigekiMorimoto,
+        gCreditsEntry_StarGazaar,
         gCreditsEntry_TetsujiOhta,
         gCreditsEntry_KojiNishino,
     },
@@ -713,7 +713,7 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][5] =
         gCreditsEntry_PkmnDesigners,
         gCreditsEntry_KenSugimori,
         gCreditsEntry_MotofumiFujiwara,
-        gCreditsEntry_ShigekiMorimoto,
+        gCreditsEntry_StarGazaar,
         _,
     },
     {
@@ -914,8 +914,8 @@ static const struct CreditsEntry *const gCreditsEntryPointerTable[][5] =
     },
     {
         _,
-        gCreditsEntry_ExecutiveDirector,
-        gCreditsEntry_SatoshiTajiri,
+        gCreditsEntry_ThanksBaro,
+        gCreditsEntry_TehBaro,
         _,
         _,
     },
