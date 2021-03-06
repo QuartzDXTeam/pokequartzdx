@@ -226,7 +226,7 @@ $(TILESETGFXDIR)/secondary/unused_2/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 150
 
 $(TILESETGFXDIR)/secondary/rustboro_gym/tiles.4bpp: %.4bpp: %.png
-	$(GFX) $< $@ -num_tiles 60
+	$(GFX) $< $@ -num_tiles 128
 
 $(TILESETGFXDIR)/secondary/dewford_gym/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 61
