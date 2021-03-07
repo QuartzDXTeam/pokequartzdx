@@ -179,13 +179,15 @@ RustboroCity_Gym_Text_MarcPostBattle: @ 82135C0
 	.string "pick the ROCK type at her young age.$"
 
 RustboroCity_Gym_Text_BettiIntro: @ 821362A
-	.string "Hello, I am BETTI, the RUSTBORO\n"
-	.string "POKéMON GYM LEADER.\p"
-	.string "I became a GYM LEADER so that I might\n"
-	.string "apply what I learned at the POKéMON\l"
-	.string "TRAINER'S SCHOOL in battle.\p"
-	.string "Would you kindly demonstrate how you\n"
-	.string "battle, and with which POKéMON?$"
+	.string "...O-Oh, hey, I'm Betti!\p"
+	.string "I worked hard to hone my skills and\n"
+	.string "become the Gym Leader I am today.\p"
+	.string "You might think Bug Pokémon are ugly,\n"
+	.string "stupid, or boring...\p"
+	.string "But battling isn't all instinct,\n"
+	.string "it requires intelligence!\p"
+	.string "If you don't use your brain,\n"
+	.string "you'll never beat me!$"
 
 RustboroCity_Gym_Text_BettiDefeat: @ 821370B
 	.string "So…\n"
