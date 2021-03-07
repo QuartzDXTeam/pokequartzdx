@@ -904,10 +904,10 @@ MatchCall_PersonalizedText24:: @ 82AD34F
 MatchCall_PersonalizedText25:: @ 82AD44E
 	.string "Snivel… It's… {STR_VAR_1}…\n"
 	.string "…Sob…\p"
-	.string "ROXANNE chewed me out in class\n"
+	.string "BETTI chewed me out in class\n"
 	.string "today.\p"
 	.string "But I don't dislike her or anything.\p"
-	.string "ROXANNE tells me exactly what\n"
+	.string "BETTI tells me exactly what\n"
 	.string "I did wrong so I can learn from it.\p"
 	.string "You bet I'll be going to\n"
 	.string "the TRAINER'S SCHOOL tomorrow!\p"
@@ -915,11 +915,11 @@ MatchCall_PersonalizedText25:: @ 82AD44E
 
 MatchCall_PersonalizedText26:: @ 82AD53A
 	.string "It's {STR_VAR_1}!\p"
-	.string "ROXANNE let me battle with her\n"
+	.string "BETTI let me battle with her\n"
 	.string "yesterday.\p"
 	.string "The results…\n"
 	.string "Terrible, like you needed to ask.\p"
-	.string "But I was delighted that ROXANNE\n"
+	.string "But I was delighted that BETTI\n"
 	.string "would even let me challenge her!\p"
 	.string "You wouldn't believe how much\n"
 	.string "more I admire her!\p"
@@ -2038,8 +2038,8 @@ MatchCall_Text_Mom3:: @ 82B23F3
 	.string "Wear those RUNNING SHOES until\n"
 	.string "they fall apart, honey!$"
 
-MatchCall_Text_Roxanne1:: @ 82B2456
-	.string "ROXANNE: Oh, hello, {PLAYER}!\p"
+MatchCall_Text_Betti1:: @ 82B2456
+	.string "BETTI: Oh, hello, {PLAYER}!\p"
 	.string "I've been hard at work retraining\n"
 	.string "since we met.\p"
 	.string "I will still need some more time\n"
@@ -2047,8 +2047,8 @@ MatchCall_Text_Roxanne1:: @ 82B2456
 	.string "But when I do, please visit my GYM\n"
 	.string "for a rematch!$"
 
-MatchCall_Text_Roxanne2:: @ 82B250E
-	.string "ROXANNE: Is this {PLAYER}?\n"
+MatchCall_Text_Betti2:: @ 82B250E
+	.string "BETTI: Is this {PLAYER}?\n"
 	.string "Congratulations!\l"
 	.string "I've been hearing about you!\p"
 	.string "As for me, I need some more time\n"
@@ -2056,14 +2056,14 @@ MatchCall_Text_Roxanne2:: @ 82B250E
 	.string "But when I do, please visit my GYM\n"
 	.string "for a rematch!$"
 
-MatchCall_Text_Roxanne3:: @ 82B25C1
-	.string "ROXANNE: {PLAYER}!\n"
+MatchCall_Text_Betti3:: @ 82B25C1
+	.string "BETTI: {PLAYER}!\n"
 	.string "My GYM is ready!\p"
 	.string "Please visit RUSTBORO whenever\n"
 	.string "you can!$"
 
-MatchCall_Text_Roxanne4:: @ 82B2607
-	.string "ROXANNE: At the RUSTBORO GYM,\n"
+MatchCall_Text_Betti4:: @ 82B2607
+	.string "BETTI: At the RUSTBORO GYM,\n"
 	.string "the fact that we battled, {PLAYER},\l"
 	.string "is a matter of pride.$"
 

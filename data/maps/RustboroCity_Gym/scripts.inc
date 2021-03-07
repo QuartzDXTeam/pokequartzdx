@@ -1,17 +1,17 @@
 RustboroCity_Gym_MapScripts:: @ 8212F30
 	.byte 0
 
-RustboroCity_Gym_EventScript_Roxanne:: @ 8212F31
-	trainerbattle_single TRAINER_ROXANNE_1, RustboroCity_Gym_Text_RoxanneIntro, RustboroCity_Gym_Text_RoxanneDefeat, RustboroCity_Gym_EventScript_RoxanneDefeated, NO_MUSIC
+RustboroCity_Gym_EventScript_Betti:: @ 8212F31
+	trainerbattle_single TRAINER_BETTI_1, RustboroCity_Gym_Text_BettiIntro, RustboroCity_Gym_Text_BettiDefeat, RustboroCity_Gym_EventScript_BettiDefeated, NO_MUSIC
 	specialvar VAR_RESULT, ShouldTryRematchBattle
 	compare VAR_RESULT, TRUE
-	goto_if_eq RustboroCity_Gym_EventScript_RoxanneRematch
+	goto_if_eq RustboroCity_Gym_EventScript_BettiRematch
 	goto_if_unset FLAG_RECEIVED_TM39, RustboroCity_Gym_EventScript_GiveRockTomb
-	msgbox RustboroCity_Gym_Text_RoxannePostBattle, MSGBOX_DEFAULT
+	msgbox RustboroCity_Gym_Text_BettiPostBattle, MSGBOX_DEFAULT
 	release
 	end
 
-RustboroCity_Gym_EventScript_RoxanneDefeated:: @ 8212F66
+RustboroCity_Gym_EventScript_BettiDefeated:: @ 8212F66
 	message RustboroCity_Gym_Text_ReceivedStoneBadge
 	waitmessage
 	call Common_EventScript_PlayGymBadgeFanfare
@@ -36,9 +36,9 @@ RustboroCity_Gym_EventScript_GiveRockTomb:: @ 8212FA4
 	release
 	end
 
-RustboroCity_Gym_EventScript_RoxanneRematch:: @ 8212FC8
-	trainerbattle_rematch_double TRAINER_ROXANNE_1, RustboroCity_Gym_Text_RoxannePreRematch, RustboroCity_Gym_Text_RoxanneRematchDefeat, RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons
-	msgbox RustboroCity_Gym_Text_RoxannePostRematch, MSGBOX_AUTOCLOSE
+RustboroCity_Gym_EventScript_BettiRematch:: @ 8212FC8
+	trainerbattle_rematch_double TRAINER_BETTI_1, RustboroCity_Gym_Text_BettiPreRematch, RustboroCity_Gym_Text_BettiRematchDefeat, RustboroCity_Gym_Text_BettiRematchNeedTwoMons
+	msgbox RustboroCity_Gym_Text_BettiPostRematch, MSGBOX_AUTOCLOSE
 	end
 
 RustboroCity_Gym_EventScript_Josh:: @ 8212FE3
@@ -91,18 +91,18 @@ RustboroCity_Gym_EventScript_GymStatue:: @ 8213071
 	releaseall
 	end
 
-RustboroCity_Gym_EventScript_RegisterRoxanne:: @ 821307B
+RustboroCity_Gym_EventScript_RegisterBetti:: @ 821307B
 	lockall
-	pokenavcall RustboroCity_Gym_Text_RoxanneRegisterCall
+	pokenavcall RustboroCity_Gym_Text_BettiRegisterCall
 	waitmessage
 	delay 30
 	playfanfare MUS_ME_TORE_EYE
-	msgbox RustboroCity_Gym_Text_RegisteredRoxanne, MSGBOX_DEFAULT
+	msgbox RustboroCity_Gym_Text_RegisteredBetti, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
 	delay 30
-	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
-	clearflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+	setflag FLAG_ENABLE_BETTI_MATCH_CALL
+	clearflag FLAG_ENABLE_BETTI_FIRST_CALL
 	releaseall
 	end
 
@@ -119,7 +119,7 @@ RustboroCity_Gym_Text_GymGuideAdvice: @ 821309D
 	.string "But GYM LEADERS aren't pushovers!\p"
 	.string "And that's where I come in!\n"
 	.string "I'm here to provide expert advice!\p"
-	.string "ROXANNE, the GYM LEADER, is a user\n"
+	.string "BETTI, the GYM LEADER, is a user\n"
 	.string "of ROCK-type POKéMON.\p"
 	.string "The ROCK type is very durable, but\n"
 	.string "it can't stand WATER-type and\l"
@@ -153,13 +153,13 @@ RustboroCity_Gym_Text_JoshPostBattle: @ 8213447
 
 RustboroCity_Gym_Text_TommyIntro: @ 8213486
 	.string "If you can't beat me, you won't stand\n"
-	.string "a chance against ROXANNE!$"
+	.string "a chance against BETTI!$"
 
 RustboroCity_Gym_Text_TommyDefeat: @ 82134C6
 	.string "Wow! You've got some potential!$"
 
 RustboroCity_Gym_Text_TommyPostBattle: @ 82134E6
-	.string "ROXANNE is stronger than me by\n"
+	.string "BETTI is stronger than me by\n"
 	.string "several times.\p"
 	.string "You'd better be on your guard!$"
 
@@ -178,8 +178,8 @@ RustboroCity_Gym_Text_MarcPostBattle: @ 82135C0
 	.string "It took smarts and sense for her to\n"
 	.string "pick the ROCK type at her young age.$"
 
-RustboroCity_Gym_Text_RoxanneIntro: @ 821362A
-	.string "Hello, I am ROXANNE, the RUSTBORO\n"
+RustboroCity_Gym_Text_BettiIntro: @ 821362A
+	.string "Hello, I am BETTI, the RUSTBORO\n"
 	.string "POKéMON GYM LEADER.\p"
 	.string "I became a GYM LEADER so that I might\n"
 	.string "apply what I learned at the POKéMON\l"
@@ -187,7 +187,7 @@ RustboroCity_Gym_Text_RoxanneIntro: @ 821362A
 	.string "Would you kindly demonstrate how you\n"
 	.string "battle, and with which POKéMON?$"
 
-RustboroCity_Gym_Text_RoxanneDefeat: @ 821370B
+RustboroCity_Gym_Text_BettiDefeat: @ 821370B
 	.string "So…\n"
 	.string "I lost…\p"
 	.string "It seems that I still have much more\n"
@@ -201,7 +201,7 @@ RustboroCity_Gym_Text_RoxanneDefeat: @ 821370B
 
 RustboroCity_Gym_Text_ReceivedStoneBadge: @ 82137EC
 	.string "{PLAYER} received the STONE BADGE\n"
-	.string "from ROXANNE.$"
+	.string "from BETTI.$"
 
 RustboroCity_Gym_Text_StoneBadgeInfoTakeThis: @ 8213816
 	.string "The STONE BADGE heightens the ATTACK\n"
@@ -220,7 +220,7 @@ RustboroCity_Gym_Text_ExplainRockTomb: @ 82138B1
 	.string "Remember, a TM can be used only once,\n"
 	.string "so think before you use it.$"
 
-RustboroCity_Gym_Text_RoxannePostBattle: @ 82139A7
+RustboroCity_Gym_Text_BettiPostBattle: @ 82139A7
 	.string "Since you are so strong, you should\n"
 	.string "challenge other GYM LEADERS.\p"
 	.string "By battling many TRAINERS, you should\n"
@@ -231,14 +231,14 @@ RustboroCity_Gym_Text_GymStatue: @ 8213A21
 
 RustboroCity_Gym_Text_GymStatueCertified: @ 8213A3B
 	.string "RUSTBORO CITY POKéMON GYM\p"
-	.string "ROXANNE'S CERTIFIED TRAINERS:\n"
+	.string "BETTI'S CERTIFIED TRAINERS:\n"
 	.string "{PLAYER}$"
 
-RustboroCity_Gym_Text_RoxanneRegisterCall: @ 8213A76
+RustboroCity_Gym_Text_BettiRegisterCall: @ 8213A76
 	.string "… … … … … …\n"
 	.string "… … … … … Beep!\p"
-	.string "ROXANNE: Oh, hello, {PLAYER}?\n"
-	.string "This is ROXANNE of RUSTBORO CITY.\p"
+	.string "BETTI: Oh, hello, {PLAYER}?\n"
+	.string "This is BETTI of RUSTBORO CITY.\p"
 	.string "I heard from BRAWLY that you're\n"
 	.string "moving up through the ranks of\l"
 	.string "TRAINERS at an incredible clip.\p"
@@ -251,31 +251,31 @@ RustboroCity_Gym_Text_RoxanneRegisterCall: @ 8213A76
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
 
-RustboroCity_Gym_Text_RegisteredRoxanne: @ 8213C01
-	.string "Registered GYM LEADER ROXANNE\n"
+RustboroCity_Gym_Text_RegisteredBetti: @ 8213C01
+	.string "Registered GYM LEADER BETTI\n"
 	.string "in the POKéNAV.$"
 
-RustboroCity_Gym_Text_RoxannePreRematch: @ 8213C2F
-	.string "ROXANNE: I'm so glad to see you again.\n"
-	.string "I'm ROXANNE, the GYM LEADER here.\p"
+RustboroCity_Gym_Text_BettiPreRematch: @ 8213C2F
+	.string "BETTI: I'm so glad to see you again.\n"
+	.string "I'm BETTI, the GYM LEADER here.\p"
 	.string "I'm sure we've both experienced many\n"
 	.string "battles since we last met.\p"
 	.string "I would like to see how much better\n"
 	.string "we've become. Let us battle!$"
 
-RustboroCity_Gym_Text_RoxanneRematchDefeat: @ 8213CF9
+RustboroCity_Gym_Text_BettiRematchDefeat: @ 8213CF9
 	.string "Grr…\n"
 	.string "Again, I have lost…$"
 
-RustboroCity_Gym_Text_RoxannePostRematch: @ 8213D12
-	.string "ROXANNE: I still have much to learn\n"
+RustboroCity_Gym_Text_BettiPostRematch: @ 8213D12
+	.string "BETTI: I still have much to learn\n"
 	.string "when it comes to battling POKéMON.\p"
 	.string "That awareness makes me love battling\n"
 	.string "all that much more!$"
 
-RustboroCity_Gym_Text_RoxanneRematchNeedTwoMons: @ 8213D93
-	.string "ROXANNE: I'm so glad to see you again.\n"
-	.string "I'm ROXANNE, the GYM LEADER here.\p"
+RustboroCity_Gym_Text_BettiRematchNeedTwoMons: @ 8213D93
+	.string "BETTI: I'm so glad to see you again.\n"
+	.string "I'm BETTI, the GYM LEADER here.\p"
 	.string "I'm sure we've both experienced many\n"
 	.string "battles since we last met.\p"
 	.string "I would like to see how much better\n"

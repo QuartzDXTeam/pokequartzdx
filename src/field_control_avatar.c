@@ -583,9 +583,9 @@ static bool8 TryStartStepCountScript(u16 metatileBehavior)
             ScriptContext1_SetupScript(BreezeTown_ProfessorBirchsLab_EventScript_ScottAboardSSTidalCall);
             return TRUE;
         }
-        if (ShouldDoRoxanneCall() == TRUE)
+        if (ShouldDoBettiCall() == TRUE)
         {
-            ScriptContext1_SetupScript(RustboroCity_Gym_EventScript_RegisterRoxanne);
+            ScriptContext1_SetupScript(RustboroCity_Gym_EventScript_RegisterBetti);
             return TRUE;
         }
         if (ShouldDoRivalRayquazaCall() == TRUE)

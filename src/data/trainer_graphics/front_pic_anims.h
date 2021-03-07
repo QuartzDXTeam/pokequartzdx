@@ -158,7 +158,7 @@ static const union AnimCmd *const sAnims_EliteFourDrake[] ={
     sAnim_GeneralFrame0,
 };
 
-static const union AnimCmd *const sAnims_LeaderRoxanne[] ={
+static const union AnimCmd *const sAnims_LeaderBetti[] ={
     sAnim_GeneralFrame0,
 };
 
@@ -412,7 +412,7 @@ const union AnimCmd *const *const gTrainerFrontAnimsPtrTable[] =
     [TRAINER_PIC_ELITE_FOUR_PHOEBE] = sAnims_EliteFourPhoebe,
     [TRAINER_PIC_ELITE_FOUR_GLACIA] = sAnims_EliteFourGlacia,
     [TRAINER_PIC_ELITE_FOUR_DRAKE] = sAnims_EliteFourDrake,
-    [TRAINER_PIC_LEADER_ROXANNE] = sAnims_LeaderRoxanne,
+    [TRAINER_PIC_LEADER_BETTI] = sAnims_LeaderBetti,
     [TRAINER_PIC_LEADER_BRAWLY] = sAnims_LeaderBrawly,
     [TRAINER_PIC_LEADER_WATTSON] = sAnims_LeaderWattson,
     [TRAINER_PIC_LEADER_FLANNERY] = sAnims_LeaderFlannery,

@@ -2229,7 +2229,7 @@ Route116_Text_JerryDefeat: @ 829BD66
 Route116_Text_JerryPostBattle: @ 829BD92
 	.string "I'll have to redo some courses at\n"
 	.string "the TRAINER'S SCHOOL.\l"
-	.string "If I don't, ROXANNE will be steamed.$"
+	.string "If I don't, BETTI will be steamed.$"
 
 Route116_Text_JerryRegister1: @ 829BDEF
 	.string "I learned at the TRAINER'S SCHOOL\n"
@@ -2255,7 +2255,7 @@ Route116_Text_JerryRematchDefeat: @ 829BF4C
 Route116_Text_JerryPostRematch: @ 829BF68
 	.string "I'll have to redo some courses at\n"
 	.string "the TRAINER'S SCHOOL.\l"
-	.string "If I don't, ROXANNE will be steamed.$"
+	.string "If I don't, BETTI will be steamed.$"
 
 Route116_Text_KarenIntro: @ 829BFC5
 	.string "I study at school, and I study on\n"
@@ -2266,7 +2266,7 @@ Route116_Text_KarenDefeat: @ 829BFFA
 
 Route116_Text_KarenPostBattle: @ 829C010
 	.string "Awww, I'll never become an elegant\n"
-	.string "TRAINER like ROXANNE this way!$"
+	.string "TRAINER like BETTI this way!$"
 
 Route116_Text_KarenRegister1: @ 829C052
 	.string "Oh, wow! Isn't that a POKéNAV?\n"
@@ -2285,7 +2285,7 @@ Route116_Text_KarenRematchDefeat: @ 829C11F
 	.string "I lost again?$"
 
 Route116_Text_KarenPostRematch: @ 829C13B
-	.string "You've beaten ROXANNE?\n"
+	.string "You've beaten BETTI?\n"
 	.string "I can't beat you, then. Not yet.$"
 
 Route116_Text_SarahIntro: @ 829C173
