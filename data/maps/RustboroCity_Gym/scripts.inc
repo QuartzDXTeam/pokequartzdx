@@ -41,19 +41,19 @@ RustboroCity_Gym_EventScript_BettiRematch:: @ 8212FC8
 	msgbox RustboroCity_Gym_Text_BettiPostRematch, MSGBOX_AUTOCLOSE
 	end
 
-RustboroCity_Gym_EventScript_Josh:: @ 8212FE3
-	trainerbattle_single TRAINER_JOSH, RustboroCity_Gym_Text_JoshIntro, RustboroCity_Gym_Text_JoshDefeat
-	msgbox RustboroCity_Gym_Text_JoshPostBattle, MSGBOX_AUTOCLOSE
+RustboroCity_Gym_EventScript_Jacobo:: @ 8212FE3
+	trainerbattle_single TRAINER_JACOBO, RustboroCity_Gym_Text_JacoboIntro, RustboroCity_Gym_Text_JacoboDefeat
+	msgbox RustboroCity_Gym_Text_JacoboPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-RustboroCity_Gym_EventScript_Tommy:: @ 8212FFA
-	trainerbattle_single TRAINER_TOMMY, RustboroCity_Gym_Text_TommyIntro, RustboroCity_Gym_Text_TommyDefeat
-	msgbox RustboroCity_Gym_Text_TommyPostBattle, MSGBOX_AUTOCLOSE
+RustboroCity_Gym_EventScript_Mikey:: @ 8212FFA
+	trainerbattle_single TRAINER_MIKEY, RustboroCity_Gym_Text_MikeyIntro, RustboroCity_Gym_Text_MikeyDefeat
+	msgbox RustboroCity_Gym_Text_MikeyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
-RustboroCity_Gym_EventScript_Marc:: @ 8213011
-	trainerbattle_single TRAINER_MARC, RustboroCity_Gym_Text_MarcIntro, RustboroCity_Gym_Text_MarcDefeat
-	msgbox RustboroCity_Gym_Text_MarcPostBattle, MSGBOX_AUTOCLOSE
+RustboroCity_Gym_EventScript_Anacleto:: @ 8213011
+	trainerbattle_single TRAINER_ANACLETO, RustboroCity_Gym_Text_AnacletoIntro, RustboroCity_Gym_Text_AnacletoDefeat
+	msgbox RustboroCity_Gym_Text_AnacletoPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 RustboroCity_Gym_EventScript_GymGuide:: @ 8213028
@@ -107,132 +107,127 @@ RustboroCity_Gym_EventScript_RegisterBetti:: @ 821307B
 	end
 
 RustboroCity_Gym_Text_GymGuideAdvice: @ 821309D
-	.string "Yo, how's it going?\p"
-	.string "Listen, my friend!\n"
-	.string "Would you like to become the CHAMPION?\p"
-	.string "I'm no TRAINER, not me, but I can\n"
-	.string "sure give you winning advice.\p"
-	.string "That's settled, then! We'll aim for the\n"
-	.string "POKéMON CHAMPIONSHIP together!\p"
-	.string "It's your job as a TRAINER to collect\n"
-	.string "GYM BADGES, am I right?\p"
-	.string "But GYM LEADERS aren't pushovers!\p"
-	.string "And that's where I come in!\n"
-	.string "I'm here to provide expert advice!\p"
-	.string "BETTI, the GYM LEADER, is a user\n"
-	.string "of ROCK-type POKéMON.\p"
-	.string "The ROCK type is very durable, but\n"
-	.string "it can't stand WATER-type and\l"
-	.string "GRASS-type moves.\p"
-	.string "Come see me afterwards, if you beat\n"
-	.string "the GYM LEADER.\p"
-	.string "Well, go for it!$"
+	.string "Hey pal, what's your name?\l"
+	.string "{PLAYER}? Great! This is your lucky day!\p"
+	.string "I'm the Gym Advisor, and I'll help ya\n"
+	.string "with the Gym Leaders!\p"
+	.string "Oh, but of course it'll just be advice!\p"
+	.string "But don't you worry any, pal,\n"
+	.string "those tough Gym Leaders are nothing\l"
+	.string "if you follow my advice!\p"
+	.string "See this gym? It looks an awful lot\n"
+	.string "like a beehive, don't it?\p"
+	.string "Gym Leaders in Corna like decorating\n"
+	.string "their gyms to match the type they\l"
+	.string "specialize in, so this gym is...?\p"
+	.string "Exactly! A Bug Type gym!\p"
+	.string "Bug Pokémon are weak against Fire\n"
+	.string "and Flying Pokémon, and they're\l"
+	.string "strong against Grass.\p"
+	.string "So, go for it!$"
 
 RustboroCity_Gym_Text_GymGuidePostVictory: @ 82132E2
-	.string "Whoa! What a breathtaking victory!\n"
-	.string "My cheering must've worked!\p"
-	.string "Great!\n"
-	.string "Check your TRAINER CARD.\p"
-	.string "The STONE BADGE you got should be\n"
-	.string "properly recorded on it.\p"
-	.string "In other words…\p"
-	.string "You've climbed the first step on\n"
-	.string "the stairs to the CHAMPIONSHIP!\p"
-	.string "That's got to feel awesome!$"
+	.string "What an incredible victory!\n"
+	.string "Incredible, but not unbelievable!\p"
+	.string "Check your Trainer Card, you might\n"
+	.string "see the Cocoon Badge there!\p"
+	.string "Oh, I'm so proud you beat Betti using\n"
+	.string "my advice... Hey, how about I help you\l"
+	.string "in other gyms, too?\p"
+	.string "We're a team, eh {PLAYER}?$"
+	
+RustboroCity_Gym_Text_JacoboIntro: @ 82133E9
+	.string "Bug Pokémon may look weak, but\n"
+	.string "They're actually real tricksters!$"
 
-RustboroCity_Gym_Text_JoshIntro: @ 82133E9
-	.string "Don't take us GYM TRAINERS lightly!\n"
-	.string "I'll show you why we're better!$"
+RustboroCity_Gym_Text_JacoboDefeat: @ 821342D
+	.string "So you don't like bugs then?$"
 
-RustboroCity_Gym_Text_JoshDefeat: @ 821342D
-	.string "You were too good for me…$"
+RustboroCity_Gym_Text_JacoboPostBattle: @ 8213447
+	.string "Can you keep a secret?\p"
+	.string "I joined this Gym because I heard\n"
+	.string "there was a girl who liked bugs.$"
 
-RustboroCity_Gym_Text_JoshPostBattle: @ 8213447
-	.string "You haven't seen anything of the ROCK\n"
-	.string "type's terrifying power!$"
+RustboroCity_Gym_Text_MikeyIntro: @ 8213486
+	.string "You think these Pokémon are fresh caught?\n"
+	.string "Better think again!$"
 
-RustboroCity_Gym_Text_TommyIntro: @ 8213486
-	.string "If you can't beat me, you won't stand\n"
-	.string "a chance against BETTI!$"
+RustboroCity_Gym_Text_MikeyDefeat: @ 82134C6
+	.string "No! My Bug Pokémon!$"
 
-RustboroCity_Gym_Text_TommyDefeat: @ 82134C6
-	.string "Wow! You've got some potential!$"
+RustboroCity_Gym_Text_MikeyPostBattle: @ 82134E6
+	.string "It's dumb to head into battle with\n"
+	.string "Pokémon you've never used before.\p"
+	.string "The strongest Pokémon are the ones\n"
+	.string "you've truly bonded with!$"
 
-RustboroCity_Gym_Text_TommyPostBattle: @ 82134E6
-	.string "BETTI is stronger than me by\n"
-	.string "several times.\p"
-	.string "You'd better be on your guard!$"
+RustboroCity_Gym_Text_AnacletoIntro: @ 8213533
+	.string "Kehehehehe!\n"
+	.string "You'll never defeat my SUPER WORM!\p"
+	.string "Bring it!!$"
 
-RustboroCity_Gym_Text_MarcIntro: @ 8213533
-	.string "We might be in the middle of town,\n"
-	.string "but so what?\p"
-	.string "My ROCK POKéMON need room to\n"
-	.string "rampage!$"
+RustboroCity_Gym_Text_AnacletoDefeat: @ 8213589
+	.string "You ugly worm! Get out!$"
 
-RustboroCity_Gym_Text_MarcDefeat: @ 8213589
-	.string "Oh, man oh man!\n"
-	.string "Our challenger is one feisty customer!$"
-
-RustboroCity_Gym_Text_MarcPostBattle: @ 82135C0
-	.string "I have to hand it to our LEADER.\p"
-	.string "It took smarts and sense for her to\n"
-	.string "pick the ROCK type at her young age.$"
+RustboroCity_Gym_Text_AnacletoPostBattle: @ 82135C0
+	.string "Feh! Oh, sure, you could beat me…\p"
+	.string "But Betti is better than anyone else!$"
 
 RustboroCity_Gym_Text_BettiIntro: @ 821362A
-	.string "...O-Oh, hey, I'm Betti!\p"
+	.string "Betti: …O-Oh, hey, I'm Betti!\p"
 	.string "I worked hard to hone my skills and\n"
 	.string "become the Gym Leader I am today.\p"
 	.string "You might think Bug Pokémon are ugly,\n"
-	.string "stupid, or boring...\p"
+	.string "stupid, or boring…\p"
 	.string "But battling isn't all instinct,\n"
 	.string "it requires intelligence!\p"
 	.string "If you don't use your brain,\n"
 	.string "you'll never beat me!$"
 
 RustboroCity_Gym_Text_BettiDefeat: @ 821370B
-	.string "So…\n"
-	.string "I lost…\p"
-	.string "It seems that I still have much more\n"
-	.string "to learn…\p"
-	.string "I understand.\p"
-	.string "The POKéMON LEAGUE's rules state\n"
-	.string "that TRAINERS are to be given this\l"
-	.string "if they defeat a GYM LEADER.\p"
-	.string "Please accept the official POKéMON\n"
-	.string "LEAGUE STONE BADGE.$"
+	.string "Well, you demonstrated your smarts,\n"
+	.string "and your instincts to boot!\p"
+	.string "You really are a great trainer!\p"
+	.string "Well, the Corna Pokémon League\n"
+	.string "rules say I have to give you a\l"
+	.string "Badge for defeating me...\p"
+	.string "so, this is your prize!\n"
+	.string "Take the Cocoon Badge!$"
 
 RustboroCity_Gym_Text_ReceivedStoneBadge: @ 82137EC
-	.string "{PLAYER} received the STONE BADGE\n"
-	.string "from BETTI.$"
+	.string "{PLAYER} received the Cocoon Badge\n"
+	.string "from Betti.$"
 
 RustboroCity_Gym_Text_StoneBadgeInfoTakeThis: @ 8213816
-	.string "The STONE BADGE heightens the ATTACK\n"
-	.string "power of your POKéMON.\p"
-	.string "It also enables them to use the HM move\n"
-	.string "CUT outside of battle.\p"
-	.string "Please take this with you, too.$"
+	.string "The Cocoon Badge helps your Pokémon\n"
+	.string "come out of their shell and overcome\l"
+	.string "their shyness…\p"
+	.string "I mean, it raises their Attack!\p"
+	.string "It also lets you use Cut outside\n"
+	.string "of battle. Here, take this too!$"
 
 RustboroCity_Gym_Text_ExplainRockTomb: @ 82138B1
-	.string "That TECHNICAL MACHINE, TM39,\n"
-	.string "contains ROCK TOMB.\p"
-	.string "It not only inflicts damage by dropping\n"
-	.string "rocks, it also lowers SPEED.\p"
-	.string "If you use a TM, it instantly teaches\n"
-	.string "the move to a POKéMON.\p"
-	.string "Remember, a TM can be used only once,\n"
-	.string "so think before you use it.$"
-
+	.string "This TM contains Rock Tomb.\p"
+	.string "It's not a Bug Type move, but try\n"
+	.string "giving it to POKéMON like Rocorrodo!\p"
+	.string "You can use TMs multiple times,\n"
+	.string "but you should still think hard\l"
+	.string "before using it.\p"
+	.string "… … … … … …\l"
+	.string "… … Please leave my beehive now, okay?$"
+	
 RustboroCity_Gym_Text_BettiPostBattle: @ 82139A7
-	.string "Since you are so strong, you should\n"
-	.string "challenge other GYM LEADERS.\p"
-	.string "By battling many TRAINERS, you should\n"
-	.string "learn many things.$"
+	.string "I hope you'll succeed in your travels.\p"
+	.string "If you defeat the other Gym Leaders,\n"
+	.string "it means you're pretty strong!\l"
+	.string "But I'm not weak, okay?\p"
+	.string "… … Sorry, I'm not great with people…$"
 
 RustboroCity_Gym_Text_GymStatue: @ 8213A21
-	.string "RUSTBORO CITY POKéMON GYM$"
+	.string "PINKRANITE CITY POKéMON GYM$"
 
 RustboroCity_Gym_Text_GymStatueCertified: @ 8213A3B
-	.string "RUSTBORO CITY POKéMON GYM\p"
+	.string "PINKRANITE CITY POKéMON GYM\p"
 	.string "BETTI'S CERTIFIED TRAINERS:\n"
 	.string "{PLAYER}$"
 

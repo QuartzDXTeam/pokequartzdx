@@ -4479,32 +4479,32 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Billy},
     },
 
-    [TRAINER_JOSH] =
+    [TRAINER_JACOBO] =
     {
-        .partyFlags = F_TRAINER_PARTY_CUSTOM_MOVESET,
-        .trainerClass = TRAINER_CLASS_YOUNGSTER,
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-        .trainerPic = TRAINER_PIC_YOUNGSTER,
-        .trainerName = _("JOSH"),
+        .trainerPic = TRAINER_PIC_BUG_CATCHER,
+        .trainerName = _("Jacobo"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_Josh),
-        .party = {.NoItemCustomMoves = sParty_Josh},
+        .partySize = ARRAY_COUNT(sParty_Jacobo),
+        .party = {.NoItemCustomMoves = sParty_Jacobo},
     },
 
-    [TRAINER_TOMMY] =
+    [TRAINER_MIKEY] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_YOUNGSTER,
         .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
         .trainerPic = TRAINER_PIC_YOUNGSTER,
-        .trainerName = _("TOMMY"),
+        .trainerName = _("Mikey"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_Tommy),
-        .party = {.NoItemDefaultMoves = sParty_Tommy},
+        .partySize = ARRAY_COUNT(sParty_Mikey),
+        .party = {.NoItemDefaultMoves = sParty_Mikey},
     },
 
     [TRAINER_JOEY] =
@@ -7993,18 +7993,18 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_GruntJaggedPass},
     },
 
-    [TRAINER_MARC] =
+    [TRAINER_ANACLETO] =
     {
         .partyFlags = 0,
-        .trainerClass = TRAINER_CLASS_HIKER,
-        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_HIKER,
-        .trainerPic = TRAINER_PIC_HIKER,
-        .trainerName = _("MARC"),
+        .trainerClass = TRAINER_CLASS_BUG_MANIAC,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_BUG_MANIAC,
+        .trainerName = _("Anacleto"),
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_Marc),
-        .party = {.NoItemDefaultMoves = sParty_Marc},
+        .partySize = ARRAY_COUNT(sParty_Anacleto),
+        .party = {.NoItemDefaultMoves = sParty_Anacleto},
     },
 
     [TRAINER_BRENDEN] =
