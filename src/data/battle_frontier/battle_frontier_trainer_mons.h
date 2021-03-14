@@ -1237,7 +1237,7 @@
     FRONTIER_MON_POLITOED_2,    \
     -1 
 
-#define FRONTIER_MONS_HEX_MANIAC_1 \
+#define FRONTIER_MONS_BUFFOON_1 \
     FRONTIER_MON_SABLEYE_2,     \
     FRONTIER_MON_WEEPINBELL_2,  \
     FRONTIER_MON_GLOOM_2,       \
@@ -4301,7 +4301,7 @@
     FRONTIER_MON_##lati##_8,    \
     -1 
 
-#define FRONTIER_MONS_HEX_MANIAC_2A \
+#define FRONTIER_MONS_BUFFOON_2A \
     FRONTIER_MON_SHARPEDO_2,    \
     FRONTIER_MON_ABSOL_2,       \
     FRONTIER_MON_MISDREAVUS_1,  \
@@ -4334,7 +4334,7 @@
     FRONTIER_MON_GENGAR_8,      \
     -1 
 
-#define FRONTIER_MONS_HEX_MANIAC_2B \
+#define FRONTIER_MONS_BUFFOON_2B \
     FRONTIER_MON_SEVIPER_2,     \
     FRONTIER_MON_MISDREAVUS_1,  \
     FRONTIER_MON_DUSCLOPS_1,    \
@@ -4390,7 +4390,7 @@
     FRONTIER_MON_GENGAR_8,      \
     -1 
 
-#define FRONTIER_MONS_HEX_MANIAC_2C \
+#define FRONTIER_MONS_BUFFOON_2C \
     FRONTIER_MON_SEVIPER_2,     \
     FRONTIER_MON_SHARPEDO_2,    \
     FRONTIER_MON_ABSOL_2,       \
@@ -6500,17 +6500,17 @@ const u16 gBattleFrontierTrainerMons_Kendra[] =
 
 const u16 gBattleFrontierTrainerMons_Molly[] = 
 {
-    FRONTIER_MONS_HEX_MANIAC_1
+    FRONTIER_MONS_BUFFOON_1
 };
 
 const u16 gBattleFrontierTrainerMons_Jazmin[] = 
 {
-    FRONTIER_MONS_HEX_MANIAC_1
+    FRONTIER_MONS_BUFFOON_1
 };
 
 const u16 gBattleFrontierTrainerMons_Kelsey[] = 
 {
-    FRONTIER_MONS_HEX_MANIAC_1
+    FRONTIER_MONS_BUFFOON_1
 };
 
 const u16 gBattleFrontierTrainerMons_Jalen[] = 
@@ -7145,17 +7145,17 @@ const u16 gBattleFrontierTrainerMons_Ingrid[] =
 
 const u16 gBattleFrontierTrainerMons_Delilah[] = 
 {
-    FRONTIER_MONS_HEX_MANIAC_2A
+    FRONTIER_MONS_BUFFOON_2A
 };
 
 const u16 gBattleFrontierTrainerMons_Carly[] = 
 {
-    FRONTIER_MONS_HEX_MANIAC_2B
+    FRONTIER_MONS_BUFFOON_2B
 };
 
 const u16 gBattleFrontierTrainerMons_Lexie[] = 
 {
-    FRONTIER_MONS_HEX_MANIAC_2C
+    FRONTIER_MONS_BUFFOON_2C
 };
 
 const u16 gBattleFrontierTrainerMons_Miller[] = 

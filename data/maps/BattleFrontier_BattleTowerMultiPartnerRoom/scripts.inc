@@ -1012,7 +1012,7 @@ BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberFReject:: @ 824670A
 
 BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacIntro:: @ 8246741
 	.string "Greetings…\n"
-	.string "I am HEX MANIAC {STR_VAR_1}…$"
+	.string "I am BUFFOON {STR_VAR_1}…$"
 
 BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacMon1:: @ 8246760
 	.string "I bear with me one {STR_VAR_1}-using\n"

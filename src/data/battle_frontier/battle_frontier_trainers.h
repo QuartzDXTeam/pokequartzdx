@@ -1009,7 +1009,7 @@ const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COU
         .monSet = gBattleFrontierTrainerMons_Kendra
     },
     [FRONTIER_TRAINER_MOLLY] = {
-        .facilityClass = FACILITY_CLASS_HEX_MANIAC,
+        .facilityClass = FACILITY_CLASS_BUFFOON,
         .trainerName = _("MOLLY"),
         .speechBefore = {EC_WORD_WILL, EC_WORD_MY, EC_WORD_CUTE_CHARM, EC_MOVE2(ATTRACT), EC_WORD_YOU, EC_WORD_QUES},
         .speechWin = {EC_WORD_YOUR, EC_WORD_POKEMON, EC_WORD_ARE, EC_WORD_MY, EC_WORD_TOYS, EC_WORD_NOW},
@@ -1017,7 +1017,7 @@ const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COU
         .monSet = gBattleFrontierTrainerMons_Molly
     },
     [FRONTIER_TRAINER_JAZMIN] = {
-        .facilityClass = FACILITY_CLASS_HEX_MANIAC,
+        .facilityClass = FACILITY_CLASS_BUFFOON,
         .trainerName = _("JAZMIN"),
         .speechBefore = {EC_WORD_I, EC_WORD_FORECAST, EC_WORD_TERRIBLE, EC_WORD_THINGS, EC_WORD_FOR, EC_WORD_YOU},
         .speechWin = {EC_WORD_THERE, EC_WORD_WASN_T, EC_WORD_MY, EC_WORD_FORECAST, EC_WORD_RIGHT, EC_WORD_QUES},
@@ -1025,7 +1025,7 @@ const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COU
         .monSet = gBattleFrontierTrainerMons_Jazmin
     },
     [FRONTIER_TRAINER_KELSEY] = {
-        .facilityClass = FACILITY_CLASS_HEX_MANIAC,
+        .facilityClass = FACILITY_CLASS_BUFFOON,
         .trainerName = _("KELSEY"),
         .speechBefore = {EC_WORD_I, EC_WORD_HAVEN_T, EC_WORD_SLEPT, EC_WORD_IN, EC_WORD_DAYS, EC_WORD_ELLIPSIS},
         .speechWin = {EC_WORD_MY, EC_WORD_SLEEP, EC_WORD_WILL, EC_WORD_BE, EC_WORD_EXCELLENT, EC_WORD_NOW},
@@ -2041,7 +2041,7 @@ const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COU
         .monSet = gBattleFrontierTrainerMons_Ingrid
     },
     [FRONTIER_TRAINER_DELILAH] = {
-        .facilityClass = FACILITY_CLASS_HEX_MANIAC,
+        .facilityClass = FACILITY_CLASS_BUFFOON,
         .trainerName = _("DELILAH"),
         .speechBefore = {EC_WORD_DON_T, EC_MOVE(GRUDGE), EC_WORD_ME, EC_WORD_IF_I_WIN, EC_WORD_OK_QUES, 0xFFFF},
         .speechWin = {EC_WORD_I_AM, EC_WORD_SORRY, EC_WORD_TO, EC_WORD_SEE, EC_WORD_YOU, EC_WORD_ANGRY},
@@ -2049,7 +2049,7 @@ const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COU
         .monSet = gBattleFrontierTrainerMons_Delilah
     },
     [FRONTIER_TRAINER_CARLY] = {
-        .facilityClass = FACILITY_CLASS_HEX_MANIAC,
+        .facilityClass = FACILITY_CLASS_BUFFOON,
         .trainerName = _("CARLY"),
         .speechBefore = {EC_WORD_I, EC_WORD_WILL, EC_WORD_SCATTER, EC_WORD_SOME, EC_MOVE2(POISON_POWDER), EC_WORD_ABOUT},
         .speechWin = {EC_WORD_IT_S, EC_WORD_SCARY, EC_WORD_HOW, EC_WORD_MY, EC_WORD_STRATEGY, EC_WORD_WORKS},
@@ -2057,7 +2057,7 @@ const struct BattleFrontierTrainer gBattleFrontierTrainers[FRONTIER_TRAINERS_COU
         .monSet = gBattleFrontierTrainerMons_Carly
     },
     [FRONTIER_TRAINER_LEXIE] = {
-        .facilityClass = FACILITY_CLASS_HEX_MANIAC,
+        .facilityClass = FACILITY_CLASS_BUFFOON,
         .trainerName = _("LEXIE"),
         .speechBefore = {EC_WORD_WANT, EC_WORD_TO, EC_WORD_SEE, EC_WORD_SCARY, EC_WORD_POKEMON, EC_WORD_QUES},
         .speechWin = {EC_WORD_WASN_T, EC_WORD_THAT, EC_WORD_SCARY, EC_WORD_EH_QUES, 0xFFFF, 0xFFFF},

@@ -400,7 +400,7 @@ static const struct TrHillFloor sDataTagNormal_Floors[] =
             [0] =
             {
                 .name = _("ALAINA"),
-                .facilityClass = FACILITY_CLASS_HEX_MANIAC,
+                .facilityClass = FACILITY_CLASS_BUFFOON,
                 .unused = 0,
                 .speechBefore = {EC_WORD_YOU, EC_WORD_CAN, EC_WORD_CHOOSE, EC_WORD_NOT, EC_WORD_TO, EC_WORD_BELIEVE},
                 .speechWin = {EC_WORD_A, EC_WORD_SUPER, EC_WORD_NATURAL, EC_WORD_POWER, EC_WORD_HAS, EC_WORD_COME},

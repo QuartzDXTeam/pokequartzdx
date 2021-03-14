@@ -47,7 +47,7 @@ static u16 gUnknown_030012F4;
 static const struct TrainerHillTrainer sTrainerHillTrainerTemplates_JP[] = {
     [0] = {
         .name = __("マキエ$$$$$   "),
-        .facilityClass = FACILITY_CLASS_HEX_MANIAC,
+        .facilityClass = FACILITY_CLASS_BUFFOON,
         .unused = 0x1,
         .speechBefore = { EC_WORD_PREPOSTEROUS, EC_WORD_CASE, EC_WORD_THERE, EC_WORD_TO_HER, EC_WORD_CHALLENGE, EC_WORD_JOKING },
         .speechWin = { EC_WORD_HERS, EC_WORD_TRUMP_CARD, EC_MOVE2(SECRET_POWER), EC_WORD_USING, EC_WORD_WON, EC_WORD_EXCL_EXCL },
