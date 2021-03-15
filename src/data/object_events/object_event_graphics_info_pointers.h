@@ -38,7 +38,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BugCatcher;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PsychicM;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SchoolKidM;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Maniac;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_HexManiac;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Buffoon;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rayquaza1;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerM;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SwimmerF;
@@ -287,7 +287,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_PSYCHIC_M] =                &gObjectEventGraphicsInfo_PsychicM,
     [OBJ_EVENT_GFX_SCHOOL_KID_M] =             &gObjectEventGraphicsInfo_SchoolKidM,
     [OBJ_EVENT_GFX_MANIAC] =                   &gObjectEventGraphicsInfo_Maniac,
-    [OBJ_EVENT_GFX_BUFFOON] =               &gObjectEventGraphicsInfo_HexManiac,
+    [OBJ_EVENT_GFX_BUFFOON] =               &gObjectEventGraphicsInfo_Buffoon,
     [OBJ_EVENT_GFX_RAYQUAZA_1] =               &gObjectEventGraphicsInfo_Rayquaza1,
     [OBJ_EVENT_GFX_SWIMMER_M] =                &gObjectEventGraphicsInfo_SwimmerM,
     [OBJ_EVENT_GFX_SWIMMER_F] =                &gObjectEventGraphicsInfo_SwimmerF,

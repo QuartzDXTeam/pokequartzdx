@@ -633,7 +633,7 @@
     FRONTIER_MON_SUDOWOODO_1,   \
     -1
 
-#define FRONTIER_MONS_AROMA_LADY_1 \
+#define FRONTIER_MONS_PAINTER_1 \
     FRONTIER_MON_SUNKERN,       \
     FRONTIER_MON_RALTS,         \
     FRONTIER_MON_SEEDOT,        \
@@ -1511,7 +1511,7 @@
     FRONTIER_MON_PIDGEOT_2,     \
     -1 
 
-#define FRONTIER_MONS_AROMA_LADY_2 \
+#define FRONTIER_MONS_PAINTER_2 \
     FRONTIER_MON_WEEPINBELL_2,  \
     FRONTIER_MON_GLOOM_2,       \
     FRONTIER_MON_KADABRA_2,     \
@@ -5767,7 +5767,7 @@
     FRONTIER_MON_LATIAS_6,      \
     -1 
 
-#define FRONTIER_MONS_AROMA_LADY_3  \
+#define FRONTIER_MONS_PAINTER_3  \
     FRONTIER_MON_WOBBUFFET_1,   \
     FRONTIER_MON_WOBBUFFET_2,   \
     FRONTIER_MON_SUNFLORA_2,    \
@@ -6230,17 +6230,17 @@ const u16 gBattleFrontierTrainerMons_Amelia[] =
 
 const u16 gBattleFrontierTrainerMons_Jillian[] = 
 {
-    FRONTIER_MONS_AROMA_LADY_1 
+    FRONTIER_MONS_PAINTER_1 
 };
 
 const u16 gBattleFrontierTrainerMons_Abbie[] = 
 {
-    FRONTIER_MONS_AROMA_LADY_1 
+    FRONTIER_MONS_PAINTER_1 
 };
 
 const u16 gBattleFrontierTrainerMons_Briana[] = 
 {
-    FRONTIER_MONS_AROMA_LADY_1
+    FRONTIER_MONS_PAINTER_1
 };
 
 const u16 gBattleFrontierTrainerMons_Antonio[] = 
@@ -6565,7 +6565,7 @@ const u16 gBattleFrontierTrainerMons_Jordyn[] =
 
 const u16 gBattleFrontierTrainerMons_Sofia[] = 
 {
-    FRONTIER_MONS_AROMA_LADY_2
+    FRONTIER_MONS_PAINTER_2
 };
 
 const u16 gBattleFrontierTrainerMons_Braden[] = 
@@ -7360,10 +7360,10 @@ const u16 gBattleFrontierTrainerMons_Dawn[] =
 
 const u16 gBattleFrontierTrainerMons_Abby[] = 
 {
-    FRONTIER_MONS_AROMA_LADY_3
+    FRONTIER_MONS_PAINTER_3
 };
 
 const u16 gBattleFrontierTrainerMons_Gretel[] = 
 {
-    FRONTIER_MONS_AROMA_LADY_3
+    FRONTIER_MONS_PAINTER_3
 };

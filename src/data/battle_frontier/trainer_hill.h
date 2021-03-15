@@ -1452,7 +1452,7 @@ static const struct TrHillFloor sDataTagNormal_Floors[] =
             [1] =
             {
                 .name = _("KRISTINA"),
-                .facilityClass = FACILITY_CLASS_AROMA_LADY,
+                .facilityClass = FACILITY_CLASS_PAINTER,
                 .unused = 0,
                 .speechBefore = {EC_WORD_IT_S, EC_WORD_HOT, EC_WORD_ELLIPSIS, EC_WORD_WHAT, EC_WORD_A, EC_WORD_STENCH},
                 .speechWin = {EC_WORD_I, EC_WORD_REALLY, EC_WORD_LIKE, EC_WORD_AN, EC_WORD_OFFENSIVE, EC_WORD_STENCH},

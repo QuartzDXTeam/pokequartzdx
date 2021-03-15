@@ -1,7 +1,7 @@
-const u8 gText_MatchCallAromaLady_Rose_Strategy[] = _("Becalm fighting emotions.");
-const u8 gText_MatchCallAromaLady_Rose_Pokemon[] = _("Fragrant GRASS POKéMON.");
-const u8 gText_MatchCallAromaLady_Rose_Intro1[] = _("Soothing aromas make the");
-const u8 gText_MatchCallAromaLady_Rose_Intro2[] = _("body and mind healthy.");
+const u8 gText_MatchCallPainter_Rose_Strategy[] = _("Becalm fighting emotions.");
+const u8 gText_MatchCallPainter_Rose_Pokemon[] = _("Fragrant GRASS POKéMON.");
+const u8 gText_MatchCallPainter_Rose_Intro1[] = _("Soothing aromas make the");
+const u8 gText_MatchCallPainter_Rose_Intro2[] = _("body and mind healthy.");
 
 const u8 gText_MatchCallRuinManiac_Andres_Strategy[] = _("I'm not very good at this.");
 const u8 gText_MatchCallRuinManiac_Andres_Pokemon[] = _("Ruin-exploration partners.");
@@ -43,10 +43,10 @@ const u8 gText_MatchCallCooltrainer_Wilton_Pokemon[] = _("Type doesn't matter.")
 const u8 gText_MatchCallCooltrainer_Wilton_Intro1[] = _("I'm a top student at the");
 const u8 gText_MatchCallCooltrainer_Wilton_Intro2[] = _("TRAINER'S SCHOOL.");
 
-const u8 gText_MatchCallHexManiac_Valerie_Strategy[] = _("Slow, steady suffering.");
-const u8 gText_MatchCallHexManiac_Valerie_Pokemon[] = _("Scary to meet at night.");
-const u8 gText_MatchCallHexManiac_Valerie_Intro1[] = _("I see things that others");
-const u8 gText_MatchCallHexManiac_Valerie_Intro2[] = _("can't see...");
+const u8 gText_MatchCallBuffoon_Valerie_Strategy[] = _("Slow, steady suffering.");
+const u8 gText_MatchCallBuffoon_Valerie_Pokemon[] = _("Scary to meet at night.");
+const u8 gText_MatchCallBuffoon_Valerie_Intro1[] = _("I see things that others");
+const u8 gText_MatchCallBuffoon_Valerie_Intro2[] = _("can't see...");
 
 const u8 gText_MatchCallLady_Cindy_Strategy[] = _("Anything to win.");
 const u8 gText_MatchCallLady_Cindy_Pokemon[] = _("Gorgeous type!");
@@ -390,7 +390,7 @@ const u8 gText_MatchCallChampion_Wallace_Intro2[] = _("well as intelligence.");
 
 const u8 *const gMatchCallFlavorTexts[REMATCH_TABLE_ENTRIES][CHECK_PAGE_ENTRY_COUNT] = 
 {
-    [REMATCH_ROSE] = MCFLAVOR(AromaLady_Rose),
+    [REMATCH_ROSE] = MCFLAVOR(Painter_Rose),
     [REMATCH_ANDRES] = MCFLAVOR(RuinManiac_Andres),
     [REMATCH_DUSTY] = MCFLAVOR(RuinManiac_Dusty),
     [REMATCH_LOLA] = MCFLAVOR(Tuber_Lola),
@@ -399,7 +399,7 @@ const u8 *const gMatchCallFlavorTexts[REMATCH_TABLE_ENTRIES][CHECK_PAGE_ENTRY_CO
     [REMATCH_CRISTIN] = MCFLAVOR(Cooltrainer_Cristin),
     [REMATCH_BROOKE] = MCFLAVOR(Cooltrainer_Brooke),
     [REMATCH_WILTON] = MCFLAVOR(Cooltrainer_Wilton),
-    [REMATCH_VALERIE] = MCFLAVOR(HexManiac_Valerie),
+    [REMATCH_VALERIE] = MCFLAVOR(Buffoon_Valerie),
     [REMATCH_CINDY] = MCFLAVOR(Lady_Cindy),
     [REMATCH_THALIA] = MCFLAVOR(Beauty_Thalia),
     [REMATCH_JESSICA] = MCFLAVOR(Beauty_Jessica),

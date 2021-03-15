@@ -52,7 +52,7 @@ BattleFrontier_OutsideEast_EventScript_Hiker:: @ 8242C79
 	msgbox BattleFrontier_OutsideEast_Text_PyramidTooHarsh, MSGBOX_NPC
 	end
 
-BattleFrontier_OutsideEast_EventScript_HexManiac:: @ 8242C82
+BattleFrontier_OutsideEast_EventScript_Buffoon:: @ 8242C82
 	msgbox BattleFrontier_OutsideEast_Text_ThriveInDarkness, MSGBOX_NPC
 	end
 

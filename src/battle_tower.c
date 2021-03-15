@@ -189,7 +189,7 @@ const u8 gTowerMaleFacilityClasses[30] =
 
 const u8 gTowerFemaleFacilityClasses[20] =
 {
-    FACILITY_CLASS_AROMA_LADY,
+    FACILITY_CLASS_PAINTER,
     FACILITY_CLASS_TUBER_F,
     FACILITY_CLASS_COOLTRAINER_F,
     FACILITY_CLASS_BUFFOON,
@@ -275,7 +275,7 @@ static const u8 sRubyFacilityClassToEmerald[RS_FACILITY_CLASSES_COUNT - 2][2] =
     {RS_FACILITY_CLASS_AQUA_LEADER_ARCHIE, FACILITY_CLASS_AQUA_LEADER_ARCHIE},
     {RS_FACILITY_CLASS_AQUA_GRUNT_M, FACILITY_CLASS_AQUA_GRUNT_M},
     {RS_FACILITY_CLASS_AQUA_GRUNT_F, FACILITY_CLASS_AQUA_GRUNT_F},
-    {RS_FACILITY_CLASS_AROMA_LADY, FACILITY_CLASS_AROMA_LADY},
+    {RS_FACILITY_CLASS_PAINTER, FACILITY_CLASS_PAINTER},
     {RS_FACILITY_CLASS_RUIN_MANIAC, FACILITY_CLASS_RUIN_MANIAC},
     {RS_FACILITY_CLASS_INTERVIEWER, FACILITY_CLASS_INTERVIEWER},
     {RS_FACILITY_CLASS_TUBER_F, FACILITY_CLASS_TUBER_F},
@@ -496,9 +496,9 @@ static const u8 *const sPartnerTextsTuberF[] =
     PARTNER_TEXTS(TuberF)
 };
 
-static const u8 *const sPartnerTextsHexManiac[] =
+static const u8 *const sPartnerTextsBuffoon[] =
 {
-    PARTNER_TEXTS(HexManiac)
+    PARTNER_TEXTS(Buffoon)
 };
 
 static const u8 *const sPartnerTextsPkmnBreederM[] =
@@ -601,9 +601,9 @@ static const u8 *const sPartnerTextsPkmnRangerF[] =
     PARTNER_TEXTS(PkmnRangerF)
 };
 
-static const u8 *const sPartnerTextsAromaLady[] =
+static const u8 *const sPartnerTextsPainter[] =
 {
-    PARTNER_TEXTS(AromaLady)
+    PARTNER_TEXTS(Painter)
 };
 
 static const u8 *const sPartnerTextsRuinManiac[] =
@@ -704,7 +704,7 @@ struct
     {FACILITY_CLASS_RICH_BOY,              sPartnerTextsRichBoy},
     {FACILITY_CLASS_BLACK_BELT,            sPartnerTextsBlackBelt},
     {FACILITY_CLASS_TUBER_F,               sPartnerTextsTuberF},
-    {FACILITY_CLASS_BUFFOON,            sPartnerTextsHexManiac},
+    {FACILITY_CLASS_BUFFOON,            sPartnerTextsBuffoon},
     {FACILITY_CLASS_PKMN_BREEDER_M,        sPartnerTextsPkmnBreederM},
     {FACILITY_CLASS_RUNNING_TRIATHLETE_F,  sPartnerTextsRunningTriathleteF},
     {FACILITY_CLASS_RUNNING_TRIATHLETE_M,  sPartnerTextsRunningTriathleteM},
@@ -725,7 +725,7 @@ struct
     {FACILITY_CLASS_COLLECTOR,             sPartnerTextsCollector},
     {FACILITY_CLASS_PKMN_RANGER_M,         sPartnerTextsPkmnRangerM},
     {FACILITY_CLASS_PKMN_RANGER_F,         sPartnerTextsPkmnRangerF},
-    {FACILITY_CLASS_AROMA_LADY,            sPartnerTextsAromaLady},
+    {FACILITY_CLASS_PAINTER,            sPartnerTextsPainter},
     {FACILITY_CLASS_RUIN_MANIAC,           sPartnerTextsRuinManiac},
     {FACILITY_CLASS_COOLTRAINER_M,         sPartnerTextsCoolTrainerM},
     {FACILITY_CLASS_COOLTRAINER_F,         sPartnerTextsCoolTrainerF},

@@ -510,7 +510,7 @@ const u16 gSlateportBattleTentTrainerMons_Tamia[] =
 const struct BattleFrontierTrainer gSlateportBattleTentTrainers[NUM_BATTLE_TENT_TRAINERS] = 
 {
     [SLATEPORT_TENT_TRAINER_JOLIE] = {
-        .facilityClass = FACILITY_CLASS_AROMA_LADY,
+        .facilityClass = FACILITY_CLASS_PAINTER,
         .trainerName = _("JOLIE"),
         .speechBefore = {EC_WORD_WHAT, EC_WORD_WILL, EC_WORD_I, EC_WORD_BE, EC_WORD_TOMORROW, EC_WORD_QUES},
         .speechWin = {EC_WORD_I_AM, EC_WORD_FEELING, EC_WORD_LIKE, EC_WORD_IT_S, EC_WORD_FRIDAY, EC_WORD_EXCL},
@@ -1563,7 +1563,7 @@ const u16 gVerdanturfBattleTentTrainerMons_Cecilia[] =
 const struct BattleFrontierTrainer gVerdanturfBattleTentTrainers[NUM_BATTLE_TENT_TRAINERS] = 
 {
     [VERDANTURF_TENT_TRAINER_BRENNA] = {
-        .facilityClass = FACILITY_CLASS_AROMA_LADY,
+        .facilityClass = FACILITY_CLASS_PAINTER,
         .trainerName = _("BRENNA"),
         .speechBefore = {EC_WORD_NO, EC_WORD_DAYS, EC_WORD_GO, EC_WORD_WITHOUT, EC_WORD_MY, EC_MOVE(FAKE_TEARS)},
         .speechWin = {EC_WORD_OH, EC_WORD_THAT_WAS, EC_WORD_SO, EC_WORD_REFRESHING, EC_WORD_EXCL, -1},
@@ -2444,7 +2444,7 @@ const u16 gFallarborBattleTentTrainerMons_Kianna[] =
 const struct BattleFrontierTrainer gFallarborBattleTentTrainers[NUM_BATTLE_TENT_TRAINERS] = 
 {
     [FALLARBOR_TENT_TRAINER_AMBER] = {
-        .facilityClass = FACILITY_CLASS_AROMA_LADY,
+        .facilityClass = FACILITY_CLASS_PAINTER,
         .trainerName = _("AMBER"),
         .speechBefore = {EC_WORD_I, EC_WORD_HAVE, EC_WORD_TO, EC_WORD_DIET, EC_WORD_EVERY, EC_WORD_DAY},
         .speechWin = {EC_WORD_A, EC_MOVE(NIGHTMARE), EC_WORD_OF, EC_WORD_SWEETS, EC_WORD_SHOCKED, EC_WORD_ME},

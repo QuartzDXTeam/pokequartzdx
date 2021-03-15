@@ -31,7 +31,7 @@
 #define TRAINER_PIC_AQUA_ADMIN_F          12
 #define TRAINER_PIC_AQUA_LEADER_ARCHIE    13
 #define TRAINER_PIC_BUFFOON            14
-#define TRAINER_PIC_AROMA_LADY            15
+#define TRAINER_PIC_PAINTER            15
 #define TRAINER_PIC_RUIN_MANIAC           16
 #define TRAINER_PIC_INTERVIEWER           17
 #define TRAINER_PIC_TUBER_F               18
@@ -132,7 +132,7 @@
 #define FACILITY_CLASS_BLACK_BELT            0xa
 #define FACILITY_CLASS_AQUA_LEADER_ARCHIE    0xb
 #define FACILITY_CLASS_BUFFOON            0xc
-#define FACILITY_CLASS_AROMA_LADY            0xd
+#define FACILITY_CLASS_PAINTER            0xd
 #define FACILITY_CLASS_RUIN_MANIAC           0xe
 #define FACILITY_CLASS_INTERVIEWER           0xf
 #define FACILITY_CLASS_TUBER_F               0x10
@@ -207,7 +207,7 @@
 #define RS_FACILITY_CLASS_AQUA_LEADER_ARCHIE    0x0
 #define RS_FACILITY_CLASS_AQUA_GRUNT_M          0x1
 #define RS_FACILITY_CLASS_AQUA_GRUNT_F          0x2
-#define RS_FACILITY_CLASS_AROMA_LADY            0x3
+#define RS_FACILITY_CLASS_PAINTER            0x3
 #define RS_FACILITY_CLASS_RUIN_MANIAC           0x4
 #define RS_FACILITY_CLASS_INTERVIEWER           0x5
 #define RS_FACILITY_CLASS_TUBER_F               0x6
@@ -299,7 +299,7 @@
 #define TRAINER_CLASS_BLACK_BELT     0xc
 #define TRAINER_CLASS_AQUA_LEADER    0xd
 #define TRAINER_CLASS_BUFFOON     0xe
-#define TRAINER_CLASS_AROMA_LADY     0xf
+#define TRAINER_CLASS_PAINTER     0xf
 #define TRAINER_CLASS_RUIN_MANIAC    0x10
 #define TRAINER_CLASS_INTERVIEWER    0x11
 #define TRAINER_CLASS_TUBER_F        0x12
