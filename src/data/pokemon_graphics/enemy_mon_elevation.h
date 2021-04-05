@@ -57,7 +57,6 @@ const u8 gEnemyMonElevation[NUM_SPECIES] =
     [SPECIES_ALTARIA] = 8,
     [SPECIES_DUSKULL] = 9,
     [SPECIES_SHUPPET] = 12,
-	[SPECIES_SPINDA] = 3,
     [SPECIES_BANETTE] = 8,
     [SPECIES_CASTFORM] = 16,
     [SPECIES_BELDUM] = 8,
