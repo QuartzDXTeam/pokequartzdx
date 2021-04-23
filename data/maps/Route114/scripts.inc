@@ -209,3 +209,33 @@ Route114_Text_FossilManiacsHouseSign: @ 81F28DB
 Route114_Text_LanettesHouse: @ 81F2910
 	.string "LANETTE'S HOUSE$"
 
+Route114_EventScriptRoellama::
+	playmoncry SPECIES_ROELLAMA, 2
+	msgbox Route114_Text_RoellamaRoar, MSGBOX_DEFAULT
+	delay 30
+	waitmoncry
+	msgbox Route114_Text_RoellamaStart, MSGBOX_DEFAULT
+	setwildbattle SPECIES_ROELLAMA, 45, ITEM_QUICK_CLAW
+	dowildbattle
+	specialvar VAR_RESULT, GetBattleOutcome
+	compare VAR_RESULT, B_OUTCOME_WON
+	goto_if_eq Route114_EventScript_RoellamaPost
+	compare VAR_RESULT, B_OUTCOME_RAN
+	goto_if_eq Route114_EventScript_RoellamaPost
+	compare VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED
+	goto_if_eq Route114_EventScript_RoellamaPost
+	end
+	
+	Route114_EventScript_RoellamaPost:: 
+	fadescreenswapbuffers FADE_TO_BLACK
+	removeobject 28
+	fadescreenswapbuffers FADE_FROM_BLACK
+	setflag FLAG_HIDE_ROELLAMA_DEFEATED
+	release
+	end
+	
+Route114_Text_RoellamaRoar::
+	.string "GWAAAAR!$"
+	
+Route114_Text_RoellamaStart::
+	.string "The wild Roellama attacked!$"
