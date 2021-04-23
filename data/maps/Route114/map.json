@@ -66,7 +66,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",
-      "x": 30,
+      "x": 32,
       "y": 72,
       "elevation": 5,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -131,8 +131,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 7,
-      "y": 6,
+      "x": 9,
+      "y": 3,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 0,
@@ -170,7 +170,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN",
-      "x": 19,
+      "x": 21,
       "y": 11,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -183,7 +183,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POOCHYENA",
-      "x": 19,
+      "x": 21,
       "y": 12,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -196,7 +196,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_4",
-      "x": 27,
+      "x": 31,
       "y": 42,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
@@ -210,7 +210,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
       "x": 25,
-      "y": 6,
+      "y": 8,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -327,7 +327,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "x": 28,
-      "y": 20,
+      "y": 19,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 1,
@@ -339,8 +339,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
-      "x": 26,
-      "y": 72,
+      "x": 25,
+      "y": 68,
       "elevation": 5,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
       "movement_range_x": 1,
@@ -352,8 +352,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 31,
-      "y": 19,
+      "x": 34,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -366,7 +366,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
       "x": 28,
-      "y": 16,
+      "y": 17,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
       "movement_range_x": 1,
@@ -375,19 +375,32 @@
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route114_EventScript_Kai",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BIG_CHARIZARD_DOLL",
+      "x": 8,
+      "y": 18,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
     }
   ],
   "warp_events": [
     {
-      "x": 8,
-      "y": 63,
+      "x": 9,
+      "y": 71,
       "elevation": 0,
       "dest_map": "MAP_METEOR_FALLS_1F_1R",
       "dest_warp_id": 0
     },
     {
-      "x": 29,
-      "y": 5,
+      "x": 30,
+      "y": 7,
       "elevation": 0,
       "dest_map": "MAP_ROUTE114_FOSSIL_MANIACS_HOUSE",
       "dest_warp_id": 0
@@ -400,15 +413,15 @@
       "dest_warp_id": 0
     },
     {
-      "x": 6,
-      "y": 46,
+      "x": 36,
+      "y": 57,
       "elevation": 0,
       "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
       "dest_warp_id": 0
     },
     {
-      "x": 7,
-      "y": 4,
+      "x": 1,
+      "y": 7,
       "elevation": 0,
       "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
       "dest_warp_id": 0
@@ -428,8 +441,8 @@
     },
     {
       "type": "sign",
-      "x": 31,
-      "y": 7,
+      "x": 32,
+      "y": 8,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route114_EventScript_FossilManiacsHouseSign"
@@ -458,7 +471,7 @@
     {
       "type": "secret_base",
       "x": 19,
-      "y": 70,
+      "y": 75,
       "elevation": 0,
       "secret_base_id": "SECRET_BASE_BROWN_CAVE4_1"
     },
@@ -501,8 +514,8 @@
     },
     {
       "type": "hidden_item",
-      "x": 7,
-      "y": 30,
+      "x": 13,
+      "y": 19,
       "elevation": 3,
       "item": "ITEM_REVIVE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_113_REVIVE"
