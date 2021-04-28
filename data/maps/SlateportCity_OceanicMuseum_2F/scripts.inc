@@ -227,8 +227,8 @@ SlateportCity_OceanicMuseum_2F_EventScript_PressureExperiment:: @ 820BD1C
 	msgbox SlateportCity_OceanicMuseum_2F_Text_PressureExperiment, MSGBOX_SIGN
 	end
 
-SlateportCity_OceanicMuseum_2F_EventScript_HoennModel:: @ 820BD25
-	msgbox SlateportCity_OceanicMuseum_2F_Text_HoennModel, MSGBOX_SIGN
+SlateportCity_OceanicMuseum_2F_EventScript_CornaModel:: @ 820BD25
+	msgbox SlateportCity_OceanicMuseum_2F_Text_CornaModel, MSGBOX_SIGN
 	end
 
 SlateportCity_OceanicMuseum_2F_EventScript_DeepSeawaterDisplay:: @ 820BD2E
@@ -402,10 +402,10 @@ SlateportCity_OceanicMuseum_2F_Text_PressureExperiment: @ 820C5C6
 	.string "the pressure can reach even tens of\l"
 	.string "thousands of tons on a small area.”$"
 
-SlateportCity_OceanicMuseum_2F_Text_HoennModel: @ 820C6C7
-	.string "“MODEL OF HOENN REGION”\p"
+SlateportCity_OceanicMuseum_2F_Text_CornaModel: @ 820C6C7
+	.string "“MODEL OF CORNA REGION”\p"
 	.string "It's a miniature diorama of the\n"
-	.string "HOENN region.\p"
+	.string "CORNA region.\p"
 	.string "Where is LITTLEROOT TOWN on this?$"
 
 SlateportCity_OceanicMuseum_2F_Text_DeepSeawaterDisplay: @ 820C72F

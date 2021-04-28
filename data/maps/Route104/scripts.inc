@@ -1088,7 +1088,7 @@ Route104_Text_PrettyPetalFlowShop: @ 81EDAD6
 
 Route104_Text_TrainerTipsDoubleBattles: @ 81EDAEF
 	.string "TRAINER TIPS\p"
-	.string "In the HOENN region there are pairs\n"
+	.string "In the CORNA region there are pairs\n"
 	.string "of TRAINERS who challenge others\l"
 	.string "for 2-on-2 POKéMON battles called\l"
 	.string "DOUBLE BATTLES.\p"

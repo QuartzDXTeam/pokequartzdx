@@ -6,9 +6,9 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_GameDesigner:: @ 82186D3
 	faceplayer
 	call_if_unset FLAG_TEMP_2, LilycoveCity_CoveLilyMotel_2F_EventScript_ShowMeCompletedDex
 	call_if_set FLAG_TEMP_2, LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma
-	specialvar VAR_RESULT, HasAllHoennMons
+	specialvar VAR_RESULT, HasAllCornaMons
 	compare VAR_RESULT, TRUE
-	goto_if_eq LilycoveCity_CoveLilyMotel_2F_EventScript_AllHoennMonsFanfare
+	goto_if_eq LilycoveCity_CoveLilyMotel_2F_EventScript_AllCornaMonsFanfare
 	release
 	end
 
@@ -16,7 +16,7 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_ShowMeCompletedDex:: @ 82186F9
 	msgbox LilycoveCity_CoveLilyMotel_2F_Text_ShowMeCompletedDex, MSGBOX_DEFAULT
 	return
 
-LilycoveCity_CoveLilyMotel_2F_EventScript_AllHoennMonsFanfare:: @ 8218702
+LilycoveCity_CoveLilyMotel_2F_EventScript_AllCornaMonsFanfare:: @ 8218702
 	setflag FLAG_TEMP_2
 	playfanfare MUS_FANFA4
 	waitfanfare
@@ -93,7 +93,7 @@ LilycoveCity_CoveLilyMotel_2F_Text_ImTheProgrammer: @ 82188D6
 
 LilycoveCity_CoveLilyMotel_2F_Text_ImTheGraphicArtist: @ 821892B
 	.string "I'm the GRAPHIC ARTIST! Aren't the\n"
-	.string "POKéMON of HOENN interesting?$"
+	.string "POKéMON of CORNA interesting?$"
 
 LilycoveCity_CoveLilyMotel_2F_Text_GirlsAreCute: @ 821896C
 	.string "The girl TUBERS, they're cute, hey?\n"

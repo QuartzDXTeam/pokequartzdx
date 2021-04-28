@@ -212,7 +212,7 @@ Route114_Text_LanettesHouse: @ 81F2910
 Route114_EventScriptRoellama::
 	playmoncry SPECIES_ROELLAMA, 2
 	msgbox Route114_Text_RoellamaRoar, MSGBOX_DEFAULT
-	delay 30
+	delay 10
 	waitmoncry
 	msgbox Route114_Text_RoellamaStart, MSGBOX_DEFAULT
 	setwildbattle SPECIES_ROELLAMA, 45, ITEM_QUICK_CLAW
@@ -221,7 +221,7 @@ Route114_EventScriptRoellama::
 	compare VAR_RESULT, B_OUTCOME_WON
 	goto_if_eq Route114_EventScript_RoellamaPost
 	compare VAR_RESULT, B_OUTCOME_RAN
-	goto_if_eq Route114_EventScript_RoellamaPost
+	goto_if_eq Route114_EventScript_RoellamaRan
 	compare VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED
 	goto_if_eq Route114_EventScript_RoellamaPost
 	end
@@ -238,4 +238,16 @@ Route114_Text_RoellamaRoar::
 	.string "GWAAAAR!$"
 	
 Route114_Text_RoellamaStart::
-	.string "The wild Roellama attacked!$"
+	.string "The enraged Roellama attacked!$"
+	
+Route114_Text_RoellamaRun::
+	.string "The wild Roellama ran!$"
+
+Route114_EventScript_RoellamaRan::
+	playmoncry SPECIES_ROELLAMA, 2
+	msgbox Route114_Text_RoellamaRoar, MSGBOX_DEFAULT
+	delay 10
+	waitmoncry
+	msgbox Route114_Text_RoellamaRun, MSGBOX_DEFAULT
+	goto Route114_EventScript_RoellamaPost
+	end

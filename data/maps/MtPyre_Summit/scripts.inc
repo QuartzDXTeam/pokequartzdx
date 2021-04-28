@@ -142,7 +142,7 @@ MtPyre_Summit_EventScript_OldMan:: @ 823213C
 	end
 
 MtPyre_Summit_EventScript_OldManAfterRayquaza:: @ 8232167
-	msgbox MtPyre_Summit_Text_HearTheNewLegendOfHoenn, MSGBOX_YESNO
+	msgbox MtPyre_Summit_Text_HearTheNewLegendOfCorna, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	call_if_eq MtPyre_Summit_EventScript_OldManNewTale
 	compare VAR_RESULT, NO
@@ -159,7 +159,7 @@ MtPyre_Summit_EventScript_DeclineOldManTale:: @ 8232190
 	return
 
 MtPyre_Summit_EventScript_OldManNewTale:: @ 8232199
-	msgbox MtPyre_Summit_Text_HoennTrioTale, MSGBOX_DEFAULT
+	msgbox MtPyre_Summit_Text_CornaTrioTale, MSGBOX_DEFAULT
 	return
 
 MtPyre_Summit_EventScript_OldLady:: @ 82321A2
@@ -573,12 +573,12 @@ MtPyre_Summit_Text_WillYouHearOutMyTale: @ 8232E0C
 	.string "MT. PYRE is where we calm the spirits\n"
 	.string "of POKéMON that have passed on…\p"
 	.string "This is a high place where one can\n"
-	.string "see all of HOENN…\p"
+	.string "see all of CORNA…\p"
 	.string "The disembodied spirits of POKéMON\n"
 	.string "must find solace here…\p"
 	.string "Is it coincidence that you are here…\p"
 	.string "Will you hear out my tale? A tale long\n"
-	.string "told in the HOENN region?$"
+	.string "told in the CORNA region?$"
 
 MtPyre_Summit_Text_GroudonKyogreTale: @ 8232F27
 	.string "It happened long, long ago…\p"
@@ -609,15 +609,15 @@ MtPyre_Summit_Text_MaxieSilence: @ 8233183
 	.string "… … … … … …\n"
 	.string "… … … … … …$"
 
-MtPyre_Summit_Text_HearTheNewLegendOfHoenn: @ 82331A6
+MtPyre_Summit_Text_HearTheNewLegendOfCorna: @ 82331A6
 	.string "It is my role to pass on the legends\n"
-	.string "of HOENN to future generations.\p"
+	.string "of CORNA to future generations.\p"
 	.string "And the crisis that just ended in\n"
 	.string "SOOTOPOLIS rewrote a legend…\p"
 	.string "Have you the time to hear the new\n"
-	.string "legend of HOENN?$"
+	.string "legend of CORNA?$"
 
-MtPyre_Summit_Text_HoennTrioTale: @ 823325D
+MtPyre_Summit_Text_CornaTrioTale: @ 823325D
 	.string "It happened long, long ago…\p"
 	.string "The world was wracked by a ferocious\n"
 	.string "clash between the POKéMON of the land\l"

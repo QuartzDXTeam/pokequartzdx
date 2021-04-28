@@ -2454,7 +2454,7 @@ MatchCall_Text_May14:: @ 2B42E0
 
 MatchCall_Text_May15:: @ 2B4350
 	.string "MAY: There isn't a single TRAINER\n"
-	.string "left in HOENN who doesn't know who\l"
+	.string "left in CORNA who doesn't know who\l"
 	.string "you are, {PLAYER}{KUN}!\p"
 	.string "When I tell people that I'm friends\n"
 	.string "with you, {PLAYER}{KUN}, they're all\l"
@@ -2580,7 +2580,7 @@ MatchCall_Text_Akira14:: @ 2B4CD8
 
 MatchCall_Text_Akira15:: @ 2B4D46
 	.string "AKIRA: There isn't a TRAINER in\n"
-	.string "all of HOENN who doesn't know who\l"
+	.string "all of CORNA who doesn't know who\l"
 	.string "you are, {PLAYER}!\p"
 	.string "When I tell people that I'm friends\n"
 	.string "with you, {PLAYER}, they get pretty\l"

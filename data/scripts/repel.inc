@@ -13,11 +13,17 @@ EventScript_RepelWoreOff:: @ 82A4B2A
 	playse SE_TU_SAA
 	msgbox gText_PlayerUsedVar2, MSGBOX_SIGN
 	goto EventScript_RepelWoreOff_End
+	release
+	end
+	
 EventScript_RepelWoreOff_ChooseNo:
 	closemessage
 	goto EventScript_RepelWoreOff_End
+	end
+	
 EventScript_RepelWoreOff_NoMoreRepels:
 	msgbox Text_RepelWoreOff, MSGBOX_SIGN
+
 EventScript_RepelWoreOff_End:
 	end
 

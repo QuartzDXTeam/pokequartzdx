@@ -430,7 +430,7 @@ static void sub_81D5084(u8 taskId)
     case 18:
         if (sub_81D5064(&data->unk0, 120))
         {
-            AddTextPrinterToWindow1(gJPText_NewTrainerHasComeToHoenn);
+            AddTextPrinterToWindow1(gJPText_NewTrainerHasComeToCorna);
             PlayFanfare(MUS_FANFA4);
             data->unk8 = 19;
         }

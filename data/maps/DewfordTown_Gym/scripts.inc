@@ -461,7 +461,7 @@ DewfordTown_Gym_Text_BrawlyRematchDefeat: @ 81FD367
 DewfordTown_Gym_Text_BrawlyPostRematch: @ 81FD37B
 	.string "BRAWLY: Battling is vast and it's deep.\n"
 	.string "You can't see the bottom.\l"
-	.string "It's just like the sea of HOENN!$"
+	.string "It's just like the sea of CORNA!$"
 
 DewfordTown_Gym_Text_BrawlyRematchNeedTwoMons: @ 81FD3DE
 	.string "BRAWLY: A wave may draw back, but it\n"

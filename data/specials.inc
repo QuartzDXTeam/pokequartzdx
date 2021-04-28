@@ -345,7 +345,7 @@ gSpecials:: @ 81DBA64
 	def_special Script_FadeOutMapMusic
 	def_special SetPacifidlogTMReceivedDay
 	def_special GetDaysUntilPacifidlogTMAvailable
-	def_special HasAllHoennMons
+	def_special HasAllCornaMons
 	def_special MonOTNameNotPlayer
 	def_special BufferLottoTicketNumber
 	def_special TryHideBattleTowerReporter

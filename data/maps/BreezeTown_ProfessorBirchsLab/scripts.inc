@@ -8,7 +8,7 @@ BreezeTown_ProfessorBirchsLab_MapScripts:: @ 81F9C91
 	@ 1: Beat Elite Four, Dex upgrade ready
 	@ 2: Received National Dex
 	@ 3: Left lab after receiving National Dex
-	@ 4: Entered lab after catching all Hoenn mons
+	@ 4: Entered lab after catching all Corna mons
 	@ 5: Birch told player to choose Johto starter
 	@ 6: Chose Johto starter
 
@@ -31,7 +31,7 @@ BreezeTown_ProfessorBirchsLab_OnTransition: @ 81F9CA1
 	end
 
 BreezeTown_ProfessorBirchsLab_EventScript_CheckReadyForJohtoStarter:: @ 81F9CCD
-	specialvar VAR_RESULT, HasAllHoennMons
+	specialvar VAR_RESULT, HasAllCornaMons
 	compare VAR_RESULT, TRUE
 	goto_if_eq BreezeTown_ProfessorBirchsLab_EventScript_SetReadyForJohtoStarter
 	setobjectmovementtype 3, MOVEMENT_TYPE_WANDER_UP_AND_DOWN
@@ -872,11 +872,11 @@ BreezeTown_ProfessorBirchsLab_Text_OtherRegionsUpgradeToNational: @ 81FB16D
 	.string "of you help me study POKéMON.\p"
 	.string "Thanks to your help, new facts\n"
 	.string "are coming to light.\p"
-	.string "It appears that in the HOENN region,\n"
+	.string "It appears that in the CORNA region,\n"
 	.string "there are also POKéMON from other\l"
 	.string "regions.\p"
 	.string "It goes to show how rich and varied\n"
-	.string "the natural environments of HOENN\l"
+	.string "the natural environments of CORNA\l"
 	.string "happen to be.\p"
 	.string "That's why I think it's necessary for\n"
 	.string "me to upgrade your POKéDEX to\l"
@@ -891,7 +891,7 @@ BreezeTown_ProfessorBirchsLab_Text_MayUpgradeSoCool: @ 81FB30F
 	.string "so many POKéMON, {PLAYER}{KUN}!$"
 
 BreezeTown_ProfessorBirchsLab_Text_AkiraYouCanThankMe: @ 81FB38E
-	.string "AKIRA: I went out all over HOENN\n"
+	.string "AKIRA: I went out all over CORNA\n"
 	.string "and checked out POKéMON.\p"
 	.string "You can thank me for getting\n"
 	.string "the NATIONAL Mode POKéDEX.\p"
@@ -931,7 +931,7 @@ BreezeTown_ProfessorBirchsLab_Text_CompletedDexChoosePokemon: @ 81FB5F9
 	.string "… … … … … …\n"
 	.string "… … … … … …\p"
 	.string "Yes, there's no doubt about it.\p"
-	.string "You really have completed the HOENN\n"
+	.string "You really have completed the CORNA\n"
 	.string "region's POKéDEX.\p"
 	.string "That's more than just impressive.\p"
 	.string "I have a gift for you.\p"
@@ -987,7 +987,7 @@ BreezeTown_ProfessorBirchsLab_Text_NicknameJohtoStarter: @ 81FB9FC
 
 BreezeTown_ProfessorBirchsLab_Text_GrassyPatchWaiting: @ 81FBA2C
 	.string "PROF. BIRCH: Listen, {PLAYER}{KUN}.\n"
-	.string "You've completed the HOENN POKéDEX,\l"
+	.string "You've completed the CORNA POKéDEX,\l"
 	.string "but your POKéMON journey isn't over.\p"
 	.string "There is no end to the road\n"
 	.string "that is POKéMON.\p"

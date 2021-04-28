@@ -607,7 +607,7 @@ LilycoveCity_Text_GoingToMoveDeleterForHMs: @ 81E3E7D
 
 LilycoveCity_Text_ImFromKanto: @ 81E3F05
 	.string "I came from KANTO.\p"
-	.string "The HOENN region is beautiful with\n"
+	.string "The CORNA region is beautiful with\n"
 	.string "all its water and verdant nature.\p"
 	.string "Hunh? Wait a second…\p"
 	.string "Could there be rare POKéMON that live\n"
@@ -758,7 +758,7 @@ LilycoveCity_Text_JustArrivedAndSawRarePokemon: @ 81E494D
 	.string "We happened to see a DRAGON-type\n"
 	.string "POKéMON flying way up in the sky.\p"
 	.string "Do cool POKéMON like that live in\n"
-	.string "the HOENN region?$"
+	.string "the CORNA region?$"
 
 LilycoveCity_Text_HoneymoonVowToSeeRarePokemon: @ 81E49F4
 	.string "On our honeymoon, we vowed to see as\n"

@@ -27,7 +27,7 @@ SootopolisCity_PokemonCenter_1F_EventScript_Gentleman:: @ 822650E
 	end
 
 SootopolisCity_PokemonCenter_1F_EventScript_GentlemanNoLegendaries:: @ 822652E
-	msgbox SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInHoenn, MSGBOX_DEFAULT
+	msgbox SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInCorna, MSGBOX_DEFAULT
 	release
 	end
 
@@ -46,9 +46,9 @@ SootopolisCity_PokemonCenter_1F_EventScript_WomanNoLegendaries:: @ 8226558
 	release
 	end
 
-SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInHoenn: @ 8226562
+SootopolisCity_PokemonCenter_1F_Text_WallaceToughestInCorna: @ 8226562
 	.string "WALLACE is rumored to be the toughest\n"
-	.string "TRAINER in the whole HOENN region.\p"
+	.string "TRAINER in the whole CORNA region.\p"
 	.string "This town's GYM is led by the TRAINER\n"
 	.string "who taught WALLACE.\p"
 	.string "But the ELITE FOUR… They're said to be\n"

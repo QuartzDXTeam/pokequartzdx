@@ -73,8 +73,8 @@ ProfBirch_EventScript_RatePokedex:: @ 8272184
 	copyvar VAR_0x8008, VAR_0x8005
 	copyvar VAR_0x8009, VAR_0x8006
 	copyvar VAR_0x800A, VAR_RESULT
-	buffernumberstring 0, VAR_0x8008  @ Num Hoenn seen
-	buffernumberstring 1, VAR_0x8009  @ Num Hoenn caught
+	buffernumberstring 0, VAR_0x8008  @ Num Corna seen
+	buffernumberstring 1, VAR_0x8009  @ Num Corna caught
 	msgbox gBirchDexRatingText_SoYouveSeenAndCaught, MSGBOX_DEFAULT
 	call ProfBirch_EventScript_ShowRatingMessage
 	compare VAR_0x800A, 0

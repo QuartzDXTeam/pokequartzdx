@@ -430,7 +430,7 @@ PlayersHouse_1F_Text_IsThatABreakingStory: @ 81F824B
 PlayersHouse_1F_Text_LatiEmergencyNewsFlash: @ 81F826F
 	.string "We bring you this emergency\n"
 	.string "news flash!\p"
-	.string "In various HOENN locales, there have\n"
+	.string "In various CORNA locales, there have\n"
 	.string "been reports of a BZZT…colored\l"
 	.string "POKéMON in flight.\p"
 	.string "The identity of this POKéMON is\n"

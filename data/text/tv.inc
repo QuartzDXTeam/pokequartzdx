@@ -658,7 +658,7 @@ gTVTrainerFanClubSpecialText00:: @ 08281DFB
 	.string "TRAINER FAN CLUB\n"
 	.string "{STR_VAR_1} SPECIAL!\p"
 	.string "This is a special presentation for\n"
-	.string "the fans of {STR_VAR_1} all over HOENN!\p"
+	.string "the fans of {STR_VAR_1} all over CORNA!\p"
 	.string "Today, we ask the question, “What do\n"
 	.string "people think of {STR_VAR_1}?”\p"
 	.string "We posed the question to {STR_VAR_2}\n"
@@ -1290,8 +1290,8 @@ gTVDewfordTrendWatcherNetworkText06:: @ 08284E34
 	.string "My time is up. Catch you on the fly!\p"
 	.string "Old man: {STR_VAR_1} {STR_VAR_2}!$"
 
-gTVHoennTreasureInvestigatorsText00:: @ 08284EDF
-	.string "HOENN TREASURE INVESTIGATORS!\p"
+gTVCornaTreasureInvestigatorsText00:: @ 08284EDF
+	.string "CORNA TREASURE INVESTIGATORS!\p"
 	.string "Hi, gang!\n"
 	.string "Score any secret items lately?\p"
 	.string "As always, we'll examine eyewitness\n"
@@ -1299,7 +1299,7 @@ gTVHoennTreasureInvestigatorsText00:: @ 08284EDF
 	.string "Let's start with a letter.\n"
 	.string "It says, “{STR_VAR_1} discovered!”$"
 
-gTVHoennTreasureInvestigatorsText01:: @ 08284FA1
+gTVCornaTreasureInvestigatorsText01:: @ 08284FA1
 	.string "Wow, we'd better check this letter\n"
 	.string "out! Let me read it to you.\p"
 	.string "…Dear INVESTIGATORS,\n"
@@ -1314,7 +1314,7 @@ gTVHoennTreasureInvestigatorsText01:: @ 08284FA1
 	.string "I'll be waiting for exciting news\n"
 	.string "from all of you!$"
 
-gTVHoennTreasureInvestigatorsText02:: @ 082850F5
+gTVCornaTreasureInvestigatorsText02:: @ 082850F5
 	.string "Wow, we'd better check this letter\n"
 	.string "out! Let me read it to you.\p"
 	.string "…Dear INVESTIGATORS,\n"
@@ -1606,7 +1606,7 @@ gTVPokemonLotteryWinnerFlashReportText00:: @ 082863CC
 	.string "This has been a live broadcast from\n"
 	.string "the LILYCOVE DEPARTMENT STORE,\l"
 	.string "offering you the greatest selection\l"
-	.string "in all HOENN!$"
+	.string "in all CORNA!$"
 
 gTVThePokemonBattleSeminarText00:: @ 08286616
 	.string "THE POKéMON BATTLE SEMINAR!\p"
@@ -2002,8 +2002,8 @@ gTVPokemonNewsBattleFrontierText18:: @ 08287F77
 	.string "POKéMON!\p"
 	.string "That's the news on POKéMON NEWS!$"
 
-gTVWhatsNo1InHoennTodayText00:: @ 08287FE0
-	.string "WHAT'S NO. 1 IN HOENN TODAY?\n"
+gTVWhatsNo1InCornaTodayText00:: @ 08287FE0
+	.string "WHAT'S NO. 1 IN CORNA TODAY?\n"
 	.string "Yes, it's that time again!\p"
 	.string "Hello, viewers! Are you giving your\n"
 	.string "best at whatever you do?\p"
@@ -2012,7 +2012,7 @@ gTVWhatsNo1InHoennTodayText00:: @ 08287FE0
 	.string "Today's no. 1 TRAINER is none other\n"
 	.string "than {STR_VAR_1}!$"
 
-gTVWhatsNo1InHoennTodayText01:: @ 082880C0
+gTVWhatsNo1InCornaTodayText01:: @ 082880C0
 	.string "In one day, {STR_VAR_1} spun the SLOTS\n"
 	.string "at the GAME CORNER {STR_VAR_2} times.\p"
 	.string "While playing, {STR_VAR_1} was heard\n"
@@ -2020,7 +2020,7 @@ gTVWhatsNo1InHoennTodayText01:: @ 082880C0
 	.string "even move…”\l"
 	.string "Isn't that interesting?$"
 
-gTVWhatsNo1InHoennTodayText02:: @ 0828815F
+gTVWhatsNo1InCornaTodayText02:: @ 0828815F
 	.string "In one day, {STR_VAR_1} played\n"
 	.string "the ROULETTE game at the GAME\l"
 	.string "CORNER {STR_VAR_2} times.\p"
@@ -2029,7 +2029,7 @@ gTVWhatsNo1InHoennTodayText02:: @ 0828815F
 	.string "The TRAINER's eyes were focused and\n"
 	.string "the face showed concentration.$"
 
-gTVWhatsNo1InHoennTodayText03:: @ 0828821A
+gTVWhatsNo1InCornaTodayText03:: @ 0828821A
 	.string "In one day, {STR_VAR_1} battled\n"
 	.string "wild POKéMON {STR_VAR_2} times!\p"
 	.string "Apparently, {STR_VAR_1}'s POKéMON\n"
@@ -2037,7 +2037,7 @@ gTVWhatsNo1InHoennTodayText03:: @ 0828821A
 	.string "They appear eager to battle anywhere,\n"
 	.string "anytime, and anyhow!$"
 
-gTVWhatsNo1InHoennTodayText04:: @ 082882BE
+gTVWhatsNo1InCornaTodayText04:: @ 082882BE
 	.string "In just one day, {STR_VAR_1} spun\n"
 	.string "the BERRY BLENDER {STR_VAR_2} times!\p"
 	.string "Toward the end, even {STR_VAR_1}\n"
@@ -2045,7 +2045,7 @@ gTVWhatsNo1InHoennTodayText04:: @ 082882BE
 	.string "The TRAINER appeared to totter\n"
 	.string "around like a SPINDA!$"
 
-gTVWhatsNo1InHoennTodayText05:: @ 08288355
+gTVWhatsNo1InCornaTodayText05:: @ 08288355
 	.string "In just one day, {STR_VAR_1} planted\n"
 	.string "{STR_VAR_2} BERRIES!\p"
 	.string "As a result, {STR_VAR_1}'s clothes\n"
@@ -2055,14 +2055,14 @@ gTVWhatsNo1InHoennTodayText05:: @ 08288355
 	.string "The flowers are said to soothe\n"
 	.string "the emotions of people.$"
 
-gTVWhatsNo1InHoennTodayText06:: @ 0828842B
+gTVWhatsNo1InCornaTodayText06:: @ 0828842B
 	.string "In just one day, {STR_VAR_1} picked\n"
 	.string "{STR_VAR_2} BERRIES!\p"
 	.string "{STR_VAR_1}'s BAG became so filled\n"
 	.string "with BERRIES, the TRAINER had trouble\l"
 	.string "walking afterward!$"
 
-gTVWhatsNo1InHoennTodayText07:: @ 082884A5
+gTVWhatsNo1InCornaTodayText07:: @ 082884A5
 	.string "In just one day, {STR_VAR_1} obtained\n"
 	.string "{STR_VAR_2} Battle Points!\p"
 	.string "{STR_VAR_1} was later seen wrestling\n"
@@ -2072,7 +2072,7 @@ gTVWhatsNo1InHoennTodayText07:: @ 082884A5
 	.string "The TRAINER reportedly was grinning\n"
 	.string "while mulling options.$"
 
-gTVWhatsNo1InHoennTodayText08:: @ 0828858B
+gTVWhatsNo1InCornaTodayText08:: @ 0828858B
 	.string "Well, isn't that something!\p"
 	.string "{STR_VAR_1}!\n"
 	.string "You're today's no. 1 TRAINER!\p"

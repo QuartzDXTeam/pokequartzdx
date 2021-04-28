@@ -123,12 +123,12 @@ MossdeepCity_SpaceCenter_1F_EventScript_SunStoneMan:: @ 822308E
 	compare VAR_RESULT, 0
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_SUN_STONE_MOSSDEEP
-	msgbox MossdeepCity_SpaceCenter_1F_Text_HoennFamousForMeteorShowers, MSGBOX_DEFAULT
+	msgbox MossdeepCity_SpaceCenter_1F_Text_CornaFamousForMeteorShowers, MSGBOX_DEFAULT
 	release
 	end
 
 MossdeepCity_SpaceCenter_1F_EventScript_GaveSunStone:: @ 82230D0
-	msgbox MossdeepCity_SpaceCenter_1F_Text_HoennFamousForMeteorShowers, MSGBOX_DEFAULT
+	msgbox MossdeepCity_SpaceCenter_1F_Text_CornaFamousForMeteorShowers, MSGBOX_DEFAULT
 	release
 	end
 
@@ -327,8 +327,8 @@ MossdeepCity_SpaceCenter_1F_Text_FoundThisYouCanHaveIt: @ 8223540
 	.string "It's not anything I need, so you can\n"
 	.string "have it.$"
 
-MossdeepCity_SpaceCenter_1F_Text_HoennFamousForMeteorShowers: @ 82235A6
-	.string "The HOENN region has been famous for \n"
+MossdeepCity_SpaceCenter_1F_Text_CornaFamousForMeteorShowers: @ 82235A6
+	.string "The CORNA region has been famous for \n"
 	.string "its meteor showers for a long time.$"
 
 MossdeepCity_SpaceCenter_1F_Text_MagmaCantStealFuelTakeThis: @ 82235F0
