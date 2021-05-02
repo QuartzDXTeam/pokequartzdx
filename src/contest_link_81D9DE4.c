@@ -75,7 +75,7 @@ static void sub_81D9F68(u8 taskId)
 
     for (i = 0; i < gNumLinkContestPlayers; i++)
         data1[i] = gTasks[taskId].data[i + 1];
-    
+
     i = 0;
     if (i < gNumLinkContestPlayers)
     {
@@ -93,7 +93,7 @@ static void sub_81D9F68(u8 taskId)
 
     for (i = 0; i < gNumLinkContestPlayers; i++)
         data2[i] = gTasks[taskId].data[i + 5];
-    
+
     if (gNumLinkContestPlayers != 4 && GetMultiplayerId() == 0)
     {
         rank = gContestMons[0].unk2C[0];
@@ -105,7 +105,7 @@ static void sub_81D9F68(u8 taskId)
 
         if (rank)
             rank--;
-        
+
         gameCleared = 1;
         for (i = 0; i < gNumLinkContestPlayers; i++)
         {
@@ -191,7 +191,7 @@ static void sub_81DA244(u8 taskId)
         {
             if (!IsLinkTaskFinished())
                 return;
-            
+
             if (sub_80FC4F4(&gRngValue, sizeof(gRngValue)) == 1)
                 gTasks[taskId].data[0]++;
         }
@@ -308,7 +308,7 @@ static void sub_81DA488(u8 taskId)
         {
             if (!IsLinkTaskFinished())
                 return;
-            
+
             if (sub_80FC4F4(&gContestMons[gNumLinkContestPlayers], (4 - gNumLinkContestPlayers) * sizeof(struct ContestPokemon)) == 1)
                 gTasks[taskId].data[0]++;
         }

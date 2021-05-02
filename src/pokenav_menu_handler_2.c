@@ -179,31 +179,31 @@ struct UnkStruct_08620240
 // TODO
 static const struct UnkStruct_08620240 gUnknown_08620240[POKENAV_MENU_TYPE_COUNT] =
 {
-    [POKENAV_MENU_TYPE_DEFAULT] = 
+    [POKENAV_MENU_TYPE_DEFAULT] =
     {
         0x2A,
         0x14,
         {gUnknown_0862020C, gUnknown_08620210, gUnknown_0862021C}
     },
-    [POKENAV_MENU_TYPE_UNLOCK_MC] = 
+    [POKENAV_MENU_TYPE_UNLOCK_MC] =
     {
         0x2A,
         0x14,
         {gUnknown_0862020C, gUnknown_08620210, gUnknown_08620214, gUnknown_0862021C}
     },
-    [POKENAV_MENU_TYPE_UNLOCK_MC_RIBBONS] = 
+    [POKENAV_MENU_TYPE_UNLOCK_MC_RIBBONS] =
     {
         0x2A,
         0x14,
         {gUnknown_0862020C, gUnknown_08620210, gUnknown_08620214, gUnknown_08620218, gUnknown_0862021C}
     },
-    [POKENAV_MENU_TYPE_CONDITION] = 
+    [POKENAV_MENU_TYPE_CONDITION] =
     {
         0x38,
         0x14,
         {gUnknown_08620220, gUnknown_08620224, gUnknown_0862023C}
     },
-    [POKENAV_MENU_TYPE_CONDITION_SEARCH] = 
+    [POKENAV_MENU_TYPE_CONDITION_SEARCH] =
     {
         0x28,
         0x10,
@@ -341,7 +341,7 @@ bool32 OpenPokenavMenuInitial(void)
 
     if (state == NULL)
         return FALSE;
-    
+
     state->pokenavAlreadyOpen = FALSE;
     return TRUE;
 }

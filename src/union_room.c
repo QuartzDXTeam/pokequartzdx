@@ -2306,8 +2306,8 @@ void sub_80156E0(u8 taskId)
         data->state = 3;
         break;
     case 3:
-        if ((GetPartyMenuType() == PARTY_MENU_TYPE_UNION_ROOM_REGISTER 
-           || GetPartyMenuType() == PARTY_MENU_TYPE_UNION_ROOM_TRADE) 
+        if ((GetPartyMenuType() == PARTY_MENU_TYPE_UNION_ROOM_REGISTER
+           || GetPartyMenuType() == PARTY_MENU_TYPE_UNION_ROOM_TRADE)
            && sUnionRoomTrade.field_0 != 0)
         {
             id = GetCursorSelectionMonId();

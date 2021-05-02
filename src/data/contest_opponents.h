@@ -1164,7 +1164,7 @@ const struct ContestPokemon gContestOpponents[] =
         .personality = 0,
         .otId = 0xFFFF
     },
-    [CONTEST_OPPONENT_ARIANA] = {    
+    [CONTEST_OPPONENT_ARIANA] = {
         .species = SPECIES_KECLEON,
         .nickname = _("KECON"),
         .trainerName = _("ARIANA"),
@@ -2038,7 +2038,7 @@ const struct ContestPokemon gContestOpponents[] =
         .species = SPECIES_CUBONE,
         .nickname = _("CUBIN"),
         .trainerName = _("COLTIN"),
-        .trainerGfxId = OBJ_EVENT_GFX_MAN_4, 
+        .trainerGfxId = OBJ_EVENT_GFX_MAN_4,
         .aiChecks = 0x82000FFF,
         .whichRank = CONTEST_RANK_HYPER,
         .aiPool_Cool = FALSE,

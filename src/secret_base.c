@@ -1183,28 +1183,28 @@ void SecretBasePerStepCallback(u8 taskId)
                     VarSet(VAR_SECRET_BASE_HIGH_TV_FLAGS, VarGet(VAR_SECRET_BASE_HIGH_TV_FLAGS) | SECRET_BASE_USED_SOLID_BOARD);
                 }
             }
-            else if (tileId == METATILE_SecretBase_SmallChair 
-                  || tileId == METATILE_SecretBase_PokemonChair 
-                  || tileId == METATILE_SecretBase_HeavyChair 
-                  || tileId == METATILE_SecretBase_PrettyChair 
-                  || tileId == METATILE_SecretBase_ComfortChair 
-                  || tileId == METATILE_SecretBase_RaggedChair 
-                  || tileId == METATILE_SecretBase_BrickChair 
-                  || tileId == METATILE_SecretBase_CampChair 
+            else if (tileId == METATILE_SecretBase_SmallChair
+                  || tileId == METATILE_SecretBase_PokemonChair
+                  || tileId == METATILE_SecretBase_HeavyChair
+                  || tileId == METATILE_SecretBase_PrettyChair
+                  || tileId == METATILE_SecretBase_ComfortChair
+                  || tileId == METATILE_SecretBase_RaggedChair
+                  || tileId == METATILE_SecretBase_BrickChair
+                  || tileId == METATILE_SecretBase_CampChair
                   || tileId == METATILE_SecretBase_HardChair)
             {
                 if (sInFriendSecretBase == TRUE)
                     VarSet(VAR_SECRET_BASE_LOW_TV_FLAGS, VarGet(VAR_SECRET_BASE_LOW_TV_FLAGS) | SECRET_BASE_USED_CHAIR);
             }
-            else if (tileId == METATILE_SecretBase_RedTent_DoorTop 
-                  || tileId == METATILE_SecretBase_RedTent_Door 
-                  || tileId == METATILE_SecretBase_BlueTent_DoorTop 
+            else if (tileId == METATILE_SecretBase_RedTent_DoorTop
+                  || tileId == METATILE_SecretBase_RedTent_Door
+                  || tileId == METATILE_SecretBase_BlueTent_DoorTop
                   || tileId == METATILE_SecretBase_BlueTent_Door)
             {
                 if (sInFriendSecretBase == TRUE)
                     VarSet(VAR_SECRET_BASE_LOW_TV_FLAGS, VarGet(VAR_SECRET_BASE_LOW_TV_FLAGS) | SECRET_BASE_USED_TENT);
             }
-            else if ((behavior == MB_IMPASSABLE_NORTHEAST && tileId == METATILE_SecretBase_Stand_CornerRight) 
+            else if ((behavior == MB_IMPASSABLE_NORTHEAST && tileId == METATILE_SecretBase_Stand_CornerRight)
                   || (behavior == MB_IMPASSABLE_NORTHWEST && MapGridGetMetatileIdAt(x, y) == METATILE_SecretBase_Stand_CornerLeft))
             {
                 if (sInFriendSecretBase == TRUE)

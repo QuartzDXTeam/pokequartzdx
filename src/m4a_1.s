@@ -180,7 +180,7 @@ do_reverb:
 	addeq r7, r0, #0x350
 	addne r7, r5, r8
 	mov	r4, r8
-	orr	r3, r3, r3, lsl#16			
+	orr	r3, r3, r3, lsl#16
 	stmfd sp!, {r8, lr}
 	ldr	lr, hq_buffer
 reverb_loop:
@@ -524,7 +524,7 @@ C_mixing_setup:
 
 C_select_highspeed_codepath:
 	stmfd sp!, {r10} @ Save original sp for VLA
-	
+
 	@ This code decides which piece of code to load
 	@ depending on playback-rate / default-rate ratio.
 	@ Modes > 1.0 run with different volume levels.
@@ -562,7 +562,7 @@ C_skip_fast_mixing_creation:
 	mov r2, #0xFF000000  @ Load the fine position overflow bitmask
 C_fast_mixing_loop:
 
-	@ This is the actual processing and interpolation code loop. 
+	@ This is the actual processing and interpolation code loop.
 	@ Nops will be replaced by the code above.
 	ldmia r5, {r0, r1, r10, lr} @ load 4 stereo samples to Registers
 	mul r9, r7, r12
@@ -1211,7 +1211,7 @@ C_uncompressed_reverse_mixing_load_skip:
 	bgt C_uncompressed_reverse_mixing_loop
 	add r3, r3, #2
 	b C_end_mixing
-	
+
 	@ This is the main BDPCM Decoder.
 	@ It decodes and caches a block of PCM data
 	@ and returns them in r12
@@ -2496,4 +2496,3 @@ gMPlayTrack_SE2:
 gMPlayTrack_SE3:
     .space 0x50
     .size gMPlayTrack_SE3, .-gMPlayTrack_SE3
-    

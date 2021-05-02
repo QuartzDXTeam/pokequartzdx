@@ -49,20 +49,20 @@ static const u8 sText_TransmissionFailureTryAgain[] = _("Transmission failure.\n
 
 static const struct BgTemplate sBerryFixBgTemplates[] = {
     {
-        .bg = 0, 
-        .charBaseIndex = 0, 
-        .mapBaseIndex = 30, 
-        .screenSize = 0, 
-        .paletteMode = 0, 
+        .bg = 0,
+        .charBaseIndex = 0,
+        .mapBaseIndex = 30,
+        .screenSize = 0,
+        .paletteMode = 0,
         .priority = 0,
         .baseTile = 0
-    }, 
+    },
     {
-        .bg = 1, 
-        .charBaseIndex = 1, 
-        .mapBaseIndex = 31, 
-        .screenSize = 0, 
-        .paletteMode = 0, 
+        .bg = 1,
+        .charBaseIndex = 1,
+        .mapBaseIndex = 31,
+        .screenSize = 0,
+        .paletteMode = 0,
         .priority = 1,
         .baseTile = 0
     }
@@ -70,39 +70,39 @@ static const struct BgTemplate sBerryFixBgTemplates[] = {
 
 static const struct WindowTemplate sBerryFixWindowTemplates[] = {
     {
-        .bg = 0, 
-        .tilemapLeft = 2,  
-        .tilemapTop = 4, 
-        .width = 26, 
-        .height = 2, 
-        .paletteNum = 15, 
+        .bg = 0,
+        .tilemapLeft = 2,
+        .tilemapTop = 4,
+        .width = 26,
+        .height = 2,
+        .paletteNum = 15,
         .baseBlock = 1
     },
     {
-        .bg = 0, 
-        .tilemapLeft = 1, 
-        .tilemapTop = 11, 
-        .width = 28, 
-        .height = 8, 
-        .paletteNum = 15, 
+        .bg = 0,
+        .tilemapLeft = 1,
+        .tilemapTop = 11,
+        .width = 28,
+        .height = 8,
+        .paletteNum = 15,
         .baseBlock = 53
     },
     {
-        .bg = 0, 
-        .tilemapLeft = 0,  
-        .tilemapTop = 8, 
-        .width = 30, 
-        .height = 2, 
-        .paletteNum = 15, 
+        .bg = 0,
+        .tilemapLeft = 0,
+        .tilemapTop = 8,
+        .width = 30,
+        .height = 2,
+        .paletteNum = 15,
         .baseBlock = 277
     },
     {
-        .bg = 0, 
-        .tilemapLeft = 8,  
-        .tilemapTop = 0, 
-        .width = 14, 
-        .height = 2, 
-        .paletteNum = 15, 
+        .bg = 0,
+        .tilemapLeft = 8,
+        .tilemapTop = 0,
+        .width = 14,
+        .height = 2,
+        .paletteNum = 15,
         .baseBlock = 337
     },
     DUMMY_WIN_TEMPLATE

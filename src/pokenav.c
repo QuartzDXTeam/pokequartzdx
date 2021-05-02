@@ -54,7 +54,7 @@ static void CB2_InitPokenavForTutorial(void);
 // TODO: Use MENU ids
 const struct PokenavCallbacks PokenavMenuCallbacks[15] =
 {
-    [POKENAV_MAIN_MENU - POKENAV_MENU_IDS_START] = 
+    [POKENAV_MAIN_MENU - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_MainMenuCursorOnMap,
         .callback = GetMenuHandlerCallback,
@@ -64,7 +64,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = FreeMenuHandlerSubstruct1,
         .free2 = FreeMenuHandlerSubstruct2,
     },
-    [POKENAV_MAIN_MENU_CURSOR_ON_MAP - POKENAV_MENU_IDS_START] = 
+    [POKENAV_MAIN_MENU_CURSOR_ON_MAP - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_MainMenuCursorOnMap,
         .callback = GetMenuHandlerCallback,
@@ -74,7 +74,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = FreeMenuHandlerSubstruct1,
         .free2 = FreeMenuHandlerSubstruct2,
     },
-    [POKENAV_CONDITION_MENU - POKENAV_MENU_IDS_START] = 
+    [POKENAV_CONDITION_MENU - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_ConditionMenu,
         .callback = GetMenuHandlerCallback,
@@ -84,7 +84,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = FreeMenuHandlerSubstruct1,
         .free2 = FreeMenuHandlerSubstruct2,
     },
-    [POKENAV_CONDITION_SEARCH_MENU - POKENAV_MENU_IDS_START] = 
+    [POKENAV_CONDITION_SEARCH_MENU - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_ConditionSearchMenu,
         .callback = GetMenuHandlerCallback,
@@ -94,7 +94,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = FreeMenuHandlerSubstruct1,
         .free2 = FreeMenuHandlerSubstruct2,
     },
-    [POKENAV_MAIN_MENU_CURSOR_ON_MATCH_CALL - POKENAV_MENU_IDS_START] = 
+    [POKENAV_MAIN_MENU_CURSOR_ON_MATCH_CALL - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_MainMenuCursorOnMatchCall,
         .callback = GetMenuHandlerCallback,
@@ -104,7 +104,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = FreeMenuHandlerSubstruct1,
         .free2 = FreeMenuHandlerSubstruct2,
     },
-    [POKENAV_MAIN_MENU_CURSOR_ON_RIBBONS - POKENAV_MENU_IDS_START] = 
+    [POKENAV_MAIN_MENU_CURSOR_ON_RIBBONS - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_MainMenuCursorOnRibbons,
         .callback = GetMenuHandlerCallback,
@@ -114,7 +114,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = FreeMenuHandlerSubstruct1,
         .free2 = FreeMenuHandlerSubstruct2,
     },
-    [POKENAV_REGION_MAP - POKENAV_MENU_IDS_START] = 
+    [POKENAV_REGION_MAP - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_RegionMap,
         .callback = GetRegionMapCallback,
@@ -124,7 +124,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = FreeRegionMapSubstruct1,
         .free2 = FreeRegionMapSubstruct2,
     },
-    [POKENAV_CONDITION_PARTY - POKENAV_MENU_IDS_START] = 
+    [POKENAV_CONDITION_PARTY - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_7,
         .callback = sub_81CD070,
@@ -134,7 +134,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = sub_81CD1C0,
         .free2 = sub_81CECA0,
     },
-    [POKENAV_CONDITION_SEARCH_RESULTS - POKENAV_MENU_IDS_START] = 
+    [POKENAV_CONDITION_SEARCH_RESULTS - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_8,
         .callback = sub_81CEFDC,
@@ -144,7 +144,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = sub_81CEFF0,
         .free2 = sub_81CF3F8,
     },
-    [POKENAV_MENU_9 - POKENAV_MENU_IDS_START] = 
+    [POKENAV_MENU_9 - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_9,
         .callback = sub_81CD070,
@@ -154,7 +154,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = sub_81CD1C0,
         .free2 = sub_81CECA0,
     },
-    [POKENAV_MENU_A - POKENAV_MENU_IDS_START] = 
+    [POKENAV_MENU_A - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_10,
         .callback = sub_81CEFDC,
@@ -164,7 +164,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = sub_81CEFF0,
         .free2 = sub_81CF3F8,
     },
-    [POKENAV_MATCH_CALL - POKENAV_MENU_IDS_START] = 
+    [POKENAV_MATCH_CALL - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_MatchCall,
         .callback = GetMatchCallCallback,
@@ -174,7 +174,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = FreeMatchCallSubstruct1,
         .free2 = FreeMatchCallSubstruct2,
     },
-    [POKENAV_RIBBONS_MON_LIST - POKENAV_MENU_IDS_START] = 
+    [POKENAV_RIBBONS_MON_LIST - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_12,
         .callback = sub_81CFA34,
@@ -184,7 +184,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = sub_81CFA48,
         .free2 = sub_81CFE98,
     },
-    [POKENAV_MENU_D - POKENAV_MENU_IDS_START] = 
+    [POKENAV_MENU_D - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_13,
         .callback = sub_81D04A0,
@@ -194,7 +194,7 @@ const struct PokenavCallbacks PokenavMenuCallbacks[15] =
         .free1 = sub_81D04B8,
         .free2 = sub_81D09F4,
     },
-    [POKENAV_MENU_E - POKENAV_MENU_IDS_START] = 
+    [POKENAV_MENU_E - POKENAV_MENU_IDS_START] =
     {
         .init = PokenavCallback_Init_14,
         .callback = sub_81CFA34,

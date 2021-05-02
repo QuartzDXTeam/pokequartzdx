@@ -1548,7 +1548,7 @@ static void sub_8175DA0(u8 taskIdB)
                 for (i = 0; i < 5; i++)
                     PrintCreditsText(
                         gCreditsEntryPointerTable[gTasks[taskIdB].data[TDB_CURRENT_PAGE]][i]->text,
-                         5 + i * 16, 
+                         5 + i * 16,
                          gCreditsEntryPointerTable[gTasks[taskIdB].data[TDB_CURRENT_PAGE]][i]->isTitle);
 
                 CopyWindowToVram(0, 2);
@@ -2300,7 +2300,7 @@ static void DeterminePokemonToShow(void)
     u16 page;
     u16 dexNum;
     u16 j;
-    
+
     // Go through the Pokedex, and anything that has gotten caught we put into our massive array.
     // This basically packs all of the caught pokemon into the front of the array
     for (dexNum = 1, j = 0; dexNum < NATIONAL_DEX_COUNT; dexNum++)
@@ -2330,7 +2330,7 @@ static void DeterminePokemonToShow(void)
         // Select a random mon, insert into array
         page = Random() % sCreditsData->numCaughtMon;
         sCreditsData->monToShow[j] = sCreditsData->caughtMonIds[page];
-        
+
         // Remove the select mon from the array, and condense array entries
         j++;
         sCreditsData->caughtMonIds[page] = 0;

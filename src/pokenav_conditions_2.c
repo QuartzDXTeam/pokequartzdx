@@ -30,7 +30,7 @@ const u32 gUnknown_08623228[] = INCBIN_U32("graphics/pokenav/8623228.4bpp.lz");
 const u32 gUnknown_0862323C[] = INCBIN_U32("graphics/pokenav/862323C.bin.lz");
 const u16 gUnknown_08623338[] = INCBIN_U16("graphics/pokenav/8623338.gbapal");
 
-const struct BgTemplate gUnknown_08623358[3] = 
+const struct BgTemplate gUnknown_08623358[3] =
 {
     {
         .bg = 1,
@@ -61,7 +61,7 @@ const struct BgTemplate gUnknown_08623358[3] =
     }
 };
 
-const struct WindowTemplate gUnknown_08623364 = 
+const struct WindowTemplate gUnknown_08623364 =
 {
     .bg = 1,
     .tilemapLeft = 13,
@@ -72,7 +72,7 @@ const struct WindowTemplate gUnknown_08623364 =
     .baseBlock = 2
 };
 
-const struct WindowTemplate gUnknown_0862336C = 
+const struct WindowTemplate gUnknown_0862336C =
 {
     .bg = 1,
     .tilemapLeft = 1,
@@ -83,7 +83,7 @@ const struct WindowTemplate gUnknown_0862336C =
     .baseBlock = 0x36
 };
 
-const struct WindowTemplate gUnknown_08623374 = 
+const struct WindowTemplate gUnknown_08623374 =
 {
     .bg = 1,
     .tilemapLeft = 1,
@@ -94,7 +94,7 @@ const struct WindowTemplate gUnknown_08623374 =
     .baseBlock = 0x44
 };
 
-const struct WindowTemplate gUnknown_0862337C = 
+const struct WindowTemplate gUnknown_0862337C =
 {
     .bg = 1,
     .tilemapLeft = 13,

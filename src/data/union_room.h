@@ -356,7 +356,7 @@ const u8 *const sBattleReactionTexts[GENDER_COUNT][4] = {
         sText_UsedGoodMoveMale,
         sText_BattleSurpriseMale,
         sText_SwitchedMonsMale
-    }, 
+    },
     {
         sText_YoureToughFemale,
         sText_UsedGoodMoveFemale,
@@ -380,7 +380,7 @@ const u8 *const sChatReactionTexts[GENDER_COUNT][4] = {
         sText_ThatsFunnyMale,
         sText_RandomChatMale1,
         sText_RandomChatMale2
-    }, 
+    },
     {
         sText_LearnedSomethingFemale,
         sText_ThatsFunnyFemale,
@@ -398,7 +398,7 @@ const u8 *const sTrainerCardReactionTexts[GENDER_COUNT][2] = {
     {
         sText_ShowedTrainerCardMale1,
         sText_ShowedTrainerCardMale2
-    }, 
+    },
     {
         sText_ShowedTrainerCardFemale1,
         sText_ShowedTrainerCardFemale2
@@ -414,7 +414,7 @@ const u8 *const sTradeReactionTexts[GENDER_COUNT][4] = {
     {
         sText_MaleTraded1,
         sText_MaleTraded2
-    }, 
+    },
     {
         sText_FemaleTraded1,
         sText_FemaleTraded2
@@ -473,7 +473,7 @@ ALIGNED(4) const u8 sText_ChooseLeaderToughContest[] = _("TOUGHNESS CONTEST!\nPl
 ALIGNED(4) const u8 sText_ChooseLeaderBattleTowerLv50[] = _("BATTLE TOWER LEVEL 50!\nPlease choose the LEADER.");
 ALIGNED(4) const u8 sText_ChooseLeaderBattleTowerOpenLv[] = _("BATTLE TOWER OPEN LEVEL!\nPlease choose the LEADER.");
 
-static const u8 *const sChooseTrainerTexts[NUM_LINK_GROUP_TYPES] = 
+static const u8 *const sChooseTrainerTexts[NUM_LINK_GROUP_TYPES] =
 {
     [LINK_GROUP_SINGLE_BATTLE]     = sText_ChooseTrainerSingleBattle,
     [LINK_GROUP_DOUBLE_BATTLE]     = sText_ChooseTrainerDoubleBattle,
@@ -1034,28 +1034,28 @@ const u8 *const gUnknown_082F04D8[NUM_LINK_GROUP_TYPES] = {
 };
 
 // Link group type to ID for gUnknown_02022C2C
-const u8 gUnknown_082F0530[NUM_LINK_GROUP_TYPES + 2] = 
+const u8 gUnknown_082F0530[NUM_LINK_GROUP_TYPES + 2] =
 {
-    0x01, 
-    0x02, 
-    0x03, 
-    0x04, 
-    0x09, 
-    0x0a, 
-    0x0b, 
+    0x01,
+    0x02,
+    0x03,
+    0x04,
+    0x09,
+    0x0a,
+    0x0b,
     0x15,
-    0x16, 
-    0x00, 
-    0x00, 
-    0x00, 
-    0x0f, 
-    0x10, 
-    0x00, 
+    0x16,
+    0x00,
+    0x00,
+    0x00,
+    0x0f,
+    0x10,
+    0x00,
     0x17,
-    0x18, 
-    0x19, 
-    0x1a, 
-    0x1b, 
-    0x1c, 
+    0x18,
+    0x19,
+    0x1a,
+    0x1b,
+    0x1c,
     0x0e
 };

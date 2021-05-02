@@ -4724,7 +4724,7 @@ static void (*const gUnknown_083ED064[])(void) = {
     sub_8106370
 };
 
-static const struct OamData gUnknown_085A7A3C = 
+static const struct OamData gUnknown_085A7A3C =
 {
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -4873,7 +4873,7 @@ static const struct SpriteFrameImage gUnknown_085A7A7C[] =
 static const struct SpriteFrameImage gUnknown_085A7AAC[] = { gSlotMachineReelTimeShadow, 0x200 };
 static const struct SpriteFrameImage gUnknown_085A7AB4[] = { gUnknown_08DD1A18, 0x40 };
 
-static const struct SpriteFrameImage gUnknown_085A7ABC[] = 
+static const struct SpriteFrameImage gUnknown_085A7ABC[] =
 {
     { gSlotMachineReelTimeLargeBolt0, 0x100 },
     { gSlotMachineReelTimeLargeBolt1, 0x100 },
@@ -4881,8 +4881,8 @@ static const struct SpriteFrameImage gUnknown_085A7ABC[] =
 
 static const struct SpriteFrameImage gUnknown_085A7ACC[] = { gSlotMachineReelTimePikaAura, 0x400 };
 
-static const struct SpriteFrameImage gUnknown_085A7AD4[] = 
-{ 
+static const struct SpriteFrameImage gUnknown_085A7AD4[] =
+{
     { gSlotMachineReelTimeExplosion0, 0x200 },
     { gSlotMachineReelTimeExplosion1, 0x200 },
 };
@@ -4891,13 +4891,13 @@ static const struct SpriteFrameImage gUnknown_085A7AE4[] = { gSlotMachineReelTim
 static const struct SpriteFrameImage gUnknown_085A7AEC[] = { gSlotMachineReelTimeSmoke, 0x80};
 static const struct SpriteFrameImage gUnknown_085A7AF4[] = { gSlotMachineReelTimeBolt, 0x20};
 
-static const union AnimCmd gUnknown_085A7AFC[] = 
+static const union AnimCmd gUnknown_085A7AFC[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_END
 };
 
-static const union AnimCmd gUnknown_085A7B04[] = 
+static const union AnimCmd gUnknown_085A7B04[] =
 {
     ANIMCMD_FRAME(0, 1),
     ANIMCMD_JUMP(0)
@@ -5161,367 +5161,367 @@ static const union AffineAnimCmd *const gUnknown_085A7CDC[] =
 
 static const struct SpriteTemplate gSpriteTemplate_83ED414 =
 {
-    .tileTag = 0, 
-    .paletteTag = 0, 
-    .oam = &gUnknown_085A7A5C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0,
+    .paletteTag = 0,
+    .oam = &gUnknown_085A7A5C,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = sub_8104F18
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED42C =
 {
-    .tileTag = 7, 
-    .paletteTag = 4, 
-    .oam = &gUnknown_085A7A44, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 7,
+    .paletteTag = 4,
+    .oam = &gUnknown_085A7A44,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = sub_810506C
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED444 =
 {
-    .tileTag = 17, 
-    .paletteTag = 0, 
-    .oam = &gUnknown_085A7A74, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 17,
+    .paletteTag = 0,
+    .oam = &gUnknown_085A7A74,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED45C =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 1, 
-    .oam = &gUnknown_085A7A74, 
-    .anims = gUnknown_085A7C00, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 1,
+    .oam = &gUnknown_085A7A74,
+    .anims = gUnknown_085A7C00,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = sub_8105170
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED474 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 2, 
-    .oam = &gUnknown_085A7A44, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 2,
+    .oam = &gUnknown_085A7A44,
     .anims = gUnknown_085A7BF8,
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED48C =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 3, 
-    .oam = &gUnknown_085A7A44, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 3,
+    .oam = &gUnknown_085A7A44,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED4A4 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 3, 
-    .oam = &gUnknown_085A7A44, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 3,
+    .oam = &gUnknown_085A7A44,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED4BC =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 4, 
-    .oam = &gUnknown_085A7A4C, 
-    .anims = gUnknown_085A7C18, 
-    .images = gUnknown_085A7A7C, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 4,
+    .oam = &gUnknown_085A7A4C,
+    .anims = gUnknown_085A7C18,
+    .images = gUnknown_085A7A7C,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = sub_810535C
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED4D4 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 4, 
-    .oam = &gUnknown_085A7A4C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = gUnknown_085A7AAC, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 4,
+    .oam = &gUnknown_085A7A4C,
+    .anims = gUnknown_085A7BF8,
+    .images = gUnknown_085A7AAC,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED4EC =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 4, 
-    .oam = &gUnknown_085A7A4C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = gUnknown_085A7AB4, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 4,
+    .oam = &gUnknown_085A7A4C,
+    .anims = gUnknown_085A7BF8,
+    .images = gUnknown_085A7AB4,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED504 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 4, 
-    .oam = &gUnknown_085A7A54, 
-    .anims = gUnknown_085A7C30, 
-    .images = gUnknown_085A7ABC, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 4,
+    .oam = &gUnknown_085A7A54,
+    .anims = gUnknown_085A7C30,
+    .images = gUnknown_085A7ABC,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = sub_810562C
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED51C =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 7, 
-    .oam = &gUnknown_085A7A64, 
-    .anims = gUnknown_085A7BF8, 
-    .images = gUnknown_085A7ACC, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 7,
+    .oam = &gUnknown_085A7A64,
+    .anims = gUnknown_085A7BF8,
+    .images = gUnknown_085A7ACC,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = sub_8105784
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED534 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 5, 
-    .oam = &gUnknown_085A7A5C, 
-    .anims = gUnknown_085A7C34, 
-    .images = gUnknown_085A7AD4, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 5,
+    .oam = &gUnknown_085A7A5C,
+    .anims = gUnknown_085A7C34,
+    .images = gUnknown_085A7AD4,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = sub_8105894
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED54C =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 4, 
-    .oam = &gUnknown_085A7A3C, 
-    .anims = gUnknown_085A7BFC, 
-    .images = gUnknown_085A7AE4, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 4,
+    .oam = &gUnknown_085A7A3C,
+    .anims = gUnknown_085A7BFC,
+    .images = gUnknown_085A7AE4,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = sub_810594C
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED564 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 4, 
-    .oam = &gUnknown_085A7A4C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = gUnknown_085A7AEC, 
-    .affineAnims = gUnknown_085A7C88, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 4,
+    .oam = &gUnknown_085A7A4C,
+    .anims = gUnknown_085A7BF8,
+    .images = gUnknown_085A7AEC,
+    .affineAnims = gUnknown_085A7C88,
     .callback = sub_8105A38
 };
 
 static const struct SpriteTemplate gUnknown_085A7E48 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A3C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A3C,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7E60 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A3C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A3C,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7E78 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A3C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A3C,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7E90 =
 {
-    .tileTag = 18, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A3C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 18,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A3C,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7EA8 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A6C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A6C,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7EC0 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A6C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A6C,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7ED8 =
 {
-    .tileTag = 19, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A3C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 19,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A3C,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7EF0 =
 {
-    .tileTag = 20, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A3C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 20,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A3C,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7F08 =
 {
-    .tileTag = 21, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A3C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 21,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A3C,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7F20 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A5C, 
-    .anims = gUnknown_085A7C38, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A5C,
+    .anims = gUnknown_085A7C38,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7F38 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A3C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A3C,
+    .anims = gUnknown_085A7BF8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7F50 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A4C, 
-    .anims = gUnknown_085A7C4C, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A4C,
+    .anims = gUnknown_085A7C4C,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7F68 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A3C, 
-    .anims = gUnknown_085A7C44, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A3C,
+    .anims = gUnknown_085A7C44,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_085A7F80 =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 6, 
-    .oam = &gUnknown_085A7A3C, 
-    .anims = gUnknown_085A7C40, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 6,
+    .oam = &gUnknown_085A7A3C,
+    .anims = gUnknown_085A7C40,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gSpriteTemplate_83ED6CC =
 {
-    .tileTag = 0xFFFF, 
-    .paletteTag = 4, 
-    .oam = &gUnknown_085A7A3C, 
-    .anims = gUnknown_085A7BF8, 
-    .images = gUnknown_085A7AF4, 
-    .affineAnims = gUnknown_085A7CDC, 
+    .tileTag = 0xFFFF,
+    .paletteTag = 4,
+    .oam = &gUnknown_085A7A3C,
+    .anims = gUnknown_085A7BF8,
+    .images = gUnknown_085A7AF4,
+    .affineAnims = gUnknown_085A7CDC,
     .callback = sub_8105B70
 };
 
 static const struct Subsprite gUnknown_085A7FB0[] =
 {
     {
-        .x = -64, 
-        .y = -64, 
+        .x = -64,
+        .y = -64,
         .shape = SPRITE_SHAPE(64x64),
         .size = SPRITE_SIZE(64x64),
-        .tileOffset = 0, 
-        .priority = 3, 
+        .tileOffset = 0,
+        .priority = 3,
     },
     {
-        .x = 0, 
-        .y = -64, 
+        .x = 0,
+        .y = -64,
         .shape = SPRITE_SHAPE(64x64),
         .size = SPRITE_SIZE(64x64),
-        .tileOffset = 0, 
-        .priority = 3, 
+        .tileOffset = 0,
+        .priority = 3,
     },
     {
         .x = -64,
-        .y = 0, 
+        .y = 0,
         .shape = SPRITE_SHAPE(64x64),
         .size = SPRITE_SIZE(64x64),
-        .tileOffset = 0, 
-        .priority = 3, 
+        .tileOffset = 0,
+        .priority = 3,
     },
     {
-        .x = 0, 
-        .y = 0, 
+        .x = 0,
+        .y = 0,
         .shape = SPRITE_SHAPE(64x64),
         .size = SPRITE_SIZE(64x64),
-        .tileOffset = 0, 
-        .priority = 3, 
+        .tileOffset = 0,
+        .priority = 3,
     }
 };
 
@@ -5532,52 +5532,52 @@ static const struct SubspriteTable gSubspriteTables_83ED704[] =
 
 static const struct Subsprite gUnknown_085A7FC8[] =
 {
-    { 
-        .x = -32, 
-        .y = -12, 
+    {
+        .x = -32,
+        .y = -12,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
-        .tileOffset = 0, 
+        .tileOffset = 0,
         .priority = 1,
     },
-    { 
-        .x = 0, 
-        .y = -12, 
+    {
+        .x = 0,
+        .y = -12,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 4,
         .priority = 1,
     },
-    { 
-        .x = -32, 
-        .y = -4, 
+    {
+        .x = -32,
+        .y = -4,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
-        .tileOffset = 8, 
+        .tileOffset = 8,
         .priority = 1,
     },
-    { 
-        .x = 0, 
-        .y = -4, 
+    {
+        .x = 0,
+        .y = -4,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 12,
         .priority = 1,
     },
-    { 
-        .x = -32, 
-        .y = 4, 
+    {
+        .x = -32,
+        .y = 4,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 16,
         .priority = 1,
     },
-    { 
-        .x = 0, 
-        .y = 4, 
+    {
+        .x = 0,
+        .y = 4,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
-        .tileOffset = 20, 
+        .tileOffset = 20,
         .priority = 1
     }
 };
@@ -5589,25 +5589,25 @@ static const struct SubspriteTable gSubspriteTables_83ED73C[] =
 
 static const struct Subsprite gUnknown_085A7FE8[] =
 {
-    { 
-        .x = -32, 
-        .y = -20, 
+    {
+        .x = -32,
+        .y = -20,
         .shape = SPRITE_SHAPE(64x32),
         .size = SPRITE_SIZE(64x32),
         .tileOffset = 0,
         .priority = 1,
     },
-    { 
-        .x = -32, 
-        .y = 12, 
+    {
+        .x = -32,
+        .y = 12,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 32,
         .priority = 1,
     },
-    { 
-        .x = 0, 
-        .y = 12, 
+    {
+        .x = 0,
+        .y = 12,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 36,
@@ -5622,41 +5622,41 @@ static const struct SubspriteTable gSubspriteTables_83ED75C[] =
 
 static const struct Subsprite gUnknown_085A7FFC[] =
 {
-    { 
-        .x = -32, 
-        .y = -24, 
+    {
+        .x = -32,
+        .y = -24,
         .shape = SPRITE_SHAPE(64x32),
         .size = SPRITE_SIZE(64x32),
         .tileOffset = 0,
         .priority = 1,
     },
-    { 
-        .x = -32, 
-        .y = 8, 
+    {
+        .x = -32,
+        .y = 8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 32,
         .priority = 1,
     },
-    { 
-        .x = 0, 
-        .y = 8, 
+    {
+        .x = 0,
+        .y = 8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 36,
         .priority = 1,
     },
-    { 
-        .x = -32, 
-        .y = 16, 
+    {
+        .x = -32,
+        .y = 16,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 40,
         .priority = 1,
     },
-    { 
-        .x = 0, 
-        .y = 16, 
+    {
+        .x = 0,
+        .y = 16,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 44,
@@ -5671,33 +5671,33 @@ static const struct SubspriteTable gSubspriteTables_83ED78C[] =
 
 static const struct Subsprite gUnknown_085A8018[] =
 {
-    { 
-        .x = -32, 
-        .y = -8, 
+    {
+        .x = -32,
+        .y = -8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 0,
         .priority = 1,
     },
-    { 
-        .x = 0, 
-        .y = -8, 
+    {
+        .x = 0,
+        .y = -8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 4,
         .priority = 1,
     },
-    { 
-        .x = -32, 
-        .y = 0, 
+    {
+        .x = -32,
+        .y = 0,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 8,
         .priority = 1,
     },
-    { 
-        .x = 0, 
-        .y = 0, 
+    {
+        .x = 0,
+        .y = 0,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 12,
@@ -5712,25 +5712,25 @@ static const struct SubspriteTable gSubspriteTables_83ED7B4[] =
 
 static const struct Subsprite gUnknown_085A8030[] =
 {
-    { 
-        .x = -8, 
-        .y = -12, 
+    {
+        .x = -8,
+        .y = -12,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 0,
         .priority = 1,
     },
-    { 
-        .x = -8, 
-        .y = -4, 
+    {
+        .x = -8,
+        .y = -4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 0,
         .priority = 1,
     },
-    { 
-        .x = -8, 
-        .y = 4, 
+    {
+        .x = -8,
+        .y = 4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 0,
@@ -5745,41 +5745,41 @@ static const struct SubspriteTable gSubspriteTables_83ED7D4[] =
 
 static const struct Subsprite gUnknown_085A8044[] =
 {
-    { 
-        .x = -32, 
-        .y = -24, 
+    {
+        .x = -32,
+        .y = -24,
         .shape = SPRITE_SHAPE(64x32),
         .size = SPRITE_SIZE(64x32),
         .tileOffset = 0,
         .priority = 3,
     },
-    { 
-        .x = -32, 
-        .y = 8, 
+    {
+        .x = -32,
+        .y = 8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 32,
         .priority = 3,
     },
-    { 
-        .x = 0, 
-        .y = 8, 
+    {
+        .x = 0,
+        .y = 8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 36,
         .priority = 3,
     },
-    { 
-        .x = -32, 
-        .y = 16, 
+    {
+        .x = -32,
+        .y = 16,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 40,
         .priority = 3,
     },
-    { 
-        .x = 0, 
-        .y = 16, 
+    {
+        .x = 0,
+        .y = 16,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 44,
@@ -5794,33 +5794,33 @@ static const struct SubspriteTable gUnknown_085A8058[] =
 
 static const struct Subsprite gUnknown_085A8060[] =
 {
-    { 
-        .x = -32, 
-        .y = -8, 
+    {
+        .x = -32,
+        .y = -8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 0,
         .priority = 3,
     },
-    { 
-        .x = 0, 
-        .y = -8, 
+    {
+        .x = 0,
+        .y = -8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 4,
         .priority = 3,
     },
-    { 
-        .x = -32, 
-        .y = 0, 
+    {
+        .x = -32,
+        .y = 0,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 8,
         .priority = 3,
     },
-    { 
-        .x = 0, 
-        .y = 0, 
+    {
+        .x = 0,
+        .y = 0,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 12,
@@ -5835,33 +5835,33 @@ static const struct SubspriteTable gUnknown_085A8070[] =
 
 static const struct Subsprite gUnknown_085A8078[] =
 {
-    { 
-        .x = -32, 
-        .y = -8, 
+    {
+        .x = -32,
+        .y = -8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 0,
         .priority = 3,
     },
-    { 
-        .x = 0, 
-        .y = -8, 
+    {
+        .x = 0,
+        .y = -8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 4,
         .priority = 3,
     },
-    { 
-        .x = -32, 
-        .y = 0, 
+    {
+        .x = -32,
+        .y = 0,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 8,
         .priority = 3,
     },
-    { 
-        .x = 0, 
-        .y = 0, 
+    {
+        .x = 0,
+        .y = 0,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 12,
@@ -5876,33 +5876,33 @@ static const struct SubspriteTable gUnknown_085A8088[] =
 
 static const struct Subsprite gUnknown_085A8090[] =
 {
-    { 
-        .x = -32, 
-        .y = -8, 
+    {
+        .x = -32,
+        .y = -8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 0,
         .priority = 3,
     },
-    { 
-        .x = 0, 
-        .y = -8, 
+    {
+        .x = 0,
+        .y = -8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 4,
         .priority = 3,
     },
-    { 
-        .x = -32, 
-        .y = 0, 
+    {
+        .x = -32,
+        .y = 0,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 8,
         .priority = 3,
     },
-    { 
-        .x = 0, 
-        .y = 0,  
+    {
+        .x = 0,
+        .y = 0,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 12,
@@ -5917,49 +5917,49 @@ static const struct SubspriteTable gUnknown_085A80A0[] =
 
 static const struct Subsprite gUnknown_085A80A8[] =
 {
-    { 
-        .x = -32, 
-        .y = -12, 
+    {
+        .x = -32,
+        .y = -12,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 0,
         .priority = 3,
     },
-    { 
-        .x = 0, 
-        .y = -12, 
+    {
+        .x = 0,
+        .y = -12,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 4,
         .priority = 3,
     },
-    { 
-        .x = -32, 
-        .y = -4, 
+    {
+        .x = -32,
+        .y = -4,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 8,
         .priority = 3,
     },
-    { 
-        .x = 0, 
-        .y = -4, 
+    {
+        .x = 0,
+        .y = -4,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 12,
         .priority = 3,
     },
-    { 
-        .x = -32, 
-        .y = 4, 
+    {
+        .x = -32,
+        .y = 4,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 16,
         .priority = 3,
     },
-    { 
-        .x = 0, 
-        .y = 4, 
+    {
+        .x = 0,
+        .y = 4,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 20,
@@ -5975,8 +5975,8 @@ static const struct SubspriteTable gUnknown_085A80C0[] =
 static const struct Subsprite gUnknown_085A80C8[] =
 {
     {
-        .x = -16, 
-        .y = -16, 
+        .x = -16,
+        .y = -16,
         .shape = SPRITE_SHAPE(32x32),
         .size = SPRITE_SIZE(32x32),
         .tileOffset = 0,
@@ -5987,8 +5987,8 @@ static const struct Subsprite gUnknown_085A80C8[] =
 static const struct Subsprite gUnknown_085A80CC[] =
 {
     {
-        .x = -8, 
-        .y = -8, 
+        .x = -8,
+        .y = -8,
         .shape = SPRITE_SHAPE(16x16),
         .size = SPRITE_SIZE(16x16),
         .tileOffset = 16,
@@ -6008,97 +6008,97 @@ static const struct SubspriteTable gUnknown_085A80D8[] =
 
 static const struct Subsprite gUnknown_085A80E0[] =
 {
-    { 
-        .x = -24, 
-        .y = -24, 
+    {
+        .x = -24,
+        .y = -24,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 0,
         .priority = 3,
     },
-    { 
-        .x = 8, 
-        -24, 
+    {
+        .x = 8,
+        -24,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 4,
         .priority = 3,
     },
-    { 
-        .x = -24, 
-        .y = -16, 
+    {
+        .x = -24,
+        .y = -16,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 6,
         .priority = 3,
     },
-    { 
-        .x = 8, 
-        .y = -16, 
+    {
+        .x = 8,
+        .y = -16,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 10,
         .priority = 3,
     },
-    { 
-        .x = -24, 
-        .y = -8, 
+    {
+        .x = -24,
+        .y = -8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 12,
         .priority = 3,
     },
-    { 
-        .x = 8, 
-        .y = -8,  
+    {
+        .x = 8,
+        .y = -8,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 16,
         .priority = 3,
     },
-    { 
-        .x = -24, 
-        .y = 0, 
+    {
+        .x = -24,
+        .y = 0,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 18,
         .priority = 3,
     },
-    { 
-        .x = 8, 
-        .y = 0, 
+    {
+        .x = 8,
+        .y = 0,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 22,
         .priority = 3,
     },
-    { 
-        .x = -24, 
-        .y = 8, 
+    {
+        .x = -24,
+        .y = 8,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 24,
         .priority = 3,
     },
-    { 
-        .x = 8, 
-        .y = 8, 
+    {
+        .x = 8,
+        .y = 8,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 28,
         .priority = 3,
     },
-    { 
-        .x = -24, 
-        .y = 16, 
+    {
+        .x = -24,
+        .y = 16,
         .shape = SPRITE_SHAPE(32x8),
         .size = SPRITE_SIZE(32x8),
         .tileOffset = 30,
         .priority = 3,
     },
-    { 
-        .x = 8, 
-        .y = 16, 
+    {
+        .x = 8,
+        .y = 16,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 34,
@@ -6113,25 +6113,25 @@ static const struct SubspriteTable gUnknown_085A8110[] =
 
 static const struct Subsprite gUnknown_085A8118[] =
 {
-    { 
-        .x = -16, 
-        .y = -12, 
+    {
+        .x = -16,
+        .y = -12,
         .shape = SPRITE_SHAPE(32x16),
         .size = SPRITE_SIZE(32x16),
         .tileOffset = 0,
         .priority = 3,
     },
-    { 
-        .x = -16, 
-        .y = 4, 
+    {
+        .x = -16,
+        .y = 4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 8,
         .priority = 3,
     },
-    { 
-        .x = 0, 
-        .y = 4, 
+    {
+        .x = 0,
+        .y = 4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 10,
@@ -6146,17 +6146,17 @@ static const struct SubspriteTable gUnknown_085A8124[] =
 
 static const struct Subsprite gUnknown_085A812C[] =
 {
-    { 
-        .x = -8, 
-        .y = -8, 
+    {
+        .x = -8,
+        .y = -8,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 0,
         .priority = 3,
     },
-    { 
-        .x = -8, 
-        .y = 0, 
+    {
+        .x = -8,
+        .y = 0,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 8,
@@ -6171,17 +6171,17 @@ static const struct SubspriteTable gUnknown_085A8134[] =
 
 static const struct Subsprite gUnknown_085A813C[] =
 {
-    { 
-        .x = -8, 
-        .y = -8, 
+    {
+        .x = -8,
+        .y = -8,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 2,
         .priority = 3,
     },
-    { 
-        .x = -8, 
-        .y = 0, 
+    {
+        .x = -8,
+        .y = 0,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 10,
@@ -6196,17 +6196,17 @@ static const struct SubspriteTable gUnknown_085A8144[] =
 
 static const struct Subsprite gUnknown_085A814C[] =
 {
-    { 
-        .x = -8, 
-        .y = -8, 
+    {
+        .x = -8,
+        .y = -8,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 4,
         .priority = 3,
     },
-    { 
-        .x = -8, 
-        .y = 0, 
+    {
+        .x = -8,
+        .y = 0,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 12,
@@ -6221,17 +6221,17 @@ static const struct SubspriteTable gUnknown_085A8154[] =
 
 static const struct Subsprite gUnknown_085A815C[] =
 {
-    { 
-        .x = -8, 
-        .y = -8, 
+    {
+        .x = -8,
+        .y = -8,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 6,
         .priority = 3,
     },
-    { 
-        .x = -8, 
-        .y = 0, 
+    {
+        .x = -8,
+        .y = 0,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 14,
@@ -6246,17 +6246,17 @@ static const struct SubspriteTable gUnknown_085A8164[] =
 
 static const struct Subsprite gUnknown_085A816C[] =
 {
-    { 
-        .x = -8, 
-        .y = -8, 
+    {
+        .x = -8,
+        .y = -8,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 0,
         .priority = 3,
     },
-    { 
-        .x = -8, 
-        .y = 0, 
+    {
+        .x = -8,
+        .y = 0,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 8,
@@ -6271,17 +6271,17 @@ static const struct SubspriteTable gUnknown_085A8174[] =
 
 static const struct Subsprite gUnknown_085A817C[] =
 {
-    { 
-        .x = -4, 
-        .y = -8, 
+    {
+        .x = -4,
+        .y = -8,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 2,
         .priority = 3,
     },
-    { 
-        .x = -4, 
-        .y = 0, 
+    {
+        .x = -4,
+        .y = 0,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 10,
@@ -6296,17 +6296,17 @@ static const struct SubspriteTable gUnknown_085A8184[] =
 
 static const struct Subsprite gUnknown_085A818C[] =
 {
-    { 
-        .x = -8, 
-        .y = -8, 
+    {
+        .x = -8,
+        .y = -8,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
-        .tileOffset = 3, 
-        .priority = 3, 
+        .tileOffset = 3,
+        .priority = 3,
     },
-    { 
-        .x = -8, 
-        .y = 0, 
+    {
+        .x = -8,
+        .y = 0,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 11,
@@ -6321,17 +6321,17 @@ static const struct SubspriteTable gUnknown_085A8194[] =
 
 static const struct Subsprite gUnknown_085A819C[] =
 {
-    { 
-        .x = -4, 
-        .y = -8, 
+    {
+        .x = -4,
+        .y = -8,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 5,
         .priority = 3,
     },
-    { 
-        .x = -4, 
-        .y = 0, 
+    {
+        .x = -4,
+        .y = 0,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 13,
@@ -6346,17 +6346,17 @@ static const struct SubspriteTable gUnknown_085A81A4[] =
 
 static const struct Subsprite gUnknown_085A81AC[] =
 {
-    { 
-        .x = -8, 
-        .y = -8, 
+    {
+        .x = -8,
+        .y = -8,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 6,
         .priority = 3,
     },
-    { 
-        .x = -8, 
-        .y = 0, 
+    {
+        .x = -8,
+        .y = 0,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 14,
@@ -6371,49 +6371,49 @@ static const struct SubspriteTable gUnknown_085A81B4[] =
 
 static const struct Subsprite gUnknown_085A81BC[] =
 {
-    { 
-        .x = -12, 
-        .y = -12, 
+    {
+        .x = -12,
+        .y = -12,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 0,
         .priority = 3,
     },
-    { 
-        .x = 4, 
-        .y = -12, 
+    {
+        .x = 4,
+        .y = -12,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 2,
         .priority = 3,
     },
-    { 
-        .x = -12, 
-        .y = -4, 
+    {
+        .x = -12,
+        .y = -4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 8,
         .priority = 3,
     },
-    { 
-        .x = 4, 
-        .y = -4, 
+    {
+        .x = 4,
+        .y = -4,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 10,
         .priority = 3,
     },
-    { 
-        .x = -12, 
-        .y = 4, 
+    {
+        .x = -12,
+        .y = 4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 16,
         .priority = 3,
     },
-    { 
-        .x = 4, 
-        .y = 4, 
+    {
+        .x = 4,
+        .y = 4,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 18,
@@ -6428,25 +6428,25 @@ static const struct SubspriteTable gUnknown_085A81D4[] =
 
 static const struct Subsprite gUnknown_085A81DC[] =
 {
-    { 
-        .x = -8, 
-        .y = -12, 
+    {
+        .x = -8,
+        .y = -12,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 3,
         .priority = 3,
     },
-    { 
-        .x = -8, 
-        .y = -4, 
+    {
+        .x = -8,
+        .y = -4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 11,
         .priority = 3,
     },
-    { 
-        .x = -8, 
-        .y = 4, 
+    {
+        .x = -8,
+        .y = 4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 19,
@@ -6461,49 +6461,49 @@ static const struct SubspriteTable gUnknown_085A81E8[] =
 
 static const struct Subsprite gUnknown_085A81F0[] =
 {
-    { 
-        .x = -12, 
-        .y = -12, 
+    {
+        .x = -12,
+        .y = -12,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 5,
         .priority = 3,
     },
-    { 
-        .x = 4, 
-        .y = -12, 
+    {
+        .x = 4,
+        .y = -12,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 7,
         .priority = 3,
     },
-    { 
-        .x = -12, 
-        .y = -4, 
+    {
+        .x = -12,
+        .y = -4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 13,
         .priority = 3,
     },
-    { 
-        .x = 4, 
-        .y = -4, 
+    {
+        .x = 4,
+        .y = -4,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 15,
         .priority = 3,
     },
-    { 
-        .x = -12, 
-        .y = 4, 
+    {
+        .x = -12,
+        .y = 4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 21,
         .priority = 3,
     },
-    { 
-        .x = 4, 
-        .y = 4, 
+    {
+        .x = 4,
+        .y = 4,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 23,
@@ -6518,49 +6518,49 @@ static const struct SubspriteTable gUnknown_085A8208[] =
 
 static const struct Subsprite gUnknown_085A8210[] =
 {
-    { 
-        .x = -12, 
-        .y = -12, 
+    {
+        .x = -12,
+        .y = -12,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 0,
         .priority = 3,
     },
-    { 
-        .x = 4, 
-        .y = -12, 
+    {
+        .x = 4,
+        .y = -12,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 2,
         .priority = 3,
     },
-    { 
-        .x = -12, 
-        .y = -4, 
+    {
+        .x = -12,
+        .y = -4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 8,
         .priority = 3,
     },
-    { 
-        .x = 4, 
-        .y = -4, 
+    {
+        .x = 4,
+        .y = -4,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 10,
         .priority = 3,
     },
-    { 
-        .x = -12, 
-        .y = 4, 
+    {
+        .x = -12,
+        .y = 4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 16,
         .priority = 3,
     },
-    { 
-        .x = 4, 
-        .y = 4, 
+    {
+        .x = 4,
+        .y = 4,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 18,
@@ -6575,25 +6575,25 @@ static const struct SubspriteTable gUnknown_085A8228[] =
 
 static const struct Subsprite gUnknown_085A822C[] =
 {
-    { 
-        .x = -8, 
-        .y = -12, 
+    {
+        .x = -8,
+        .y = -12,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 3,
         .priority = 3,
     },
-    { 
-        .x = -8, 
-        .y = -4, 
+    {
+        .x = -8,
+        .y = -4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 11,
         .priority = 3,
     },
-    { 
-        .x = -8, 
-        .y = 4, 
+    {
+        .x = -8,
+        .y = 4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 19,
@@ -6608,49 +6608,49 @@ static const struct SubspriteTable gUnknown_085A823C[] =
 
 static const struct Subsprite gUnknown_085A8244[] =
 {
-    { 
-        .x = -12, 
-        .y = -12, 
+    {
+        .x = -12,
+        .y = -12,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 5,
         .priority = 3,
     },
-    { 
-        .x = 4, 
-        .y = -12, 
+    {
+        .x = 4,
+        .y = -12,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 7,
         .priority = 3,
     },
-    { 
-        .x = -12, 
-        .y = -4, 
+    {
+        .x = -12,
+        .y = -4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 13,
         .priority = 3,
     },
-    { 
-        .x = 4, 
-        .y = -4, 
+    {
+        .x = 4,
+        .y = -4,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 15,
         .priority = 3,
     },
-    { 
-        .x = -12, 
-        .y = 4, 
+    {
+        .x = -12,
+        .y = 4,
         .shape = SPRITE_SHAPE(16x8),
         .size = SPRITE_SIZE(16x8),
         .tileOffset = 21,
         .priority = 3,
     },
-    { 
-        .x = 4, 
-        .y = 4, 
+    {
+        .x = 4,
+        .y = 4,
         .shape = SPRITE_SHAPE(8x8),
         .size = SPRITE_SIZE(8x8),
         .tileOffset = 23,
@@ -6744,28 +6744,28 @@ static const struct SpriteSheet gSlotMachineSpriteSheets[] =
     { .data = gSlotMachineNumber9Tiles, .size = 0x40, .tag = 16 },
 };
 
-static const u8 sUnused1[][8] = 
+static const u8 sUnused1[][8] =
 {
     {0, 0, 0, 0, 0, 2, 18},
-    {0, 0, 0, 0, 0, 2, 19}, 
-    {0, 0, 0, 0, 0, 3, 20}, 
-    {0, 0, 0, 0, 0, 3, 21}, 
+    {0, 0, 0, 0, 0, 2, 19},
+    {0, 0, 0, 0, 0, 3, 20},
+    {0, 0, 0, 0, 0, 3, 21},
     {0, 0, 0, 0, 0, 0,  0}
 };
 
 static const u8 *const gUnknown_083EDCDC = gUnknown_08DD19F8;
 
-static const u8 sUnused2[][2] = 
+static const u8 sUnused2[][2] =
 {
-    {0x7B, 0x6F}, 
-    {0x68, 0x69}, 
-    {0xAB, 0x36}, 
-    {0xFF, 0x7F}, 
-    {0x50, 0x57}, 
-    {0xC0, 0x7E}, 
-    {0xBA, 2}, 
-    {0xBA, 2}, 
-    {0xFD, 1}, 
+    {0x7B, 0x6F},
+    {0x68, 0x69},
+    {0xAB, 0x36},
+    {0xFF, 0x7F},
+    {0x50, 0x57},
+    {0xC0, 0x7E},
+    {0xBA, 2},
+    {0xBA, 2},
+    {0xFD, 1},
     {0xFD, 1}
 };
 

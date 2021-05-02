@@ -233,11 +233,11 @@ void (*const gUnknown_082F2A7C[])(void) =
         sub_801E978,
     };
 
-static const u8 sKeyboardPageMaxRow[] = 
+static const u8 sKeyboardPageMaxRow[] =
 {
-    [UNION_ROOM_KB_PAGE_UPPER] = 9, 
-    [UNION_ROOM_KB_PAGE_LOWER] = 9, 
-    [UNION_ROOM_KB_PAGE_EMOJI] = 9, 
+    [UNION_ROOM_KB_PAGE_UPPER] = 9,
+    [UNION_ROOM_KB_PAGE_LOWER] = 9,
+    [UNION_ROOM_KB_PAGE_EMOJI] = 9,
     9
 };
 
@@ -276,45 +276,45 @@ static const u8 gUnknown_082F2AA8[] = {
     CHAR_SPACE, CHAR_SPACE, CHAR_SPACE, CHAR_SPACE, CHAR_SPACE, CHAR_SPACE, CHAR_SPACE, CHAR_SPACE
 };
 
-static const u8 *const sUnionRoomKeyboardText[UNION_ROOM_KB_PAGE_COUNT][UNION_ROOM_KB_ROW_COUNT] = 
+static const u8 *const sUnionRoomKeyboardText[UNION_ROOM_KB_PAGE_COUNT][UNION_ROOM_KB_ROW_COUNT] =
 {
-    [UNION_ROOM_KB_PAGE_UPPER] = 
+    [UNION_ROOM_KB_PAGE_UPPER] =
     {
-        gText_UnionRoomChatKeyboard_ABCDE, 
-        gText_UnionRoomChatKeyboard_FGHIJ, 
-        gText_UnionRoomChatKeyboard_KLMNO, 
-        gText_UnionRoomChatKeyboard_PQRST, 
-        gText_UnionRoomChatKeyboard_UVWXY, 
-        gText_UnionRoomChatKeyboard_Z, 
-        gText_UnionRoomChatKeyboard_01234Upper, 
-        gText_UnionRoomChatKeyboard_56789Upper, 
-        gText_UnionRoomChatKeyboard_PunctuationUpper, 
+        gText_UnionRoomChatKeyboard_ABCDE,
+        gText_UnionRoomChatKeyboard_FGHIJ,
+        gText_UnionRoomChatKeyboard_KLMNO,
+        gText_UnionRoomChatKeyboard_PQRST,
+        gText_UnionRoomChatKeyboard_UVWXY,
+        gText_UnionRoomChatKeyboard_Z,
+        gText_UnionRoomChatKeyboard_01234Upper,
+        gText_UnionRoomChatKeyboard_56789Upper,
+        gText_UnionRoomChatKeyboard_PunctuationUpper,
         gText_UnionRoomChatKeyboard_SymbolsUpper
     },
-    [UNION_ROOM_KB_PAGE_LOWER] = 
+    [UNION_ROOM_KB_PAGE_LOWER] =
     {
-        gText_UnionRoomChatKeyboard_abcde, 
-        gText_UnionRoomChatKeyboard_fghij, 
-        gText_UnionRoomChatKeyboard_klmno, 
-        gText_UnionRoomChatKeyboard_pqrst, 
-        gText_UnionRoomChatKeyboard_uvwxy, 
-        gText_UnionRoomChatKeyboard_z, 
-        gText_UnionRoomChatKeyboard_01234Lower, 
-        gText_UnionRoomChatKeyboard_56789Lower, 
-        gText_UnionRoomChatKeyboard_PunctuationLower, 
+        gText_UnionRoomChatKeyboard_abcde,
+        gText_UnionRoomChatKeyboard_fghij,
+        gText_UnionRoomChatKeyboard_klmno,
+        gText_UnionRoomChatKeyboard_pqrst,
+        gText_UnionRoomChatKeyboard_uvwxy,
+        gText_UnionRoomChatKeyboard_z,
+        gText_UnionRoomChatKeyboard_01234Lower,
+        gText_UnionRoomChatKeyboard_56789Lower,
+        gText_UnionRoomChatKeyboard_PunctuationLower,
         gText_UnionRoomChatKeyboard_SymbolsLower
     },
-    [UNION_ROOM_KB_PAGE_EMOJI] = 
+    [UNION_ROOM_KB_PAGE_EMOJI] =
     {
-        gText_UnionRoomChatKeyboard_Emoji1, 
-        gText_UnionRoomChatKeyboard_Emoji2, 
-        gText_UnionRoomChatKeyboard_Emoji3, 
-        gText_UnionRoomChatKeyboard_Emoji4, 
-        gText_UnionRoomChatKeyboard_Emoji5, 
-        gText_UnionRoomChatKeyboard_Emoji6, 
-        gText_UnionRoomChatKeyboard_Emoji7, 
-        gText_UnionRoomChatKeyboard_Emoji8, 
-        gText_UnionRoomChatKeyboard_Emoji9, 
+        gText_UnionRoomChatKeyboard_Emoji1,
+        gText_UnionRoomChatKeyboard_Emoji2,
+        gText_UnionRoomChatKeyboard_Emoji3,
+        gText_UnionRoomChatKeyboard_Emoji4,
+        gText_UnionRoomChatKeyboard_Emoji5,
+        gText_UnionRoomChatKeyboard_Emoji6,
+        gText_UnionRoomChatKeyboard_Emoji7,
+        gText_UnionRoomChatKeyboard_Emoji8,
+        gText_UnionRoomChatKeyboard_Emoji9,
         gText_UnionRoomChatKeyboard_Emoji10
     }
 };

@@ -670,7 +670,7 @@ static void sub_810E520(struct Sprite *sprite)
     {
         switch (data->unk2 / 64)
         {
-        case 0: 
+        case 0:
             if (data->unk0_1 << 24 >> 24 == 1) // the shifts have to be here
             {
                 data->unk0_0d = 1;

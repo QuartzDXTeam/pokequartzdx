@@ -699,7 +699,7 @@ static  const struct WindowTemplate sEasyChatYesNoWindowTemplate = {
 
 static const u8 sText_Clear17[] = _("{CLEAR 17}");
 
-static const u8 *const sEasyChatKeyboardText[] = 
+static const u8 *const sEasyChatKeyboardText[] =
 {
     gText_EasyChatKeyboard_ABCDEFothers,
     gText_EasyChatKeyboard_GHIJKL,
@@ -5253,16 +5253,16 @@ void InitEasyChatPhrases(void)
 
     for (i = 0; i < 4; i++)
         gSaveBlock1Ptr->easyChatProfile[i] = sDefaultProfileWords[i];
-    
+
     for (i = 0; i < 6; i++)
         gSaveBlock1Ptr->easyChatBattleStart[i] = sDefaultBattleStartWords[i];
-    
+
     for (i = 0; i < 6; i++)
         gSaveBlock1Ptr->easyChatBattleWon[i] = sUnknown_0859E640[i];
-    
+
     for (i = 0; i < 6; i++)
         gSaveBlock1Ptr->easyChatBattleLost[i] = sUnknown_0859E64C[i];
-    
+
     for (i = 0; i < MAIL_COUNT; i++)
     {
         for (j = 0; j < MAIL_WORDS_COUNT; j++)
@@ -5301,10 +5301,10 @@ static void sub_811F2D4(void)
     sUnknown_0203A120->unk0 = 0;
     if (GetNationalPokedexCount(FLAG_GET_SEEN))
         sUnknown_0203A120->unk2[sUnknown_0203A120->unk0++] = EC_GROUP_POKEMON;
-    
+
     for (i = EC_GROUP_TRAINER; i <= EC_GROUP_ADJECTIVES; i++)
         sUnknown_0203A120->unk2[sUnknown_0203A120->unk0++] = i;
-    
+
     if (FlagGet(FLAG_SYS_GAME_CLEAR))
     {
         sUnknown_0203A120->unk2[sUnknown_0203A120->unk0++] = EC_GROUP_EVENTS;
@@ -5341,7 +5341,7 @@ u8 *unref_sub_811F3E0(u8 *dest, u8 groupId, u16 totalChars)
         *str = CHAR_SPACE;
         str++;
     }
-    
+
     *str = EOS;
     return str;
 }
@@ -5360,7 +5360,7 @@ static u8 *CopyEasyChatWordPadded(u8 *dest, u16 easyChatWord, u16 totalChars)
         *str = CHAR_SPACE;
         str++;
     }
-    
+
     *str = EOS;
     return str;
 }

@@ -1004,9 +1004,9 @@ void sub_80B360C(void)
 
 void CleanupLinkRoomState(void)
 {
-    if (gSpecialVar_0x8004 == USING_SINGLE_BATTLE 
-     || gSpecialVar_0x8004 == USING_DOUBLE_BATTLE 
-     || gSpecialVar_0x8004 == USING_MULTI_BATTLE 
+    if (gSpecialVar_0x8004 == USING_SINGLE_BATTLE
+     || gSpecialVar_0x8004 == USING_DOUBLE_BATTLE
+     || gSpecialVar_0x8004 == USING_MULTI_BATTLE
      || gSpecialVar_0x8004 == USING_BATTLE_TOWER)
     {
         LoadPlayerParty();

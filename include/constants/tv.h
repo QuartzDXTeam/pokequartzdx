@@ -21,7 +21,7 @@
 #define TVSHOW_FAN_CLUB_SPECIAL                     11
 #define TVSHOW_CONTEST_LIVE_UPDATES_2               12
 //                                                  //
-#define TVSHOW_POKEMON_TODAY_CAUGHT                 21 
+#define TVSHOW_POKEMON_TODAY_CAUGHT                 21
 #define TVSHOW_SMART_SHOPPER                        22
 #define TVSHOW_POKEMON_TODAY_FAILED                 23
 #define TVSHOW_FISHING_ADVICE                       24
@@ -41,7 +41,7 @@
 #define TVSHOW_SECRET_BASE_SECRETS                  38
 #define TVSHOW_SAFARI_FAN_CLUB                      39
 //                                                  //
-#define TVSHOW_MASS_OUTBREAK                        41 
+#define TVSHOW_MASS_OUTBREAK                        41
 
 // Number of ribbons to put Spot the Cuties on air
 #define NUM_CUTIES_RIBBONS  4

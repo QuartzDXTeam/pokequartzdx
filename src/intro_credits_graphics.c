@@ -996,7 +996,7 @@ static void sub_817B62C(struct Sprite *sprite)
 {
     s32 var;
     s16 var2 = gUnknown_0203BD28;
-    
+
     if (var2 != 2)
     {
         switch (var2)

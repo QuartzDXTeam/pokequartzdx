@@ -1960,7 +1960,7 @@ const u8 gGrumpigPokedexText[] = _(
     "performs an odd dance step. Its style of\n"
     "dancing became hugely popular overseas.");
 
-const u8 gSpindaPokedexText[] = _( 
+const u8 gSpindaPokedexText[] = _(
 	"It never stops bouncing, often making\n"
 	"onlookers dizzy as a result. Each Bounny\n"
 	"has a unique spot pattern similar to a\n"

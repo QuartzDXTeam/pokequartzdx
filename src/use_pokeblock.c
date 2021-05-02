@@ -175,7 +175,7 @@ const u8 gUnknown_085DFCC4[] =
     4, // Dry/Beauty
     3, // Sweet/Cute
     2, // Bitter/Smart
-    1  // Sour/Tough 
+    1  // Sour/Tough
 };
 
 static const u8 sNatureTextColors[] =
@@ -225,7 +225,7 @@ const struct BgTemplate gUnknown_085DFCCC[4] =
     }
 };
 
-const struct WindowTemplate gUnknown_085DFCDC[] = 
+const struct WindowTemplate gUnknown_085DFCDC[] =
 {
     {
         .bg = 0,
@@ -257,7 +257,7 @@ const struct WindowTemplate gUnknown_085DFCDC[] =
     DUMMY_WIN_TEMPLATE
 };
 
-const struct WindowTemplate sUsePokeblockYesNoWinTemplate = 
+const struct WindowTemplate sUsePokeblockYesNoWinTemplate =
 {
     .bg = 0,
     .tilemapLeft = 0x18,
@@ -277,7 +277,7 @@ const u8 *const sContestStatNames[] =
     gText_Beauty3
 };
 
-const struct SpriteSheet gSpriteSheet_ConditionUpDown = 
+const struct SpriteSheet gSpriteSheet_ConditionUpDown =
 {
     gUsePokeblockUpDown_Gfx, 0x200, TAG_TILE_CONDITION_UP_DOWN
 };
@@ -296,7 +296,7 @@ const s16 gUnknown_085DFD28[][2] =
     {0xC5, 0x3B}
 };
 
-const struct OamData gOamData_085DFD3C = 
+const struct OamData gOamData_085DFD3C =
 {
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -339,7 +339,7 @@ const struct SpriteTemplate gSpriteTemplate_085DFD5C =
     .callback = SpriteCallbackDummy,
 };
 
-const struct OamData gOamData_085DFD74 = 
+const struct OamData gOamData_085DFD74 =
 {
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,

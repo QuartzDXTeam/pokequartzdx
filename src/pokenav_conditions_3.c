@@ -91,7 +91,7 @@ static const struct BgTemplate gUnknown_08623590[] =
     }
 };
 
-static const LoopedTask gUnknown_08623598[] = 
+static const LoopedTask gUnknown_08623598[] =
 {
     NULL,
     sub_81CF578,
@@ -102,7 +102,7 @@ static const LoopedTask gUnknown_08623598[] =
     sub_81CF798
 };
 
-static const struct WindowTemplate gUnknown_086235B4 = 
+static const struct WindowTemplate gUnknown_086235B4 =
 {
     .bg = 1,
     .tilemapLeft = 1,

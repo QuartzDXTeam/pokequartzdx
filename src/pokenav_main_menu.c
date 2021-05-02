@@ -293,7 +293,7 @@ static const struct SpriteTemplate sUnknown_0861FB44 =
 bool32 InitPokenavMainMenu(void)
 {
     struct PokenavMainMenuResources *structPtr;
-    
+
     structPtr = AllocSubstruct(0, sizeof(struct PokenavMainMenuResources));
     if (structPtr == NULL)
         return FALSE;

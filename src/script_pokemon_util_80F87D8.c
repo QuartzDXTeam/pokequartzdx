@@ -301,8 +301,8 @@ u8 GiveMonArtistRibbon(void)
     u8 hasArtistRibbon;
 
     hasArtistRibbon = GetMonData(&gPlayerParty[gContestMonPartyIndex], MON_DATA_ARTIST_RIBBON);
-    if (!hasArtistRibbon 
-        && gContestFinalStandings[gContestPlayerMonIndex] == 0 
+    if (!hasArtistRibbon
+        && gContestFinalStandings[gContestPlayerMonIndex] == 0
         && gSpecialVar_ContestRank == CONTEST_RANK_MASTER
         && gUnknown_02039F08[gContestPlayerMonIndex] >= 800)
     {
@@ -419,8 +419,8 @@ static void Task_ShowContestEntryMonPic(u8 taskId)
 
 void ScriptGetMultiplayerId(void)
 {
-    if ((gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK) 
-        && gNumLinkContestPlayers == CONTESTANT_COUNT 
+    if ((gLinkContestFlags & LINK_CONTEST_FLAG_IS_LINK)
+        && gNumLinkContestPlayers == CONTESTANT_COUNT
         && !(gLinkContestFlags & LINK_CONTEST_FLAG_IS_WIRELESS))
         gSpecialVar_Result = GetMultiplayerId();
     else

@@ -225,21 +225,21 @@ Route114_EventScriptRoellama::
 	compare VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED
 	goto_if_eq Route114_EventScript_RoellamaPost
 	end
-	
-	Route114_EventScript_RoellamaPost:: 
+
+	Route114_EventScript_RoellamaPost::
 	fadescreenswapbuffers FADE_TO_BLACK
 	removeobject 28
 	fadescreenswapbuffers FADE_FROM_BLACK
 	setflag FLAG_HIDE_ROELLAMA_DEFEATED
 	release
 	end
-	
+
 Route114_Text_RoellamaRoar::
 	.string "GWAAAAR!$"
-	
+
 Route114_Text_RoellamaStart::
 	.string "The enraged Roellama attacked!$"
-	
+
 Route114_Text_RoellamaRun::
 	.string "The wild Roellama ran!$"
 

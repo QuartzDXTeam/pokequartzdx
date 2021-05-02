@@ -53,7 +53,7 @@ void sub_80FC580(u8 taskId)
 
     for (i = 0; i < 4; i++)
         gBlockRecvBuffer[i][0] = 0xFF;
-    
+
     gTasks[taskId].data[0] = 0;
     gTasks[taskId].func = sub_80FC5C0;
 }
@@ -89,7 +89,7 @@ bool32 sub_80FC670(s16 *arg0)
 {
     if (gLinkContestFlags & LINK_CONTEST_FLAG_HAS_RS_PLAYER)
         return TRUE;
-    
+
     switch (*arg0)
     {
     case 0:

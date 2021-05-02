@@ -320,7 +320,7 @@ static void SpriteCB_QuartzDX(struct Sprite *sprite)
 {
     if (gTasks[sprite->sheetTileStart].data[1] != 0) //hacky as hell lmao
         EndQuartzDXMovement(sprite);
-    
+
     else
     {
         sprite->data[0] = 40;
@@ -652,10 +652,10 @@ static void Task_TitleScreenPhase1(u8 taskId)
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL);
         SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 0));
         SetGpuReg(REG_OFFSET_BLDY, 0);
-	
+
 	spriteId = CreateSprite(&sQuartzDXSpriteTemplate, QUARTZDX_INITIAL_X, QUARTZDX_INITIAL_Y, 0);
 	gSprites[spriteId].sheetTileStart = taskId;
-	
+
         gTasks[taskId].tCounter = 144;
         gTasks[taskId].func = Task_TitleScreenPhase2;
     }
@@ -734,7 +734,7 @@ static void Task_TitleScreenPhase3(u8 taskId)
         FadeOutBGM(4);
         BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
         SetMainCallback2(CB2_GoToBerryFixScreen);
-    }   
+    }
     else
     {
         SetGpuReg(REG_OFFSET_BG2Y_L, 0);
