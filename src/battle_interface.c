@@ -15,7 +15,6 @@
 #include "util.h"
 #include "gpu_regs.h"
 #include "battle_message.h"
-#include "constants/species.h"
 #include "pokedex.h"
 #include "palette.h"
 #include "international_string_util.h"
@@ -331,7 +330,7 @@ static const struct SpriteTemplate sHealthbarSpriteTemplates[MAX_BATTLERS_COUNT]
 static const struct Subsprite sUnknown_0832C220[] =
 {
     {
-        .x = 240,   
+        .x = DISPLAY_WIDTH,   
         .y = 0,  
         .shape = SPRITE_SHAPE(64x32),  
         .size = SPRITE_SIZE(64x32),  
@@ -347,7 +346,7 @@ static const struct Subsprite sUnknown_0832C220[] =
         .priority = 1
     },
     {
-        .x = 240,   
+        .x = DISPLAY_WIDTH,   
         .y = 32, 
         .shape = SPRITE_SHAPE(32x8),  
         .size = SPRITE_SIZE(32x8),  
@@ -375,7 +374,7 @@ static const struct Subsprite sUnknown_0832C220[] =
 static const struct Subsprite sUnknown_0832C234[] =
 {
     {
-        .x = 240,   
+        .x = DISPLAY_WIDTH,   
         .y = 0,  
         .shape = SPRITE_SHAPE(64x32),  
         .size = SPRITE_SIZE(64x32),  
@@ -391,7 +390,7 @@ static const struct Subsprite sUnknown_0832C234[] =
         .priority = 1
     },
     {
-        .x = 240,   
+        .x = DISPLAY_WIDTH,   
         .y = 32, 
         .shape = SPRITE_SHAPE(32x8),  
         .size = SPRITE_SIZE(32x8),  
@@ -419,7 +418,7 @@ static const struct Subsprite sUnknown_0832C234[] =
 static const struct Subsprite sUnknown_0832C248[] =
 {
     {
-        .x = 240,   
+        .x = DISPLAY_WIDTH,   
         .y = 0,  
         .shape = SPRITE_SHAPE(64x32),  
         .size = SPRITE_SIZE(64x32),
@@ -439,7 +438,7 @@ static const struct Subsprite sUnknown_0832C248[] =
 static const struct Subsprite sUnknown_0832C250[] =
 {
     {
-        .x = 240,   
+        .x = DISPLAY_WIDTH,   
         .y = 0,  
         .shape = SPRITE_SHAPE(64x32),  
         .size = SPRITE_SIZE(64x32),
@@ -459,7 +458,7 @@ static const struct Subsprite sUnknown_0832C250[] =
 static const struct Subsprite sUnknown_0832C258[] =
 {
     {
-        .x = 240,   
+        .x = DISPLAY_WIDTH,   
         .y = 0,  
         .shape = SPRITE_SHAPE(32x8),  
         .size = SPRITE_SIZE(32x8),  
@@ -479,7 +478,7 @@ static const struct Subsprite sUnknown_0832C258[] =
 static const struct Subsprite sUnknown_0832C260[] =
 {
     {
-        .x = 240,   
+        .x = DISPLAY_WIDTH,   
         .y = 0,  
         .shape = SPRITE_SHAPE(32x8),  
         .size = SPRITE_SIZE(32x8),  
@@ -495,7 +494,7 @@ static const struct Subsprite sUnknown_0832C260[] =
         .priority = 1
     },
     {
-        .x = 224,   
+        .x = DISPLAY_WIDTH - 16,   
         .y = 0,  
         .shape = SPRITE_SHAPE(8x8),  
         .size = SPRITE_SIZE(8x8),  
@@ -870,8 +869,8 @@ u8 CreateBattlerHealthboxSprites(u8 battlerId)
     {
         if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
         {
-            healthboxLeftSpriteId = CreateSprite(&sHealthboxPlayerSpriteTemplates[0], 240, 160, 1);
-            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxPlayerSpriteTemplates[0], 240, 160, 1);
+            healthboxLeftSpriteId = CreateSprite(&sHealthboxPlayerSpriteTemplates[0], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxPlayerSpriteTemplates[0], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
 
             gSprites[healthboxLeftSpriteId].oam.shape = ST_OAM_SQUARE;
 
@@ -880,8 +879,8 @@ u8 CreateBattlerHealthboxSprites(u8 battlerId)
         }
         else
         {
-            healthboxLeftSpriteId = CreateSprite(&sHealthboxOpponentSpriteTemplates[0], 240, 160, 1);
-            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxOpponentSpriteTemplates[0], 240, 160, 1);
+            healthboxLeftSpriteId = CreateSprite(&sHealthboxOpponentSpriteTemplates[0], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxOpponentSpriteTemplates[0], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
 
             gSprites[healthboxRightSpriteId].oam.tileNum += 32;
 
@@ -896,8 +895,8 @@ u8 CreateBattlerHealthboxSprites(u8 battlerId)
     {
         if (GetBattlerSide(battlerId) == B_SIDE_PLAYER)
         {
-            healthboxLeftSpriteId = CreateSprite(&sHealthboxPlayerSpriteTemplates[GetBattlerPosition(battlerId) / 2], 240, 160, 1);
-            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxPlayerSpriteTemplates[GetBattlerPosition(battlerId) / 2], 240, 160, 1);
+            healthboxLeftSpriteId = CreateSprite(&sHealthboxPlayerSpriteTemplates[GetBattlerPosition(battlerId) / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxPlayerSpriteTemplates[GetBattlerPosition(battlerId) / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
 
             gSprites[healthboxLeftSpriteId].oam.affineParam = healthboxRightSpriteId;
 
@@ -909,8 +908,8 @@ u8 CreateBattlerHealthboxSprites(u8 battlerId)
         }
         else
         {
-            healthboxLeftSpriteId = CreateSprite(&sHealthboxOpponentSpriteTemplates[GetBattlerPosition(battlerId) / 2], 240, 160, 1);
-            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxOpponentSpriteTemplates[GetBattlerPosition(battlerId) / 2], 240, 160, 1);
+            healthboxLeftSpriteId = CreateSprite(&sHealthboxOpponentSpriteTemplates[GetBattlerPosition(battlerId) / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+            healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxOpponentSpriteTemplates[GetBattlerPosition(battlerId) / 2], DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
 
             gSprites[healthboxLeftSpriteId].oam.affineParam = healthboxRightSpriteId;
 
@@ -947,8 +946,8 @@ u8 CreateSafariPlayerHealthboxSprites(void)
 {
     u8 healthboxLeftSpriteId, healthboxRightSpriteId;
 
-    healthboxLeftSpriteId = CreateSprite(&sHealthboxSafariSpriteTemplate, 240, 160, 1);
-    healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxSafariSpriteTemplate, 240, 160, 1);
+    healthboxLeftSpriteId = CreateSprite(&sHealthboxSafariSpriteTemplate, DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
+    healthboxRightSpriteId = CreateSpriteAtEnd(&sHealthboxSafariSpriteTemplate, DISPLAY_WIDTH, DISPLAY_HEIGHT, 1);
 
     gSprites[healthboxLeftSpriteId].oam.shape = ST_OAM_SQUARE;
     gSprites[healthboxRightSpriteId].oam.shape = ST_OAM_SQUARE;
@@ -1649,7 +1648,7 @@ u8 CreatePartyStatusSummarySprites(u8 battlerId, struct HpAndStatus *partyInfo, 
         gBattleSpritesDataPtr->animationData->field_9_x1C++;
     }
 
-    PlaySE12WithPanning(SE_TB_START, 0);
+    PlaySE12WithPanning(SE_BALL_TRAY_ENTER, 0);
     return taskId;
 }
 
@@ -1852,9 +1851,9 @@ static void SpriteCB_StatusSummaryBallsOnBattleStart(struct Sprite *sprite)
             pan = SOUND_PAN_ATTACKER;
 
         if (sprite->data[7] != 0)
-            PlaySE2WithPanning(SE_TB_KARA, pan);
+            PlaySE2WithPanning(SE_BALL_TRAY_EXIT, pan);
         else
-            PlaySE1WithPanning(SE_TB_KON, pan);
+            PlaySE1WithPanning(SE_BALL_TRAY_BALL, pan);
 
         sprite->callback = SpriteCallbackDummy;
     }
@@ -1898,7 +1897,6 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
 {
     u8 nickname[POKEMON_NAME_LENGTH + 1];
     void *ptr;
-    const u8 *genderTxt;
     u32 windowId, spriteTileNum;
     u8 *windowTileData;
     u16 species;
@@ -1937,7 +1935,7 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
 
     if (GetBattlerSide(gSprites[healthboxSpriteId].data[6]) == B_SIDE_PLAYER)
     {
-        TextIntoHealthboxObject((void*)(VRAM + 0x10040 + spriteTileNum), windowTileData, 6);
+        TextIntoHealthboxObject((void*)(OBJ_VRAM0 + 0x40 + spriteTileNum), windowTileData, 6);
         ptr = (void*)(OBJ_VRAM0);
         if (!IsDoubleBattle())
             ptr += spriteTileNum + 0x800;
@@ -1947,7 +1945,7 @@ static void UpdateNickInHealthbox(u8 healthboxSpriteId, struct Pokemon *mon)
     }
     else
     {
-        TextIntoHealthboxObject((void*)(VRAM + 0x10020 + spriteTileNum), windowTileData, 7);
+        TextIntoHealthboxObject((void*)(OBJ_VRAM0 + 0x20 + spriteTileNum), windowTileData, 7);
     }
 
     RemoveWindowOnHealthbox(windowId);

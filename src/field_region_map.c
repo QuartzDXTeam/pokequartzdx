@@ -116,7 +116,7 @@ static void MCB2_InitRegionMapRegisters(void)
     InitWindows(sFieldRegionMapWindowTemplates);
     DeactivateAllTextPrinters();
     LoadUserWindowBorderGfx(0, 0x27, 0xd0);
-    clear_scheduled_bg_copies_to_vram();
+    ClearScheduledBgCopiesToVram();
     SetMainCallback2(MCB2_FieldUpdateRegionMap);
     SetVBlankCallback(VBCB_FieldUpdateRegionMap);
 }
@@ -134,7 +134,7 @@ static void MCB2_FieldUpdateRegionMap(void)
     AnimateSprites();
     BuildOamBuffer();
     UpdatePaletteFade();
-    do_scheduled_bg_tilemap_copies_to_vram();
+    DoScheduledBgTilemapCopiesToVram();
 }
 
 static void FieldUpdateRegionMap(void)
@@ -151,12 +151,18 @@ static void FieldUpdateRegionMap(void)
             break;
         case 1:
             DrawStdFrameWithCustomTileAndPalette(1, 0, 0x27, 0xd);
+<<<<<<< HEAD
             offset = GetStringCenterAlignXOffset(1, gText_Corna, 0x38);
             AddTextPrinterParameterized(1, 1, gText_Corna, offset, 1, 0, NULL);
             schedule_bg_copy_tilemap_to_vram(0);
+=======
+            offset = GetStringCenterAlignXOffset(1, gText_Hoenn, 0x38);
+            AddTextPrinterParameterized(1, 1, gText_Hoenn, offset, 1, 0, NULL);
+            ScheduleBgCopyTilemapToVram(0);
+>>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
             DrawStdFrameWithCustomTileAndPalette(0, 0, 0x27, 0xd);
             PrintRegionMapSecName();
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
             sFieldRegionMapHandler->state++;
             break;
         case 2:
@@ -184,7 +190,7 @@ static void FieldUpdateRegionMap(void)
             }
             break;
         case 5:
-            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
             sFieldRegionMapHandler->state++;
             break;
         case 6:
@@ -208,7 +214,7 @@ static void PrintRegionMapSecName(void)
     {
         FillWindowPixelBuffer(0, PIXEL_FILL(1));
         AddTextPrinterParameterized(0, 1, sFieldRegionMapHandler->regionMap.mapSecName, 0, 1, 0, NULL);
-        schedule_bg_copy_tilemap_to_vram(0);
+        ScheduleBgCopyTilemapToVram(0);
     }
     else
     {

@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE111",
   "name": "Route111",
   "layout": "LAYOUT_ROUTE111",
-  "music": "MUS_DOORO_X1",
+  "music": "MUS_ROUTE110",
   "region_map_section": "MAPSEC_ROUTE_111",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -103,8 +103,13 @@
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
       "movement_range_y": 0,
+<<<<<<< HEAD
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "19",
+=======
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_111_RAZZ_1",
+>>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
       "script": "BerryTreeScript",
       "flag": "0"
     },
@@ -116,8 +121,13 @@
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
       "movement_range_y": 0,
+<<<<<<< HEAD
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "20",
+=======
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_111_RAZZ_2",
+>>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
       "script": "BerryTreeScript",
       "flag": "0"
     },
@@ -272,8 +282,13 @@
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
       "movement_range_y": 0,
+<<<<<<< HEAD
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "80",
+=======
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_111_ORAN_1",
+>>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
       "script": "BerryTreeScript",
       "flag": "0"
     },
@@ -285,8 +300,13 @@
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
       "movement_range_y": 0,
+<<<<<<< HEAD
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "81",
+=======
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_111_ORAN_2",
+>>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
       "script": "BerryTreeScript",
       "flag": "0"
     },

@@ -29,7 +29,7 @@ RustboroCity_Gym_EventScript_BettiDefeated:: @ 8212F66
 
 RustboroCity_Gym_EventScript_GiveRockTomb:: @ 8212FA4
 	giveitem ITEM_TM39
-	compare VAR_RESULT, 0
+	compare VAR_RESULT, FALSE
 	goto_if_eq Common_EventScript_ShowBagIsFull
 	setflag FLAG_RECEIVED_TM39
 	msgbox RustboroCity_Gym_Text_ExplainRockTomb, MSGBOX_DEFAULT
@@ -96,8 +96,13 @@ RustboroCity_Gym_EventScript_RegisterBetti:: @ 821307B
 	pokenavcall RustboroCity_Gym_Text_BettiRegisterCall
 	waitmessage
 	delay 30
+<<<<<<< HEAD
 	playfanfare MUS_ME_TORE_EYE
 	msgbox RustboroCity_Gym_Text_RegisteredBetti, MSGBOX_DEFAULT
+=======
+	playfanfare MUS_REGISTER_MATCH_CALL
+	msgbox RustboroCity_Gym_Text_RegisteredRoxanne, MSGBOX_DEFAULT
+>>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
 	waitfanfare
 	closemessage
 	delay 30
