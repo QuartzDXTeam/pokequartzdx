@@ -23,7 +23,6 @@
 #include "intro.h"
 #include "main.h"
 #include "trainer_hill.h"
-#include "constants/rgb.h"
 
 static void VBlankIntr(void);
 static void HBlankIntr(void);
@@ -86,30 +85,40 @@ void EnableVCountIntrAtLine150(void);
 
 void AgbMain()
 {
+#if MODERN
     // Modern compilers are liberal with the stack on entry to this function,
     // so RegisterRamReset may crash if it resets IWRAM.
-#if !MODERN
+    RegisterRamReset(RESET_ALL & ~RESET_IWRAM);
+    asm("mov\tr1, #0xC0\n"
+        "\tlsl\tr1, r1, #0x12\n"
+        "\tmov r2, #0xFC\n"
+        "\tlsl r2, r2, #0x7\n"
+        "\tadd\tr2, r1, r2\n"
+        "\tmov\tr0, #0\n"
+        "\tmov\tr3, r0\n"
+        "\tmov\tr4, r0\n"
+        "\tmov\tr5, r0\n"
+        ".LCU0:\n"
+        "\tstmia r1!, {r0, r3, r4, r5}\n"
+        "\tcmp\tr1, r2\n"
+        "\tbcc\t.LCU0\n"
+    );
+#else
     RegisterRamReset(RESET_ALL);
 #endif //MODERN
-    *(vu16 *)BG_PLTT = RGB_WHITE; // Set the backdrop to white on startup
+    *(vu16 *)BG_PLTT = 0x7FFF;
     InitGpuRegManager();
     REG_WAITCNT = WAITCNT_PREFETCH_ENABLE | WAITCNT_WS0_S_1 | WAITCNT_WS0_N_3;
     InitKeys();
     InitIntrHandlers();
     m4aSoundInit();
     EnableVCountIntrAtLine150();
-    InitRFU();
+    sub_800E6D0();
     RtcInit();
     CheckForFlashMemory();
     InitMainCallbacks();
     InitMapMusic();
-<<<<<<< HEAD
 	SeedRngAndSetTrainerId();
-=======
-#ifdef BUGFIX
-    SeedRngWithRtc(); // see comment at SeedRngWithRtc definition below
-#endif
->>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
     ClearDma3Requests();
     ResetBgs();
     SetDefaultFontsPointer();
@@ -136,7 +145,7 @@ void AgbMain()
             DoSoftReset();
         }
 
-        if (Overworld_SendKeysToLinkIsRunning() == TRUE)
+        if (sub_8087634() == 1)
         {
             gLinkTransferringData = TRUE;
             UpdateLinkAndCallCallbacks();
@@ -147,7 +156,7 @@ void AgbMain()
             gLinkTransferringData = FALSE;
             UpdateLinkAndCallCallbacks();
 
-            if (Overworld_RecvKeysFromLinkIsRunning() == TRUE)
+            if (sub_80875C8() == 1)
             {
                 gMain.newKeys = 0;
                 ClearSpriteCopyRequests();
@@ -222,16 +231,6 @@ void EnableVCountIntrAtLine150(void)
     EnableInterrupts(INTR_FLAG_VCOUNT);
 }
 
-// FRLG commented this out to remove RTC, however Emerald didn't undo this!
-#ifdef BUGFIX
-static void SeedRngWithRtc(void)
-{
-    u32 seed = RtcGetMinuteCount();
-    seed = (seed >> 16) ^ (seed & 0xFFFF);
-    SeedRng(seed);
-}
-#endif
-
 void InitKeys(void)
 {
     gKeyRepeatContinueDelay = 5;
@@ -275,12 +274,12 @@ static void ReadKeys(void)
     gMain.heldKeys = gMain.heldKeysRaw;
 
     // Remap L to A if the L=A option is enabled.
-    if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A)
+    if (gSaveBlock2Ptr->optionsButtonMode == 2)
     {
-        if (JOY_NEW(L_BUTTON))
+        if (gMain.newKeys & L_BUTTON)
             gMain.newKeys |= A_BUTTON;
 
-        if (JOY_HELD(L_BUTTON))
+        if (gMain.heldKeys & L_BUTTON)
             gMain.heldKeys |= A_BUTTON;
     }
 
@@ -305,7 +304,7 @@ void InitIntrHandlers(void)
 
     REG_IME = 1;
 
-    EnableInterrupts(INTR_FLAG_VBLANK);
+    EnableInterrupts(0x1);
 }
 
 void SetVBlankCallback(IntrCallback callback)
@@ -357,12 +356,12 @@ static void VBlankIntr(void)
     gPcmDmaCounter = gSoundInfo.pcmDmaCounter;
 
     m4aSoundMain();
-    TryReceiveLinkBattleData();
+    sub_8033648();
 
     if (!gMain.inBattle || !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_RECORDED)))
         Random();
 
-    UpdateWirelessStatusIndicatorSprite();
+    sub_800E174();
 
     INTR_CHECK |= INTR_FLAG_VBLANK;
     gMain.intrCheck |= INTR_FLAG_VBLANK;

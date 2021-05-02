@@ -1,5 +1,3 @@
-.set LOCALID_WALLACE, 1
-
 SkyPillar_Outside_MapScripts:: @ 82392A8
 	map_script MAP_SCRIPT_ON_TRANSITION, SkyPillar_Outside_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, SkyPillar_Outside_OnLoad
@@ -36,7 +34,7 @@ SkyPillar_Outside_OnFrame: @ 82392FA
 
 SkyPillar_Outside_EventScript_WallaceScene:: @ 8239304
 	lockall
-	applymovement LOCALID_WALLACE, SkyPillar_Outside_Movement_WallaceApproachPlayer
+	applymovement 1, SkyPillar_Outside_Movement_WallaceApproachPlayer
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
@@ -53,7 +51,7 @@ SkyPillar_Outside_EventScript_WallaceScene:: @ 8239304
 	msgbox SkyPillar_Outside_Text_EarthquakeNotMomentToWaste, MSGBOX_DEFAULT
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, SkyPillar_Outside_Movement_PlayerClimbSkyPillar
-	applymovement LOCALID_WALLACE, SkyPillar_Outside_Movement_WallaceClimbSkyPillar
+	applymovement 1, SkyPillar_Outside_Movement_WallaceClimbSkyPillar
 	waitmovement 0
 	setvar VAR_0x8004, 1   @ vertical pan
 	setvar VAR_0x8005, 3   @ horizontal pan
@@ -62,13 +60,13 @@ SkyPillar_Outside_EventScript_WallaceScene:: @ 8239304
 	special ShakeCamera
 	waitstate
 	delay 20
-	applymovement LOCALID_WALLACE, Common_Movement_WalkInPlaceFastestLeft
+	applymovement 1, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	delay 10
-	applymovement LOCALID_WALLACE, Common_Movement_WalkInPlaceFastestRight
+	applymovement 1, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	delay 20
-	applymovement LOCALID_WALLACE, Common_Movement_WalkInPlaceFastestDown
+	applymovement 1, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	delay 30
 	msgbox SkyPillar_Outside_Text_SituationGettingWorse, MSGBOX_DEFAULT
@@ -81,11 +79,11 @@ SkyPillar_Outside_EventScript_WallaceScene:: @ 8239304
 	delay 30
 	msgbox SkyPillar_Outside_Text_GotToGoBackForSootopolis, MSGBOX_DEFAULT
 	closemessage
-	playse SE_EXIT
+	playse SE_KAIDAN
 	fadescreenswapbuffers FADE_TO_BLACK
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	setvar VAR_SOOTOPOLIS_CITY_STATE, 4
-	removeobject LOCALID_WALLACE
+	removeobject 1
 	clearflag FLAG_HIDE_SOOTOPOLIS_CITY_WALLACE
 	fadescreenswapbuffers FADE_FROM_BLACK
 	releaseall

@@ -11,6 +11,7 @@
 #include "random.h"
 #include "string_util.h"
 #include "text.h"
+#include "constants/berry.h"
 #include "constants/event_object_movement.h"
 #include "constants/items.h"
 
@@ -889,50 +890,50 @@ const struct Berry gBerries[] =
     },
 };
 
-const struct BerryCrushBerryData gBerryCrush_BerryData[] = {
-    [ITEM_CHERI_BERRY - FIRST_BERRY_INDEX]  = {.difficulty =  50, .powder =  20},
-    [ITEM_CHESTO_BERRY - FIRST_BERRY_INDEX] = {.difficulty =  50, .powder =  20},
-    [ITEM_PECHA_BERRY - FIRST_BERRY_INDEX]  = {.difficulty =  50, .powder =  20},
-    [ITEM_RAWST_BERRY - FIRST_BERRY_INDEX]  = {.difficulty =  50, .powder =  20},
-    [ITEM_ASPEAR_BERRY - FIRST_BERRY_INDEX] = {.difficulty =  50, .powder =  20},
-    [ITEM_LEPPA_BERRY - FIRST_BERRY_INDEX]  = {.difficulty =  50, .powder =  30},
-    [ITEM_ORAN_BERRY - FIRST_BERRY_INDEX]   = {.difficulty =  50, .powder =  30},
-    [ITEM_PERSIM_BERRY - FIRST_BERRY_INDEX] = {.difficulty =  50, .powder =  30},
-    [ITEM_LUM_BERRY - FIRST_BERRY_INDEX]    = {.difficulty =  50, .powder =  30},
-    [ITEM_SITRUS_BERRY - FIRST_BERRY_INDEX] = {.difficulty =  50, .powder =  30},
-    [ITEM_FIGY_BERRY - FIRST_BERRY_INDEX]   = {.difficulty =  60, .powder =  50},
-    [ITEM_WIKI_BERRY - FIRST_BERRY_INDEX]   = {.difficulty =  60, .powder =  50},
-    [ITEM_MAGO_BERRY - FIRST_BERRY_INDEX]   = {.difficulty =  60, .powder =  50},
-    [ITEM_AGUAV_BERRY - FIRST_BERRY_INDEX]  = {.difficulty =  60, .powder =  50},
-    [ITEM_IAPAPA_BERRY - FIRST_BERRY_INDEX] = {.difficulty =  60, .powder =  50},
-    [ITEM_RAZZ_BERRY - FIRST_BERRY_INDEX]   = {.difficulty =  80, .powder =  70},
-    [ITEM_BLUK_BERRY - FIRST_BERRY_INDEX]   = {.difficulty =  80, .powder =  70},
-    [ITEM_NANAB_BERRY - FIRST_BERRY_INDEX]  = {.difficulty =  80, .powder =  70},
-    [ITEM_WEPEAR_BERRY - FIRST_BERRY_INDEX] = {.difficulty =  80, .powder =  70},
-    [ITEM_PINAP_BERRY - FIRST_BERRY_INDEX]  = {.difficulty =  80, .powder =  70},
-    [ITEM_POMEG_BERRY - FIRST_BERRY_INDEX]  = {.difficulty = 100, .powder = 100},
-    [ITEM_KELPSY_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 100, .powder = 100},
-    [ITEM_QUALOT_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 100, .powder = 100},
-    [ITEM_HONDEW_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 100, .powder = 100},
-    [ITEM_GREPA_BERRY - FIRST_BERRY_INDEX]  = {.difficulty = 100, .powder = 100},
-    [ITEM_TAMATO_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 130, .powder = 150},
-    [ITEM_CORNN_BERRY - FIRST_BERRY_INDEX]  = {.difficulty = 130, .powder = 150},
-    [ITEM_MAGOST_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 130, .powder = 150},
-    [ITEM_RABUTA_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 130, .powder = 150},
-    [ITEM_NOMEL_BERRY - FIRST_BERRY_INDEX]  = {.difficulty = 130, .powder = 150},
-    [ITEM_SPELON_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 160, .powder = 250},
-    [ITEM_PAMTRE_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 160, .powder = 250},
-    [ITEM_WATMEL_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 160, .powder = 250},
-    [ITEM_DURIN_BERRY - FIRST_BERRY_INDEX]  = {.difficulty = 160, .powder = 250},
-    [ITEM_BELUE_BERRY - FIRST_BERRY_INDEX]  = {.difficulty = 160, .powder = 250},
-    [ITEM_LIECHI_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 180, .powder = 500},
-    [ITEM_GANLON_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 180, .powder = 500},
-    [ITEM_SALAC_BERRY - FIRST_BERRY_INDEX]  = {.difficulty = 180, .powder = 500},
-    [ITEM_PETAYA_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 180, .powder = 500},
-    [ITEM_APICOT_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 180, .powder = 500},
-    [ITEM_LANSAT_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 200, .powder = 750},
-    [ITEM_STARF_BERRY - FIRST_BERRY_INDEX]  = {.difficulty = 200, .powder = 750},
-    [ITEM_ENIGMA_BERRY - FIRST_BERRY_INDEX] = {.difficulty = 150, .powder = 200}
+const struct UnkStruct_0858AB24 gUnknown_0858AB24[] = {
+    { 50,  20},
+    { 50,  20},
+    { 50,  20},
+    { 50,  20},
+    { 50,  20},
+    { 50,  30},
+    { 50,  30},
+    { 50,  30},
+    { 50,  30},
+    { 50,  30},
+    { 60,  50},
+    { 60,  50},
+    { 60,  50},
+    { 60,  50},
+    { 60,  50},
+    { 80,  70},
+    { 80,  70},
+    { 80,  70},
+    { 80,  70},
+    { 80,  70},
+    {100, 100},
+    {100, 100},
+    {100, 100},
+    {100, 100},
+    {100, 100},
+    {130, 150},
+    {130, 150},
+    {130, 150},
+    {130, 150},
+    {130, 150},
+    {160, 250},
+    {160, 250},
+    {160, 250},
+    {160, 250},
+    {160, 250},
+    {180, 500},
+    {180, 500},
+    {180, 500},
+    {180, 500},
+    {180, 500},
+    {200, 750},
+    {200, 750},
+    {150, 200}
 };
 
 const struct BerryTree gBlankBerryTree = {};
@@ -996,7 +997,7 @@ struct BerryTree *GetBerryTreeInfo(u8 id)
 
 bool32 ObjectEventInteractionWaterBerryTree(void)
 {
-    struct BerryTree *tree = GetBerryTreeInfo(GetObjectEventBerryTreeId(gSelectedObjectEvent));
+    struct BerryTree *tree = GetBerryTreeInfo(ObjectEventGetBerryTreeId(gSelectedObjectEvent));
 
     switch (tree->stage)
     {
@@ -1021,7 +1022,7 @@ bool32 ObjectEventInteractionWaterBerryTree(void)
 bool8 IsPlayerFacingEmptyBerryTreePatch(void)
 {
     if (GetObjectEventScriptPointerPlayerFacing() == BerryTreeScript
-     && GetStageByBerryTreeId(GetObjectEventBerryTreeId(gSelectedObjectEvent)) == BERRY_STAGE_NO_BERRY)
+     && GetStageByBerryTreeId(ObjectEventGetBerryTreeId(gSelectedObjectEvent)) == BERRY_STAGE_NO_BERRY)
         return TRUE;
     else
         return FALSE;
@@ -1045,9 +1046,8 @@ void ClearBerryTrees(void)
 
 static bool32 BerryTreeGrow(struct BerryTree *tree)
 {
-    if (tree->stopGrowth)
+    if (tree->growthSparkle)
         return FALSE;
-
     switch (tree->stage)
     {
     case BERRY_STAGE_NO_BERRY:
@@ -1082,7 +1082,7 @@ void BerryTreeTimeUpdate(s32 minutes)
     {
         tree = &gSaveBlock1Ptr->berryTrees[i];
 
-        if (tree->berry && tree->stage && !tree->stopGrowth)
+        if (tree->berry && tree->stage && !tree->growthSparkle)
         {
             if (minutes >= GetStageDurationByBerryType(tree->berry) * 71)
             {
@@ -1111,7 +1111,7 @@ void BerryTreeTimeUpdate(s32 minutes)
     }
 }
 
-void PlantBerryTree(u8 id, u8 berry, u8 stage, bool8 allowGrowth)
+void PlantBerryTree(u8 id, u8 berry, u8 stage, bool8 sparkle)
 {
     struct BerryTree *tree = GetBerryTreeInfo(id);
 
@@ -1125,10 +1125,8 @@ void PlantBerryTree(u8 id, u8 berry, u8 stage, bool8 allowGrowth)
         tree->minutesUntilNextStage *= 4;
     }
 
-    // Stop growth, to keep tree at this stage until the player has seen it
-    // allowGrowth is always true for berry trees the player has planted
-    if (!allowGrowth)
-        tree->stopGrowth = TRUE;
+    if (!sparkle)
+        tree->growthSparkle = TRUE;
 }
 
 void RemoveBerryTree(u8 id)
@@ -1177,9 +1175,9 @@ void GetBerryCountStringByBerryType(u8 berry, u8* dest, u32 berryCount)
     GetBerryCountString(dest, GetBerryInfo(berry)->name, berryCount);
 }
 
-void AllowBerryTreeGrowth(u8 id)
+void ResetBerryTreeSparkleFlag(u8 id)
 {
-    GetBerryTreeInfo(id)->stopGrowth = FALSE;
+    GetBerryTreeInfo(id)->growthSparkle = FALSE;
 }
 
 static u8 BerryTreeGetNumStagesWatered(struct BerryTree *tree)
@@ -1202,15 +1200,6 @@ static u8 GetNumStagesWateredByBerryTreeId(u8 id)
     return BerryTreeGetNumStagesWatered(GetBerryTreeInfo(id));
 }
 
-// Berries can be watered at 4 stages of growth. This function is likely meant
-// to divide the berry yield range equally into quartiles. If you watered the
-// tree n times, your yield is a random number in the nth quartile.
-//
-// However, this function actually skews towards higher berry yields, because
-// it rounds `extraYield` to the nearest whole number.
-//
-// See resulting yields: https://gist.github.com/hondew/2a099dbe54aa91414decdbfaa524327d,
-// and bug fix: https://gist.github.com/hondew/0f0164e5b9dadfd72d24f30f2c049a0b.
 static u8 CalcBerryYieldInternal(u16 max, u16 min, u8 water)
 {
     u32 randMin;
@@ -1226,11 +1215,10 @@ static u8 CalcBerryYieldInternal(u16 max, u16 min, u8 water)
         randMax = (max - min) * (water);
         rand = randMin + Random() % (randMax - randMin + 1);
 
-        // Round upwards
-        if ((rand % NUM_WATER_STAGES) >= NUM_WATER_STAGES / 2)
-            extraYield = rand / NUM_WATER_STAGES + 1;
+        if ((rand & 3) > 1)
+            extraYield = rand / 4 + 1;
         else
-            extraYield = rand / NUM_WATER_STAGES;
+            extraYield = rand / 4;
         return extraYield + min;
     }
 }
@@ -1262,9 +1250,9 @@ void ObjectEventInteractionGetBerryTreeData(void)
     u8 group;
     u8 num;
 
-    id = GetObjectEventBerryTreeId(gSelectedObjectEvent);
+    id = ObjectEventGetBerryTreeId(gSelectedObjectEvent);
     berry = GetBerryTypeByBerryTreeId(id);
-    AllowBerryTreeGrowth(id);
+    ResetBerryTreeSparkleFlag(id);
     localId = gSpecialVar_LastTalked;
     num = gSaveBlock1Ptr->location.mapNum;
     group = gSaveBlock1Ptr->location.mapGroup;
@@ -1279,13 +1267,13 @@ void ObjectEventInteractionGetBerryTreeData(void)
 
 void ObjectEventInteractionGetBerryName(void)
 {
-    u8 berryType = GetBerryTypeByBerryTreeId(GetObjectEventBerryTreeId(gSelectedObjectEvent));
+    u8 berryType = GetBerryTypeByBerryTreeId(ObjectEventGetBerryTreeId(gSelectedObjectEvent));
     GetBerryNameByBerryType(berryType, gStringVar1);
 }
 
 void ObjectEventInteractionGetBerryCountString(void)
 {
-    u8 treeId = GetObjectEventBerryTreeId(gSelectedObjectEvent);
+    u8 treeId = ObjectEventGetBerryTreeId(gSelectedObjectEvent);
     u8 berry = GetBerryTypeByBerryTreeId(treeId);
     u8 count = GetBerryCountByBerryTreeId(treeId);
     GetBerryCountStringByBerryType(berry, gStringVar1, count);
@@ -1300,13 +1288,13 @@ void ObjectEventInteractionPlantBerryTree(void)
 {
     u8 berry = ItemIdToBerryType(gSpecialVar_ItemId);
 
-    PlantBerryTree(GetObjectEventBerryTreeId(gSelectedObjectEvent), berry, 1, TRUE);
+    PlantBerryTree(ObjectEventGetBerryTreeId(gSelectedObjectEvent), berry, 1, TRUE);
     ObjectEventInteractionGetBerryTreeData();
 }
 
 void ObjectEventInteractionPickBerryTree(void)
 {
-    u8 id = GetObjectEventBerryTreeId(gSelectedObjectEvent);
+    u8 id = ObjectEventGetBerryTreeId(gSelectedObjectEvent);
     u8 berry = GetBerryTypeByBerryTreeId(id);
 
     gSpecialVar_0x8004 = AddBagItem(BerryTypeToItemId(berry), GetBerryCountByBerryTreeId(id));
@@ -1314,8 +1302,8 @@ void ObjectEventInteractionPickBerryTree(void)
 
 void ObjectEventInteractionRemoveBerryTree(void)
 {
-    RemoveBerryTree(GetObjectEventBerryTreeId(gSelectedObjectEvent));
-    SetBerryTreeJustPicked(gSpecialVar_LastTalked, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
+    RemoveBerryTree(ObjectEventGetBerryTreeId(gSelectedObjectEvent));
+    sub_8092EF0(gSpecialVar_LastTalked, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup);
 }
 
 bool8 PlayerHasBerries(void)
@@ -1323,9 +1311,7 @@ bool8 PlayerHasBerries(void)
     return IsBagPocketNonEmpty(POCKET_BERRIES);
 }
 
-// Berry tree growth is frozen at their initial stage (usually, fully grown) until the player has seen the tree
-// For all berry trees on screen, allow normal growth
-void SetBerryTreesSeen(void)
+void ResetBerryTreeSparkleFlags(void)
 {
     s16 cam_left;
     s16 cam_top;
@@ -1347,7 +1333,7 @@ void SetBerryTreesSeen(void)
             cam_left = gObjectEvents[i].currentCoords.x;
             cam_top = gObjectEvents[i].currentCoords.y;
             if (left <= cam_left && cam_left <= right && top <= cam_top && cam_top <= bottom)
-                AllowBerryTreeGrowth(gObjectEvents[i].trainerRange_berryTreeId);
+                ResetBerryTreeSparkleFlag(gObjectEvents[i].trainerRange_berryTreeId);
         }
     }
 }

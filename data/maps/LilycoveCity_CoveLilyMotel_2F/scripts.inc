@@ -18,7 +18,7 @@ LilycoveCity_CoveLilyMotel_2F_EventScript_ShowMeCompletedDex:: @ 82186F9
 
 LilycoveCity_CoveLilyMotel_2F_EventScript_AllCornaMonsFanfare:: @ 8218702
 	setflag FLAG_TEMP_2
-	playfanfare MUS_OBTAIN_ITEM
+	playfanfare MUS_FANFA4
 	waitfanfare
 	goto LilycoveCity_CoveLilyMotel_2F_EventScript_ShowDiploma
 	end

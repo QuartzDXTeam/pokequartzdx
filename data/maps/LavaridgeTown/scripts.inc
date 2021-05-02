@@ -1,6 +1,3 @@
-.set LOCALID_RIVAL_ON_BIKE, 7
-.set LOCALID_RIVAL, 8
-
 LavaridgeTown_MapScripts:: @ 81EA4D3
 	map_script MAP_SCRIPT_ON_TRANSITION, LavaridgeTown_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LavaridgeTown_OnFrame
@@ -29,9 +26,9 @@ LavaridgeTown_EventScript_CheckSetRivalPos:: @ 81EA518
 	return
 
 LavaridgeTown_EventScript_SetRivalPos:: @ 81EA529
-	setobjectxyperm LOCALID_RIVAL, 11, 9
-	setobjectxyperm LOCALID_RIVAL_ON_BIKE, 9, 8
-	setobjectmovementtype LOCALID_RIVAL_ON_BIKE, MOVEMENT_TYPE_FACE_UP
+	setobjectxyperm 8, 11, 9
+	setobjectxyperm 7, 9, 8
+	setobjectmovementtype 7, MOVEMENT_TYPE_FACE_UP
 	clearflag FLAG_HIDE_LAVARIDGE_TOWN_RIVAL
 	return
 
@@ -89,14 +86,14 @@ LavaridgeTown_EventScript_AkiraGiveGoGoggles:: @ 81EA5DA
 
 LavaridgeTown_EventScript_RivalExit:: @ 81EA5FF
 	closemessage
-	removeobject LOCALID_RIVAL
-	addobject LOCALID_RIVAL_ON_BIKE
+	removeobject 8
+	addobject 7
 	delay 30
 	compare VAR_0x8008, 9
 	call_if_eq LavaridgeTown_EventScript_RivalExit1
 	compare VAR_0x8008, 9
 	call_if_ne LavaridgeTown_EventScript_RivalExit2
-	removeobject LOCALID_RIVAL_ON_BIKE
+	removeobject 7
 	setvar VAR_LAVARIDGE_TOWN_STATE, 2
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	savebgm MUS_DUMMY
@@ -105,65 +102,60 @@ LavaridgeTown_EventScript_RivalExit:: @ 81EA5FF
 	end
 
 LavaridgeTown_EventScript_PlayMayMusic:: @ 81EA630
-	playbgm MUS_ENCOUNTER_MAY, 1
+	playbgm MUS_GIRL_SUP, 1
 	return
 
-<<<<<<< HEAD
 LavaridgeTown_EventScript_PlayAkiraMusic:: @ 81EA635
 	playbgm MUS_BOY_SUP, 1
-=======
-LavaridgeTown_EventScript_PlayBrendanMusic:: @ 81EA635
-	playbgm MUS_ENCOUNTER_BRENDAN, 1
->>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
 	return
 
 LavaridgeTown_EventScript_RivalNoticePlayer:: @ 81EA63A
-	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFastestUp
+	applymovement 8, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	playse SE_PIN
-	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
+	applymovement 8, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_RIVAL, Common_Movement_Delay48
+	applymovement 8, Common_Movement_Delay48
 	waitmovement 0
 	return
 
 LavaridgeTown_EventScript_RivalExitHerbShop:: @ 81EA65C
 	opendoor 12, 15
 	waitdooranim
-	addobject LOCALID_RIVAL
-	applymovement LOCALID_RIVAL, LavaridgeTown_Movement_RivalExitHerbShop
+	addobject 8
+	applymovement 8, LavaridgeTown_Movement_RivalExitHerbShop
 	waitmovement 0
 	closedoor 12, 15
 	waitdooranim
-	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFastestLeft
+	applymovement 8, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	playse SE_PIN
-	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
+	applymovement 8, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_RIVAL, Common_Movement_Delay48
+	applymovement 8, Common_Movement_Delay48
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	return
 
 LavaridgeTown_EventScript_RivalApproachPlayer1:: @ 81EA6A1
-	applymovement LOCALID_RIVAL, LavaridgeTown_Movement_RivalApproachPlayer1
+	applymovement 8, LavaridgeTown_Movement_RivalApproachPlayer1
 	waitmovement 0
 	return
 
 LavaridgeTown_EventScript_RivalApproachPlayer2:: @ 81EA6AC
-	applymovement LOCALID_RIVAL, LavaridgeTown_Movement_RivalApproachPlayer2
+	applymovement 8, LavaridgeTown_Movement_RivalApproachPlayer2
 	waitmovement 0
 	return
 
 LavaridgeTown_EventScript_RivalExit1:: @ 81EA6B7
 	applymovement OBJ_EVENT_ID_PLAYER, LavaridgeTown_Movement_PlayerWatchRivalExit
-	applymovement LOCALID_RIVAL_ON_BIKE, LavaridgeTown_Movement_RivalExit1
+	applymovement 7, LavaridgeTown_Movement_RivalExit1
 	waitmovement 0
 	return
 
 LavaridgeTown_EventScript_RivalExit2:: @ 81EA6C9
-	applymovement LOCALID_RIVAL_ON_BIKE, LavaridgeTown_Movement_RivalExit2
+	applymovement 7, LavaridgeTown_Movement_RivalExit2
 	waitmovement 0
 	return
 
@@ -263,7 +255,7 @@ LavaridgeTown_EventScript_EggWoman:: @ 81EA744
 	goto_if_eq LavaridgeTown_EventScript_NoRoomForEgg
 	msgbox LavaridgeTown_Text_HopeYoullWalkPlentyWithEgg, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_LAVARIDGE_EGG
-	playfanfare MUS_OBTAIN_ITEM
+	playfanfare MUS_FANFA4
 	message LavaridgeTown_Text_ReceivedTheEgg
 	waitfanfare
 	giveegg SPECIES_WYNAUT

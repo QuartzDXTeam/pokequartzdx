@@ -35,6 +35,7 @@
 #include "constants/layouts.h"
 #include "constants/maps.h"
 #include "constants/moves.h"
+#include "constants/species.h"
 #include "constants/trainers.h"
 
 extern const struct MapLayout *const gMapLayouts[];
@@ -933,7 +934,7 @@ static void SavePyramidChallenge(void)
     gSaveBlock2Ptr->frontier.challengeStatus = gSpecialVar_0x8005;
     VarSet(VAR_TEMP_0, 0);
     gSaveBlock2Ptr->frontier.challengePaused = TRUE;
-    SaveMapView();
+    save_serialize_map();
     TrySavingData(SAVE_LINK);
 }
 
@@ -1757,9 +1758,7 @@ static bool8 SetPyramidObjectPositionsInAndNearSquare(u8 objType, u8 squareId)
 
         r7 &= 1;
     }
-    #ifdef BUGFIX
-    free(floorLayoutOffsets);
-    #endif
+    // free(floorLayoutOffsets); BUG: floorLayoutOffsets memory not freed
 
     return (numObjects / 2) > numPlacedObjects;
 }
@@ -1811,9 +1810,7 @@ static bool8 SetPyramidObjectPositionsNearSquare(u8 objType, u8 squareId)
         if (r8 == 4)
             break;
     }
-    #ifdef BUGFIX
-    free(floorLayoutOffsets);
-    #endif
+    // free(floorLayoutOffsets); BUG: floorLayoutOffsets memory not freed
 
     return (numObjects / 2) > numPlacedObjects;
 }

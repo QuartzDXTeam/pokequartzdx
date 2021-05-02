@@ -1,5 +1,3 @@
-.set LOCALID_NURSE, 1
-
 PacifidlogTown_PokemonCenter_1F_MapScripts:: @ 82034A7
 	map_script MAP_SCRIPT_ON_TRANSITION, PacifidlogTown_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
@@ -9,8 +7,9 @@ PacifidlogTown_PokemonCenter_1F_OnTransition: @ 82034B2
 	setrespawn HEAL_LOCATION_PACIFIDLOG_TOWN
 	end
 
+@ VAR_0x800B is the Nurse's object event id
 PacifidlogTown_PokemonCenter_1F_EventScript_Nurse:: @ 82034B6
-	setvar VAR_0x800B, LOCALID_NURSE
+	setvar VAR_0x800B, 1
 	call Common_EventScript_PkmnCenterNurse
 	waitmessage
 	waitbuttonpress

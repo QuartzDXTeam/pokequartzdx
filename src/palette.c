@@ -52,7 +52,7 @@ static u8 UpdateFastPaletteFade(void);
 static u8 UpdateHardwarePaletteFade(void);
 static void UpdateBlendRegisters(void);
 static bool8 IsSoftwarePaletteFadeFinishing(void);
-static void Task_BlendPalettesGradually(u8 taskId);
+static void sub_80A2D54(u8 taskId);
 
 // palette buffers require alignment with agbcc because
 // unaligned word reads are issued in BlendPalette otherwise
@@ -60,7 +60,7 @@ ALIGNED(4) EWRAM_DATA u16 gPlttBufferUnfaded[PLTT_BUFFER_SIZE] = {0};
 ALIGNED(4) EWRAM_DATA u16 gPlttBufferFaded[PLTT_BUFFER_SIZE] = {0};
 EWRAM_DATA struct PaletteStruct sPaletteStructs[0x10] = {0};
 EWRAM_DATA struct PaletteFadeControl gPaletteFade = {0};
-static EWRAM_DATA u32 sFiller = 0;
+static EWRAM_DATA u32 gFiller_2037FE0 = 0;
 static EWRAM_DATA u32 sPlttBufferTransferPending = 0;
 EWRAM_DATA u8 gPaletteDecompressionBuffer[PLTT_DECOMP_BUFFER_SIZE] = {0};
 
@@ -624,7 +624,7 @@ static u8 UpdateFastPaletteFade(void)
             if (b < b0)
                 b = b0;
 
-            gPlttBufferFaded[i] = RGB(r, g, b);
+            gPlttBufferFaded[i] = r | (g << 5) | (b << 10);
         }
         break;
     case FAST_FADE_OUT_TO_WHITE:
@@ -642,7 +642,7 @@ static u8 UpdateFastPaletteFade(void)
             if (b > 31)
                 b = 31;
 
-            gPlttBufferFaded[i] = RGB(r, g, b);
+            gPlttBufferFaded[i] = r | (g << 5) | (b << 10);
         }
         break;
     case FAST_FADE_IN_FROM_BLACK:
@@ -668,7 +668,7 @@ static u8 UpdateFastPaletteFade(void)
             if (b > b0)
                 b = b0;
 
-            gPlttBufferFaded[i] = RGB(r, g, b);
+            gPlttBufferFaded[i] = r | (g << 5) | (b << 10);
         }
         break;
     case FAST_FADE_OUT_TO_BLACK:
@@ -686,7 +686,7 @@ static u8 UpdateFastPaletteFade(void)
             if (b < 0)
                 b = 0;
 
-            gPlttBufferFaded[i] = RGB(r, g, b);
+            gPlttBufferFaded[i] = r | (g << 5) | (b << 10);
         }
     }
 
@@ -856,13 +856,13 @@ void TintPalette_GrayScale(u16 *palette, u16 count)
 
     for (i = 0; i < count; i++)
     {
-        r = GET_R(*palette);
-        g = GET_G(*palette);
-        b = GET_B(*palette);
+        r = (*palette >>  0) & 0x1F;
+        g = (*palette >>  5) & 0x1F;
+        b = (*palette >> 10) & 0x1F;
 
         gray = (r * Q_8_8(0.3) + g * Q_8_8(0.59) + b * Q_8_8(0.1133)) >> 8;
 
-        *palette++ = RGB2(gray, gray, gray);
+        *palette++ = (gray << 10) | (gray << 5) | (gray << 0);
     }
 }
 
@@ -873,18 +873,18 @@ void TintPalette_GrayScale2(u16 *palette, u16 count)
 
     for (i = 0; i < count; i++)
     {
-        r = GET_R(*palette);
-        g = GET_G(*palette);
-        b = GET_B(*palette);
+        r = (*palette >>  0) & 0x1F;
+        g = (*palette >>  5) & 0x1F;
+        b = (*palette >> 10) & 0x1F;
 
         gray = (r * Q_8_8(0.3) + g * Q_8_8(0.59) + b * Q_8_8(0.1133)) >> 8;
 
-        if (gray > 31)
-            gray = 31;
+        if (gray > 0x1F)
+            gray = 0x1F;
 
         gray = sRoundedDownGrayscaleMap[gray];
 
-        *palette++ = RGB2(gray, gray, gray);
+        *palette++ = (gray << 10) | (gray << 5) | (gray << 0);
     }
 }
 
@@ -895,9 +895,9 @@ void TintPalette_SepiaTone(u16 *palette, u16 count)
 
     for (i = 0; i < count; i++)
     {
-        r = GET_R(*palette);
-        g = GET_G(*palette);
-        b = GET_B(*palette);
+        r = (*palette >>  0) & 0x1F;
+        g = (*palette >>  5) & 0x1F;
+        b = (*palette >> 10) & 0x1F;
 
         gray = (r * Q_8_8(0.3) + g * Q_8_8(0.59) + b * Q_8_8(0.1133)) >> 8;
 
@@ -908,7 +908,7 @@ void TintPalette_SepiaTone(u16 *palette, u16 count)
         if (r > 31)
             r = 31;
 
-        *palette++ = RGB2(r, g, b);
+        *palette++ = (b << 10) | (g << 5) | (r << 0);
     }
 }
 
@@ -919,9 +919,9 @@ void TintPalette_CustomTone(u16 *palette, u16 count, u16 rTone, u16 gTone, u16 b
 
     for (i = 0; i < count; i++)
     {
-        r = GET_R(*palette);
-        g = GET_G(*palette);
-        b = GET_B(*palette);
+        r = (*palette >>  0) & 0x1F;
+        g = (*palette >>  5) & 0x1F;
+        b = (*palette >> 10) & 0x1F;
 
         gray = (r * Q_8_8(0.3) + g * Q_8_8(0.59) + b * Q_8_8(0.1133)) >> 8;
 
@@ -936,109 +936,95 @@ void TintPalette_CustomTone(u16 *palette, u16 count, u16 rTone, u16 gTone, u16 b
         if (b > 31)
             b = 31;
 
-        *palette++ = RGB2(r, g, b);
+        *palette++ = (b << 10) | (g << 5) | (r << 0);
     }
 }
 
-#define tCoeff       data[0]
-#define tCoeffTarget data[1]
-#define tCoeffDelta  data[2]
-#define tDelay       data[3]
-#define tDelayTimer  data[4]
-#define tPalettes    5 // data[5] and data[6], set/get via Set/GetWordTaskArg
-#define tColor       data[7]
-#define tId          data[8]
-
-// Blend the selected palettes in a series of steps toward or away from the color.
-// Only used by the Groudon/Kyogre fight scene to flash the screen for lightning
-// One call is used to fade the bg from white, while another fades the duo from black
-void BlendPalettesGradually(u32 selectedPalettes, s8 delay, u8 coeff, u8 coeffTarget, u16 color, u8 priority, u8 id)
+void sub_80A2C44(u32 a1, s8 a2, u8 a3, u8 a4, u16 a5, u8 a6, u8 a7)
 {
     u8 taskId;
 
-    taskId = CreateTask((void *)Task_BlendPalettesGradually, priority);
-    gTasks[taskId].tCoeff = coeff;
-    gTasks[taskId].tCoeffTarget = coeffTarget;
+    taskId = CreateTask((void *)sub_80A2D54, a6);
+    gTasks[taskId].data[0] = a3;
+    gTasks[taskId].data[1] = a4;
 
-    if (delay >= 0)
+    if (a2 >= 0)
     {
-        gTasks[taskId].tDelay = delay;
-        gTasks[taskId].tCoeffDelta = 1;
+        gTasks[taskId].data[3] = a2;
+        gTasks[taskId].data[2] = 1;
     }
     else
     {
-        gTasks[taskId].tDelay = 0;
-        gTasks[taskId].tCoeffDelta = -delay + 1;
+        gTasks[taskId].data[3] = 0;
+        gTasks[taskId].data[2] = -a2 + 1;
     }
 
-    if (coeffTarget < coeff)
-        gTasks[taskId].tCoeffDelta *= -1;
+    if (a4 < a3)
+        gTasks[taskId].data[2] *= -1;
 
-    SetWordTaskArg(taskId, tPalettes, selectedPalettes);
-    gTasks[taskId].tColor = color;
-    gTasks[taskId].tId = id;
+    SetWordTaskArg(taskId, 5, a1);
+    gTasks[taskId].data[7] = a5;
+    gTasks[taskId].data[8] = a7;
     gTasks[taskId].func(taskId);
 }
 
-// Unused
-static bool32 IsBlendPalettesGraduallyTaskActive(u8 id)
+bool32 sub_80A2CF8(u8 var)
 {
     int i;
 
-    for (i = 0; i < NUM_TASKS; i++)
-        if ((gTasks[i].isActive == TRUE) 
-            && (gTasks[i].func == Task_BlendPalettesGradually) 
-            && (gTasks[i].tId == id))
+    for (i = 0; i < NUM_TASKS; i++) // check all the tasks.
+        if ((gTasks[i].isActive == TRUE) && (gTasks[i].func == sub_80A2D54) && (gTasks[i].data[8] == var))
             return TRUE;
 
     return FALSE;
 }
 
-// Unused
-static void DestroyBlendPalettesGraduallyTask(void)
+void sub_80A2D34(void)
 {
     u8 taskId;
 
     while (1)
     {
-        taskId = FindTaskIdByFunc(Task_BlendPalettesGradually);
-        if (taskId == TASK_NONE)
+        taskId = FindTaskIdByFunc(sub_80A2D54);
+        if (taskId == 0xFF)
             break;
         DestroyTask(taskId);
     }
 }
 
-static void Task_BlendPalettesGradually(u8 taskId)
+void sub_80A2D54(u8 taskId)
 {
-    u32 palettes;
+    u32 wordVar;
     s16 *data;
-    s16 target;
+    s16 temp;
 
     data = gTasks[taskId].data;
-    palettes = GetWordTaskArg(taskId, tPalettes);
+    wordVar = GetWordTaskArg(taskId, 5);
 
-    if (++tDelayTimer > tDelay)
+    if (++data[4] > data[3])
     {
-        tDelayTimer = 0;
-        BlendPalettes(palettes, tCoeff, tColor);
-        target = tCoeffTarget;
-        if (tCoeff == target)
+        data[4] = 0;
+        BlendPalettes(wordVar, data[0], data[7]);
+        temp = data[1];
+        if (data[0] == temp)
         {
             DestroyTask(taskId);
         }
         else
         {
-            tCoeff += tCoeffDelta;
-            if (tCoeffDelta >= 0)
+            data[0] += data[2];
+            if (data[2] >= 0)
             {
-                if (tCoeff < target)
+                if (data[0] < temp)
+                {
                     return;
+                }
             }
-            else if (tCoeff > target)
+            else if (data[0] > temp)
             {
                 return;
             }
-            tCoeff = target;
+            data[0] = temp;
         }
     }
 }

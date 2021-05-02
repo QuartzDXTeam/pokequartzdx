@@ -1,6 +1,3 @@
-.set LOCALID_ATTENDANT_SINGLES, 1
-.set LOCALID_ATTENDANT_DOUBLES, 6
-
 BattleFrontier_BattleDomeLobby_MapScripts:: @ 82497E2
 	map_script MAP_SCRIPT_ON_RESUME, BattleFrontier_BattleDomeLobby_OnResume
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattleDomeLobby_OnFrame
@@ -92,7 +89,7 @@ BattleFrontier_BattleDomeLobby_EventScript_AskRecordBattle:: @ 8249991
 	goto_if_eq BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
 	message BattleFrontier_BattleDomeLobby_Text_RecordLastMatch
 	waitmessage
-	multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE
+	multichoicedefault 20, 8, MULTI_YESNO, 1, 0
 	switch VAR_RESULT
 	case 1, BattleFrontier_BattleDomeLobby_EventScript_EndChallenge
 	case 0, BattleFrontier_BattleDomeLobby_EventScript_RecordBattle
@@ -147,7 +144,7 @@ BattleFrontier_BattleDomeLobby_EventScript_AskTakeChallenge:: @ 8249A72
 	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES
 	call_if_eq BattleFrontier_BattleDomeLobby_EventScript_TakeDoublesChallenge
 	waitmessage
-	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
+	multichoice 17, 6, MULTI_CHALLENGEINFO, 0
 	switch VAR_RESULT
 	case 0, BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge
 	case 1, BattleFrontier_BattleDomeLobby_EventScript_ExplainChallenge
@@ -157,7 +154,7 @@ BattleFrontier_BattleDomeLobby_EventScript_AskTakeChallenge:: @ 8249A72
 BattleFrontier_BattleDomeLobby_EventScript_TryEnterChallenge:: @ 8249ABF
 	message BattleFrontier_BattleDomeLobby_Text_WhichLevelMode
 	waitmessage
-	multichoice 17, 6, MULTI_LEVEL_MODE, FALSE
+	multichoice 17, 6, MULTI_LEVEL_MODE, 0
 	switch VAR_RESULT
 	case FRONTIER_LVL_TENT, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
 	case MULTI_B_PRESSED, BattleFrontier_BattleDomeLobby_EventScript_CancelChallenge
@@ -265,19 +262,19 @@ BattleFrontier_BattleDomeLobby_EventScript_WalkToDoor:: @ 8249C6E
 	return
 
 BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendantWalkToDoor:: @ 8249CDD
-	applymovement LOCALID_ATTENDANT_SINGLES, BattleFrontier_BattleDomeLobby_Movement_WalkToDoor
+	applymovement 1, BattleFrontier_BattleDomeLobby_Movement_WalkToDoor
 	return
 
 BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendantWalkToDoor:: @ 8249CE5
-	applymovement LOCALID_ATTENDANT_DOUBLES, BattleFrontier_BattleDomeLobby_Movement_WalkToDoor
+	applymovement 6, BattleFrontier_BattleDomeLobby_Movement_WalkToDoor
 	return
 
 BattleFrontier_BattleDomeLobby_EventScript_SinglesAttendantEnterDoor:: @ 8249CED
-	applymovement LOCALID_ATTENDANT_SINGLES, BattleFrontier_BattleDomeLobby_Movement_AttendantEnterDoor
+	applymovement 1, BattleFrontier_BattleDomeLobby_Movement_AttendantEnterDoor
 	return
 
 BattleFrontier_BattleDomeLobby_EventScript_DoublesAttendantEnterDoor:: @ 8249CF5
-	applymovement LOCALID_ATTENDANT_DOUBLES, BattleFrontier_BattleDomeLobby_Movement_AttendantEnterDoor
+	applymovement 6, BattleFrontier_BattleDomeLobby_Movement_AttendantEnterDoor
 	return
 
 BattleFrontier_BattleDomeLobby_EventScript_WelcomeSingles:: @ 8249CFD
@@ -427,7 +424,7 @@ BattleFrontier_BattleDomeLobby_EventScript_RulesBoard:: @ 8249E34
 BattleFrontier_BattleDomeLobby_EventScript_ReadRulesBoard:: @ 8249E43
 	message BattleFrontier_BattleDomeLobby_Text_ReadWhichHeading
 	waitmessage
-	multichoice 17, 4, MULTI_BATTLE_DOME_RULES, FALSE
+	multichoice 17, 4, MULTI_BATTLE_DOME_RULES, 0
 	switch VAR_RESULT
 	case 0, BattleFrontier_BattleDomeLobby_EventScript_RulesMatchup
 	case 1, BattleFrontier_BattleDomeLobby_EventScript_RulesTourneyTree

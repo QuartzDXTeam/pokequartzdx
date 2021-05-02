@@ -1,7 +1,3 @@
-.set LOCALID_GREETER, 1
-.set LOCALID_GUIDE, 2
-.set LOCALID_SCOTT, 4
-
 BattleFrontier_ReceptionGate_MapScripts:: @ 82661DA
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_ReceptionGate_OnFrame
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_ReceptionGate_OnTransition
@@ -19,9 +15,9 @@ BattleFrontier_ReceptionGate_EventScript_FirstTimeEntering:: @ 82661F3
 	lockall
 	setvar VAR_HAS_ENTERED_BATTLE_FRONTIER, 1
 	playse SE_PIN
-	applymovement LOCALID_GREETER, Common_Movement_ExclamationMark
+	applymovement 1, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_GREETER, Common_Movement_Delay48
+	applymovement 1, Common_Movement_Delay48
 	waitmovement 0
 	msgbox BattleFrontier_ReceptionGate_Text_FirstTimeHereThisWay, MSGBOX_DEFAULT
 	closemessage
@@ -33,7 +29,7 @@ BattleFrontier_ReceptionGate_EventScript_FirstTimeEntering:: @ 82661F3
 BattleFrontier_ReceptionGate_EventScript_ScottScene:: @ 8266229
 	msgbox BattleFrontier_ReceptionGate_Text_WelcomeToBattleFrontier, MSGBOX_DEFAULT
 	msgbox BattleFrontier_ReceptionGate_Text_IssueFrontierPass, MSGBOX_DEFAULT
-	playfanfare MUS_OBTAIN_ITEM
+	playfanfare MUS_FANFA4
 	message BattleFrontier_ReceptionGate_Text_ObtainedFrontierPass
 	waitfanfare
 	waitmessage
@@ -42,27 +38,27 @@ BattleFrontier_ReceptionGate_EventScript_ScottScene:: @ 8266229
 	msgbox BattleFrontier_ReceptionGate_Text_EnjoyBattleFrontier, MSGBOX_DEFAULT
 	msgbox BattleFrontier_ReceptionGate_Text_IfItIsntPlayerYouCame, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_GREETER, Common_Movement_WalkInPlaceFastestUp
-	applymovement LOCALID_GUIDE, Common_Movement_WalkInPlaceFastestUp
+	applymovement 1, Common_Movement_WalkInPlaceFastestUp
+	applymovement 2, Common_Movement_WalkInPlaceFastestUp
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	playse SE_PIN
-	applymovement LOCALID_GREETER, Common_Movement_ExclamationMark
-	applymovement LOCALID_GUIDE, Common_Movement_ExclamationMark
+	applymovement 1, Common_Movement_ExclamationMark
+	applymovement 2, Common_Movement_ExclamationMark
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_ExclamationMark
 	waitmovement 0
 	msgbox BattleFrontier_ReceptionGate_Text_OhMrScottGoodDay, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_GREETER, BattleFrontier_ReceptionGate_Movement_GreeterFaceScott
-	applymovement LOCALID_GUIDE, BattleFrontier_ReceptionGate_Movement_FacilityGuideFaceScott
+	applymovement 1, BattleFrontier_ReceptionGate_Movement_GreeterFaceScott
+	applymovement 2, BattleFrontier_ReceptionGate_Movement_FacilityGuideFaceScott
 	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_ReceptionGate_Movement_PlayerFaceScott
-	applymovement LOCALID_SCOTT, BattleFrontier_ReceptionGate_Movement_ScottEnter
+	applymovement 4, BattleFrontier_ReceptionGate_Movement_ScottEnter
 	waitmovement 0
 	msgbox BattleFrontier_ReceptionGate_Text_ScottGreatToSeeYouHere, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_SCOTT, BattleFrontier_ReceptionGate_Movement_ScottExit
+	applymovement 4, BattleFrontier_ReceptionGate_Movement_ScottExit
 	waitmovement 0
-	removeobject LOCALID_SCOTT
+	removeobject 4
 	releaseall
 	end
 
@@ -218,7 +214,7 @@ BattleFrontier_ReceptionGate_EventScript_RulesGuide:: @ 8266436
 BattleFrontier_ReceptionGate_EventScript_ChooseRuleToLearnAbout:: @ 8266446
 	message BattleFrontier_ReceptionGate_Text_LearnAboutWhat
 	waitmessage
-	multichoice 15, 0, MULTI_FRONTIER_RULES, FALSE
+	multichoice 15, 0, MULTI_FRONTIER_RULES, 0
 	switch VAR_RESULT
 	case 0, BattleFrontier_ReceptionGate_EventScript_LevelMode
 	case 1, BattleFrontier_ReceptionGate_EventScript_Level50
@@ -269,7 +265,7 @@ BattleFrontier_ReceptionGate_EventScript_FrontierPassGuide:: @ 82664F4
 BattleFrontier_ReceptionGate_EventScript_ChooseFrontierPassInfoToLearnAbout:: @ 8266504
 	message BattleFrontier_ReceptionGate_Text_LearnAboutWhich1
 	waitmessage
-	multichoice 16, 4, MULTI_FRONTIER_PASS_INFO, FALSE
+	multichoice 16, 4, MULTI_FRONTIER_PASS_INFO, 0
 	switch VAR_RESULT
 	case 0, BattleFrontier_ReceptionGate_EventScript_Symbols
 	case 1, BattleFrontier_ReceptionGate_EventScript_RecordBattle

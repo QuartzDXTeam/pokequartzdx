@@ -1,6 +1,3 @@
-.set LOCALID_SAILOR, 1
-.set LOCALID_SS_TIDAL, 2
-
 SouthernIsland_Exterior_MapScripts:: @ 82429C8
 	map_script MAP_SCRIPT_ON_TRANSITION, SouthernIsland_Exterior_OnTransition
 	.byte 0
@@ -20,8 +17,8 @@ SouthernIsland_Exterior_EventScript_Sailor:: @ 82429D2
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	delay 30
-	hideobjectat LOCALID_SAILOR, MAP_SOUTHERN_ISLAND_EXTERIOR
-	setvar VAR_0x8004, LOCALID_SS_TIDAL
+	hideobjectat 1, MAP_SOUTHERN_ISLAND_EXTERIOR
+	setvar VAR_0x8004, 2
 	call Common_EventScript_FerryDepartIsland
 	warp MAP_LILYCOVE_CITY_HARBOR, 255, 8, 11
 	waitstate

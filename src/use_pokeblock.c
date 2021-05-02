@@ -1,6 +1,5 @@
 #include "global.h"
 #include "main.h"
-#include "dma3.h"
 #include "pokeblock.h"
 #include "malloc.h"
 #include "decompress.h"
@@ -25,160 +24,143 @@
 #include "pokemon_summary_screen.h"
 #include "item_menu.h"
 
-/*
-    This file handles the screen where the player chooses
-    which pokemon to give a pokeblock to. The subsequent scene
-    of feeding the pokeblock to the pokemon is handled by
-    pokeblock_feed.c, and the rest of the pokeblock menu (and 
-    other pokeblock-related functions) are in pokeblock.c
-*/
-
-enum {
-    WIN_NAME,
-    WIN_NATURE,
-    WIN_TEXT,
-    WIN_COUNT
-};
-
-#define TAG_UP_DOWN     0
-#define TAG_CONDITION   1
-
-// At any one time, the currently selected mon and its two adjacent neighbors can be loaded
-// IDs to refer to one of these 3 are called "load id" in this file
-#define NUM_SELECTIONS_LOADED 3
-
-struct UsePokeblockSession
+struct UsePokeblockSubStruct
 {
-    void (*callback)(void);
-    void (*exitCallback)(void);
-    struct Pokeblock *pokeblock;
-    struct Pokemon *mon;
-    u8 stringBuffer[64];
-    u8 mainState;
-    u8 unused1;
-    u8 timer;
-    u8 statId;
-    u8 numEnhancements;
-    u8 unused2;
-    bool8 monInTopHalf;
-    u8 conditionsBeforeBlock[FLAVOR_COUNT];
-    u8 conditionsAfterBlock[FLAVOR_COUNT];
-    u8 enhancements[FLAVOR_COUNT];
-    s16 pokeblockStatBoosts[FLAVOR_COUNT];
-    u8 numSelections; // num in party + 1 (for Cancel)
-    u8 curSelection;
-    bool8 (*loadNewSelection)(void);
-    u8 helperState;
-    u8 unused3;
-    u8 natureText[34];
+    /*0x00*/ void (*field_0)(void);
+    /*0x04*/ void (*callback)(void);
+    /*0x08*/ struct Pokeblock *pokeblock;
+    /*0x0C*/ struct Pokemon *mon;
+    /*0x10*/ u8 stringBuffer[0x40];
+    /*0x50*/ u8 field_50;
+    /*0x51*/ u8 field_51;
+    /*0x52*/ u8 field_52;
+    /*0x53*/ u8 field_53;
+    /*0x54*/ u8 field_54;
+    /*0x55*/ u8 field_55;
+    /*0x56*/ u8 field_56;
+    /*0x57*/ u8 field_57[5];
+    /*0x5C*/ u8 field_5c[5];
+    /*0x61*/ u8 field_61[5];
+    /*0x66*/ s16 field_66[5];
+    /*0x70*/ u8 field_70;
+    /*0x71*/ u8 field_71;
+    /*0x74*/ u8 (*unk74)(void);
+    /*0x78*/ u8 unk78;
+    /*0x79*/ u8 filler79[0x1];
+    /*0x7A*/ u8 field_7A[0x22];
 };
 
-// This struct is identical to PokenavMonList, the struct used for managing lists of pokemon in the pokenav
-// Given that this screen is essentially duplicated in the poknav, this struct was probably the same one with
-// a more general name/purpose
-// TODO: Once the pokenav conditions screens are documented, resolve the above
-struct UsePokeblockMenuPokemon
+struct Unk7FB8
 {
-    u8 boxId; // Because this screen is never used for the PC this is always set to TOTAL_BOXES_COUNT to refer to party
-    u8 monId;
-    u16 data; // never read
+    u8 unk0;
+    u8 unk1;
+    u16 unk2;
 };
 
-struct UsePokeblockMenu
+struct UsePokeblockStruct
 {
-    u32 unused;
-    u16 partyPalettes[PARTY_SIZE][0x40];
-    u8 partySheets[NUM_SELECTIONS_LOADED][0x2000];
-    u8 unusedBuffer[0x1000];
-    u8 tilemapBuffer[BG_SCREEN_SIZE + 2];
-    u8 selectionIconSpriteIds[PARTY_SIZE + 1];
-    s16 curMonXOffset;
-    u8 curMonSpriteId;
-    u16 curMonPalette;
-    u16 curMonSheet;
-    u8 *curMonTileStart;
-    struct Sprite *sparkles[MAX_CONDITION_SPARKLES];
-    struct Sprite *condition[2];
-    u8 toLoadSelection;
-    u8 locationStrings[NUM_SELECTIONS_LOADED][24]; // Gets an "in party" or "in box #" string that never gets printed
-    u8 monNameStrings[NUM_SELECTIONS_LOADED][64];
-    struct ConditionGraph graph;
-    u8 numSparkles[NUM_SELECTIONS_LOADED];
-    s8 curLoadId;
-    s8 nextLoadId;
-    s8 prevLoadId;
-    s8 toLoadId;
-    struct UsePokeblockMenuPokemon party[PARTY_SIZE];
-    struct UsePokeblockSession info;
+    /*0x0000*/ u8 filler0[4];
+    /*0x0000*/ u16 field_4[6][0x40];
+    /*0x0304*/ u8 field_304[3][0x2000];
+    /*0x6304*/ u8 filler_6304[0x1000];
+    /*0x7304*/ u8 tilemapBuffer[BG_SCREEN_SIZE + 2];
+    /*0x7B06*/ u8 field_7B06[7];
+    /*0x7B0E*/ s16 field_7B0E;
+    /*0x7B10*/ u8 field_7B10;
+    /*0x7B12*/ u16 field_7B12;
+    /*0x7B12*/ u16 field_7B14;
+    /*0x7B12*/ u8 *field_7B18;
+    /*0x7B1C*/ struct Sprite *field_7B1C[10];
+    /*0x7B44*/ struct Sprite *field_7B44[2];
+    /*0x7B4C*/ u8 field_7B4C;
+    /*0x7B4D*/ u8 field_7B4D[3][24];
+    /*0x7B95*/ u8 field_7B95[3][64];
+    /*0x7C58*/ struct UnknownStruct_81D1ED4 field_7C58;
+    /*0x7FB0*/ u8 unk7FB0[3];
+    /*0x7FB3*/ s8 field_7FB3;
+    /*0x7FB4*/ s8 field_7FB4;
+    /*0x7FB5*/ s8 field_7FB5;
+    /*0x7FB6*/ s8 field_7FB6;
+    /*0x7FB8*/ struct Unk7FB8 field_7FB8[6];
+    /*0x7FD0*/ struct UsePokeblockSubStruct info;
 };
 
-static void SetUsePokeblockCallback(void (*func)(void));
-static void LoadUsePokeblockMenu(void);
-static void CB2_UsePokeblockMenu(void);
-static void CB2_ReturnToUsePokeblockMenu(void);
-static void ShowUsePokeblockMenu(void);
-static void CB2_ShowUsePokeblockMenuForResults(void);
-static void ShowUsePokeblockMenuForResults(void);
-static void LoadPartyInfo(void);
-static void LoadAndCreateSelectionIcons(void);
-static u8 GetSelectionIdFromPartyId(u8);
-static bool8 LoadConditionTitle(void);
-static bool8 LoadUsePokeblockMenuGfx(void);
-static void UpdateMonPic(u8);
-static void UpdateMonInfoText(u16, bool8);
-static void UsePokeblockMenu(void);
-static void UpdateSelection(bool8);
-static void CloseUsePokeblockMenu(void);
-static void AskUsePokeblock(void);
-static s8 HandleAskUsePokeblockInput(void);
-static bool8 IsSheenMaxed(void);
-static void PrintWontEatAnymore(void);
-static void FeedPokeblockToMon(void);
-static void EraseMenuWindow(void);
-static u8 GetPartyIdFromSelectionId(u8);
-static void ShowPokeblockResults(void);
-static void CalculateConditionEnhancements(void);
-static void LoadAndCreateUpDownSprites(void);
-static void CalculateNumAdditionalSparkles(u8);
-static void PrintFirstEnhancement(void);
-static bool8 TryPrintNextEnhancement(void);
-static void BufferEnhancedStatText(u8 *, u8, s16);
-static void PrintMenuWindowText(const u8 *);
-static void CalculatePokeblockEffectiveness(struct Pokeblock *, struct Pokemon *);
-static void SpriteCB_UpDown(struct Sprite *);
-static void LoadInitialMonInfo(void);
-static void LoadMonInfo(s16, u8);
-static bool8 LoadNewSelection_CancelToMon(void);
-static bool8 LoadNewSelection_MonToCancel(void);
-static bool8 LoadNewSelection_MonToMon(void);
-static void SpriteCB_SelectionIconPokeball(struct Sprite *);
-static void SpriteCB_SelectionIconCancel(struct Sprite *);
-static void SpriteCB_MonPic(struct Sprite *);
-static void SpriteCB_Condition(struct Sprite *);
+#define TAG_TILE_CONDITION_UP_DOWN    0
+#define TAG_PAL_CONDITION_UP_DOWN     0
+#define TAG_PAL_POKEBLOCK_CONDITION   1
 
-extern const u16 gConditionGraphData_Pal[];
-extern const u16 gConditionText_Pal[];
+extern void sub_81D21DC(u8);
 
-// The below 3 are saved for returning to the screen after feeding a pokeblock to a mon
-// so that the rest of the data can be freed
-static EWRAM_DATA struct UsePokeblockSession *sInfo = NULL;
-static EWRAM_DATA void (*sExitCallback)(void) = NULL;
-static EWRAM_DATA struct Pokeblock *sPokeblock = NULL;
+// this file's functions
+void sub_816636C(void (*func)(void));
+void sub_8166380(void);
+void sub_816631C(void);
+void sub_81662C0(void);
+void sub_8166564(void);
+void sub_8166304(void);
+void sub_81668F8(void);
+void sub_8167420(void);
+void sub_8167760(void);
+u8 sub_81672E4(u8 arg0);
+static bool8 sub_8168328(void);
+bool8 sub_8167930(void);
+void sub_8167608(u8 arg0);
+void sub_8167BA0(u16 arg0, u8 copyToVramMode);
+void sub_8166634(void);
+static void sub_8167CA0(bool8);
+void sub_8166BEC(void);
+void sub_8166D44(void);
+s8 sub_8166DE4(void);
+bool8 IsSheenMaxed(void);
+void sub_8166F50(void);
+void sub_816681C(void);
+void sub_8166F94(void);
+u8 sub_81672A4(u8 a0);
+void sub_8166A34(void);
+void sub_8167104(void);
+void sub_8167338(void);
+void sub_81681F4(u8);
+void sub_8166E24(void);
+bool8 sub_8166EDC(void);
+void Pokeblock_BufferEnhancedStatText(u8 *dest, u8 statId, s16 a2);
+void Pokeblock_MenuWindowTextPrint(const u8 *message);
+void sub_8167184(struct Pokeblock *, struct Pokemon *);
+void sub_81673DC(struct Sprite *sprite);
+void sub_81674BC(void);
+void sub_816753C(s16, u8);
+static u8 sub_8167EA4(void);
+static u8 sub_8167FA4(void);
+static u8 sub_8168048(void);
+void sub_8168180(struct Sprite *sprite);
+void sub_81681B4(struct Sprite *sprite);
+void sub_8168168(struct Sprite *sprite);
+void sub_8168374(struct Sprite *sprite);
+
+extern const u16 gUnknown_086231E8[];
+extern const u16 gUnknown_08623208[];
+extern const struct SpritePalette gSpritePalette_085DFDB8;
+extern const struct SpriteTemplate gSpriteTemplate_085DFDA0;
+
+// ram variables
+EWRAM_DATA struct UsePokeblockSubStruct *gUnknown_0203BC90 = NULL;
+EWRAM_DATA void (*gUnknown_0203BC94)(void) = NULL;
+EWRAM_DATA struct Pokeblock *gUnknown_0203BC98 = NULL;
 EWRAM_DATA u8 gPokeblockMonId = 0;
 EWRAM_DATA s16 gPokeblockGain = 0;
-static EWRAM_DATA u8 *sGraph_Tilemap = NULL;
-static EWRAM_DATA u8 *sGraph_Gfx = NULL;
-static EWRAM_DATA u8 *sMonFrame_TilemapPtr = NULL;
-static EWRAM_DATA struct UsePokeblockMenu *sMenu = NULL;
+EWRAM_DATA u8 *gUnknown_0203BCA0 = NULL;
+EWRAM_DATA u8 *gUnknown_0203BCA4 = NULL;
+EWRAM_DATA u8 *gUnknown_0203BCA8 = NULL;
+EWRAM_DATA struct UsePokeblockStruct *gUnknown_0203BCAC = NULL;
 
-static const u32 sMonFrame_Pal[] = INCBIN_U32("graphics/pokeblock/use_screen/mon_frame_pal.bin");
-static const u32 sMonFrame_Gfx[] = INCBIN_U32("graphics/pokeblock/use_screen/mon_frame.4bpp");
-static const u32 sMonFrame_Tilemap[] = INCBIN_U32("graphics/pokeblock/use_screen/mon_frame.bin");
-static const u32 sGraphData_Tilemap[] = INCBIN_U32("graphics/pokeblock/use_screen/graph_data.bin");
+// const rom data
+// todo: make it static once the file is decompiled
 
-// The condition/flavors aren't listed in their normal order in this file, they're listed as shown on the graph going counter-clockwise
-// Normally they would go Cool/Spicy, Beauty/Dry, Cute/Sweet, Smart/Bitter, Tough/Sour (also graph order, but clockwise)
-static const u32 sMonDataConditions[FLAVOR_COUNT] =
+const u32 gUnknown_085DFA60[] = INCBIN_U32("graphics/interface/85DFA60.bin");
+const u32 gUnknown_085DFA80[] = INCBIN_U32("graphics/interface/85DFA80.4bpp");
+const u32 gUnknown_085DFB60[] = INCBIN_U32("graphics/interface/85DFB60.bin");
+const u32 gUnknown_085DFC0C[] = INCBIN_U32("graphics/interface/85DFC0C.bin");
+
+const u32 gUnknown_085DFCB0[] =
 {
     MON_DATA_COOL,
     MON_DATA_TOUGH,
@@ -187,13 +169,13 @@ static const u32 sMonDataConditions[FLAVOR_COUNT] =
     MON_DATA_BEAUTY
 };
 
-static const u8 sFlavors[FLAVOR_COUNT] =
+const u8 gUnknown_085DFCC4[] =
 {
-    FLAVOR_SPICY,
-    FLAVOR_SOUR,
-    FLAVOR_BITTER,
-    FLAVOR_SWEET,
-    FLAVOR_DRY
+    0, // Spicy/Cool
+    4, // Dry/Beauty
+    3, // Sweet/Cute
+    2, // Bitter/Smart
+    1  // Sour/Tough 
 };
 
 static const u8 sNatureTextColors[] =
@@ -203,7 +185,7 @@ static const u8 sNatureTextColors[] =
     TEXT_COLOR_WHITE
 };
 
-static const struct BgTemplate sBgTemplates[4] =
+const struct BgTemplate gUnknown_085DFCCC[4] =
 {
     {
         .bg = 0,
@@ -243,50 +225,50 @@ static const struct BgTemplate sBgTemplates[4] =
     }
 };
 
-static const struct WindowTemplate sWindowTemplates[WIN_COUNT + 1] = 
+const struct WindowTemplate gUnknown_085DFCDC[] = 
 {
-    [WIN_NAME] = {
+    {
         .bg = 0,
-        .tilemapLeft = 13,
+        .tilemapLeft = 0xD,
         .tilemapTop = 1,
-        .width = 13,
+        .width = 0xD,
         .height = 4,
-        .paletteNum = 15,
+        .paletteNum = 0xF,
         .baseBlock = 1
     },
-    [WIN_NATURE] = {
+    {
         .bg = 0,
         .tilemapLeft = 0,
-        .tilemapTop = 14,
-        .width = 11,
+        .tilemapTop = 0xE,
+        .width = 0xB,
         .height = 2,
-        .paletteNum = 15,
+        .paletteNum = 0xF,
         .baseBlock = 0x35
     },
-    [WIN_TEXT] = {
+    {
         .bg = 0,
         .tilemapLeft = 1,
-        .tilemapTop = 17,
-        .width = 28,
+        .tilemapTop = 0x11,
+        .width = 0x1C,
         .height = 2,
-        .paletteNum = 15,
+        .paletteNum = 0xF,
         .baseBlock = 0x4B
     },
     DUMMY_WIN_TEMPLATE
 };
 
-static const struct WindowTemplate sUsePokeblockYesNoWinTemplate = 
+const struct WindowTemplate sUsePokeblockYesNoWinTemplate = 
 {
     .bg = 0,
-    .tilemapLeft = 24,
-    .tilemapTop = 11,
+    .tilemapLeft = 0x18,
+    .tilemapTop = 0xB,
     .width = 5,
     .height = 4,
-    .paletteNum = 15,
+    .paletteNum = 0xF,
     .baseBlock = 0x83
 };
 
-static const u8 *const sContestStatNames[] =
+const u8 *const sContestStatNames[] =
 {
     gText_Coolness,
     gText_Toughness,
@@ -295,26 +277,26 @@ static const u8 *const sContestStatNames[] =
     gText_Beauty3
 };
 
-static const struct SpriteSheet sSpriteSheet_UpDown = 
+const struct SpriteSheet gSpriteSheet_ConditionUpDown = 
 {
-    gUsePokeblockUpDown_Gfx, 0x200, TAG_UP_DOWN
+    gUsePokeblockUpDown_Gfx, 0x200, TAG_TILE_CONDITION_UP_DOWN
 };
 
-static const struct SpritePalette sSpritePalette_UpDown =
+const struct SpritePalette gSpritePalette_ConditionUpDown =
 {
-    gUsePokeblockUpDown_Pal, TAG_UP_DOWN
+    gUsePokeblockUpDown_Pal, TAG_PAL_CONDITION_UP_DOWN
 };
 
-static const s16 sUpDownCoordsOnGraph[FLAVOR_COUNT][2] =
+const s16 gUnknown_085DFD28[][2] =
 {
-    {156,  36},
-    {117,  59},
-    {117, 118},
-    {197, 118},
-    {197,  59}
+    {0x9C, 0x24},
+    {0x75, 0x3B},
+    {0x75, 0x76},
+    {0xC5, 0x76},
+    {0xC5, 0x3B}
 };
 
-static const struct OamData sOam_UpDown = 
+const struct OamData gOamData_085DFD3C = 
 {
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -328,36 +310,36 @@ static const struct OamData sOam_UpDown =
     .paletteNum = 0,
 };
 
-static const union AnimCmd sAnim_Up[] =
+const union AnimCmd gSpriteAnim_085DFD44[] =
 {
     ANIMCMD_FRAME(0, 5),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_Down[] =
+const union AnimCmd gSpriteAnim_085DFD4C[] =
 {
     ANIMCMD_FRAME(8, 5),
     ANIMCMD_END
 };
 
-static const union AnimCmd *const sAnims_UpDown[] =
+const union AnimCmd *const gSpriteAnimTable_085DFD54[] =
 {
-    sAnim_Up,
-    sAnim_Down
+    gSpriteAnim_085DFD44,
+    gSpriteAnim_085DFD4C
 };
 
-static const struct SpriteTemplate sSpriteTemplate_UpDown =
+const struct SpriteTemplate gSpriteTemplate_085DFD5C =
 {
-    .tileTag = TAG_UP_DOWN,
-    .paletteTag = TAG_UP_DOWN,
-    .oam = &sOam_UpDown,
-    .anims = sAnims_UpDown,
+    .tileTag = 0,
+    .paletteTag = 0,
+    .oam = &gOamData_085DFD3C,
+    .anims = gSpriteAnimTable_085DFD54,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy,
 };
 
-static const struct OamData sOam_Condition = 
+const struct OamData gOamData_085DFD74 = 
 {
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -371,527 +353,513 @@ static const struct OamData sOam_Condition =
     .paletteNum = 0,
 };
 
-static const union AnimCmd sAnim_Condition_0[] =
+const union AnimCmd gSpriteAnim_085DFD7C[] =
 {
     ANIMCMD_FRAME(0, 5),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_Condition_1[] =
+const union AnimCmd gSpriteAnim_085DFD84[] =
 {
     ANIMCMD_FRAME(32, 5),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_Condition_2[] =
+const union AnimCmd gSpriteAnim_085DFD8C[] =
 {
     ANIMCMD_FRAME(64, 5),
     ANIMCMD_END
 };
 
-static const union AnimCmd *const sAnims_Condition[] =
+const union AnimCmd *const gSpriteAnimTable_085DFD94[] =
 {
-    sAnim_Condition_0,
-    sAnim_Condition_1,
-    sAnim_Condition_2
+    gSpriteAnim_085DFD7C,
+    gSpriteAnim_085DFD84,
+    gSpriteAnim_085DFD8C
 };
 
-static const struct SpriteTemplate sSpriteTemplate_Condition =
+const struct SpriteTemplate gSpriteTemplate_085DFDA0 =
 {
-    .tileTag = TAG_CONDITION,
-    .paletteTag = TAG_CONDITION,
-    .oam = &sOam_Condition,
-    .anims = sAnims_Condition,
+    .tileTag = 1,
+    .paletteTag = 1,
+    .oam = &gOamData_085DFD74,
+    .anims = gSpriteAnimTable_085DFD94,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_Condition,
+    .callback = sub_8168374,
 };
 
-static const struct SpritePalette sSpritePalette_Condition =
+const struct SpritePalette gSpritePalette_085DFDB8 =
 {
-    gUsePokeblockCondition_Pal, TAG_CONDITION
+    gUsePokeblockCondition_Pal, TAG_PAL_POKEBLOCK_CONDITION
 };
 
-// When first opening the selection screen
+// code
 void ChooseMonToGivePokeblock(struct Pokeblock *pokeblock, void (*callback)(void))
 {
-    sMenu = AllocZeroed(sizeof(*sMenu));
-    sInfo = &sMenu->info;
-    sInfo->pokeblock = pokeblock;
-    sInfo->exitCallback = callback;
-    SetUsePokeblockCallback(LoadUsePokeblockMenu);
-    SetMainCallback2(CB2_UsePokeblockMenu);
+    gUnknown_0203BCAC = AllocZeroed(sizeof(*gUnknown_0203BCAC));
+    gUnknown_0203BC90 = &gUnknown_0203BCAC->info;
+    gUnknown_0203BC90->pokeblock = pokeblock;
+    gUnknown_0203BC90->callback = callback;
+    sub_816636C(sub_8166380);
+    SetMainCallback2(sub_816631C);
 }
 
-// When returning to the selection screen after feeding a pokeblock to a mon
-static void CB2_ReturnAndChooseMonToGivePokeblock(void)
+void CB2_ReturnAndChooseMonToGivePokeblock(void)
 {
-    sMenu = AllocZeroed(sizeof(*sMenu));
-    sInfo = &sMenu->info;
-    sInfo->pokeblock = sPokeblock;
-    sInfo->exitCallback = sExitCallback;
-    gPokeblockMonId = GetSelectionIdFromPartyId(gPokeblockMonId);
-    sInfo->monInTopHalf = (gPokeblockMonId <= PARTY_SIZE / 2) ? FALSE : TRUE;
-    SetUsePokeblockCallback(LoadUsePokeblockMenu);
-    SetMainCallback2(CB2_ReturnToUsePokeblockMenu);
+    gUnknown_0203BCAC = AllocZeroed(sizeof(*gUnknown_0203BCAC));
+    gUnknown_0203BC90 = &gUnknown_0203BCAC->info;
+    gUnknown_0203BC90->pokeblock = gUnknown_0203BC98;
+    gUnknown_0203BC90->callback = gUnknown_0203BC94;
+    gPokeblockMonId = sub_81672E4(gPokeblockMonId);
+    gUnknown_0203BC90->field_56 = gPokeblockMonId < 4 ? 0 : 1;
+    sub_816636C(sub_8166380);
+    SetMainCallback2(sub_81662C0);
 }
 
-static void CB2_ReturnToUsePokeblockMenu(void)
+void sub_81662C0(void)
 {
-    sInfo->callback();
+    gUnknown_0203BC90->field_0();
     AnimateSprites();
     BuildOamBuffer();
     UpdatePaletteFade();
-    if (sInfo->callback == ShowUsePokeblockMenu)
+    if (gUnknown_0203BC90->field_0 == sub_8166564)
     {
-        sInfo->mainState = 0;
-        SetMainCallback2(CB2_ShowUsePokeblockMenuForResults);
+        gUnknown_0203BC90->field_50 = 0;
+        SetMainCallback2(sub_8166304);
     }
 }
 
-static void CB2_ShowUsePokeblockMenuForResults(void)
+void sub_8166304(void)
 {
-    ShowUsePokeblockMenuForResults();
+    sub_81668F8();
     AnimateSprites();
     BuildOamBuffer();
     UpdatePaletteFade();
 }
 
-static void CB2_UsePokeblockMenu(void)
+void sub_816631C(void)
 {
-    sInfo->callback();
+    gUnknown_0203BC90->field_0();
     AnimateSprites();
     BuildOamBuffer();
     RunTextPrinters();
     UpdatePaletteFade();
 }
 
-static void VBlankCB_UsePokeblockMenu(void)
+void sub_8166340(void)
 {
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
-    sub_81D2108(&sMenu->graph);
+    sub_81D2108(&gUnknown_0203BCAC->field_7C58);
     ScanlineEffect_InitHBlankDmaTransfer();
 }
 
-static void SetUsePokeblockCallback(void (*func)(void))
+void sub_816636C(void (*func)(void))
 {
-    sInfo->callback = func;
-    sInfo->mainState = 0;
+    gUnknown_0203BC90->field_0 = func;
+    gUnknown_0203BC90->field_50 = 0;
 }
 
-static void LoadUsePokeblockMenu(void)
+void sub_8166380(void)
 {
-    switch (sInfo->mainState)
+    switch (gUnknown_0203BC90->field_50)
     {
     case 0:
-        sMenu->curMonSpriteId = SPRITE_NONE;
-        InitConditionGraphData(&sMenu->graph);
-        sInfo->mainState++;
+        gUnknown_0203BCAC->field_7B10 = 0xFF;
+        sub_81D1ED4(&gUnknown_0203BCAC->field_7C58);
+        gUnknown_0203BC90->field_50++;
         break;
     case 1:
         ResetSpriteData();
         FreeAllSpritePalettes();
-        sInfo->mainState++;
+        gUnknown_0203BC90->field_50++;
         break;
     case 2:
         SetVBlankCallback(NULL);
         CpuFill32(0, (void*)(VRAM), VRAM_SIZE);
-        sInfo->mainState++;
+        gUnknown_0203BC90->field_50++;
         break;
     case 3:
         ResetBgsAndClearDma3BusyFlags(0);
-        InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
-        InitWindows(sWindowTemplates);
+        InitBgsFromTemplates(0, gUnknown_085DFCCC, ARRAY_COUNT(gUnknown_085DFCCC));
+        InitWindows(gUnknown_085DFCDC);
         DeactivateAllTextPrinters();
         LoadUserWindowBorderGfx(0, 0x97, 0xE0);
-        sInfo->mainState++;
+        gUnknown_0203BC90->field_50++;
         break;
     case 4:
-        sInfo->mainState++;
+        gUnknown_0203BC90->field_50++;
         break;
     case 5:
-        if (!LoadConditionTitle())
-            sInfo->mainState++;
+        if (!sub_8168328())
+            gUnknown_0203BC90->field_50++;
         break;
     case 6:
         gKeyRepeatStartDelay = 20;
-        LoadPartyInfo();
-        sInfo->mainState++;
+        sub_8167420();
+        gUnknown_0203BC90->field_50++;
         break;
     case 7:
-        if (!LoadUsePokeblockMenuGfx())
-            sInfo->mainState++;
+        if (!sub_8167930())
+            gUnknown_0203BC90->field_50++;
         break;
     case 8:
-        UpdateMonPic(0);
-        LoadAndCreateSelectionIcons();
-        sInfo->mainState++;
+        sub_8167608(0);
+        sub_8167760();
+        gUnknown_0203BC90->field_50++;
         break;
     case 9:
-        if (!MoveConditionMonOnscreen(&sMenu->curMonXOffset))
-            sInfo->mainState++;
+        if (!sub_81D312C(&gUnknown_0203BCAC->field_7B0E))
+            gUnknown_0203BC90->field_50++;
         break;
     case 10:
-        sInfo->mainState++;
+        gUnknown_0203BC90->field_50++;
         break;
     case 11:
-        sub_81D2754(sMenu->graph.stat[0], sMenu->graph.unk14[0]);
-        InitConditionGraphState(&sMenu->graph);
-        sInfo->mainState++;
+        sub_81D2754(gUnknown_0203BCAC->field_7C58.unk0[0], gUnknown_0203BCAC->field_7C58.unk14[0]);
+        sub_81D20AC(&gUnknown_0203BCAC->field_7C58);
+        gUnknown_0203BC90->field_50++;
         break;
     case 12:
-        if (!SetupConditionGraphScanlineParams(&sMenu->graph))
+        if (!sub_81D20BC(&gUnknown_0203BCAC->field_7C58))
         {
-            sub_81D1F84(&sMenu->graph, sMenu->graph.unk14[0], sMenu->graph.unk14[0]);
-            sInfo->mainState++;
+            sub_81D1F84(&gUnknown_0203BCAC->field_7C58, gUnknown_0203BCAC->field_7C58.unk14[0], gUnknown_0203BCAC->field_7C58.unk14[0]);
+            gUnknown_0203BC90->field_50++;
         }
         break;
     case 13:
-        sub_81D2230(&sMenu->graph);
-        sInfo->mainState++;
+        sub_81D2230(&gUnknown_0203BCAC->field_7C58);
+        gUnknown_0203BC90->field_50++;
         break;
     case 14:
-        PutWindowTilemap(WIN_NAME);
-        PutWindowTilemap(WIN_NATURE);
-        UpdateMonInfoText(0, TRUE);
-        sInfo->mainState++;
+        PutWindowTilemap(0);
+        PutWindowTilemap(1);
+        sub_8167BA0(0, 1);
+        gUnknown_0203BC90->field_50++;
         break;
     case 15:
-        SetUsePokeblockCallback(ShowUsePokeblockMenu);
+        sub_816636C(sub_8166564);
         break;
     }
 }
 
-static void ShowUsePokeblockMenu(void)
+void sub_8166564(void)
 {
-    switch (sInfo->mainState)
+    switch (gUnknown_0203BC90->field_50)
     {
     case 0:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
-        SetVBlankCallback(VBlankCB_UsePokeblockMenu);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        SetVBlankCallback(sub_8166340);
         ShowBg(0);
         ShowBg(1);
         ShowBg(3);
         ShowBg(2);
-        sInfo->mainState++;
+        gUnknown_0203BC90->field_50++;
         break;
     case 1:
         if (!gPaletteFade.active)
         {
-            ResetConditionSparkleSprites(sMenu->sparkles);
-            if (sMenu->info.curSelection != sMenu->info.numSelections - 1)
+            sub_81D3464(gUnknown_0203BCAC->field_7B1C);
+            if (gUnknown_0203BCAC->info.field_71 != gUnknown_0203BCAC->info.field_70 - 1)
             {
-                u8 numSparkles = sMenu->numSparkles[sMenu->curLoadId];
-                CreateConditionSparkleSprites(sMenu->sparkles, sMenu->curMonSpriteId, numSparkles);
+                u8 var0 = gUnknown_0203BCAC->unk7FB0[gUnknown_0203BCAC->field_7FB3];
+                sub_81D3480(gUnknown_0203BCAC->field_7B1C, gUnknown_0203BCAC->field_7B10, var0);
             }
 
-            SetUsePokeblockCallback(UsePokeblockMenu);
+            sub_816636C(sub_8166634);
         }
         break;
     }
 }
 
-enum {
-    STATE_HANDLE_INPUT,
-    STATE_UPDATE_SELECTION,
-    STATE_2, // unused state
-    STATE_CLOSE,
-    STATE_4, // unused state
-    STATE_CONFIRM_SELECTION,
-    STATE_HANDLE_CONFIRMATION,
-    STATE_WAIT_MSG,
-};
-
-static void UsePokeblockMenu(void)
+void sub_8166634(void)
 {
-    bool8 loading;
+    u8 var;
 
-    switch (sInfo->mainState)
-    {
-    case STATE_HANDLE_INPUT:
-        if (JOY_HELD(DPAD_UP))
-        {
-            PlaySE(SE_SELECT);
-            UpdateSelection(TRUE);
-            DestroyConditionSparkleSprites(sMenu->sparkles);
-            sInfo->mainState = STATE_UPDATE_SELECTION;
-        }
-        else if (JOY_HELD(DPAD_DOWN))
-        {
-            PlaySE(SE_SELECT);
-            UpdateSelection(FALSE);
-            DestroyConditionSparkleSprites(sMenu->sparkles);
-            sInfo->mainState = STATE_UPDATE_SELECTION;
-        }
-        else if (JOY_NEW(B_BUTTON))
-        {
-            PlaySE(SE_SELECT);
-            sInfo->mainState = STATE_CLOSE;
-        }
-        else if (JOY_NEW(A_BUTTON))
-        {
-            PlaySE(SE_SELECT);
-
-            // If last item, selected Cancel. Otherwise selected mon
-            if (sMenu->info.curSelection == sMenu->info.numSelections - 1)
-                sInfo->mainState = STATE_CLOSE;
-            else
-                sInfo->mainState = STATE_CONFIRM_SELECTION;
-        }
-        break;
-    case STATE_UPDATE_SELECTION:
-        loading = sMenu->info.loadNewSelection();
-        if (!loading)
-            sInfo->mainState = STATE_HANDLE_INPUT;
-        break;
-    case STATE_2:
-        break;
-    case STATE_CLOSE:
-        SetUsePokeblockCallback(CloseUsePokeblockMenu);
-        break;
-    case STATE_4:
-        break;
-    case STATE_CONFIRM_SELECTION:
-        AskUsePokeblock();
-        sInfo->mainState++;
-        break;
-    case STATE_HANDLE_CONFIRMATION:
-        switch (HandleAskUsePokeblockInput())
-        {
-        case 1: // NO
-        case MENU_B_PRESSED:
-            sInfo->mainState = STATE_HANDLE_INPUT;
-            break;
-        case 0: // YES
-            if (IsSheenMaxed())
-            {
-                PrintWontEatAnymore();
-                sInfo->mainState = STATE_WAIT_MSG;
-            }
-            else
-            {
-                SetUsePokeblockCallback(FeedPokeblockToMon);
-            }
-            break;
-        }
-        break;
-    case STATE_WAIT_MSG:
-        if (JOY_NEW(A_BUTTON | B_BUTTON))
-        {
-            EraseMenuWindow();
-            sInfo->mainState = STATE_HANDLE_INPUT;
-        }
-        break;
-    }
-}
-
-static void FeedPokeblockToMon(void)
-{
-    switch (sInfo->mainState)
+    switch (gUnknown_0203BC90->field_50)
     {
     case 0:
-        gPokeblockMonId = GetPartyIdFromSelectionId(sMenu->info.curSelection);
-        sExitCallback = sInfo->exitCallback;
-        sPokeblock = sInfo->pokeblock;
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-        sInfo->mainState++;
+        if (gMain.heldKeys & DPAD_UP)
+        {
+            PlaySE(SE_SELECT);
+            sub_8167CA0(TRUE);
+            sub_81D3520(gUnknown_0203BCAC->field_7B1C);
+            gUnknown_0203BC90->field_50 = 1;
+        }
+        else if (gMain.heldKeys & DPAD_DOWN)
+        {
+            PlaySE(SE_SELECT);
+            sub_8167CA0(FALSE);
+            sub_81D3520(gUnknown_0203BCAC->field_7B1C);
+            gUnknown_0203BC90->field_50 = 1;
+        }
+        else if (gMain.newKeys & B_BUTTON)
+        {
+            PlaySE(SE_SELECT);
+            gUnknown_0203BC90->field_50 = 3;
+        }
+        else if (gMain.newKeys & A_BUTTON)
+        {
+            PlaySE(SE_SELECT);
+            if (gUnknown_0203BCAC->info.field_71 == gUnknown_0203BCAC->info.field_70 - 1)
+                gUnknown_0203BC90->field_50 = 3;
+            else
+                gUnknown_0203BC90->field_50 = 5;
+        }
+        break;
+    case 1:
+        var = gUnknown_0203BCAC->info.unk74();
+        if (!var)
+            gUnknown_0203BC90->field_50 = var;
+        break;
+    case 2:
+        break;
+    case 3:
+        sub_816636C(sub_8166BEC);
+        break;
+    case 4:
+        break;
+    case 5:
+        sub_8166D44();
+        gUnknown_0203BC90->field_50++;
+        break;
+    case 6:
+        switch (sub_8166DE4())
+        {
+        case 1:
+        case -1:
+            gUnknown_0203BC90->field_50 = 0;
+            break;
+        case 0:
+            if (IsSheenMaxed())
+            {
+                sub_8166F50();
+                gUnknown_0203BC90->field_50 = 7;
+            }
+            else
+            {
+                sub_816636C(sub_816681C);
+            }
+            break;
+        }
+        break;
+    case 7:
+        if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+        {
+            sub_8166F94();
+            gUnknown_0203BC90->field_50 = 0;
+        }
+        break;
+    }
+}
+
+void sub_816681C(void)
+{
+    switch (gUnknown_0203BC90->field_50)
+    {
+    case 0:
+        gPokeblockMonId = sub_81672A4(gUnknown_0203BCAC->info.field_71);
+        gUnknown_0203BC94 = gUnknown_0203BC90->callback;
+        gUnknown_0203BC98 = gUnknown_0203BC90->pokeblock;
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        gUnknown_0203BC90->field_50++;
         break;
     case 1:
         if (!gPaletteFade.active)
         {
             SetVBlankCallback(NULL);
-            FREE_AND_SET_NULL(sGraph_Tilemap);
-            FREE_AND_SET_NULL(sGraph_Gfx);
-            FREE_AND_SET_NULL(sMonFrame_TilemapPtr);
-            FREE_AND_SET_NULL(sMenu);
+            FREE_AND_SET_NULL(gUnknown_0203BCA0);
+            FREE_AND_SET_NULL(gUnknown_0203BCA4);
+            FREE_AND_SET_NULL(gUnknown_0203BCA8);
+            FREE_AND_SET_NULL(gUnknown_0203BCAC);
             FreeAllWindowBuffers();
             gMain.savedCallback = CB2_ReturnAndChooseMonToGivePokeblock;
-            PreparePokeblockFeedScene();
+            CB2_PreparePokeblockFeedScene();
         }
         break;
     }
 }
 
-static void ShowUsePokeblockMenuForResults(void)
+void sub_81668F8(void)
 {
-    bool8 loading;
+    u16 var;
 
-    switch (sInfo->mainState)
+    switch (gUnknown_0203BC90->field_50)
     {
     case 0:
-        if (sMenu->info.curSelection != gPokeblockMonId)
+        if (gUnknown_0203BCAC->info.field_71 != gPokeblockMonId)
         {
-            UpdateSelection(sInfo->monInTopHalf);
-            sInfo->mainState++;
+            sub_8167CA0(gUnknown_0203BC90->field_56);
+            gUnknown_0203BC90->field_50++;
         }
         else
         {
-            sInfo->mainState = 3;
+            gUnknown_0203BC90->field_50 = 3;
         }
         break;
     case 1:
-        loading = sMenu->info.loadNewSelection();
-        if (!loading)
-            sInfo->mainState = 0;
+        var = gUnknown_0203BCAC->info.unk74();
+        if (!var)
+            gUnknown_0203BC90->field_50 = var;
         break;
     case 2:
         break;
     case 3:
-        BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
-        sInfo->mainState++;
+        BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
+        gUnknown_0203BC90->field_50++;
         break;
     case 4:
         ShowBg(0);
         ShowBg(1);
         ShowBg(3);
         ShowBg(2);
-        sInfo->mainState++;
+        gUnknown_0203BC90->field_50++;
         break;
     case 5:
-        SetVBlankCallback(VBlankCB_UsePokeblockMenu);
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
-        sInfo->mainState++;
+        SetVBlankCallback(sub_8166340);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
+        gUnknown_0203BC90->field_50++;
         break;
     case 6:
         if (!gPaletteFade.active)
         {
-            ResetConditionSparkleSprites(sMenu->sparkles);
-            SetUsePokeblockCallback(ShowPokeblockResults);
-            SetMainCallback2(CB2_UsePokeblockMenu);
+            sub_81D3464(gUnknown_0203BCAC->field_7B1C);
+            sub_816636C(sub_8166A34);
+            SetMainCallback2(sub_816631C);
         }
         break;
     }
 }
 
-static void ShowPokeblockResults(void)
+void sub_8166A34(void)
 {
     u8 var;
 
-    switch (sInfo->mainState)
+    switch (gUnknown_0203BC90->field_50)
     {
     case 0:
-        sInfo->mon = gPlayerParty;
-        sInfo->mon += sMenu->party[sMenu->info.curSelection].monId;
-        DestroyConditionSparkleSprites(sMenu->sparkles);
-        sInfo->mainState++;
+        gUnknown_0203BC90->mon = gPlayerParty;
+        gUnknown_0203BC90->mon += gUnknown_0203BCAC->field_7FB8[gUnknown_0203BCAC->info.field_71].unk1;
+        sub_81D3520(gUnknown_0203BCAC->field_7B1C);
+        gUnknown_0203BC90->field_50++;
         break;
     case 1:
-        if (JOY_NEW(A_BUTTON | B_BUTTON))
-            sInfo->mainState++;
+        if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+            gUnknown_0203BC90->field_50++;
         break;
     case 2:
-        CalculateConditionEnhancements();
-        sub_81D2754(sInfo->conditionsAfterBlock, sMenu->graph.unk14[3]);
-        sub_81D1F84(&sMenu->graph, sMenu->graph.unk14[sMenu->curLoadId], sMenu->graph.unk14[3]);
-        LoadAndCreateUpDownSprites();
-        sInfo->mainState++;
+        sub_8167104();
+        sub_81D2754(gUnknown_0203BC90->field_5c, gUnknown_0203BCAC->field_7C58.unk14[3]);
+        sub_81D1F84(&gUnknown_0203BCAC->field_7C58, gUnknown_0203BCAC->field_7C58.unk14[gUnknown_0203BCAC->field_7FB3], gUnknown_0203BCAC->field_7C58.unk14[3]);
+        sub_8167338();
+        gUnknown_0203BC90->field_50++;
         break;
     case 3:
-        var = TransitionConditionGraph(&sMenu->graph);
+        var = sub_81D2074(&gUnknown_0203BCAC->field_7C58);
         if (!var)
         {
-            CalculateNumAdditionalSparkles(GetPartyIdFromSelectionId(sMenu->info.curSelection));
-            if (sMenu->info.curSelection != sMenu->info.numSelections - 1)
+            sub_81681F4(sub_81672A4(gUnknown_0203BCAC->info.field_71));
+            if (gUnknown_0203BCAC->info.field_71 != gUnknown_0203BCAC->info.field_70 - 1)
             {
-                u8 numSparkles = sMenu->numSparkles[sMenu->curLoadId];
-                CreateConditionSparkleSprites(sMenu->sparkles, sMenu->curMonSpriteId, numSparkles);
+                u8 var0 = gUnknown_0203BCAC->unk7FB0[gUnknown_0203BCAC->field_7FB3];
+                sub_81D3480(gUnknown_0203BCAC->field_7B1C, gUnknown_0203BCAC->field_7B10, var0);
             }
 
-            sInfo->timer = 0;
-            sInfo->mainState++;
+            gUnknown_0203BC90->field_52 = 0;
+            gUnknown_0203BC90->field_50++;
         }
         break;
     case 4:
-        if (++sInfo->timer > 16)
+        if (++gUnknown_0203BC90->field_52 > 16)
         {
-            PrintFirstEnhancement();
-            sInfo->mainState++;
+            sub_8166E24();
+            gUnknown_0203BC90->field_50++;
         }
         break;
     case 5:
-        if (JOY_NEW(A_BUTTON | B_BUTTON) && !TryPrintNextEnhancement())
+        if (gMain.newKeys & (A_BUTTON | B_BUTTON) && !sub_8166EDC())
         {
             TryClearPokeblock((u8)gSpecialVar_ItemId);
-            SetUsePokeblockCallback(CloseUsePokeblockMenu);
+            sub_816636C(sub_8166BEC);
         }
         break;
     }
 }
 
-static void CloseUsePokeblockMenu(void)
+void sub_8166BEC(void)
 {
-    u8 i;
+    u8 i, var;
 
-    switch (sInfo->mainState)
+    switch (gUnknown_0203BC90->field_50)
     {
     case 0:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-        sInfo->mainState++;
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        gUnknown_0203BC90->field_50++;
         break;
     case 1:
         if (!gPaletteFade.active)
-            sInfo->mainState = 2;
+            gUnknown_0203BC90->field_50 = 2;
         break;
     case 2:
         gScanlineEffect.state = 3;
         ScanlineEffect_InitHBlankDmaTransfer();
-        sInfo->mainState++;
+        gUnknown_0203BC90->field_50++;
         break;
     case 3:
-        SetMainCallback2(sInfo->exitCallback);
-        FreeConditionSparkles(sMenu->sparkles);
-        for (i = 0; i < ARRAY_COUNT(sMenu->selectionIconSpriteIds); i++)
-            DestroySprite(&gSprites[sMenu->selectionIconSpriteIds[i]]);
+        SetMainCallback2(gUnknown_0203BC90->callback);
+        sub_81D354C(gUnknown_0203BCAC->field_7B1C);
+        for (i = 0; i < 7; i++)
+            DestroySprite(&gSprites[gUnknown_0203BCAC->field_7B06[i]]);
 
-        FreeSpriteTilesByTag(TAG_UP_DOWN);
-        FreeSpriteTilesByTag(TAG_CONDITION);
-        FreeSpritePaletteByTag(TAG_UP_DOWN);
-        FreeSpritePaletteByTag(TAG_CONDITION);
+        FreeSpriteTilesByTag(0);
+        FreeSpriteTilesByTag(1);
+        FreeSpritePaletteByTag(0);
+        FreeSpritePaletteByTag(1);
 
-        for (i = 0; i < ARRAY_COUNT(sMenu->condition); i++)
-            DestroySprite(sMenu->condition[i]);
+        for (i = 0; i < 2; i++)
+            DestroySprite(gUnknown_0203BCAC->field_7B44[i]);
 
-        if (sMenu->curMonSpriteId != SPRITE_NONE)
-            DestroySprite(&gSprites[sMenu->curMonSpriteId]);
+        if (gUnknown_0203BCAC->field_7B10 != 0xFF)
+            DestroySprite(&gSprites[gUnknown_0203BCAC->field_7B10]);
 
         SetVBlankCallback(NULL);
-        FREE_AND_SET_NULL(sGraph_Tilemap);
-        FREE_AND_SET_NULL(sGraph_Gfx);
-        FREE_AND_SET_NULL(sMonFrame_TilemapPtr);
-        FREE_AND_SET_NULL(sMenu);
+        FREE_AND_SET_NULL(gUnknown_0203BCA0);
+        FREE_AND_SET_NULL(gUnknown_0203BCA4);
+        FREE_AND_SET_NULL(gUnknown_0203BCA8);
+        FREE_AND_SET_NULL(gUnknown_0203BCAC);
         FreeAllWindowBuffers();
         break;
     }
 }
 
-static void AskUsePokeblock(void)
+void sub_8166D44(void)
 {
     u8 stringBuffer[0x40];
 
-    GetMonData(&gPlayerParty[GetPartyIdFromSelectionId(sMenu->info.curSelection)], MON_DATA_NICKNAME, stringBuffer);
+    GetMonData(&gPlayerParty[sub_81672A4(gUnknown_0203BCAC->info.field_71)], MON_DATA_NICKNAME, stringBuffer);
     StringGetEnd10(stringBuffer);
     StringAppend(stringBuffer, gText_GetsAPokeBlockQuestion);
     StringCopy(gStringVar4, stringBuffer);
-    FillWindowPixelBuffer(WIN_TEXT, 17);
-    DrawTextBorderOuter(WIN_TEXT, 151, 14);
-    AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar4, 0, 1, 0, NULL);
-    PutWindowTilemap(WIN_TEXT);
-    CopyWindowToVram(WIN_TEXT, 3);
+    FillWindowPixelBuffer(2, 17);
+    DrawTextBorderOuter(2, 151, 14);
+    AddTextPrinterParameterized(2, 1, gStringVar4, 0, 1, 0, NULL);
+    PutWindowTilemap(2);
+    CopyWindowToVram(2, 3);
     CreateYesNoMenu(&sUsePokeblockYesNoWinTemplate, 151, 14, 0);
 }
 
-static s8 HandleAskUsePokeblockInput(void)
+s8 sub_8166DE4(void)
 {
     s8 menuItem = Menu_ProcessInputNoWrapClearOnChoose();
 
     switch (menuItem)
     {
-    case 0: // YES
+    case 0:
         break;
     case MENU_B_PRESSED:
-    case 1: // NO
+    case 1:
         PlaySE(SE_SELECT);
         rbox_fill_rectangle(2);
         ClearWindowTilemap(2);
@@ -901,84 +869,84 @@ static s8 HandleAskUsePokeblockInput(void)
     return menuItem;
 }
 
-static void PrintFirstEnhancement(void)
+void sub_8166E24(void)
 {
-    DrawTextBorderOuter(WIN_TEXT, 151, 14);
-    FillWindowPixelBuffer(WIN_TEXT, 17);
+    DrawTextBorderOuter(2, 151, 14);
+    FillWindowPixelBuffer(2, 17);
 
-    for (sInfo->statId = 0; sInfo->statId < FLAVOR_COUNT; sInfo->statId++)
+    for (gUnknown_0203BC90->field_53 = 0; gUnknown_0203BC90->field_53 < 5; gUnknown_0203BC90->field_53++)
     {
-        if (sInfo->enhancements[sInfo->statId] != 0)
+        if (gUnknown_0203BC90->field_61[gUnknown_0203BC90->field_53] != 0)
             break;
     }
 
-    if (sInfo->statId < FLAVOR_COUNT)
-        BufferEnhancedStatText(gStringVar4, sInfo->statId, sInfo->enhancements[sInfo->statId]);
+    if (gUnknown_0203BC90->field_53 < 5)
+        Pokeblock_BufferEnhancedStatText(gStringVar4, gUnknown_0203BC90->field_53, gUnknown_0203BC90->field_61[gUnknown_0203BC90->field_53]);
     else
-        BufferEnhancedStatText(gStringVar4, sInfo->statId, 0);
+        Pokeblock_BufferEnhancedStatText(gStringVar4, gUnknown_0203BC90->field_53, 0);
 
-    PrintMenuWindowText(gStringVar4);
-    PutWindowTilemap(WIN_TEXT);
-    CopyWindowToVram(WIN_TEXT, 3);
+    Pokeblock_MenuWindowTextPrint(gStringVar4);
+    PutWindowTilemap(2);
+    CopyWindowToVram(2, 3);
 }
 
-static bool8 TryPrintNextEnhancement(void)
+bool8 sub_8166EDC(void)
 {
-    FillWindowPixelBuffer(WIN_TEXT, 17);
+    FillWindowPixelBuffer(2, 17);
 
     while (1)
     {
-        sInfo->statId++;
-        if (sInfo->statId < FLAVOR_COUNT)
+        gUnknown_0203BC90->field_53++;
+        if (gUnknown_0203BC90->field_53 < 5)
         {
-            if (sInfo->enhancements[sInfo->statId] != 0)
+            if (gUnknown_0203BC90->field_61[gUnknown_0203BC90->field_53] != 0)
                 break;
         }
         else
         {
-            sInfo->statId = FLAVOR_COUNT;
+            gUnknown_0203BC90->field_53 = 5;
             return FALSE;
         }
     }
 
-    BufferEnhancedStatText(gStringVar4, sInfo->statId, sInfo->enhancements[sInfo->statId]);
-    PrintMenuWindowText(gStringVar4);
-    CopyWindowToVram(WIN_TEXT, 2);
+    Pokeblock_BufferEnhancedStatText(gStringVar4, gUnknown_0203BC90->field_53, gUnknown_0203BC90->field_61[gUnknown_0203BC90->field_53]);
+    Pokeblock_MenuWindowTextPrint(gStringVar4);
+    CopyWindowToVram(2, 2);
 
     return TRUE;
 }
 
-static void PrintWontEatAnymore(void)
+void sub_8166F50(void)
 {
-    FillWindowPixelBuffer(WIN_TEXT, 17);
-    DrawTextBorderOuter(WIN_TEXT, 151, 14);
-    AddTextPrinterParameterized(WIN_TEXT, 1, gText_WontEatAnymore, 0, 1, 0, NULL);
-    PutWindowTilemap(WIN_TEXT);
-    CopyWindowToVram(WIN_TEXT, 3);
+    FillWindowPixelBuffer(2, 17);
+    DrawTextBorderOuter(2, 151, 14);
+    AddTextPrinterParameterized(2, 1, gText_WontEatAnymore, 0, 1, 0, NULL);
+    PutWindowTilemap(2);
+    CopyWindowToVram(2, 3);
 }
 
-static void EraseMenuWindow(void)
+void sub_8166F94(void)
 {
-    rbox_fill_rectangle(WIN_TEXT);
-    ClearWindowTilemap(WIN_TEXT);
-    CopyWindowToVram(WIN_TEXT, 3);
+    rbox_fill_rectangle(2);
+    ClearWindowTilemap(2);
+    CopyWindowToVram(2, 3);
 }
 
-static void PrintMenuWindowText(const u8 *message)
+void Pokeblock_MenuWindowTextPrint(const u8 *message)
 {
-    AddTextPrinterParameterized(WIN_TEXT, 1, gStringVar4, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(2, 1, gStringVar4, 0, 1, 0, NULL);
 }
 
-static void BufferEnhancedStatText(u8 *dest, u8 statId, s16 enhancement)
+void Pokeblock_BufferEnhancedStatText(u8 *dest, u8 statId, s16 a2)
 {
-    switch (enhancement)
+    switch (a2)
     {
-    case 1 ... 32767: // if > 0
-        enhancement = 0;
+    case 1 ... 32767:
+        a2 = 0;
         // fallthrough
-    case -32768 ... -1: // if < 0
-        if (enhancement)
-            dest[(u16)enhancement] += 0; // something you can't imagine
+    case -32768 ... -1:
+        if (a2)
+            dest[(u16)a2] += 0; // something you can't imagine
         StringCopy(dest, sContestStatNames[statId]);
         StringAppend(dest, gText_WasEnhanced);
         break;
@@ -988,15 +956,15 @@ static void BufferEnhancedStatText(u8 *dest, u8 statId, s16 enhancement)
     }
 }
 
-static void GetMonConditions(struct Pokemon *mon, u8 *data)
+void Pokeblock_GetMonContestStats(struct Pokemon *mon, u8 *data)
 {
     u16 i;
 
-    for (i = 0; i < FLAVOR_COUNT; i++)
-        data[i] = GetMonData(mon, sMonDataConditions[i]);
+    for (i = 0; i < 5; i++)
+        data[i] = GetMonData(mon, gUnknown_085DFCB0[i]);
 }
 
-static void AddPokeblockToConditions(struct Pokeblock *pokeblock, struct Pokemon *mon)
+void sub_8167054(struct Pokeblock *pokeblock, struct Pokemon *mon)
 {
     u16 i;
     s16 cstat;
@@ -1004,17 +972,17 @@ static void AddPokeblockToConditions(struct Pokeblock *pokeblock, struct Pokemon
 
     if (GetMonData(mon, MON_DATA_SHEEN) != 255)
     {
-        CalculatePokeblockEffectiveness(pokeblock, mon);
-        for (i = 0; i < FLAVOR_COUNT; i++)
+        sub_8167184(pokeblock, mon);
+        for (i = 0; i < 5; i++)
         {
-            data = GetMonData(mon, sMonDataConditions[i]);
-            cstat = data +  sInfo->pokeblockStatBoosts[i];
+            data = GetMonData(mon, gUnknown_085DFCB0[i]);
+            cstat = data +  gUnknown_0203BC90->field_66[i];
             if (cstat < 0)
                 cstat = 0;
             if (cstat > 255)
                 cstat = 255;
             data = cstat;
-            SetMonData(mon, sMonDataConditions[i], &data);
+            SetMonData(mon, gUnknown_085DFCB0[i], &data);
         }
 
         cstat = (u8)(GetMonData(mon, MON_DATA_SHEEN)) + pokeblock->feel;
@@ -1026,28 +994,28 @@ static void AddPokeblockToConditions(struct Pokeblock *pokeblock, struct Pokemon
     }
 }
 
-static void CalculateConditionEnhancements(void)
+void sub_8167104(void)
 {
     u16 i;
     struct Pokemon *mon = gPlayerParty;
-    mon += sMenu->party[sMenu->info.curSelection].monId;
+    mon += gUnknown_0203BCAC->unk7FB0[gUnknown_0203BCAC->info.field_71 * 4 + 9];
 
-    GetMonConditions(mon, sInfo->conditionsBeforeBlock);
-    AddPokeblockToConditions(sInfo->pokeblock, mon);
-    GetMonConditions(mon, sInfo->conditionsAfterBlock);
-    for (i = 0; i < FLAVOR_COUNT; i++)
-        sInfo->enhancements[i] = sInfo->conditionsAfterBlock[i] - sInfo->conditionsBeforeBlock[i];
+    Pokeblock_GetMonContestStats(mon, gUnknown_0203BC90->field_57);
+    sub_8167054(gUnknown_0203BC90->pokeblock, mon);
+    Pokeblock_GetMonContestStats(mon, gUnknown_0203BC90->field_5c);
+    for (i = 0; i < 5; i++)
+        gUnknown_0203BC90->field_61[i] = gUnknown_0203BC90->field_5c[i] - gUnknown_0203BC90->field_57[i];
 }
 
-static void CalculatePokeblockEffectiveness(struct Pokeblock *pokeblock, struct Pokemon *mon)
+void sub_8167184(struct Pokeblock *pokeblock, struct Pokemon *mon)
 {
     s8 i, direction, taste;
 
-    sInfo->pokeblockStatBoosts[0] = pokeblock->spicy;
-    sInfo->pokeblockStatBoosts[1] = pokeblock->sour;
-    sInfo->pokeblockStatBoosts[2] = pokeblock->bitter;
-    sInfo->pokeblockStatBoosts[3] = pokeblock->sweet;
-    sInfo->pokeblockStatBoosts[4] = pokeblock->dry;
+    gUnknown_0203BC90->field_66[0] = pokeblock->spicy;
+    gUnknown_0203BC90->field_66[1] = pokeblock->sour;
+    gUnknown_0203BC90->field_66[2] = pokeblock->bitter;
+    gUnknown_0203BC90->field_66[3] = pokeblock->sweet;
+    gUnknown_0203BC90->field_66[4] = pokeblock->dry;
 
     if (gPokeblockGain > 0)
         direction = 1;
@@ -1056,24 +1024,24 @@ static void CalculatePokeblockEffectiveness(struct Pokeblock *pokeblock, struct 
     else
         return;
 
-    for (i = 0; i < FLAVOR_COUNT; i++)
+    for (i = 0; i < 5; i++)
     {
-        s16 amount = sInfo->pokeblockStatBoosts[i];
+        s16 amount = gUnknown_0203BC90->field_66[i];
         s8 boost = amount / 10;
 
         if (amount % 10 >= 5) // round to the nearest
             boost++;
 
-        taste = GetMonFlavorRelation(mon, sFlavors[i]);
+        taste = GetMonFlavorRelation(mon, gUnknown_085DFCC4[i]);
         if (taste == direction)
-            sInfo->pokeblockStatBoosts[i] += boost * taste;
+            gUnknown_0203BC90->field_66[i] += boost * taste;
     }
 }
 
-static bool8 IsSheenMaxed(void)
+bool8 IsSheenMaxed(void)
 {
-    if (GetBoxOrPartyMonData(sMenu->party[sMenu->info.curSelection].boxId,
-                             sMenu->party[sMenu->info.curSelection].monId,
+    if (GetBoxOrPartyMonData(gUnknown_0203BCAC->field_7FB8[gUnknown_0203BCAC->info.field_71].unk0,
+                             gUnknown_0203BCAC->field_7FB8[gUnknown_0203BCAC->info.field_71].unk1,
                              MON_DATA_SHEEN,
                              NULL) == 255)
         return TRUE;
@@ -1081,7 +1049,7 @@ static bool8 IsSheenMaxed(void)
         return FALSE;
 }
 
-static u8 GetPartyIdFromSelectionId(u8 selectionId)
+u8 sub_81672A4(u8 a0)
 {
     u8 i;
 
@@ -1089,58 +1057,58 @@ static u8 GetPartyIdFromSelectionId(u8 selectionId)
     {
         if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
         {
-            if (selectionId == 0)
+            if (a0 == 0)
                 return i;
-            selectionId--;
+            a0--;
         }
     }
 
     return 0;
 }
 
-// Eggs are not viewable on the condition screen, so count how many are skipped over to reach the party id
-static u8 GetSelectionIdFromPartyId(u8 partyId)
+u8 sub_81672E4(u8 partyCount)
 {
     u8 i, numEggs;
-    for (i = 0, numEggs = 0; i < partyId; i++)
+
+    for (i = 0, numEggs = 0; i < partyCount; i++)
     {
         if (GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
             numEggs++;
     }
 
-    return partyId - numEggs;
+    return partyCount - numEggs;
 }
 
-// Unused
-static u8 GetPartyIdFromSelectionId_(u8 selectionId)
+u8 sub_8167324(u8 a0)
 {
-    return GetPartyIdFromSelectionId(selectionId);
+    return sub_81672A4(a0);
 }
 
-static void LoadAndCreateUpDownSprites(void)
+void sub_8167338(void)
 {
     u16 i, spriteId;
 
-    LoadSpriteSheet(&sSpriteSheet_UpDown);
-    LoadSpritePalette(&sSpritePalette_UpDown);
-    sInfo->numEnhancements = 0;
+    LoadSpriteSheet(&gSpriteSheet_ConditionUpDown);
+    LoadSpritePalette(&gSpritePalette_ConditionUpDown);
+    gUnknown_0203BC90->field_54 = 0;
 
-    for (i = 0; i < FLAVOR_COUNT; i++)
+    for (i = 0; i < 5; i++)
     {
-        if (sInfo->enhancements[i] != 0)
+        if (gUnknown_0203BC90->field_61[i] != 0)
         {
-            spriteId = CreateSprite(&sSpriteTemplate_UpDown, sUpDownCoordsOnGraph[i][0], sUpDownCoordsOnGraph[i][1], 0);
+            spriteId = CreateSprite(&gSpriteTemplate_085DFD5C, gUnknown_085DFD28[i][0], gUnknown_085DFD28[i][1], 0);
             if (spriteId != MAX_SPRITES)
             {
-                if (sInfo->enhancements[i] != 0) // Always true here
-                    gSprites[spriteId].callback = SpriteCB_UpDown;
-                sInfo->numEnhancements++;
+                if (gUnknown_0203BC90->field_61[i] != 0)
+                    gSprites[spriteId].callback = sub_81673DC;
+
+                gUnknown_0203BC90->field_54++;
             }
         }
     }
 }
 
-static void SpriteCB_UpDown(struct Sprite *sprite)
+void sub_81673DC(struct Sprite *sprite)
 {
     if (sprite->data[0] < 6)
         sprite->pos2.y -= 2;
@@ -1150,11 +1118,11 @@ static void SpriteCB_UpDown(struct Sprite *sprite)
     if (++sprite->data[0] > 60)
     {
         DestroySprite(sprite);
-        sInfo->numEnhancements--;
+        gUnknown_0203BC90->field_54--;
     }
 }
 
-static void LoadPartyInfo(void)
+void sub_8167420(void)
 {
     u16 i;
     u16 numMons;
@@ -1163,90 +1131,91 @@ static void LoadPartyInfo(void)
     {
         if (!GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
         {
-            sMenu->party[numMons].boxId = TOTAL_BOXES_COUNT;
-            sMenu->party[numMons].monId = i;
-            sMenu->party[numMons].data = 0;
+            gUnknown_0203BCAC->field_7FB8[numMons].unk0 = 14;
+            gUnknown_0203BCAC->field_7FB8[numMons].unk1 = i;
+            gUnknown_0203BCAC->field_7FB8[numMons].unk2 = 0;
             numMons++;
         }
     }
 
-    sMenu->info.curSelection = 0;
-    sMenu->info.numSelections = numMons + 1;
-    LoadInitialMonInfo();
+    gUnknown_0203BCAC->info.field_71 = 0;
+    gUnknown_0203BCAC->info.field_70 = numMons + 1;
+    sub_81674BC();
 }
 
-static void LoadInitialMonInfo(void)
+void sub_81674BC(void)
 {
-    s16 nextSelection, prevSelection;
+    s16 var, var2;
 
-    LoadMonInfo(sMenu->info.curSelection, 0);
-    sMenu->curLoadId = 0;
-    sMenu->nextLoadId = 1;
-    sMenu->prevLoadId = 2;
+    sub_816753C(gUnknown_0203BCAC->info.field_71, 0);
+    gUnknown_0203BCAC->field_7FB3 = 0;
+    gUnknown_0203BCAC->field_7FB4 = 1;
+    gUnknown_0203BCAC->field_7FB5 = 2;
 
-    nextSelection = sMenu->info.curSelection + 1;
-    if (nextSelection >= sMenu->info.numSelections)
-        nextSelection = 0;
+    var = gUnknown_0203BCAC->info.field_71 + 1;
+    if (var >= gUnknown_0203BCAC->info.field_70)
+        var = 0;
 
-    prevSelection = sMenu->info.curSelection - 1;
-    if (prevSelection < 0)
-        prevSelection = sMenu->info.numSelections - 1;
+    var2 = gUnknown_0203BCAC->info.field_71 - 1;
+    if (var2 < 0)
+        var2 = gUnknown_0203BCAC->info.field_70 - 1;
 
-    LoadMonInfo(nextSelection, 1);
-    LoadMonInfo(prevSelection, 2);
+    sub_816753C(var, 1);
+    sub_816753C(var2, 2);
 }
 
-static void LoadMonInfo(s16 partyId, u8 loadId)
+void sub_816753C(s16 id1, u8 id2)
 {
-    u8 boxId = sMenu->party[partyId].boxId;
-    u8 monId = sMenu->party[partyId].monId;
-    u8 numSelections = sMenu->info.numSelections;
-    bool8 excludesCancel = FALSE; // whether or not numSelections excludes Cancel from the count
+    u8 boxId = gUnknown_0203BCAC->field_7FB8[id1].unk0;
+    u8 monId = gUnknown_0203BCAC->field_7FB8[id1].unk1;
+    u8 r6 = gUnknown_0203BCAC->info.field_70;
+    bool8 r8 = FALSE;
 
-    GetConditionMenuMonNameAndLocString(sMenu->locationStrings[loadId], sMenu->monNameStrings[loadId], boxId, monId, partyId, numSelections, excludesCancel);
-    GetConditionMenuMonConditions(&sMenu->graph, sMenu->numSparkles, boxId, monId, partyId, loadId, numSelections, excludesCancel);
-    GetConditionMenuMonGfx(sMenu->partySheets[loadId], sMenu->partyPalettes[loadId], boxId, monId, partyId, numSelections, excludesCancel);
+    sub_81D2ED4(gUnknown_0203BCAC->field_7B4D[id2], gUnknown_0203BCAC->field_7B95[id2], boxId, monId, id1, r6, r8);
+    sub_81D2F78(&gUnknown_0203BCAC->field_7C58, gUnknown_0203BCAC->unk7FB0, boxId, monId, id1, id2, r6, r8);
+    sub_81D3094(gUnknown_0203BCAC->field_304[id2], gUnknown_0203BCAC->field_4[id2], boxId, monId, id1, r6, r8);
 }
 
-static void UpdateMonPic(u8 loadId)
+void sub_8167608(u8 arg0)
 {
     u8 spriteId;
     struct SpriteTemplate spriteTemplate;
     struct SpriteSheet spriteSheet;
     struct SpritePalette spritePal;
 
-    if (sMenu->curMonSpriteId == SPRITE_NONE)
+    if (gUnknown_0203BCAC->field_7B10 == 0xFF)
     {
-        LoadConditionMonPicTemplate(&spriteSheet, &spriteTemplate, &spritePal);
-        spriteSheet.data = sMenu->partySheets[loadId];
-        spritePal.data = sMenu->partyPalettes[loadId];
-        sMenu->curMonPalette = LoadSpritePalette(&spritePal);
-        sMenu->curMonSheet = LoadSpriteSheet(&spriteSheet);
+        sub_81D31D0(&spriteSheet, &spriteTemplate, &spritePal);
+        spriteSheet.data = gUnknown_0203BCAC->field_304[arg0];
+        spritePal.data = gUnknown_0203BCAC->field_4[arg0];
+        gUnknown_0203BCAC->field_7B12 = LoadSpritePalette(&spritePal);
+        gUnknown_0203BCAC->field_7B14 = LoadSpriteSheet(&spriteSheet);
         spriteId = CreateSprite(&spriteTemplate, 38, 104, 0);
-        sMenu->curMonSpriteId = spriteId;
+        gUnknown_0203BCAC->field_7B10 = spriteId;
         if (spriteId == MAX_SPRITES)
         {
-            FreeSpriteTilesByTag(TAG_CONDITION_MON);
-            FreeSpritePaletteByTag(TAG_CONDITION_MON);
-            sMenu->curMonSpriteId = SPRITE_NONE;
+            FreeSpriteTilesByTag(100);
+            FreeSpritePaletteByTag(100);
+            gUnknown_0203BCAC->field_7B10 = 0xFF;
         }
         else
         {
-            sMenu->curMonSpriteId = spriteId;
-            gSprites[sMenu->curMonSpriteId].callback = SpriteCB_MonPic;
-            gSprites[sMenu->curMonSpriteId].pos2.y -= 34;
-            sMenu->curMonTileStart = (void*)(OBJ_VRAM0 + (sMenu->curMonSheet * 32));
-            sMenu->curMonPalette = (sMenu->curMonPalette * 16) + 0x100;
+            gUnknown_0203BCAC->field_7B10 = spriteId;
+            gSprites[gUnknown_0203BCAC->field_7B10].callback = sub_8168168;
+            gSprites[gUnknown_0203BCAC->field_7B10].pos2.y -= 34;
+            gUnknown_0203BCAC->field_7B18 = (void*)(OBJ_VRAM0 + (gUnknown_0203BCAC->field_7B14 * 32));
+            gUnknown_0203BCAC->field_7B12 = (gUnknown_0203BCAC->field_7B12 * 16) + 0x100;
         }
     }
     else
     {
-        Dma3CopyLarge16_(sMenu->partySheets[loadId], sMenu->curMonTileStart, MON_PIC_SIZE);
-        LoadPalette(sMenu->partyPalettes[loadId], sMenu->curMonPalette, 32);
+        do {} while(0); // Surprised to see something like this? It's a very neat trick for generating the same assembly. It has no practical purpose, feel free to remove it.
+        DmaCopy16Defvars(3, gUnknown_0203BCAC->field_304[arg0], gUnknown_0203BCAC->field_7B18, 0x800);
+        LoadPalette(gUnknown_0203BCAC->field_4[arg0], gUnknown_0203BCAC->field_7B12, 32);
     }
 }
 
-static void LoadAndCreateSelectionIcons(void)
+void sub_8167760(void)
 {
     u16 i, spriteId;
     struct SpriteSheet spriteSheets[4];
@@ -1255,65 +1224,62 @@ static void LoadAndCreateSelectionIcons(void)
     struct SpriteSheet spriteSheet2;
     struct SpritePalette spritePal2;
 
-    LoadConditionSelectionIcons(spriteSheets, &spriteTemplate, spritePals);
+    sub_81D321C(spriteSheets, &spriteTemplate, spritePals);
     LoadSpriteSheets(spriteSheets);
     LoadSpritePalettes(spritePals);
 
-    // Fill pokeball selection icons up to number in party
-    for (i = 0; i < sMenu->info.numSelections - 1; i++)
+    for (i = 0; i < gUnknown_0203BCAC->info.field_70 - 1; i++)
     {
         spriteId = CreateSprite(&spriteTemplate, 226, (i * 20) + 8, 0);
         if (spriteId != MAX_SPRITES)
         {
-            sMenu->selectionIconSpriteIds[i] = spriteId;
+            gUnknown_0203BCAC->field_7B06[i] = spriteId;
             gSprites[spriteId].data[0] = i;
-            gSprites[spriteId].callback = SpriteCB_SelectionIconPokeball;
+            gSprites[spriteId].callback = sub_8168180;
         }
         else
         {
-            sMenu->selectionIconSpriteIds[i] = -1;
+            gUnknown_0203BCAC->field_7B06[i] = -1;
         }
     }
 
-    // Fill placeholder icons for remaining (empty) party slots
-    spriteTemplate.tileTag = TAG_CONDITION_BALL_PLACEHOLDER;
-    for (; i < PARTY_SIZE; i++)
+    spriteTemplate.tileTag = 103;
+    for (; i < 6; i++)
     {
         spriteId = CreateSprite(&spriteTemplate, 230, (i * 20) + 8, 0);
         if (spriteId != MAX_SPRITES)
         {
-            sMenu->selectionIconSpriteIds[i] = spriteId;
+            gUnknown_0203BCAC->field_7B06[i] = spriteId;
             gSprites[spriteId].oam.size = 0;
         }
         else
         {
-            sMenu->selectionIconSpriteIds[i] = -1;
+            gUnknown_0203BCAC->field_7B06[i] = -1;
         }
     }
 
-    // Add cancel selection icon at bottom
-    spriteTemplate.tileTag = TAG_CONDITION_CANCEL;
-    spriteTemplate.callback = SpriteCB_SelectionIconCancel;
+    spriteTemplate.tileTag = 102;
+    spriteTemplate.callback = sub_81681B4;
     spriteId = CreateSprite(&spriteTemplate, 222, (i * 20) + 8, 0);
     if (spriteId != MAX_SPRITES)
     {
-        sMenu->selectionIconSpriteIds[i] = spriteId;
+        gUnknown_0203BCAC->field_7B06[i] = spriteId;
         gSprites[spriteId].oam.shape = SPRITE_SHAPE(32x16);
         gSprites[spriteId].oam.size = SPRITE_SIZE(32x16);
     }
     else
     {
-        sMenu->selectionIconSpriteIds[i] = -1;
+        gUnknown_0203BCAC->field_7B06[i] = -1;
     }
 
-    LoadConditionSparkle(&spriteSheet2, &spritePal2);
+    sub_81D32B0(&spriteSheet2, &spritePal2);
     LoadSpriteSheet(&spriteSheet2);
     LoadSpritePalette(&spritePal2);
 }
 
-static bool8 LoadUsePokeblockMenuGfx(void)
+bool8 sub_8167930(void)
 {
-    switch (sMenu->info.helperState)
+    switch (gUnknown_0203BCAC->info.unk78)
     {
     case 0:
         ChangeBgX(0, 0, 0);
@@ -1324,308 +1290,296 @@ static bool8 LoadUsePokeblockMenuGfx(void)
         ChangeBgY(2, 0, 0);
         ChangeBgX(3, 0, 0);
         ChangeBgY(3, 136 << 6, 0);
-        SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_OBJ_ON | DISPCNT_WIN0_ON | DISPCNT_WIN1_ON);
-        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2 | BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_BG1);
+        SetGpuReg(REG_OFFSET_DISPCNT, 28736);
+        SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG2|BLDCNT_EFFECT_BLEND|BLDCNT_TGT2_BG1);
         SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(11, 4));
         break;
     case 1:
-        sGraph_Gfx = Alloc(6656);
-        sGraph_Tilemap = Alloc(1280);
-        sMonFrame_TilemapPtr = Alloc(1280);
+        gUnknown_0203BCA4 = Alloc(6656);
+        gUnknown_0203BCA0 = Alloc(1280);
+        gUnknown_0203BCA8 = Alloc(1280);
         break;
     case 2:
-        LZ77UnCompVram(sMonFrame_Tilemap, sMonFrame_TilemapPtr);
+        LZ77UnCompVram(gUnknown_085DFB60, gUnknown_0203BCA8);
         break;
     case 3:
-        LoadBgTiles(3, sMonFrame_Gfx, 224, 0);
+        LoadBgTiles(3, gUnknown_085DFA80, 224, 0);
         break;
     case 4:
-         LoadBgTilemap(3, sMonFrame_TilemapPtr, 1280, 0);
+         LoadBgTilemap(3, gUnknown_0203BCA8, 1280, 0);
         break;
     case 5:
-        LoadPalette(sMonFrame_Pal, 208, 32);
-        sMenu->curMonXOffset = -80;
+        LoadPalette(gUnknown_085DFA60, 208, 32);
+        gUnknown_0203BCAC->field_7B0E = 0xFFB0;
         break;
     case 6:
-        LZ77UnCompVram(gUsePokeblockGraph_Gfx, sGraph_Gfx);
+        LZ77UnCompVram(gUsePokeblockGraph_Gfx, gUnknown_0203BCA4);
         break;
     case 7:
-        LZ77UnCompVram(gUsePokeblockGraph_Tilemap, sGraph_Tilemap);
+        LZ77UnCompVram(gUsePokeblockGraph_Tilemap, gUnknown_0203BCA0);
         LoadPalette(gUsePokeblockGraph_Pal, 32, 32);
         break;
     case 8:
-        LoadBgTiles(1, sGraph_Gfx, 6656, 160 << 2);
+        LoadBgTiles(1, gUnknown_0203BCA4, 6656, 160 << 2);
         break;
     case 9:
-        SetBgTilemapBuffer(1, sGraph_Tilemap);
+        SetBgTilemapBuffer(1, gUnknown_0203BCA0);
         CopyToBgTilemapBufferRect(1, gUsePokeblockNatureWin_Pal, 0, 13, 12, 4);
         CopyBgTilemapBufferToVram(1);
         break;
     case 10:
-        LZ77UnCompVram(sGraphData_Tilemap, sMenu->tilemapBuffer);
+        LZ77UnCompVram(gUnknown_085DFC0C, gUnknown_0203BCAC->tilemapBuffer);
         break;
     case 11:
-        LoadBgTilemap(2, sMenu->tilemapBuffer, 1280, 0);
-        LoadPalette(gConditionGraphData_Pal, 48, 32);
-        LoadPalette(gConditionText_Pal, 240, 32);
-        SetConditionGraphIOWindows(2);
+        LoadBgTilemap(2, gUnknown_0203BCAC->tilemapBuffer, 1280, 0);
+        LoadPalette(gUnknown_086231E8, 48, 32);
+        LoadPalette(gUnknown_08623208, 240, 32);
+        sub_81D21DC(2);
         break;
     default:
-        sMenu->info.helperState = 0;
+        gUnknown_0203BCAC->info.unk78 = 0;
         return FALSE;
     }
 
-    sMenu->info.helperState++;
+    gUnknown_0203BCAC->info.unk78++;
     return TRUE;
 }
 
-static void UpdateMonInfoText(u16 loadId, bool8 firstPrint)
+void sub_8167BA0(u16 arg0, u8 copyToVramMode)
 {
     u8 partyIndex;
     u8 nature;
     u8 *str;
 
-    FillWindowPixelBuffer(WIN_NAME, PIXEL_FILL(0));
-    FillWindowPixelBuffer(WIN_NATURE, PIXEL_FILL(0));
-    if (sMenu->info.curSelection != sMenu->info.numSelections - 1)
+    FillWindowPixelBuffer(0, PIXEL_FILL(0));
+    FillWindowPixelBuffer(1, PIXEL_FILL(0));
+    if (gUnknown_0203BCAC->info.field_71 != gUnknown_0203BCAC->info.field_70 - 1)
     {
-        AddTextPrinterParameterized(WIN_NAME, 1, sMenu->monNameStrings[loadId], 0, 1, 0, NULL);
-        partyIndex = GetPartyIdFromSelectionId(sMenu->info.curSelection);
+        AddTextPrinterParameterized(0, 1, gUnknown_0203BCAC->field_7B95[arg0], 0, 1, 0, NULL);
+        partyIndex = sub_81672A4(gUnknown_0203BCAC->info.field_71);
         nature = GetNature(&gPlayerParty[partyIndex]);
-        str = StringCopy(sMenu->info.natureText, gText_NatureSlash);
+        str = StringCopy(gUnknown_0203BCAC->info.field_7A, gText_NatureSlash);
         str = StringCopy(str, gNatureNamePointers[nature]);
-        AddTextPrinterParameterized3(WIN_NATURE, 1, 2, 1, sNatureTextColors, 0, sMenu->info.natureText);
+        AddTextPrinterParameterized3(1, 1, 2, 1, sNatureTextColors, 0, gUnknown_0203BCAC->info.field_7A);
     }
 
-    if (firstPrint)
+    if (copyToVramMode)
     {
-        CopyWindowToVram(WIN_NAME, 3);
-        CopyWindowToVram(WIN_NATURE, 3);
+        CopyWindowToVram(0, 3);
+        CopyWindowToVram(1, 3);
     }
     else
     {
-        CopyWindowToVram(WIN_NAME, 2);
-        CopyWindowToVram(WIN_NATURE, 2);
+        CopyWindowToVram(0, 2);
+        CopyWindowToVram(1, 2);
     }
 }
 
-static void UpdateSelection(bool8 up)
+static void sub_8167CA0(bool8 arg0)
 {
-    u16 newLoadId;
-    bool32 startedOnMon, endedOnMon;
+    u16 var0;
+    bool32 r8, r4;
 
-    if (up)
-        newLoadId = sMenu->prevLoadId;
+    if (arg0)
+        var0 = gUnknown_0203BCAC->field_7FB5;
     else
-        newLoadId = sMenu->nextLoadId;
+        var0 = gUnknown_0203BCAC->field_7FB4;
 
-    sub_81D1F84(&sMenu->graph, sMenu->graph.unk14[sMenu->curLoadId], sMenu->graph.unk14[newLoadId]);
+    sub_81D1F84(
+        &gUnknown_0203BCAC->field_7C58,
+        gUnknown_0203BCAC->field_7C58.unk14[gUnknown_0203BCAC->field_7FB3],
+        gUnknown_0203BCAC->field_7C58.unk14[var0]);
 
-    if (sMenu->info.curSelection == sMenu->info.numSelections - 1)
-        startedOnMon = FALSE; // moving off of Cancel
-    else
-        startedOnMon = TRUE;
-
-    if (up)
+    r8 = (gUnknown_0203BCAC->info.field_71 ^ (gUnknown_0203BCAC->info.field_70 - 1)) ? 1 : 0;
+    if (arg0)
     {
-        sMenu->prevLoadId = sMenu->nextLoadId; // temporarily store nextLoadId, prevLoadId no longer needed
-        sMenu->nextLoadId = sMenu->curLoadId;
-        sMenu->curLoadId = newLoadId;
-        sMenu->toLoadId = sMenu->prevLoadId; // next load will be the mon that's one up from new selection
+        gUnknown_0203BCAC->field_7FB5 = gUnknown_0203BCAC->field_7FB4;
+        gUnknown_0203BCAC->field_7FB4 = gUnknown_0203BCAC->field_7FB3;
+        gUnknown_0203BCAC->field_7FB3 = var0;
+        gUnknown_0203BCAC->field_7FB6 = gUnknown_0203BCAC->field_7FB5;
 
-        // Check for wrap to bottom of list
-        sMenu->info.curSelection = (sMenu->info.curSelection == 0)
-            ? sMenu->info.numSelections - 1
-            : sMenu->info.curSelection - 1;
+        gUnknown_0203BCAC->info.field_71 = (gUnknown_0203BCAC->info.field_71 == 0)
+            ? gUnknown_0203BCAC->info.field_70 - 1
+            : gUnknown_0203BCAC->info.field_71 - 1;
 
-        sMenu->toLoadSelection = (sMenu->info.curSelection == 0)
-            ? sMenu->info.numSelections - 1
-            : sMenu->info.curSelection - 1;
+        gUnknown_0203BCAC->field_7B4C = (gUnknown_0203BCAC->info.field_71 == 0)
+            ? gUnknown_0203BCAC->info.field_70 - 1
+            : gUnknown_0203BCAC->info.field_71 - 1;
     }
     else
     {
-        sMenu->nextLoadId = sMenu->prevLoadId; // temporarily store prevLoadId, nextLoadId no longer needed
-        sMenu->prevLoadId = sMenu->curLoadId;
-        sMenu->curLoadId = newLoadId;
-        sMenu->toLoadId = sMenu->nextLoadId; // next load will be the mon that's one down from new selection
+        gUnknown_0203BCAC->field_7FB4 = gUnknown_0203BCAC->field_7FB5;
+        gUnknown_0203BCAC->field_7FB5 = gUnknown_0203BCAC->field_7FB3;
+        gUnknown_0203BCAC->field_7FB3 = var0;
+        gUnknown_0203BCAC->field_7FB6 = gUnknown_0203BCAC->field_7FB4;
 
-        // Check for wrap to top of list
-        sMenu->info.curSelection = (sMenu->info.curSelection < sMenu->info.numSelections - 1)
-            ? sMenu->info.curSelection + 1
+        gUnknown_0203BCAC->info.field_71 = (gUnknown_0203BCAC->info.field_71 < gUnknown_0203BCAC->info.field_70 - 1)
+            ? gUnknown_0203BCAC->info.field_71 + 1
             : 0;
 
-        sMenu->toLoadSelection = (sMenu->info.curSelection < sMenu->info.numSelections - 1)
-            ? sMenu->info.curSelection + 1
+        gUnknown_0203BCAC->field_7B4C = (gUnknown_0203BCAC->info.field_71 < gUnknown_0203BCAC->info.field_70 - 1)
+            ? gUnknown_0203BCAC->info.field_71 + 1
             : 0;
     }
 
-    if (sMenu->info.curSelection == sMenu->info.numSelections - 1)
-        endedOnMon = FALSE; // moving onto Cancel
+    r4 = (gUnknown_0203BCAC->info.field_71 ^ (gUnknown_0203BCAC->info.field_70 - 1)) ? 1 : 0;
+    sub_81D3520(gUnknown_0203BCAC->field_7B1C);
+
+    if (!r8)
+        gUnknown_0203BCAC->info.unk74 = sub_8167EA4;
+    else if (!r4)
+        gUnknown_0203BCAC->info.unk74 = sub_8167FA4;
     else
-        endedOnMon = TRUE;
-
-    DestroyConditionSparkleSprites(sMenu->sparkles);
-
-    if (!startedOnMon)
-        sMenu->info.loadNewSelection = LoadNewSelection_CancelToMon;
-    else if (!endedOnMon)
-        sMenu->info.loadNewSelection = LoadNewSelection_MonToCancel;
-    else
-        sMenu->info.loadNewSelection = LoadNewSelection_MonToMon;
+        gUnknown_0203BCAC->info.unk74 = sub_8168048;
 }
 
-static bool8 LoadNewSelection_CancelToMon(void)
+static u8 sub_8167EA4(void)
 {
-    switch (sMenu->info.helperState)
+    switch (gUnknown_0203BCAC->info.unk78)
     {
     case 0:
-        UpdateMonPic(sMenu->curLoadId);
-        sMenu->info.helperState++;
+        sub_8167608(gUnknown_0203BCAC->field_7FB3);
+        gUnknown_0203BCAC->info.unk78++;
         break;
     case 1:
-        UpdateMonInfoText(sMenu->curLoadId, FALSE);
-        sMenu->info.helperState++;
+        sub_8167BA0(gUnknown_0203BCAC->field_7FB3, 0);
+        gUnknown_0203BCAC->info.unk78++;
         break;
     case 2:
-        if (!TryUpdateConditionMonTransitionOn(&sMenu->graph, &sMenu->curMonXOffset))
+        if (!sub_81D3178(&gUnknown_0203BCAC->field_7C58, &gUnknown_0203BCAC->field_7B0E))
         {
-            // Load the new adjacent pokemon (not the one being shown)
-            LoadMonInfo(sMenu->toLoadSelection, sMenu->toLoadId);
-            sMenu->info.helperState++;
+            sub_816753C(gUnknown_0203BCAC->field_7B4C, gUnknown_0203BCAC->field_7FB6);
+            gUnknown_0203BCAC->info.unk78++;
         }
         break;
     case 3:
-        ResetConditionSparkleSprites(sMenu->sparkles);
-        if (sMenu->info.curSelection != sMenu->info.numSelections - 1)
+        sub_81D3464(gUnknown_0203BCAC->field_7B1C);
+        if (gUnknown_0203BCAC->info.field_71 != gUnknown_0203BCAC->info.field_70 - 1)
         {
-            u8 numSparkles = sMenu->numSparkles[sMenu->curLoadId];
-            CreateConditionSparkleSprites(sMenu->sparkles, sMenu->curMonSpriteId, numSparkles);
+            u8 var0 = gUnknown_0203BCAC->unk7FB0[gUnknown_0203BCAC->field_7FB3];
+            sub_81D3480(gUnknown_0203BCAC->field_7B1C, gUnknown_0203BCAC->field_7B10, var0);
         }
 
-        sMenu->info.helperState = 0;
+        gUnknown_0203BCAC->info.unk78 = 0;
         return FALSE;
     }
 
     return TRUE;
 }
 
-static bool8 LoadNewSelection_MonToCancel(void)
+static u8 sub_8167FA4(void)
 {
-    switch (sMenu->info.helperState)
+    switch (gUnknown_0203BCAC->info.unk78)
     {
     case 0:
-        if (!TryUpdateConditionMonTransitionOff(&sMenu->graph, &sMenu->curMonXOffset))
-            sMenu->info.helperState++;
+        if (!sub_81D31A4(&gUnknown_0203BCAC->field_7C58, &gUnknown_0203BCAC->field_7B0E))
+            gUnknown_0203BCAC->info.unk78++;
         break;
     case 1:
-        UpdateMonInfoText(sMenu->curLoadId, FALSE);
-        sMenu->info.helperState++;
+        sub_8167BA0(gUnknown_0203BCAC->field_7FB3, 0);
+        gUnknown_0203BCAC->info.unk78++;
         break;
     case 2:
-        LoadMonInfo(sMenu->toLoadSelection, sMenu->toLoadId);
-        sMenu->info.helperState++;
+        sub_816753C(gUnknown_0203BCAC->field_7B4C, gUnknown_0203BCAC->field_7FB6);
+        gUnknown_0203BCAC->info.unk78++;
         break;
     case 3:
-        sMenu->info.helperState = 0;
+        gUnknown_0203BCAC->info.unk78 = 0;
         return FALSE;
     }
 
     return TRUE;
 }
 
-static bool8 LoadNewSelection_MonToMon(void)
+static u8 sub_8168048(void)
 {
-    switch (sMenu->info.helperState)
+    switch (gUnknown_0203BCAC->info.unk78)
     {
     case 0:
-        TransitionConditionGraph(&sMenu->graph);
-        if (!MoveConditionMonOffscreen(&sMenu->curMonXOffset))
+        sub_81D2074(&gUnknown_0203BCAC->field_7C58);
+        if (!sub_81D3150(&gUnknown_0203BCAC->field_7B0E))
         {
-            UpdateMonPic(sMenu->curLoadId);
-            sMenu->info.helperState++;
+            sub_8167608(gUnknown_0203BCAC->field_7FB3);
+            gUnknown_0203BCAC->info.unk78++;
         }
         break;
     case 1:
-        UpdateMonInfoText(sMenu->curLoadId, FALSE);
-        sMenu->info.helperState++;
+        sub_8167BA0(gUnknown_0203BCAC->field_7FB3, 0);
+        gUnknown_0203BCAC->info.unk78++;
         break;
     case 2:
-        if (!TryUpdateConditionMonTransitionOn(&sMenu->graph, &sMenu->curMonXOffset))
+        if (!sub_81D3178(&gUnknown_0203BCAC->field_7C58, &gUnknown_0203BCAC->field_7B0E))
         {
-            // Load the new adjacent pokemon (not the one being shown)
-            LoadMonInfo(sMenu->toLoadSelection, sMenu->toLoadId);
-            sMenu->info.helperState++;
+            sub_816753C(gUnknown_0203BCAC->field_7B4C, gUnknown_0203BCAC->field_7FB6);
+            gUnknown_0203BCAC->info.unk78++;
         }
         break;
     case 3:
-        ResetConditionSparkleSprites(sMenu->sparkles);
-        if (sMenu->info.curSelection != sMenu->info.numSelections - 1)
+        sub_81D3464(gUnknown_0203BCAC->field_7B1C);
+        if (gUnknown_0203BCAC->info.field_71 != gUnknown_0203BCAC->info.field_70 - 1)
         {
-            u8 numSparkles = sMenu->numSparkles[sMenu->curLoadId];
-            CreateConditionSparkleSprites(sMenu->sparkles, sMenu->curMonSpriteId, numSparkles);
+            u8 var0 = gUnknown_0203BCAC->unk7FB0[gUnknown_0203BCAC->field_7FB3];
+            sub_81D3480(gUnknown_0203BCAC->field_7B1C, gUnknown_0203BCAC->field_7B10, var0);
         }
 
-        sMenu->info.helperState = 0;
+        gUnknown_0203BCAC->info.unk78 = 0;
         return FALSE;
     }
 
     return TRUE;
 }
 
-static void SpriteCB_MonPic(struct Sprite *sprite)
+void sub_8168168(struct Sprite *sprite)
 {
-    sprite->pos1.x = sMenu->curMonXOffset + 38;
+    sprite->pos1.x = gUnknown_0203BCAC->field_7B0E + 38;
 }
 
-static void SpriteCB_SelectionIconPokeball(struct Sprite *sprite)
+void sub_8168180(struct Sprite *sprite)
 {
-    if (sprite->data[0] == sMenu->info.curSelection)
+    if (sprite->data[0] == gUnknown_0203BCAC->info.field_71)
         StartSpriteAnim(sprite, 0);
     else
         StartSpriteAnim(sprite, 1);
 }
 
-static void SpriteCB_SelectionIconCancel(struct Sprite *sprite)
+void sub_81681B4(struct Sprite *sprite)
 {
-    if (sMenu->info.curSelection == sMenu->info.numSelections - 1)
-        sprite->oam.paletteNum = IndexOfSpritePaletteTag(TAG_CONDITION_BALL);
+    if (gUnknown_0203BCAC->info.field_71 == gUnknown_0203BCAC->info.field_70 - 1)
+        sprite->oam.paletteNum = IndexOfSpritePaletteTag(101);
     else
-        sprite->oam.paletteNum = IndexOfSpritePaletteTag(TAG_CONDITION_CANCEL);
+        sprite->oam.paletteNum = IndexOfSpritePaletteTag(102);
 }
 
-// Calculate the max id for sparkles/stars that appear around the pokemon on the condition screen
-// All pokemon start with 1 sparkle (added by CreateConditionSparkleSprites), so the number here +1 
-// is the total number of sparkles that appear
-static void CalculateNumAdditionalSparkles(u8 monIndex)
+void sub_81681F4(u8 monIndex)
 {
     u8 sheen = GetMonData(&gPlayerParty[monIndex], MON_DATA_SHEEN);
 
-    sMenu->numSparkles[sMenu->curLoadId] = (sheen != 255)
-        ? sheen / (255 / (MAX_CONDITION_SPARKLES - 1) + 1)
-        : MAX_CONDITION_SPARKLES - 1;
+    gUnknown_0203BCAC->unk7FB0[gUnknown_0203BCAC->field_7FB3] = (sheen != 255)
+        ? sheen / 29
+        : 9;
 }
 
-static void LoadConditionGfx(void)
+static void sub_8168248(void)
 {
     struct CompressedSpriteSheet spriteSheet;
     struct SpritePalette spritePalette;
 
-    spritePalette = sSpritePalette_Condition;
+    spritePalette = gSpritePalette_085DFDB8;
     spriteSheet.data = gUsePokeblockCondition_Gfx;
     spriteSheet.size = 0x800;
-    spriteSheet.tag = TAG_CONDITION;
+    spriteSheet.tag = 1;
     LoadCompressedSpriteSheet(&spriteSheet);
     LoadSpritePalette(&spritePalette);
 }
 
-static void CreateConditionSprite(void)
+static void sub_8168294(void)
 {
     u16 i;
     s16 xDiff, xStart;
     int yStart = 17;
     int var = 8;
-    struct Sprite **sprites = sMenu->condition;
-    const struct SpriteTemplate *template = &sSpriteTemplate_Condition;
+    struct Sprite **sprites = gUnknown_0203BCAC->field_7B44;
+    const struct SpriteTemplate *template = &gSpriteTemplate_085DFDA0;
 
     for (i = 0, xDiff = 64, xStart = -96; i < 2; i++)
     {
@@ -1641,25 +1595,24 @@ static void CreateConditionSprite(void)
     }
 }
 
-static bool8 LoadConditionTitle(void)
+static bool8 sub_8168328(void)
 {
-    switch (sMenu->info.helperState)
+    switch (gUnknown_0203BCAC->info.unk78)
     {
     case 0:
-        LoadConditionGfx();
-        sMenu->info.helperState++;
+        sub_8168248();
+        gUnknown_0203BCAC->info.unk78++;
         return TRUE;
     case 1:
-        CreateConditionSprite();
-        sMenu->info.helperState = 0;
+        sub_8168294();
+        gUnknown_0203BCAC->info.unk78 = 0;
         return FALSE;
     }
 
     return FALSE;
 }
 
-// Literally the word "Condition", the title block that appears over the mon icon
-static void SpriteCB_Condition(struct Sprite *sprite)
+void sub_8168374(struct Sprite *sprite)
 {
     s16 prevX = sprite->pos1.x;
 

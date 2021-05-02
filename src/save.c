@@ -23,6 +23,10 @@ static u8 HandleWriteSector(u16 a1, const struct SaveSectionLocation *location);
 
 // Divide save blocks into individual chunks to be written to flash sectors
 
+// Each 4 KiB flash sector contains 3968 bytes of actual data followed by a 128 byte footer
+#define SECTOR_DATA_SIZE 3968
+#define SECTOR_FOOTER_SIZE 128
+
 /*
  * Sector Layout:
  *
@@ -644,10 +648,12 @@ static void UpdateSaveAddresses(void)
         gRamSaveSectionLocations[i].size = sSaveSectionOffsets[i].size;
     }
 
-    for (; i <= SECTOR_ID_PKMN_STORAGE_END; i++) //setting i to SECTOR_ID_PKMN_STORAGE_START does not match
+    for (i = SECTOR_ID_PKMN_STORAGE_START; i <= SECTOR_ID_PKMN_STORAGE_END; i++)
     {
         gRamSaveSectionLocations[i].data = (void*)(gPokemonStoragePtr) + sSaveSectionOffsets[i].toAdd;
         gRamSaveSectionLocations[i].size = sSaveSectionOffsets[i].size;
+
+        i++;i--; // needed to match
     }
 }
 
@@ -891,78 +897,74 @@ u32 TryWriteSpecialSaveSection(u8 sector, u8* src)
     return SAVE_STATUS_OK;
 }
 
-#define tState       data[0]
-#define tTimer       data[1]
-#define tPartialSave data[2]
-
-void Task_LinkSave(u8 taskId)
+void sub_8153688(u8 taskId)
 {
-    s16* data = gTasks[taskId].data;
+    s16* taskData = gTasks[taskId].data;
 
-    switch (tState)
+    switch (taskData[0])
     {
     case 0:
         gSoftResetDisabled = TRUE;
-        tState = 1;
+        taskData[0] = 1;
         break;
     case 1:
-        SetLinkStandbyCallback();
-        tState = 2;
+        sub_800ADF8();
+        taskData[0] = 2;
         break;
     case 2:
         if (IsLinkTaskFinished())
         {
-            if (!tPartialSave)
-                SaveMapView();
-            tState = 3;
+            if (taskData[2] == 0)
+                save_serialize_map();
+            taskData[0] = 3;
         }
         break;
     case 3:
-        if (!tPartialSave)
+        if (taskData[2] == 0)
             SetContinueGameWarpStatusToDynamicWarp();
         sub_8153380();
-        tState = 4;
+        taskData[0] = 4;
         break;
     case 4:
-        if (++tTimer == 5)
+        if (++taskData[1] == 5)
         {
-            tTimer = 0;
-            tState = 5;
+            taskData[1] = 0;
+            taskData[0] = 5;
         }
         break;
     case 5:
         if (sub_81533AC())
-            tState = 6;
+            taskData[0] = 6;
         else
-            tState = 4;
+            taskData[0] = 4;
         break;
     case 6:
         sub_81533E0();
-        tState = 7;
+        taskData[0] = 7;
         break;
     case 7:
-        if (!tPartialSave)
+        if (taskData[2] == 0)
             ClearContinueGameWarpStatus2();
-        SetLinkStandbyCallback();
-        tState = 8;
+        sub_800ADF8();
+        taskData[0] = 8;
         break;
     case 8:
         if (IsLinkTaskFinished())
         {
             sub_8153408();
-            tState = 9;
+            taskData[0] = 9;
         }
         break;
     case 9:
-        SetLinkStandbyCallback();
-        tState = 10;
+        sub_800ADF8();
+        taskData[0] = 10;
         break;
     case 10:
         if (IsLinkTaskFinished())
-            tState++;
+            taskData[0]++;
         break;
     case 11:
-        if (++tTimer > 5)
+        if (++taskData[1] > 5)
         {
             gSoftResetDisabled = FALSE;
             DestroyTask(taskId);
@@ -970,7 +972,3 @@ void Task_LinkSave(u8 taskId)
         break;
     }
 }
-
-#undef tState
-#undef tTimer
-#undef tPartialSave

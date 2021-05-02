@@ -1,5 +1,3 @@
-.set LOCALID_OWNER, 1
-
 Route104_PrettyPetalFlowerShop_MapScripts:: @ 822A34C
 	map_script MAP_SCRIPT_ON_TRANSITION, Route104_PrettyPetalFlowerShop_OnTransition
 	.byte 0
@@ -12,7 +10,7 @@ Route104_PrettyPetalFlowerShop_OnTransition: @ 822A352
 	end
 
 Route104_PrettyPetalFlowerShop_EventScript_MoveShopOwner:: @ 822A36B
-	setobjectxyperm LOCALID_OWNER, 4, 6
+	setobjectxyperm 1, 4, 6
 	end
 
 Route104_PrettyPetalFlowerShop_EventScript_ShopOwner:: @ 822A373

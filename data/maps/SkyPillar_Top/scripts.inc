@@ -1,5 +1,3 @@
-.set LOCALID_RAYQUAZA_SLEEPING, 1
-
 SkyPillar_Top_MapScripts:: @ 82396B8
 	map_script MAP_SCRIPT_ON_RESUME, SkyPillar_Top_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, SkyPillar_Top_OnTransition
@@ -26,7 +24,7 @@ SkyPillar_Top_OnTransition: @ 82396E6
 
 SkyPillar_Top_EventScript_SetCleanLayout:: @ 82396FD
 	setmaplayoutindex LAYOUT_SKY_PILLAR_TOP_CLEAN
-	setobjectmovementtype LOCALID_RAYQUAZA_SLEEPING, MOVEMENT_TYPE_FACE_DOWN
+	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_DOWN
 	return
 
 SkyPillar_Top_EventScript_TryShowRayquaza:: @ 8239705
@@ -34,7 +32,7 @@ SkyPillar_Top_EventScript_TryShowRayquaza:: @ 8239705
 	return
 
 SkyPillar_Top_EventScript_ShowRayquaza:: @ 823970F
-	clearflag FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL
+	clearflag FLAG_HIDE_RAYQUAZA_SKY_TOWER_SUMMIT
 	return
 
 SkyPillar_Top_OnWarp: @ 8239713
@@ -42,7 +40,7 @@ SkyPillar_Top_OnWarp: @ 8239713
 	.2byte 0
 
 SkyPillar_Top_EventScript_RayquazaFaceDown:: @ 823971D
-	turnobject LOCALID_RAYQUAZA_SLEEPING, DIR_SOUTH
+	turnobject 1, DIR_SOUTH
 	end
 
 SkyPillar_Top_EventScript_Rayquaza:: @ 8239722
@@ -102,7 +100,7 @@ SkyPillar_Top_EventScript_AwakenRayquaza:: @ 823979A
 	applymovement OBJ_EVENT_ID_CAMERA, SkyPillar_Top_Movement_CameraPanUp
 	waitmovement 0
 	special RemoveCameraObject
-	applymovement LOCALID_RAYQUAZA_SLEEPING, SkyPillar_Top_Movement_RayquazaStir
+	applymovement 1, SkyPillar_Top_Movement_RayquazaStir
 	waitmovement 0
 	waitse
 	playmoncry SPECIES_RAYQUAZA, 2
@@ -121,9 +119,9 @@ SkyPillar_Top_EventScript_AwakenRayquaza:: @ 823979A
 	special ShakeCamera
 	waitstate
 	waitmoncry
-	applymovement LOCALID_RAYQUAZA_SLEEPING, SkyPillar_Top_Movement_RayquazaFlyOff
+	applymovement 1, SkyPillar_Top_Movement_RayquazaFlyOff
 	waitmovement 0
-	removeobject LOCALID_RAYQUAZA_SLEEPING
+	removeobject 1
 	msgbox SkyPillar_Top_Text_RayquazaFlewOff, MSGBOX_DEFAULT
 	closemessage
 	delay 20
@@ -138,19 +136,17 @@ SkyPillar_Top_EventScript_AwakenRayquaza:: @ 823979A
 	releaseall
 	end
 
-@ Rayquaza has unusual movement frames
-@ See comments, or sAnimTable_Rayquaza
 SkyPillar_Top_Movement_RayquazaStir: @ 823983A
 	delay_16
-	walk_in_place_fast_left  @ Coiled, awake
+	walk_in_place_fast_left
 	delay_16
 	delay_16
 	delay_16
 	delay_16
 	delay_16
-	walk_in_place_left  @ Coiled, mouth open
+	walk_in_place_left
 	delay_16
-	walk_in_place_right  @ Normal, awake
+	walk_in_place_right
 	delay_16
 	delay_16
 	delay_16
@@ -161,11 +157,11 @@ SkyPillar_Top_Movement_RayquazaStir: @ 823983A
 
 SkyPillar_Top_Movement_RayquazaFlyOff: @ 823984B
 	delay_16
-	walk_in_place_down  @ Coiled, asleep
+	walk_in_place_down
 	delay_8
-	walk_in_place_right  @ Normal, awake
+	walk_in_place_right
 	delay_8
-	walk_fastest_up  @ Fly up
+	walk_fastest_up
 	slide_up
 	slide_up
 	slide_up

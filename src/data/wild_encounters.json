@@ -2050,13 +2050,8 @@
           }
         },
         {
-<<<<<<< HEAD
           "map": "MAP_LILYCOVE_CITY",
           "base_label": "gLilycoveCity",
-=======
-          "map": "MAP_UNDERWATER_ROUTE126",
-          "base_label": "gUnderwater_Route126",
->>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
           "water_mons": {
             "encounter_rate": 4,
             "mons": [
@@ -8866,13 +8861,8 @@
           }
         },
         {
-<<<<<<< HEAD
           "map": "MAP_SAFARI_ZONE_NORTHWEST",
           "base_label": "gSafariZone_Northwest",
-=======
-          "map": "MAP_UNDERWATER_ROUTE124",
-          "base_label": "gUnderwater_Route124",
->>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
           "water_mons": {
             "encounter_rate": 9,
             "mons": [

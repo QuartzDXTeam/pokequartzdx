@@ -2,7 +2,7 @@
   "id": "MAP_ROUTE117",
   "name": "Route117",
   "layout": "LAYOUT_ROUTE117",
-  "music": "MUS_ROUTE110",
+  "music": "MUS_DOORO_X1",
   "region_map_section": "MAPSEC_ROUTE_117",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -78,7 +78,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_KECLEON",
+      "graphics_id": "OBJ_EVENT_GFX_KECLEON_1",
       "x": 39,
       "y": 4,
       "elevation": 3,
@@ -163,13 +163,8 @@
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
       "movement_range_y": 0,
-<<<<<<< HEAD
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "29",
-=======
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_117_WEPEAR_3",
->>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
       "script": "BerryTreeScript",
       "flag": "0"
     },
@@ -181,13 +176,8 @@
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
       "movement_range_y": 0,
-<<<<<<< HEAD
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "28",
-=======
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_117_WEPEAR_2",
->>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
       "script": "BerryTreeScript",
       "flag": "0"
     },
@@ -199,13 +189,8 @@
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
       "movement_range_y": 0,
-<<<<<<< HEAD
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "27",
-=======
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "BERRY_TREE_ROUTE_117_WEPEAR_1",
->>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
       "script": "BerryTreeScript",
       "flag": "0"
     },

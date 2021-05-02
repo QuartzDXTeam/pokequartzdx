@@ -51,7 +51,7 @@ static const struct SpriteSheet sCloudSpriteSheet =
 {
     .data = gWeatherCloudTiles,
     .size = sizeof(gWeatherCloudTiles),
-    .tag = GFXTAG_CLOUD
+    .tag = 0x1200
 };
 
 static const struct OamData sCloudSpriteOamData =
@@ -84,8 +84,8 @@ static const union AnimCmd *const sCloudSpriteAnimCmds[] =
 
 static const struct SpriteTemplate sCloudSpriteTemplate =
 {
-    .tileTag = GFXTAG_CLOUD,
-    .paletteTag = PALTAG_WEATHER_2,
+    .tileTag = 0x1200,
+    .paletteTag = 0x1201,
     .oam = &sCloudSpriteOamData,
     .anims = sCloudSpriteAnimCmds,
     .images = NULL,
@@ -214,7 +214,7 @@ static void DestroyCloudSprites(void)
             DestroySprite(gWeatherPtr->sprites.s1.cloudSprites[i]);
     }
 
-    FreeSpriteTilesByTag(GFXTAG_CLOUD);
+    FreeSpriteTilesByTag(0x1200);
     gWeatherPtr->cloudSpritesCreated = FALSE;
 }
 
@@ -264,19 +264,19 @@ void Drought_Main(void)
             gWeatherPtr->initStep++;
         break;
     case 3:
-        DroughtStateInit();
+        sub_80ABFF0();
         gWeatherPtr->initStep++;
         break;
     case 4:
-        DroughtStateRun();
-        if (gWeatherPtr->droughtBrightnessStage == 6)
+        sub_80AC01C();
+        if (gWeatherPtr->unknown_73C == 6)
         {
             gWeatherPtr->weatherGfxLoaded = TRUE;
             gWeatherPtr->initStep++;
         }
         break;
     default:
-        DroughtStateRun();
+        sub_80AC01C();
         break;
     }
 }
@@ -288,7 +288,7 @@ bool8 Drought_Finish(void)
 
 void StartDroughtWeatherBlend(void)
 {
-    CreateTask(UpdateDroughtBlend, 80);
+    CreateTask(UpdateDroughtBlend, 0x50);
 }
 
 #define tState      data[0]
@@ -306,7 +306,7 @@ static void UpdateDroughtBlend(u8 taskId)
         task->tBlendY = 0;
         task->tBlendDelay = 0;
         task->tWinRange = REG_WININ;
-        SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_ALL | WININ_WIN1_ALL);
+        SetGpuReg(REG_OFFSET_WININ, WIN_RANGE(63, 63));
         SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 | BLDCNT_TGT1_BG2 | BLDCNT_TGT1_BG3 | BLDCNT_TGT1_OBJ | BLDCNT_EFFECT_LIGHTEN);
         SetGpuReg(REG_OFFSET_BLDY, 0);
         task->tState++;
@@ -437,8 +437,8 @@ static const union AnimCmd *const sRainSpriteAnimCmds[] =
 
 static const struct SpriteTemplate sRainSpriteTemplate =
 {
-    .tileTag = GFXTAG_RAIN,
-    .paletteTag = PALTAG_WEATHER,
+    .tileTag = 4614,
+    .paletteTag = 0x1200,
     .oam = &sRainSpriteOamData,
     .anims = sRainSpriteAnimCmds,
     .images = NULL,
@@ -466,7 +466,7 @@ static const struct SpriteSheet sRainSpriteSheet =
 {
     .data = gWeatherRainTiles,
     .size = sizeof(gWeatherRainTiles),
-    .tag = GFXTAG_RAIN,
+    .tag = 0x1206,
 };
 
 void Rain_InitVars(void)
@@ -479,7 +479,7 @@ void Rain_InitVars(void)
     gWeatherPtr->targetRainSpriteCount = 10;
     gWeatherPtr->gammaTargetIndex = 3;
     gWeatherPtr->gammaStepDelay = 20;
-    SetRainStrengthFromSoundEffect(SE_RAIN);
+    SetRainStrengthFromSoundEffect(SE_T_KOAME);
 }
 
 void Rain_InitAll(void)
@@ -677,7 +677,7 @@ static bool8 CreateRainSprite(void)
 
     if (spriteId != MAX_SPRITES)
     {
-        gSprites[spriteId].tActive = FALSE;
+        gSprites[spriteId].tActive = 0;
         gSprites[spriteId].tRandom = spriteIndex * 145;
         while (gSprites[spriteId].tRandom >= 600)
             gSprites[spriteId].tRandom -= 600;
@@ -722,12 +722,12 @@ static bool8 UpdateVisibleRainSprites(void)
         gWeatherPtr->rainSpriteVisibleCounter = 0;
         if (gWeatherPtr->curRainSpriteIndex < gWeatherPtr->targetRainSpriteCount)
         {
-            gWeatherPtr->sprites.s1.rainSprites[gWeatherPtr->curRainSpriteIndex++]->tActive = TRUE;
+            gWeatherPtr->sprites.s1.rainSprites[gWeatherPtr->curRainSpriteIndex++]->tActive = 1;
         }
         else
         {
             gWeatherPtr->curRainSpriteIndex--;
-            gWeatherPtr->sprites.s1.rainSprites[gWeatherPtr->curRainSpriteIndex]->tActive = FALSE;
+            gWeatherPtr->sprites.s1.rainSprites[gWeatherPtr->curRainSpriteIndex]->tActive = 0;
             gWeatherPtr->sprites.s1.rainSprites[gWeatherPtr->curRainSpriteIndex]->invisible = TRUE;
         }
     }
@@ -744,7 +744,7 @@ static void DestroyRainSprites(void)
             DestroySprite(gWeatherPtr->sprites.s1.rainSprites[i]);
     }
     gWeatherPtr->rainSpriteCount = 0;
-    FreeSpriteTilesByTag(GFXTAG_RAIN);
+    FreeSpriteTilesByTag(0x1206);
 }
 
 #undef tCounter
@@ -879,7 +879,7 @@ static const union AnimCmd *const sSnowflakeAnimCmds[] =
 static const struct SpriteTemplate sSnowflakeSpriteTemplate =
 {
     .tileTag = 0xFFFF,
-    .paletteTag = PALTAG_WEATHER,
+    .paletteTag = 0x1200,
     .oam = &sSnowflakeSpriteOamData,
     .anims = sSnowflakeAnimCmds,
     .images = sSnowflakeSpriteImages,
@@ -941,14 +941,13 @@ static void InitSnowflakeSpriteMovement(struct Sprite *sprite)
 
 static void WaitSnowflakeSprite(struct Sprite *sprite)
 {
-    // Timer is never incremented
-    if (gWeatherPtr->snowflakeTimer > 18)
+    if (gWeatherPtr->unknown_6E2 > 18)
     {
         sprite->invisible = FALSE;
         sprite->callback = UpdateSnowflakeSprite;
         sprite->pos1.y = 250 - (gSpriteCoordOffsetY + sprite->centerToCornerVecY);
         sprite->tPosY = sprite->pos1.y * 128;
-        gWeatherPtr->snowflakeTimer = 0;
+        gWeatherPtr->unknown_6E2 = 0;
     }
 }
 
@@ -1012,32 +1011,9 @@ static void UpdateSnowflakeSprite(struct Sprite *sprite)
 // WEATHER_RAIN_THUNDERSTORM
 //------------------------------------------------------------------------------
 
-enum {
-    // This block of states is run only once
-    // when first setting up the thunderstorm
-    TSTORM_STATE_LOAD_RAIN,
-    TSTORM_STATE_CREATE_RAIN,
-    TSTORM_STATE_INIT_RAIN,
-    TSTORM_STATE_WAIT_CHANGE,
-
-    // The thunderstorm loops through these states,
-    // not necessarily in order.
-    TSTORM_STATE_LOOP_START,
-    TSTORM_STATE_LOOP_WAIT,
-    TSTORM_STATE_INIT_THUNDER_SHORT_1,
-    TSTORM_STATE_INIT_THUNDER_SHORT_2,
-    TSTORM_STATE_TRY_THUNDER_SHORT,
-    TSTORM_STATE_TRY_NEW_THUNDER,
-    TSTORM_STATE_WAIT_THUNDER_SHORT,
-    TSTORM_STATE_INIT_THUNDER_LONG,
-    TSTORM_STATE_WAIT_THUNDER_LONG,
-    TSTORM_STATE_FADE_THUNDER_LONG,
-    TSTORM_STATE_END_THUNDER_LONG,
-};
-
 void Thunderstorm_InitVars(void)
 {
-    gWeatherPtr->initStep = TSTORM_STATE_LOAD_RAIN;
+    gWeatherPtr->initStep = 0;
     gWeatherPtr->weatherGfxLoaded = FALSE;
     gWeatherPtr->rainSpriteVisibleCounter = 0;
     gWeatherPtr->rainSpriteVisibleDelay = 4;
@@ -1046,8 +1022,8 @@ void Thunderstorm_InitVars(void)
     gWeatherPtr->gammaTargetIndex = 3;
     gWeatherPtr->gammaStepDelay = 20;
     gWeatherPtr->weatherGfxLoaded = FALSE;  // duplicate assignment
-    gWeatherPtr->thunderTriggered = FALSE;
-    SetRainStrengthFromSoundEffect(SE_THUNDERSTORM);
+    gWeatherPtr->thunderTriggered = 0;
+    SetRainStrengthFromSoundEffect(SE_T_AME);
 }
 
 void Thunderstorm_InitAll(void)
@@ -1066,7 +1042,7 @@ static void SetThunderCounter(u16);
 
 void Downpour_InitVars(void)
 {
-    gWeatherPtr->initStep = TSTORM_STATE_LOAD_RAIN;
+    gWeatherPtr->initStep = 0;
     gWeatherPtr->weatherGfxLoaded = FALSE;
     gWeatherPtr->rainSpriteVisibleCounter = 0;
     gWeatherPtr->rainSpriteVisibleDelay = 4;
@@ -1075,7 +1051,7 @@ void Downpour_InitVars(void)
     gWeatherPtr->gammaTargetIndex = 3;
     gWeatherPtr->gammaStepDelay = 20;
     gWeatherPtr->weatherGfxLoaded = FALSE;  // duplicate assignment
-    SetRainStrengthFromSoundEffect(SE_DOWNPOUR);
+    SetRainStrengthFromSoundEffect(SE_T_OOAME);
 }
 
 void Downpour_InitAll(void)
@@ -1090,105 +1066,100 @@ void Thunderstorm_Main(void)
     UpdateThunderSound();
     switch (gWeatherPtr->initStep)
     {
-    case TSTORM_STATE_LOAD_RAIN:
+    case 0:
         LoadRainSpriteSheet();
         gWeatherPtr->initStep++;
         break;
-    case TSTORM_STATE_CREATE_RAIN:
+    case 1:
         if (!CreateRainSprite())
             gWeatherPtr->initStep++;
         break;
-    case TSTORM_STATE_INIT_RAIN:
+    case 2:
         if (!UpdateVisibleRainSprites())
         {
             gWeatherPtr->weatherGfxLoaded = TRUE;
             gWeatherPtr->initStep++;
         }
         break;
-    case TSTORM_STATE_WAIT_CHANGE:
+    case 3:
         if (gWeatherPtr->palProcessingState != WEATHER_PAL_STATE_CHANGING_WEATHER)
-            gWeatherPtr->initStep = TSTORM_STATE_INIT_THUNDER_SHORT_1;
+            gWeatherPtr->initStep = 6;
         break;
-    case TSTORM_STATE_LOOP_START:
-        gWeatherPtr->thunderAllowEnd = TRUE;
-        gWeatherPtr->thunderDelay = (Random() % 360) + 360;
+    case 4:
+        gWeatherPtr->unknown_6EA = 1;
+        gWeatherPtr->unknown_6E6 = (Random() % 360) + 360;
         gWeatherPtr->initStep++;
         // fall through
-    case TSTORM_STATE_LOOP_WAIT:
-        // Wait between 360-720 frames before trying thunder again
-        if (--gWeatherPtr->thunderDelay == 0)
+    case 5:
+        if (--gWeatherPtr->unknown_6E6 == 0)
             gWeatherPtr->initStep++;
         break;
-    case TSTORM_STATE_INIT_THUNDER_SHORT_1:
-        gWeatherPtr->thunderAllowEnd = TRUE;
-        gWeatherPtr->thunderSkipShort = Random() % 2;
+    case 6:
+        gWeatherPtr->unknown_6EA = 1;
+        gWeatherPtr->unknown_6EB = Random() % 2;
         gWeatherPtr->initStep++;
         break;
-    case TSTORM_STATE_INIT_THUNDER_SHORT_2:
-        gWeatherPtr->thunderShortRetries = (Random() & 1) + 1;
+    case 7:
+        gWeatherPtr->unknown_6EC = (Random() & 1) + 1;
         gWeatherPtr->initStep++;
         // fall through
-    case TSTORM_STATE_TRY_THUNDER_SHORT:
-        ApplyWeatherGammaShiftIfIdle(19);
-        if (!gWeatherPtr->thunderSkipShort && gWeatherPtr->thunderShortRetries == 1)
-            SetThunderCounter(20); // Do short thunder
+    case 8:
+        sub_80ABC48(19);
+        if (gWeatherPtr->unknown_6EB == 0 && gWeatherPtr->unknown_6EC == 1)
+            SetThunderCounter(20);
 
-        gWeatherPtr->thunderDelay = (Random() % 3) + 6;
+        gWeatherPtr->unknown_6E6 = (Random() % 3) + 6;
         gWeatherPtr->initStep++;
         break;
-    case TSTORM_STATE_TRY_NEW_THUNDER:
-        if (--gWeatherPtr->thunderDelay == 0)
+    case 9:
+        if (--gWeatherPtr->unknown_6E6 == 0)
         {
-            ApplyWeatherGammaShiftIfIdle(3);
-            gWeatherPtr->thunderAllowEnd = TRUE;
-            if (--gWeatherPtr->thunderShortRetries != 0)
+            sub_80ABC48(3);
+            gWeatherPtr->unknown_6EA = 1;
+            if (--gWeatherPtr->unknown_6EC != 0)
             {
-                // Try a short thunder again
-                gWeatherPtr->thunderDelay = (Random() % 16) + 60;
-                gWeatherPtr->initStep = TSTORM_STATE_WAIT_THUNDER_SHORT;
+                gWeatherPtr->unknown_6E6 = (Random() % 16) + 60;
+                gWeatherPtr->initStep = 10;
             }
-            else if (!gWeatherPtr->thunderSkipShort)
+            else if (gWeatherPtr->unknown_6EB == 0)
             {
-                // No more thunder, restart loop
-                gWeatherPtr->initStep = TSTORM_STATE_LOOP_START;
+                gWeatherPtr->initStep = 4;
             }
             else
             {
-                // Set up long thunder
-                gWeatherPtr->initStep = TSTORM_STATE_INIT_THUNDER_LONG;
+                gWeatherPtr->initStep = 11;
             }
         }
         break;
-    case TSTORM_STATE_WAIT_THUNDER_SHORT:
-        if (--gWeatherPtr->thunderDelay == 0)
-            gWeatherPtr->initStep = TSTORM_STATE_TRY_THUNDER_SHORT;
+    case 10:
+        if (--gWeatherPtr->unknown_6E6 == 0)
+            gWeatherPtr->initStep = 8;
         break;
-    case TSTORM_STATE_INIT_THUNDER_LONG:
-        gWeatherPtr->thunderDelay = (Random() % 16) + 60;
+    case 11:
+        gWeatherPtr->unknown_6E6 = (Random() % 16) + 60;
         gWeatherPtr->initStep++;
         break;
-    case TSTORM_STATE_WAIT_THUNDER_LONG:
-        if (--gWeatherPtr->thunderDelay == 0)
+    case 12:
+        if (--gWeatherPtr->unknown_6E6 == 0)
         {
-            // Do long thunder
             SetThunderCounter(100);
-            ApplyWeatherGammaShiftIfIdle(19);
-            gWeatherPtr->thunderDelay = (Random() & 0xF) + 30;
+            sub_80ABC48(19);
+            gWeatherPtr->unknown_6E6 = (Random() & 0xF) + 30;
             gWeatherPtr->initStep++;
         }
         break;
-    case TSTORM_STATE_FADE_THUNDER_LONG:
-        if (--gWeatherPtr->thunderDelay == 0)
+    case 13:
+        if (--gWeatherPtr->unknown_6E6 == 0)
         {
             sub_80ABC7C(19, 3, 5);
             gWeatherPtr->initStep++;
         }
         break;
-    case TSTORM_STATE_END_THUNDER_LONG:
+    case 14:
         if (gWeatherPtr->palProcessingState == WEATHER_PAL_STATE_IDLE)
         {
-            gWeatherPtr->thunderAllowEnd = TRUE;
-            gWeatherPtr->initStep = TSTORM_STATE_LOOP_START;
+            gWeatherPtr->unknown_6EA = 1;
+            gWeatherPtr->initStep = 4;
         }
         break;
     }
@@ -1199,12 +1170,12 @@ bool8 Thunderstorm_Finish(void)
     switch (gWeatherPtr->finishStep)
     {
     case 0:
-        gWeatherPtr->thunderAllowEnd = FALSE;
+        gWeatherPtr->unknown_6EA = 0;
         gWeatherPtr->finishStep++;
         // fall through
     case 1:
         Thunderstorm_Main();
-        if (gWeatherPtr->thunderAllowEnd)
+        if (gWeatherPtr->unknown_6EA)
         {
             if (gWeatherPtr->nextWeather == WEATHER_RAIN
              || gWeatherPtr->nextWeather == WEATHER_RAIN_THUNDERSTORM
@@ -1232,16 +1203,16 @@ bool8 Thunderstorm_Finish(void)
 
 static void SetThunderCounter(u16 max)
 {
-    if (!gWeatherPtr->thunderTriggered)
+    if (gWeatherPtr->thunderTriggered == 0)
     {
         gWeatherPtr->thunderCounter = Random() % max;
-        gWeatherPtr->thunderTriggered = TRUE;
+        gWeatherPtr->thunderTriggered = 1;
     }
 }
 
 static void UpdateThunderSound(void)
 {
-    if (gWeatherPtr->thunderTriggered == TRUE)
+    if (gWeatherPtr->thunderTriggered == 1)
     {
         if (gWeatherPtr->thunderCounter == 0)
         {
@@ -1249,11 +1220,11 @@ static void UpdateThunderSound(void)
                 return;
 
             if (Random() & 1)
-                PlaySE(SE_THUNDER);
+                PlaySE(SE_T_KAMI);
             else
-                PlaySE(SE_THUNDER2);
+                PlaySE(SE_T_KAMI2);
 
-            gWeatherPtr->thunderTriggered = FALSE;
+            gWeatherPtr->thunderTriggered = 0;
         }
         else
         {
@@ -1266,9 +1237,10 @@ static void UpdateThunderSound(void)
 // WEATHER_FOG_HORIZONTAL and WEATHER_UNDERWATER
 //------------------------------------------------------------------------------
 
-static const u16 sUnusedData[] = {0, 6, 6, 12, 18, 42, 300, 300};
+// unused data
+static const u16 unusedData_839AB1C[] = {0, 6, 6, 12, 18, 42, 300, 300};
 
-static const struct OamData sOamData_FogH =
+static const struct OamData gOamData_839AB2C =
 {
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -1285,72 +1257,72 @@ static const struct OamData sOamData_FogH =
     .affineParam = 0,
 };
 
-static const union AnimCmd sAnim_FogH_0[] =
+static const union AnimCmd gSpriteAnim_839AB34[] =
 {
     ANIMCMD_FRAME(0, 16),
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_FogH_1[] =
+static const union AnimCmd gSpriteAnim_839AB3C[] =
 {
     ANIMCMD_FRAME(32, 16),
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_FogH_2[] =
+static const union AnimCmd gSpriteAnim_839AB44[] =
 {
     ANIMCMD_FRAME(64, 16),
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_FogH_3[] =
+static const union AnimCmd gSpriteAnim_839AB4C[] =
 {
     ANIMCMD_FRAME(96, 16),
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_FogH_4[] =
+static const union AnimCmd gSpriteAnim_839AB54[] =
 {
     ANIMCMD_FRAME(128, 16),
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_FogH_5[] =
+static const union AnimCmd gSpriteAnim_839AB5C[] =
 {
     ANIMCMD_FRAME(160, 16),
     ANIMCMD_END,
 };
 
-static const union AnimCmd *const sAnims_FogH[] =
+static const union AnimCmd *const gSpriteAnimTable_839AB64[] =
 {
-    sAnim_FogH_0,
-    sAnim_FogH_1,
-    sAnim_FogH_2,
-    sAnim_FogH_3,
-    sAnim_FogH_4,
-    sAnim_FogH_5,
+    gSpriteAnim_839AB34,
+    gSpriteAnim_839AB3C,
+    gSpriteAnim_839AB44,
+    gSpriteAnim_839AB4C,
+    gSpriteAnim_839AB54,
+    gSpriteAnim_839AB5C,
 };
 
-static const union AffineAnimCmd sAffineAnim_FogH[] =
+static const union AffineAnimCmd gSpriteAffineAnim_839AB7C[] =
 {
     AFFINEANIMCMD_FRAME(0x200, 0x200, 0, 0),
     AFFINEANIMCMD_END,
 };
 
-static const union AffineAnimCmd *const sAffineAnims_FogH[] =
+static const union AffineAnimCmd *const gSpriteAffineAnimTable_839AB8C[] =
 {
-    sAffineAnim_FogH,
+    gSpriteAffineAnim_839AB7C,
 };
 
 static void FogHorizontalSpriteCallback(struct Sprite *);
 static const struct SpriteTemplate sFogHorizontalSpriteTemplate =
 {
-    .tileTag = GFXTAG_FOG_H,
-    .paletteTag = PALTAG_WEATHER,
-    .oam = &sOamData_FogH,
-    .anims = sAnims_FogH,
+    .tileTag = 0x1201,
+    .paletteTag = 0x1200,
+    .oam = &gOamData_839AB2C,
+    .anims = gSpriteAnimTable_839AB64,
     .images = NULL,
-    .affineAnims = sAffineAnims_FogH,
+    .affineAnims = gSpriteAffineAnimTable_839AB8C,
     .callback = FogHorizontalSpriteCallback,
 };
 
@@ -1461,7 +1433,7 @@ static void CreateFogHorizontalSprites(void)
         struct SpriteSheet fogHorizontalSpriteSheet = {
             .data = gWeatherFogHorizontalTiles,
             .size = sizeof(gWeatherFogHorizontalTiles),
-            .tag = GFXTAG_FOG_H,
+            .tag = 0x1201,
         };
         LoadSpriteSheet(&fogHorizontalSpriteSheet);
         for (i = 0; i < NUM_FOG_HORIZONTAL_SPRITES; i++)
@@ -1497,7 +1469,7 @@ static void DestroyFogHorizontalSprites(void)
                 DestroySprite(gWeatherPtr->sprites.s2.fogHSprites[i]);
         }
 
-        FreeSpriteTilesByTag(GFXTAG_FOG_H);
+        FreeSpriteTilesByTag(0x1201);
         gWeatherPtr->fogHSpritesCreated = 0;
     }
 }
@@ -1519,7 +1491,7 @@ void Ash_InitVars(void)
     gWeatherPtr->weatherGfxLoaded = FALSE;
     gWeatherPtr->gammaTargetIndex = 0;
     gWeatherPtr->gammaStepDelay = 20;
-    gWeatherPtr->ashUnused = 20; // Never read
+    gWeatherPtr->unknown_6FE = 20;
     if (!gWeatherPtr->ashSpritesCreated)
     {
         Weather_SetBlendCoeffs(0, 16);
@@ -1537,8 +1509,8 @@ void Ash_InitAll(void)
 void Ash_Main(void)
 {
     gWeatherPtr->ashBaseSpritesX = gSpriteCoordOffsetX & 0x1FF;
-    while (gWeatherPtr->ashBaseSpritesX >= DISPLAY_WIDTH)
-        gWeatherPtr->ashBaseSpritesX -= DISPLAY_WIDTH;
+    while (gWeatherPtr->ashBaseSpritesX >= 240)
+        gWeatherPtr->ashBaseSpritesX -= 240;
 
     switch (gWeatherPtr->initStep)
     {
@@ -1595,7 +1567,7 @@ static const struct SpriteSheet sAshSpriteSheet =
 {
     .data = gWeatherAshTiles,
     .size = sizeof(gWeatherAshTiles),
-    .tag = GFXTAG_ASH,
+    .tag = 0x1202,
 };
 
 static void LoadAshSpriteSheet(void)
@@ -1631,8 +1603,8 @@ static const union AnimCmd *const sAshSpriteAnimCmds[] =
 
 static const struct SpriteTemplate sAshSpriteTemplate =
 {
-    .tileTag = GFXTAG_ASH,
-    .paletteTag = PALTAG_WEATHER,
+    .tileTag = 4610,
+    .paletteTag = 0x1200,
     .oam = &sAshSpriteOamData,
     .anims = sAshSpriteAnimCmds,
     .images = NULL,
@@ -1687,7 +1659,7 @@ static void DestroyAshSprites(void)
                 DestroySprite(gWeatherPtr->sprites.s2.ashSprites[i]);
         }
 
-        FreeSpriteTilesByTag(GFXTAG_ASH);
+        FreeSpriteTilesByTag(0x1202);
         gWeatherPtr->ashSpritesCreated = FALSE;
     }
 }
@@ -1818,7 +1790,7 @@ static const struct SpriteSheet gFogDiagonalSpriteSheet =
 {
     .data = gWeatherFogDiagonalTiles,
     .size = sizeof(gWeatherFogDiagonalTiles),
-    .tag = GFXTAG_FOG_D,
+    .tag = 0x1203,
 };
 
 static const struct OamData sFogDiagonalSpriteOamData =
@@ -1848,8 +1820,8 @@ static const union AnimCmd *const sFogDiagonalSpriteAnimCmds[] =
 
 static const struct SpriteTemplate sFogDiagonalSpriteTemplate =
 {
-    .tileTag = GFXTAG_FOG_D,
-    .paletteTag = PALTAG_WEATHER,
+    .tileTag = 0x1203,
+    .paletteTag = 0x1200,
     .oam = &sFogDiagonalSpriteOamData,
     .anims = sFogDiagonalSpriteAnimCmds,
     .images = NULL,
@@ -1903,7 +1875,7 @@ static void DestroyFogDiagonalSprites(void)
                 DestroySprite(gWeatherPtr->sprites.s2.fogDSprites[i]);
         }
 
-        FreeSpriteTilesByTag(GFXTAG_FOG_D);
+        FreeSpriteTilesByTag(0x1203);
         gWeatherPtr->fogDSpritesCreated = FALSE;
     }
 }
@@ -2046,7 +2018,7 @@ static void DestroySandstormSprites(void)
         }
 
         gWeatherPtr->sandstormSpritesCreated = FALSE;
-        FreeSpriteTilesByTag(GFXTAG_SANDSTORM);
+        FreeSpriteTilesByTag(0x1204);
     }
 
     if (gWeatherPtr->sandstormSwirlSpritesCreated)
@@ -2095,8 +2067,8 @@ static const union AnimCmd *const sSandstormSpriteAnimCmds[] =
 
 static const struct SpriteTemplate sSandstormSpriteTemplate =
 {
-    .tileTag = GFXTAG_SANDSTORM,
-    .paletteTag = PALTAG_WEATHER_2,
+    .tileTag = 0x1204,
+    .paletteTag = 0x1201,
     .oam = &sSandstormSpriteOamData,
     .anims = sSandstormSpriteAnimCmds,
     .images = NULL,
@@ -2108,7 +2080,7 @@ static const struct SpriteSheet sSandstormSpriteSheet =
 {
     .data = gWeatherSandstormTiles,
     .size = sizeof(gWeatherSandstormTiles),
-    .tag = GFXTAG_SANDSTORM,
+    .tag = 0x1204,
 };
 
 // Regular sandstorm sprites
@@ -2270,7 +2242,7 @@ static const struct SpriteSheet sWeatherBubbleSpriteSheet =
 {
     .data = gWeatherBubbleTiles,
     .size = sizeof(gWeatherBubbleTiles),
-    .tag = GFXTAG_BUBBLE,
+    .tag = 0x1205,
 };
 
 static const s16 sBubbleStartCoords[][2] =
@@ -2350,8 +2322,8 @@ static const union AnimCmd *const sBubbleSpriteAnimCmds[] =
 
 static const struct SpriteTemplate sBubbleSpriteTemplate =
 {
-    .tileTag = GFXTAG_BUBBLE,
-    .paletteTag = PALTAG_WEATHER,
+    .tileTag = 0x1205,
+    .paletteTag = 0x1200,
     .oam = &gOamData_AffineOff_ObjNormal_8x8,
     .anims = sBubbleSpriteAnimCmds,
     .images = NULL,
@@ -2391,7 +2363,7 @@ static void DestroyBubbleSprites(void)
                 DestroySprite(&gSprites[i]);
         }
 
-        FreeSpriteTilesByTag(GFXTAG_BUBBLE);
+        FreeSpriteTilesByTag(0x1205);
         gWeatherPtr->bubblesSpriteCount = 0;
     }
 }

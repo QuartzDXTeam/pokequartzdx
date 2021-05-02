@@ -30,6 +30,7 @@
 #include "pokemon_summary_screen.h"
 #include "pokemon_storage_system.h"
 #include "random.h"
+#include "rom_8011DC0.h"
 #include "save.h"
 #include "script.h"
 #include "sound.h"
@@ -49,32 +50,10 @@
 #include "constants/moves.h"
 #include "constants/region_map_sections.h"
 #include "constants/rgb.h"
+#include "constants/species.h"
 #include "constants/songs.h"
-#include "constants/union_room.h"
 
-// The following tags are offsets from GFXTAG_MENU_TEXT
-// They're looped over in CB2_CreateTradeMenu and CB2_ReturnToTradeMenu
-// and used as indexes into sMenuTextTileBuffers
-enum {
-    GFXTAG_PLAYER_NAME_L,
-    GFXTAG_PLAYER_NAME_M,
-    GFXTAG_PLAYER_NAME_R,
-    GFXTAG_PARTNER_NAME_L,
-    GFXTAG_PARTNER_NAME_M,
-    GFXTAG_PARTNER_NAME_R,
-    GFXTAG_CANCEL_L,
-    GFXTAG_CANCEL_R,
-    GFXTAG_CHOOSE_PKMN_L,
-    GFXTAG_CHOOSE_PKMN_M,
-    GFXTAG_CHOOSE_PKMN_R,
-    GFXTAG_CHOOSE_PKMN_EMPTY_1, // 6 sprites to cover the full bottom bar, but only first 3 are needed
-    GFXTAG_CHOOSE_PKMN_EMPTY_2,
-    GFXTAG_CHOOSE_PKMN_EMPTY_3,
-    GFXTAG_MENU_TEXT_COUNT
-};
-#define GFXTAG_PLAYER_NAME (1 + GFXTAG_PLAYER_NAME_R - GFXTAG_PLAYER_NAME_L)
-#define GFXTAG_PARTNER_NAME (1 + GFXTAG_PARTNER_NAME_R - GFXTAG_PARTNER_NAME_L)
-#define GFXTAG_CHOOSE_PKMN (1 + GFXTAG_CHOOSE_PKMN_EMPTY_3 - GFXTAG_CHOOSE_PKMN_L)
+#define Trade_SendData(ptr) (SendBlock(bitmask_all_link_players_but_self(), ptr->linkData, 20))
 
 struct InGameTrade {
     /*0x00*/ u8 nickname[POKEMON_NAME_LENGTH + 1];
@@ -92,23 +71,22 @@ struct InGameTrade {
     /*0x38*/ u16 requestedSpecies;
 };
 
-static EWRAM_DATA u8 *sMenuTextAllocBuffer = NULL;
+static EWRAM_DATA u8 *sMessageBoxAllocBuffer = NULL;
 
-// Bytes 0-2 are used for the player's name text
-// Bytes 3-5 are used for the partner's name text
-// Bytes 6-7 are used for the Cancel text
-// Bytes 8-13 are used for the Choose a Pokemon text
-// See the corresponding GFXTAGs in src/data/trade.h
-static EWRAM_DATA u8 *sMenuTextTileBuffers[GFXTAG_MENU_TEXT_COUNT] = {NULL};
+// Bytes 0-2 are used for the player's name box
+// Bytes 3-5 are used for the partner's name box
+// Bytes 6-7 are used for the Cancel box
+// Bytes 8-13 are used for the Choose a Pokemon box
+static EWRAM_DATA u8 *sMessageBoxTileBuffers[14] = {NULL};
 
 EWRAM_DATA struct MailStruct gTradeMail[PARTY_SIZE] = {0};
 EWRAM_DATA u8 gSelectedTradeMonPositions[2] = {0};
 static EWRAM_DATA struct {
     /*0x0000*/ u8 bg2hofs;
     /*0x0001*/ u8 bg3hofs;
-    /*0x0002*/ u8 filler_2[38];
+    /*0x0002*/ u8 filler_2[0x28 - 2];
     /*0x0028*/ u8 partySpriteIds[2][PARTY_SIZE];
-    /*0x0034*/ u8 cursorSpriteId;
+    /*0x0034*/ u8 cursorSpriteIdx;
     /*0x0035*/ u8 cursorPosition;
     /*0x0036*/ u8 partyCounts[2];
     /*0x0038*/ bool8 monPresent[PARTY_SIZE * 2];
@@ -117,7 +95,7 @@ static EWRAM_DATA struct {
     /*0x0051*/ bool8 isEgg[2][PARTY_SIZE];
     /*0x005D*/ u8 hpBarLevels[2][PARTY_SIZE];
     /*0x0069*/ u8 bufferPartyState;
-    /*0x006A*/ u8 filler_6A[5];
+    /*0x006A*/ u8 filler_6A[0x6F - 0x6A];
     /*0x006F*/ u8 tradeMenuFunc;
     /*0x0070*/ u8 neverRead_70;
     /*0x0071*/ u8 filler_71;
@@ -128,13 +106,13 @@ static EWRAM_DATA struct {
     /*0x0079*/ u8 partnerLinkFlagChoseAction;
     /*0x007A*/ u8 playerLinkFlagStatus;
     /*0x007B*/ u8 partnerLinkFlagStatus;
-    /*0x007C*/ u8 filler_7C[2];
+    /*0x007C*/ u8 filler_7C[0x7E - 0x7C];
     /*0x007E*/ u8 partnerCursorPosition;
     /*0x007F*/ u8 unused_7F;
     /*0x0080*/ u16 linkData[20];
     /*0x00A8*/ u8 timer;
-    /*0x00A9*/ u8 giftRibbons[GIFT_RIBBONS_COUNT];
-    /*0x00B4*/ u8 filler_B4[0x81C];
+    /*0x00A9*/ u8 giftRibbons[11];
+    /*0x00B4*/ u8 filler_B4[0x8D0-0xB4];
     /*0x08D0*/ struct {
         bool8 queued;
         u16 queueDelay;
@@ -142,7 +120,6 @@ static EWRAM_DATA struct {
     } queuedActions[4];
     /*0x08F0*/ u16 tilemapBuffer[0x400];
 } *sTradeMenuData = {NULL};
-
 static EWRAM_DATA struct {
     /*0x00*/ struct Pokemon mon;
     /*0x64*/ u32 timer;
@@ -151,19 +128,19 @@ static EWRAM_DATA struct {
     /*0x72*/ u8 playerLinkFlagFinishTrade;
     /*0x73*/ u8 partnerLinkFlagFinishTrade;
     /*0x74*/ u16 linkData[10];
-    /*0x88*/ u8 linkTimeoutZero1;
-    /*0x89*/ u8 linkTimeoutZero2;
+    /*0x88*/ u8 alwaysZero_88;
+    /*0x89*/ u8 alwaysZero_89;
     /*0x8A*/ u16 linkTimeoutCounter;
     /*0x8C*/ u16 neverRead_8C;
-    /*0x8E*/ u8 monSpriteIds[2];
-    /*0x90*/ u8 connectionSpriteId1; // Multi-purpose sprite ids used during the transfer sequence
-    /*0x91*/ u8 connectionSpriteId2;
-    /*0x92*/ u8 cableEndSpriteId;
+    /*0x8E*/ u8 pokePicSpriteIdxs[2];
+    /*0x90*/ u8 unk_90; //sprite id
+    /*0x91*/ u8 unk_91; //sprite id
+    /*0x92*/ u8 unk_92; //sprite id
     /*0x93*/ u8 sendTradeFinishState;
     /*0x94*/ u16 state;
     /*0x96*/ u8 filler_96[0xD2 - 0x96];
-    /*0xD2*/ u8 releasePokeballSpriteId;
-    /*0xD3*/ u8 bouncingPokeballSpriteId;
+    /*0xD2*/ u8 pokeballSpriteId;
+    /*0xD3*/ u8 unk_D3; //sprite id
     /*0xD4*/ u16 texX;
     /*0xD6*/ u16 texY;
     /*0xD8*/ u16 neverRead_D8;
@@ -175,7 +152,7 @@ static EWRAM_DATA struct {
     /*0xE4*/ s16 bg2vofs;
     /*0xE6*/ s16 bg2hofs;
     /*0xE8*/ u16 sXY;
-    /*0xEA*/ u16 gbaScale;
+    /*0xEA*/ u16 unk_EA; //sXY divisor
     /*0xEC*/ u16 alpha;
     /*0xEE*/ bool8 isLinkTrade;
     /*0xF0*/ u16 monSpecies[2];
@@ -189,6 +166,9 @@ static EWRAM_DATA struct {
     /*0xFE*/ u8 wirelessWinBottom;
 } *sTradeData = {NULL};
 
+#if !defined(NONMATCHING) && MODERN
+#define static
+#endif
 static bool32 IsWirelessTrade(void);
 static void CB2_CreateTradeMenu(void);
 static void VBlankCB_TradeMenu(void);
@@ -207,24 +187,24 @@ static void DrawTradeMenuPartyMonInfo(u8, u8, u8, u8, u8, u8);
 static void DrawTradeMenuPartyInfo(u8);
 static void PrintNicknamesForTradeMenu(void);
 static void RedrawTradeMenuParty(u8);
-static void Task_DrawSelectionSummary(u8);
-static void Task_DrawSelectionTrade(u8);
+static void Task_DrawSelectionSummary(u8 taskId);
+static void Task_DrawSelectionTrade(u8 taskId);
 static void QueueAction(u16, u8);
 static u32 GetNumQueuedActions(void);
 static void DoQueuedActions(void);
 static void PrintTradeMessage(u8);
 static bool8 LoadTradeMenuSpriteSheetsAndPalettes(void);
-static void DrawBottomRowText(const u8 *, u8 *, u8);
+static void DrawTextWindowAndBuffer6Bytes(const u8 *, u8 *, u8);
 static void SetTradePartyLiveStatuses(u8);
 static void GetTradePartyHPBarLevels(u8);
 static void SetTradePartyHPBarSprites(void);
 static void SaveTradeGiftRibbons(void);
 static u32 CanTradeSelectedMon(struct Pokemon *, int, int);
-static void SpriteCB_LinkMonGlow(struct Sprite *);
-static void SpriteCB_LinkMonShadow(struct Sprite *);
-static void SpriteCB_CableEndSending(struct Sprite *);
-static void SpriteCB_CableEndReceiving(struct Sprite *);
-static void SpriteCB_GbaScreen(struct Sprite *);
+static void sub_807AA28(struct Sprite *sprite);
+static void sub_807AA7C(struct Sprite *sprite);
+static void sub_807AABC(struct Sprite *sprite);
+static void sub_807AAE0(struct Sprite *sprite);
+static void sub_807AB04(struct Sprite *sprite);
 static void InitTradeBgInternal(void);
 static void CB2_UpdateInGameTrade(void);
 static void SetTradeSequenceBgGpuRegs(u8);
@@ -233,12 +213,12 @@ static void BufferTradeSceneStrings(void);
 static bool8 AnimateTradeSequence(void);
 static bool8 AnimateTradeSequenceCable(void);
 static bool8 AnimateTradeSequenceWireless(void);
-static void SpriteCB_BouncingPokeball(struct Sprite *);
-static void SpriteCB_BouncingPokeballDepart(struct Sprite *);
-static void SpriteCB_BouncingPokeballDepartEnd(struct Sprite *);
-static void SpriteCB_BouncingPokeballArrive(struct Sprite *);
+static void sub_807E55C(struct Sprite *sprite);
+static void sub_807E5D8(struct Sprite *sprite);
+static void sub_807E64C(struct Sprite *sprite);
+static void sub_807E6AC(struct Sprite *sprite);
 static void BufferInGameTradeMonName(void);
-static void SetInGameTradeMail(struct MailStruct *, const struct InGameTrade *);
+static void SetInGameTradeMail(struct MailStruct *mail, const struct InGameTrade *trade);
 static void CB2_UpdateLinkTrade(void);
 static void CB2_TryFinishTrade(void);
 static void CB2_SaveAndEndTrade(void);
@@ -246,15 +226,15 @@ static void CB2_FreeTradeData(void);
 static void Task_InGameTrade(u8);
 static void CheckPartnersMonForRibbons(void);
 static void Task_AnimateWirelessSignal(u8);
-static void Task_NarrowWindowForCrossing_Wireless(u8);
-static void Task_NarrowWindowForCrossing_Cable(u8);
+static void c3_0805465C(u8);
+static void sub_807F39C(u8);
 static void CB2_SaveAndEndWirelessTrade(void);
 
 #include "data/trade.h"
 
 static bool8 SendLinkData(const void *linkData, u32 size)
 {
-    if (gPlayerCurrActivity == ACTIVITY_29)
+    if (gUnknown_02022C2C == 29)
     {
         rfu_NI_setSendData(lman.acceptSlot_flag, 84, linkData, size);
         return TRUE;
@@ -265,14 +245,14 @@ static bool8 SendLinkData(const void *linkData, u32 size)
     }
 }
 
-static void RequestLinkData(u8 type)
+static void sub_80771AC(u8 a0)
 {
-    SendBlockRequest(type);
+    sub_800A4D8(a0);
 }
 
-static bool32 IsLinkTradeTaskFinished(void)
+static bool32 sub_80771BC(void)
 {
-    if (gPlayerCurrActivity == ACTIVITY_29)
+    if (gUnknown_02022C2C == 29)
     {
         if (gRfuSlotStatusNI[sub_800E87C(lman.acceptSlot_flag)]->send.state == 0)
             return TRUE;
@@ -308,15 +288,15 @@ static void TradeResetReceivedFlag(u32 who)
 
 static bool32 IsWirelessTrade(void)
 {
-    if (gWirelessCommType && gPlayerCurrActivity == ACTIVITY_29)
+    if (gWirelessCommType && gUnknown_02022C2C == 29)
         return TRUE;
     else
         return FALSE;
 }
 
-static void SetTradeLinkStandbyCallback(u8 unused)
+static void sub_8077288(u8 unused)
 {
-    SetLinkStandbyCallback();
+    sub_800ADF8();
 }
 
 static bool32 _IsLinkTaskFinished(void)
@@ -386,10 +366,12 @@ static void CB2_CreateTradeMenu(void)
     case 0:
         sTradeMenuData = AllocZeroed(sizeof(*sTradeMenuData));
         InitTradeMenu();
-        sMenuTextAllocBuffer = AllocZeroed(GFXTAG_MENU_TEXT_COUNT * 256);
+        sMessageBoxAllocBuffer = AllocZeroed(ARRAY_COUNT(sMessageBoxTileBuffers) * 256);
 
-        for (i = 0; i < GFXTAG_MENU_TEXT_COUNT; i++)
-            sMenuTextTileBuffers[i] = &sMenuTextAllocBuffer[i * 256];
+        for (i = 0; i < (int)ARRAY_COUNT(sMessageBoxTileBuffers); i++)
+        {
+            sMessageBoxTileBuffers[i] = &sMessageBoxAllocBuffer[i * 256];
+        }
 
         gMain.state++;
         break;
@@ -397,27 +379,29 @@ static void CB2_CreateTradeMenu(void)
         gPaletteFade.bufferTransferDisabled = FALSE;
 
         for (i = 0; i < PARTY_SIZE; i++)
-            CreateMon(&gEnemyParty[i], SPECIES_NONE, 0, USE_RANDOM_IVS, FALSE, 0, OT_ID_PLAYER_ID, 0);
+        {
+            CreateMon(&gEnemyParty[i], SPECIES_NONE, 0, 32, FALSE, 0, OT_ID_PLAYER_ID, 0);
+        }
 
         PrintTradeMessage(TRADE_MSG_STANDBY);
         ShowBg(0);
 
         if (!gReceivedRemoteLinkPlayers)
         {
-            gLinkType = LINKTYPE_TRADE_CONNECTING;
+            gLinkType = LINKTYPE_0x1122;
             sTradeMenuData->timer = 0;
 
             if (gWirelessCommType)
             {
-                SetWirelessCommType1();
+                sub_800B488();
                 OpenLink();
-                CreateTask_RfuIdle();
+                sub_8011BA4();
             }
             else
             {
                 OpenLink();
                 gMain.state++;
-                CreateTask(Task_WaitForLinkPlayerConnection, 1);
+                CreateTask(task00_08081A90, 1);
             }
         }
         else
@@ -453,14 +437,14 @@ static void CB2_CreateTradeMenu(void)
     case 4:
         if (gReceivedRemoteLinkPlayers == TRUE && IsLinkPlayerDataExchangeComplete() == TRUE)
         {
-            DestroyTask_RfuIdle();
+            sub_8011BD0();
             CalculatePlayerPartyCount();
             gMain.state++;
             sTradeMenuData->timer = 0;
             if (gWirelessCommType)
             {
                 sub_801048C(TRUE);
-                SetLinkStandbyCallback();
+                sub_800ADF8();
             }
         }
         break;
@@ -528,11 +512,11 @@ static void CB2_CreateTradeMenu(void)
         gMain.state++;
         break;
     case 10:
-        DrawTextWindowAndBufferTiles(gSaveBlock2Ptr->playerName, sMenuTextTileBuffers[GFXTAG_PLAYER_NAME_L], 0, 0, 3);
+        DrawTextWindowAndBufferTiles(gSaveBlock2Ptr->playerName, sMessageBoxTileBuffers[0], 0, 0, 3);
         id = GetMultiplayerId();
-        DrawTextWindowAndBufferTiles(gLinkPlayers[id ^ 1].name, sMenuTextTileBuffers[GFXTAG_PARTNER_NAME_L], 0, 0, 3);
-        DrawTextWindowAndBufferTiles(sTradeActionTexts[TRADE_TEXT_CANCEL], sMenuTextTileBuffers[GFXTAG_CANCEL_L], 0, 0, 2);
-        DrawBottomRowText(sTradeActionTexts[TRADE_TEXT_CHOOSE_MON], sMenuTextTileBuffers[GFXTAG_CHOOSE_PKMN_L], 24);
+        DrawTextWindowAndBufferTiles(gLinkPlayers[id ^ 1].name, sMessageBoxTileBuffers[3], 0, 0, 3);
+        DrawTextWindowAndBufferTiles(sTradeActionTexts[TRADE_TEXT_CANCEL], sMessageBoxTileBuffers[6], 0, 0, 2);
+        DrawTextWindowAndBuffer6Bytes(sTradeActionTexts[TRADE_TEXT_CHOOSE_MON], sMessageBoxTileBuffers[8], 24);
         gMain.state++;
         sTradeMenuData->timer = 0;
         break;
@@ -541,43 +525,39 @@ static void CB2_CreateTradeMenu(void)
             gMain.state++;
         break;
     case 12:
-        // Create player's name text sprites
         xPos = GetStringCenterAlignXOffset(1, gSaveBlock2Ptr->playerName, 120);
-        for (i = 0; i < GFXTAG_PLAYER_NAME; i++)
+        for (i = 0; i < 3; i++)
         {
-            temp = sSpriteTemplate_MenuText;
-            temp.tileTag += i + GFXTAG_PLAYER_NAME_L;
+            temp = gSpriteTemplate_832DCAC;
+            temp.tileTag += i;
             CreateSprite(&temp, xPos + (i * 32) + 16, 10, 1);
         }
 
-        // Create partner's name text sprites
         xPos = GetStringCenterAlignXOffset(1, gLinkPlayers[GetMultiplayerId() ^ 1].name, 120);
-        for (i = 0; i < GFXTAG_PARTNER_NAME; i++)
+        for (i = 0; i < 3; i++)
         {
-            temp = sSpriteTemplate_MenuText;
-            temp.tileTag += i + GFXTAG_PARTNER_NAME_L;
+            temp = gSpriteTemplate_832DCAC;
+            temp.tileTag += i + 3;
             CreateSprite(&temp, xPos + (i * 32) + 136, 10, 1);
         }
         gMain.state++;
         break;
     case 13:
-        // Create Cancel text sprites
-        temp = sSpriteTemplate_MenuText;
-        temp.tileTag += GFXTAG_CANCEL_L;
+        temp = gSpriteTemplate_832DCAC;
+        temp.tileTag += 6;
         CreateSprite(&temp, 215, 152, 1);
-        temp = sSpriteTemplate_MenuText;
-        temp.tileTag += GFXTAG_CANCEL_R;
+        temp = gSpriteTemplate_832DCAC;
+        temp.tileTag += 7;
         CreateSprite(&temp, 247, 152, 1);
 
-        // Create Choose a Pokémon text sprites (only 3 are needed, other 3 are empty)
-        for (i = 0; i < GFXTAG_CHOOSE_PKMN; i++)
+        for (i = 0; i < PARTY_SIZE; i++)
         {
-            temp = sSpriteTemplate_MenuText;
-            temp.tileTag += i + GFXTAG_CHOOSE_PKMN_L;
+            temp = gSpriteTemplate_832DCAC;
+            temp.tileTag += i + 8;
             CreateSprite(&temp, (i * 32) + 24, 150, 1);
         }
 
-        sTradeMenuData->cursorSpriteId = CreateSprite(&sSpriteTemplate_Cursor, sTradeMonSpriteCoords[0][0] * 8 + 32, sTradeMonSpriteCoords[0][1] * 8, 2);
+        sTradeMenuData->cursorSpriteIdx = CreateSprite(&gSpriteTemplate_832DC94, sTradeMonSpriteCoords[0][0] * 8 + 32, sTradeMonSpriteCoords[0][1] * 8, 2);
         sTradeMenuData->cursorPosition = 0;
         gMain.state++;
         rbox_fill_rectangle(0);
@@ -589,7 +569,7 @@ static void CB2_CreateTradeMenu(void)
         sTradeMenuData->bg3hofs = 0;
         SetTradePartyMonsVisible();
         gMain.state++;
-        PlayBGM(MUS_SCHOOL);
+        PlayBGM(MUS_P_SCHOOL);
         break;
     case 15:
         SetTradePartyLiveStatuses(TRADE_PARTNER);
@@ -605,7 +585,7 @@ static void CB2_CreateTradeMenu(void)
         gMain.state++;
         break;
     case 18:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
         gMain.state++;
         break;
     case 19:
@@ -719,11 +699,11 @@ static void CB2_ReturnToTradeMenu(void)
         gMain.state++;
         break;
     case 10:
-        DrawTextWindowAndBufferTiles(gSaveBlock2Ptr->playerName, sMenuTextTileBuffers[GFXTAG_PLAYER_NAME_L], 0, 0, 3);
+        DrawTextWindowAndBufferTiles(gSaveBlock2Ptr->playerName, sMessageBoxTileBuffers[0], 0, 0, 3);
         id = GetMultiplayerId();
-        DrawTextWindowAndBufferTiles(gLinkPlayers[id ^ 1].name, sMenuTextTileBuffers[GFXTAG_PARTNER_NAME_L], 0, 0, 3);
-        DrawTextWindowAndBufferTiles(sTradeActionTexts[TRADE_TEXT_CANCEL], sMenuTextTileBuffers[GFXTAG_CANCEL_L], 0, 0, 2);
-        DrawBottomRowText(sTradeActionTexts[TRADE_TEXT_CHOOSE_MON], sMenuTextTileBuffers[GFXTAG_CHOOSE_PKMN_L], 24);
+        DrawTextWindowAndBufferTiles(gLinkPlayers[id ^ 1].name, sMessageBoxTileBuffers[3], 0, 0, 3);
+        DrawTextWindowAndBufferTiles(sTradeActionTexts[TRADE_TEXT_CANCEL], sMessageBoxTileBuffers[6], 0, 0, 2);
+        DrawTextWindowAndBuffer6Bytes(sTradeActionTexts[TRADE_TEXT_CHOOSE_MON], sMessageBoxTileBuffers[8], 24);
         gMain.state++;
         sTradeMenuData->timer = 0;
         break;
@@ -732,39 +712,35 @@ static void CB2_ReturnToTradeMenu(void)
             gMain.state++;
         break;
     case 12:
-        // Create player's name text sprites
         xPos = GetStringCenterAlignXOffset(1, gSaveBlock2Ptr->playerName, 120);
-        for (i = 0; i < GFXTAG_PLAYER_NAME; i++)
+        for (i = 0; i < 3; i++)
         {
-            temp = sSpriteTemplate_MenuText;
-            temp.tileTag += i + GFXTAG_PLAYER_NAME_L;
+            temp = gSpriteTemplate_832DCAC;
+            temp.tileTag += i;
             CreateSprite(&temp, xPos + (i * 32) + 16, 10, 1);
         }
 
-        // Create partner's name text sprites
         xPos = GetStringCenterAlignXOffset(1, gLinkPlayers[GetMultiplayerId() ^ 1].name, 120);
-        for (i = 0; i < GFXTAG_PARTNER_NAME; i++)
+        for (i = 0; i < 3; i++)
         {
-            temp = sSpriteTemplate_MenuText;
-            temp.tileTag += i + GFXTAG_PARTNER_NAME_L;
+            temp = gSpriteTemplate_832DCAC;
+            temp.tileTag += i + 3;
             CreateSprite(&temp, xPos + (i * 32) + 136, 10, 1);
         }
         gMain.state++;
         break;
     case 13:
-        // Create Cancel text sprites
-        temp = sSpriteTemplate_MenuText;
-        temp.tileTag += GFXTAG_CANCEL_L;
+        temp = gSpriteTemplate_832DCAC;
+        temp.tileTag += 6;
         CreateSprite(&temp, 215, 152, 1);
-        temp = sSpriteTemplate_MenuText;
-        temp.tileTag += GFXTAG_CANCEL_R;
+        temp = gSpriteTemplate_832DCAC;
+        temp.tileTag += 7;
         CreateSprite(&temp, 247, 152, 1);
 
-        // Create Choose a Pokémon text sprites
-        for (i = 0; i < GFXTAG_CHOOSE_PKMN; i++)
+        for (i = 0; i < PARTY_SIZE; i++)
         {
-            temp = sSpriteTemplate_MenuText;
-            temp.tileTag += i + GFXTAG_CHOOSE_PKMN_L;
+            temp = gSpriteTemplate_832DCAC;
+            temp.tileTag += i + 8;
             CreateSprite(&temp, (i * 32) + 24, 150, 1);
         }
 
@@ -773,9 +749,7 @@ static void CB2_ReturnToTradeMenu(void)
         else
             sTradeMenuData->cursorPosition = gLastViewedMonIndex + PARTY_SIZE;
 
-        sTradeMenuData->cursorSpriteId = CreateSprite(&sSpriteTemplate_Cursor, 
-                                                     sTradeMonSpriteCoords[sTradeMenuData->cursorPosition][0] * 8 + 32, 
-                                                     sTradeMonSpriteCoords[sTradeMenuData->cursorPosition][1] * 8, 2);
+        sTradeMenuData->cursorSpriteIdx = CreateSprite(&gSpriteTemplate_832DC94, sTradeMonSpriteCoords[sTradeMenuData->cursorPosition][0] * 8 + 32, sTradeMonSpriteCoords[sTradeMenuData->cursorPosition][1] * 8, 2);
         gMain.state = 16;
         break;
     case 16:
@@ -791,8 +765,8 @@ static void CB2_ReturnToTradeMenu(void)
         break;
     case 18:
         gPaletteFade.bufferTransferDisabled = FALSE;
-        BlendPalettes(PALETTES_ALL, 16, RGB_BLACK);
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+        BlendPalettes(0xFFFFFFFF, 16, RGB_BLACK);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
         gMain.state++;
         break;
     case 19:
@@ -832,7 +806,7 @@ static void LinkTradeFadeOut(void)
 {
     if (++sTradeMenuData->timer > 15)
     {
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
         sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_LINK_TRADE_WAIT_FADE;
     }
 }
@@ -850,7 +824,7 @@ static void LinkTradeWaitForFade(void)
         }
         else
         {
-            SetCloseLinkCallbackAndType(32);
+            sub_800ABF4(32);
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_START_LINK_TRADE;
         }
     }
@@ -865,7 +839,7 @@ static void SetLinkTradeCallbacks(void)
     {
         if (IsLinkRfuTaskFinished())
         {
-            Free(sMenuTextAllocBuffer);
+            Free(sMessageBoxAllocBuffer);
             FreeAllWindowBuffers();
             Free(sTradeMenuData);
             gMain.callback1 = NULL;
@@ -878,7 +852,7 @@ static void SetLinkTradeCallbacks(void)
     {
         if (!gReceivedRemoteLinkPlayers)
         {
-            Free(sMenuTextAllocBuffer);
+            Free(sMessageBoxAllocBuffer);
             FreeAllWindowBuffers();
             Free(sTradeMenuData);
             gMain.callback1 = NULL;
@@ -987,13 +961,12 @@ static bool8 BufferTradeParties(void)
     switch (sTradeMenuData->bufferPartyState)
     {
     case 0:
-        // The parties are sent in pairs rather than all at once
         Trade_Memcpy(gBlockSendBuffer, &gPlayerParty[0], 2 * sizeof(struct Pokemon));
         sTradeMenuData->bufferPartyState++;
         sTradeMenuData->timer = 0;
         break;
     case 1:
-        if (IsLinkTradeTaskFinished())
+        if (sub_80771BC())
         {
             if (_GetBlockReceivedStatus() == 0)
             {
@@ -1009,7 +982,7 @@ static bool8 BufferTradeParties(void)
     case 3:
         if (id == 0)
         {
-            RequestLinkData(1);
+            sub_80771AC(1);
         }
         sTradeMenuData->bufferPartyState++;
         break;
@@ -1028,71 +1001,71 @@ static bool8 BufferTradeParties(void)
     case 7:
         if (id == 0)
         {
-            RequestLinkData(1);
+            sub_80771AC(1);
         }
         sTradeMenuData->bufferPartyState++;
         break;
     case 8:
         if (_GetBlockReceivedStatus() == 3)
         {
-            Trade_Memcpy(&gEnemyParty[2], gBlockRecvBuffer[id ^ 1],  2 * sizeof(struct Pokemon));
+            Trade_Memcpy(&gEnemyParty[2], gBlockRecvBuffer[id ^ 1], 200);
             TradeResetReceivedFlags();
             sTradeMenuData->bufferPartyState++;
         }
         break;
     case 9:
-        Trade_Memcpy(gBlockSendBuffer, &gPlayerParty[4], 2 * sizeof(struct Pokemon));
+        Trade_Memcpy(gBlockSendBuffer, &gPlayerParty[4], 200);
         sTradeMenuData->bufferPartyState++;
         break;
     case 11:
         if (id == 0)
         {
-            RequestLinkData(1);
+            sub_80771AC(1);
         }
         sTradeMenuData->bufferPartyState++;
         break;
     case 12:
         if (_GetBlockReceivedStatus() == 3)
         {
-            Trade_Memcpy(&gEnemyParty[4], gBlockRecvBuffer[id ^ 1], 2 * sizeof(struct Pokemon));
+            Trade_Memcpy(&gEnemyParty[4], gBlockRecvBuffer[id ^ 1], 200);
             TradeResetReceivedFlags();
             sTradeMenuData->bufferPartyState++;
         }
         break;
     case 13:
-        Trade_Memcpy(gBlockSendBuffer, gSaveBlock1Ptr->mail, PARTY_SIZE * sizeof(struct MailStruct) + 4);
+        Trade_Memcpy(gBlockSendBuffer, gSaveBlock1Ptr->mail, 220);
         sTradeMenuData->bufferPartyState++;
         break;
     case 15:
         if (id == 0)
         {
-            RequestLinkData(3);
+            sub_80771AC(3);
         }
         sTradeMenuData->bufferPartyState++;
         break;
     case 16:
         if (_GetBlockReceivedStatus() == 3)
         {
-            Trade_Memcpy(gTradeMail, gBlockRecvBuffer[id ^ 1], PARTY_SIZE * sizeof(struct MailStruct));
+            Trade_Memcpy(gTradeMail, gBlockRecvBuffer[id ^ 1], 216);
             TradeResetReceivedFlags();
             sTradeMenuData->bufferPartyState++;
         }
         break;
     case 17:
-        Trade_Memcpy(gBlockSendBuffer, gSaveBlock1Ptr->giftRibbons, sizeof(sTradeMenuData->giftRibbons));
+        Trade_Memcpy(gBlockSendBuffer, gSaveBlock1Ptr->giftRibbons, ARRAY_COUNT(sTradeMenuData->giftRibbons));
         sTradeMenuData->bufferPartyState++;
         break;
     case 19:
         if (id == 0)
         {
-            RequestLinkData(4);
+            sub_80771AC(4);
         }
         sTradeMenuData->bufferPartyState++;
         break;
     case 20:
         if (_GetBlockReceivedStatus() == 3)
         {
-            Trade_Memcpy(sTradeMenuData->giftRibbons, gBlockRecvBuffer[id ^ 1], sizeof(sTradeMenuData->giftRibbons));
+            Trade_Memcpy(sTradeMenuData->giftRibbons, gBlockRecvBuffer[id ^ 1], ARRAY_COUNT(sTradeMenuData->giftRibbons));
             TradeResetReceivedFlags();
             sTradeMenuData->bufferPartyState++;
         }
@@ -1134,9 +1107,9 @@ static bool8 BufferTradeParties(void)
     return FALSE;
 }
 
-static void DrawIsThisTradeOkay(void)
+static void PrintAndBufferIsThisTradeOkay(void)
 {
-    DrawBottomRowText(sText_IsThisTradeOkay, (void *)(OBJ_VRAM0 + (sTradeMenuData->bottomTextTileStart * 32)), 24);
+    DrawTextWindowAndBuffer6Bytes(sText_IsThisTradeOkay, (void *)(OBJ_VRAM0 + (sTradeMenuData->bottomTextTileStart * 32)), 24);
 }
 
 // mpId is unused
@@ -1191,12 +1164,12 @@ static void ReactToLinkTradeData(u8 mpId, u8 status)
     {
         switch (gBlockRecvBuffer[0][0])
         {
-        case LINKCMD_BOTH_CANCEL_TRADE:
-            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        case LINKCMD_CANCEL_TRADE:
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             PrintTradeMessage(TRADE_MSG_WAITING_FOR_FRIEND);
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_CANCEL_TRADE_1;
             break;
-        case LINKCMD_PARTNER_CANCEL_TRADE:
+        case LINKCMD_0xEECC:
             PrintTradeMessage(TRADE_MSG_FRIEND_WANTS_TO_TRADE);
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_REDRAW_MAIN_MENU;
             break;
@@ -1208,10 +1181,10 @@ static void ReactToLinkTradeData(u8 mpId, u8 status)
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_CONFIRM_TRADE_PROMPT;
             break;
         case LINKCMD_START_TRADE:
-            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_LINK_TRADE_WAIT_FADE;
             break;
-        case LINKCMD_PLAYER_CANCEL_TRADE:
+        case LINKCMD_0xDDEE:
             PrintTradeMessage(TRADE_MSG_CANCELED);
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_REDRAW_MAIN_MENU;
         }
@@ -1226,7 +1199,7 @@ static void QueueLinkTradeData(void)
 {
     if (sTradeMenuData->playerLinkFlagChoseAction && sTradeMenuData->partnerLinkFlagChoseAction)
     {
-        if (sTradeMenuData->playerLinkFlagChoseAction == WANTS_TO_TRADE
+        if (sTradeMenuData->playerLinkFlagChoseAction == WANTS_TO_TRADE 
             && sTradeMenuData->partnerLinkFlagChoseAction == WANTS_TO_TRADE)
         {
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_BOTH_MONS_SELECTED;
@@ -1235,35 +1208,35 @@ static void QueueLinkTradeData(void)
             QueueAction(QUEUE_DELAY_DATA, QUEUE_SEND_DATA);
             sTradeMenuData->playerLinkFlagChoseAction = sTradeMenuData->partnerLinkFlagChoseAction = 0;
         }
-        else if (sTradeMenuData->playerLinkFlagChoseAction == WANTS_TO_TRADE
+        else if (sTradeMenuData->playerLinkFlagChoseAction == WANTS_TO_TRADE 
               && sTradeMenuData->partnerLinkFlagChoseAction == WANTS_TO_CANCEL)
         {
             PrintTradeMessage(TRADE_MSG_CANCELED);
-            sTradeMenuData->linkData[0] = LINKCMD_PARTNER_CANCEL_TRADE;
+            sTradeMenuData->linkData[0] = LINKCMD_0xEECC;
             sTradeMenuData->linkData[1] = 0;
             QueueAction(QUEUE_DELAY_DATA, QUEUE_SEND_DATA);
             sTradeMenuData->playerLinkFlagStatus = sTradeMenuData->partnerLinkFlagStatus = 0;
             sTradeMenuData->playerLinkFlagChoseAction = sTradeMenuData->partnerLinkFlagChoseAction = 0;
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_REDRAW_MAIN_MENU;
         }
-        else if (sTradeMenuData->playerLinkFlagChoseAction == WANTS_TO_CANCEL
+        else if (sTradeMenuData->playerLinkFlagChoseAction == WANTS_TO_CANCEL 
               && sTradeMenuData->partnerLinkFlagChoseAction == WANTS_TO_TRADE)
         {
             PrintTradeMessage(TRADE_MSG_FRIEND_WANTS_TO_TRADE);
-            sTradeMenuData->linkData[0] = LINKCMD_PLAYER_CANCEL_TRADE;
+            sTradeMenuData->linkData[0] = LINKCMD_0xDDEE;
             sTradeMenuData->linkData[1] = 0;
             QueueAction(QUEUE_DELAY_DATA, QUEUE_SEND_DATA);
             sTradeMenuData->playerLinkFlagStatus = sTradeMenuData->partnerLinkFlagStatus = 0;
             sTradeMenuData->playerLinkFlagChoseAction = sTradeMenuData->partnerLinkFlagChoseAction = 0;
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_REDRAW_MAIN_MENU;
         }
-        else if (sTradeMenuData->playerLinkFlagChoseAction == WANTS_TO_CANCEL
+        else if (sTradeMenuData->playerLinkFlagChoseAction == WANTS_TO_CANCEL 
               && sTradeMenuData->partnerLinkFlagChoseAction == WANTS_TO_CANCEL)
         {
-            sTradeMenuData->linkData[0] = LINKCMD_BOTH_CANCEL_TRADE;
+            sTradeMenuData->linkData[0] = LINKCMD_CANCEL_TRADE;
             sTradeMenuData->linkData[1] = 0;
             QueueAction(QUEUE_DELAY_DATA, QUEUE_SEND_DATA);
-            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             sTradeMenuData->playerLinkFlagChoseAction = sTradeMenuData->partnerLinkFlagChoseAction = 0;
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_CANCEL_TRADE_1;
         }
@@ -1271,7 +1244,7 @@ static void QueueLinkTradeData(void)
 
     if (sTradeMenuData->playerLinkFlagStatus && sTradeMenuData->partnerLinkFlagStatus)
     {
-        if (sTradeMenuData->playerLinkFlagStatus == INITIATE_TRADE
+        if (sTradeMenuData->playerLinkFlagStatus == INITIATE_TRADE 
          && sTradeMenuData->partnerLinkFlagStatus == INITIATE_TRADE)
         {
             sTradeMenuData->linkData[0] = LINKCMD_START_TRADE;
@@ -1282,11 +1255,11 @@ static void QueueLinkTradeData(void)
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_LINK_TRADE_FADE_OUT;
         }
 
-        if (sTradeMenuData->playerLinkFlagStatus == CANCEL_TRADE
+        if (sTradeMenuData->playerLinkFlagStatus == CANCEL_TRADE 
          || sTradeMenuData->partnerLinkFlagStatus == CANCEL_TRADE)
         {
             PrintTradeMessage(TRADE_MSG_CANCELED);
-            sTradeMenuData->linkData[0] = LINKCMD_PLAYER_CANCEL_TRADE;
+            sTradeMenuData->linkData[0] = LINKCMD_0xDDEE;
             sTradeMenuData->linkData[1] = 0;
             QueueAction(QUEUE_DELAY_DATA, QUEUE_SEND_DATA);
             sTradeMenuData->playerLinkFlagStatus = 0;
@@ -1348,15 +1321,15 @@ static void TradeMenuMoveCursor(u8 *cursorPosition, u8 direction)
 
     if (newPosition == (PARTY_SIZE * 2)) // CANCEL
     {
-        StartSpriteAnim(&gSprites[sTradeMenuData->cursorSpriteId], CURSOR_ANIM_ON_CANCEL);
-        gSprites[sTradeMenuData->cursorSpriteId].pos1.x = DISPLAY_WIDTH - 16;
-        gSprites[sTradeMenuData->cursorSpriteId].pos1.y = DISPLAY_HEIGHT;
+        StartSpriteAnim(&gSprites[sTradeMenuData->cursorSpriteIdx], 1);
+        gSprites[sTradeMenuData->cursorSpriteIdx].pos1.x = 224;
+        gSprites[sTradeMenuData->cursorSpriteIdx].pos1.y = 160;
     }
     else
     {
-        StartSpriteAnim(&gSprites[sTradeMenuData->cursorSpriteId], CURSOR_ANIM_NORMAL);
-        gSprites[sTradeMenuData->cursorSpriteId].pos1.x = sTradeMonSpriteCoords[newPosition][0] * 8 + 32;
-        gSprites[sTradeMenuData->cursorSpriteId].pos1.y = sTradeMonSpriteCoords[newPosition][1] * 8;
+        StartSpriteAnim(&gSprites[sTradeMenuData->cursorSpriteIdx], 0);
+        gSprites[sTradeMenuData->cursorSpriteIdx].pos1.x = sTradeMonSpriteCoords[newPosition][0] * 8 + 32;
+        gSprites[sTradeMenuData->cursorSpriteIdx].pos1.y = sTradeMonSpriteCoords[newPosition][1] * 8;
     }
 
     if (*cursorPosition != newPosition)
@@ -1380,24 +1353,24 @@ static void SetReadyToTrade(void)
 
 static void TradeMenuProcessInput(void)
 {
-    if (JOY_REPEAT(DPAD_UP))
+    if (gMain.newAndRepeatedKeys & DPAD_UP)
     {
         TradeMenuMoveCursor(&sTradeMenuData->cursorPosition, 0);
     }
-    else if (JOY_REPEAT(DPAD_DOWN))
+    else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
     {
         TradeMenuMoveCursor(&sTradeMenuData->cursorPosition, 1);
     }
-    else if (JOY_REPEAT(DPAD_LEFT))
+    else if (gMain.newAndRepeatedKeys & DPAD_LEFT)
     {
         TradeMenuMoveCursor(&sTradeMenuData->cursorPosition, 2);
     }
-    else if (JOY_REPEAT(DPAD_RIGHT))
+    else if (gMain.newAndRepeatedKeys & DPAD_RIGHT)
     {
         TradeMenuMoveCursor(&sTradeMenuData->cursorPosition, 3);
     }
 
-    if (JOY_NEW(A_BUTTON))
+    if (gMain.newKeys & A_BUTTON)
     {
         PlaySE(SE_SELECT);
 
@@ -1415,7 +1388,7 @@ static void TradeMenuProcessInput(void)
         // Cursor is in partner's party
         else if (sTradeMenuData->cursorPosition < PARTY_SIZE * 2)
         {
-            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_SHOW_MON_SUMMARY;
         }
         // Cursor is on Cancel
@@ -1423,7 +1396,7 @@ static void TradeMenuProcessInput(void)
         {
             CreateYesNoMenu(&sTradeYesNoWindowTemplate, 1, 14, 0);
             sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_CANCEL_TRADE_PROMPT;
-            DrawBottomRowText(sTradeActionTexts[TRADE_TEXT_CANCEL_TRADE], (void *)(OBJ_VRAM0 + sTradeMenuData->bottomTextTileStart * 32), 24);
+            DrawTextWindowAndBuffer6Bytes(sTradeActionTexts[TRADE_TEXT_CANCEL_TRADE], (void *)(OBJ_VRAM0 + sTradeMenuData->bottomTextTileStart * 32), 24);
         }
     }
 }
@@ -1432,8 +1405,8 @@ static void TradeMenuChooseMon(void)
 {
     PrintNicknamesForTradeMenu();
     sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_MAIN_MENU;
-    gSprites[sTradeMenuData->cursorSpriteId].invisible = FALSE;
-    DrawBottomRowText(sTradeActionTexts[TRADE_TEXT_CHOOSE_MON], (void *)(OBJ_VRAM0 + sTradeMenuData->bottomTextTileStart * 32), 24);
+    gSprites[sTradeMenuData->cursorSpriteIdx].invisible = FALSE;
+    DrawTextWindowAndBuffer6Bytes(sTradeActionTexts[TRADE_TEXT_CHOOSE_MON], (void *)(OBJ_VRAM0 + sTradeMenuData->bottomTextTileStart * 32), 24);
 }
 
 static void TradeMenuProcessInput_SelectedMon(void)
@@ -1447,7 +1420,7 @@ static void TradeMenuProcessInput_SelectedMon(void)
     case MENU_NOTHING_CHOSEN:
         break;
     case 0: // Summary
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
         sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_SHOW_MON_SUMMARY;
         break;
     case 1: // Trade
@@ -1455,7 +1428,7 @@ static void TradeMenuProcessInput_SelectedMon(void)
         {
         case CAN_TRADE_MON:
             SetReadyToTrade();
-            gSprites[sTradeMenuData->cursorSpriteId].invisible = TRUE;
+            gSprites[sTradeMenuData->cursorSpriteIdx].invisible = TRUE;
             break;
         case CANT_TRADE_LAST_MON:
             QueueAction(QUEUE_DELAY_MSG, QUEUE_ONLY_MON2);
@@ -1478,7 +1451,7 @@ static void TradeMenuProcessInput_SelectedMon(void)
 
 static void ChooseMonAfterButtonPress(void)
 {
-    if ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON)))
+    if ((gMain.newKeys & A_BUTTON) || (gMain.newKeys & B_BUTTON))
     {
         PlaySE(SE_SELECT);
         TradeMenuChooseMon();
@@ -1491,10 +1464,10 @@ static void TradeMenuShowMonSummaryScreen(void)
     {
         // Player's party
         if (sTradeMenuData->cursorPosition < PARTY_SIZE)
-            ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gPlayerParty, sTradeMenuData->cursorPosition, sTradeMenuData->partyCounts[TRADE_PLAYER] - 1, CB2_ReturnToTradeMenu);
+            ShowPokemonSummaryScreen(PSS_MODE_UNK1, gPlayerParty, sTradeMenuData->cursorPosition, sTradeMenuData->partyCounts[TRADE_PLAYER] - 1, CB2_ReturnToTradeMenu);
         // Partner's party
         else
-            ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, sTradeMenuData->cursorPosition - PARTY_SIZE, sTradeMenuData->partyCounts[TRADE_PARTNER] - 1, CB2_ReturnToTradeMenu);
+            ShowPokemonSummaryScreen(PSS_MODE_UNK1, gEnemyParty, sTradeMenuData->cursorPosition - PARTY_SIZE, sTradeMenuData->partyCounts[TRADE_PARTNER] - 1, CB2_ReturnToTradeMenu);
         FreeAllWindowBuffers();
     }
 }
@@ -1517,7 +1490,7 @@ static u8 CheckValidityOfTradeMons(u8 *aliveMons, u8 playerPartyCount, u8 player
     // Partner cant trade illegitimate Deoxys or Mew
     if (partnerSpecies == SPECIES_DEOXYS || partnerSpecies == SPECIES_MEW)
     {
-        if (!GetMonData(&gEnemyParty[partnerMonIdx], MON_DATA_EVENT_LEGAL))
+        if (!GetMonData(&gEnemyParty[partnerMonIdx], MON_DATA_OBEDIENCE))
             return PARTNER_MON_INVALID;
     }
 
@@ -1531,7 +1504,7 @@ static u8 CheckValidityOfTradeMons(u8 *aliveMons, u8 playerPartyCount, u8 player
     if (hasLiveMon)
         hasLiveMon = BOTH_MONS_VALID;
 
-    return hasLiveMon; //PLAYER_MON_INVALID or BOTH_MONS_VALID
+    return hasLiveMon; //PLAYER_MON_INVALID or BOTH_MONS_VALID 
 }
 
 // Returns TRUE if the partner's selected mon is invalid, FALSE otherwise
@@ -1545,9 +1518,7 @@ static bool32 CheckMonsBeforeTrade(void)
         aliveMons[i] = sTradeMenuData->isLiveMon[TRADE_PLAYER][i];
     }
 
-    switch (CheckValidityOfTradeMons(aliveMons, sTradeMenuData->partyCounts[TRADE_PLAYER], 
-                                                sTradeMenuData->cursorPosition, 
-                                                sTradeMenuData->partnerCursorPosition))
+    switch (CheckValidityOfTradeMons(aliveMons, sTradeMenuData->partyCounts[TRADE_PLAYER], sTradeMenuData->cursorPosition, sTradeMenuData->partnerCursorPosition))
     {
     case PLAYER_MON_INVALID:
         QueueAction(QUEUE_DELAY_MSG, QUEUE_ONLY_MON2);
@@ -1580,7 +1551,7 @@ static void ConfirmOrCancelTrade(void)
     case 1: // Cancel Trade
     case MENU_B_PRESSED:
         QueueAction(QUEUE_DELAY_MSG, QUEUE_STANDBY);
-        if (IsLinkTradeTaskFinished())
+        if (sub_80771BC())
             SetLinkData(LINKCMD_READY_CANCEL_TRADE, 0);
         sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_STANDBY;
         PutWindowTilemap(17);
@@ -1588,8 +1559,7 @@ static void ConfirmOrCancelTrade(void)
     }
 }
 
-// Only when choosing Yes to cancel, when No is chosen all are redrawn anyway 
-static void RestoreNicknamesCoveredByYesNo(void)
+static void sub_807929C(void)
 {
     int i;
 
@@ -1607,9 +1577,9 @@ static void CancelTradeYesNo(void)
     case 0: // YES, Cancel
         PrintTradeMessage(TRADE_MSG_WAITING_FOR_FRIEND);
         SetLinkData(LINKCMD_REQUEST_CANCEL, 0);
-        gSprites[sTradeMenuData->cursorSpriteId].invisible = TRUE;
+        gSprites[sTradeMenuData->cursorSpriteIdx].invisible = TRUE;
         sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_STANDBY;
-        RestoreNicknamesCoveredByYesNo();
+        sub_807929C();
         break;
     case 1: // NO, Continue
     case MENU_B_PRESSED:
@@ -1635,7 +1605,7 @@ static void ConfirmTradePrompt(void)
     if (sTradeMenuData->drawPartyState[TRADE_PLAYER] == DRAW_PARTY_FINISH
         && sTradeMenuData->drawPartyState[TRADE_PARTNER] == DRAW_PARTY_FINISH)
     {
-        DrawIsThisTradeOkay();
+        PrintAndBufferIsThisTradeOkay();
         sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_DELAY_TRADE_CONFIRM;
     }
 }
@@ -1656,7 +1626,7 @@ static void RedrawTradeMenuAfterPressA(void)
 {
     int i;
 
-    if (JOY_NEW(A_BUTTON))
+    if (gMain.newKeys & A_BUTTON)
     {
         PlaySE(SE_SELECT);
         rbox_fill_rectangle(0);
@@ -1671,7 +1641,7 @@ static void RedrawTradeMenuAfterPressA(void)
         RedrawTradeMenuParty(TRADE_PLAYER);
         RedrawTradeMenuParty(TRADE_PARTNER);
         sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_MAIN_MENU;
-        gSprites[sTradeMenuData->cursorSpriteId].invisible = FALSE;
+        gSprites[sTradeMenuData->cursorSpriteIdx].invisible = FALSE;
     }
 }
 
@@ -1681,11 +1651,11 @@ static void CancelTrade_1(void)
     {
         if (gWirelessCommType)
         {
-            SetLinkStandbyCallback();
+            sub_800ADF8();
         }
         else
         {
-            SetCloseLinkCallbackAndType(12);
+            sub_800ABF4(12);
         }
 
         sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_CANCEL_TRADE_2;
@@ -1696,9 +1666,9 @@ static void CancelTrade_2(void)
 {
     if (gWirelessCommType)
     {
-        if (IsLinkTradeTaskFinished() && GetNumQueuedActions() == 0)
+        if (sub_80771BC() && GetNumQueuedActions() == 0)
         {
-            Free(sMenuTextAllocBuffer);
+            Free(sMessageBoxAllocBuffer);
             Free(sTradeMenuData);
             FreeAllWindowBuffers();
             DestroyWirelessStatusIndicatorSprite();
@@ -1709,7 +1679,7 @@ static void CancelTrade_2(void)
     {
         if (!gReceivedRemoteLinkPlayers)
         {
-            Free(sMenuTextAllocBuffer);
+            Free(sMessageBoxAllocBuffer);
             Free(sTradeMenuData);
             FreeAllWindowBuffers();
             SetMainCallback2(CB2_ReturnToFieldFromMultiplayer);
@@ -1721,14 +1691,14 @@ static void LinkTradeWaitForQueue(void)
 {
     if (!sub_801048C(FALSE) && GetNumQueuedActions() == 0)
     {
-        SetLinkStandbyCallback();
+        sub_800ADF8();
         sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_START_LINK_TRADE;
     }
 }
 
 static void PartnersMonWasInvalid(void)
 {
-    if (JOY_NEW(A_BUTTON))
+    if (gMain.newKeys & A_BUTTON)
     {
         SetLinkData(LINKCMD_READY_CANCEL_TRADE, 0);
         sTradeMenuData->tradeMenuFunc = TRADEMENUFUNC_STANDBY;
@@ -1837,8 +1807,7 @@ static void DrawTradeMenuParty(u8 whichParty)
 
         gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].invisible = FALSE;
         gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].data[0] = 20;
-        gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].data[2] = (sTradeMonSpriteCoords[selectedMonParty * PARTY_SIZE][0]
-                                                                                                         + sTradeMonSpriteCoords[selectedMonParty * PARTY_SIZE + 1][0]) / 2 * 8 + 14;
+        gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].data[2] = (sTradeMonSpriteCoords[selectedMonParty * PARTY_SIZE][0] + sTradeMonSpriteCoords[selectedMonParty * PARTY_SIZE + 1][0]) / 2 * 8 + 14;
         gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].data[4] = (sTradeMonSpriteCoords[selectedMonParty * PARTY_SIZE][1] * 8) - 12;
         StoreSpriteCallbackInData6(&gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]], SpriteCB_MonIcon);
         sTradeMenuData->drawPartyState[whichParty]++;
@@ -1857,8 +1826,7 @@ static void DrawTradeMenuParty(u8 whichParty)
     case 3:
         CopyToBgTilemapBufferRect_ChangePalette(1, sTradeMovesBoxTilemap, selectedMonParty * 15, 0, 15, 17, 0);
         CopyBgTilemapBufferToVram(1);
-        gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].pos1.x = (sTradeMonSpriteCoords[selectedMonParty * PARTY_SIZE][0]
-                                                                                                        + sTradeMonSpriteCoords[selectedMonParty * PARTY_SIZE + 1][0]) / 2 * 8 + 14;
+        gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].pos1.x = (sTradeMonSpriteCoords[selectedMonParty * PARTY_SIZE][0] + sTradeMonSpriteCoords[selectedMonParty * PARTY_SIZE + 1][0]) / 2 * 8 + 14;
         gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].pos1.y = (sTradeMonSpriteCoords[selectedMonParty * PARTY_SIZE][1] * 8) - 12;
         gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].pos2.x = 0;
         gSprites[sTradeMenuData->partySpriteIds[0][partyIdx + (selectedMonParty * PARTY_SIZE)]].pos2.y = 0;
@@ -1873,10 +1841,10 @@ static void DrawTradeMenuParty(u8 whichParty)
         sTradeMenuData->drawPartyState[whichParty]++;
         break;
     case 4:
-        DrawTradeMenuPartyMonInfo(whichParty, partyIdx,
-            sTradeMenuPartyMonBoxDimensions[whichParty][0] + 4,
-            sTradeMenuPartyMonBoxDimensions[whichParty][1] + 1,
-            sTradeMenuPartyMonBoxDimensions[whichParty][0],
+        DrawTradeMenuPartyMonInfo(whichParty, partyIdx, 
+            sTradeMenuPartyMonBoxDimensions[whichParty][0] + 4, 
+            sTradeMenuPartyMonBoxDimensions[whichParty][1] + 1, 
+            sTradeMenuPartyMonBoxDimensions[whichParty][0], 
             sTradeMenuPartyMonBoxDimensions[whichParty][1]);
         sTradeMenuData->drawPartyState[whichParty]++;
         break;
@@ -2060,7 +2028,7 @@ static void ResetTradeMenuPartyPositions(u8 whichParty)
 static void PrintNicknamesForTradeMenu(void)
 {
     rbox_fill_rectangle(1);
-  //PrintPartyNicknamesForTradeMenu(TRADE_PLAYER); ?
+  //PrintPartyNicknamesForTradeMenu(TRADE_PLAYER); ?  
     PrintPartyNicknamesForTradeMenu(TRADE_PARTNER);
 }
 
@@ -2071,7 +2039,7 @@ static void RedrawTradeMenuParty(u8 whichParty)
     DrawTradeMenuPartyInfo(whichParty);
     PrintPartyNicknamesForTradeMenu(whichParty);
     ResetTradeMenuPartyPositions(whichParty);
-    DrawBottomRowText(sTradeActionTexts[TRADE_TEXT_CHOOSE_MON], (void *)(OBJ_VRAM0 + (sTradeMenuData->bottomTextTileStart * 32)), 24);
+    DrawTextWindowAndBuffer6Bytes(sTradeActionTexts[TRADE_TEXT_CHOOSE_MON], (void *)(OBJ_VRAM0 + (sTradeMenuData->bottomTextTileStart * 32)), 24);
     sTradeMenuData->drawPartyState[whichParty] = 0;
 }
 
@@ -2175,51 +2143,40 @@ static bool8 LoadTradeMenuSpriteSheetsAndPalettes(void)
 {
     struct SpriteSheet sheet;
 
-    if (sTradeMenuData->timer < GFXTAG_MENU_TEXT_COUNT)
+    if (sTradeMenuData->timer < (int)ARRAY_COUNT(sMessageBoxTileBuffers))
     {
-        sheet.data = sMenuTextTileBuffers[sTradeMenuData->timer];
+        sheet.data = sMessageBoxTileBuffers[sTradeMenuData->timer];
         sheet.size = 0x100;
-        sheet.tag = GFXTAG_MENU_TEXT + sTradeMenuData->timer;
+        sheet.tag = 200 + sTradeMenuData->timer;
     }
 
     switch (sTradeMenuData->timer)
     {
-    case GFXTAG_PLAYER_NAME_L:
-    case GFXTAG_PLAYER_NAME_M:
-    case GFXTAG_PLAYER_NAME_R:
-    case GFXTAG_PARTNER_NAME_L:
-    case GFXTAG_PARTNER_NAME_M:
-    case GFXTAG_PARTNER_NAME_R:
-    case GFXTAG_CANCEL_L:
-    case GFXTAG_CANCEL_R:
+    case 0 ... 7:
         LoadSpriteSheet(&sheet);
         sTradeMenuData->timer++;
         break;
-    case GFXTAG_CHOOSE_PKMN_L:
+    case 8:
         sTradeMenuData->bottomTextTileStart = LoadSpriteSheet(&sheet);
         sTradeMenuData->timer++;
         break;
-    case GFXTAG_CHOOSE_PKMN_M:
-    case GFXTAG_CHOOSE_PKMN_R:
-    case GFXTAG_CHOOSE_PKMN_EMPTY_1:
-    case GFXTAG_CHOOSE_PKMN_EMPTY_2:
-    case GFXTAG_CHOOSE_PKMN_EMPTY_3:
+    case 9 ... 13:
         LoadSpriteSheet(&sheet);
         sTradeMenuData->timer++;
         break;
-    case GFXTAG_MENU_TEXT_COUNT:
+    case 14:
         LoadSpritePalette(&gSpritePalette_TradeScreenText);
         sTradeMenuData->timer++;
         break;
-    case GFXTAG_MENU_TEXT_COUNT + 1:
-        LoadSpritePalette(&sCursor_SpritePalette);
+    case 15:
+        LoadSpritePalette(&gUnknown_0832DC44);
         sTradeMenuData->timer++;
         break;
-    case GFXTAG_MENU_TEXT_COUNT + 2:
-        LoadSpriteSheet(&sCursor_SpriteSheet);
+    case 16:
+        LoadSpriteSheet(&sTradeButtonsSpriteSheet);
         sTradeMenuData->timer++;
         break;
-    case GFXTAG_MENU_TEXT_COUNT + 3:
+    case 17:
         sTradeMenuData->timer = 0;
         return TRUE;
     }
@@ -2227,7 +2184,7 @@ static bool8 LoadTradeMenuSpriteSheetsAndPalettes(void)
     return FALSE;
 }
 
-static void DrawBottomRowText(const u8 *str, u8 *dest, u8 unused)
+static void DrawTextWindowAndBuffer6Bytes(const u8 *str, u8 *dest, u8 unused)
 {
     DrawTextWindowAndBufferTiles(str, dest, 0, 0, 6);
 }
@@ -2373,7 +2330,7 @@ static u32 CanTradeSelectedMon(struct Pokemon *playerParty, int partyCount, int 
 
     if (species[monIdx] == SPECIES_DEOXYS || species[monIdx] == SPECIES_MEW)
     {
-        if (!GetMonData(&playerParty[monIdx], MON_DATA_EVENT_LEGAL))
+        if (!GetMonData(&playerParty[monIdx], MON_DATA_OBEDIENCE))
             return CANT_TRADE_INVALID_MON;
     }
 
@@ -2438,17 +2395,17 @@ s32 GetGameProgressForLinkTrade(void)
     return TRADE_BOTH_PLAYERS_READY;
 }
 
-static bool32 IsDeoxysOrMewUntradable(u16 species, bool8 isEventLegal)
+static bool32 IsDeoxysOrMewUntradable(u16 species, bool8 isObedientBitSet)
 {
     if (species == SPECIES_DEOXYS || species == SPECIES_MEW)
     {
-        if (!isEventLegal)
+        if (!isObedientBitSet)
             return TRUE;
     }
     return FALSE;
 }
 
-int GetUnionRoomTradeMessageId(struct GFtgtGnameSub rfuPlayer, struct GFtgtGnameSub rfuPartner, u16 playerSpecies2, u16 partnerSpecies, u8 requestedType, u16 playerSpecies, u8 isEventLegal)
+int GetUnionRoomTradeMessageId(struct GFtgtGnameSub rfuPlayer, struct GFtgtGnameSub rfuPartner, u16 playerSpecies2, u16 partnerSpecies, u8 requestedType, u16 playerSpecies, u8 isObedientBitSet)
 {
     bool8 playerHasNationalDex = rfuPlayer.hasNationalDex;
     bool8 playerIsChampion = rfuPlayer.isChampion;
@@ -2468,7 +2425,7 @@ int GetUnionRoomTradeMessageId(struct GFtgtGnameSub rfuPlayer, struct GFtgtGname
         }
     }
 
-    if (IsDeoxysOrMewUntradable(playerSpecies, isEventLegal))
+    if (IsDeoxysOrMewUntradable(playerSpecies, isObedientBitSet))
     {
         return UR_TRADE_MSG_MON_CANT_BE_TRADED_2;
     }
@@ -2519,11 +2476,11 @@ int GetUnionRoomTradeMessageId(struct GFtgtGnameSub rfuPlayer, struct GFtgtGname
     return UR_TRADE_MSG_NONE;
 }
 
-int CanRegisterMonForTradingBoard(struct GFtgtGnameSub rfuPlayer, u16 species2, u16 species, u8 isEventLegal)
+int CanRegisterMonForTradingBoard(struct GFtgtGnameSub rfuPlayer, u16 species2, u16 species, u8 isObedientBitSet)
 {
     bool8 hasNationalDex = rfuPlayer.hasNationalDex;
 
-    if (IsDeoxysOrMewUntradable(species, isEventLegal))
+    if (IsDeoxysOrMewUntradable(species, isObedientBitSet))
         return CANT_REGISTER_MON;
 
     if (hasNationalDex)
@@ -2611,37 +2568,36 @@ int CanSpinTradeMon(struct Pokemon *mon, u16 monIdx)
         return CAN_TRADE_MON;
 }
 
-static void SpriteCB_LinkMonGlow(struct Sprite *sprite)
+static void sub_807AA28(struct Sprite *sprite)
 {
     if (++sprite->data[0] == 10)
     {
-        PlaySE(SE_BALL);
+        PlaySE(SE_BOWA);
         sprite->data[0] = 0;
     }
 }
 
-static void SpriteCB_LinkMonGlowWireless(struct Sprite *sprite)
+static void sub_807AA4C(struct Sprite *sprite)
 {
     if (!sprite->invisible && ++sprite->data[0] == 10)
     {
-        PlaySE(SE_M_SWAGGER2);
+        PlaySE(SE_W207B);
         sprite->data[0] = 0;
     }
 }
 
-static void SpriteCB_LinkMonShadow(struct Sprite *sprite)
+static void sub_807AA7C(struct Sprite *sprite)
 {
     if (!sprite->data[1])
     {
         if (++sprite->data[0] == 12)
             sprite->data[0] = 0;
 
-        LoadPalette(&sLinkMonShadow_Pal[sprite->data[0]], (sprite->oam.paletteNum + 16) * 16 + 4, 2);
+        LoadPalette(&gUnknown_08338EA4[sprite->data[0]], (sprite->oam.paletteNum + 16) * 16 + 4, 2);
     }
 }
 
-// Move cable down offscreen
-static void SpriteCB_CableEndSending(struct Sprite *sprite)
+static void sub_807AABC(struct Sprite *sprite)
 {
     sprite->data[0]++;
     sprite->pos2.y++;
@@ -2650,8 +2606,7 @@ static void SpriteCB_CableEndSending(struct Sprite *sprite)
         DestroySprite(sprite);
 }
 
-// Move cable up onscreen
-static void SpriteCB_CableEndReceiving(struct Sprite *sprite)
+static void sub_807AAE0(struct Sprite *sprite)
 {
     sprite->data[0]++;
     sprite->pos2.y--;
@@ -2660,11 +2615,11 @@ static void SpriteCB_CableEndReceiving(struct Sprite *sprite)
         DestroySprite(sprite);
 }
 
-static void SpriteCB_GbaScreen(struct Sprite *sprite)
+static void sub_807AB04(struct Sprite *sprite)
 {
     if (++sprite->data[0] == 15)
     {
-        PlaySE(SE_M_MINIMIZE);
+        PlaySE(SE_W107);
         sprite->data[0] = 0;
     }
 }
@@ -2714,13 +2669,13 @@ static void VBlankCB_Trade(void)
 static void ClearLinkTimeoutCounter(void)
 {
     sTradeData->linkTimeoutCounter = 0;
-    sTradeData->linkTimeoutZero1 = 0;
-    sTradeData->linkTimeoutZero2 = 0;
+    sTradeData->alwaysZero_88 = 0;
+    sTradeData->alwaysZero_89 = 0;
 }
 
 static void CheckForLinkTimeout(void)
 {
-    if (sTradeData->linkTimeoutZero1 == sTradeData->linkTimeoutZero2)
+    if (sTradeData->alwaysZero_88 == sTradeData->alwaysZero_89)
         sTradeData->linkTimeoutCounter++;
     else
         sTradeData->linkTimeoutCounter = 0;
@@ -2730,11 +2685,11 @@ static void CheckForLinkTimeout(void)
         CloseLink();
         SetMainCallback2(CB2_LinkError);
         sTradeData->linkTimeoutCounter = 0;
-        sTradeData->linkTimeoutZero2 = 0;
-        sTradeData->linkTimeoutZero1 = 0;
+        sTradeData->alwaysZero_89 = 0;
+        sTradeData->alwaysZero_88 = 0;
     }
 
-    sTradeData->linkTimeoutZero2 = sTradeData->linkTimeoutZero1;
+    sTradeData->alwaysZero_89 = sTradeData->alwaysZero_88;
 }
 
 static u32 TradeGetMultiplayerId(void)
@@ -2770,9 +2725,9 @@ static void LoadTradeMonPic(u8 whichParty, u8 state)
         personality = GetMonData(mon, MON_DATA_PERSONALITY);
 
         if (whichParty == TRADE_PLAYER)
-            HandleLoadSpecialPokePic_2(&gMonFrontPicTable[species], gMonSpritesGfxPtr->sprites.ptr[1], species, personality);
+            HandleLoadSpecialPokePic_2(&gMonFrontPicTable[species], gMonSpritesGfxPtr->sprites[1], species, personality);
         else
-            HandleLoadSpecialPokePic_DontHandleDeoxys(&gMonFrontPicTable[species], gMonSpritesGfxPtr->sprites.ptr[whichParty * 2 + 1], species, personality);
+            HandleLoadSpecialPokePic_DontHandleDeoxys(&gMonFrontPicTable[species], gMonSpritesGfxPtr->sprites[whichParty * 2 + 1], species, personality);
 
         LoadCompressedSpritePalette(GetMonSpritePalStruct(mon));
         sTradeData->monSpecies[whichParty] = species;
@@ -2780,9 +2735,9 @@ static void LoadTradeMonPic(u8 whichParty, u8 state)
         break;
     case 1:
         SetMultiuseSpriteTemplateToPokemon(GetMonSpritePalStruct(mon)->tag, pos);
-        sTradeData->monSpriteIds[whichParty] = CreateSprite(&gMultiuseSpriteTemplate, 120, 60, 6);
-        gSprites[sTradeData->monSpriteIds[whichParty]].invisible = TRUE;
-        gSprites[sTradeData->monSpriteIds[whichParty]].callback = SpriteCallbackDummy;
+        sTradeData->pokePicSpriteIdxs[whichParty] = CreateSprite(&gMultiuseSpriteTemplate, 120, 60, 6);
+        gSprites[sTradeData->pokePicSpriteIdxs[whichParty]].invisible = TRUE;
+        gSprites[sTradeData->pokePicSpriteIdxs[whichParty]].callback = SpriteCallbackDummy;
         break;
     }
 }
@@ -2794,7 +2749,7 @@ void CB2_LinkTrade(void)
     case 0:
         if (!gReceivedRemoteLinkPlayers)
         {
-            gLinkType = LINKTYPE_TRADE_DISCONNECTED;
+            gLinkType = LINKTYPE_0x1144;
             CloseLink();
         }
         sTradeData = AllocZeroed(sizeof(*sTradeData));
@@ -2891,7 +2846,7 @@ void CB2_LinkTrade(void)
         gMain.state++;
         break;
     case 10:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
         ShowBg(0);
         gMain.state++;
         break;
@@ -2939,9 +2894,9 @@ static void InitTradeBgInternal(void)
     InitBgsFromTemplates(0, sTradeSequenceBgTemplates, ARRAY_COUNT(sTradeSequenceBgTemplates));
     ChangeBgX(0, 0, 0);
     ChangeBgY(0, 0, 0);
-    SetBgTilemapBuffer(0, Alloc(BG_SCREEN_SIZE));
-    SetBgTilemapBuffer(1, Alloc(BG_SCREEN_SIZE));
-    SetBgTilemapBuffer(3, Alloc(BG_SCREEN_SIZE));
+    SetBgTilemapBuffer(0, Alloc(0x800));
+    SetBgTilemapBuffer(1, Alloc(0x800));
+    SetBgTilemapBuffer(3, Alloc(0x800));
     DeactivateAllTextPrinters();
     DecompressAndLoadBgGfxUsingHeap(0, gBattleTextboxTiles, 0, 0, 0);
     LZDecompressWram(gBattleTextboxTilemap, gDecompressionBuffer);
@@ -2966,7 +2921,7 @@ static void CB2_InGameTrade(void)
         StringCopy(gLinkPlayers[0].name, gSaveBlock2Ptr->playerName);
         GetMonData(&gEnemyParty[0], MON_DATA_OT_NAME, otName);
         StringCopy(gLinkPlayers[1].name, otName);
-        gLinkPlayers[0].language = GAME_LANGUAGE;
+        gLinkPlayers[0].language = LANGUAGE_ENGLISH;
         gLinkPlayers[1].language = GetMonData(&gEnemyParty[0], MON_DATA_LANGUAGE);
         sTradeData = AllocZeroed(sizeof(*sTradeData));
         AllocateMonSpritesGfx();
@@ -3070,7 +3025,7 @@ static void TradeMons(u8 playerPartyIdx, u8 partnerPartyIdx)
     struct Pokemon *partnerMon = &gEnemyParty[partnerPartyIdx];
     u16 partnerMail = GetMonData(partnerMon, MON_DATA_MAIL);
 
-    if (playerMail != MAIL_NONE)
+    if (playerMail != 0xFF)
         ClearMailStruct(&gSaveBlock1Ptr->mail[playerMail]);
 
     sTradeData->mon = *playerMon;
@@ -3081,7 +3036,7 @@ static void TradeMons(u8 playerPartyIdx, u8 partnerPartyIdx)
     if (!GetMonData(playerMon, MON_DATA_IS_EGG))
         SetMonData(playerMon, MON_DATA_FRIENDSHIP, &friendship);
 
-    if (partnerMail != MAIL_NONE)
+    if (partnerMail != 0xFF)
         GiveMailToMon2(playerMon, &gTradeMail[partnerMail]);
 
     UpdatePokedexForReceivedMon(playerPartyIdx);
@@ -3096,7 +3051,7 @@ static void TrySendTradeFinishData(void)
     case 1:
         if (IsLinkTaskFinished())
         {
-            SendBlock(bitmask_all_link_players_but_self(), sTradeData->linkData, sizeof(sTradeData->linkData));
+            Trade_SendData(sTradeData);
             sTradeData->sendTradeFinishState++;
         }
         // fallthrough
@@ -3135,7 +3090,7 @@ static void SetTradeSequenceBgGpuRegs(u8 state)
                                      BGCNT_TXT512x256);
         LoadPalette(gTradeGba2_Pal, 16, 0x60);
         DmaCopyLarge16(3, gTradeGba_Gfx, (void *) BG_CHAR_ADDR(1), 0x1420, 0x1000);
-        DmaCopy16Defvars(3, gTradePlatform_Tilemap, (void *) BG_SCREEN_ADDR(18), 0x1000);
+        DmaCopy16Defvars(3, gUnknown_08331F60, (void *) BG_SCREEN_ADDR(18), 0x1000);
         break;
     case 1:
         sTradeData->bg1hofs = 0;
@@ -3154,11 +3109,11 @@ static void SetTradeSequenceBgGpuRegs(u8 state)
 
         if (sTradeData->isCableTrade)
         {
-            DmaCopy16Defvars(3, sGbaCable_Tilemap, (void *) BG_SCREEN_ADDR(5), 0x1000);
+            DmaCopy16Defvars(3, sTradeTilemap_GbaCable, (void *) BG_SCREEN_ADDR(5), 0x1000);
         }
         else
         {
-            DmaCopy16Defvars(3, sGbaWireless_Tilemap, (void *) BG_SCREEN_ADDR(5), 0x1000);
+            DmaCopy16Defvars(3, sTradeTilemap_GbaWireless, (void *) BG_SCREEN_ADDR(5), 0x1000);
         }
 
         DmaCopyLarge16(3, gTradeGba_Gfx, (void *) BG_CHAR_ADDR(0), 0x1420, 0x1000);
@@ -3176,7 +3131,7 @@ static void SetTradeSequenceBgGpuRegs(u8 state)
                                           DISPCNT_OBJ_1D_MAP |
                                           DISPCNT_BG1_ON |
                                           DISPCNT_OBJ_ON);
-            LZ77UnCompVram(sCrossingHighlightWireless_Tilemap, (void *) BG_SCREEN_ADDR(5));
+            LZ77UnCompVram(gUnknown_083379A0, (void *) BG_SCREEN_ADDR(5));
             BlendPalettes(0x8, 16, RGB_BLACK);
         }
         else
@@ -3185,14 +3140,14 @@ static void SetTradeSequenceBgGpuRegs(u8 state)
                                           DISPCNT_OBJ_1D_MAP |
                                           DISPCNT_BG1_ON |
                                           DISPCNT_OBJ_ON);
-            DmaCopy16Defvars(3, sCrossingHighlightCable_Tilemap, (void *) BG_SCREEN_ADDR(5), 0x800);
+            DmaCopy16Defvars(3, sTradeTilemap_Cable, (void *) BG_SCREEN_ADDR(5), 0x800);
             BlendPalettes(0x1, 16, RGB_BLACK);
         }
         break;
     case 3:
-        LoadPalette(sWirelessSignalNone_Pal, 48, 0x20);
-        LZ77UnCompVram(sWirelessSignal_Gfx, (void *) BG_CHAR_ADDR(1));
-        LZ77UnCompVram(sWirelessSignal_Tilemap, (void *) BG_SCREEN_ADDR(18));
+        LoadPalette(sTradePal_Black, 48, 0x20);
+        LZ77UnCompVram(sTradeGfx_WirelessSignal, (void *) BG_CHAR_ADDR(1));
+        LZ77UnCompVram(sTradeTilemap_WirelessSignal, (void *) BG_SCREEN_ADDR(18));
         sTradeData->bg2vofs = 80;
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 |
                                       DISPCNT_OBJ_1D_MAP |
@@ -3213,18 +3168,18 @@ static void SetTradeSequenceBgGpuRegs(u8 state)
         sTradeData->texX = 64;
         sTradeData->texY = 92;
         sTradeData->sXY = 32;
-        sTradeData->gbaScale = 1024;
+        sTradeData->unk_EA = 1024;
         sTradeData->alpha = 0;
 
-        DmaCopyLarge16(3, sGbaAffine_Gfx, (void *) BG_CHAR_ADDR(1), 0x2840, 0x1000);
+        DmaCopyLarge16(3, sTradeAffine_Gba, (void *) BG_CHAR_ADDR(1), 0x2840, 0x1000);
 
         if (sTradeData->isCableTrade)
         {
-            DmaCopy16Defvars(3, sGbaCable_AffineTilemap, (void *) BG_SCREEN_ADDR(18), 0x100);
+            DmaCopy16Defvars(3, sTradeAffineMap_GbaCable, (void *) BG_SCREEN_ADDR(18), 0x100);
         }
         else
         {
-            DmaCopy16Defvars(3, sGbaWireless_AffineTilemap, (void *) BG_SCREEN_ADDR(18), 0x100);
+            DmaCopy16Defvars(3, sTradeAffineMap_GbaWireless, (void *) BG_SCREEN_ADDR(18), 0x100);
         }
         break;
     case 5:
@@ -3244,20 +3199,20 @@ static void SetTradeSequenceBgGpuRegs(u8 state)
         sTradeData->texX = 64;
         sTradeData->texY = 92;
         sTradeData->sXY = 256;
-        sTradeData->gbaScale = 128;
+        sTradeData->unk_EA = 128;
         sTradeData->scrX = 120;
         sTradeData->scrY = 80;
         sTradeData->alpha = 0;
 
-        DmaCopyLarge16(3, sGbaAffine_Gfx, (void *) BG_CHAR_ADDR(1), 0x2840, 0x1000);
+        DmaCopyLarge16(3, sTradeAffine_Gba, (void *) BG_CHAR_ADDR(1), 0x2840, 0x1000);
 
         if (sTradeData->isCableTrade)
         {
-            DmaCopy16Defvars(3, sGbaCable_AffineTilemap, (void *) BG_SCREEN_ADDR(18), 0x100);
+            DmaCopy16Defvars(3, sTradeAffineMap_GbaCable, (void *) BG_SCREEN_ADDR(18), 0x100);
         }
         else
         {
-            DmaCopy16Defvars(3, sGbaWireless_AffineTilemap, (void *) BG_SCREEN_ADDR(18), 0x100);
+            DmaCopy16Defvars(3, sTradeAffineMap_GbaWireless, (void *) BG_SCREEN_ADDR(18), 0x100);
         }
         break;
     case 7:
@@ -3271,19 +3226,19 @@ static void SetTradeSequenceBgGpuRegs(u8 state)
                                      BGCNT_TXT512x256);
         LoadPalette(gTradeGba2_Pal, 16, 0x60);
         DmaCopyLarge16(3, gTradeGba_Gfx, (void *) BG_CHAR_ADDR(1), 0x1420, 0x1000);
-        DmaCopy16Defvars(3, gTradePlatform_Tilemap, (void *) BG_SCREEN_ADDR(18), 0x1000);
+        DmaCopy16Defvars(3, gUnknown_08331F60, (void *) BG_SCREEN_ADDR(18), 0x1000);
         break;
     }
 }
 
 static void LoadTradeSequenceSpriteSheetsAndPalettes(void)
 {
-    LoadSpriteSheet(&sSpriteSheet_LinkMonGlow);
-    LoadSpriteSheet(&sSpriteSheet_LinkMonShadow);
-    LoadSpriteSheet(&sSpriteSheet_CableEnd);
-    LoadSpriteSheet(&sSpriteSheet_GbaScreen);
-    LoadSpritePalette(&sSpritePalette_LinkMon);
-    LoadSpritePalette(&sSpritePalette_Gba);
+    LoadSpriteSheet(&sGlow1SpriteSheet);
+    LoadSpriteSheet(&sGlow2SpriteSheet);
+    LoadSpriteSheet(&sCableEndSpriteSheet);
+    LoadSpriteSheet(&sGbaScreenSpriteSheet);
+    LoadSpritePalette(&sMiscTradeSpritePalette);
+    LoadSpritePalette(&sGbaSpritePalette);
 }
 
 // Buffers "[Pokemon] will be sent to [Trainer]" strings
@@ -3312,7 +3267,7 @@ static void BufferTradeSceneStrings(void)
     }
 }
 
-// returns TRUE if it finished a link trade, FALSE if it finished an in-game trade or if sequence is still going
+// returns TRUE if it was a link trade, FALSE if it was an in-game trade
 static bool8 AnimateTradeSequence(void)
 {
     if (sTradeData->isCableTrade)
@@ -3321,146 +3276,71 @@ static bool8 AnimateTradeSequence(void)
         return AnimateTradeSequenceWireless();
 }
 
-// Below are the states for the main switch in AnimateTradeSequenceCable and AnimateTradeSequenceWireless
-// When AnimateTradeSequenceWireless has a unique version of a
-// state used by AnimateTradeSequenceCable, it adds the below modifier
-#define TS_WIRELESS_STATE 100
-enum {
-    TS_STATE_START,
-    TS_STATE_MON_SLIDE_IN,
-    // 2-9 unused
-    TS_STATE_SEND_MSG = 10,
-    TS_STATE_BYE_BYE,
-    TS_STATE_POKEBALL_DEPART,
-    TS_STATE_POKEBALL_DEPART_WAIT,
-    TS_STATE_FADE_OUT_TO_GBA_SEND,
-    // 15-19 unused
-    TS_STATE_WAIT_FADE_OUT_TO_GBA_SEND = 20,
-    TS_STATE_FADE_IN_TO_GBA_SEND,
-    TS_STATE_WAIT_FADE_IN_TO_GBA_SEND,
-    TS_STATE_GBA_ZOOM_OUT,
-    TS_STATE_GBA_FLASH_SEND,
-    TS_STATE_GBA_STOP_FLASH_SEND,
-    TS_STATE_PAN_AWAY_GBA,
-    TS_STATE_CREATE_LINK_MON_LEAVING,
-    TS_STATE_LINK_MON_TRAVEL_OUT,
-    TS_STATE_FADE_OUT_TO_CROSSING,
-    TS_STATE_WAIT_FADE_OUT_TO_CROSSING,
-    TS_STATE_FADE_IN_TO_CROSSING,
-    TS_STATE_WAIT_FADE_IN_TO_CROSSING,
-    TS_STATE_CROSSING_LINK_MONS_ENTER,
-    TS_STATE_CROSSING_BLEND_WHITE_1,
-    TS_STATE_CROSSING_BLEND_WHITE_2,
-    TS_STATE_CROSSING_BLEND_WHITE_3,
-    TS_STATE_CROSSING_CREATE_MON_PICS,
-    TS_STATE_CROSSING_MON_PICS_MOVE,
-    TS_STATE_CROSSING_LINK_MONS_EXIT,
-    TS_STATE_CREATE_LINK_MON_ARRIVING,
-    TS_STATE_FADE_OUT_TO_GBA_RECV,
-    TS_STATE_WAIT_FADE_OUT_TO_GBA_RECV,
-    TS_STATE_LINK_MON_TRAVEL_IN,
-    TS_STATE_PAN_TO_GBA,
-    TS_STATE_DESTROY_LINK_MON,
-    TS_STATE_LINK_MON_ARRIVED_DELAY,
-    TS_STATE_MOVE_GBA_TO_CENTER,
-    TS_STATE_GBA_FLASH_RECV,
-    TS_STATE_UNUSED,
-    TS_STATE_GBA_STOP_FLASH_RECV,
-    TS_STATE_GBA_ZOOM_IN,
-    TS_STATE_FADE_OUT_TO_NEW_MON,
-    // 53-59 unused
-    TS_STATE_WAIT_FADE_OUT_TO_NEW_MON = 60,
-    TS_STATE_FADE_IN_TO_NEW_MON,
-    TS_STATE_WAIT_FADE_IN_TO_NEW_MON,
-    TS_STATE_POKEBALL_ARRIVE,
-    TS_STATE_FADE_POKEBALL_TO_NORMAL,
-    TS_STATE_POKEBALL_ARRIVE_WAIT,
-    TS_STATE_SHOW_NEW_MON,
-    TS_STATE_NEW_MON_MSG,
-    TS_STATE_TAKE_CARE_OF_MON,
-    TS_STATE_AFTER_NEW_MON_DELAY,
-    TS_STATE_CHECK_RIBBONS,
-    TS_STATE_END_LINK_TRADE,
-    TS_STATE_TRY_EVOLUTION,
-    TS_STATE_FADE_OUT_END,
-    TS_STATE_WAIT_FADE_OUT_END,
-    // Special states
-    TS_STATE_GBA_FLASH_SEND_WIRELESS = TS_STATE_GBA_FLASH_SEND + TS_WIRELESS_STATE,
-    TS_STATE_GBA_STOP_FLASH_SEND_WIRELESS,
-    TS_STATE_WAIT_WIRELESS_SIGNAL_SEND,
-    TS_STATE_PAN_TO_GBA_WIRELESS = TS_STATE_PAN_TO_GBA + TS_WIRELESS_STATE,
-    TS_STATE_DESTROY_LINK_MON_WIRELESS,
-    TS_STATE_WAIT_WIRELESS_SIGNAL_RECV,
-    TS_STATE_DELAY_FOR_MON_ANIM = 167,
-    TS_STATE_LINK_MON_TRAVEL_OFFSCREEN = 200,
-    TS_STATE_WAIT_FOR_MON_CRY = 267,
-};
-
 static bool8 AnimateTradeSequenceCable(void)
 {
     u16 evoTarget;
 
     switch (sTradeData->state)
     {
-    case TS_STATE_START:
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].invisible = FALSE;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.x = -180;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.y = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PLAYER]].y_offset;
+    case 0:
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].invisible = FALSE;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.x = -180;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.y = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PLAYER]].y_offset;
         sTradeData->state++;
         sTradeData->cachedMapMusic = GetCurrentMapMusic();
-        PlayNewMapMusic(MUS_EVOLUTION);
+        PlayNewMapMusic(MUS_SHINKA);
         break;
-    case TS_STATE_MON_SLIDE_IN:
+    case 1:
         if (sTradeData->bg2hofs > 0)
         {
-            // Sliding
-            gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.x += 3;
+            gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.x += 3;
             sTradeData->bg2hofs -= 3;
         }
         else
         {
-            // Pokémon has arrived onscreen
-            gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.x = 0;
+            gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.x = 0;
             sTradeData->bg2hofs = 0;
-            sTradeData->state = TS_STATE_SEND_MSG;
+            sTradeData->state = 10;
         }
         break;
-    case TS_STATE_SEND_MSG:
+    case 10:
         StringExpandPlaceholders(gStringVar4, gText_XWillBeSentToY);
         DrawTextOnTradeWindow(0, gStringVar4, 0);
 
         if (sTradeData->monSpecies[TRADE_PLAYER] != SPECIES_EGG)
+        {
             PlayCry1(sTradeData->monSpecies[TRADE_PLAYER], 0);
+        }
 
-        sTradeData->state = TS_STATE_BYE_BYE;
+        sTradeData->state = 11;
         sTradeData->timer = 0;
         break;
-    case TS_STATE_BYE_BYE:
+    case 11:
         if (++sTradeData->timer == 80)
         {
-            sTradeData->releasePokeballSpriteId = CreateTradePokeballSprite(sTradeData->monSpriteIds[0], gSprites[sTradeData->monSpriteIds[0]].oam.paletteNum, 120, 32, 2, 1, 0x14, 0xfffff);
+            sTradeData->pokeballSpriteId = CreateTradePokeballSprite(sTradeData->pokePicSpriteIdxs[0], gSprites[sTradeData->pokePicSpriteIdxs[0]].oam.paletteNum, 120, 32, 2, 1, 0x14, 0xfffff);
             sTradeData->state++;
             StringExpandPlaceholders(gStringVar4, gText_ByeByeVar1);
             DrawTextOnTradeWindow(0, gStringVar4, 0);
         }
         break;
-    case TS_STATE_POKEBALL_DEPART:
-        if (gSprites[sTradeData->releasePokeballSpriteId].callback == SpriteCallbackDummy)
+    case 12:
+        if (gSprites[sTradeData->pokeballSpriteId].callback == SpriteCallbackDummy)
         {
-            sTradeData->bouncingPokeballSpriteId = CreateSprite(&sSpriteTemplate_Pokeball, 120, 32, 0);
-            gSprites[sTradeData->bouncingPokeballSpriteId].callback = SpriteCB_BouncingPokeballDepart;
-            DestroySprite(&gSprites[sTradeData->releasePokeballSpriteId]);
+            sTradeData->unk_D3 = CreateSprite(&gSpriteTemplate_8338D28, 120, 32, 0);
+            gSprites[sTradeData->unk_D3].callback = sub_807E5D8;
+            DestroySprite(&gSprites[sTradeData->pokeballSpriteId]);
             sTradeData->state++;
         }
         break;
-    case TS_STATE_POKEBALL_DEPART_WAIT:
+    case 13:
         // The game waits here for the sprite to finish its animation sequence.
         break;
-    case TS_STATE_FADE_OUT_TO_GBA_SEND:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-        sTradeData->state = TS_STATE_WAIT_FADE_OUT_TO_GBA_SEND;
+    case 14:
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        sTradeData->state = 20;
         break;
-    case TS_STATE_WAIT_FADE_OUT_TO_GBA_SEND:
+    case 20:
         if (!gPaletteFade.active)
         {
             SetTradeSequenceBgGpuRegs(4);
@@ -3469,40 +3349,42 @@ static bool8 AnimateTradeSequenceCable(void)
             sTradeData->state++;
         }
         break;
-    case TS_STATE_FADE_IN_TO_GBA_SEND:
-        BeginNormalPaletteFade(PALETTES_ALL, -1, 16, 0, RGB_BLACK);
+    case 21:
+        BeginNormalPaletteFade(0xFFFFFFFF, -1, 16, 0, RGB_BLACK);
         sTradeData->state++;
         break;
-    case TS_STATE_WAIT_FADE_IN_TO_GBA_SEND:
+    case 22:
         if (!gPaletteFade.active)
-            sTradeData->state = TS_STATE_GBA_ZOOM_OUT;
-        break;
-    case TS_STATE_GBA_ZOOM_OUT:
-        if (sTradeData->gbaScale > 0x100)
         {
-            sTradeData->gbaScale -= 0x34;
+            sTradeData->state = 23;
+        }
+        break;
+    case 23:
+        if (sTradeData->unk_EA > 0x100)
+        {
+            sTradeData->unk_EA -= 0x34;
         }
         else
         {
             SetTradeSequenceBgGpuRegs(1);
-            sTradeData->gbaScale = 0x80;
+            sTradeData->unk_EA = 0x80;
             sTradeData->state++;
             sTradeData->timer = 0;
         }
-        sTradeData->sXY = 0x8000 / sTradeData->gbaScale;
+        sTradeData->sXY = 0x8000 / sTradeData->unk_EA;
         break;
-    case TS_STATE_GBA_FLASH_SEND:
+    case 24:
         if (++sTradeData->timer > 20)
         {
             SetTradeBGAffine();
-            sTradeData->connectionSpriteId2 = CreateSprite(&sSpriteTemplate_GbaScreenFlash_Long, 120, 80, 0);
+            sTradeData->unk_91 = CreateSprite(&gSpriteTemplate_8338E74, 120, 80, 0);
             sTradeData->state++;
         }
         break;
-    case TS_STATE_GBA_STOP_FLASH_SEND:
-        if (gSprites[sTradeData->connectionSpriteId2].animEnded)
+    case 25:
+        if (gSprites[sTradeData->unk_91].animEnded)
         {
-            DestroySprite(&gSprites[sTradeData->connectionSpriteId2]);
+            DestroySprite(&gSprites[sTradeData->unk_91]);
             SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_EFFECT_BLEND |
                                          BLDCNT_TGT2_BG1 |
                                          BLDCNT_TGT2_BG2);
@@ -3510,183 +3392,192 @@ static bool8 AnimateTradeSequenceCable(void)
             sTradeData->state++;
         }
         break;
-    case TS_STATE_PAN_AWAY_GBA:
+    case 26:
         if (--sTradeData->bg1vofs == 316)
+        {
             sTradeData->state++;
-
+        }
         if (sTradeData->bg1vofs == 328)
-            sTradeData->cableEndSpriteId = CreateSprite(&sSpriteTemplate_CableEnd, 128, 65, 0);
+        {
+            sTradeData->unk_92 = CreateSprite(&gSpriteTemplate_8338DFC, 128, 65, 0);
+        }
         break;
-    case TS_STATE_CREATE_LINK_MON_LEAVING:
-        sTradeData->connectionSpriteId1 = CreateSprite(&sSpriteTemplate_LinkMonGlow, 128, 80, 3);
-        sTradeData->connectionSpriteId2 = CreateSprite(&sSpriteTemplate_LinkMonShadow, 128, 80, 0);
-        StartSpriteAnim(&gSprites[sTradeData->connectionSpriteId2], ANIM_LINKMON_SMALL);
+    case 27:
+        sTradeData->unk_90 = CreateSprite(&gUnknown_08338D88, 128, 80, 3);
+        sTradeData->unk_91 = CreateSprite(&sGlowBallSpriteTemplate, 128, 80, 0);
+        StartSpriteAnim(&gSprites[sTradeData->unk_91], 1);
         sTradeData->state++;
         break;
-    case TS_STATE_LINK_MON_TRAVEL_OUT:
+    case 28:
         if ((sTradeData->bg1vofs -= 2) == 166)
-            sTradeData->state = TS_STATE_LINK_MON_TRAVEL_OFFSCREEN;
-
+        {
+            sTradeData->state = 200;
+        }
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_1 |
                                       DISPCNT_OBJ_1D_MAP |
                                       DISPCNT_BG1_ON |
                                       DISPCNT_OBJ_ON);
         break;
-    case TS_STATE_LINK_MON_TRAVEL_OFFSCREEN:
-        gSprites[sTradeData->connectionSpriteId1].pos1.y -= 2;
-        gSprites[sTradeData->connectionSpriteId2].pos1.y -= 2;
-        if (gSprites[sTradeData->connectionSpriteId1].pos1.y < -8)
-            sTradeData->state = TS_STATE_FADE_OUT_TO_CROSSING;
+    case 200:
+        gSprites[sTradeData->unk_90].pos1.y -= 2;
+        gSprites[sTradeData->unk_91].pos1.y -= 2;
+        if (gSprites[sTradeData->unk_90].pos1.y < -8)
+        {
+            sTradeData->state = 29;
+        }
         break;
-    case TS_STATE_FADE_OUT_TO_CROSSING:
-        BeginNormalPaletteFade(PALETTES_ALL, -1, 0, 16, RGB_BLACK);
-        sTradeData->state = TS_STATE_WAIT_FADE_OUT_TO_CROSSING;
+    case 29:
+        BeginNormalPaletteFade(0xFFFFFFFF, -1, 0, 16, RGB_BLACK);
+        sTradeData->state = 30;
         break;
-    case TS_STATE_WAIT_FADE_OUT_TO_CROSSING:
+    case 30:
         if (!gPaletteFade.active)
         {
-            DestroySprite(&gSprites[sTradeData->connectionSpriteId1]);
-            DestroySprite(&gSprites[sTradeData->connectionSpriteId2]);
+            DestroySprite(&gSprites[sTradeData->unk_90]);
+            DestroySprite(&gSprites[sTradeData->unk_91]);
             SetTradeSequenceBgGpuRegs(2);
             sTradeData->state++;
         }
         break;
-    case TS_STATE_FADE_IN_TO_CROSSING:
-        BeginNormalPaletteFade(PALETTES_ALL, -1, 16, 0, RGB_BLACK);
-        sTradeData->connectionSpriteId1 = CreateSprite(&sSpriteTemplate_LinkMonShadow, 111, 170, 0);
-        sTradeData->connectionSpriteId2 = CreateSprite(&sSpriteTemplate_LinkMonShadow, 129, -10, 0);
+    case 31:
+        BeginNormalPaletteFade(0xFFFFFFFF, -1, 16, 0, RGB_BLACK);
+        sTradeData->unk_90 = CreateSprite(&sGlowBallSpriteTemplate, 111, 170, 0);
+        sTradeData->unk_91 = CreateSprite(&sGlowBallSpriteTemplate, 129, -10, 0);
         sTradeData->state++;
         break;
-    case TS_STATE_WAIT_FADE_IN_TO_CROSSING:
+    case 32:
         if (!gPaletteFade.active)
         {
-            PlaySE(SE_WARP_OUT);
+            PlaySE(SE_TK_WARPOUT);
             sTradeData->state++;
         }
-        gSprites[sTradeData->connectionSpriteId1].pos2.y -= 3;
-        gSprites[sTradeData->connectionSpriteId2].pos2.y += 3;
+        gSprites[sTradeData->unk_90].pos2.y -= 3;
+        gSprites[sTradeData->unk_91].pos2.y += 3;
         break;
-    case TS_STATE_CROSSING_LINK_MONS_ENTER:
-        gSprites[sTradeData->connectionSpriteId1].pos2.y -= 3;
-        gSprites[sTradeData->connectionSpriteId2].pos2.y += 3;
-        if (gSprites[sTradeData->connectionSpriteId1].pos2.y <= -90)
+    case 33:
+        gSprites[sTradeData->unk_90].pos2.y -= 3;
+        gSprites[sTradeData->unk_91].pos2.y += 3;
+        if (gSprites[sTradeData->unk_90].pos2.y <= -90)
         {
-            gSprites[sTradeData->connectionSpriteId1].data[1] = 1;
-            gSprites[sTradeData->connectionSpriteId2].data[1] = 1;
+            gSprites[sTradeData->unk_90].data[1] = 1;
+            gSprites[sTradeData->unk_91].data[1] = 1;
             sTradeData->state++;
         }
         break;
-    case TS_STATE_CROSSING_BLEND_WHITE_1:
+    case 34:
         BlendPalettes(0x1, 16, RGB_WHITEALPHA);
         sTradeData->state++;
         break;
-    case TS_STATE_CROSSING_BLEND_WHITE_2:
+    case 35:
         BlendPalettes(0x1, 0, RGB_WHITEALPHA);
         sTradeData->state++;
         break;
-    case TS_STATE_CROSSING_BLEND_WHITE_3:
+    case 36:
         BlendPalettes(0x1, 16, RGB_WHITEALPHA);
         sTradeData->state++;
         break;
-    case TS_STATE_CROSSING_CREATE_MON_PICS:
+    case 37:
         if (!IsMonSpriteNotFlipped(sTradeData->monSpecies[TRADE_PLAYER]))
         {
-            gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].affineAnims = sAffineAnims_CrossingMonPics;
-            gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].oam.affineMode = ST_OAM_AFFINE_DOUBLE;
-            CalcCenterToCornerVec(&gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]], SPRITE_SHAPE(64x64), SPRITE_SIZE(64x64), ST_OAM_AFFINE_DOUBLE);
-            StartSpriteAffineAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]], 0);
+            gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].affineAnims = gSpriteAffineAnimTable_8338ECC;
+            gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].oam.affineMode = ST_OAM_AFFINE_DOUBLE;
+            CalcCenterToCornerVec(&gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]], SPRITE_SHAPE(64x64), SPRITE_SIZE(64x64), ST_OAM_AFFINE_DOUBLE);
+            StartSpriteAffineAnim(&gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]], 0);
         }
         else
         {
-            StartSpriteAffineAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]], 0);
+            StartSpriteAffineAnim(&gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]], 0);
         }
-        StartSpriteAffineAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]], 0);
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos1.x = 60;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos1.x = 180;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos1.y = 192;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos1.y = -32;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].invisible = FALSE;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].invisible = FALSE;
+        StartSpriteAffineAnim(&gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]], 0);
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos1.x = 60;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos1.x = 180;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos1.y = 192;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos1.y = -32;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].invisible = FALSE;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].invisible = FALSE;
         sTradeData->state++;
         break;
-    case TS_STATE_CROSSING_MON_PICS_MOVE:
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.y -= 3;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos2.y += 3;
-        if (gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.y < -DISPLAY_HEIGHT 
-         && gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.y >= -DISPLAY_HEIGHT - 3)
+    case 38:
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.y -= 3;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos2.y += 3;
+        if (gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.y < -160 && gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.y >= -163)
         {
-            PlaySE(SE_WARP_IN);
+            PlaySE(SE_TK_WARPIN);
         }
-        if (gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.y < -222)
+        if (gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.y < -222)
         {
-            gSprites[sTradeData->connectionSpriteId1].data[1] = 0;
-            gSprites[sTradeData->connectionSpriteId2].data[1] = 0;
+            gSprites[sTradeData->unk_90].data[1] = 0;
+            gSprites[sTradeData->unk_91].data[1] = 0;
             sTradeData->state++;
-            gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].invisible = TRUE;
-            gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].invisible = TRUE;
+            gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].invisible = TRUE;
+            gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].invisible = TRUE;
             BlendPalettes(0x1, 0, RGB_WHITEALPHA);
         }
         break;
-    case TS_STATE_CROSSING_LINK_MONS_EXIT:
-        gSprites[sTradeData->connectionSpriteId1].pos2.y -= 3;
-        gSprites[sTradeData->connectionSpriteId2].pos2.y += 3;
-        if (gSprites[sTradeData->connectionSpriteId1].pos2.y <= -222)
+    case 39:
+        gSprites[sTradeData->unk_90].pos2.y -= 3;
+        gSprites[sTradeData->unk_91].pos2.y += 3;
+        if (gSprites[sTradeData->unk_90].pos2.y <= -222)
         {
-            BeginNormalPaletteFade(PALETTES_ALL, -1, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(0xFFFFFFFF, -1, 0, 16, RGB_BLACK);
             sTradeData->state++;
-            DestroySprite(&gSprites[sTradeData->connectionSpriteId1]);
-            DestroySprite(&gSprites[sTradeData->connectionSpriteId2]);
+            DestroySprite(&gSprites[sTradeData->unk_90]);
+            DestroySprite(&gSprites[sTradeData->unk_91]);
         }
         break;
-    case TS_STATE_CREATE_LINK_MON_ARRIVING:
+    case 40:
         if (!gPaletteFade.active)
         {
             sTradeData->state++;
             SetTradeSequenceBgGpuRegs(1);
             sTradeData->bg1vofs = 166;
-            sTradeData->connectionSpriteId1 = CreateSprite(&sSpriteTemplate_LinkMonGlow, 128, -20, 3);
-            sTradeData->connectionSpriteId2 = CreateSprite(&sSpriteTemplate_LinkMonShadow, 128, -20, 0);
-            StartSpriteAnim(&gSprites[sTradeData->connectionSpriteId2], ANIM_LINKMON_SMALL);
+            sTradeData->unk_90 = CreateSprite(&gUnknown_08338D88, 128, -20, 3);
+            sTradeData->unk_91 = CreateSprite(&sGlowBallSpriteTemplate, 128, -20, 0);
+            StartSpriteAnim(&gSprites[sTradeData->unk_91], 1);
         }
         break;
-    case TS_STATE_FADE_OUT_TO_GBA_RECV:
-        BeginNormalPaletteFade(PALETTES_ALL, -1, 16, 0, RGB_BLACK);
+    case 41:
+        BeginNormalPaletteFade(0xFFFFFFFF, -1, 16, 0, RGB_BLACK);
         sTradeData->state++;
         break;
-    case TS_STATE_WAIT_FADE_OUT_TO_GBA_RECV:
+    case 42:
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 |
                                       DISPCNT_OBJ_1D_MAP |
                                       DISPCNT_BG1_ON |
                                       DISPCNT_OBJ_ON);
         if (!gPaletteFade.active)
-            sTradeData->state++;
-        break;
-    case TS_STATE_LINK_MON_TRAVEL_IN:
-        gSprites[sTradeData->connectionSpriteId1].pos2.y += 3;
-        gSprites[sTradeData->connectionSpriteId2].pos2.y += 3;
-        if (gSprites[sTradeData->connectionSpriteId1].pos2.y + gSprites[sTradeData->connectionSpriteId1].pos1.y == 64)
         {
             sTradeData->state++;
         }
         break;
-    case TS_STATE_PAN_TO_GBA:
+    case 43:
+        gSprites[sTradeData->unk_90].pos2.y += 3;
+        gSprites[sTradeData->unk_91].pos2.y += 3;
+        if (gSprites[sTradeData->unk_90].pos2.y + gSprites[sTradeData->unk_90].pos1.y == 64)
+        {
+            sTradeData->state++;
+        }
+        break;
+    case 44:
         if ((sTradeData->bg1vofs += 2) > 316)
         {
             sTradeData->bg1vofs = 316;
             sTradeData->state++;
         }
         break;
-    case TS_STATE_DESTROY_LINK_MON:
-        DestroySprite(&gSprites[sTradeData->connectionSpriteId1]);
-        DestroySprite(&gSprites[sTradeData->connectionSpriteId2]);
+    case 45:
+        DestroySprite(&gSprites[sTradeData->unk_90]);
+        DestroySprite(&gSprites[sTradeData->unk_91]);
         sTradeData->state++;
         sTradeData->timer = 0;
         break;
-    case TS_STATE_LINK_MON_ARRIVED_DELAY:
+    case 46:
         if (++sTradeData->timer == 10)
+        {
             sTradeData->state++;
+        }
         break;
-    case TS_STATE_MOVE_GBA_TO_CENTER:
+    case 47:
         if (++sTradeData->bg1vofs > 348)
         {
             sTradeData->bg1vofs = 348;
@@ -3694,41 +3585,41 @@ static bool8 AnimateTradeSequenceCable(void)
         }
         if (sTradeData->bg1vofs == 328 && sTradeData->isCableTrade)
         {
-            sTradeData->cableEndSpriteId = CreateSprite(&sSpriteTemplate_CableEnd, 128, 65, 0);
-            gSprites[sTradeData->cableEndSpriteId].callback = SpriteCB_CableEndReceiving;
+            sTradeData->unk_92 = CreateSprite(&gSpriteTemplate_8338DFC, 128, 65, 0);
+            gSprites[sTradeData->unk_92].callback = sub_807AAE0;
         }
         break;
-    case TS_STATE_GBA_FLASH_RECV:
-        sTradeData->connectionSpriteId2 = CreateSprite(&sSpriteTemplate_GbaScreenFlash_Long, 120, 80, 0);
-        sTradeData->state = TS_STATE_GBA_STOP_FLASH_RECV;
+    case 48:
+        sTradeData->unk_91 = CreateSprite(&gSpriteTemplate_8338E74, 120, 80, 0);
+        sTradeData->state = 50;
         break;
-    case TS_STATE_GBA_STOP_FLASH_RECV:
-        if (gSprites[sTradeData->connectionSpriteId2].animEnded)
+    case 50:
+        if (gSprites[sTradeData->unk_91].animEnded)
         {
-            DestroySprite(&gSprites[sTradeData->connectionSpriteId2]);
+            DestroySprite(&gSprites[sTradeData->unk_91]);
             SetTradeSequenceBgGpuRegs(6);
             sTradeData->state++;
-            PlaySE(SE_M_SAND_ATTACK);
+            PlaySE(SE_W028);
         }
         break;
-    case TS_STATE_GBA_ZOOM_IN:
-        if (sTradeData->gbaScale < 0x400)
+    case 51:
+        if (sTradeData->unk_EA < 0x400)
         {
-            sTradeData->gbaScale += 0x34;
+            sTradeData->unk_EA += 0x34;
         }
         else
         {
-            sTradeData->gbaScale = 0x400;
+            sTradeData->unk_EA = 0x400;
             sTradeData->state++;
         }
-        sTradeData->sXY = 0x8000 / sTradeData->gbaScale;
+        sTradeData->sXY = 0x8000 / sTradeData->unk_EA;
         break;
-    case TS_STATE_FADE_OUT_TO_NEW_MON:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-        sTradeData->state = TS_STATE_WAIT_FADE_OUT_TO_NEW_MON;
+    case 52:
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        sTradeData->state = 60;
         break;
 
-    case TS_STATE_WAIT_FADE_OUT_TO_NEW_MON:
+    case 60:
         if (!gPaletteFade.active)
         {
             SetTradeSequenceBgGpuRegs(5);
@@ -3737,52 +3628,54 @@ static bool8 AnimateTradeSequenceCable(void)
             sTradeData->state++;
         }
         break;
-    case TS_STATE_FADE_IN_TO_NEW_MON:
+    case 61:
         gPaletteFade.bufferTransferDisabled = FALSE;
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
         sTradeData->state++;
         break;
-    case TS_STATE_WAIT_FADE_IN_TO_NEW_MON:
+    case 62:
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 |
                                       DISPCNT_OBJ_1D_MAP |
                                       DISPCNT_BG2_ON |
                                       DISPCNT_OBJ_ON);
         if (!gPaletteFade.active)
-            sTradeData->state++;
-        break;
-    case TS_STATE_POKEBALL_ARRIVE:
-        sTradeData->bouncingPokeballSpriteId = CreateSprite(&sSpriteTemplate_Pokeball, 120, -8, 0);
-        gSprites[sTradeData->bouncingPokeballSpriteId].data[3] = 74;
-        gSprites[sTradeData->bouncingPokeballSpriteId].callback = SpriteCB_BouncingPokeballArrive;
-        StartSpriteAnim(&gSprites[sTradeData->bouncingPokeballSpriteId], 1);
-        StartSpriteAffineAnim(&gSprites[sTradeData->bouncingPokeballSpriteId], 2);
-        BlendPalettes(1 << (16 + gSprites[sTradeData->bouncingPokeballSpriteId].oam.paletteNum), 16, RGB_WHITEALPHA);
-        sTradeData->state++;
-        sTradeData->timer = 0;
-        break;
-    case TS_STATE_FADE_POKEBALL_TO_NORMAL:
-        BeginNormalPaletteFade(1 << (16 + gSprites[sTradeData->bouncingPokeballSpriteId].oam.paletteNum), 1, 16, 0, RGB_WHITEALPHA);
-        sTradeData->state++;
-        break;
-    case TS_STATE_POKEBALL_ARRIVE_WAIT:
-        if (gSprites[sTradeData->bouncingPokeballSpriteId].callback == SpriteCallbackDummy)
         {
-            HandleLoadSpecialPokePic_2(&gMonFrontPicTable[sTradeData->monSpecies[TRADE_PARTNER]], gMonSpritesGfxPtr->sprites.ptr[3], sTradeData->monSpecies[TRADE_PARTNER], sTradeData->monPersonalities[TRADE_PARTNER]);
             sTradeData->state++;
         }
         break;
-    case TS_STATE_SHOW_NEW_MON:
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos1.x = 120;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos1.y = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PARTNER]].y_offset + 60;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos2.x = 0;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos2.y = 0;
-        StartSpriteAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]], 0);
-        CreatePokeballSpriteToReleaseMon(sTradeData->monSpriteIds[TRADE_PARTNER], gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].oam.paletteNum, 120, 84, 2, 1, 20, 0xFFFFF, sTradeData->monSpecies[TRADE_PARTNER]);
-        FreeSpriteOamMatrix(&gSprites[sTradeData->bouncingPokeballSpriteId]);
-        DestroySprite(&gSprites[sTradeData->bouncingPokeballSpriteId]);
+    case 63:
+        sTradeData->unk_D3 = CreateSprite(&gSpriteTemplate_8338D28, 120, -8, 0);
+        gSprites[sTradeData->unk_D3].data[3] = 74;
+        gSprites[sTradeData->unk_D3].callback = sub_807E6AC;
+        StartSpriteAnim(&gSprites[sTradeData->unk_D3], 1);
+        StartSpriteAffineAnim(&gSprites[sTradeData->unk_D3], 2);
+        BlendPalettes(1 << (16 + gSprites[sTradeData->unk_D3].oam.paletteNum), 16, RGB_WHITEALPHA);
+        sTradeData->state++;
+        sTradeData->timer = 0;
+        break;
+    case 64:
+        BeginNormalPaletteFade(1 << (16 + gSprites[sTradeData->unk_D3].oam.paletteNum), 1, 16, 0, RGB_WHITEALPHA);
         sTradeData->state++;
         break;
-    case TS_STATE_NEW_MON_MSG:
+    case 65:
+        if (gSprites[sTradeData->unk_D3].callback == SpriteCallbackDummy)
+        {
+            HandleLoadSpecialPokePic_2(&gMonFrontPicTable[sTradeData->monSpecies[TRADE_PARTNER]], gMonSpritesGfxPtr->sprites[3], sTradeData->monSpecies[TRADE_PARTNER], sTradeData->monPersonalities[TRADE_PARTNER]);
+            sTradeData->state++;
+        }
+        break;
+    case 66:
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos1.x = 120;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos1.y = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PARTNER]].y_offset + 60;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos2.x = 0;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos2.y = 0;
+        StartSpriteAnim(&gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]], 0);
+        CreatePokeballSpriteToReleaseMon(sTradeData->pokePicSpriteIdxs[TRADE_PARTNER], gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].oam.paletteNum, 120, 84, 2, 1, 20, 0xFFFFF, sTradeData->monSpecies[TRADE_PARTNER]);
+        FreeSpriteOamMatrix(&gSprites[sTradeData->unk_D3]);
+        DestroySprite(&gSprites[sTradeData->unk_D3]);
+        sTradeData->state++;
+        break;
+    case 67:
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 |
                                       DISPCNT_OBJ_1D_MAP |
                                       DISPCNT_BG0_ON |
@@ -3790,24 +3683,28 @@ static bool8 AnimateTradeSequenceCable(void)
                                       DISPCNT_OBJ_ON);
         StringExpandPlaceholders(gStringVar4, gText_XSentOverY);
         DrawTextOnTradeWindow(0, gStringVar4, 0);
-        sTradeData->state = TS_STATE_DELAY_FOR_MON_ANIM;
+        sTradeData->state = 167;
         sTradeData->timer = 0;
         break;
-    case TS_STATE_DELAY_FOR_MON_ANIM:
+    // 167 and 267 are extra cases added in for animations
+    case 167:
         if (++sTradeData->timer > 60)
         {
-            sTradeData->state = TS_STATE_WAIT_FOR_MON_CRY;
+            sTradeData->state = 267;
             sTradeData->timer = 0;
         }
         break;
-    case TS_STATE_WAIT_FOR_MON_CRY:
+    case 267:
         if (IsCryFinished())
-            sTradeData->state = TS_STATE_TAKE_CARE_OF_MON;
+        {
+            sTradeData->state = 68;
+        }
         break;
-    case TS_STATE_TAKE_CARE_OF_MON:
+    case 68:
         if (++sTradeData->timer == 10)
-            PlayFanfare(MUS_EVOLVED);
-
+        {
+            PlayFanfare(MUS_FANFA5);
+        }
         if (sTradeData->timer == 250)
         {
             sTradeData->state++;
@@ -3816,39 +3713,41 @@ static bool8 AnimateTradeSequenceCable(void)
             sTradeData->timer = 0;
         }
         break;
-    case TS_STATE_AFTER_NEW_MON_DELAY:
+    case 69:
         if (++sTradeData->timer == 60)
+        {
             sTradeData->state++;
+        }
         break;
-    case TS_STATE_CHECK_RIBBONS:
+    case 70:
         CheckPartnersMonForRibbons();
         sTradeData->state++;
         break;
-    case TS_STATE_END_LINK_TRADE:
+    case 71:
         if (sTradeData->isLinkTrade)
         {
             return TRUE;
         }
-        else if (JOY_NEW(A_BUTTON))
+        else if (gMain.newKeys & A_BUTTON)
         {
             sTradeData->state++;
         }
         break;
-    case TS_STATE_TRY_EVOLUTION: // Only if in-game trade, link trades use CB2_TryLinkTradeEvolution
+    case 72: // Only if in-game trade
         TradeMons(gSpecialVar_0x8005, 0);
         gCB2_AfterEvolution = CB2_UpdateInGameTrade;
-        evoTarget = GetEvolutionTargetSpecies(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], EVO_MODE_TRADE, ITEM_NONE);
+        evoTarget = GetEvolutionTargetSpecies(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], TRUE, ITEM_NONE);
         if (evoTarget != SPECIES_NONE)
         {
-            TradeEvolutionScene(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], evoTarget, sTradeData->monSpriteIds[TRADE_PARTNER], gSelectedTradeMonPositions[TRADE_PLAYER]);
+            TradeEvolutionScene(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], evoTarget, sTradeData->pokePicSpriteIdxs[TRADE_PARTNER], gSelectedTradeMonPositions[TRADE_PLAYER]);
         }
         sTradeData->state++;
         break;
-    case TS_STATE_FADE_OUT_END:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+    case 73:
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
         sTradeData->state++;
         break;
-    case TS_STATE_WAIT_FADE_OUT_END:
+    case 74:
         if (!gPaletteFade.active)
         {
             PlayNewMapMusic(sTradeData->cachedMapMusic);
@@ -3875,63 +3774,65 @@ static bool8 AnimateTradeSequenceWireless(void)
 
     switch (sTradeData->state)
     {
-    case TS_STATE_START:
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].invisible = FALSE;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.x = -180;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.y = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PLAYER]].y_offset;
+    case 0:
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].invisible = FALSE;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.x = -180;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.y = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PLAYER]].y_offset;
         sTradeData->state++;
         sTradeData->cachedMapMusic = GetCurrentMapMusic();
-        PlayNewMapMusic(MUS_EVOLUTION);
+        PlayNewMapMusic(MUS_SHINKA);
         break;
-    case TS_STATE_MON_SLIDE_IN:
+    case 1:
         if (sTradeData->bg2hofs > 0)
         {
-            gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.x += 3;
+            gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.x += 3;
             sTradeData->bg2hofs -= 3;
         }
         else
         {
-            gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.x = 0;
+            gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.x = 0;
             sTradeData->bg2hofs = 0;
-            sTradeData->state = TS_STATE_SEND_MSG;
+            sTradeData->state = 10;
         }
         break;
-    case TS_STATE_SEND_MSG:
+    case 10:
         StringExpandPlaceholders(gStringVar4, gText_XWillBeSentToY);
         DrawTextOnTradeWindow(0, gStringVar4, 0);
 
         if (sTradeData->monSpecies[TRADE_PLAYER] != SPECIES_EGG)
+        {
             PlayCry1(sTradeData->monSpecies[TRADE_PLAYER], 0);
+        }
 
-        sTradeData->state = TS_STATE_BYE_BYE;
+        sTradeData->state = 11;
         sTradeData->timer = 0;
         break;
-    case TS_STATE_BYE_BYE:
+    case 11:
         if (++sTradeData->timer == 80)
         {
-            sTradeData->releasePokeballSpriteId = CreateTradePokeballSprite(sTradeData->monSpriteIds[0], gSprites[sTradeData->monSpriteIds[0]].oam.paletteNum, 120, 32, 2, 1, 0x14, 0xfffff);
+            sTradeData->pokeballSpriteId = CreateTradePokeballSprite(sTradeData->pokePicSpriteIdxs[0], gSprites[sTradeData->pokePicSpriteIdxs[0]].oam.paletteNum, 120, 32, 2, 1, 0x14, 0xfffff);
             sTradeData->state++;
             StringExpandPlaceholders(gStringVar4, gText_ByeByeVar1);
             DrawTextOnTradeWindow(0, gStringVar4, 0);
         }
         break;
-    case TS_STATE_POKEBALL_DEPART:
-        if (gSprites[sTradeData->releasePokeballSpriteId].callback == SpriteCallbackDummy)
+    case 12:
+        if (gSprites[sTradeData->pokeballSpriteId].callback == SpriteCallbackDummy)
         {
-            sTradeData->bouncingPokeballSpriteId = CreateSprite(&sSpriteTemplate_Pokeball, 120, 32, 0);
-            gSprites[sTradeData->bouncingPokeballSpriteId].callback = SpriteCB_BouncingPokeballDepart;
-            DestroySprite(&gSprites[sTradeData->releasePokeballSpriteId]);
+            sTradeData->unk_D3 = CreateSprite(&gSpriteTemplate_8338D28, 120, 32, 0);
+            gSprites[sTradeData->unk_D3].callback = sub_807E5D8;
+            DestroySprite(&gSprites[sTradeData->pokeballSpriteId]);
             sTradeData->state++;
         }
         break;
-    case TS_STATE_POKEBALL_DEPART_WAIT:
+    case 13:
         // The game waits here for the sprite to finish its animation sequence.
         break;
-    case TS_STATE_FADE_OUT_TO_GBA_SEND:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-        sTradeData->state = TS_STATE_WAIT_FADE_OUT_TO_GBA_SEND;
+    case 14:
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        sTradeData->state = 20;
         break;
-    case TS_STATE_WAIT_FADE_OUT_TO_GBA_SEND:
+    case 20:
         if (!gPaletteFade.active)
         {
             SetTradeSequenceBgGpuRegs(4);
@@ -3940,185 +3841,189 @@ static bool8 AnimateTradeSequenceWireless(void)
             sTradeData->state++;
         }
         break;
-    case TS_STATE_FADE_IN_TO_GBA_SEND:
-        BeginNormalPaletteFade(PALETTES_ALL, -1, 16, 0, RGB_BLACK);
+    case 21:
+        BeginNormalPaletteFade(0xFFFFFFFF, -1, 16, 0, RGB_BLACK);
         sTradeData->state++;
         break;
-    case TS_STATE_WAIT_FADE_IN_TO_GBA_SEND:
+    case 22:
         if (!gPaletteFade.active)
-            sTradeData->state = TS_STATE_GBA_ZOOM_OUT;
-        break;
-    case TS_STATE_GBA_ZOOM_OUT:
-        if (sTradeData->gbaScale > 0x100)
         {
-            sTradeData->gbaScale -= 0x34;
+            sTradeData->state = 23;
+        }
+        break;
+    case 23:
+        if (sTradeData->unk_EA > 0x100)
+        {
+            sTradeData->unk_EA -= 0x34;
         }
         else
         {
             SetTradeSequenceBgGpuRegs(1);
-            sTradeData->gbaScale = 0x80;
-            sTradeData->state = TS_STATE_GBA_FLASH_SEND_WIRELESS;
+            sTradeData->unk_EA = 0x80;
+            sTradeData->state = 124;
             sTradeData->timer = 0;
         }
-        sTradeData->sXY = 0x8000 / sTradeData->gbaScale;
+        sTradeData->sXY = 0x8000 / sTradeData->unk_EA;
         break;
-    case TS_STATE_GBA_FLASH_SEND_WIRELESS:
+    case 124:
         if (++sTradeData->timer > 20)
         {
             SetTradeSequenceBgGpuRegs(3);
-            sTradeData->connectionSpriteId2 = CreateSprite(&sSpriteTemplate_GbaScreenFlash_Short, 120, 80, 0);
+            sTradeData->unk_91 = CreateSprite(&gSpriteTemplate_8338E8C, 120, 80, 0);
             sTradeData->state++;
         }
         break;
-    case TS_STATE_GBA_STOP_FLASH_SEND_WIRELESS:
-        if (gSprites[sTradeData->connectionSpriteId2].animEnded)
+    case 125:
+        if (gSprites[sTradeData->unk_91].animEnded)
         {
-            DestroySprite(&gSprites[sTradeData->connectionSpriteId2]);
+            DestroySprite(&gSprites[sTradeData->unk_91]);
             SetGpuReg(REG_OFFSET_BLDCNT, BLDCNT_TGT1_BG1 |
                                          BLDCNT_TGT1_OBJ |
                                          BLDCNT_EFFECT_BLEND |
                                          BLDCNT_TGT2_BG2);
             SetGpuReg(REG_OFFSET_BLDALPHA, BLDALPHA_BLEND(16, 4));
-            
-            // Start wireless signal effect
             CreateTask(Task_AnimateWirelessSignal, 5);
             sTradeData->state++;
         }
         break;
-    case TS_STATE_WAIT_WIRELESS_SIGNAL_SEND:
+    case 126:
         if (!FuncIsActiveTask(Task_AnimateWirelessSignal))
-            sTradeData->state = TS_STATE_PAN_AWAY_GBA;
+        {
+            sTradeData->state = 26;
+        }
         break;
-    case TS_STATE_PAN_AWAY_GBA:
+    case 26:
         if (--sTradeData->bg1vofs == 316)
+        {
             sTradeData->state++;
+        }
         break;
-    case TS_STATE_CREATE_LINK_MON_LEAVING:
-        sTradeData->connectionSpriteId1 = CreateSprite(&sSpriteTemplate_LinkMonGlow, 120, 80, 3);
-        gSprites[sTradeData->connectionSpriteId1].callback = SpriteCB_LinkMonGlowWireless;
-        sTradeData->connectionSpriteId2 = CreateSprite(&sSpriteTemplate_LinkMonShadow, 120, 80, 0);
-        StartSpriteAnim(&gSprites[sTradeData->connectionSpriteId2], ANIM_LINKMON_SMALL);
+    case 27:
+        sTradeData->unk_90 = CreateSprite(&gUnknown_08338D88, 120, 80, 3);
+        gSprites[sTradeData->unk_90].callback = sub_807AA4C;
+        sTradeData->unk_91 = CreateSprite(&sGlowBallSpriteTemplate, 120, 80, 0);
+        StartSpriteAnim(&gSprites[sTradeData->unk_91], 1);
         sTradeData->state++;
         break;
-    case TS_STATE_LINK_MON_TRAVEL_OUT:
+    case 28:
         if ((sTradeData->bg1vofs -= 3) == 166)
-            sTradeData->state = TS_STATE_LINK_MON_TRAVEL_OFFSCREEN;
-
+        {
+            sTradeData->state = 200;
+        }
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_1 |
                                       DISPCNT_OBJ_1D_MAP |
                                       DISPCNT_BG1_ON |
                                       DISPCNT_OBJ_ON);
         break;
-    case TS_STATE_LINK_MON_TRAVEL_OFFSCREEN:
-        gSprites[sTradeData->connectionSpriteId1].pos1.y -= 2;
-        gSprites[sTradeData->connectionSpriteId2].pos1.y -= 2;
-        if (gSprites[sTradeData->connectionSpriteId1].pos1.y < -8)
+    case 200:
+        gSprites[sTradeData->unk_90].pos1.y -= 2;
+        gSprites[sTradeData->unk_91].pos1.y -= 2;
+        if (gSprites[sTradeData->unk_90].pos1.y < -8)
         {
-            sTradeData->state = TS_STATE_FADE_OUT_TO_CROSSING;
+            sTradeData->state = 29;
         }
         break;
-    case TS_STATE_FADE_OUT_TO_CROSSING:
-        BeginNormalPaletteFade(PALETTES_ALL, -1, 0, 16, RGB_BLACK);
-        sTradeData->state = TS_STATE_WAIT_FADE_OUT_TO_CROSSING;
+    case 29:
+        BeginNormalPaletteFade(0xFFFFFFFF, -1, 0, 16, RGB_BLACK);
+        sTradeData->state = 30;
         break;
-    case TS_STATE_WAIT_FADE_OUT_TO_CROSSING:
+    case 30:
         if (!gPaletteFade.active)
         {
-            DestroySprite(&gSprites[sTradeData->connectionSpriteId1]);
-            DestroySprite(&gSprites[sTradeData->connectionSpriteId2]);
+            DestroySprite(&gSprites[sTradeData->unk_90]);
+            DestroySprite(&gSprites[sTradeData->unk_91]);
             SetTradeSequenceBgGpuRegs(2);
             sTradeData->state++;
         }
         break;
-    case TS_STATE_FADE_IN_TO_CROSSING:
-        BeginNormalPaletteFade(PALETTES_ALL, -1, 16, 0, RGB_BLACK);
-        sTradeData->connectionSpriteId1 = CreateSprite(&sSpriteTemplate_LinkMonShadow, 111, 170, 0);
-        sTradeData->connectionSpriteId2 = CreateSprite(&sSpriteTemplate_LinkMonShadow, 129, -10, 0);
+    case 31:
+        BeginNormalPaletteFade(0xFFFFFFFF, -1, 16, 0, RGB_BLACK);
+        sTradeData->unk_90 = CreateSprite(&sGlowBallSpriteTemplate, 111, 170, 0);
+        sTradeData->unk_91 = CreateSprite(&sGlowBallSpriteTemplate, 129, -10, 0);
         sTradeData->state++;
         break;
-    case TS_STATE_WAIT_FADE_IN_TO_CROSSING:
+    case 32:
         if (!gPaletteFade.active)
         {
-            PlaySE(SE_WARP_OUT);
+            PlaySE(SE_TK_WARPOUT);
             sTradeData->state++;
         }
-        gSprites[sTradeData->connectionSpriteId1].pos2.y -= 3;
-        gSprites[sTradeData->connectionSpriteId2].pos2.y += 3;
+        gSprites[sTradeData->unk_90].pos2.y -= 3;
+        gSprites[sTradeData->unk_91].pos2.y += 3;
         break;
-    case TS_STATE_CROSSING_LINK_MONS_ENTER:
-        gSprites[sTradeData->connectionSpriteId1].pos2.y -= 3;
-        gSprites[sTradeData->connectionSpriteId2].pos2.y += 3;
-        if (gSprites[sTradeData->connectionSpriteId1].pos2.y <= -90)
+    case 33:
+        gSprites[sTradeData->unk_90].pos2.y -= 3;
+        gSprites[sTradeData->unk_91].pos2.y += 3;
+        if (gSprites[sTradeData->unk_90].pos2.y <= -90)
         {
-            gSprites[sTradeData->connectionSpriteId1].data[1] = 1;
-            gSprites[sTradeData->connectionSpriteId2].data[1] = 1;
+            gSprites[sTradeData->unk_90].data[1] = 1;
+            gSprites[sTradeData->unk_91].data[1] = 1;
             sTradeData->state++;
-            CreateTask(Task_NarrowWindowForCrossing_Wireless, 5);
+            CreateTask(c3_0805465C, 5);
         }
         break;
-    case TS_STATE_CROSSING_BLEND_WHITE_1:
+    case 34:
         BlendPalettes(0x8, 16, RGB_WHITEALPHA);
         sTradeData->state++;
         break;
-    case TS_STATE_CROSSING_BLEND_WHITE_2:
+    case 35:
         BlendPalettes(0x8, 16, RGB_WHITEALPHA);
         sTradeData->state++;
         break;
-    case TS_STATE_CROSSING_BLEND_WHITE_3:
+    case 36:
         BlendPalettes(0x8, 16, RGB_WHITEALPHA);
         sTradeData->state++;
         break;
-    case TS_STATE_CROSSING_CREATE_MON_PICS:
+    case 37:
         if (!IsMonSpriteNotFlipped(sTradeData->monSpecies[TRADE_PLAYER]))
         {
-            gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].affineAnims = sAffineAnims_CrossingMonPics;
-            gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].oam.affineMode = ST_OAM_AFFINE_DOUBLE;
-            CalcCenterToCornerVec(&gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]], SPRITE_SHAPE(64x64), SPRITE_SIZE(64x64), ST_OAM_AFFINE_DOUBLE);
-            StartSpriteAffineAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]], 0);
+            gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].affineAnims = gSpriteAffineAnimTable_8338ECC;
+            gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].oam.affineMode = ST_OAM_AFFINE_DOUBLE;
+            CalcCenterToCornerVec(&gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]], SPRITE_SHAPE(64x64), SPRITE_SIZE(64x64), ST_OAM_AFFINE_DOUBLE);
+            StartSpriteAffineAnim(&gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]], 0);
         }
         else
         {
-            StartSpriteAffineAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]], 0);
+            StartSpriteAffineAnim(&gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]], 0);
         }
-        StartSpriteAffineAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]], 0);
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos1.x = 40;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos1.x = 200;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos1.y = 192;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos1.y = -32;
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].invisible = FALSE;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].invisible = FALSE;
+        StartSpriteAffineAnim(&gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]], 0);
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos1.x = 40;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos1.x = 200;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos1.y = 192;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos1.y = -32;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].invisible = FALSE;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].invisible = FALSE;
         sTradeData->state++;
         break;
-    case TS_STATE_CROSSING_MON_PICS_MOVE:
-        gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.y -= 3;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos2.y += 3;
-        if (gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.y < -DISPLAY_HEIGHT
-         && gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.y >= -DISPLAY_HEIGHT - 3)
+    case 38:
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.y -= 3;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos2.y += 3;
+        if (gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.y < -160 && gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.y >= -163)
         {
-            PlaySE(SE_WARP_IN);
+            PlaySE(SE_TK_WARPIN);
         }
-        if (gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].pos2.y < -222)
+        if (gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].pos2.y < -222)
         {
-            gSprites[sTradeData->connectionSpriteId1].data[1] = 0;
-            gSprites[sTradeData->connectionSpriteId2].data[1] = 0;
+            gSprites[sTradeData->unk_90].data[1] = 0;
+            gSprites[sTradeData->unk_91].data[1] = 0;
             sTradeData->state++;
-            gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]].invisible = TRUE;
-            gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].invisible = TRUE;
-            CreateTask(Task_NarrowWindowForCrossing_Cable, 5);
+            gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]].invisible = TRUE;
+            gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].invisible = TRUE;
+            CreateTask(sub_807F39C, 5);
         }
         break;
-    case TS_STATE_CROSSING_LINK_MONS_EXIT:
-        gSprites[sTradeData->connectionSpriteId1].pos2.y -= 3;
-        gSprites[sTradeData->connectionSpriteId2].pos2.y += 3;
-        if (gSprites[sTradeData->connectionSpriteId1].pos2.y <= -222)
+    case 39:
+        gSprites[sTradeData->unk_90].pos2.y -= 3;
+        gSprites[sTradeData->unk_91].pos2.y += 3;
+        if (gSprites[sTradeData->unk_90].pos2.y <= -222)
         {
-            BeginNormalPaletteFade(PALETTES_ALL, -1, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(0xFFFFFFFF, -1, 0, 16, RGB_BLACK);
             sTradeData->state++;
-            DestroySprite(&gSprites[sTradeData->connectionSpriteId1]);
-            DestroySprite(&gSprites[sTradeData->connectionSpriteId2]);
+            DestroySprite(&gSprites[sTradeData->unk_90]);
+            DestroySprite(&gSprites[sTradeData->unk_91]);
         }
         break;
-    case TS_STATE_CREATE_LINK_MON_ARRIVING:
+    case 40:
         if (!gPaletteFade.active)
         {
             sTradeData->state++;
@@ -4126,34 +4031,36 @@ static bool8 AnimateTradeSequenceWireless(void)
             sTradeData->bg1vofs = 166;
             SetTradeSequenceBgGpuRegs(3);
             sTradeData->bg2vofs = 412;
-            sTradeData->connectionSpriteId1 = CreateSprite(&sSpriteTemplate_LinkMonGlow, 120, -20, 3);
-            gSprites[sTradeData->connectionSpriteId1].callback = SpriteCB_LinkMonGlowWireless;
-            sTradeData->connectionSpriteId2 = CreateSprite(&sSpriteTemplate_LinkMonShadow, 120, -20, 0);
-            StartSpriteAnim(&gSprites[sTradeData->connectionSpriteId2], ANIM_LINKMON_SMALL);
+            sTradeData->unk_90 = CreateSprite(&gUnknown_08338D88, 120, -20, 3);
+            gSprites[sTradeData->unk_90].callback = sub_807AA4C;
+            sTradeData->unk_91 = CreateSprite(&sGlowBallSpriteTemplate, 120, -20, 0);
+            StartSpriteAnim(&gSprites[sTradeData->unk_91], 1);
         }
         break;
-    case TS_STATE_FADE_OUT_TO_GBA_RECV:
-        BeginNormalPaletteFade(PALETTES_ALL, -1, 16, 0, RGB_BLACK);
+    case 41:
+        BeginNormalPaletteFade(0xFFFFFFFF, -1, 16, 0, RGB_BLACK);
         sTradeData->state++;
         break;
-    case TS_STATE_WAIT_FADE_OUT_TO_GBA_RECV:
+    case 42:
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 |
                                       DISPCNT_OBJ_1D_MAP |
                                       DISPCNT_BG1_ON |
                                       DISPCNT_OBJ_ON);
         if (!gPaletteFade.active)
-            sTradeData->state++;
-        break;
-    case TS_STATE_LINK_MON_TRAVEL_IN:
-        gSprites[sTradeData->connectionSpriteId1].pos2.y += 4;
-        gSprites[sTradeData->connectionSpriteId2].pos2.y += 4;
-        if (gSprites[sTradeData->connectionSpriteId1].pos2.y + gSprites[sTradeData->connectionSpriteId1].pos1.y == 64)
         {
-            sTradeData->state = TS_STATE_PAN_TO_GBA_WIRELESS;
+            sTradeData->state++;
+        }
+        break;
+    case 43:
+        gSprites[sTradeData->unk_90].pos2.y += 4;
+        gSprites[sTradeData->unk_91].pos2.y += 4;
+        if (gSprites[sTradeData->unk_90].pos2.y + gSprites[sTradeData->unk_90].pos1.y == 64)
+        {
+            sTradeData->state = 144;
             sTradeData->timer = 0;
         }
         break;
-    case TS_STATE_PAN_TO_GBA_WIRELESS:
+    case 144:
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 |
                                       DISPCNT_OBJ_1D_MAP |
                                       DISPCNT_BG1_ON |
@@ -4172,60 +4079,62 @@ static bool8 AnimateTradeSequenceWireless(void)
             sTradeData->state++;
         }
         break;
-    case TS_STATE_DESTROY_LINK_MON_WIRELESS:
-        DestroySprite(&gSprites[sTradeData->connectionSpriteId1]);
-        DestroySprite(&gSprites[sTradeData->connectionSpriteId2]);
+    case 145:
+        DestroySprite(&gSprites[sTradeData->unk_90]);
+        DestroySprite(&gSprites[sTradeData->unk_91]);
         sTradeData->state++;
         sTradeData->timer = 0;
         break;
-    case TS_STATE_WAIT_WIRELESS_SIGNAL_RECV:
+    case 146:
         if (!FuncIsActiveTask(Task_AnimateWirelessSignal))
         {
-            sTradeData->state = TS_STATE_LINK_MON_ARRIVED_DELAY;
+            sTradeData->state = 46;
             sTradeData->timer = 0;
         }
         break;
-    case TS_STATE_LINK_MON_ARRIVED_DELAY:
+    case 46:
         if (++sTradeData->timer == 10)
+        {
             sTradeData->state++;
+        }
         break;
-    case TS_STATE_MOVE_GBA_TO_CENTER:
+    case 47:
         if (++sTradeData->bg1vofs > 348)
         {
             sTradeData->bg1vofs = 348;
             sTradeData->state++;
         }
         break;
-    case TS_STATE_GBA_FLASH_RECV:
-        sTradeData->connectionSpriteId2 = CreateSprite(&sSpriteTemplate_GbaScreenFlash_Long, 120, 80, 0);
-        sTradeData->state = TS_STATE_GBA_STOP_FLASH_RECV;
+    case 48:
+        sTradeData->unk_91 = CreateSprite(&gSpriteTemplate_8338E74, 120, 80, 0);
+        sTradeData->state = 50;
         break;
-    case TS_STATE_GBA_STOP_FLASH_RECV:
-        if (gSprites[sTradeData->connectionSpriteId2].animEnded)
+    case 50:
+        if (gSprites[sTradeData->unk_91].animEnded)
         {
-            DestroySprite(&gSprites[sTradeData->connectionSpriteId2]);
+            DestroySprite(&gSprites[sTradeData->unk_91]);
             SetTradeSequenceBgGpuRegs(6);
             sTradeData->state++;
-            PlaySE(SE_M_SAND_ATTACK);
+            PlaySE(SE_W028);
         }
         break;
-    case TS_STATE_GBA_ZOOM_IN:
-        if (sTradeData->gbaScale < 0x400)
+    case 51:
+        if (sTradeData->unk_EA < 0x400)
         {
-            sTradeData->gbaScale += 0x34;
+            sTradeData->unk_EA += 0x34;
         }
         else
         {
-            sTradeData->gbaScale = 0x400;
+            sTradeData->unk_EA = 0x400;
             sTradeData->state++;
         }
-        sTradeData->sXY = 0x8000 / sTradeData->gbaScale;
+        sTradeData->sXY = 0x8000 / sTradeData->unk_EA;
         break;
-    case TS_STATE_FADE_OUT_TO_NEW_MON:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
-        sTradeData->state = TS_STATE_WAIT_FADE_OUT_TO_NEW_MON;
+    case 52:
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        sTradeData->state = 60;
         break;
-    case TS_STATE_WAIT_FADE_OUT_TO_NEW_MON:
+    case 60:
         if (!gPaletteFade.active)
         {
             SetTradeSequenceBgGpuRegs(5);
@@ -4234,55 +4143,54 @@ static bool8 AnimateTradeSequenceWireless(void)
             sTradeData->state++;
         }
         break;
-    case TS_STATE_FADE_IN_TO_NEW_MON:
+    case 61:
         gPaletteFade.bufferTransferDisabled = FALSE;
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 16, 0, RGB_BLACK);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 16, 0, RGB_BLACK);
         sTradeData->state++;
         break;
-    case TS_STATE_WAIT_FADE_IN_TO_NEW_MON:
+    case 62:
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 |
                                       DISPCNT_OBJ_1D_MAP |
                                       DISPCNT_BG2_ON |
                                       DISPCNT_OBJ_ON);
         if (!gPaletteFade.active)
-            sTradeData->state++;
-        break;
-    case TS_STATE_POKEBALL_ARRIVE:
-        sTradeData->bouncingPokeballSpriteId = CreateSprite(&sSpriteTemplate_Pokeball, 120, -8, 0);
-        gSprites[sTradeData->bouncingPokeballSpriteId].data[3] = 74;
-        gSprites[sTradeData->bouncingPokeballSpriteId].callback = SpriteCB_BouncingPokeballArrive;
-        StartSpriteAnim(&gSprites[sTradeData->bouncingPokeballSpriteId], 1);
-        StartSpriteAffineAnim(&gSprites[sTradeData->bouncingPokeballSpriteId], 2);
-        BlendPalettes(1 << (16 + gSprites[sTradeData->bouncingPokeballSpriteId].oam.paletteNum), 16, RGB_WHITEALPHA);
-        sTradeData->state++;
-        sTradeData->timer = 0;
-        break;
-    case TS_STATE_FADE_POKEBALL_TO_NORMAL:
-        BeginNormalPaletteFade(1 << (16 + gSprites[sTradeData->bouncingPokeballSpriteId].oam.paletteNum), 1, 16, 0, RGB_WHITEALPHA);
-        sTradeData->state++;
-        break;
-    case TS_STATE_POKEBALL_ARRIVE_WAIT:
-        if (gSprites[sTradeData->bouncingPokeballSpriteId].callback == SpriteCallbackDummy)
         {
-            HandleLoadSpecialPokePic_2(&gMonFrontPicTable[sTradeData->monSpecies[TRADE_PARTNER]], 
-                                        gMonSpritesGfxPtr->sprites.ptr[3], 
-                                        sTradeData->monSpecies[TRADE_PARTNER], 
-                                        sTradeData->monPersonalities[TRADE_PARTNER]);
             sTradeData->state++;
         }
         break;
-    case TS_STATE_SHOW_NEW_MON:
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos1.x = 120;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos1.y = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PARTNER]].y_offset + 60;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos2.x = 0;
-        gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].pos2.y = 0;
-        StartSpriteAnim(&gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]], 0);
-        CreatePokeballSpriteToReleaseMon(sTradeData->monSpriteIds[TRADE_PARTNER], gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]].oam.paletteNum, 120, 84, 2, 1, 20, 0xFFFFF, sTradeData->monSpecies[TRADE_PARTNER]);
-        FreeSpriteOamMatrix(&gSprites[sTradeData->bouncingPokeballSpriteId]);
-        DestroySprite(&gSprites[sTradeData->bouncingPokeballSpriteId]);
+    case 63:
+        sTradeData->unk_D3 = CreateSprite(&gSpriteTemplate_8338D28, 120, -8, 0);
+        gSprites[sTradeData->unk_D3].data[3] = 74;
+        gSprites[sTradeData->unk_D3].callback = sub_807E6AC;
+        StartSpriteAnim(&gSprites[sTradeData->unk_D3], 1);
+        StartSpriteAffineAnim(&gSprites[sTradeData->unk_D3], 2);
+        BlendPalettes(1 << (16 + gSprites[sTradeData->unk_D3].oam.paletteNum), 16, RGB_WHITEALPHA);
+        sTradeData->state++;
+        sTradeData->timer = 0;
+        break;
+    case 64:
+        BeginNormalPaletteFade(1 << (16 + gSprites[sTradeData->unk_D3].oam.paletteNum), 1, 16, 0, RGB_WHITEALPHA);
         sTradeData->state++;
         break;
-    case TS_STATE_NEW_MON_MSG:
+    case 65:
+        if (gSprites[sTradeData->unk_D3].callback == SpriteCallbackDummy)
+        {
+            HandleLoadSpecialPokePic_2(&gMonFrontPicTable[sTradeData->monSpecies[TRADE_PARTNER]], gMonSpritesGfxPtr->sprites[3], sTradeData->monSpecies[TRADE_PARTNER], sTradeData->monPersonalities[TRADE_PARTNER]);
+            sTradeData->state++;
+        }
+        break;
+    case 66:
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos1.x = 120;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos1.y = gMonFrontPicCoords[sTradeData->monSpecies[TRADE_PARTNER]].y_offset + 60;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos2.x = 0;
+        gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].pos2.y = 0;
+        StartSpriteAnim(&gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]], 0);
+        CreatePokeballSpriteToReleaseMon(sTradeData->pokePicSpriteIdxs[TRADE_PARTNER], gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]].oam.paletteNum, 120, 84, 2, 1, 20, 0xFFFFF, sTradeData->monSpecies[TRADE_PARTNER]);
+        FreeSpriteOamMatrix(&gSprites[sTradeData->unk_D3]);
+        DestroySprite(&gSprites[sTradeData->unk_D3]);
+        sTradeData->state++;
+        break;
+    case 67:
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_MODE_0 |
                                       DISPCNT_OBJ_1D_MAP |
                                       DISPCNT_BG0_ON |
@@ -4290,24 +4198,28 @@ static bool8 AnimateTradeSequenceWireless(void)
                                       DISPCNT_OBJ_ON);
         StringExpandPlaceholders(gStringVar4, gText_XSentOverY);
         DrawTextOnTradeWindow(0, gStringVar4, 0);
-        sTradeData->state = TS_STATE_DELAY_FOR_MON_ANIM;
+        sTradeData->state = 167;
         sTradeData->timer = 0;
         break;
-    case TS_STATE_DELAY_FOR_MON_ANIM:
+    // 167 and 267 are extra cases added in for animations
+    case 167:
         if (++sTradeData->timer > 60)
         {
-            sTradeData->state = TS_STATE_WAIT_FOR_MON_CRY;
+            sTradeData->state = 267;
             sTradeData->timer = 0;
         }
         break;
-    case TS_STATE_WAIT_FOR_MON_CRY:
+    case 267:
         if (IsCryFinished())
-            sTradeData->state = TS_STATE_TAKE_CARE_OF_MON;
+        {
+            sTradeData->state = 68;
+        }
         break;
-    case TS_STATE_TAKE_CARE_OF_MON:
+    case 68:
         if (++sTradeData->timer == 10)
-            PlayFanfare(MUS_EVOLVED);
-
+        {
+            PlayFanfare(MUS_FANFA5);
+        }
         if (sTradeData->timer == 250)
         {
             sTradeData->state++;
@@ -4316,39 +4228,41 @@ static bool8 AnimateTradeSequenceWireless(void)
             sTradeData->timer = 0;
         }
         break;
-    case TS_STATE_AFTER_NEW_MON_DELAY:
+    case 69:
         if (++sTradeData->timer == 60)
+        {
             sTradeData->state++;
+        }
         break;
-    case TS_STATE_CHECK_RIBBONS:
+    case 70:
         CheckPartnersMonForRibbons();
         sTradeData->state++;
         break;
-    case TS_STATE_END_LINK_TRADE:
+    case 71:
         if (sTradeData->isLinkTrade)
         {
             return TRUE;
         }
-        else if (JOY_NEW(A_BUTTON))
+        else if (gMain.newKeys & A_BUTTON)
         {
             sTradeData->state++;
         }
         break;
-    case TS_STATE_TRY_EVOLUTION: // Only if in-game trade, link trades use CB2_TryLinkTradeEvolution
+    case 72: // Only if in-game trade
         TradeMons(gSpecialVar_0x8005, 0);
         gCB2_AfterEvolution = CB2_UpdateInGameTrade;
-        evoTarget = GetEvolutionTargetSpecies(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], EVO_MODE_TRADE, ITEM_NONE);
+        evoTarget = GetEvolutionTargetSpecies(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], TRUE, ITEM_NONE);
         if (evoTarget != SPECIES_NONE)
         {
-            TradeEvolutionScene(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], evoTarget, sTradeData->monSpriteIds[TRADE_PARTNER], gSelectedTradeMonPositions[TRADE_PLAYER]);
+            TradeEvolutionScene(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], evoTarget, sTradeData->pokePicSpriteIdxs[TRADE_PARTNER], gSelectedTradeMonPositions[TRADE_PLAYER]);
         }
         sTradeData->state++;
         break;
-    case TS_STATE_FADE_OUT_END:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+    case 73:
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
         sTradeData->state++;
         break;
-    case TS_STATE_WAIT_FADE_OUT_END:
+    case 74:
         if (!gPaletteFade.active)
         {
             PlayNewMapMusic(sTradeData->cachedMapMusic);
@@ -4369,9 +4283,7 @@ static bool8 AnimateTradeSequenceWireless(void)
     return FALSE;
 }
 
-// Try to evolve a Pokémon received in a link trade
-// In-game trades resolve evolution during the trade sequence, in TS_STATE_TRY_EVOLUTION
-static void CB2_TryLinkTradeEvolution(void)
+static void CB2_TryTradeEvolution(void)
 {
     u16 evoTarget;
     switch (gMain.state)
@@ -4382,9 +4294,9 @@ static void CB2_TryLinkTradeEvolution(void)
         break;
     case 4:
         gCB2_AfterEvolution = CB2_SaveAndEndTrade;
-        evoTarget = GetEvolutionTargetSpecies(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], EVO_MODE_TRADE, ITEM_NONE);
+        evoTarget = GetEvolutionTargetSpecies(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], TRUE, ITEM_NONE);
         if (evoTarget != SPECIES_NONE)
-            TradeEvolutionScene(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], evoTarget, sTradeData->monSpriteIds[TRADE_PARTNER], gSelectedTradeMonPositions[TRADE_PLAYER]);
+            TradeEvolutionScene(&gPlayerParty[gSelectedTradeMonPositions[TRADE_PLAYER]], evoTarget, sTradeData->pokePicSpriteIdxs[TRADE_PARTNER], gSelectedTradeMonPositions[TRADE_PLAYER]);
         else if (IsWirelessTrade())
             SetMainCallback2(CB2_SaveAndEndWirelessTrade);
         else
@@ -4407,7 +4319,7 @@ static void UpdateTradeFinishFlags(void)
     if (blockReceivedStatus & 0x01)
     {
         if (gBlockRecvBuffer[0][0] == LINKCMD_CONFIRM_FINISH_TRADE)
-            SetMainCallback2(CB2_TryLinkTradeEvolution);
+            SetMainCallback2(CB2_TryTradeEvolution);
 
         if (gBlockRecvBuffer[0][0] == LINKCMD_READY_FINISH_TRADE)
             sTradeData->playerLinkFlagFinishTrade = READY_FINISH_TRADE;
@@ -4423,7 +4335,7 @@ static void UpdateTradeFinishFlags(void)
     }
 }
 
-static void SpriteCB_BouncingPokeball(struct Sprite *sprite)
+static void sub_807E55C(struct Sprite *sprite)
 {
     sprite->pos1.y += sprite->data[0] / 10;
     sprite->data[5] += sprite->data[1];
@@ -4444,21 +4356,21 @@ static void SpriteCB_BouncingPokeball(struct Sprite *sprite)
     }
 }
 
-static void SpriteCB_BouncingPokeballDepart(struct Sprite *sprite)
+static void sub_807E5D8(struct Sprite *sprite)
 {
     sprite->pos2.y += sTradeBallVerticalVelocityTable[sprite->data[0]];
     if (sprite->data[0] == 22)
-        PlaySE(SE_BALL_BOUNCE_1);
+        PlaySE(SE_KON);
     if (++ sprite->data[0] == 44)
     {
-        PlaySE(SE_M_MEGA_KICK);
-        sprite->callback = SpriteCB_BouncingPokeballDepartEnd;
+        PlaySE(SE_W025);
+        sprite->callback = sub_807E64C;
         sprite->data[0] = 0;
         BeginNormalPaletteFade(1 << (16 + sprite->oam.paletteNum), -1, 0, 16, RGB_WHITEALPHA);
     }
 }
 
-static void SpriteCB_BouncingPokeballDepartEnd(struct Sprite *sprite)
+static void sub_807E64C(struct Sprite *sprite)
 {
     if (sprite->data[1] == 20)
         StartSpriteAffineAnim(sprite, 1);
@@ -4468,12 +4380,12 @@ static void SpriteCB_BouncingPokeballDepartEnd(struct Sprite *sprite)
         if (++ sprite->data[0] == 23)
         {
             DestroySprite(sprite);
-            sTradeData->state = TS_STATE_FADE_OUT_TO_GBA_SEND; // Resume the master trade animation
+            sTradeData->state = 14; // Resume the master trade animation
         }
     }
 }
 
-static void SpriteCB_BouncingPokeballArrive(struct Sprite *sprite)
+static void sub_807E6AC(struct Sprite *sprite)
 {
     if (sprite->data[2] == 0)
     {
@@ -4481,17 +4393,17 @@ static void SpriteCB_BouncingPokeballArrive(struct Sprite *sprite)
         {
             sprite->data[2] ++;
             sprite->data[0] = 0x16;
-            PlaySE(SE_BALL_BOUNCE_1);
+            PlaySE(SE_KON);
         }
     }
     else
     {
         if (sprite->data[0] == 0x42)
-            PlaySE(SE_BALL_BOUNCE_2);
+            PlaySE(SE_KON2);
         if (sprite->data[0] == 0x5c)
-            PlaySE(SE_BALL_BOUNCE_3);
+            PlaySE(SE_KON3);
         if (sprite->data[0] == 0x6b)
-            PlaySE(SE_BALL_BOUNCE_4);
+            PlaySE(SE_KON4);
         sprite->pos2.y += sTradeBallVerticalVelocityTable[sprite->data[0]];
         if (++sprite->data[0] == 0x6c)
             sprite->callback = SpriteCallbackDummy;
@@ -4525,7 +4437,7 @@ static void _CreateInGameTradePokemon(u8 whichPlayerMon, u8 whichInGameTrade)
     u8 isMail;
     struct Pokemon *pokemon = &gEnemyParty[0];
 
-    CreateMon(pokemon, inGameTrade->species, level, USE_RANDOM_IVS, TRUE, inGameTrade->personality, OT_ID_PRESET, inGameTrade->otId);
+    CreateMon(pokemon, inGameTrade->species, level, 32, TRUE, inGameTrade->personality, OT_ID_PRESET, inGameTrade->otId);
 
     SetMonData(pokemon, MON_DATA_HP_IV, &inGameTrade->ivs[0]);
     SetMonData(pokemon, MON_DATA_ATK_IV, &inGameTrade->ivs[1]);
@@ -4598,8 +4510,8 @@ static void CB2_UpdateLinkTrade(void)
 {
     if (AnimateTradeSequence() == TRUE)
     {
-        DestroySprite(&gSprites[sTradeData->monSpriteIds[TRADE_PLAYER]]);
-        FreeSpriteOamMatrix(&gSprites[sTradeData->monSpriteIds[TRADE_PARTNER]]);
+        DestroySprite(&gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PLAYER]]);
+        FreeSpriteOamMatrix(&gSprites[sTradeData->pokePicSpriteIdxs[TRADE_PARTNER]]);
         TradeMons(gSelectedTradeMonPositions[TRADE_PLAYER], gSelectedTradeMonPositions[TRADE_PARTNER] % PARTY_SIZE);
         if (!IsWirelessTrade())
         {
@@ -4622,17 +4534,17 @@ static void CB2_TryFinishTrade(void)
     u8 mpId = TradeGetMultiplayerId();
     if (IsWirelessTrade())
     {
-        SetMainCallback2(CB2_TryLinkTradeEvolution);
+        SetMainCallback2(CB2_TryTradeEvolution);
     }
     else
     {
         UpdateTradeFinishFlags();
-        if (mpId == 0
-            && sTradeData->playerLinkFlagFinishTrade == READY_FINISH_TRADE
+        if (mpId == 0 
+            && sTradeData->playerLinkFlagFinishTrade == READY_FINISH_TRADE 
             && sTradeData->partnerLinkFlagFinishTrade == READY_FINISH_TRADE)
         {
             sTradeData->linkData[0] = LINKCMD_CONFIRM_FINISH_TRADE;
-            SendBlock(bitmask_all_link_players_but_self(), sTradeData->linkData, sizeof(sTradeData->linkData));
+            Trade_SendData(sTradeData);
             sTradeData->playerLinkFlagFinishTrade = FINISH_TRADE;
             sTradeData->partnerLinkFlagFinishTrade = FINISH_TRADE;
         }
@@ -4653,7 +4565,7 @@ static void CB2_SaveAndEndTrade(void)
         DrawTextOnTradeWindow(0, gStringVar4, 0);
         break;
     case 1:
-        SetTradeLinkStandbyCallback(0);
+        sub_8077288(0);
         gMain.state = 100;
         sTradeData->timer = 0;
         break;
@@ -4684,7 +4596,7 @@ static void CB2_SaveAndEndTrade(void)
             IncrementGameStat(GAME_STAT_POKEMON_TRADES);
         if (gWirelessCommType)
         {
-            RecordIdOfWonderCardSenderByEventType(2, gLinkPlayers[GetMultiplayerId() ^ 1].trainerId);
+            sub_801B990(2, gLinkPlayers[GetMultiplayerId() ^ 1].trainerId);
         }
         SetContinueGameWarpStatusToDynamicWarp();
         sub_8153380();
@@ -4731,7 +4643,7 @@ static void CB2_SaveAndEndTrade(void)
     case 41:
         if (sTradeData->timer == 0)
         {
-            SetTradeLinkStandbyCallback(1);
+            sub_8077288(1);
             gMain.state = 42;
         }
         else
@@ -4750,13 +4662,13 @@ static void CB2_SaveAndEndTrade(void)
         if (++sTradeData->timer > 60)
         {
             gMain.state++;
-            SetTradeLinkStandbyCallback(2);
+            sub_8077288(2);
         }
         break;
     case 6:
         if (_IsLinkTaskFinished())
         {
-            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             gMain.state ++;
         }
         break;
@@ -4772,11 +4684,11 @@ static void CB2_SaveAndEndTrade(void)
         {
             if (gWirelessCommType && gMain.savedCallback == CB2_StartCreateTradeMenu)
             {
-                SetTradeLinkStandbyCallback(3);
+                sub_8077288(3);
             }
             else
             {
-                SetCloseLinkCallback();
+                sub_800AC34();
             }
             gMain.state++;
         }
@@ -4830,7 +4742,7 @@ void DoInGameTradeScene(void)
 {
     ScriptContext2_Enable();
     CreateTask(Task_InGameTrade, 10);
-    BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+    BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
 }
 
 static void Task_InGameTrade(u8 taskId)
@@ -4883,20 +4795,20 @@ static void Task_AnimateWirelessSignal(u8 taskId)
     if (!signalComingBack)
     {
         if (paletteIdx == 256)
-            LoadPalette(sWirelessSignalNone_Pal, 0x30, 32);
+            LoadPalette(sTradePal_Black, 0x30, 32);
         else
-            LoadPalette(&sWirelessSignalSend_Pal[paletteIdx], 0x30, 32);
+            LoadPalette(&sTradePal_WirelessSignalSend[paletteIdx], 0x30, 32);
     }
     else
     {
         if (paletteIdx == 256)
-            LoadPalette(sWirelessSignalNone_Pal, 0x30, 32);
+            LoadPalette(sTradePal_Black, 0x30, 32);
         else
-            LoadPalette(&sWirelessSignalRecv_Pal[paletteIdx], 0x30, 32);
+            LoadPalette(&sTradePal_WirelessSignalReceive[paletteIdx], 0x30, 32);
     }
 
     if (sWirelessSignalTiming[idx][0] == 0 && counter == 0)
-        PlaySE(SE_M_HEAL_BELL);
+        PlaySE(SE_W215);
 
     if (counter == sWirelessSignalTiming[idx][1])
     {
@@ -4917,15 +4829,15 @@ static void Task_AnimateWirelessSignal(u8 taskId)
 #undef counter
 #undef signalComingBack
 
-static void Task_NarrowWindowForCrossing_Wireless(u8 taskId)
+static void c3_0805465C(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
     if (data[0] == 0)
     {
-        sTradeData->wirelessWinLeft = sTradeData->wirelessWinRight = DISPLAY_WIDTH / 2;
+        sTradeData->wirelessWinLeft = sTradeData->wirelessWinRight = 120;
         sTradeData->wirelessWinTop = 0;
-        sTradeData->wirelessWinBottom = DISPLAY_HEIGHT;
+        sTradeData->wirelessWinBottom = 160;
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON);
         SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_OBJ);
         SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG0 |
@@ -4941,17 +4853,19 @@ static void Task_NarrowWindowForCrossing_Wireless(u8 taskId)
     sTradeData->wirelessWinRight += 5;
 
     if (sTradeData->wirelessWinLeft < 80)
+    {
         DestroyTask(taskId);
+    }
 }
 
-static void Task_NarrowWindowForCrossing_Cable(u8 taskId)
+static void sub_807F39C(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
 
     if (data[0] == 0)
     {
         sTradeData->wirelessWinLeft = 80;
-        sTradeData->wirelessWinRight = DISPLAY_WIDTH - 80;
+        sTradeData->wirelessWinRight = 160;
         SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_OBJ);
         SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG0 |
                                     WININ_WIN0_BG1 |
@@ -4961,13 +4875,13 @@ static void Task_NarrowWindowForCrossing_Cable(u8 taskId)
     SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE2(sTradeData->wirelessWinLeft, sTradeData->wirelessWinRight));
     SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE2(sTradeData->wirelessWinTop, sTradeData->wirelessWinBottom));
 
-    if (sTradeData->wirelessWinLeft != DISPLAY_WIDTH / 2)
+    if (sTradeData->wirelessWinLeft != 120)
     {
         data[0]++;
         sTradeData->wirelessWinLeft += 5;
         sTradeData->wirelessWinRight -= 5;
 
-        if (sTradeData->wirelessWinLeft > DISPLAY_WIDTH / 2 - 5)
+        if (sTradeData->wirelessWinLeft >= 116)
             BlendPalettes(0x8, 0, RGB_WHITEALPHA);
     }
     else
@@ -4987,7 +4901,7 @@ static void CB2_SaveAndEndWirelessTrade(void)
         DrawTextOnTradeWindow(0, gStringVar4, 0);
         break;
     case 1:
-        SetTradeLinkStandbyCallback(0);
+        sub_8077288(0);
         gMain.state = 2;
         sTradeData->timer = 0;
         break;
@@ -5035,7 +4949,7 @@ static void CB2_SaveAndEndWirelessTrade(void)
     case 7:
         if (sTradeData->timer == 0)
         {
-            SetTradeLinkStandbyCallback(1);
+            sub_8077288(1);
             gMain.state = 8;
         }
         else
@@ -5054,21 +4968,21 @@ static void CB2_SaveAndEndWirelessTrade(void)
         if (++sTradeData->timer > 60)
         {
             gMain.state++;
-            SetTradeLinkStandbyCallback(2);
+            sub_8077288(2);
         }
         break;
     case 10:
         if (_IsLinkTaskFinished())
         {
             FadeOutBGM(3);
-            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             gMain.state = 11;
         }
         break;
     case 11:
         if (!gPaletteFade.active && IsBGMStopped() == TRUE)
         {
-            SetTradeLinkStandbyCallback(3);
+            sub_8077288(3);
             gMain.state = 12;
         }
         break;

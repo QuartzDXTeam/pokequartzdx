@@ -1,6 +1,3 @@
-.set LOCALID_ATTENDANT_SINGLES, 1
-.set LOCALID_ATTENDANT_DOUBLES, 6
-
 BattleFrontier_BattleFactoryLobby_MapScripts:: @ 82583E8
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, BattleFrontier_BattleFactoryLobby_OnFrame
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattleFactoryLobby_OnWarp
@@ -83,7 +80,7 @@ BattleFrontier_BattleFactoryLobby_EventScript_AskRecordBattle:: @ 825853B
 	goto_if_eq BattleFrontier_BattleFactoryLobby_EventScript_EndRecordBattle
 	message BattleFrontier_BattleFactoryLobby_Text_RecordLastMatch
 	waitmessage
-	multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE
+	multichoicedefault 20, 8, MULTI_YESNO, 1, 0
 	switch VAR_RESULT
 	case 1, BattleFrontier_BattleFactoryLobby_EventScript_EndRecordBattle
 	case 0, BattleFrontier_BattleFactoryLobby_EventScript_RecordBattle
@@ -136,7 +133,7 @@ BattleFrontier_BattleFactoryLobby_EventScript_AskTakeChallenge:: @ 8258606
 	compare VAR_FRONTIER_BATTLE_MODE, FRONTIER_MODE_DOUBLES
 	call_if_eq BattleFrontier_BattleFactoryLobby_EventScript_TakeDoublesChallenge
 	waitmessage
-	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
+	multichoice 17, 6, MULTI_CHALLENGEINFO, 0
 	switch VAR_RESULT
 	case 0, BattleFrontier_BattleFactoryLobby_EventScript_TryEnterChallenge
 	case 1, BattleFrontier_BattleFactoryLobby_EventScript_ExplainChallenge
@@ -146,7 +143,7 @@ BattleFrontier_BattleFactoryLobby_EventScript_AskTakeChallenge:: @ 8258606
 BattleFrontier_BattleFactoryLobby_EventScript_TryEnterChallenge:: @ 8258653
 	message BattleFrontier_BattleFactoryLobby_Text_WhichLevelMode
 	waitmessage
-	multichoice 17, 6, MULTI_LEVEL_MODE, FALSE
+	multichoice 17, 6, MULTI_LEVEL_MODE, 0
 	switch VAR_RESULT
 	case FRONTIER_LVL_TENT, BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
 	case MULTI_B_PRESSED, BattleFrontier_BattleFactoryLobby_EventScript_CancelChallenge
@@ -187,11 +184,11 @@ BattleFrontier_BattleFactoryLobby_EventScript_EnterChallenge:: @ 825871A
 	end
 
 BattleFrontier_BattleFactoryLobby_EventScript_TalkedToSinglesAttendant:: @ 825875C
-	setvar VAR_LAST_TALKED, LOCALID_ATTENDANT_SINGLES
+	setvar VAR_LAST_TALKED, 1
 	return
 
 BattleFrontier_BattleFactoryLobby_EventScript_TalkedToDoublesAttendant:: @ 8258762
-	setvar VAR_LAST_TALKED, LOCALID_ATTENDANT_DOUBLES
+	setvar VAR_LAST_TALKED, 6
 	return
 
 BattleFrontier_BattleFactoryLobby_EventScript_ExplainChallenge:: @ 8258768
@@ -293,7 +290,7 @@ BattleFrontier_BattleFactoryLobby_EventScript_RulesBoard:: @ 8258839
 BattleFrontier_BattleFactoryLobby_EventScript_ReadRulesBoard:: @ 8258848
 	message BattleFrontier_BattleFactoryLobby_Text_ReadWhichHeading
 	waitmessage
-	multichoice 17, 0, MULTI_BATTLE_FACTORY_RULES, FALSE
+	multichoice 17, 0, MULTI_BATTLE_FACTORY_RULES, 0
 	switch VAR_RESULT
 	case 0, BattleFrontier_BattleFactoryLobby_EventScript_RulesBasics
 	case 1, BattleFrontier_BattleFactoryLobby_EventScript_RulesSwapPartner

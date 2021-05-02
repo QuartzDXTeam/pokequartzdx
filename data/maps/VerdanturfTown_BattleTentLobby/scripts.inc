@@ -1,5 +1,3 @@
-.set LOCALID_ATTENDANT, 1
-
 VerdanturfTown_BattleTentLobby_MapScripts:: @ 82016D0
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, VerdanturfTown_BattleTentLobby_OnFrame
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, VerdanturfTown_BattleTentLobby_OnWarp
@@ -55,7 +53,7 @@ VerdanturfTown_BattleTentLobby_EventScript_GivePrize:: @ 8201791
 	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0
 	message BattleFrontier_BattleDomeLobby_Text_ReceivedPrize  @ Odd that it used Dome's copy instead of Palace's
 	waitmessage
-	playfanfare MUS_OBTAIN_ITEM
+	playfanfare MUS_FANFA4
 	waitfanfare
 	msgbox VerdanturfTown_BattleTentLobby_Text_ReturnFortified, MSGBOX_DEFAULT
 	closemessage
@@ -114,7 +112,7 @@ VerdanturfTown_BattleTentLobby_EventScript_Attendant:: @ 8201873
 VerdanturfTown_BattleTentLobby_EventScript_AskEnterChallenge:: @ 8201893
 	message VerdanturfTown_BattleTentLobby_Text_TakeChallenge
 	waitmessage
-	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
+	multichoice 17, 6, MULTI_CHALLENGEINFO, 0
 	switch VAR_RESULT
 	case 0, VerdanturfTown_BattleTentLobby_EventScript_TryEnterChallenge
 	case 1, VerdanturfTown_BattleTentLobby_EventScript_ExplainChallenge
@@ -197,12 +195,12 @@ VerdanturfTown_BattleTentLobby_EventScript_EndCancelChallenge:: @ 8201A3F
 	end
 
 VerdanturfTown_BattleTentLobby_EventScript_WalkToDoor:: @ 8201A41
-	applymovement LOCALID_ATTENDANT, VerdanturfTown_BattleTentLobby_Movement_WalkToDoor
+	applymovement 1, VerdanturfTown_BattleTentLobby_Movement_WalkToDoor
 	applymovement OBJ_EVENT_ID_PLAYER, VerdanturfTown_BattleTentLobby_Movement_WalkToDoor
 	waitmovement 0
 	opendoor 6, 1
 	waitdooranim
-	applymovement LOCALID_ATTENDANT, VerdanturfTown_BattleTentLobby_Movement_AttendantEnterDoor
+	applymovement 1, VerdanturfTown_BattleTentLobby_Movement_AttendantEnterDoor
 	applymovement OBJ_EVENT_ID_PLAYER, VerdanturfTown_BattleTentLobby_Movement_PlayerEnterDoor
 	waitmovement 0
 	closedoor 6, 1

@@ -1,5 +1,4 @@
-@ Note: LOCALIDs shared with BattleFrontier_BattlePikeRoomNormal
-BattleFrontier_BattlePikeRoom_MapScripts: @ 82C3E1B
+BattleFrontier_BattlePikeRoomNormal_MapScripts_2C3E1B: @ 82C3E1B
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_BattlePikeRoom_OnTransition
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BattleFrontier_BattlePikeRoom_OnWarp
 
@@ -18,28 +17,28 @@ BattleFrontier_BattlePikeRoom_OnTransition: @ 82C3E25
 	end
 
 BattleFrontier_BattlePikeRoomNormal_EventScript_SetDoubleBattleObjPos:: @ 82C3E93
-	setobjectxyperm LOCALID_OBJ_0, 2, 5
-	setobjectxyperm LOCALID_OBJ_1, 6, 5
+	setobjectxyperm 1, 2, 5
+	setobjectxyperm 2, 6, 5
 	end
 
 BattleFrontier_BattlePikeRoomNormal_EventScript_SetTwoObjectRoomPos:: @ 82C3EA2
-	setobjectxyperm LOCALID_OBJ_0, 4, 4
-	setobjectxyperm LOCALID_OBJ_1, 3, 4
+	setobjectxyperm 1, 4, 4
+	setobjectxyperm 2, 3, 4
 	end
 
 BattleFrontier_BattlePikeRoomNormal_EventScript_SetOneObjectRoomPos:: @ 82C3EB1
-	setobjectxyperm LOCALID_OBJ_0, 4, 4
-	setobjectxyperm LOCALID_OBJ_1, 0, 0
+	setobjectxyperm 1, 4, 4
+	setobjectxyperm 2, 0, 0
 	end
 
 BattleFrontier_BattlePikeRoomNormal_EventScript_SetNPCRoomObjPos:: @ 82C3EC0
-	setobjectxyperm LOCALID_OBJ_0, 5, 5
-	setobjectxyperm LOCALID_OBJ_1, 0, 0
+	setobjectxyperm 1, 5, 5
+	setobjectxyperm 2, 0, 0
 	end
 
 BattleFrontier_BattlePikeRoomNormal_EventScript_SetBrainRoomObjPos:: @ 82C3ECF
-	setobjectxyperm LOCALID_OBJ_0, 4, 3
-	setobjectxyperm LOCALID_OBJ_1, 4, 4
+	setobjectxyperm 1, 4, 3
+	setobjectxyperm 2, 4, 4
 	end
 
 BattleFrontier_BattlePikeRoom_OnWarp: @ 82C3EDE
@@ -58,7 +57,7 @@ BattleFrontier_BattlePikeRoomNormal_EventScript_InitRoomObjects:: @ 82C3EE8
 	goto_if_eq BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom
 	compare VAR_RESULT, PIKE_ROOM_BRAIN
 	goto_if_eq BattleFrontier_BattlePikeRoomNormal_EventScript_InitBrainRoomObjects
-	hideobjectat LOCALID_OBJ_1, MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL
+	hideobjectat 2, MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL
 	setvar VAR_TEMP_4, 1
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
 	end
@@ -71,7 +70,7 @@ BattleFrontier_BattlePikeRoomNormal_EventScript_InitTwoObjectRoom:: @ 82C3F35
 BattleFrontier_BattlePikeRoomNormal_EventScript_InitBrainRoomObjects:: @ 82C3F3F
 	setvar VAR_TEMP_4, 1
 	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
-	hideobjectat LOCALID_OBJ_0, MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL  @ Pike Queen hidden initially
+	hideobjectat 1, MAP_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_NORMAL  @ Pike Queen hidden initially
 	end
 
 BattleFrontier_BattlePikeThreePathRoom_EventScript_LeftRoomWarp:: @ 82C3F4E

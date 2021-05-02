@@ -1,4 +1,5 @@
 #include "global.h"
+#include "constants/game_stat.h"
 #include "overworld.h"
 #include "berry_blender.h"
 #include "bg.h"
@@ -6,6 +7,7 @@
 #include "task.h"
 #include "sprite.h"
 #include "sound.h"
+#include "constants/songs.h"
 #include "m4a.h"
 #include "bg.h"
 #include "palette.h"
@@ -17,10 +19,10 @@
 #include "event_data.h"
 #include "main.h"
 #include "link.h"
-#include "link_rfu.h"
 #include "item_menu_icons.h"
 #include "berry.h"
 #include "item.h"
+#include "constants/items.h"
 #include "string_util.h"
 #include "international_string_util.h"
 #include "random.h"
@@ -33,96 +35,43 @@
 #include "graphics.h"
 #include "new_game.h"
 #include "save.h"
-#include "strings.h"
-#include "constants/game_stat.h"
-#include "constants/items.h"
+#include "link.h"
+#include "constants/berry.h"
 #include "constants/rgb.h"
-#include "constants/songs.h"
 
-enum {
-    SCORE_BEST,
-    SCORE_GOOD,
-    SCORE_MISS,
-    NUM_SCORE_TYPES,
-};
+#define BLENDER_SCORE_BEST      0
+#define BLENDER_SCORE_GOOD      1
+#define BLENDER_SCORE_MISS      2
 
-// Redundant with the above. Reversed
-enum {
-    PROXIMITY_MISS,
-    PROXIMITY_GOOD,
-    PROXIMITY_BEST,
-};
+#define BLENDER_MAX_PLAYERS     4
+#define BLENDER_SCORES_NO       3
 
-enum {
-    SCOREANIM_GOOD,
-    SCOREANIM_MISS,
-    SCOREANIM_BEST_FLASH,
-    SCOREANIM_BEST_STATIC,
-};
-
-enum {
-    PLAY_AGAIN_YES,
-    PLAY_AGAIN_NO,
+enum
+{
+    PLAY_AGAIN_OK,
+    DONT_PLAY_AGAIN,
     CANT_PLAY_NO_BERRIES,
     CANT_PLAY_NO_PKBLCK_SPACE
 };
-
-enum {
-    BLENDER_MISTER,
-    BLENDER_LADDIE,
-    BLENDER_LASSIE,
-    BLENDER_MASTER,
-    BLENDER_DUDE,
-    BLENDER_MISS
-};
-
-#define BLENDER_MAX_PLAYERS MAX_LINK_PLAYERS
-
-#define NO_PLAYER 0xFF
-
-#define MAX_PROGRESS_BAR 1000
-
-#define MAX_ARROW_POS 0x10000 // By virtue of being u16
-#define MIN_ARROW_SPEED 0x80
-#define ARROW_FALL_ROTATION 0x5800 // The amount the arrow spins as it falls in at the start
-
-// Tile offsets
-#define PROGRESS_BAR_FILLED_TOP    0x80E9
-#define PROGRESS_BAR_FILLED_BOTTOM 0x80F9
-#define PROGRESS_BAR_EMPTY_TOP     0x80E1
-#define PROGRESS_BAR_EMPTY_BOTTOM  0x80F1
-#define RPM_DIGIT 0x8072
-
-// Tile and palette tags
-#define GFXTAG_COUNTDOWN_NUMBERS 12345
-#define GFXTAG_START             12346
-#define GFXTAG_PARTICLES         23456
-#define GFXTAG_PLAYER_ARROW      46545
-#define GFXTAG_SCORE_SYMBOLS     48888
-
-#define PALTAG_PLAYER_ARROW      12312
-#define PALTAG_MISC              46546
-
-// Last berry that an NPC can put in
-#define NUM_NPC_BERRIES ITEM_TO_BERRY(ITEM_ASPEAR_BERRY)
 
 struct BlenderBerry
 {
     u16 itemId;
     u8 name[BERRY_NAME_LENGTH + 1];
-    u8 flavors[FLAVOR_COUNT + 1]; // 5 flavors, + 1 for feel
+    u8 flavors[FLAVOR_COUNT];
+    u8 smoothness;
 };
 
 struct TimeAndRPM
 {
     u32 time;
-    u16 maxRPM;
+    u16 max_RPM;
 };
 
 struct BlenderGameBlock
 {
     struct TimeAndRPM timeRPM;
-    u16 scores[BLENDER_MAX_PLAYERS][NUM_SCORE_TYPES];
+    u16 scores[BLENDER_MAX_PLAYERS][BLENDER_SCORES_NO];
 };
 
 struct TvBlenderStruct
@@ -133,122 +82,138 @@ struct TvBlenderStruct
     u8 pokeblockSheen;
 };
 
-struct BerryBlender
+struct BerryBlenderData
 {
     u8 mainState;
     u8 loadGfxState;
-    u8 unused0[66];
-    u16 unk0; // never read
-    u8 scoreIconIds[NUM_SCORE_TYPES];
+    u8 unused_02[0x42];
+    u16 field_44;
+    u8 scoreIconIds[BLENDER_SCORES_NO];
     u16 arrowPos;
-    s16 speed;
-    u16 maxRPM;
-    u8 playerArrowSpriteIds[BLENDER_MAX_PLAYERS];
-    u8 playerArrowSpriteIds2[BLENDER_MAX_PLAYERS];
-    u8 unused1[11];
+    s16 field_4C;
+    u16 max_RPM;
+    u8 syncArrowSpriteIds[BLENDER_MAX_PLAYERS];
+    u8 syncArrowSprite2Ids[BLENDER_MAX_PLAYERS];
+    u8 unused_57[0xB];
     u8 gameEndState;
-    u16 playerContinueResponses[BLENDER_MAX_PLAYERS];
-    u16 canceledPlayerCmd;
-    u16 canceledPlayerId;
+    u16 field_64[BLENDER_MAX_PLAYERS];
+    u16 field_6C;
+    u16 field_6E;
     u16 playAgainState;
-    u8 slowdownTimer;
+    u8 field_72;
     u16 chosenItemId[BLENDER_MAX_PLAYERS];
-    u8 numPlayers;
-    u8 unused2[16];
-    u16 arrowIdToPlayerId[BLENDER_MAX_PLAYERS];
-    u16 playerIdToArrowId[BLENDER_MAX_PLAYERS];
+    u8 playersNo;
+    u8 unused_7D[0x10];
+    u16 field_8E[BLENDER_MAX_PLAYERS];
+    u16 field_96[BLENDER_MAX_PLAYERS];
     u8 yesNoAnswer;
     u8 stringVar[100];
     u32 gameFrameTime;
     s32 framesToWait;
-    u32 unk1; // never read
-    u8 unused3[4];
-    u8 playerToThrowBerry;
-    u16 progressBarValue;
-    u16 maxProgressBarValue;
-    u16 centerScale;
+    u32 field_10C;
+    u8 unused_110[4];
+    u8 field_114;
+    u16 field_116;
+    u16 field_118;
+    u16 field_11A;
     u16 bg_X;
     u16 bg_Y;
-    u8 opponentTaskIds[BLENDER_MAX_PLAYERS - 1];
-    u8 perfectOpponents; // for debugging, NPCs will always hit Best
-    u16 scores[BLENDER_MAX_PLAYERS][NUM_SCORE_TYPES];
+    u8 field_120[3];
+    u8 field_123;
+    u16 scores[BLENDER_MAX_PLAYERS][BLENDER_SCORES_NO];
     u8 playerPlaces[BLENDER_MAX_PLAYERS];
     struct BgAffineSrcData bgAffineSrc;
-    u16 savedMusic;
+    u16 field_154;
     struct BlenderBerry blendedBerries[BLENDER_MAX_PLAYERS];
     struct TimeAndRPM smallBlock;
-    u32 linkPlayAgainState;
-    u8 ownRanking;
+    u32 field_1A0;
+    u8 field_1A4;
     struct TvBlenderStruct tvBlender;
-    u8 tilemapBuffers[2][BG_SCREEN_SIZE];
+    u8 tilemapBuffers[2][0x800];
     s16 textState;
     void *tilesBuffer;
     struct BlenderGameBlock gameBlock;
 };
 
-static void SetBgPos(void);
-static void Task_HandleOpponent1(u8);
-static void Task_HandleOpponent2(u8);
-static void Task_HandleOpponent3(u8);
-static void Task_HandleBerryMaster(u8);
-static void Task_PlayPokeblockFanfare(u8);
-static void SpriteCB_PlayerArrow(struct Sprite *);
-static void SpriteCB_ScoreSymbol(struct Sprite *);
-static void SpriteCB_CountdownNumber(struct Sprite *);
-static void SpriteCB_Start(struct Sprite *);
-static void SpriteCB_ScoreSymbolBest(struct Sprite *);
-static void InitLocalPlayers(u8);
-static void CB2_LoadBerryBlender(void);
-static void UpdateBlenderCenter(void);
-static bool32 Blender_PrintText(s16 *, const u8 *, s32 );
-static void StartBlender(void);
-static void CB2_StartBlenderLink(void);
-static void CB2_StartBlenderLocal(void);
-static void Blender_DummiedOutFunc(s16, s16);
-static void CB2_PlayBlender(void);
-static void DrawBlenderCenter(struct BgAffineSrcData *);
-static bool8 UpdateBlenderLandScreenShake(void);
-static void SetPlayerIdMaps(void);
-static void PrintPlayerNames(void);
-static void InitBlenderBgs(void);
-static void SetPlayerBerryData(u8, u16);
-static void Blender_AddTextPrinter(u8, const u8 *, u8, u8, s32, s32);
-static void ResetLinkCmds(void);
-static void CreateParticleSprites(void);
-static void ShakeBgCoordForHit(s16*, u16);
-static void TryUpdateProgressBar(u16, u16);
-static void UpdateRPM(u16);
-static void RestoreBgCoords(void);
-static void ProcessLinkPlayerCmds(void);
-static void CB2_EndBlenderGame(void);
-static bool8 PrintBlendingRanking(void);
-static bool8 PrintBlendingResults(void);
-static void CB2_CheckPlayAgainLocal(void);
-static void CB2_CheckPlayAgainLink(void);
-static void UpdateProgressBar(u16, u16);
-static void PrintMadePokeblockString(struct Pokeblock *, u8 *);
-static bool32 TryAddContestLinkTvShow(struct Pokeblock *, struct TvBlenderStruct *);
+extern struct MusicPlayerInfo gMPlayInfo_SE2;
+extern struct MusicPlayerInfo gMPlayInfo_BGM;
 
-EWRAM_DATA static struct BerryBlender *sBerryBlender = NULL;
-EWRAM_DATA static s32 sDebug_PokeblockFactorFlavors[FLAVOR_COUNT] = {0};
-EWRAM_DATA static s32 sDebug_PokeblockFactorFlavorsAfterRPM[FLAVOR_COUNT] = {0};
-EWRAM_DATA static u32 sDebug_PokeblockFactorRPM = 0;
+// text
+extern const u8 gText_SavingDontTurnOff2[];
+extern const u8 gText_Space[];
+extern const u8 gText_BlenderMaxSpeedRecord[];
+extern const u8 gText_234Players[];
 
-static s16 sPokeblockFlavors[FLAVOR_COUNT + 1]; // + 1 for feel
-static s16 sPokeblockPresentFlavors[FLAVOR_COUNT + 1];
-static s16 sDebug_MaxRPMStage;
-static s16 sDebug_GameTimeStage;
+// this file's functions
+static void BerryBlender_SetBackgroundsPos(void);
+static void sub_8080EA4(u8 taskId);
+static void sub_8080FD0(u8 taskId);
+static void sub_80810F8(u8 taskId);
+static void sub_8081224(u8 taskId);
+static void sub_8083F3C(u8 taskId);
+static void sub_80833F8(struct Sprite *sprite);
+static void sub_8082F68(struct Sprite *sprite);
+static void sub_8083010(struct Sprite *sprite);
+static void sub_80830C0(struct Sprite *sprite);
+static void sub_8082F9C(struct Sprite *sprite);
+static void Blender_SetPlayerNamesLocal(u8 opponentsNum);
+static void sub_807FAC8(void);
+static void sub_8082D28(void);
+static bool32 Blender_PrintText(s16 *textState, const u8 *string, s32 textSpeed);
+static void sub_807FFA4(void);
+static void sub_8080018(void);
+static void sub_80808D4(void);
+static void Blender_DummiedOutFunc(s16 a0, s16 a1);
+static void sub_8081898(void);
+static void sub_8082CB4(struct BgAffineSrcData *bgAffineSrc);
+static bool8 sub_8083380(void);
+static void sub_808074C(void);
+static void Blender_PrintPlayerNames(void);
+static void sub_8080588(void);
+static void Blender_SetParticipantBerryData(u8 participantId, u16 itemId);
+static void Blender_AddTextPrinter(u8 windowId, const u8 *string, u8 x, u8 y, s32 speed, s32 caseId);
+static void sub_8080DF8(void);
+static void sub_8082E84(void);
+static void sub_80832BC(s16* a0, u16 a1);
+static void sub_8083140(u16 a0, u16 a2);
+static void sub_8083230(u16 a0);
+static void sub_808330C(void);
+static void sub_8082AD4(void);
+static void CB2_HandleBlenderEndGame(void);
+static bool8 Blender_PrintBlendingRanking(void);
+static bool8 Blender_PrintBlendingResults(void);
+static void CB2_HandlePlayerPlayAgainChoice(void);
+static void CB2_HandlePlayerLinkPlayAgainChoice(void);
+static void sub_8083170(u16 a0, u16 a1);
+static void Blender_PrintMadePokeblockString(struct Pokeblock *pokeblock, u8 *dst);
+static bool32 TryAddContestLinkTvShow(struct Pokeblock *pokeblock, struct TvBlenderStruct *a1);
 
+// EWRAM
+EWRAM_DATA static struct BerryBlenderData *sBerryBlenderData = NULL;
+EWRAM_DATA static s32 sUnknown_020322A8[5] = {0};
+EWRAM_DATA static s32 sUnknown_020322BC[5] = {0};
+EWRAM_DATA static u32 sUnknown_020322D0 = 0;
+
+// IWRAM bss
+static s16 sUnknown_03000DE8[8];
+static s16 sUnknown_03000DF8[6];
+static s16 sUnknown_03000E04;
+static s16 sUnknown_03000E06;
+
+// IWRAM common
 u8 gInGameOpponentsNo;
 
-static const u16 sBlenderCenter_Pal[] = INCBIN_U16("graphics/berry_blender/center.gbapal");
-static const u8 sBlenderCenter_Tilemap[] = INCBIN_U8("graphics/berry_blender/center_map.bin");
-static const u16 sBlenderOuter_Pal[] = INCBIN_U16("graphics/berry_blender/outer.gbapal");
+// rom
 
-static const u16 sUnused_Pal[] = INCBIN_U16("graphics/berry_blender/unused.gbapal");
-static const u16 sEmpty_Pal[16 * 14] = {0};
+static const u16 sBlenderCenterPal[] = INCBIN_U16("graphics/berry_blender/center.gbapal");
+static const u8 sBlenderCenterMap[] = INCBIN_U8("graphics/berry_blender/center_map.bin");
+static const u16 sBlenderOuterPal[] = INCBIN_U16("graphics/berry_blender/outer.gbapal");
 
-// unused text
+// unreferenced pals?
+static const u16 sUnknownPal_0[] = INCBIN_U16("graphics/unknown/unknown_339514.gbapal");
+static const u16 sUnknownArray_1[224] = {0};
+
+// unused text?
 static const u8 sUnusedText_YesNo[] = _("YES\nNO");
 static const u8 sUnusedText_2[] = _("▶");
 static const u8 sUnusedText_Space[] = _(" ");
@@ -267,12 +232,22 @@ static const u8 sText_Miss[] = _("MISS");
 
 static const u8* const sBlenderOpponentsNames[] =
 {
-    [BLENDER_MISTER] = sText_Mister,
-    [BLENDER_LADDIE] = sText_Laddie,
-    [BLENDER_LASSIE] = sText_Lassie,
-    [BLENDER_MASTER] = sText_Master,
-    [BLENDER_DUDE]   = sText_Dude,
-    [BLENDER_MISS]   = sText_Miss
+    sText_Mister,
+    sText_Laddie,
+    sText_Lassie,
+    sText_Master,
+    sText_Dude,
+    sText_Miss
+};
+
+enum
+{
+    BLENDER_MISTER,
+    BLENDER_LADDIE,
+    BLENDER_LASSIE,
+    BLENDER_MASTER,
+    BLENDER_DUDE,
+    BLENDER_MISS
 };
 
 static const u8 sText_PressAToStart[] = _("Press the A Button to start.");
@@ -299,7 +274,7 @@ static const u8 sText_TheLevelIs[] = _("The level is ");
 static const u8 sText_TheFeelIs[] = _(", and the feel is ");
 static const u8 sText_Dot2[] = _(".");
 
-static const struct BgTemplate sBgTemplates[3] =
+static const struct BgTemplate sBerryBlenderBgTemplates[3] =
 {
     {
         .bg = 0,
@@ -330,7 +305,7 @@ static const struct BgTemplate sBgTemplates[3] =
     }
 };
 
-static const struct WindowTemplate sWindowTemplates[] =
+static const struct WindowTemplate sBerryBlender_WindowTemplates[] =
 {
     {
         .bg = 0,
@@ -389,7 +364,7 @@ static const struct WindowTemplate sWindowTemplates[] =
     DUMMY_WIN_TEMPLATE
 };
 
-static const struct WindowTemplate sYesNoWindowTemplate_ContinuePlaying =
+static const struct WindowTemplate sBlender_YesNoWindowTemplate =
 {
     .bg = 0,
     .tilemapLeft = 21,
@@ -400,58 +375,31 @@ static const struct WindowTemplate sYesNoWindowTemplate_ContinuePlaying =
     .baseBlock = 0xCC
 };
 
-static const s8 sPlayerArrowQuadrant[BLENDER_MAX_PLAYERS][2] =
+static const s8 sUnknown_083399C0[][2] =
 {
-    {-1, -1}, 
-    { 1, -1}, 
-    {-1,  1}, 
-    { 1,  1}
+    {-1, -1}, {1, -1}, {-1, 1}, {1, 1}
 };
 
-static const u8 sPlayerArrowPos[BLENDER_MAX_PLAYERS][2] =
+static const u8 sBlenderSyncArrowsPos[BLENDER_MAX_PLAYERS][2] =
 {
-    { 72,  32}, 
-    {168,  32}, 
-    { 72, 128}, 
-    {168, 128}
+    {72, 32}, {168, 32}, {72, 128}, {168, 128}
 };
 
-static const u8 sPlayerIdMap[BLENDER_MAX_PLAYERS - 1][BLENDER_MAX_PLAYERS] =
+static const u8 sUnknown_083399D0[3][4] =
 {
-    {NO_PLAYER, 0, 1, NO_PLAYER}, // 2 Players
-    {NO_PLAYER, 0, 1,         2}, // 3 Players
-    {        0, 1, 2,         3}  // 4 Players
+    {-1, 0, 1, -1}, {-1, 0, 1, 2}, {0, 1, 2, 3}
 };
 
+static const u16 sUnknown_083399DC[] = {0, 0xC000, 0x4000, 0x8000};
+static const u8 sUnknown_083399E4[] = {1, 1, 0};
+static const u8 sUnknown_083399E7[] = {32, 224, 96, 160, 0};
 
-// Blender arrow positions:
-//
-//           0x0000 (limit 0x10000)
-//            .  .  
-//         .        .
-// 0x4000 .          . 0xC000
-//        .          .
-//         .        .
-//            .  .  
-//           0x8000
-//   
-static const u16 sArrowStartPos[] = {
-    0, 
-    MAX_ARROW_POS / 4 * 3, // 0xC000
-    MAX_ARROW_POS / 4,     // 0x4000
-    MAX_ARROW_POS / 4 * 2  // 0x8000
-};
-static const u8 sArrowStartPosIds[BLENDER_MAX_PLAYERS - 1] = {1, 1, 0};
-static const u8 sArrowHitRangeStart[BLENDER_MAX_PLAYERS] = {32, 224, 96, 160};
-
-static const TaskFunc sLocalOpponentTasks[] =
+static const TaskFunc sUnknown_083399EC[] =
 {
-    Task_HandleOpponent1, 
-    Task_HandleOpponent2, 
-    Task_HandleOpponent3
+    sub_8080EA4, sub_8080FD0, sub_80810F8
 };
 
-static const struct OamData sOam_PlayerArrow =
+static const struct OamData sOamData_8216314 =
 {
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -468,40 +416,40 @@ static const struct OamData sOam_PlayerArrow =
     .affineParam = 0,
 };
 
-static const union AnimCmd sAnim_PlayerArrow_TopLeft[] =
+static const union AnimCmd sSpriteAnim_821631C[] =
 {
-    ANIMCMD_FRAME(16, 5, .vFlip = TRUE, .hFlip = TRUE),
+    ANIMCMD_FRAME(16, 5, 1, 1),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_PlayerArrow_TopRight[] =
+static const union AnimCmd sSpriteAnim_8216324[] =
 {
     ANIMCMD_FRAME(16, 5, .vFlip = TRUE),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_PlayerArrow_BottomLeft[] =
+static const union AnimCmd sSpriteAnim_821632C[] =
 {
     ANIMCMD_FRAME(16, 5, .hFlip = TRUE),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_PlayerArrow_BottomRight[] =
+static const union AnimCmd sSpriteAnim_8216334[] =
 {
     ANIMCMD_FRAME(16, 5, 0, 0),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_PlayerArrow_TopLeft_Flash[] =
+static const union AnimCmd sSpriteAnim_821633C[] =
 {
-    ANIMCMD_FRAME(48, 2, .vFlip = TRUE, .hFlip = TRUE),
-    ANIMCMD_FRAME(32, 5, .vFlip = TRUE, .hFlip = TRUE),
-    ANIMCMD_FRAME(48, 3, .vFlip = TRUE, .hFlip = TRUE),
-    ANIMCMD_FRAME(16, 5, .vFlip = TRUE, .hFlip = TRUE),
+    ANIMCMD_FRAME(48, 2, 1, 1),
+    ANIMCMD_FRAME(32, 5, 1, 1),
+    ANIMCMD_FRAME(48, 3, 1, 1),
+    ANIMCMD_FRAME(16, 5, 1, 1),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_PlayerArrow_TopRight_Flash[] =
+static const union AnimCmd sSpriteAnim_8216350[] =
 {
     ANIMCMD_FRAME(48, 2, .vFlip = TRUE),
     ANIMCMD_FRAME(32, 5, .vFlip = TRUE),
@@ -510,7 +458,7 @@ static const union AnimCmd sAnim_PlayerArrow_TopRight_Flash[] =
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_PlayerArrow_BottomLeft_Flash[] =
+static const union AnimCmd sSpriteAnim_8216364[] =
 {
     ANIMCMD_FRAME(48, 2, .hFlip = TRUE),
     ANIMCMD_FRAME(32, 5, .hFlip = TRUE),
@@ -519,7 +467,7 @@ static const union AnimCmd sAnim_PlayerArrow_BottomLeft_Flash[] =
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_PlayerArrow_BottomRight_Flash[] =
+static const union AnimCmd sSpriteAnim_8216378[] =
 {
     ANIMCMD_FRAME(48, 2, 0, 0),
     ANIMCMD_FRAME(32, 5, 0, 0),
@@ -528,73 +476,73 @@ static const union AnimCmd sAnim_PlayerArrow_BottomRight_Flash[] =
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_PlayerArrow_TopLeft_Off[] =
+static const union AnimCmd sSpriteAnim_821638C[] =
 {
-    ANIMCMD_FRAME(0, 5, .vFlip = TRUE, .hFlip = TRUE),
+    ANIMCMD_FRAME(0, 5, 1, 1),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_PlayerArrow_TopRight_Off[] =
+static const union AnimCmd sSpriteAnim_8216394[] =
 {
     ANIMCMD_FRAME(0, 5, .vFlip = TRUE),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_PlayerArrow_BottomLeft_Off[] =
+static const union AnimCmd sSpriteAnim_821639C[] =
 {
     ANIMCMD_FRAME(0, 5, .hFlip = TRUE),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_PlayerArrow_BottomRight_Off[] =
+static const union AnimCmd sSpriteAnim_82163A4[] =
 {
     ANIMCMD_FRAME(0, 5, 0, 0),
     ANIMCMD_END
 };
 
-static const union AnimCmd *const sAnims_PlayerArrow[] =
+static const union AnimCmd *const sSpriteAnimTable_82163AC[] =
 {
-    sAnim_PlayerArrow_TopLeft,
-    sAnim_PlayerArrow_TopRight,
-    sAnim_PlayerArrow_BottomLeft,
-    sAnim_PlayerArrow_BottomRight,
-    sAnim_PlayerArrow_TopLeft_Flash,
-    sAnim_PlayerArrow_TopRight_Flash,
-    sAnim_PlayerArrow_BottomLeft_Flash,
-    sAnim_PlayerArrow_BottomRight_Flash,
-    sAnim_PlayerArrow_TopLeft_Off,
-    sAnim_PlayerArrow_TopRight_Off,
-    sAnim_PlayerArrow_BottomLeft_Off,
-    sAnim_PlayerArrow_BottomRight_Off
+    sSpriteAnim_821631C,
+    sSpriteAnim_8216324,
+    sSpriteAnim_821632C,
+    sSpriteAnim_8216334,
+    sSpriteAnim_821633C,
+    sSpriteAnim_8216350,
+    sSpriteAnim_8216364,
+    sSpriteAnim_8216378,
+    sSpriteAnim_821638C,
+    sSpriteAnim_8216394,
+    sSpriteAnim_821639C,
+    sSpriteAnim_82163A4
 };
 
-static const struct SpriteSheet sSpriteSheet_PlayerArrow =
+static const struct SpriteSheet sSpriteSheet_BlenderArrow =
 {
-    gBerryBlenderPlayerArrow_Gfx, 0x800, GFXTAG_PLAYER_ARROW
+    gBerryBlenderArrowTiles, 0x800, 46545
 };
 
 static const struct SpritePalette sSpritePal_BlenderMisc =
 {
-    gBerryBlenderMiscPalette, PALTAG_MISC
+    gBerryBlenderMiscPalette, 46546
 };
 
-static const struct SpritePalette sSpritePal_PlayerArrow =
+static const struct SpritePalette sSpritePal_BlenderArrow =
 {
-    gBerryBlenderArrowPalette, PALTAG_PLAYER_ARROW
+    gBerryBlenderArrowPalette, 12312
 };
 
-static const struct SpriteTemplate sSpriteTemplate_PlayerArrow =
+static const struct SpriteTemplate sBlenderSyncArrow_SpriteTemplate =
 {
-    .tileTag = GFXTAG_PLAYER_ARROW,
-    .paletteTag = PALTAG_PLAYER_ARROW,
-    .oam = &sOam_PlayerArrow,
-    .anims = sAnims_PlayerArrow,
+    .tileTag = 46545,
+    .paletteTag = 12312,
+    .oam = &sOamData_8216314,
+    .anims = sSpriteAnimTable_82163AC,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_PlayerArrow
+    .callback = sub_80833F8
 };
 
-static const struct OamData sOam_ScoreSymbols =
+static const struct OamData sOamData_821640C =
 {
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -611,19 +559,19 @@ static const struct OamData sOam_ScoreSymbols =
     .affineParam = 0,
 };
 
-static const union AnimCmd sAnim_ScoreSymbols_Good[] =
+static const union AnimCmd sSpriteAnim_8216414[] =
 {
     ANIMCMD_FRAME(0, 20),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_ScoreSymbols_Miss[] =
+static const union AnimCmd sSpriteAnim_821641C[] =
 {
     ANIMCMD_FRAME(4, 20, 1, 0),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_ScoreSymbols_BestFlash[] =
+static const union AnimCmd sSpriteAnim_8216424[] =
 {
     ANIMCMD_FRAME(8, 4),
     ANIMCMD_FRAME(12, 4),
@@ -633,37 +581,37 @@ static const union AnimCmd sAnim_ScoreSymbols_BestFlash[] =
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_ScoreSymbols_BestStatic[] =
+static const union AnimCmd sSpriteAnim_821643C[] =
 {
     ANIMCMD_FRAME(8, 4),
     ANIMCMD_END
 };
 
-static const union AnimCmd *const sAnims_ScoreSymbols[] =
+static const union AnimCmd *const sSpriteAnimTable_8216444[] =
 {
-    [SCOREANIM_GOOD]        = sAnim_ScoreSymbols_Good,
-    [SCOREANIM_MISS]        = sAnim_ScoreSymbols_Miss,
-    [SCOREANIM_BEST_FLASH]  = sAnim_ScoreSymbols_BestFlash,
-    [SCOREANIM_BEST_STATIC] = sAnim_ScoreSymbols_BestStatic,
+    sSpriteAnim_8216414,
+    sSpriteAnim_821641C,
+    sSpriteAnim_8216424,
+    sSpriteAnim_821643C,
 };
 
-static const struct SpriteSheet sSpriteSheet_ScoreSymbols =
+static const struct SpriteSheet sUnknown_08339B38 =
 {
-    gBerryBlenderScoreSymbols_Gfx, 0x200, GFXTAG_SCORE_SYMBOLS
+    gBerryBlenderMarubatsuTiles, 0x200, 48888
 };
 
-static const struct SpriteTemplate sSpriteTemplate_ScoreSymbols =
+static const struct SpriteTemplate sUnknown_08339B40 =
 {
-    .tileTag = GFXTAG_SCORE_SYMBOLS,
-    .paletteTag = PALTAG_MISC,
-    .oam = &sOam_ScoreSymbols,
-    .anims = sAnims_ScoreSymbols,
+    .tileTag = 48888,
+    .paletteTag = 46546,
+    .oam = &sOamData_821640C,
+    .anims = sSpriteAnimTable_8216444,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_ScoreSymbol
+    .callback = sub_8082F68
 };
 
-static const struct OamData sOam_Particles =
+static const struct OamData sOamData_8216474 =
 {
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -680,7 +628,7 @@ static const struct OamData sOam_Particles =
     .affineParam = 0,
 };
 
-static const union AnimCmd sAnim_SparkleCrossToX[] =
+static const union AnimCmd sSpriteAnim_821647C[] =
 {
     ANIMCMD_FRAME(0, 3),
     ANIMCMD_FRAME(1, 4),
@@ -690,7 +638,7 @@ static const union AnimCmd sAnim_SparkleCrossToX[] =
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_SparkleXToCross[] =
+static const union AnimCmd sSpriteAnim_8216494[] =
 {
     ANIMCMD_FRAME(0, 3),
     ANIMCMD_FRAME(2, 4),
@@ -700,7 +648,7 @@ static const union AnimCmd sAnim_SparkleXToCross[] =
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_SparkleFull[] =
+static const union AnimCmd sSpriteAnim_82164AC[] =
 {
     ANIMCMD_FRAME(0, 2),
     ANIMCMD_FRAME(1, 2),
@@ -713,44 +661,44 @@ static const union AnimCmd sAnim_SparkleFull[] =
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_GreenArrow[] =
+static const union AnimCmd sSpriteAnim_82164D0[] =
 {
     ANIMCMD_FRAME(5, 5, 1, 1),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_GreenDot[] =
+static const union AnimCmd sSpriteAnim_82164D8[] =
 {
     ANIMCMD_FRAME(6, 5, 1, 1),
     ANIMCMD_END
 };
 
-static const union AnimCmd *const sAnims_Particles[] =
+static const union AnimCmd *const sSpriteAnimTable_82164E0[] =
 {
-    sAnim_SparkleCrossToX, // Only this effect is ever used, rest go unused
-    sAnim_SparkleXToCross,
-    sAnim_SparkleFull,
-    sAnim_GreenArrow,
-    sAnim_GreenDot,
+    sSpriteAnim_821647C,
+    sSpriteAnim_8216494,
+    sSpriteAnim_82164AC,
+    sSpriteAnim_82164D0,
+    sSpriteAnim_82164D8,
 };
 
-static const struct SpriteSheet sSpriteSheet_Particles =
+static const struct SpriteSheet sUnknown_08339BD8 =
 {
-    gBerryBlenderParticles_Gfx, 0xE0, GFXTAG_PARTICLES
+    gBerryBlenderParticlesTiles, 0xE0, 23456
 };
 
-static const struct SpriteTemplate sSpriteTemplate_Particles =
+static const struct SpriteTemplate sUnknown_08339BE0 =
 {
-    .tileTag = GFXTAG_PARTICLES,
-    .paletteTag = PALTAG_MISC,
-    .oam = &sOam_Particles,
-    .anims = sAnims_Particles,
+    .tileTag = 23456,
+    .paletteTag = 46546,
+    .oam = &sOamData_8216474,
+    .anims = sSpriteAnimTable_82164E0,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
-static const struct OamData sOam_CountdownNumbers =
+static const struct OamData sOamData_8216514 =
 {
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -767,48 +715,48 @@ static const struct OamData sOam_CountdownNumbers =
     .affineParam = 0,
 };
 
-static const union AnimCmd sAnim_CountdownNumbers_3[] =
+static const union AnimCmd sSpriteAnim_821651C[] =
 {
     ANIMCMD_FRAME(32, 30),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_CountdownNumbers_2[] =
+static const union AnimCmd sSpriteAnim_8216524[] =
 {
     ANIMCMD_FRAME(16, 30),
     ANIMCMD_END
 };
 
-static const union AnimCmd sAnim_CountdownNumbers_1[] =
+static const union AnimCmd sSpriteAnim_821652C[] =
 {
     ANIMCMD_FRAME(0, 30),
     ANIMCMD_END
 };
 
-static const union AnimCmd *const sAnims_CountdownNumbers[] =
+static const union AnimCmd *const sSpriteAnimTable_8216534[] =
 {
-    sAnim_CountdownNumbers_3,
-    sAnim_CountdownNumbers_2,
-    sAnim_CountdownNumbers_1,
+    sSpriteAnim_821651C,
+    sSpriteAnim_8216524,
+    sSpriteAnim_821652C,
 };
 
-static const struct SpriteSheet sSpriteSheet_CountdownNumbers =
+static const struct SpriteSheet sUnknown_08339C24 =
 {
-    gBerryBlenderCountdownNumbers_Gfx, 0x600, GFXTAG_COUNTDOWN_NUMBERS
+    gBerryBlenderCountdownNumbersTiles, 0x600, 12345
 };
 
-static const struct SpriteTemplate sSpriteTemplate_CountdownNumbers =
+static const struct SpriteTemplate sUnknown_08339C2C =
 {
-    .tileTag = GFXTAG_COUNTDOWN_NUMBERS,
-    .paletteTag = PALTAG_MISC,
-    .oam = &sOam_CountdownNumbers,
-    .anims = sAnims_CountdownNumbers,
+    .tileTag = 12345,
+    .paletteTag = 46546,
+    .oam = &sOamData_8216514,
+    .anims = sSpriteAnimTable_8216534,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_CountdownNumber
+    .callback = sub_8083010
 };
 
-static const struct OamData sOam_Start =
+static const struct OamData sOamData_8216560 =
 {
     .y = 0,
     .affineMode = ST_OAM_AFFINE_OFF,
@@ -825,36 +773,34 @@ static const struct OamData sOam_Start =
     .affineParam = 0,
 };
 
-static const union AnimCmd sAnim_Start[] =
+static const union AnimCmd sSpriteAnim_8216568[] =
 {
     ANIMCMD_FRAME(0, 30),
     ANIMCMD_END
 };
 
-static const union AnimCmd *const sAnims_Start[] =
+static const union AnimCmd *const sSpriteAnimTable_8216570[] =
 {
-    sAnim_Start,
+    sSpriteAnim_8216568,
 };
 
-static const struct SpriteSheet sSpriteSheet_Start =
+static const struct SpriteSheet sUnknown_08339C58 =
 {
-    gBerryBlenderStart_Gfx, 0x400, GFXTAG_START
+    gBerryBlenderStartTiles, 0x400, 12346
 };
 
-static const struct SpriteTemplate sSpriteTemplate_Start =
+static const struct SpriteTemplate sUnknown_08339C60 =
 {
-    .tileTag = GFXTAG_START,
-    .paletteTag = PALTAG_MISC,
-    .oam = &sOam_Start,
-    .anims = sAnims_Start,
+    .tileTag = 12346,
+    .paletteTag = 46546,
+    .oam = &sOamData_8216560,
+    .anims = sSpriteAnimTable_8216570,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = SpriteCB_Start
+    .callback = sub_80830C0
 };
 
-// Data for throwing the berries in at the start
-// x, y, bounce speed, x speed, y speed
-static const s16 sBerrySpriteData[][5] =
+static const s16 sUnknown_08339C78[][5] =
 {
     {-10,  20,  10,   2,   1},
     {250,  20,  10,  -2,   1},
@@ -862,54 +808,18 @@ static const s16 sBerrySpriteData[][5] =
     {250, 140,  10,  -2,  -1},
 };
 
-// There are only 5 different berries the NPCs will ever use
-// Each of these sets represents 3 berries chosen to be used by the NPCs
-// If the player's berry is one of the 5 possible berries, a set is chosen that excludes it
-static const u8 sOpponentBerrySets[NUM_NPC_BERRIES * 2][3] =
+static const u8 sOpponentBerrySets[][3] =
 {
-    // These sets are used if the player chose one of the 5 NPC berries
-    {ITEM_TO_BERRY(ITEM_ASPEAR_BERRY) - 1, ITEM_TO_BERRY(ITEM_RAWST_BERRY) - 1,  ITEM_TO_BERRY(ITEM_PECHA_BERRY) - 1},   // player chose Cheri Berry
-    {ITEM_TO_BERRY(ITEM_CHERI_BERRY) - 1,  ITEM_TO_BERRY(ITEM_ASPEAR_BERRY) - 1, ITEM_TO_BERRY(ITEM_RAWST_BERRY) - 1},   // player chose Chesto Berry
-    {ITEM_TO_BERRY(ITEM_CHESTO_BERRY) - 1, ITEM_TO_BERRY(ITEM_CHERI_BERRY) - 1,  ITEM_TO_BERRY(ITEM_ASPEAR_BERRY) - 1},  // player chose Pecha Berry
-    {ITEM_TO_BERRY(ITEM_PECHA_BERRY) - 1,  ITEM_TO_BERRY(ITEM_CHESTO_BERRY) - 1, ITEM_TO_BERRY(ITEM_CHERI_BERRY) - 1},   // player chose Rawst Berry
-    {ITEM_TO_BERRY(ITEM_RAWST_BERRY) - 1,  ITEM_TO_BERRY(ITEM_PECHA_BERRY) - 1,  ITEM_TO_BERRY(ITEM_CHESTO_BERRY) - 1},  // player chose Aspear Berry
-    
-    // These sets are used if the player chose a different berry (set is selected by player's berry % 5)
-    {ITEM_TO_BERRY(ITEM_CHERI_BERRY) - 1,  ITEM_TO_BERRY(ITEM_PECHA_BERRY) - 1,  ITEM_TO_BERRY(ITEM_RAWST_BERRY) - 1},   // player chose Leppa, Figy, ...
-    {ITEM_TO_BERRY(ITEM_CHESTO_BERRY) - 1, ITEM_TO_BERRY(ITEM_RAWST_BERRY) - 1,  ITEM_TO_BERRY(ITEM_ASPEAR_BERRY) - 1},  // player chose Oran, Wiki, ...
-    {ITEM_TO_BERRY(ITEM_PECHA_BERRY) - 1,  ITEM_TO_BERRY(ITEM_ASPEAR_BERRY) - 1, ITEM_TO_BERRY(ITEM_CHERI_BERRY) - 1},   // player chose Persim, Mago, ...
-    {ITEM_TO_BERRY(ITEM_RAWST_BERRY) - 1,  ITEM_TO_BERRY(ITEM_CHERI_BERRY) - 1,  ITEM_TO_BERRY(ITEM_CHESTO_BERRY) - 1},  // player chose Lum, Aguav, ...
-    {ITEM_TO_BERRY(ITEM_ASPEAR_BERRY) - 1, ITEM_TO_BERRY(ITEM_CHESTO_BERRY) - 1, ITEM_TO_BERRY(ITEM_PECHA_BERRY) - 1},   // player chose Sitrus, Iapapa, ...
+    {4, 3, 2}, {0, 4, 3}, {1, 0, 4}, {2, 1, 0}, {3, 2, 1}, {0, 2, 3}, {1, 3, 4}, {2, 4, 0}, {3, 0, 1}, {4, 1, 2},
 };
 
-// Berry master's berries follow the same rules as above, but instead of explicitly listing
-// the alternate sets if the player chooses one of these berries, it implicitly uses these berries - 5, i.e. Tamato - Nomel
-static const u8 sBerryMasterBerries[] = {
-    ITEM_TO_BERRY(ITEM_SPELON_BERRY) - 1, 
-    ITEM_TO_BERRY(ITEM_PAMTRE_BERRY) - 1, 
-    ITEM_TO_BERRY(ITEM_WATMEL_BERRY) - 1, 
-    ITEM_TO_BERRY(ITEM_DURIN_BERRY) - 1, 
-    ITEM_TO_BERRY(ITEM_BELUE_BERRY) - 1
-};
+static const u8 sSpecialOpponentBerrySets[] = {30, 31, 32, 33, 34};
 
-// "0 players" is link 
-static const u8 sNumPlayersToSpeedDivisor[] = {1, 1, 2, 3, 4};
+static const u8 sUnknown_08339CC3[] = {1, 1, 2, 3, 4};
 
-// Black pokeblocks will use one of these random combinations of flavors
-static const u8 sBlackPokeblockFlavorFlags[] = {
-    (1 << FLAVOR_SOUR)   | (1 << FLAVOR_BITTER) | (1 << FLAVOR_SWEET),
-    (1 << FLAVOR_SOUR)   | (1 << FLAVOR_SWEET)  | (1 << FLAVOR_DRY),
-    (1 << FLAVOR_SOUR)   | (1 << FLAVOR_DRY)    | (1 << FLAVOR_SPICY),
-    (1 << FLAVOR_SOUR)   | (1 << FLAVOR_BITTER) | (1 << FLAVOR_DRY),
-    (1 << FLAVOR_SOUR)   | (1 << FLAVOR_BITTER) | (1 << FLAVOR_SPICY),
-    (1 << FLAVOR_BITTER) | (1 << FLAVOR_SWEET)  | (1 << FLAVOR_DRY),
-    (1 << FLAVOR_BITTER) | (1 << FLAVOR_SWEET)  | (1 << FLAVOR_SPICY),
-    (1 << FLAVOR_BITTER) | (1 << FLAVOR_DRY)    | (1 << FLAVOR_SPICY),
-    (1 << FLAVOR_SWEET)  | (1 << FLAVOR_DRY)    | (1 << FLAVOR_SPICY),
-    (1 << FLAVOR_SOUR)   | (1 << FLAVOR_SWEET)  | (1 << FLAVOR_SPICY),
-};
+static const u8 sUnknown_08339CC8[] = {0x1C, 0x16, 0x13, 0x1A, 0x19, 0x0E, 0x0D, 0x0B, 0x07, 0x15};
 
-static const u8 sUnused[] =
+static const u8 sUnknown_08339CD2[] =
 {
     0xfe, 0x02, 0x02, 0xce, 0xd0, 0x37, 0x44, 0x07, 0x1f, 0x0c, 0x10,
     0x00, 0xff, 0xfe, 0x91, 0x72, 0xce, 0xd0, 0x37, 0x44, 0x07, 0x1f,
@@ -930,18 +840,20 @@ static const struct WindowTemplate sBlenderRecordWindowTemplate =
     .baseBlock = 8
 };
 
-static void UpdateHitPitch(void)
+// code
+
+static void Blender_ControlHitPitch(void)
 {
-    m4aMPlayPitchControl(&gMPlayInfo_SE2, 0xFFFF, 2 * (sBerryBlender->speed - MIN_ARROW_SPEED));
+    m4aMPlayPitchControl(&gMPlayInfo_SE2, 0xFFFF, 2 * (sBerryBlenderData->field_4C - 128));
 }
 
-static void VBlankCB_BerryBlender(void)
+static void VBlankCB0_BerryBlender(void)
 {
-    SetBgPos();
-    SetBgAffine(2, sBerryBlender->bgAffineSrc.texX, sBerryBlender->bgAffineSrc.texY,
-                sBerryBlender->bgAffineSrc.scrX, sBerryBlender->bgAffineSrc.scrY,
-                sBerryBlender->bgAffineSrc.sx, sBerryBlender->bgAffineSrc.sy,
-                sBerryBlender->bgAffineSrc.alpha);
+    BerryBlender_SetBackgroundsPos();
+    SetBgAffine(2, sBerryBlenderData->bgAffineSrc.texX, sBerryBlenderData->bgAffineSrc.texY,
+                sBerryBlenderData->bgAffineSrc.scrX, sBerryBlenderData->bgAffineSrc.scrY,
+                sBerryBlenderData->bgAffineSrc.sx, sBerryBlenderData->bgAffineSrc.sy,
+                sBerryBlenderData->bgAffineSrc.alpha);
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
@@ -949,64 +861,64 @@ static void VBlankCB_BerryBlender(void)
 
 static bool8 LoadBerryBlenderGfx(void)
 {
-    switch (sBerryBlender->loadGfxState)
+    switch (sBerryBlenderData->loadGfxState)
     {
     case 0:
-        sBerryBlender->tilesBuffer = AllocZeroed(GetDecompressedDataSize(gBerryBlenderCenter_Gfx) + 100);
-        LZDecompressWram(gBerryBlenderCenter_Gfx, sBerryBlender->tilesBuffer);
-        sBerryBlender->loadGfxState++;
+        sBerryBlenderData->tilesBuffer = AllocZeroed(GetDecompressedDataSize(sBlenderCenterGfx) + 100);
+        LZDecompressWram(sBlenderCenterGfx, sBerryBlenderData->tilesBuffer);
+        sBerryBlenderData->loadGfxState++;
         break;
     case 1:
-        CopyToBgTilemapBuffer(2, sBlenderCenter_Tilemap, 0x400, 0);
+        CopyToBgTilemapBuffer(2, sBlenderCenterMap, 0x400, 0);
         CopyBgTilemapBufferToVram(2);
-        LoadPalette(sBlenderCenter_Pal, 0, 0x100);
-        sBerryBlender->loadGfxState++;
+        LoadPalette(sBlenderCenterPal, 0, 0x100);
+        sBerryBlenderData->loadGfxState++;
         break;
     case 2:
-        LoadBgTiles(2, sBerryBlender->tilesBuffer, GetDecompressedDataSize(gBerryBlenderCenter_Gfx), 0);
-        sBerryBlender->loadGfxState++;
+        LoadBgTiles(2, sBerryBlenderData->tilesBuffer, GetDecompressedDataSize(sBlenderCenterGfx), 0);
+        sBerryBlenderData->loadGfxState++;
         break;
     case 3:
-        LZDecompressWram(gBerryBlenderOuter_Gfx, sBerryBlender->tilesBuffer);
-        sBerryBlender->loadGfxState++;
+        LZDecompressWram(gUnknown_08D91DB8, sBerryBlenderData->tilesBuffer);
+        sBerryBlenderData->loadGfxState++;
         break;
     case 4:
-        LoadBgTiles(1, sBerryBlender->tilesBuffer, GetDecompressedDataSize(gBerryBlenderOuter_Gfx), 0);
-        sBerryBlender->loadGfxState++;
+        LoadBgTiles(1, sBerryBlenderData->tilesBuffer, GetDecompressedDataSize(gUnknown_08D91DB8), 0);
+        sBerryBlenderData->loadGfxState++;
         break;
     case 5:
-        LZDecompressWram(gBerryBlenderOuter_Tilemap, sBerryBlender->tilesBuffer);
-        sBerryBlender->loadGfxState++;
+        LZDecompressWram(gUnknown_08D927EC, sBerryBlenderData->tilesBuffer);
+        sBerryBlenderData->loadGfxState++;
         break;
     case 6:
-        CopyToBgTilemapBuffer(1, sBerryBlender->tilesBuffer, GetDecompressedDataSize(gBerryBlenderOuter_Tilemap), 0);
+        CopyToBgTilemapBuffer(1, sBerryBlenderData->tilesBuffer, GetDecompressedDataSize(gUnknown_08D927EC), 0);
         CopyBgTilemapBufferToVram(1);
-        sBerryBlender->loadGfxState++;
+        sBerryBlenderData->loadGfxState++;
         break;
     case 7:
-        LoadPalette(sBlenderOuter_Pal, 0x80, 0x20);
-        sBerryBlender->loadGfxState++;
+        LoadPalette(sBlenderOuterPal, 0x80, 0x20);
+        sBerryBlenderData->loadGfxState++;
         break;
     case 8:
-        LoadSpriteSheet(&sSpriteSheet_PlayerArrow);
-        LoadSpriteSheet(&sSpriteSheet_Particles);
-        LoadSpriteSheet(&sSpriteSheet_ScoreSymbols);
-        sBerryBlender->loadGfxState++;
+        LoadSpriteSheet(&sSpriteSheet_BlenderArrow);
+        LoadSpriteSheet(&sUnknown_08339BD8);
+        LoadSpriteSheet(&sUnknown_08339B38);
+        sBerryBlenderData->loadGfxState++;
         break;
     case 9:
-        LoadSpriteSheet(&sSpriteSheet_CountdownNumbers);
-        LoadSpriteSheet(&sSpriteSheet_Start);
-        LoadSpritePalette(&sSpritePal_PlayerArrow);
+        LoadSpriteSheet(&sUnknown_08339C24);
+        LoadSpriteSheet(&sUnknown_08339C58);
+        LoadSpritePalette(&sSpritePal_BlenderArrow);
         LoadSpritePalette(&sSpritePal_BlenderMisc);
-        Free(sBerryBlender->tilesBuffer);
-        sBerryBlender->loadGfxState = 0;
+        Free(sBerryBlenderData->tilesBuffer);
+        sBerryBlenderData->loadGfxState = 0;
         return TRUE;
     }
 
     return FALSE;
 }
 
-static void DrawBlenderBg(void)
+static void sub_807F9D0(void)
 {
     FillBgTilemapBufferRect_Palette0(0, 0, 0, 0, 0x1E, 0x14);
     CopyBgTilemapBufferToVram(0);
@@ -1021,7 +933,7 @@ static void DrawBlenderBg(void)
 
 static void InitBerryBlenderWindows(void)
 {
-    if (InitWindows(sWindowTemplates))
+    if (InitWindows(sBerryBlender_WindowTemplates))
     {
         s32 i;
 
@@ -1034,27 +946,24 @@ static void InitBerryBlenderWindows(void)
     }
 }
 
-// gSpecialVar_0x8004 is the number of NPC opponents
-// Set to 0 indicates it's a link blender
 void DoBerryBlending(void)
 {
-    if (sBerryBlender == NULL)
-        sBerryBlender = AllocZeroed(sizeof(*sBerryBlender));
+    if (sBerryBlenderData == NULL)
+        sBerryBlenderData = AllocZeroed(sizeof(*sBerryBlenderData));
 
-    sBerryBlender->gameEndState = 0;
-    sBerryBlender->mainState = 0;
-    sBerryBlender->gameEndState = 0;
+    sBerryBlenderData->gameEndState = 0;
+    sBerryBlenderData->mainState = 0;
+    sBerryBlenderData->gameEndState = 0;
 
-    InitLocalPlayers(gSpecialVar_0x8004);
-    SetMainCallback2(CB2_LoadBerryBlender);
+    Blender_SetPlayerNamesLocal(gSpecialVar_0x8004);
+    SetMainCallback2(sub_807FAC8);
 }
 
-// Show the blender screen initially and prompt to choose a berry
-static void CB2_LoadBerryBlender(void)
+static void sub_807FAC8(void)
 {
     s32 i;
 
-    switch (sBerryBlender->mainState)
+    switch (sBerryBlenderData->mainState)
     {
     case 0:
         SetGpuReg(REG_OFFSET_DISPCNT, 0);
@@ -1062,69 +971,68 @@ static void CB2_LoadBerryBlender(void)
         FreeAllSpritePalettes();
         SetVBlankCallback(NULL);
         ResetBgsAndClearDma3BusyFlags(0);
-        InitBgsFromTemplates(1, sBgTemplates, ARRAY_COUNT(sBgTemplates));
-        SetBgTilemapBuffer(1, sBerryBlender->tilemapBuffers[0]);
-        SetBgTilemapBuffer(2, sBerryBlender->tilemapBuffers[1]);
+        InitBgsFromTemplates(1, sBerryBlenderBgTemplates, ARRAY_COUNT(sBerryBlenderBgTemplates));
+        SetBgTilemapBuffer(1, sBerryBlenderData->tilemapBuffers[0]);
+        SetBgTilemapBuffer(2, sBerryBlenderData->tilemapBuffers[1]);
         LoadUserWindowBorderGfx(0, 1, 0xD0);
         LoadMessageBoxGfx(0, 0x14, 0xF0);
         InitBerryBlenderWindows();
 
-        sBerryBlender->mainState++;
-        sBerryBlender->maxProgressBarValue = 0;
-        sBerryBlender->progressBarValue = 0;
-        sBerryBlender->centerScale = 80;
-        sBerryBlender->bg_X = 0;
-        sBerryBlender->bg_Y = 0;
-        sBerryBlender->loadGfxState = 0;
+        sBerryBlenderData->mainState++;
+        sBerryBlenderData->field_118 = 0;
+        sBerryBlenderData->field_116 = 0;
+        sBerryBlenderData->field_11A = 0x50;
+        sBerryBlenderData->bg_X = 0;
+        sBerryBlenderData->bg_Y = 0;
+        sBerryBlenderData->loadGfxState = 0;
 
-        UpdateBlenderCenter();
+        sub_8082D28();
         break;
     case 1:
         if (LoadBerryBlenderGfx())
         {
             for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
             {
-                sBerryBlender->playerArrowSpriteIds[i] = CreateSprite(&sSpriteTemplate_PlayerArrow, sPlayerArrowPos[i][0], sPlayerArrowPos[i][1], 1);
-                StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[i]], i + 8);
+                sBerryBlenderData->syncArrowSpriteIds[i] = CreateSprite(&sBlenderSyncArrow_SpriteTemplate, sBlenderSyncArrowsPos[i][0], sBlenderSyncArrowsPos[i][1], 1);
+                StartSpriteAnim(&gSprites[sBerryBlenderData->syncArrowSpriteIds[i]], i + 8);
             }
-            if (gReceivedRemoteLinkPlayers && gWirelessCommType)
+            if (gReceivedRemoteLinkPlayers != 0 && gWirelessCommType)
             {
                 LoadWirelessStatusIndicatorSpriteGfx();
                 CreateWirelessStatusIndicatorSprite(0, 0);
             }
-            SetVBlankCallback(VBlankCB_BerryBlender);
-            sBerryBlender->mainState++;
+            SetVBlankCallback(VBlankCB0_BerryBlender);
+            sBerryBlenderData->mainState++;
         }
         break;
     case 2:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
-        UpdateBlenderCenter();
-        sBerryBlender->mainState++;
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_BLACK);
+        sub_8082D28();
+        sBerryBlenderData->mainState++;
         break;
     case 3:
-        DrawBlenderBg();
+        sub_807F9D0();
         if (!gPaletteFade.active)
-            sBerryBlender->mainState++;
+            sBerryBlenderData->mainState++;
         break;
     case 4:
-        if (Blender_PrintText(&sBerryBlender->textState, sText_BerryBlenderStart, GetPlayerTextSpeedDelay()))
-            sBerryBlender->mainState++;
+        if (Blender_PrintText(&sBerryBlenderData->textState, sText_BerryBlenderStart, GetPlayerTextSpeedDelay()))
+            sBerryBlenderData->mainState++;
         break;
     case 5:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
-        sBerryBlender->mainState++;
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+        sBerryBlenderData->mainState++;
         break;
     case 6:
         if (!gPaletteFade.active)
         {
-            // Go to bag menu to choose berry, set callback to StartBlender
             FreeAllWindowBuffers();
             UnsetBgTilemapBuffer(2);
             UnsetBgTilemapBuffer(1);
             SetVBlankCallback(NULL);
-            ChooseBerryForMachine(StartBlender);
+            ChooseBerrySetCallback(sub_807FFA4);
 
-            sBerryBlender->mainState = 0;
+            sBerryBlenderData->mainState = 0;
         }
         break;
     }
@@ -1135,71 +1043,47 @@ static void CB2_LoadBerryBlender(void)
     UpdatePaletteFade();
 }
 
-#define sTargetY       data[0]
-#define sX             data[1]
-#define sY             data[2]
-#define sBounceSpeed   data[3]
-#define sYUpSpeed      data[4]
-#define sBounces       data[5]
-#define sXSpeed        data[6]
-#define sYDownSpeed    data[7]
-
-// For throwing berries into the machine
-static void SpriteCB_Berry(struct Sprite* sprite)
+static void sub_807FD08(struct Sprite* sprite)
 {
-    sprite->sX += sprite->sXSpeed;
-    sprite->sY -= sprite->sYUpSpeed;
-    sprite->sY += sprite->sYDownSpeed;
-    sprite->sTargetY += sprite->sYDownSpeed;
-    sprite->sYUpSpeed--;
+    sprite->data[1] += sprite->data[6];
+    sprite->data[2] -= sprite->data[4];
+    sprite->data[2] += sprite->data[7];
+    sprite->data[0] += sprite->data[7];
+    sprite->data[4]--;
 
-    if (sprite->sTargetY < sprite->sY)
+    if (sprite->data[0] < sprite->data[2])
     {
-        sprite->sBounceSpeed = sprite->sYUpSpeed = sprite->sBounceSpeed - 1;
+        sprite->data[3] = sprite->data[4] = sprite->data[3] - 1;
 
-        if (++sprite->sBounces > 3)
+        if (++sprite->data[5] > 3)
             DestroySprite(sprite);
         else
-            PlaySE(SE_BALL_TRAY_EXIT);
+            PlaySE(SE_TB_KARA);
     }
-    sprite->pos1.x = sprite->sX;
-    sprite->pos1.y = sprite->sY;
+    sprite->pos1.x = sprite->data[1];
+    sprite->pos1.y = sprite->data[2];
 }
 
-static void SetBerrySpriteData(struct Sprite* sprite, s16 x, s16 y, s16 bounceSpeed, s16 xSpeed, s16 ySpeed)
+static void sub_807FD64(struct Sprite* sprite, s16 a2, s16 a3, s16 a4, s16 a5, s16 a6)
 {
-    sprite->sTargetY = y;
-    sprite->sX = x;
-    sprite->sY = y;
-    sprite->sBounceSpeed = bounceSpeed;
-    sprite->sYUpSpeed = 10;
-    sprite->sBounces = 0;
-    sprite->sXSpeed = xSpeed;
-    sprite->sYDownSpeed = ySpeed;
-    sprite->callback = SpriteCB_Berry;
+    sprite->data[0] = a3;
+    sprite->data[1] = a2;
+    sprite->data[2] = a3;
+    sprite->data[3] = a4;
+    sprite->data[4] = 10;
+    sprite->data[5] = 0;
+    sprite->data[6] = a5;
+    sprite->data[7] = a6;
+    sprite->callback = sub_807FD08;
 }
 
-#undef sTargetY
-#undef sX
-#undef sY
-#undef sBounceSpeed
-#undef sYUpSpeed
-#undef sBounces
-#undef sXSpeed
-#undef sYDownSpeed
-
-static void CreateBerrySprite(u16 a0, u8 playerId)
+static void sub_807FD90(u16 a0, u8 a1)
 {
-    u8 spriteId = CreateSpinningBerrySprite(a0 + FIRST_BERRY_INDEX - 10, 0, 80, playerId & 1);
-    SetBerrySpriteData(&gSprites[spriteId], 
-                        sBerrySpriteData[playerId][0], 
-                        sBerrySpriteData[playerId][1], 
-                        sBerrySpriteData[playerId][2], 
-                        sBerrySpriteData[playerId][3], 
-                        sBerrySpriteData[playerId][4]);
+    u8 spriteId = LoadSpinningBerryPicGfx(a0 + 123, 0, 80, a1 & 1);
+    sub_807FD64(&gSprites[spriteId], sUnknown_08339C78[a1][0], sUnknown_08339C78[a1][1], sUnknown_08339C78[a1][2], sUnknown_08339C78[a1][3], sUnknown_08339C78[a1][4]);
 }
 
-static void ConvertItemToBlenderBerry(struct BlenderBerry* berry, u16 itemId)
+static void Blender_CopyBerryData(struct BlenderBerry* berry, u16 itemId)
 {
     const struct Berry *berryInfo = GetBerryInfo(ITEM_TO_BERRY(itemId));
 
@@ -1210,19 +1094,19 @@ static void ConvertItemToBlenderBerry(struct BlenderBerry* berry, u16 itemId)
     berry->flavors[FLAVOR_SWEET] = berryInfo->sweet;
     berry->flavors[FLAVOR_BITTER] = berryInfo->bitter;
     berry->flavors[FLAVOR_SOUR] = berryInfo->sour;
-    berry->flavors[FLAVOR_COUNT] = berryInfo->smoothness;
+    berry->smoothness = berryInfo->smoothness;
 }
 
-static void InitLocalPlayers(u8 opponentsNum)
+static void Blender_SetPlayerNamesLocal(u8 opponentsNum)
 {
     switch (opponentsNum)
     {
-    case 0: // Link games have 0 in-game opponents
+    case 0:
         gInGameOpponentsNo = 0;
         break;
     case 1:
         gInGameOpponentsNo = 1;
-        sBerryBlender->numPlayers = 2;
+        sBerryBlenderData->playersNo = 2;
         StringCopy(gLinkPlayers[0].name, gSaveBlock2Ptr->playerName);
 
         if (!FlagGet(FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER))
@@ -1235,7 +1119,7 @@ static void InitLocalPlayers(u8 opponentsNum)
         break;
     case 2:
         gInGameOpponentsNo = 2;
-        sBerryBlender->numPlayers = 3;
+        sBerryBlenderData->playersNo = 3;
         StringCopy(gLinkPlayers[0].name, gSaveBlock2Ptr->playerName);
         StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_DUDE]);
         StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_LASSIE]);
@@ -1246,7 +1130,7 @@ static void InitLocalPlayers(u8 opponentsNum)
         break;
     case 3:
         gInGameOpponentsNo = 3;
-        sBerryBlender->numPlayers = 4;
+        sBerryBlenderData->playersNo = 4;
         StringCopy(gLinkPlayers[0].name, gSaveBlock2Ptr->playerName);
         StringCopy(gLinkPlayers[1].name, sBlenderOpponentsNames[BLENDER_MISS]);
         StringCopy(gLinkPlayers[2].name, sBlenderOpponentsNames[BLENDER_LADDIE]);
@@ -1260,226 +1144,217 @@ static void InitLocalPlayers(u8 opponentsNum)
     }
 }
 
-static void StartBlender(void)
+static void sub_807FFA4(void)
 {
     s32 i;
 
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
-    if (sBerryBlender == NULL)
-        sBerryBlender = AllocZeroed(sizeof(*sBerryBlender));
+    if (sBerryBlenderData == NULL)
+        sBerryBlenderData = AllocZeroed(sizeof(*sBerryBlenderData));
 
-    sBerryBlender->mainState = 0;
-    sBerryBlender->unk1 = 0;
+    sBerryBlenderData->mainState = 0;
+    sBerryBlenderData->field_10C = 0;
 
     for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
-        sBerryBlender->chosenItemId[i] = ITEM_NONE;
+        sBerryBlenderData->chosenItemId[i] = ITEM_NONE;
 
-    InitLocalPlayers(gSpecialVar_0x8004);
+    Blender_SetPlayerNamesLocal(gSpecialVar_0x8004);
 
     if (gSpecialVar_0x8004 == 0)
-        SetMainCallback2(CB2_StartBlenderLink);
+        SetMainCallback2(sub_8080018);
     else
-        SetMainCallback2(CB2_StartBlenderLocal);
+        SetMainCallback2(sub_80808D4);
 }
 
-static void CB2_StartBlenderLink(void)
+static void sub_8080018(void)
 {
     s32 i, j;
 
-    switch (sBerryBlender->mainState)
+    switch (sBerryBlenderData->mainState)
     {
     case 0:
-        InitBlenderBgs();
+        sub_8080588();
         gLinkType = LINKTYPE_BERRY_BLENDER;
-        sBerryBlender->slowdownTimer = 0;
+        sBerryBlenderData->field_72 = 0;
         for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
         {
-            sBerryBlender->playerContinueResponses[i] = 0;
-            for (j = 0; j < NUM_SCORE_TYPES; j++)
+            sBerryBlenderData->field_64[i] = 0;
+            for (j = 0; j < 3; j++)
             {
-                sBerryBlender->scores[i][j] = 0;
+                sBerryBlenderData->scores[i][j] = 0;
             }
         }
-        sBerryBlender->playAgainState = 0;
-        sBerryBlender->maxRPM = 0;
-        sBerryBlender->loadGfxState = 0;
-        sBerryBlender->mainState++;
+        sBerryBlenderData->playAgainState = 0;
+        sBerryBlenderData->max_RPM = 0;
+        sBerryBlenderData->loadGfxState = 0;
+        sBerryBlenderData->mainState++;
         break;
     case 1:
         if (LoadBerryBlenderGfx())
         {
-            sBerryBlender->mainState++;
-            UpdateBlenderCenter();
+            sBerryBlenderData->mainState++;
+            sub_8082D28();
         }
         break;
     case 2:
         for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
         {
-            sBerryBlender->playerArrowSpriteIds2[i] = CreateSprite(&sSpriteTemplate_PlayerArrow, sPlayerArrowPos[i][0], sPlayerArrowPos[i][1], 1);
-            StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds2[i]], i + 8);
+            sBerryBlenderData->syncArrowSprite2Ids[i] = CreateSprite(&sBlenderSyncArrow_SpriteTemplate, sBlenderSyncArrowsPos[i][0], sBlenderSyncArrowsPos[i][1], 1);
+            StartSpriteAnim(&gSprites[sBerryBlenderData->syncArrowSprite2Ids[i]], i + 8);
         }
-        if (gReceivedRemoteLinkPlayers && gWirelessCommType)
+        if (gReceivedRemoteLinkPlayers != 0 && gWirelessCommType)
         {
             LoadWirelessStatusIndicatorSpriteGfx();
             CreateWirelessStatusIndicatorSprite(0, 0);
         }
-        sBerryBlender->mainState++;
+        sBerryBlenderData->mainState++;
         break;
     case 3:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
-        sBerryBlender->mainState++;
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_BLACK);
+        sBerryBlenderData->mainState++;
         break;
     case 4:
-        DrawBlenderBg();
+        sub_807F9D0();
         if (!gPaletteFade.active)
         {
-            sBerryBlender->mainState++;
+            sBerryBlenderData->mainState++;
         }
         break;
     case 5:
-        Blender_PrintText(&sBerryBlender->textState, sText_CommunicationStandby, 0);
-        sBerryBlender->mainState = 8;
-        sBerryBlender->framesToWait = 0;
+        Blender_PrintText(&sBerryBlenderData->textState, sText_CommunicationStandby, 0);
+        sBerryBlenderData->mainState = 8;
+        sBerryBlenderData->framesToWait = 0;
         break;
     case 8:
-        // Send berry choice to link partners
-        sBerryBlender->mainState++;
-        sBerryBlender->playerToThrowBerry = 0;
-        ConvertItemToBlenderBerry(&sBerryBlender->blendedBerries[0], gSpecialVar_ItemId);
-        memcpy(gBlockSendBuffer, &sBerryBlender->blendedBerries[0], sizeof(struct BlenderBerry));
-        SetLinkStandbyCallback();
-        sBerryBlender->framesToWait = 0;
+        sBerryBlenderData->mainState++;
+        sBerryBlenderData->field_114 = 0;
+        Blender_CopyBerryData(&sBerryBlenderData->blendedBerries[0], gSpecialVar_ItemId);
+        memcpy(gBlockSendBuffer, &sBerryBlenderData->blendedBerries[0], sizeof(struct BlenderBerry));
+        sub_800ADF8();
+        sBerryBlenderData->framesToWait = 0;
         break;
     case 9:
         if (IsLinkTaskFinished())
         {
             ResetBlockReceivedFlags();
             if (GetMultiplayerId() == 0)
-                SendBlockRequest(4);
-            sBerryBlender->mainState++;
+                sub_800A4D8(4);
+            sBerryBlenderData->mainState++;
         }
         break;
     case 10:
-        if (++sBerryBlender->framesToWait > 20)
+        if (++sBerryBlenderData->framesToWait > 20)
         {
-            // Wait for partners' berries
             ClearDialogWindowAndFrameToTransparent(4, TRUE);
-            if (GetBlockReceivedStatus() == GetLinkPlayerCountAsBitFlags())
+            if (GetBlockReceivedStatus() == sub_800A9D8())
             {
                 for (i = 0; i < GetLinkPlayerCount(); i++)
                 {
-                    memcpy(&sBerryBlender->blendedBerries[i], &gBlockRecvBuffer[i][0], sizeof(struct BlenderBerry));
-                    sBerryBlender->chosenItemId[i] = sBerryBlender->blendedBerries[i].itemId;
+                    memcpy(&sBerryBlenderData->blendedBerries[i], &gBlockRecvBuffer[i][0], sizeof(struct BlenderBerry));
+                    sBerryBlenderData->chosenItemId[i] = sBerryBlenderData->blendedBerries[i].itemId;
                 }
 
                 ResetBlockReceivedFlags();
-                sBerryBlender->mainState++;
+                sBerryBlenderData->mainState++;
             }
         }
         break;
     case 11:
-        sBerryBlender->numPlayers = GetLinkPlayerCount();
+        sBerryBlenderData->playersNo = GetLinkPlayerCount();
 
-        // Throw 1 player's berry in
         for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
         {
-            if (sBerryBlender->playerToThrowBerry == sPlayerIdMap[sBerryBlender->numPlayers - 2][i])
+            if (sBerryBlenderData->field_114 == sUnknown_083399D0[sBerryBlenderData->playersNo - 2][i])
             {
-                CreateBerrySprite(sBerryBlender->chosenItemId[sBerryBlender->playerToThrowBerry], i);
+                sub_807FD90(sBerryBlenderData->chosenItemId[sBerryBlenderData->field_114], i);
                 break;
             }
         }
 
-        sBerryBlender->framesToWait = 0;
-        sBerryBlender->mainState++;
-        sBerryBlender->playerToThrowBerry++;
+        sBerryBlenderData->framesToWait = 0;
+        sBerryBlenderData->mainState++;
+        sBerryBlenderData->field_114++;
         break;
     case 12:
-        if (++sBerryBlender->framesToWait > 60)
+        if (++sBerryBlenderData->framesToWait > 60)
         {
-            if (sBerryBlender->playerToThrowBerry >= sBerryBlender->numPlayers)
+            if (sBerryBlenderData->field_114 >= sBerryBlenderData->playersNo)
             {
-                // Finished throwing berries in
-                sBerryBlender->mainState++;
-                sBerryBlender->arrowPos = sArrowStartPos[sArrowStartPosIds[sBerryBlender->numPlayers - 2]] - ARROW_FALL_ROTATION;
+                sBerryBlenderData->mainState++;
+                sBerryBlenderData->arrowPos = sUnknown_083399DC[sUnknown_083399E4[sBerryBlenderData->playersNo - 2]] - 22528;
             }
             else
             {
-                // Haven't finished throwing berries in, go back to prev step
-                sBerryBlender->mainState--;
+                sBerryBlenderData->mainState--;
             }
-            sBerryBlender->framesToWait = 0;
+            sBerryBlenderData->framesToWait = 0;
         }
         break;
     case 13:
         if (IsLinkTaskFinished())
         {
-            sBerryBlender->mainState++;
-            DrawBlenderCenter(&sBerryBlender->bgAffineSrc);
-            PlaySE(SE_FALL);
+            sBerryBlenderData->mainState++;
+            sub_8082CB4(&sBerryBlenderData->bgAffineSrc);
+            PlaySE(SE_RU_HYUU);
             ShowBg(2);
         }
         break;
     case 14:
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
-        sBerryBlender->arrowPos += 0x200;
-        sBerryBlender->centerScale += 4;
-        if (sBerryBlender->centerScale > 255)
+        sBerryBlenderData->arrowPos += 0x200;
+        sBerryBlenderData->field_11A += 4;
+        if (sBerryBlenderData->field_11A > 0xFF)
         {
-            SetGpuRegBits(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2));
-            sBerryBlender->mainState++;
-            sBerryBlender->centerScale = 256;
-            sBerryBlender->arrowPos = sArrowStartPos[sArrowStartPosIds[sBerryBlender->numPlayers - 2]];
-            sBerryBlender->framesToWait = 0;
-            PlaySE(SE_TRUCK_DOOR);
-            SetPlayerIdMaps();
-            PrintPlayerNames();
+            SetGpuRegBits(REG_OFFSET_BG2CNT, 2);
+            sBerryBlenderData->mainState++;
+            sBerryBlenderData->field_11A = 0x100;
+            sBerryBlenderData->arrowPos = sUnknown_083399DC[sUnknown_083399E4[sBerryBlenderData->playersNo - 2]];
+            sBerryBlenderData->framesToWait = 0;
+            PlaySE(SE_TRACK_DOOR);
+            sub_808074C();
+            Blender_PrintPlayerNames();
         }
-        DrawBlenderCenter(&sBerryBlender->bgAffineSrc);
+        sub_8082CB4(&sBerryBlenderData->bgAffineSrc);
         break;
     case 15:
-        if (UpdateBlenderLandScreenShake())
+        if (sub_8083380())
         {
-            sBerryBlender->framesToWait = 0;
-            sBerryBlender->mainState++;
+            sBerryBlenderData->framesToWait = 0;
+            sBerryBlenderData->mainState++;
         }
-        DrawBlenderCenter(&sBerryBlender->bgAffineSrc);
+        sub_8082CB4(&sBerryBlenderData->bgAffineSrc);
         break;
     case 16:
-        CreateSprite(&sSpriteTemplate_CountdownNumbers, 120, -16, 3);
-        sBerryBlender->mainState++;
-        break;
-    case 17:
-        // Wait here for the countdown
-        // State is progressed in SpriteCB_Start
+        CreateSprite(&sUnknown_08339C2C, 120, -16, 3);
+        sBerryBlenderData->mainState++;
         break;
     case 18:
-        sBerryBlender->mainState++;
+        sBerryBlenderData->mainState++;
         break;
     case 19:
-        SetLinkStandbyCallback();
-        sBerryBlender->mainState++;
+        sub_800ADF8();
+        sBerryBlenderData->mainState++;
         break;
     case 20:
         if (IsLinkTaskFinished())
         {
-            SetBerryBlenderLinkCallback();
-            sBerryBlender->mainState++;
+            sub_800A418();
+            sBerryBlenderData->mainState++;
         }
         break;
     case 21:
-        sBerryBlender->speed = MIN_ARROW_SPEED;
-        sBerryBlender->gameFrameTime = 0;
-        SetMainCallback2(CB2_PlayBlender);
+        sBerryBlenderData->field_4C = 128;
+        sBerryBlenderData->gameFrameTime = 0;
+        SetMainCallback2(sub_8081898);
         if (GetCurrentMapMusic() != MUS_CYCLING)
         {
-            sBerryBlender->savedMusic = GetCurrentMapMusic();
+            sBerryBlenderData->field_154 = GetCurrentMapMusic();
         }
         PlayBGM(MUS_CYCLING);
         break;
     }
 
-    Blender_DummiedOutFunc(sBerryBlender->bg_X, sBerryBlender->bg_Y);
+    Blender_DummiedOutFunc(sBerryBlenderData->bg_X, sBerryBlenderData->bg_Y);
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
@@ -1487,7 +1362,7 @@ static void CB2_StartBlenderLink(void)
     UpdatePaletteFade();
 }
 
-static void InitBlenderBgs(void)
+static void sub_8080588(void)
 {
     SetGpuReg(REG_OFFSET_DISPCNT, 0);
 
@@ -1495,47 +1370,47 @@ static void InitBlenderBgs(void)
     FreeAllSpritePalettes();
     ResetTasks();
 
-    SetVBlankCallback(VBlankCB_BerryBlender);
+    SetVBlankCallback(VBlankCB0_BerryBlender);
 
     ResetBgsAndClearDma3BusyFlags(0);
-    InitBgsFromTemplates(1, sBgTemplates, ARRAY_COUNT(sBgTemplates));
+    InitBgsFromTemplates(1, sBerryBlenderBgTemplates, ARRAY_COUNT(sBerryBlenderBgTemplates));
 
-    SetBgTilemapBuffer(1, sBerryBlender->tilemapBuffers[0]);
-    SetBgTilemapBuffer(2, sBerryBlender->tilemapBuffers[1]);
+    SetBgTilemapBuffer(1, sBerryBlenderData->tilemapBuffers[0]);
+    SetBgTilemapBuffer(2, sBerryBlenderData->tilemapBuffers[1]);
     LoadUserWindowBorderGfx(0, 1, 0xD0);
     LoadMessageBoxGfx(0, 0x14, 0xF0);
     InitBerryBlenderWindows();
 
-    sBerryBlender->unk0 = 0;
-    sBerryBlender->speed = 0;
-    sBerryBlender->arrowPos = 0;
-    sBerryBlender->maxRPM = 0;
-    sBerryBlender->bg_X = 0;
-    sBerryBlender->bg_Y = 0;
+    sBerryBlenderData->field_44 = 0;
+    sBerryBlenderData->field_4C = 0;
+    sBerryBlenderData->arrowPos = 0;
+    sBerryBlenderData->max_RPM = 0;
+    sBerryBlenderData->bg_X = 0;
+    sBerryBlenderData->bg_Y = 0;
 }
 
-static u8 GetArrowProximity(u16 arrowPos, u8 playerId)
+static u8 sub_8080624(u16 arrowPos, u8 playerId)
 {
-    u32 pos = (arrowPos / 256) + 24;
-    u8 arrowId = sBerryBlender->playerIdToArrowId[playerId];
-    u32 hitRangeStart = sArrowHitRangeStart[arrowId];
+    u32 var1 = (arrowPos / 0x100) + 0x18;
+    u8 arrID = sBerryBlenderData->field_96[playerId];
+    u32 var2 = sUnknown_083399E7[arrID];
 
-    if (pos >= hitRangeStart && pos < hitRangeStart + 48)
+    if (var1 >= var2 && var1 < var2 + 0x30)
     {
-        if (pos >= hitRangeStart + 20 && pos < hitRangeStart + 28)
-            return PROXIMITY_BEST;
+        if (var1 >= var2 + 20 && var1 < var2 + 28)
+            return 2;
         else
-            return PROXIMITY_GOOD;
+            return 1;
     }
 
-    return PROXIMITY_MISS;
+    return 0;
 }
 
-static void SetOpponentsBerryData(u16 playerBerryItemId, u8 playersNum, struct BlenderBerry* playerBerry)
+static void Blender_SetOpponentsBerryData(u16 playerBerryItemId, u8 playersNum, struct BlenderBerry* playerBerry)
 {
     u16 opponentSetId = 0;
     u16 opponentBerryId;
-    u16 berryMasterDiff;
+    u16 var;
     u16 i;
 
     if (playerBerryItemId == ITEM_ENIGMA_BERRY)
@@ -1545,73 +1420,70 @@ static void SetOpponentsBerryData(u16 playerBerryItemId, u8 playersNum, struct B
             if (playerBerry->flavors[opponentSetId] > playerBerry->flavors[i])
                 opponentSetId = i;
         }
-        opponentSetId += NUM_NPC_BERRIES;
+        opponentSetId += 5;
     }
     else
     {
-        opponentSetId = ITEM_TO_BERRY(playerBerryItemId) - 1;
-        if (opponentSetId >= NUM_NPC_BERRIES)
-            opponentSetId = (opponentSetId % NUM_NPC_BERRIES) + NUM_NPC_BERRIES;
+        opponentSetId = playerBerryItemId - FIRST_BERRY_INDEX;
+        if (opponentSetId >= 5)
+            opponentSetId = (opponentSetId % 5) + 5;
     }
     for (i = 0; i < playersNum - 1; i++)
     {
         opponentBerryId = sOpponentBerrySets[opponentSetId][i];
-        berryMasterDiff = ITEM_TO_BERRY(playerBerryItemId) - ITEM_TO_BERRY(ITEM_SPELON_BERRY);
+        var = playerBerryItemId - 163;
         if (!FlagGet(FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER) && gSpecialVar_0x8004 == 1)
         {
-            opponentSetId %= ARRAY_COUNT(sBerryMasterBerries);
-            opponentBerryId = sBerryMasterBerries[opponentSetId];
-
-            // If the player's berry is any of the Berry Master's berries,
-            // then use the next lower set of berries
-            if (berryMasterDiff < ARRAY_COUNT(sBerryMasterBerries))
-                opponentBerryId -= ARRAY_COUNT(sBerryMasterBerries);
+            opponentSetId %= 5;
+            opponentBerryId = sSpecialOpponentBerrySets[opponentSetId];
+            if (var <= 4)
+                opponentBerryId -= 5;
         }
-        SetPlayerBerryData(i + 1, opponentBerryId + FIRST_BERRY_INDEX);
+        Blender_SetParticipantBerryData(i + 1, opponentBerryId + FIRST_BERRY_INDEX);
     }
 }
 
-static void SetPlayerIdMaps(void)
+static void sub_808074C(void)
 {
     s32 i, j;
 
     for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
     {
-        sBerryBlender->playerIdToArrowId[i] = NO_PLAYER;
-        sBerryBlender->arrowIdToPlayerId[i] = sPlayerIdMap[sBerryBlender->numPlayers - 2][i];
+        sBerryBlenderData->field_96[i] = 0xFF;
+        sBerryBlenderData->field_8E[i] = sUnknown_083399D0[sBerryBlenderData->playersNo - 2][i];
     }
     for (j = 0; j < BLENDER_MAX_PLAYERS; j++)
     {
         for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
         {
-            if (sBerryBlender->arrowIdToPlayerId[i] == j)
-                sBerryBlender->playerIdToArrowId[j] = i;
+            if (sBerryBlenderData->field_8E[i] == j)
+                sBerryBlenderData->field_96[j] = i;
         }
     }
 }
 
-static void PrintPlayerNames(void)
+static void Blender_PrintPlayerNames(void)
 {
     s32 i, xPos;
-    u32 playerId = 0;
+    u32 multiplayerId = 0;
     u8 text[20];
 
     if (gReceivedRemoteLinkPlayers)
-        playerId = GetMultiplayerId();
+        multiplayerId = GetMultiplayerId();
 
     for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
     {
-        if (sBerryBlender->arrowIdToPlayerId[i] != NO_PLAYER)
+        if (sBerryBlenderData->field_8E[i] != 0xFF)
         {
-            sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[i]] = sBerryBlender->playerArrowSpriteIds2[i];
-            StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[i]]], i);
+            sBerryBlenderData->syncArrowSpriteIds[sBerryBlenderData->field_8E[i]] = sBerryBlenderData->syncArrowSprite2Ids[i];
+            StartSpriteAnim(&gSprites[sBerryBlenderData->syncArrowSpriteIds[sBerryBlenderData->field_8E[i]]], i);
 
             text[0] = EOS;
-            StringCopy(text, gLinkPlayers[sBerryBlender->arrowIdToPlayerId[i]].name);
+            StringCopy(text, gLinkPlayers[sBerryBlenderData->field_8E[i]].name);
             xPos = GetStringCenterAlignXOffset(1, text, 0x38);
 
-            if (playerId == sBerryBlender->arrowIdToPlayerId[i])
-                Blender_AddTextPrinter(i, text, xPos, 1, 0, 2); // Highlight player's name in red
+            if (multiplayerId == sBerryBlenderData->field_8E[i])
+                Blender_AddTextPrinter(i, text, xPos, 1, 0, 2);
             else
                 Blender_AddTextPrinter(i, text, xPos, 1, 0, 1);
 
@@ -1621,174 +1493,167 @@ static void PrintPlayerNames(void)
     }
 }
 
-static void CB2_StartBlenderLocal(void)
+static void sub_80808D4(void)
 {
     s32 i, j;
 
-    switch (sBerryBlender->mainState)
+    switch (sBerryBlenderData->mainState)
     {
     case 0:
-        SetWirelessCommType0();
-        InitBlenderBgs();
-        SetPlayerBerryData(0, gSpecialVar_ItemId);
-        ConvertItemToBlenderBerry(&sBerryBlender->blendedBerries[0], gSpecialVar_ItemId);
-        SetOpponentsBerryData(gSpecialVar_ItemId, sBerryBlender->numPlayers, &sBerryBlender->blendedBerries[0]);
+        sub_800B4C0();
+        sub_8080588();
+        Blender_SetParticipantBerryData(0, gSpecialVar_ItemId);
+        Blender_CopyBerryData(&sBerryBlenderData->blendedBerries[0], gSpecialVar_ItemId);
+        Blender_SetOpponentsBerryData(gSpecialVar_ItemId, sBerryBlenderData->playersNo, &sBerryBlenderData->blendedBerries[0]);
 
         for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
         {
-            sBerryBlender->playerContinueResponses[i] = 0;
-            for (j = 0; j < NUM_SCORE_TYPES; j++)
+            sBerryBlenderData->field_64[i] = 0;
+            for (j = 0; j < 3; j++)
             {
-                sBerryBlender->scores[i][j] = 0;
+                sBerryBlenderData->scores[i][j] = 0;
             }
         }
 
-        sBerryBlender->playAgainState = 0;
-        sBerryBlender->loadGfxState = 0;
+        sBerryBlenderData->playAgainState = 0;
+        sBerryBlenderData->loadGfxState = 0;
         gLinkType = LINKTYPE_BERRY_BLENDER;
-        sBerryBlender->mainState++;
+        sBerryBlenderData->mainState++;
         break;
     case 1:
         if (LoadBerryBlenderGfx())
         {
-            sBerryBlender->mainState++;
-            UpdateBlenderCenter();
+            sBerryBlenderData->mainState++;
+            sub_8082D28();
         }
         break;
     case 2:
         for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
         {
-            sBerryBlender->playerArrowSpriteIds2[i] = CreateSprite(&sSpriteTemplate_PlayerArrow, sPlayerArrowPos[i][0], sPlayerArrowPos[i][1], 1);
-            StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds2[i]], i + 8);
+            sBerryBlenderData->syncArrowSprite2Ids[i] = CreateSprite(&sBlenderSyncArrow_SpriteTemplate, sBlenderSyncArrowsPos[i][0], sBlenderSyncArrowsPos[i][1], 1);
+            StartSpriteAnim(&gSprites[sBerryBlenderData->syncArrowSprite2Ids[i]], i + 8);
         }
-        sBerryBlender->mainState++;
+        sBerryBlenderData->mainState++;
         break;
     case 3:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
-        sBerryBlender->mainState++;
-        sBerryBlender->framesToWait = 0;
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_BLACK);
+        sBerryBlenderData->mainState++;
+        sBerryBlenderData->framesToWait = 0;
         break;
     case 4:
-        if (++sBerryBlender->framesToWait == 2)
-            DrawBlenderBg();
+        if (++sBerryBlenderData->framesToWait == 2)
+            sub_807F9D0();
         if (!gPaletteFade.active)
-            sBerryBlender->mainState = 8;
+            sBerryBlenderData->mainState = 8;
         break;
     case 8:
-        sBerryBlender->mainState = 11;
-        sBerryBlender->playerToThrowBerry = 0;
+        sBerryBlenderData->mainState = 11;
+        sBerryBlenderData->field_114 = 0;
         break;
     case 11:
         for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
         {
-            // Throw 1 player's berry in
-            u32 playerId = sPlayerIdMap[sBerryBlender->numPlayers - 2][i];
-            if (sBerryBlender->playerToThrowBerry == playerId)
+            u32 var = sUnknown_083399D0[sBerryBlenderData->playersNo - 2][i];
+            if (sBerryBlenderData->field_114 == var)
             {
-                CreateBerrySprite(sBerryBlender->chosenItemId[sBerryBlender->playerToThrowBerry], i);
+                sub_807FD90(sBerryBlenderData->chosenItemId[sBerryBlenderData->field_114], i);
                 break;
             }
         }
-        sBerryBlender->framesToWait = 0;
-        sBerryBlender->mainState++;
-        sBerryBlender->playerToThrowBerry++;
+        sBerryBlenderData->framesToWait = 0;
+        sBerryBlenderData->mainState++;
+        sBerryBlenderData->field_114++;
         break;
     case 12:
-        if (++sBerryBlender->framesToWait > 60)
+        if (++sBerryBlenderData->framesToWait > 60)
         {
-            if (sBerryBlender->playerToThrowBerry >= sBerryBlender->numPlayers)
+            if (sBerryBlenderData->field_114 >= sBerryBlenderData->playersNo)
             {
-                // Finished throwing berries in
-                sBerryBlender->arrowPos = sArrowStartPos[sArrowStartPosIds[sBerryBlender->numPlayers - 2]] - ARROW_FALL_ROTATION;
-                sBerryBlender->mainState++;
+                sBerryBlenderData->arrowPos = sUnknown_083399DC[sUnknown_083399E4[sBerryBlenderData->playersNo - 2]] - 22528;
+                sBerryBlenderData->mainState++;
             }
             else
             {
-                // Haven't finished throwing berries in, go back to prev step
-                sBerryBlender->mainState--;
+                sBerryBlenderData->mainState--;
             }
-            sBerryBlender->framesToWait = 0;
+            sBerryBlenderData->framesToWait = 0;
         }
         break;
     case 13:
-        sBerryBlender->mainState++;
-        SetPlayerIdMaps();
-        PlaySE(SE_FALL);
-        DrawBlenderCenter(&sBerryBlender->bgAffineSrc);
+        sBerryBlenderData->mainState++;
+        sub_808074C();
+        PlaySE(SE_RU_HYUU);
+        sub_8082CB4(&sBerryBlenderData->bgAffineSrc);
         ShowBg(2);
         break;
     case 14:
         SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_BG2_ON);
-        sBerryBlender->arrowPos += 0x200;
-        sBerryBlender->centerScale += 4;
-        if (sBerryBlender->centerScale > 255)
+        sBerryBlenderData->arrowPos += 0x200;
+        sBerryBlenderData->field_11A += 4;
+        if (sBerryBlenderData->field_11A > 0xFF)
         {
-            sBerryBlender->mainState++;
-            sBerryBlender->centerScale = 256;
-            sBerryBlender->arrowPos = sArrowStartPos[sArrowStartPosIds[sBerryBlender->numPlayers - 2]];
-            SetGpuRegBits(REG_OFFSET_BG2CNT, BGCNT_PRIORITY(2));
-            sBerryBlender->framesToWait = 0;
-            PlaySE(SE_TRUCK_DOOR);
-            PrintPlayerNames();
+            sBerryBlenderData->mainState++;
+            sBerryBlenderData->field_11A = 0x100;
+            sBerryBlenderData->arrowPos = sUnknown_083399DC[sUnknown_083399E4[sBerryBlenderData->playersNo - 2]];
+            SetGpuRegBits(REG_OFFSET_BG2CNT, 2);
+            sBerryBlenderData->framesToWait = 0;
+            PlaySE(SE_TRACK_DOOR);
+            Blender_PrintPlayerNames();
         }
-        DrawBlenderCenter(&sBerryBlender->bgAffineSrc);
+        sub_8082CB4(&sBerryBlenderData->bgAffineSrc);
         break;
     case 15:
-        if (UpdateBlenderLandScreenShake())
+        if (sub_8083380())
         {
-            sBerryBlender->mainState++;
+            sBerryBlenderData->mainState++;
         }
-        DrawBlenderCenter(&sBerryBlender->bgAffineSrc);
+        sub_8082CB4(&sBerryBlenderData->bgAffineSrc);
         break;
     case 16:
-        CreateSprite(&sSpriteTemplate_CountdownNumbers, 120, -16, 3);
-        sBerryBlender->mainState++;
-        break;
-    case 17:
-        // Wait here for the countdown
-        // State is progressed in SpriteCB_Start
+        CreateSprite(&sUnknown_08339C2C, 120, -16, 3);
+        sBerryBlenderData->mainState++;
         break;
     case 18:
-        sBerryBlender->mainState++;
+        sBerryBlenderData->mainState++;
         break;
     case 19:
-        sBerryBlender->mainState++;
+        sBerryBlenderData->mainState++;
         break;
     case 20:
-        sBerryBlender->mainState++;
+        sBerryBlenderData->mainState++;
         break;
     case 21:
-        ResetLinkCmds();
-        sBerryBlender->speed = MIN_ARROW_SPEED;
-        sBerryBlender->gameFrameTime = 0;
-        sBerryBlender->perfectOpponents = FALSE;
-        sBerryBlender->slowdownTimer = 0;
-        SetMainCallback2(CB2_PlayBlender);
+        sub_8080DF8();
+        sBerryBlenderData->field_4C = 0x80;
+        sBerryBlenderData->gameFrameTime = 0;
+        sBerryBlenderData->field_123 = 0;
+        sBerryBlenderData->field_72 = 0;
+        SetMainCallback2(sub_8081898);
 
         if (gSpecialVar_0x8004 == 1)
         {
             if (!FlagGet(FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER))
-                sBerryBlender->opponentTaskIds[0] = CreateTask(Task_HandleBerryMaster, 10);
+                sBerryBlenderData->field_120[0] = CreateTask(sub_8081224, 10);
             else
-                sBerryBlender->opponentTaskIds[0] = CreateTask(sLocalOpponentTasks[0], 10);
+                sBerryBlenderData->field_120[0] = CreateTask(sUnknown_083399EC[0], 10);
         }
 
         if (gSpecialVar_0x8004 > 1)
         {
             for (i = 0; i < gSpecialVar_0x8004; i++)
-                sBerryBlender->opponentTaskIds[i] = CreateTask(sLocalOpponentTasks[i], 10 + i);
+                sBerryBlenderData->field_120[i] = CreateTask(sUnknown_083399EC[i], 10 + i);
         }
 
         if (GetCurrentMapMusic() != MUS_CYCLING)
-            sBerryBlender->savedMusic = GetCurrentMapMusic();
+            sBerryBlenderData->field_154 = GetCurrentMapMusic();
 
         PlayBGM(MUS_CYCLING);
-        PlaySE(SE_BERRY_BLENDER);
-        UpdateHitPitch();
+        PlaySE(SE_MOTER);
+        Blender_ControlHitPitch();
         break;
     }
 
-    Blender_DummiedOutFunc(sBerryBlender->bg_X, sBerryBlender->bg_Y);
+    Blender_DummiedOutFunc(sBerryBlenderData->bg_X, sBerryBlenderData->bg_Y);
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
@@ -1796,441 +1661,410 @@ static void CB2_StartBlenderLocal(void)
     UpdatePaletteFade();
 }
 
-static void ResetLinkCmds(void)
+static void sub_8080DF8(void)
 {
     s32 i;
-    for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
+    for (i = 0; i < 4; i++)
     {
-        gSendCmd[BLENDER_COMM_INPUT_STATE] = 0;
-        gSendCmd[BLENDER_COMM_SCORE] = 0;
-        gRecvCmds[i][BLENDER_COMM_INPUT_STATE] = 0;
-        gRecvCmds[i][BLENDER_COMM_SCORE] = 0;
+        gSendCmd[0] = 0;
+        gSendCmd[2] = 0;
+        gRecvCmds[i][0] = 0;
+        gRecvCmds[i][2] = 0;
     }
 }
 
-#define tTimer    data[0]
-#define tDelay    data[1]
-#define tPlayerId data[2]
-
-static void Task_OpponentMiss(u8 taskId)
+static void sub_8080E20(u8 taskId)
 {
-   if(++gTasks[taskId].tTimer > gTasks[taskId].tDelay)
+   if(++gTasks[taskId].data[0] > gTasks[taskId].data[1])
    {
-        gRecvCmds[gTasks[taskId].tPlayerId][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_MISS;
+        gRecvCmds[gTasks[taskId].data[2]][2] = 0x2345;
         DestroyTask(taskId);
    }
 }
 
-static void CreateOpponentMissTask(u8 playerId, u8 delay)
+static void sub_8080E6C(u8 a0, u8 a1)
 {
-    u8 taskId = CreateTask(Task_OpponentMiss, 80);
-    gTasks[taskId].tDelay = delay;
-    gTasks[taskId].tPlayerId = playerId;
+    u8 taskId = CreateTask(sub_8080E20, 80);
+    gTasks[taskId].data[1] = a1;
+    gTasks[taskId].data[2] = a0;
 }
 
-#undef tTimer
-#undef tDelay
-#undef tPlayerId
-
-#define tDidInput data[0]
-
-static void Task_HandleOpponent1(u8 taskId)
+static void sub_8080EA4(u8 taskId)
 {
-    if (GetArrowProximity(sBerryBlender->arrowPos, 1) == PROXIMITY_BEST)
+    if (sub_8080624(sBerryBlenderData->arrowPos, 1) == 2)
     {
-        if (!gTasks[taskId].tDidInput)
+        if (gTasks[taskId].data[0] == 0)
         {
-            if (!sBerryBlender->perfectOpponents)
+            if (sBerryBlenderData->field_123 == 0)
             {
                 u8 rand = Random() / 655;
-                if (sBerryBlender->speed < 500)
+                if (sBerryBlenderData->field_4C < 500)
                 {
                     if (rand > 75)
-                        gRecvCmds[1][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
+                        gRecvCmds[1][2] = 0x4523;
                     else
-                        gRecvCmds[1][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_GOOD;
+                        gRecvCmds[1][2] = 0x5432;
 
-                    // BUG: Overrwrote above assignment. Opponent 1 can't get Best at low speed
-                    #ifndef BUGFIX
-                    gRecvCmds[1][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_GOOD;
-                    #endif
+                    gRecvCmds[1][2] = 0x5432;
                 }
-                else if (sBerryBlender->speed < 1500)
+                else if (sBerryBlenderData->field_4C < 1500)
                 {
                     if (rand > 80)
                     {
-                        gRecvCmds[1][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
+                        gRecvCmds[1][2] = 0x4523;
                     }
                     else
                     {
                         u8 value = rand - 21;
                         if (value < 60)
-                            gRecvCmds[1][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_GOOD;
+                            gRecvCmds[1][2] = 0x5432;
                         else if (rand < 10)
-                            CreateOpponentMissTask(1, 5);
+                            sub_8080E6C(1, 5);
                     }
                 }
                 else if (rand <= 90)
                 {
                     u8 value = rand - 71;
                     if (value < 20)
-                        gRecvCmds[1][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_GOOD;
+                        gRecvCmds[1][2] = 0x5432;
                     else if (rand < 30)
-                        CreateOpponentMissTask(1, 5);
+                        sub_8080E6C(1, 5);
                 }
                 else
                 {
-                    gRecvCmds[1][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
+                    gRecvCmds[1][2] = 0x4523;
                 }
             }
             else
             {
-                gRecvCmds[1][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
+                gRecvCmds[1][2] = 0x4523;
             }
 
-            gTasks[taskId].tDidInput = TRUE;
+            gTasks[taskId].data[0] = 1;
         }
     }
     else
     {
-        gTasks[taskId].tDidInput = FALSE;
+        gTasks[taskId].data[0] = 0;
     }
 }
 
-static void Task_HandleOpponent2(u8 taskId)
+static void sub_8080FD0(u8 taskId)
 {
-    u32 var1 = (sBerryBlender->arrowPos + 0x1800) & 0xFFFF;
-    u32 arrowId = sBerryBlender->playerIdToArrowId[2] & 0xFF;
-    if ((var1 >> 8) > sArrowHitRangeStart[arrowId] + 20 && (var1 >> 8) < sArrowHitRangeStart[arrowId] + 40)
+    u32 var1 = (sBerryBlenderData->arrowPos + 0x1800) & 0xFFFF;
+    u32 var2 = sBerryBlenderData->field_96[2] & 0xFF;
+    if ((var1 >> 8) > sUnknown_083399E7[var2] + 20 && (var1 >> 8) < sUnknown_083399E7[var2] + 40)
     {
-        if (!gTasks[taskId].tDidInput)
+        if (gTasks[taskId].data[0] == 0)
         {
-            if (!sBerryBlender->perfectOpponents)
+            if (sBerryBlenderData->field_123 == 0)
             {
                 u8 rand = Random() / 655;
-                if (sBerryBlender->speed < 500)
+                if (sBerryBlenderData->field_4C < 500)
                 {
                     if (rand > 66)
-                        gRecvCmds[2][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
+                        gRecvCmds[2][2] = 0x4523;
                     else
-                        gRecvCmds[2][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_GOOD;
+                        gRecvCmds[2][2] = 0x5432;
                 }
                 else
                 {
                     u8 value;
                     if (rand > 65)
-                        gRecvCmds[2][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
+                        gRecvCmds[2][2] = 0x4523;
                     value = rand - 41;
                     if (value < 25)
-                        gRecvCmds[2][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_GOOD;
+                        gRecvCmds[2][2] = 0x5432;
                     if (rand < 10)
-                        CreateOpponentMissTask(2, 5);
+                        sub_8080E6C(2, 5);
                 }
 
-                gTasks[taskId].tDidInput = TRUE;
+                gTasks[taskId].data[0] = 1;
             }
             else
             {
-                gRecvCmds[2][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
-                gTasks[taskId].tDidInput = TRUE;
+                gRecvCmds[2][2] = 0x4523;
+                gTasks[taskId].data[0] = 1;
             }
         }
     }
     else
     {
-        gTasks[taskId].tDidInput = FALSE;
+        gTasks[taskId].data[0] = 0;
     }
 }
 
-static void Task_HandleOpponent3(u8 taskId)
+static void sub_80810F8(u8 taskId)
 {
-    u32 var1 = (sBerryBlender->arrowPos + 0x1800) & 0xFFFF;
-    u32 arrowId = sBerryBlender->playerIdToArrowId[3] & 0xFF;
-    if ((var1 >> 8) > sArrowHitRangeStart[arrowId] + 20 && (var1 >> 8) < sArrowHitRangeStart[arrowId] + 40)
+    u32 var1, var2;
+
+    var1 = (sBerryBlenderData->arrowPos + 0x1800) & 0xFFFF;
+    var2 = sBerryBlenderData->field_96[3] & 0xFF;
+    if ((var1 >> 8) > sUnknown_083399E7[var2] + 20 && (var1 >> 8) < sUnknown_083399E7[var2] + 40)
     {
         if (gTasks[taskId].data[0] == 0)
         {
-            if (!sBerryBlender->perfectOpponents)
+            if (sBerryBlenderData->field_123 == 0)
             {
                 u8 rand = (Random() / 655);
-                if (sBerryBlender->speed < 500)
+                if (sBerryBlenderData->field_4C < 500)
                 {
                     if (rand > 88)
-                        gRecvCmds[3][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
+                        gRecvCmds[3][2] = 0x4523;
                     else
-                        gRecvCmds[3][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_GOOD;
+                        gRecvCmds[3][2] = 0x5432;
                 }
                 else
                 {
                     if (rand > 60)
                     {
-                        gRecvCmds[3][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
+                        gRecvCmds[3][2] = 0x4523;
                     }
                     else
                     {
                         s8 value = rand - 56; // makes me wonder what the original code was
                         u8 value2 = value;
                         if (value2 < 5)
-                            gRecvCmds[3][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_GOOD;
+                            gRecvCmds[3][2] = 0x5432;
                     }
                     if (rand < 5)
-                        CreateOpponentMissTask(3, 5);
+                        sub_8080E6C(3, 5);
                 }
-                gTasks[taskId].tDidInput = TRUE;
+                gTasks[taskId].data[0] = 1;
             }
             else
             {
-                gRecvCmds[3][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
-                gTasks[taskId].tDidInput = TRUE;
+                gRecvCmds[3][2] = 0x4523;
+                gTasks[taskId].data[0] = 1;
             }
         }
     }
     else
     {
-        gTasks[taskId].tDidInput = FALSE;
+        gTasks[taskId].data[0] = 0;
     }
 }
 
-static void Task_HandleBerryMaster(u8 taskId)
+static void sub_8081224(u8 taskId)
 {
-    if (GetArrowProximity(sBerryBlender->arrowPos, 1) == PROXIMITY_BEST)
+    if (sub_8080624(sBerryBlenderData->arrowPos, 1) == 2)
     {
-        if (!gTasks[taskId].tDidInput)
+        if (gTasks[taskId].data[0] == 0)
         {
-            gRecvCmds[1][BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
-            gTasks[taskId].tDidInput = TRUE;
+            gRecvCmds[1][2] = 0x4523;
+            gTasks[taskId].data[0] = 1;
         }
     }
     else
     {
-        gTasks[taskId].tDidInput = FALSE;
+        gTasks[taskId].data[0] = 0;
     }
 }
 
-#undef tDidInput
-
-static void CreateScoreSymbolSprite(u16 cmd, u8 arrowId)
+static void sub_8081288(u16 a0, u8 a1)
 {
     u8 spriteId;
 
-    spriteId = CreateSprite(&sSpriteTemplate_ScoreSymbols,
-                            sPlayerArrowPos[arrowId][0] - (10 * sPlayerArrowQuadrant[arrowId][0]),
-                            sPlayerArrowPos[arrowId][1] - (10 * sPlayerArrowQuadrant[arrowId][1]),
+    spriteId = CreateSprite(&sUnknown_08339B40,
+                            sBlenderSyncArrowsPos[a1][0] - (10 * sUnknown_083399C0[a1][0]),
+                            sBlenderSyncArrowsPos[a1][1] - (10 * sUnknown_083399C0[a1][1]),
                             1);
-    if (cmd == LINKCMD_BLENDER_SCORE_BEST)
+    if (a0 == 0x4523)
     {
-        StartSpriteAnim(&gSprites[spriteId], SCOREANIM_BEST_FLASH);
-        gSprites[spriteId].callback = SpriteCB_ScoreSymbolBest;
-        PlaySE(SE_ICE_STAIRS);
+        StartSpriteAnim(&gSprites[spriteId], 2);
+        gSprites[spriteId].callback = sub_8082F9C;
+        PlaySE(SE_RU_GASHIN);
     }
-    else if (cmd == LINKCMD_BLENDER_SCORE_GOOD)
+    else if (a0 == 0x5432)
     {
-        StartSpriteAnim(&gSprites[spriteId], SCOREANIM_GOOD);
-        PlaySE(SE_SUCCESS);
+        StartSpriteAnim(&gSprites[spriteId], 0);
+        PlaySE(SE_SEIKAI);
     }
-    else if (cmd == LINKCMD_BLENDER_SCORE_MISS)
+    else if (a0 == 0x2345)
     {
-        StartSpriteAnim(&gSprites[spriteId], SCOREANIM_MISS);
-        PlaySE(SE_FAILURE);
+        StartSpriteAnim(&gSprites[spriteId], 1);
+        PlaySE(SE_HAZURE);
     }
-    CreateParticleSprites();
+    sub_8082E84();
 }
 
-static void UpdateSpeedFromHit(u16 cmd)
+static void sub_8081370(u16 a0)
 {
-    UpdateHitPitch();
-    switch (cmd)
+    Blender_ControlHitPitch();
+    switch (a0)
     {
-    case LINKCMD_BLENDER_SCORE_BEST:
-        if (sBerryBlender->speed < 1500) {
-            sBerryBlender->speed += (384 / sNumPlayersToSpeedDivisor[sBerryBlender->numPlayers]);
-        }
+    case 0x4523:
+        if (sBerryBlenderData->field_4C < 1500)
+            sBerryBlenderData->field_4C += (0x180 / sUnknown_08339CC3[sBerryBlenderData->playersNo]);
         else
         {
-            sBerryBlender->speed += (128 / sNumPlayersToSpeedDivisor[sBerryBlender->numPlayers]);
-            ShakeBgCoordForHit(&sBerryBlender->bg_X, (sBerryBlender->speed / 100) - 10);
-            ShakeBgCoordForHit(&sBerryBlender->bg_Y, (sBerryBlender->speed / 100) - 10);
+            sBerryBlenderData->field_4C += (128 / sUnknown_08339CC3[sBerryBlenderData->playersNo]);
+            sub_80832BC(&sBerryBlenderData->bg_X, (sBerryBlenderData->field_4C / 100) - 10);
+            sub_80832BC(&sBerryBlenderData->bg_Y, (sBerryBlenderData->field_4C / 100) - 10);
         }
         break;
-    case LINKCMD_BLENDER_SCORE_GOOD:
-        if (sBerryBlender->speed < 1500)
-            sBerryBlender->speed += (256 / sNumPlayersToSpeedDivisor[sBerryBlender->numPlayers]);
+    case 0x5432:
+        if (sBerryBlenderData->field_4C < 1500)
+            sBerryBlenderData->field_4C += (0x100 / sUnknown_08339CC3[sBerryBlenderData->playersNo]);
         break;
-    case LINKCMD_BLENDER_SCORE_MISS:
-        sBerryBlender->speed -= (256 / sNumPlayersToSpeedDivisor[sBerryBlender->numPlayers]);
-        if (sBerryBlender->speed < MIN_ARROW_SPEED)
-            sBerryBlender->speed = MIN_ARROW_SPEED;
+    case 0x2345:
+        sBerryBlenderData->field_4C -= (0x100 / sUnknown_08339CC3[sBerryBlenderData->playersNo]);
+        if (sBerryBlenderData->field_4C < 0x80)
+            sBerryBlenderData->field_4C = 0x80;
         break;
     }
 }
 
-// Return TRUE if the received command matches the corresponding Link or RFU command
-static bool32 CheckRecvCmdMatches(u16 recvCmd, u16 linkCmd, u16 rfuCmd)
+static bool32 sub_80814B0(u16 arg0, u16 arg1, u16 arg2)
 {
-    if (gReceivedRemoteLinkPlayers && gWirelessCommType)
+    if (gReceivedRemoteLinkPlayers != 0 && gWirelessCommType)
     {
-        if ((recvCmd & 0xFF00) == rfuCmd)
+        if ((arg0 & 0xFF00) == arg2)
             return TRUE;
     }
     else
     {
-        if (recvCmd == linkCmd)
+        if (arg0 == arg1)
             return TRUE;
     }
 
     return FALSE;
 }
 
-static void UpdateOpponentScores(void)
+static void sub_80814F4(void)
 {
     s32 i;
 
     if (gSpecialVar_0x8004 != 0)
     {
-        // Local game, "send" players score to itself
-        if (gSendCmd[BLENDER_COMM_SCORE] != 0)
+        if (gSendCmd[2] != 0)
         {
-            gRecvCmds[0][BLENDER_COMM_SCORE] = gSendCmd[BLENDER_COMM_SCORE];
-            gRecvCmds[0][BLENDER_COMM_INPUT_STATE] = LINKCMD_BLENDER_SEND_KEYS;
-            gSendCmd[BLENDER_COMM_SCORE] = 0;
+            gRecvCmds[0][2] = gSendCmd[2];
+            gRecvCmds[0][0] = 0x4444;
+            gSendCmd[2] = 0;
         }
-
-        // Local game, simulate NPCs sending keys
-        // Their actual inputs are handled by Task_HandleOpponent
-        for (i = 1; i < BLENDER_MAX_PLAYERS; i++)
+        for (i = 1; i < 4; i++)
         {
-            if (gRecvCmds[i][BLENDER_COMM_SCORE] != 0)
-                gRecvCmds[i][BLENDER_COMM_INPUT_STATE] = LINKCMD_BLENDER_SEND_KEYS;
+            if (gRecvCmds[i][2] != 0)
+                gRecvCmds[i][0] = 0x4444;
         }
     }
-    for (i = 0; i < sBerryBlender->numPlayers; i++)
+    for (i = 0; i < sBerryBlenderData->playersNo; i++)
     {
-        if (CheckRecvCmdMatches(gRecvCmds[i][BLENDER_COMM_INPUT_STATE], LINKCMD_BLENDER_SEND_KEYS, RFUCMD_BLENDER_SEND_KEYS))
+        if (sub_80814B0(gRecvCmds[i][0], 0x4444, 0x4400))
         {
-            u32 arrowId = sBerryBlender->playerIdToArrowId[i];
-            if (gRecvCmds[i][BLENDER_COMM_SCORE] == LINKCMD_BLENDER_SCORE_BEST)
+            u32 var = sBerryBlenderData->field_96[i];
+            if (gRecvCmds[i][2] == 0x4523)
             {
-                UpdateSpeedFromHit(LINKCMD_BLENDER_SCORE_BEST);
-                sBerryBlender->progressBarValue += (sBerryBlender->speed / 55);
-                if (sBerryBlender->progressBarValue >= MAX_PROGRESS_BAR)
-                    sBerryBlender->progressBarValue = MAX_PROGRESS_BAR;
-                CreateScoreSymbolSprite(LINKCMD_BLENDER_SCORE_BEST, arrowId);
-                sBerryBlender->scores[i][SCORE_BEST]++;
+                sub_8081370(0x4523);
+                sBerryBlenderData->field_116 += (sBerryBlenderData->field_4C / 55);
+                if (sBerryBlenderData->field_116 >= 1000)
+                    sBerryBlenderData->field_116 = 1000;
+                sub_8081288(0x4523, var);
+                sBerryBlenderData->scores[i][BLENDER_SCORE_BEST]++;
             }
-            else if (gRecvCmds[i][BLENDER_COMM_SCORE] == LINKCMD_BLENDER_SCORE_GOOD)
+            else if (gRecvCmds[i][2] == 0x5432)
             {
-                UpdateSpeedFromHit(LINKCMD_BLENDER_SCORE_GOOD);
-                sBerryBlender->progressBarValue += (sBerryBlender->speed / 70);
-                CreateScoreSymbolSprite(LINKCMD_BLENDER_SCORE_GOOD, arrowId);
-                sBerryBlender->scores[i][SCORE_GOOD]++;
+                sub_8081370(0x5432);
+                sBerryBlenderData->field_116 += (sBerryBlenderData->field_4C / 70);
+                sub_8081288(0x5432, var);
+                sBerryBlenderData->scores[i][BLENDER_SCORE_GOOD]++;
             }
-            else if (gRecvCmds[i][BLENDER_COMM_SCORE] == LINKCMD_BLENDER_SCORE_MISS)
+            else if (gRecvCmds[i][2] == 0x2345)
             {
-                CreateScoreSymbolSprite(LINKCMD_BLENDER_SCORE_MISS, arrowId);
-                UpdateSpeedFromHit(LINKCMD_BLENDER_SCORE_MISS);
-                if (sBerryBlender->scores[i][SCORE_MISS] < 999)
-                    sBerryBlender->scores[i][SCORE_MISS]++;
+                sub_8081288(0x2345, var);
+                sub_8081370(0x2345);
+                if (sBerryBlenderData->scores[i][BLENDER_SCORE_MISS] < 999)
+                    sBerryBlenderData->scores[i][BLENDER_SCORE_MISS]++;
             }
-
-            // BUG: Should be [i][BLENDER_COMM_SCORE] below, not [BLENDER_COMM_SCORE][i]
-            // As a result the music tempo updates if any player misses, but only if 1 specific player hits
-            #ifdef BUGFIX
-            if (gRecvCmds[i][BLENDER_COMM_SCORE] == LINKCMD_BLENDER_SCORE_MISS 
-             || gRecvCmds[i][BLENDER_COMM_SCORE] == LINKCMD_BLENDER_SCORE_BEST 
-             || gRecvCmds[i][BLENDER_COMM_SCORE] == LINKCMD_BLENDER_SCORE_GOOD)
-            #else
-            if (gRecvCmds[i][BLENDER_COMM_SCORE] == LINKCMD_BLENDER_SCORE_MISS 
-             || gRecvCmds[BLENDER_COMM_SCORE][i] == LINKCMD_BLENDER_SCORE_BEST 
-             || gRecvCmds[BLENDER_COMM_SCORE][i] == LINKCMD_BLENDER_SCORE_GOOD)
-            #endif
+            if (gRecvCmds[i][2] == 0x2345 || gRecvCmds[2][i] == 0x4523 || gRecvCmds[2][i] == 0x5432) // could be a bug, 2 and i are reversed
             {
-                if (sBerryBlender->speed > 1500)
-                    m4aMPlayTempoControl(&gMPlayInfo_BGM, ((sBerryBlender->speed - 750) / 20) + 256);
+                if (sBerryBlenderData->field_4C > 1500)
+                    m4aMPlayTempoControl(&gMPlayInfo_BGM, ((sBerryBlenderData->field_4C - 750) / 20) + 256);
                 else
-                    m4aMPlayTempoControl(&gMPlayInfo_BGM, 256);
+                    m4aMPlayTempoControl(&gMPlayInfo_BGM, 0x100);
             }
         }
     }
     if (gSpecialVar_0x8004 != 0)
     {
-        for (i = 0; i < sBerryBlender->numPlayers; i++)
+        for (i = 0; i < sBerryBlenderData->playersNo; i++)
         {
-            gRecvCmds[i][BLENDER_COMM_INPUT_STATE] = 0;
-            gRecvCmds[i][BLENDER_COMM_SCORE] = 0;
+            gRecvCmds[i][0] = 0;
+            gRecvCmds[i][2] = 0;
         }
     }
 }
 
-static void HandlePlayerInput(void)
+static void sub_8081744(void)
 {
-    u8 arrowId;
-    bool8 pressedA = FALSE;
+    u8 var2;
+    bool8 A_pressed = FALSE;
     u8 playerId = 0;
 
-    if (gReceivedRemoteLinkPlayers)
+    if (gReceivedRemoteLinkPlayers != 0)
         playerId = GetMultiplayerId();
 
-    arrowId = sBerryBlender->playerIdToArrowId[playerId];
+    var2 = sBerryBlenderData->field_96[playerId];
 
-    if (sBerryBlender->gameEndState == 0)
+    if (sBerryBlenderData->gameEndState == 0)
     {
-        if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A && JOY_NEW(A_BUTTON))
+        if (gSaveBlock2Ptr->optionsButtonMode == OPTIONS_BUTTON_MODE_L_EQUALS_A && gMain.newKeys & A_BUTTON)
         {
-            if (JOY_HELD_RAW(A_BUTTON | L_BUTTON) != (A_BUTTON | L_BUTTON))
-                pressedA = TRUE;
+            if ((gMain.heldKeysRaw & (A_BUTTON | L_BUTTON)) != (A_BUTTON | L_BUTTON))
+                A_pressed = TRUE;
         }
-        else if (JOY_NEW(A_BUTTON))
+        else if (gMain.newKeys & A_BUTTON)
         {
-            pressedA = TRUE;
+            A_pressed = TRUE;
         }
 
-        if (pressedA)
+        if (A_pressed)
         {
-            u8 proximity;
-            StartSpriteAnim(&gSprites[sBerryBlender->playerArrowSpriteIds[sBerryBlender->arrowIdToPlayerId[arrowId]]], arrowId + 4);
-            proximity = GetArrowProximity(sBerryBlender->arrowPos, playerId);
+            u8 var3;
+            StartSpriteAnim(&gSprites[sBerryBlenderData->syncArrowSpriteIds[sBerryBlenderData->field_8E[var2]]], var2 + 4);
+            var3 = sub_8080624(sBerryBlenderData->arrowPos, playerId);
 
-            if (proximity == PROXIMITY_BEST)
-                gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_BEST;
-            else if (proximity == PROXIMITY_GOOD)
-                gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_GOOD;
+            if (var3 == 2)
+                gSendCmd[2] = 0x4523;
+            else if (var3 == 1)
+                gSendCmd[2] = 0x5432;
             else
-                gSendCmd[BLENDER_COMM_SCORE] = LINKCMD_BLENDER_SCORE_MISS;
+                gSendCmd[2] = 0x2345;
         }
     }
-    if (++sBerryBlender->slowdownTimer > 5)
+    if (++sBerryBlenderData->field_72 > 5)
     {
-        if (sBerryBlender->speed > MIN_ARROW_SPEED)
-            sBerryBlender->speed--;
-        sBerryBlender->slowdownTimer = 0;
+        if (sBerryBlenderData->field_4C > 128)
+            sBerryBlenderData->field_4C--;
+        sBerryBlenderData->field_72 = 0;
     }
-    
-    if (gEnableContestDebugging && JOY_NEW(L_BUTTON))
-        sBerryBlender->perfectOpponents ^= 1;
+    if (gEnableContestDebugging && gMain.newKeys & L_BUTTON)
+        sBerryBlenderData->field_123 ^= 1;
 }
 
-static void CB2_PlayBlender(void)
+static void sub_8081898(void)
 {
-    UpdateBlenderCenter();
+    sub_8082D28();
 
-    if (sBerryBlender->gameFrameTime < (99 * 60 * 60) + (59 * 60)) // game time can't be longer than 99 minutes and 59 seconds, can't print 3 digits
-        sBerryBlender->gameFrameTime++;
+    if (sBerryBlenderData->gameFrameTime < (99 * 60 * 60) + (59 * 60)) // game time can't be longer than 99 minutes and 59 seconds, can't print 3 digits
+        sBerryBlenderData->gameFrameTime++;
 
-    HandlePlayerInput();
-    SetLinkDebugValues((u16)(sBerryBlender->speed), sBerryBlender->progressBarValue);
-    UpdateOpponentScores();
-    TryUpdateProgressBar(sBerryBlender->progressBarValue, MAX_PROGRESS_BAR);
-    UpdateRPM(sBerryBlender->speed);
-    RestoreBgCoords();
-    ProcessLinkPlayerCmds();
-    if (sBerryBlender->gameEndState == 0 && sBerryBlender->maxProgressBarValue >= MAX_PROGRESS_BAR)
+    sub_8081744();
+    SetLinkDebugValues((u16)(sBerryBlenderData->field_4C), sBerryBlenderData->field_116);
+    sub_80814F4();
+    sub_8083140(sBerryBlenderData->field_116, 1000);
+    sub_8083230(sBerryBlenderData->field_4C);
+    sub_808330C();
+    sub_8082AD4();
+    if (sBerryBlenderData->gameEndState == 0 && sBerryBlenderData->field_118 >= 1000)
     {
-        sBerryBlender->progressBarValue = MAX_PROGRESS_BAR;
-        sBerryBlender->gameEndState = 1;
-        SetMainCallback2(CB2_EndBlenderGame);
+        sBerryBlenderData->field_116 = 1000;
+        sBerryBlenderData->gameEndState = 1;
+        SetMainCallback2(CB2_HandleBlenderEndGame);
     }
 
-    Blender_DummiedOutFunc(sBerryBlender->bg_X, sBerryBlender->bg_Y);
+    Blender_DummiedOutFunc(sBerryBlenderData->bg_X, sBerryBlenderData->bg_Y);
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
@@ -2243,380 +2077,357 @@ static void Blender_DummiedOutFunc(s16 a0, s16 a1)
 
 }
 
-static bool8 AreBlenderBerriesSame(struct BlenderBerry* berries, u8 a, u8 b)
+static bool8 sub_8081964(struct BlenderBerry* berries, u8 index1, u8 index2)
 {
-    // First check to itemId is pointless (and wrong anyway?), always false when this is called
-    // Only used to determine if two enigma berries are equivalent
-    if (berries[a].itemId != berries[b].itemId
-     || (StringCompare(berries[a].name, berries[b].name) == 0
-      && (berries[a].flavors[FLAVOR_SPICY] == berries[b].flavors[FLAVOR_SPICY]
-       && berries[a].flavors[FLAVOR_DRY] == berries[b].flavors[FLAVOR_DRY]
-       && berries[a].flavors[FLAVOR_SWEET] == berries[b].flavors[FLAVOR_SWEET]
-       && berries[a].flavors[FLAVOR_BITTER] == berries[b].flavors[FLAVOR_BITTER]
-       && berries[a].flavors[FLAVOR_SOUR] == berries[b].flavors[FLAVOR_SOUR]
-       && berries[a].flavors[FLAVOR_COUNT] == berries[b].flavors[FLAVOR_COUNT])))
+    if (berries[index1].itemId != berries[index2].itemId
+     || (StringCompare(berries[index1].name, berries[index2].name) == 0
+      && (berries[index1].flavors[FLAVOR_SPICY] == berries[index2].flavors[FLAVOR_SPICY]
+       && berries[index1].flavors[FLAVOR_DRY] == berries[index2].flavors[FLAVOR_DRY]
+       && berries[index1].flavors[FLAVOR_SWEET] == berries[index2].flavors[FLAVOR_SWEET]
+       && berries[index1].flavors[FLAVOR_BITTER] == berries[index2].flavors[FLAVOR_BITTER]
+       && berries[index1].flavors[FLAVOR_SOUR] == berries[index2].flavors[FLAVOR_SOUR]
+       && berries[index1].smoothness == berries[index2].smoothness)))
         return TRUE;
     else
         return FALSE;
 }
 
-static u32 CalculatePokeblockColor(struct BlenderBerry* berries, s16* _flavors, u8 numPlayers, u8 negativeFlavors)
+static u32 Blender_GetPokeblockColor(struct BlenderBerry* berries, s16* a1, u8 playersNo, u8 a3)
 {
-    s16 flavors[FLAVOR_COUNT + 1];
-    s32 i, j;
-    u8 numFlavors;
+    s16 vars[6];
+    s32 i;
+    s32 r6;
+    u8 r2;
 
-    for (i = 0; i < FLAVOR_COUNT + 1; i++)
-        flavors[i] = _flavors[i];
+    for (i = 0; i < 6; i++)
+        vars[i] = a1[i];
 
-    j = 0;
-    for (i = 0; i < FLAVOR_COUNT; i++)
+    r6 = 0;
+    for (i = 0; i < 5; i++)
     {
-        if (flavors[i] == 0)
-            j++;
+        if (vars[i] == 0)
+            r6++;
     }
-
-    // If all flavors are 0, or at least 3 were negative/0
-    // or if players used the same berry, color is black
-    if (j == 5 || negativeFlavors > 3)
-        return PBLOCK_CLR_BLACK;
-
-    for (i = 0; i < numPlayers; i++)
+    if (r6 == 5 || a3 > 3)
+        return 12;
+    for (i = 0; i < playersNo; i++)
     {
-        for (j = 0; j < numPlayers; j++)
+        for (r6 = 0; r6 < playersNo; r6++)
         {
-            if (berries[i].itemId == berries[j].itemId && i != j
-                && (berries[i].itemId != ITEM_ENIGMA_BERRY || AreBlenderBerriesSame(berries, i, j)))
-                    return PBLOCK_CLR_BLACK;
+            if (berries[i].itemId == berries[r6].itemId && i != r6
+                && (berries[i].itemId != ITEM_ENIGMA_BERRY || sub_8081964(berries, i, r6)))
+                    return 12;
         }
     }
-
-    numFlavors = 0;
-    for (numFlavors = 0, i = 0; i < FLAVOR_COUNT; i++)
+    r2 = 0;
+    for (r2 = 0, i = 0; i < 5; i++)
     {
-        if (flavors[i] > 0)
-            numFlavors++;
+        if (vars[i] > 0)
+            r2++;
     }
-
-    // Check for special colors (White/Gray/Gold)
-    if (numFlavors > 3)
-        return PBLOCK_CLR_WHITE;
-
-    if (numFlavors == 3)
-        return PBLOCK_CLR_GRAY;
-
-    for (i = 0; i < FLAVOR_COUNT; i++)
+    if (r2 > 3)
+        return 13;
+    if (r2 == 3)
+        return 11;
+    for (i = 0; i < 5; i++)
     {
-        if (flavors[i] > 50)
-            return PBLOCK_CLR_GOLD;
+        if (vars[i] > 50)
+            return 14;
     }
-
-    // Only 1 flavor present, return corresponding color
-    if (numFlavors == 1 && flavors[FLAVOR_SPICY] > 0)
-        return PBLOCK_CLR_RED;
-    if (numFlavors == 1 && flavors[FLAVOR_DRY] > 0)
-        return PBLOCK_CLR_BLUE;
-    if (numFlavors == 1 && flavors[FLAVOR_SWEET] > 0)
-        return PBLOCK_CLR_PINK;
-    if (numFlavors == 1 && flavors[FLAVOR_BITTER] > 0)
-        return PBLOCK_CLR_GREEN;
-    if (numFlavors == 1 && flavors[FLAVOR_SOUR] > 0)
-        return PBLOCK_CLR_YELLOW;
-
-    if (numFlavors == 2)
+    if (r2 == 1 && vars[0] > 0)
+        return 1;
+    if (r2 == 1 && vars[1] > 0)
+        return 2;
+    if (r2 == 1 && vars[2] > 0)
+        return 3;
+    if (r2 == 1 && vars[3] > 0)
+        return 4;
+    if (r2 == 1 && vars[4] > 0)
+        return 5;
+    if (r2 == 2)
     {
-        // Determine which 2 flavors are present
-        s32 idx = 0;
-        for (i = 0; i < FLAVOR_COUNT; i++)
+        s32 var = 0;
+        for (i = 0; i < 5; i++)
         {
-            if (flavors[i] > 0)
-                sPokeblockPresentFlavors[idx++] = i;
+            if (vars[i] > 0)
+                sUnknown_03000DF8[var++] = i;
         }
-        // Use the stronger flavor to determine color
-        // The weaker flavor is returned in the upper 16 bits, but this is ignored in the color assignment
-        if (flavors[sPokeblockPresentFlavors[0]] >= flavors[sPokeblockPresentFlavors[1]])
+        if (vars[sUnknown_03000DF8[0]] >= vars[sUnknown_03000DF8[1]])
         {
-            if (sPokeblockPresentFlavors[0] == FLAVOR_SPICY)
-                return (sPokeblockPresentFlavors[1] << 16) | PBLOCK_CLR_PURPLE;
-            if (sPokeblockPresentFlavors[0] == FLAVOR_DRY)
-                return (sPokeblockPresentFlavors[1] << 16) | PBLOCK_CLR_INDIGO;
-            if (sPokeblockPresentFlavors[0] == FLAVOR_SWEET)
-                return (sPokeblockPresentFlavors[1] << 16) | PBLOCK_CLR_BROWN;
-            if (sPokeblockPresentFlavors[0] == FLAVOR_BITTER)
-                return (sPokeblockPresentFlavors[1] << 16) | PBLOCK_CLR_LITE_BLUE;
-            if (sPokeblockPresentFlavors[0] == FLAVOR_SOUR)
-                return (sPokeblockPresentFlavors[1] << 16) | PBLOCK_CLR_OLIVE;
+            if (sUnknown_03000DF8[0] == 0)
+                return (sUnknown_03000DF8[1] << 16) | 6;
+            if (sUnknown_03000DF8[0] == 1)
+                return (sUnknown_03000DF8[1] << 16) | 7;
+            if (sUnknown_03000DF8[0] == 2)
+                return (sUnknown_03000DF8[1] << 16) | 8;
+            if (sUnknown_03000DF8[0] == 3)
+                return (sUnknown_03000DF8[1] << 16) | 9;
+            if (sUnknown_03000DF8[0] == 4)
+                return (sUnknown_03000DF8[1] << 16) | 10;
         }
         else
         {
-            if (sPokeblockPresentFlavors[1] == FLAVOR_SPICY)
-                return (sPokeblockPresentFlavors[0] << 16) | PBLOCK_CLR_PURPLE;
-            if (sPokeblockPresentFlavors[1] == FLAVOR_DRY)
-                return (sPokeblockPresentFlavors[0] << 16) | PBLOCK_CLR_INDIGO;
-            if (sPokeblockPresentFlavors[1] == FLAVOR_SWEET)
-                return (sPokeblockPresentFlavors[0] << 16) | PBLOCK_CLR_BROWN;
-            if (sPokeblockPresentFlavors[1] == FLAVOR_BITTER)
-                return (sPokeblockPresentFlavors[0] << 16) | PBLOCK_CLR_LITE_BLUE;
-            if (sPokeblockPresentFlavors[1] == FLAVOR_SOUR)
-                return (sPokeblockPresentFlavors[0] << 16) | PBLOCK_CLR_OLIVE;
+            if (sUnknown_03000DF8[1] == 0)
+                return (sUnknown_03000DF8[0] << 16) | 6;
+            if (sUnknown_03000DF8[1] == 1)
+                return (sUnknown_03000DF8[0] << 16) | 7;
+            if (sUnknown_03000DF8[1] == 2)
+                return (sUnknown_03000DF8[0] << 16) | 8;
+            if (sUnknown_03000DF8[1] == 3)
+                return (sUnknown_03000DF8[0] << 16) | 9;
+            if (sUnknown_03000DF8[1] == 4)
+                return (sUnknown_03000DF8[0] << 16) | 10;
         }
     }
-    return PBLOCK_CLR_NONE;
+    return 0;
 }
 
-static void Debug_SetMaxRPMStage(s16 value)
+static void sub_8081BB0(s16 value)
 {
-    sDebug_MaxRPMStage = value;
+    sUnknown_03000E04 = value;
 }
 
-// Unused
-static s16 Debug_GetMaxRPMStage(void)
+static s16 sub_8081BBC(void)
 {
-    return sDebug_MaxRPMStage;
+    return sUnknown_03000E04;
 }
 
-static void Debug_SetGameTimeStage(s16 value)
+static void sub_8081BC8(s16 value)
 {
-    sDebug_GameTimeStage = value;
+    sUnknown_03000E06 = value;
 }
 
-// Unued
-static s16 Debug_GetGameTimeStage(void)
+static s16 sub_8081BD4(void)
 {
-    return sDebug_GameTimeStage;
+    return sUnknown_03000E06;
 }
 
-static void CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *pokeblock, u8 numPlayers, u8 *flavors, u16 maxRPM)
+static void Blender_CalculatePokeblock(struct BlenderBerry *berries, struct Pokeblock *pokeblock, u8 playersNo, u8 *flavors, u16 maxRPM)
 {
     s32 i, j;
-    s32 multiuseVar;
-    u8 numNegatives;
+    s32 multiuseVar, var2;
+    u8 var3;
 
-    for (i = 0; i < FLAVOR_COUNT + 1; i++)
-        sPokeblockFlavors[i] = 0;
+    for (i = 0; i < 6; i++)
+        sUnknown_03000DE8[i] = 0;
 
-    // Add up the flavor + feel of each players berry
-    for (i = 0; i < numPlayers; i++)
+    for (i = 0; i < playersNo; i++)
     {
-        for (j = 0; j < FLAVOR_COUNT + 1; j++)
-            sPokeblockFlavors[j] += berries[i].flavors[j];
+        for (j = 0; j < 6; j++)
+            sUnknown_03000DE8[j] += berries[i].flavors[j];
     }
 
-    // Subtract each flavor total from the prev one
-    // The idea is to focus on only the flavors with the highest totals
-    // Bad way to do it though (order matters here)
-    multiuseVar = sPokeblockFlavors[0];
-    sPokeblockFlavors[FLAVOR_SPICY]  -= sPokeblockFlavors[FLAVOR_DRY];
-    sPokeblockFlavors[FLAVOR_DRY]    -= sPokeblockFlavors[FLAVOR_SWEET];
-    sPokeblockFlavors[FLAVOR_SWEET]  -= sPokeblockFlavors[FLAVOR_BITTER];
-    sPokeblockFlavors[FLAVOR_BITTER] -= sPokeblockFlavors[FLAVOR_SOUR];
-    sPokeblockFlavors[FLAVOR_SOUR]   -= multiuseVar;
+    multiuseVar = sUnknown_03000DE8[0];
+    sUnknown_03000DE8[0] -= sUnknown_03000DE8[1];
+    sUnknown_03000DE8[1] -= sUnknown_03000DE8[2];
+    sUnknown_03000DE8[2] -= sUnknown_03000DE8[3];
+    sUnknown_03000DE8[3] -= sUnknown_03000DE8[4];
+    sUnknown_03000DE8[4] -= multiuseVar;
 
-    // Count (and reset) the resulting negative flavors
     multiuseVar = 0;
-    for (i = 0; i < FLAVOR_COUNT; i++)
+    for (i = 0; i < 5; i++)
     {
-        if (sPokeblockFlavors[i] < 0)
+        if (sUnknown_03000DE8[i] < 0)
         {
-            sPokeblockFlavors[i] = 0;
+            sUnknown_03000DE8[i] = 0;
             multiuseVar++;
         }
     }
-    numNegatives = multiuseVar;
-
-    // Subtract the number of negative flavor totals from each positive total (without going below 0)
-    for (i = 0; i < FLAVOR_COUNT; i++)
+    var3 = multiuseVar;
+    for (i = 0; i < 5; i++)
     {
-        if (sPokeblockFlavors[i] > 0)
+        if (sUnknown_03000DE8[i] > 0)
         {
-            if (sPokeblockFlavors[i] < multiuseVar)
-                sPokeblockFlavors[i] = 0;
+            if (sUnknown_03000DE8[i] < multiuseVar)
+                sUnknown_03000DE8[i] = 0;
             else
-                sPokeblockFlavors[i] -= multiuseVar;
+                sUnknown_03000DE8[i] -= multiuseVar;
+        }
+    }
+    for (i = 0; i < 5; i++)
+    {
+        sUnknown_020322A8[i] = sUnknown_03000DE8[i];
+    }
+
+    multiuseVar = maxRPM / 333 + 100;
+    sUnknown_020322D0 = multiuseVar;
+
+    for (i = 0; i < 5; i++)
+    {
+        s32 r4;
+        s32 r5 = sUnknown_03000DE8[i];
+        r5 = (r5 * multiuseVar) / 10;
+        r4 = r5 % 10;
+        r5 /= 10;
+        if (r4 > 4)
+            r5++;
+        sUnknown_03000DE8[i] = r5;
+    }
+    for (i = 0; i < 5; i++)
+    {
+        sUnknown_020322BC[i] = sUnknown_03000DE8[i];
+    }
+
+    pokeblock->color = Blender_GetPokeblockColor(berries, &sUnknown_03000DE8[0], playersNo, var3);
+    sUnknown_03000DE8[5] = (sUnknown_03000DE8[5] / playersNo) - playersNo;
+
+    if (sUnknown_03000DE8[5] < 0)
+        sUnknown_03000DE8[5] = 0;
+
+    if (pokeblock->color == 12)
+    {
+        multiuseVar = Random() % 10;
+        for (i = 0; i < 5; i++)
+        {
+            if ((sUnknown_08339CC8[multiuseVar] >> i) & 1)
+                sUnknown_03000DE8[i] = 2;
+            else
+                sUnknown_03000DE8[i] = 0;
         }
     }
 
-    for (i = 0; i < FLAVOR_COUNT; i++)
-        sDebug_PokeblockFactorFlavors[i] = sPokeblockFlavors[i];
-
-    // Factor in max RPM and round
-    sDebug_PokeblockFactorRPM = multiuseVar = maxRPM / 333 + 100;
-    for (i = 0; i < FLAVOR_COUNT; i++)
+    for (i = 0; i < 6; i++)
     {
-        s32 remainder;
-        s32 flavor = sPokeblockFlavors[i];
-        flavor = (flavor * multiuseVar) / 10;
-        remainder = flavor % 10;
-        flavor /= 10;
-        if (remainder > 4)
-            flavor++;
-        sPokeblockFlavors[i] = flavor;
+        if (sUnknown_03000DE8[i] > 255)
+            sUnknown_03000DE8[i] = 255;
     }
 
-    for (i = 0; i < FLAVOR_COUNT; i++)
-        sDebug_PokeblockFactorFlavorsAfterRPM[i] = sPokeblockFlavors[i];
+    pokeblock->spicy = sUnknown_03000DE8[0];
+    pokeblock->dry = sUnknown_03000DE8[1];
+    pokeblock->sweet = sUnknown_03000DE8[2];
+    pokeblock->bitter = sUnknown_03000DE8[3];
+    pokeblock->sour = sUnknown_03000DE8[4];
+    pokeblock->feel = sUnknown_03000DE8[5];
 
-    // Calculate color and feel of pokeblock
-    pokeblock->color = CalculatePokeblockColor(berries, &sPokeblockFlavors[0], numPlayers, numNegatives);
-    sPokeblockFlavors[FLAVOR_COUNT] = (sPokeblockFlavors[FLAVOR_COUNT] / numPlayers) - numPlayers;
-
-    if (sPokeblockFlavors[FLAVOR_COUNT] < 0)
-        sPokeblockFlavors[FLAVOR_COUNT] = 0;
-
-    if (pokeblock->color == PBLOCK_CLR_BLACK)
+    for (i = 0; i < 6; i++)
     {
-        // Black pokeblocks get their flavors randomly reassigned
-        multiuseVar = Random() % ARRAY_COUNT(sBlackPokeblockFlavorFlags);
-        for (i = 0; i < FLAVOR_COUNT; i++)
-        {
-            if ((sBlackPokeblockFlavorFlags[multiuseVar] >> i) & 1)
-                sPokeblockFlavors[i] = 2;
-            else
-                sPokeblockFlavors[i] = 0;
-        }
+        flavors[i] = sUnknown_03000DE8[i];
     }
-
-    for (i = 0; i < FLAVOR_COUNT + 1; i++)
-    {
-        if (sPokeblockFlavors[i] > 255)
-            sPokeblockFlavors[i] = 255;
-    }
-
-    pokeblock->spicy  = sPokeblockFlavors[FLAVOR_SPICY];
-    pokeblock->dry    = sPokeblockFlavors[FLAVOR_DRY];
-    pokeblock->sweet  = sPokeblockFlavors[FLAVOR_SWEET];
-    pokeblock->bitter = sPokeblockFlavors[FLAVOR_BITTER];
-    pokeblock->sour   = sPokeblockFlavors[FLAVOR_SOUR];
-    pokeblock->feel   = sPokeblockFlavors[FLAVOR_COUNT];
-
-    for (i = 0; i < FLAVOR_COUNT + 1; i++)
-        flavors[i] = sPokeblockFlavors[i];
 }
 
-// Unused
-static void Debug_CalculatePokeblock(struct BlenderBerry* berries, struct Pokeblock* pokeblock, u8 numPlayers, u8* flavors, u16 maxRPM)
+static void BlenderDebug_CalculatePokeblock(struct BlenderBerry* berries, struct Pokeblock* pokeblock, u8 playersNo, u8* flavors, u16 a4)
 {
-    CalculatePokeblock(berries, pokeblock, numPlayers, flavors, maxRPM);
+    Blender_CalculatePokeblock(berries, pokeblock, playersNo, flavors, a4);
 }
 
-static void Debug_SetStageVars(void)
+static void sub_8081E20(void)
 {
-    u32 frames = (u16)(sBerryBlender->gameFrameTime);
-    u16 maxRPM = sBerryBlender->maxRPM;
-    s16 stage = 0;
+    u32 frames = (u16)(sBerryBlenderData->gameFrameTime);
+    u16 max_RPM = sBerryBlenderData->max_RPM;
+    s16 var = 0;
 
     if (frames < 900)
-        stage = 5;
+        var = 5;
     else if ((u16)(frames - 900) < 600)
-        stage = 4;
+        var = 4;
     else if ((u16)(frames - 1500) < 600)
-        stage = 3;
+        var = 3;
     else if ((u16)(frames - 2100) < 900)
-        stage = 2;
+        var = 2;
     else if ((u16)(frames - 3300) < 300)
-        stage = 1;
+        var = 1;
 
-    Debug_SetGameTimeStage(stage);
+    sub_8081BC8(var);
 
-    stage = 0;
-    if (maxRPM <= 64)
+    var = 0;
+    if (max_RPM <= 64)
     {
-        if (maxRPM >= 50 && maxRPM < 100)
-            stage = -1;
-        else if (maxRPM >= 100 && maxRPM < 150)
-            stage = -2;
-        else if (maxRPM >= 150 && maxRPM < 200)
-            stage = -3;
-        else if (maxRPM >= 200 && maxRPM < 250)
-            stage = -4;
-        else if (maxRPM >= 250 && maxRPM < 300)
-            stage = -5;
-        else if (maxRPM >= 350 && maxRPM < 400)
-            stage = -6;
-        else if (maxRPM >= 400 && maxRPM < 450)
-            stage = -7;
-        else if (maxRPM >= 500 && maxRPM < 550)
-            stage = -8;
-        else if (maxRPM >= 550 && maxRPM < 600)
-            stage = -9;
-        else if (maxRPM >= 600)
-            stage = -10;
+        if (max_RPM >= 50 && max_RPM < 100)
+            var = -1;
+        else if (max_RPM >= 100 && max_RPM < 150)
+            var = -2;
+        else if (max_RPM >= 150 && max_RPM < 200)
+            var = -3;
+        else if (max_RPM >= 200 && max_RPM < 250)
+            var = -4;
+        else if (max_RPM >= 250 && max_RPM < 300)
+            var = -5;
+        else if (max_RPM >= 350 && max_RPM < 400)
+            var = -6;
+        else if (max_RPM >= 400 && max_RPM < 450)
+            var = -7;
+        else if (max_RPM >= 500 && max_RPM < 550)
+            var = -8;
+        else if (max_RPM >= 550 && max_RPM < 600)
+            var = -9;
+        else if (max_RPM >= 600)
+            var = -10;
     }
 
-    Debug_SetMaxRPMStage(stage);
+    sub_8081BB0(var);
 }
 
-static void SendContinuePromptResponse(u16 *cmd)
+static void sub_8081F94(u16 *a0)
 {
-    if (gReceivedRemoteLinkPlayers && gWirelessCommType)
-        *cmd = RFUCMD_SEND_PACKET;
+    if (gReceivedRemoteLinkPlayers != 0 && gWirelessCommType)
+        *a0 = 0x2F00;
     else
-        *cmd = LINKCMD_SEND_PACKET;
+        *a0 = 0x2FFF;
 }
 
-static void CB2_EndBlenderGame(void)
+static void CB2_HandleBlenderEndGame(void)
 {
     u8 i, j;
 
-    if (sBerryBlender->gameEndState < 3)
-        UpdateBlenderCenter();
+    if (sBerryBlenderData->gameEndState < 3)
+        sub_8082D28();
 
     GetMultiplayerId(); // unused return value
 
-    switch (sBerryBlender->gameEndState)
+    switch (sBerryBlenderData->gameEndState)
     {
     case 1:
         m4aMPlayTempoControl(&gMPlayInfo_BGM, 256);
         for (i = 0; i < gSpecialVar_0x8004; i++)
         {
-            DestroyTask(sBerryBlender->opponentTaskIds[i]);
+            DestroyTask(sBerryBlenderData->field_120[i]);
         }
-        sBerryBlender->gameEndState++;
+        sBerryBlenderData->gameEndState++;
         break;
     case 2:
-        sBerryBlender->speed -= 32;
-        if (sBerryBlender->speed <= 0)
+        sBerryBlenderData->field_4C -= 32;
+        if (sBerryBlenderData->field_4C <= 0)
         {
             ClearLinkCallback();
-            sBerryBlender->speed = 0;
+            sBerryBlenderData->field_4C = 0;
 
-            if (gReceivedRemoteLinkPlayers)
-                sBerryBlender->gameEndState++;
+            if (gReceivedRemoteLinkPlayers != 0)
+                sBerryBlenderData->gameEndState++;
             else
-                sBerryBlender->gameEndState = 5;
+                sBerryBlenderData->gameEndState = 5;
 
-            sBerryBlender->mainState = 0;
+            sBerryBlenderData->mainState = 0;
             m4aMPlayStop(&gMPlayInfo_SE2);
         }
-        UpdateHitPitch();
+        Blender_ControlHitPitch();
         break;
     case 3:
         if (GetMultiplayerId() != 0)
         {
-            sBerryBlender->gameEndState++;
+            sBerryBlenderData->gameEndState++;
         }
         else if (IsLinkTaskFinished())
         {
-            if (gReceivedRemoteLinkPlayers && gWirelessCommType)
+            if (gReceivedRemoteLinkPlayers != 0 && gWirelessCommType)
             {
-                sBerryBlender->gameBlock.timeRPM.time = sBerryBlender->gameFrameTime;
-                sBerryBlender->gameBlock.timeRPM.maxRPM = sBerryBlender->maxRPM;
+                sBerryBlenderData->gameBlock.timeRPM.time = sBerryBlenderData->gameFrameTime;
+                sBerryBlenderData->gameBlock.timeRPM.max_RPM = sBerryBlenderData->max_RPM;
 
                 for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
                 {
-                    for (j = 0; j < NUM_SCORE_TYPES; j++)
-                        sBerryBlender->gameBlock.scores[i][j] = sBerryBlender->scores[i][j];
+                    for (j = 0; j < BLENDER_SCORES_NO; j++)
+                        sBerryBlenderData->gameBlock.scores[i][j] = sBerryBlenderData->scores[i][j];
                 }
 
-                if (SendBlock(0, &sBerryBlender->gameBlock, sizeof(sBerryBlender->gameBlock)))
-                    sBerryBlender->gameEndState++;
+                if (SendBlock(0, &sBerryBlenderData->gameBlock, sizeof(sBerryBlenderData->gameBlock)))
+                    sBerryBlenderData->gameEndState++;
             }
             else
             {
-                sBerryBlender->smallBlock.time = sBerryBlender->gameFrameTime;
-                sBerryBlender->smallBlock.maxRPM = sBerryBlender->maxRPM;
-                if (SendBlock(0, &sBerryBlender->smallBlock, sizeof(sBerryBlender->smallBlock) + 32))
-                    sBerryBlender->gameEndState++;
+                sBerryBlenderData->smallBlock.time = sBerryBlenderData->gameFrameTime;
+                sBerryBlenderData->smallBlock.max_RPM = sBerryBlenderData->max_RPM;
+                if (SendBlock(0, &sBerryBlenderData->smallBlock, sizeof(sBerryBlenderData->smallBlock) + 32))
+                    sBerryBlenderData->gameEndState++;
             }
         }
         break;
@@ -2624,64 +2435,64 @@ static void CB2_EndBlenderGame(void)
         if (GetBlockReceivedStatus())
         {
             ResetBlockReceivedFlags();
-            sBerryBlender->gameEndState++;
+            sBerryBlenderData->gameEndState++;
 
-            if (gReceivedRemoteLinkPlayers && gWirelessCommType)
+            if (gReceivedRemoteLinkPlayers != 0 && gWirelessCommType)
             {
                 struct BlenderGameBlock *receivedBlock = (struct BlenderGameBlock*)(&gBlockRecvBuffer);
 
-                sBerryBlender->maxRPM = receivedBlock->timeRPM.maxRPM;
-                sBerryBlender->gameFrameTime = receivedBlock->timeRPM.time;
+                sBerryBlenderData->max_RPM = receivedBlock->timeRPM.max_RPM;
+                sBerryBlenderData->gameFrameTime = receivedBlock->timeRPM.time;
 
                 for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
                 {
-                    for (j = 0; j < NUM_SCORE_TYPES; j++)
-                        sBerryBlender->scores[i][j] = receivedBlock->scores[i][j];
+                    for (j = 0; j < BLENDER_SCORES_NO; j++)
+                        sBerryBlenderData->scores[i][j] = receivedBlock->scores[i][j];
                 }
             }
             else
             {
                 struct TimeAndRPM *receivedBlock = (struct TimeAndRPM*)(&gBlockRecvBuffer);
 
-                sBerryBlender->maxRPM = receivedBlock->maxRPM;
-                sBerryBlender->gameFrameTime = receivedBlock->time;
+                sBerryBlenderData->max_RPM = receivedBlock->max_RPM;
+                sBerryBlenderData->gameFrameTime = receivedBlock->time;
             }
         }
         break;
     case 5:
-        if (PrintBlendingRanking())
-            sBerryBlender->gameEndState++;
+        if (Blender_PrintBlendingRanking())
+            sBerryBlenderData->gameEndState++;
         break;
     case 6:
-        if (PrintBlendingResults())
+        if (Blender_PrintBlendingResults())
         {
             if (gInGameOpponentsNo == 0)
                 IncrementGameStat(GAME_STAT_POKEBLOCKS_WITH_FRIENDS);
             else
                 IncrementGameStat(GAME_STAT_POKEBLOCKS);
 
-            sBerryBlender->gameEndState++;
+            sBerryBlenderData->gameEndState++;
         }
         break;
     case 7:
-        if (Blender_PrintText(&sBerryBlender->textState, sText_WouldLikeToBlendAnotherBerry, GetPlayerTextSpeedDelay()))
-            sBerryBlender->gameEndState++;
+        if (Blender_PrintText(&sBerryBlenderData->textState, sText_WouldLikeToBlendAnotherBerry, GetPlayerTextSpeedDelay()))
+            sBerryBlenderData->gameEndState++;
         break;
     case 9:
-        sBerryBlender->yesNoAnswer = 0;
-        CreateYesNoMenu(&sYesNoWindowTemplate_ContinuePlaying, 1, 0xD, 0);
-        sBerryBlender->gameEndState++;
+        sBerryBlenderData->yesNoAnswer = 0;
+        CreateYesNoMenu(&sBlender_YesNoWindowTemplate, 1, 0xD, 0);
+        sBerryBlenderData->gameEndState++;
         break;
     case 10:
         switch (Menu_ProcessInputNoWrapClearOnChoose())
         {
         case 1:
         case -1:
-            sBerryBlender->yesNoAnswer = 1;
-            sBerryBlender->gameEndState++;
-            for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
+            sBerryBlenderData->yesNoAnswer = 1;
+            sBerryBlenderData->gameEndState++;
+            for (i = 0; i <BLENDER_MAX_PLAYERS; i++)
             {
-                if (sBerryBlender->arrowIdToPlayerId[i] != NO_PLAYER)
+                if (sBerryBlenderData->field_8E[i] != 0xFF)
                 {
                     PutWindowTilemap(i);
                     CopyWindowToVram(i, 3);
@@ -2689,11 +2500,11 @@ static void CB2_EndBlenderGame(void)
             }
             break;
         case 0:
-            sBerryBlender->yesNoAnswer = 0;
-            sBerryBlender->gameEndState++;
-            for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
+            sBerryBlenderData->yesNoAnswer = 0;
+            sBerryBlenderData->gameEndState++;
+            for (i = 0; i <BLENDER_MAX_PLAYERS; i++)
             {
-                if (sBerryBlender->arrowIdToPlayerId[i] != NO_PLAYER)
+                if (sBerryBlenderData->field_8E[i] != 0xFF)
                 {
                     PutWindowTilemap(i);
                     CopyWindowToVram(i, 3);
@@ -2703,64 +2514,62 @@ static void CB2_EndBlenderGame(void)
         }
         break;
     case 11:
-        SendContinuePromptResponse(&gSendCmd[BLENDER_COMM_INPUT_STATE]);
-        if (sBerryBlender->yesNoAnswer == 0)
+        sub_8081F94(&gSendCmd[0]);
+        if (sBerryBlenderData->yesNoAnswer == 0)
         {
-            if (IsBagPocketNonEmpty(POCKET_BERRIES) == FALSE)
+            if (IsBagPocketNonEmpty(POCKET_BERRIES) == FALSE) // no berries
             {
-                // No berries
-                sBerryBlender->playAgainState = CANT_PLAY_NO_BERRIES;
-                gSendCmd[BLENDER_COMM_RESP] = LINKCMD_BLENDER_NO_BERRIES;
+                sBerryBlenderData->playAgainState = CANT_PLAY_NO_BERRIES;
+                gSendCmd[1] = 0x9999;
             }
-            else if (GetFirstFreePokeblockSlot() == -1)
+            else if (GetFirstFreePokeblockSlot() == -1) // no space for pokeblocks
             {
-                // No space for pokeblocks
-                sBerryBlender->playAgainState = CANT_PLAY_NO_PKBLCK_SPACE;
-                gSendCmd[BLENDER_COMM_RESP] = LINKCMD_BLENDER_NO_PBLOCK_SPACE;
+                sBerryBlenderData->playAgainState = CANT_PLAY_NO_PKBLCK_SPACE;
+                gSendCmd[1] = 0xAAAA;
             }
             else
             {
-                sBerryBlender->playAgainState = PLAY_AGAIN_YES;
-                gSendCmd[BLENDER_COMM_RESP] = LINKCMD_BLENDER_PLAY_AGAIN;
+                sBerryBlenderData->playAgainState = PLAY_AGAIN_OK;
+                gSendCmd[1] = 0x7779;
             }
-            sBerryBlender->gameEndState++;
+            sBerryBlenderData->gameEndState++;
         }
         else
         {
-            sBerryBlender->playAgainState = PLAY_AGAIN_NO;
-            gSendCmd[BLENDER_COMM_RESP] = LINKCMD_CONT_BLOCK;
-            sBerryBlender->gameEndState++;
+            sBerryBlenderData->playAgainState = DONT_PLAY_AGAIN;
+            gSendCmd[1] = 0x8888;
+            sBerryBlenderData->gameEndState++;
         }
         break;
     case 12:
         if (gInGameOpponentsNo)
         {
-            SetMainCallback2(CB2_CheckPlayAgainLocal);
-            sBerryBlender->gameEndState = 0;
-            sBerryBlender->mainState = 0;
+            SetMainCallback2(CB2_HandlePlayerPlayAgainChoice);
+            sBerryBlenderData->gameEndState = 0;
+            sBerryBlenderData->mainState = 0;
         }
         else
         {
-            sBerryBlender->gameEndState++;
+            sBerryBlenderData->gameEndState++;
         }
         break;
     case 8:
-        sBerryBlender->gameEndState++;
+        sBerryBlenderData->gameEndState++;
         break;
     case 13:
-        if (Blender_PrintText(&sBerryBlender->textState, sText_CommunicationStandby, GetPlayerTextSpeedDelay()))
+        if (Blender_PrintText(&sBerryBlenderData->textState, sText_CommunicationStandby, GetPlayerTextSpeedDelay()))
         {
-            SetMainCallback2(CB2_CheckPlayAgainLink);
-            sBerryBlender->gameEndState = 0;
-            sBerryBlender->mainState = 0;
+            SetMainCallback2(CB2_HandlePlayerLinkPlayAgainChoice);
+            sBerryBlenderData->gameEndState = 0;
+            sBerryBlenderData->mainState = 0;
         }
         break;
     }
 
-    RestoreBgCoords();
-    UpdateRPM(sBerryBlender->speed);
-    ProcessLinkPlayerCmds();
-    Blender_DummiedOutFunc(sBerryBlender->bg_X, sBerryBlender->bg_Y);
+    sub_808330C();
+    sub_8083230(sBerryBlenderData->field_4C);
+    sub_8082AD4();
+    Blender_DummiedOutFunc(sBerryBlenderData->bg_X, sBerryBlenderData->bg_Y);
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
@@ -2770,30 +2579,30 @@ static void CB2_EndBlenderGame(void)
 
 static bool8 LinkPlayAgainHandleSaving(void)
 {
-    switch (sBerryBlender->linkPlayAgainState)
+    switch (sBerryBlenderData->field_1A0)
     {
     case 0:
-        SetLinkStandbyCallback();
-        sBerryBlender->linkPlayAgainState = 1;
-        sBerryBlender->framesToWait = 0;
+        sub_800ADF8();
+        sBerryBlenderData->field_1A0 = 1;
+        sBerryBlenderData->framesToWait = 0;
         break;
     case 1:
         if (IsLinkTaskFinished())
         {
-            sBerryBlender->linkPlayAgainState++;
+            sBerryBlenderData->field_1A0++;
             gSoftResetDisabled = TRUE;
         }
         break;
     case 2:
         FullSaveGame();
-        sBerryBlender->linkPlayAgainState++;
-        sBerryBlender->framesToWait = 0;
+        sBerryBlenderData->field_1A0++;
+        sBerryBlenderData->framesToWait = 0;
         break;
     case 3:
-        if (++sBerryBlender->framesToWait == 10)
+        if (++sBerryBlenderData->framesToWait == 10)
         {
-            SetLinkStandbyCallback();
-            sBerryBlender->linkPlayAgainState++;
+            sub_800ADF8();
+            sBerryBlenderData->field_1A0++;
         }
         break;
     case 4:
@@ -2801,21 +2610,21 @@ static bool8 LinkPlayAgainHandleSaving(void)
         {
             if (CheckSaveFile())
             {
-                sBerryBlender->linkPlayAgainState = 5;
+                sBerryBlenderData->field_1A0 = 5;
             }
             else
             {
-                sBerryBlender->framesToWait = 0;
-                sBerryBlender->linkPlayAgainState = 3;
+                sBerryBlenderData->framesToWait = 0;
+                sBerryBlenderData->field_1A0 = 3;
             }
         }
         break;
     case 5:
-        sBerryBlender->linkPlayAgainState++;
-        sBerryBlender->framesToWait = 0;
+        sBerryBlenderData->field_1A0++;
+        sBerryBlenderData->framesToWait = 0;
         break;
     case 6:
-        if (++sBerryBlender->framesToWait > 5)
+        if (++sBerryBlenderData->framesToWait > 5)
         {
             gSoftResetDisabled = FALSE;
             return TRUE;
@@ -2826,115 +2635,113 @@ static bool8 LinkPlayAgainHandleSaving(void)
     return FALSE;
 }
 
-static void CB2_CheckPlayAgainLink(void)
+static void CB2_HandlePlayerLinkPlayAgainChoice(void)
 {
-    switch (sBerryBlender->gameEndState)
+    switch (sBerryBlenderData->gameEndState)
     {
     case 0:
-        if (sBerryBlender->playerContinueResponses[0] == LINKCMD_SEND_LINK_TYPE)
+        if (sBerryBlenderData->field_64[0] == 0x2222)
         {
-            // Link leader says game will continue
-            sBerryBlender->gameEndState = 5;
+            sBerryBlenderData->gameEndState = 5;
         }
-        else if (sBerryBlender->playerContinueResponses[0] == LINKCMD_BLENDER_STOP)
+        else if (sBerryBlenderData->field_64[0] == 0x1111)
         {
-            // Link leader says game will stop, if necessary print why
-            if (sBerryBlender->canceledPlayerCmd == LINKCMD_BLENDER_NO_BERRIES)
-                sBerryBlender->gameEndState = 2;
-            else if (sBerryBlender->canceledPlayerCmd == LINKCMD_BLENDER_NO_PBLOCK_SPACE)
-                sBerryBlender->gameEndState = 1;
+            if (sBerryBlenderData->field_6C == 0x9999)
+                sBerryBlenderData->gameEndState = 2;
+            else if (sBerryBlenderData->field_6C == 0xAAAA)
+                sBerryBlenderData->gameEndState = 1;
             else
-                sBerryBlender->gameEndState = 5;
+                sBerryBlenderData->gameEndState = 5;
         }
         break;
     case 1:
-        sBerryBlender->gameEndState = 3;
-        StringCopy(gStringVar4, gLinkPlayers[sBerryBlender->canceledPlayerId].name);
+        sBerryBlenderData->gameEndState = 3;
+        StringCopy(gStringVar4, gLinkPlayers[sBerryBlenderData->field_6E].name);
         StringAppend(gStringVar4, sText_ApostropheSPokeblockCaseIsFull);
         break;
     case 2:
-        sBerryBlender->gameEndState++;
-        StringCopy(gStringVar4, gLinkPlayers[sBerryBlender->canceledPlayerId].name);
+        sBerryBlenderData->gameEndState++;
+        StringCopy(gStringVar4, gLinkPlayers[sBerryBlenderData->field_6E].name);
         StringAppend(gStringVar4, sText_HasNoBerriesToPut);
         break;
     case 3:
-        if (Blender_PrintText(&sBerryBlender->textState, gStringVar4, GetPlayerTextSpeedDelay()))
+        if (Blender_PrintText(&sBerryBlenderData->textState, gStringVar4, GetPlayerTextSpeedDelay()))
         {
-            sBerryBlender->framesToWait = 0;
-            sBerryBlender->gameEndState++;
+            sBerryBlenderData->framesToWait = 0;
+            sBerryBlenderData->gameEndState++;
         }
         break;
     case 4:
-        if (++sBerryBlender->framesToWait > 60)
-            sBerryBlender->gameEndState = 5;
+        if (++sBerryBlenderData->framesToWait > 60)
+            sBerryBlenderData->gameEndState = 5;
         break;
     case 5:
-        Blender_PrintText(&sBerryBlender->textState, gText_SavingDontTurnOff2, 0);
-        SetLinkStandbyCallback();
-        sBerryBlender->gameEndState++;
+        Blender_PrintText(&sBerryBlenderData->textState, gText_SavingDontTurnOff2, 0);
+        sub_800ADF8();
+        sBerryBlenderData->gameEndState++;
         break;
     case 6:
         if (IsLinkTaskFinished())
         {
-            sBerryBlender->framesToWait = 0;
-            sBerryBlender->gameEndState++;
-            sBerryBlender->linkPlayAgainState = 0;
+            sBerryBlenderData->framesToWait = 0;
+            sBerryBlenderData->gameEndState++;
+            sBerryBlenderData->field_1A0 = 0;
         }
         break;
     case 7:
         if (LinkPlayAgainHandleSaving())
         {
             PlaySE(SE_SAVE);
-            sBerryBlender->gameEndState++;
+            sBerryBlenderData->gameEndState++;
         }
         break;
     case 8:
-        sBerryBlender->gameEndState++;
-        SetLinkStandbyCallback();
+        sBerryBlenderData->gameEndState++;
+        sub_800ADF8();
         break;
     case 9:
         if (IsLinkTaskFinished())
         {
-            BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
-            sBerryBlender->gameEndState++;
+            BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
+            sBerryBlenderData->gameEndState++;
         }
         break;
     case 10:
         if (!gPaletteFade.active)
         {
-            if (sBerryBlender->playerContinueResponses[0] == LINKCMD_SEND_LINK_TYPE)
+            if (sBerryBlenderData->field_64[0] == 0x2222)
             {
                 FreeAllWindowBuffers();
                 UnsetBgTilemapBuffer(2);
                 UnsetBgTilemapBuffer(1);
-                FREE_AND_SET_NULL(sBerryBlender);
+                FREE_AND_SET_NULL(sBerryBlenderData);
                 SetMainCallback2(DoBerryBlending);
             }
             else
             {
-                sBerryBlender->framesToWait = 0;
-                sBerryBlender->gameEndState++;
+                sBerryBlenderData->framesToWait = 0;
+                sBerryBlenderData->gameEndState++;
             }
         }
         break;
     case 11:
-        if (++sBerryBlender->framesToWait > 30)
+        if (++sBerryBlenderData->framesToWait > 30)
         {
-            SetCloseLinkCallback();
-            sBerryBlender->gameEndState++;
+            sub_800AC34();
+            sBerryBlenderData->gameEndState++;
         }
         break;
     case 12:
-        if (!gReceivedRemoteLinkPlayers)
+        if (gReceivedRemoteLinkPlayers == 0)
         {
-            FREE_AND_SET_NULL(sBerryBlender);
+            FREE_AND_SET_NULL(sBerryBlenderData);
             SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
         }
         break;
     }
 
-    ProcessLinkPlayerCmds();
-    Blender_DummiedOutFunc(sBerryBlender->bg_X, sBerryBlender->bg_Y);
+    sub_8082AD4();
+    Blender_DummiedOutFunc(sBerryBlenderData->bg_X, sBerryBlenderData->bg_Y);
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
@@ -2942,40 +2749,40 @@ static void CB2_CheckPlayAgainLink(void)
     UpdatePaletteFade();
 }
 
-static void CB2_CheckPlayAgainLocal(void)
+static void CB2_HandlePlayerPlayAgainChoice(void)
 {
-    switch (sBerryBlender->gameEndState)
+    switch (sBerryBlenderData->gameEndState)
     {
     case 0:
-        if (sBerryBlender->playAgainState == PLAY_AGAIN_YES || sBerryBlender->playAgainState == PLAY_AGAIN_NO)
-            sBerryBlender->gameEndState = 9;
-        if (sBerryBlender->playAgainState == CANT_PLAY_NO_BERRIES)
-            sBerryBlender->gameEndState = 2;
-        if (sBerryBlender->playAgainState == CANT_PLAY_NO_PKBLCK_SPACE)
-            sBerryBlender->gameEndState = 1;
+        if (sBerryBlenderData->playAgainState == PLAY_AGAIN_OK || sBerryBlenderData->playAgainState == DONT_PLAY_AGAIN)
+            sBerryBlenderData->gameEndState = 9;
+        if (sBerryBlenderData->playAgainState == CANT_PLAY_NO_BERRIES)
+            sBerryBlenderData->gameEndState = 2;
+        if (sBerryBlenderData->playAgainState == CANT_PLAY_NO_PKBLCK_SPACE)
+            sBerryBlenderData->gameEndState = 1;
         break;
     case 1:
-        sBerryBlender->gameEndState = 3;
-        sBerryBlender->textState = 0;
+        sBerryBlenderData->gameEndState = 3;
+        sBerryBlenderData->textState = 0;
         StringCopy(gStringVar4, sText_YourPokeblockCaseIsFull);
         break;
     case 2:
-        sBerryBlender->gameEndState++;
-        sBerryBlender->textState = 0;
+        sBerryBlenderData->gameEndState++;
+        sBerryBlenderData->textState = 0;
         StringCopy(gStringVar4, sText_RunOutOfBerriesForBlending);
         break;
     case 3:
-        if (Blender_PrintText(&sBerryBlender->textState, gStringVar4, GetPlayerTextSpeedDelay()))
-            sBerryBlender->gameEndState = 9;
+        if (Blender_PrintText(&sBerryBlenderData->textState, gStringVar4, GetPlayerTextSpeedDelay()))
+            sBerryBlenderData->gameEndState = 9;
         break;
     case 9:
         BeginFastPaletteFade(3);
-        sBerryBlender->gameEndState++;
+        sBerryBlenderData->gameEndState++;
         break;
     case 10:
         if (!gPaletteFade.active)
         {
-            if (sBerryBlender->playAgainState == PLAY_AGAIN_YES)
+            if (sBerryBlenderData->playAgainState == PLAY_AGAIN_OK)
                 SetMainCallback2(DoBerryBlending);
             else
                 SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
@@ -2983,13 +2790,13 @@ static void CB2_CheckPlayAgainLocal(void)
             FreeAllWindowBuffers();
             UnsetBgTilemapBuffer(2);
             UnsetBgTilemapBuffer(1);
-            FREE_AND_SET_NULL(sBerryBlender);
+            FREE_AND_SET_NULL(sBerryBlenderData);
         }
         break;
     }
 
-    ProcessLinkPlayerCmds();
-    Blender_DummiedOutFunc(sBerryBlender->bg_X, sBerryBlender->bg_Y);
+    sub_8082AD4();
+    Blender_DummiedOutFunc(sBerryBlenderData->bg_X, sBerryBlenderData->bg_Y);
     RunTasks();
     AnimateSprites();
     BuildOamBuffer();
@@ -2997,169 +2804,152 @@ static void CB2_CheckPlayAgainLocal(void)
     UpdatePaletteFade();
 }
 
-static void ProcessLinkPlayerCmds(void)
+static void sub_8082AD4(void)
 {
     if (gReceivedRemoteLinkPlayers)
     {
-        if (CheckRecvCmdMatches(gRecvCmds[0][BLENDER_COMM_INPUT_STATE], LINKCMD_SEND_PACKET, RFUCMD_SEND_PACKET))
+        if (sub_80814B0(gRecvCmds[0][0], 0x2FFF, 0x2F00))
         {
-            if (gRecvCmds[0][BLENDER_COMM_RESP] == LINKCMD_BLENDER_STOP)
+            if (gRecvCmds[0][1] == 0x1111)
             {
-                // Link leader has indicated play is stopping, read signal to determine why
-                switch (gRecvCmds[0][BLENDER_COMM_STOP_TYPE])
+                switch (gRecvCmds[0][2])
                 {
-                case LINKCMD_CONT_BLOCK: // Someone selected "No" to continue playing
-                    sBerryBlender->canceledPlayerCmd = LINKCMD_CONT_BLOCK;
-                    sBerryBlender->canceledPlayerId = gRecvCmds[0][BLENDER_COMM_PLAYER_ID];
+                case 0x8888:
+                    sBerryBlenderData->field_6C = 0x8888;
+                    sBerryBlenderData->field_6E = gRecvCmds[0][3];
                     break;
-                case LINKCMD_BLENDER_NO_BERRIES:
-                    sBerryBlender->canceledPlayerCmd = LINKCMD_BLENDER_NO_BERRIES;
-                    sBerryBlender->canceledPlayerId = gRecvCmds[0][BLENDER_COMM_PLAYER_ID];
+                case 0x9999:
+                    sBerryBlenderData->field_6C = 0x9999;
+                    sBerryBlenderData->field_6E = gRecvCmds[0][3];
                     break;
-                case LINKCMD_BLENDER_NO_PBLOCK_SPACE:
-                    sBerryBlender->canceledPlayerCmd = LINKCMD_BLENDER_NO_PBLOCK_SPACE;
-                    sBerryBlender->canceledPlayerId = gRecvCmds[0][BLENDER_COMM_PLAYER_ID];
+                case 0xAAAA:
+                    sBerryBlenderData->field_6C = 0xAAAA;
+                    sBerryBlenderData->field_6E = gRecvCmds[0][3];
                     break;
                 }
 
-                sBerryBlender->playerContinueResponses[0] = LINKCMD_BLENDER_STOP;
+                sBerryBlenderData->field_64[0] = 0x1111;
             }
-            else if (gRecvCmds[0][BLENDER_COMM_RESP] == LINKCMD_SEND_LINK_TYPE)
+            else if (gRecvCmds[0][1] == 0x2222)
             {
-                // Link leader has indicated play will continue
-                sBerryBlender->playerContinueResponses[0] = LINKCMD_SEND_LINK_TYPE;
+                sBerryBlenderData->field_64[0] = 0x2222;
             }
         }
-        
-        // If player is link leader, check for responses to the "Continue playing" prompt (even if it's not up yet)
-        if (GetMultiplayerId() == 0 
-            && sBerryBlender->playerContinueResponses[0] != LINKCMD_BLENDER_STOP 
-            && sBerryBlender->playerContinueResponses[0] != LINKCMD_SEND_LINK_TYPE)
+        if (GetMultiplayerId() == 0 && sBerryBlenderData->field_64[0] != 0x1111 && sBerryBlenderData->field_64[0] != 0x2222)
         {
             u8 i;
-
-            // Try to gather responses
             for (i = 0; i < GetLinkPlayerCount(); i++)
             {
-                if (CheckRecvCmdMatches(gRecvCmds[i][BLENDER_COMM_INPUT_STATE], LINKCMD_SEND_PACKET, RFUCMD_SEND_PACKET))
+                if (sub_80814B0(gRecvCmds[i][0], 0x2FFF, 0x2F00))
                 {
-                    switch (gRecvCmds[i][BLENDER_COMM_RESP])
+                    switch (gRecvCmds[i][1])
                     {
-                    case LINKCMD_CONT_BLOCK: // Selected "No"
-                        sBerryBlender->playerContinueResponses[i] = LINKCMD_CONT_BLOCK;
+                    case 0x8888:
+                        sBerryBlenderData->field_64[i] = 0x8888;
                         break;
-                    case LINKCMD_BLENDER_PLAY_AGAIN: // Selected "Yes"
-                        sBerryBlender->playerContinueResponses[i] = LINKCMD_BLENDER_PLAY_AGAIN;
+                    case 0x7779:
+                        sBerryBlenderData->field_64[i] = 0x7779;
                         break;
-                    case LINKCMD_BLENDER_NO_BERRIES:
-                        sBerryBlender->playerContinueResponses[i] = LINKCMD_BLENDER_NO_BERRIES;
+                    case 0x9999:
+                        sBerryBlenderData->field_64[i] = 0x9999;
                         break;
-                    case LINKCMD_BLENDER_NO_PBLOCK_SPACE:
-                        sBerryBlender->playerContinueResponses[i] = LINKCMD_BLENDER_NO_PBLOCK_SPACE;
+                    case 0xAAAA:
+                        sBerryBlenderData->field_64[i] = 0xAAAA;
                         break;
                     }
                 }
             }
-
-            // Count players that have responded, stopping at first non-response
             for (i = 0; i < GetLinkPlayerCount(); i++)
             {
-                if (sBerryBlender->playerContinueResponses[i] == 0)
+                if (sBerryBlenderData->field_64[i] == 0)
                     break;
             }
-
-            // If all players responded, handle response
             if (i == GetLinkPlayerCount())
             {
-                // Count players that decided to play again, stopping at first negative response
                 for (i = 0; i < GetLinkPlayerCount(); i++)
                 {
-                    if (sBerryBlender->playerContinueResponses[i] != LINKCMD_BLENDER_PLAY_AGAIN)
+                    if (sBerryBlenderData->field_64[i] != 0x7779)
                         break;
                 }
-
-                // Schedule signal to other players about whether or not play will continue
-                SendContinuePromptResponse(&gSendCmd[BLENDER_COMM_INPUT_STATE]);
+                sub_8081F94(&gSendCmd[0]);
                 if (i == GetLinkPlayerCount())
                 {
-                    // All players chose to continue playing
-                    gSendCmd[BLENDER_COMM_RESP] = LINKCMD_SEND_LINK_TYPE;
+                    gSendCmd[1] = 0x2222;
                 }
                 else
                 {
-                    // At least 1 player decided to stop playing, or can't continue playing
-                    gSendCmd[BLENDER_COMM_RESP] = LINKCMD_BLENDER_STOP;
-                    gSendCmd[BLENDER_COMM_STOP_TYPE] = sBerryBlender->playerContinueResponses[i];
-                    gSendCmd[BLENDER_COMM_PLAYER_ID] = i;
+                    gSendCmd[1] = 0x1111;
+                    gSendCmd[2] = sBerryBlenderData->field_64[i];
+                    gSendCmd[3] = i;
                 }
             }
         }
     }
 }
 
-static void DrawBlenderCenter(struct BgAffineSrcData *dest)
+static void sub_8082CB4(struct BgAffineSrcData *dest)
 {
     struct BgAffineSrcData affineSrc;
 
     affineSrc.texX = 0x7800;
     affineSrc.texY = 0x5000;
-    affineSrc.scrX = 0x78 - sBerryBlender->bg_X;
-    affineSrc.scrY = 0x50 - sBerryBlender->bg_Y;
-    affineSrc.sx = sBerryBlender->centerScale;
-    affineSrc.sy = sBerryBlender->centerScale;
-    affineSrc.alpha = sBerryBlender->arrowPos;
+    affineSrc.scrX = 0x78 - sBerryBlenderData->bg_X;
+    affineSrc.scrY = 0x50 - sBerryBlenderData->bg_Y;
+    affineSrc.sx = sBerryBlenderData->field_11A;
+    affineSrc.sy = sBerryBlenderData->field_11A;
+    affineSrc.alpha = sBerryBlenderData->arrowPos;
 
     *dest = affineSrc;
 }
 
 u16 GetBlenderArrowPosition(void)
 {
-    return sBerryBlender->arrowPos;
+    return sBerryBlenderData->arrowPos;
 }
 
-static void UpdateBlenderCenter(void)
+static void sub_8082D28(void)
 {
     u8 playerId = 0;
 
-    if (gReceivedRemoteLinkPlayers)
+    if (gReceivedRemoteLinkPlayers != 0)
         playerId = GetMultiplayerId();
 
-    if (gWirelessCommType && gReceivedRemoteLinkPlayers)
+    if (gWirelessCommType && gReceivedRemoteLinkPlayers != 0)
     {
         if (playerId == 0)
         {
-            sBerryBlender->arrowPos += sBerryBlender->speed;
-            gSendCmd[BLENDER_COMM_PROGRESS_BAR] = sBerryBlender->progressBarValue;
-            gSendCmd[BLENDER_COMM_ARROW_POS] = sBerryBlender->arrowPos;
-            DrawBlenderCenter(&sBerryBlender->bgAffineSrc);
+            sBerryBlenderData->arrowPos += sBerryBlenderData->field_4C;
+            gSendCmd[5] = sBerryBlenderData->field_116;
+            gSendCmd[6] = sBerryBlenderData->arrowPos;
+            sub_8082CB4(&sBerryBlenderData->bgAffineSrc);
         }
         else
         {
-            if ((gRecvCmds[0][BLENDER_COMM_INPUT_STATE] & 0xFF00) == RFUCMD_BLENDER_SEND_KEYS)
+            if ((gRecvCmds[0][0] & 0xFF00) == 0x4400)
             {
-                sBerryBlender->progressBarValue = gRecvCmds[0][BLENDER_COMM_PROGRESS_BAR];
-                sBerryBlender->arrowPos = gRecvCmds[0][BLENDER_COMM_ARROW_POS];
-                DrawBlenderCenter(&sBerryBlender->bgAffineSrc);
+                sBerryBlenderData->field_116 = gRecvCmds[0][5];
+                sBerryBlenderData->arrowPos = gRecvCmds[0][6];
+                sub_8082CB4(&sBerryBlenderData->bgAffineSrc);
             }
         }
     }
     else
     {
-        sBerryBlender->arrowPos += sBerryBlender->speed;
-        DrawBlenderCenter(&sBerryBlender->bgAffineSrc);
+        sBerryBlenderData->arrowPos += sBerryBlenderData->field_4C;
+        sub_8082CB4(&sBerryBlenderData->bgAffineSrc);
     }
 }
 
-static void SetBgPos(void)
+static void BerryBlender_SetBackgroundsPos(void)
 {
-    SetGpuReg(REG_OFFSET_BG1HOFS, sBerryBlender->bg_X);
-    SetGpuReg(REG_OFFSET_BG1VOFS, sBerryBlender->bg_Y);
+    SetGpuReg(REG_OFFSET_BG1HOFS, sBerryBlenderData->bg_X);
+    SetGpuReg(REG_OFFSET_BG1VOFS, sBerryBlenderData->bg_Y);
 
-    SetGpuReg(REG_OFFSET_BG0HOFS, sBerryBlender->bg_X);
-    SetGpuReg(REG_OFFSET_BG0VOFS, sBerryBlender->bg_Y);
+    SetGpuReg(REG_OFFSET_BG0HOFS, sBerryBlenderData->bg_X);
+    SetGpuReg(REG_OFFSET_BG0VOFS, sBerryBlenderData->bg_Y);
 }
 
-static void SpriteCB_Particle(struct Sprite* sprite)
+static void sub_8082E3C(struct Sprite* sprite)
 {
     sprite->data[2] += sprite->data[0];
     sprite->data[3] += sprite->data[1];
@@ -3170,7 +2960,7 @@ static void SpriteCB_Particle(struct Sprite* sprite)
         DestroySprite(sprite);
 }
 
-static void CreateParticleSprites(void)
+static void sub_8082E84(void)
 {
     s32 limit = (Random() % 2) + 1;
     s32 i;
@@ -3181,20 +2971,20 @@ static void CreateParticleSprites(void)
         s32 x, y;
         u8 spriteId;
 
-        rand = sBerryBlender->arrowPos + (Random() % 20);
+        rand = sBerryBlenderData->arrowPos + (Random() % 20);
 
         x = gSineTable[(rand & 0xFF) + 64] / 4;
         y = gSineTable[(rand & 0xFF)] / 4;
 
-        spriteId = CreateSprite(&sSpriteTemplate_Particles, x + 120, y + 80, 1);
+        spriteId = CreateSprite(&sUnknown_08339BE0, x + 120, y + 80, 1);
         gSprites[spriteId].data[0] = 16 - (Random() % 32);
         gSprites[spriteId].data[1] = 16 - (Random() % 32);
 
-        gSprites[spriteId].callback = SpriteCB_Particle;
+        gSprites[spriteId].callback = sub_8082E3C;
     }
 }
 
-static void SpriteCB_ScoreSymbol(struct Sprite* sprite)
+static void sub_8082F68(struct Sprite* sprite)
 {
     sprite->data[0]++;
     sprite->pos2.y = -(sprite->data[0] / 3);
@@ -3203,7 +2993,7 @@ static void SpriteCB_ScoreSymbol(struct Sprite* sprite)
         DestroySprite(sprite);
 }
 
-static void SpriteCB_ScoreSymbolBest(struct Sprite* sprite)
+static void sub_8082F9C(struct Sprite* sprite)
 {
     sprite->data[0]++;
     sprite->pos2.y = -(sprite->data[0] * 2);
@@ -3214,65 +3004,56 @@ static void SpriteCB_ScoreSymbolBest(struct Sprite* sprite)
         DestroySprite(sprite);
 }
 
-static void SetPlayerBerryData(u8 playerId, u16 itemId)
+static void Blender_SetParticipantBerryData(u8 participantId, u16 itemId)
 {
-    sBerryBlender->chosenItemId[playerId] = itemId;
-    ConvertItemToBlenderBerry(&sBerryBlender->blendedBerries[playerId], itemId);
+    sBerryBlenderData->chosenItemId[participantId] = itemId;
+    Blender_CopyBerryData(&sBerryBlenderData->blendedBerries[participantId], itemId);
 }
 
-#define sState  data[0]
-#define sYPos   data[1]
-#define sDelay  data[2]
-#define sAnimId data[3]
-
-static void SpriteCB_CountdownNumber(struct Sprite* sprite)
+static void sub_8083010(struct Sprite* sprite)
 {
-    switch (sprite->sState)
+    switch (sprite->data[0])
     {
     case 0:
-        sprite->sYPos += 8;
-        if (sprite->sYPos > DISPLAY_HEIGHT / 2 + 8)
+        sprite->data[1] += 8;
+        if (sprite->data[1] > 88)
         {
-            sprite->sYPos = DISPLAY_HEIGHT / 2 + 8;
-            sprite->sState++;
-            PlaySE(SE_BALL_BOUNCE_1);
+            sprite->data[1] = 88;
+            sprite->data[0]++;
+            PlaySE(SE_KON);
         }
         break;
     case 1:
-        if (++sprite->sDelay > 20)
+        sprite->data[2] += 1;
+        if (sprite->data[2] > 20)
         {
-            sprite->sState++;
-            sprite->sDelay = 0;
+            sprite->data[0]++;
+            sprite->data[2] = 0;
         }
         break;
     case 2:
-        sprite->sYPos += 4;
-        if (sprite->sYPos > DISPLAY_HEIGHT + 16)
+        sprite->data[1] += 4;
+        if (sprite->data[1] > 176)
         {
-            if (++sprite->sAnimId == 3)
+            if (++sprite->data[3] == 3)
             {
                 DestroySprite(sprite);
-                CreateSprite(&sSpriteTemplate_Start, 120, -20, 2);
+                CreateSprite(&sUnknown_08339C60, 120, -20, 2);
             }
             else
             {
-                sprite->sState = 0;
-                sprite->sYPos = -16;
-                StartSpriteAnim(sprite, sprite->sAnimId);
+                sprite->data[0] = 0;
+                sprite->data[1] = -16;
+                StartSpriteAnim(sprite, sprite->data[3]);
             }
         }
         break;
     }
 
-    sprite->pos2.y = sprite->sYPos;
+    sprite->pos2.y = sprite->data[1];
 }
 
-#undef sState
-#undef sYPos
-#undef sDelay
-#undef sAnimId
-
-static void SpriteCB_Start(struct Sprite* sprite)
+static void sub_80830C0(struct Sprite* sprite)
 {
     switch (sprite->data[0])
     {
@@ -3292,9 +3073,9 @@ static void SpriteCB_Start(struct Sprite* sprite)
         break;
     case 2:
         sprite->data[1] += 4;
-        if (sprite->data[1] > DISPLAY_HEIGHT + 16)
+        if (sprite->data[1] > 176)
         {
-            sBerryBlender->mainState++;
+            sBerryBlenderData->mainState++;
             DestroySprite(sprite);
         }
         break;
@@ -3303,190 +3084,175 @@ static void SpriteCB_Start(struct Sprite* sprite)
     sprite->pos2.y = sprite->data[1];
 }
 
-static void TryUpdateProgressBar(u16 current, u16 limit)
+static void sub_8083140(u16 a0, u16 a1)
 {
-    // Progress bar doesn't move unless it's going up
-    if (sBerryBlender->maxProgressBarValue < current)
+    if (sBerryBlenderData->field_118 < a0)
     {
-        sBerryBlender->maxProgressBarValue += 2;
-        UpdateProgressBar(sBerryBlender->maxProgressBarValue, limit);
+        sBerryBlenderData->field_118 += 2;
+        sub_8083170(sBerryBlenderData->field_118, a1);
     }
 }
 
-static void UpdateProgressBar(u16 value, u16 limit)
+static void sub_8083170(u16 a0, u16 a1)
 {
-    s32 amountFilled, maxFilledSegment, subSegmentsFilled, i;
+    s32 var1, var2, var3, var4;
     u16 *vram;
 
     vram = (u16*)(BG_SCREEN_ADDR(12));
-    amountFilled = (value * 64) / limit;
-    maxFilledSegment = amountFilled / 8;
-
-    // Set filled progress bar tiles in full segments
-    for (i = 0; i < maxFilledSegment; i++)
+    var1 = (a0 * 64) / a1;
+    var2 = var1 / 8;
+    for (var4 = 0; var4 < var2; var4++)
     {
-        vram[11 + i] = PROGRESS_BAR_FILLED_TOP;
-        vram[43 + i] = PROGRESS_BAR_FILLED_BOTTOM;
+        vram[11 + var4] = 0x80E9;
+        vram[43 + var4] = 0x80F9;
     }
-
-    // If progress bar between segments, fill with the corresponding partial segment tiles
-    subSegmentsFilled = amountFilled % 8;
-    if (subSegmentsFilled != 0)
+    var3 = var1 % 8;
+    if (var3 != 0)
     {
-        vram[11 + i] = subSegmentsFilled + PROGRESS_BAR_EMPTY_TOP;
-        vram[43 + i] = subSegmentsFilled + PROGRESS_BAR_EMPTY_BOTTOM;
-        i++;
+        vram[11 + var4] = var3 + 0x80E1;
+        vram[43 + var4] = var3 + 0x80F1;
+        var4++;
     }
-
-    // Fill the remaining full segments with empty progress tiles
-    // Essentially unnecessary, given that it starts empty and progress only goes up
-    for (; i < 8; i++)
+    for (; var4 < 8; var4++)
     {
-        vram[11 + i] = PROGRESS_BAR_EMPTY_TOP;
-        vram[43 + i] = PROGRESS_BAR_EMPTY_BOTTOM;
+        vram[11 + var4] = 0x80E1;
+        vram[43 + var4] = 0x80F1;
     }
 }
 
-static u32 ArrowSpeedToRPM(u16 speed)
+static u32 sub_8083210(u16 a0)
 {
-    return 60 * 60 * 100 * speed / MAX_ARROW_POS;
+    return 0x57E40 * a0 / 0x10000;
 }
 
-static void UpdateRPM(u16 speed)
+static void sub_8083230(u16 a0)
 {
     u8 i;
-    u8 digits[5];
+    u8 palAdders[5];
 
-    // Check if new max RPM has been reached
-    u32 currentRPM = ArrowSpeedToRPM(speed);
-    if (sBerryBlender->maxRPM < currentRPM)
-        sBerryBlender->maxRPM = currentRPM;
-
-    // Draw the current RPM number at the bottom of the screen
+    u32 var = sub_8083210(a0);
+    if (sBerryBlenderData->max_RPM < var)
+        sBerryBlenderData->max_RPM = var;
     for (i = 0; i < 5; i++)
     {
-        digits[i] = currentRPM % 10;
-        currentRPM /= 10;
+        palAdders[i] = var % 10;
+        var /= 10;
     }
-    *((u16*)(BG_SCREEN_ADDR(12) + 0x458)) = digits[4] + RPM_DIGIT;
-    *((u16*)(BG_SCREEN_ADDR(12) + 0x45A)) = digits[3] + RPM_DIGIT;
-    *((u16*)(BG_SCREEN_ADDR(12) + 0x45C)) = digits[2] + RPM_DIGIT;
-    *((u16*)(BG_SCREEN_ADDR(12) + 0x460)) = digits[1] + RPM_DIGIT;
-    *((u16*)(BG_SCREEN_ADDR(12) + 0x462)) = digits[0] + RPM_DIGIT;
+    *((u16*)(VRAM + 0x6458)) = palAdders[4] + 0x8072;
+    *((u16*)(VRAM + 0x645A)) = palAdders[3] + 0x8072;
+    *((u16*)(VRAM + 0x645C)) = palAdders[2] + 0x8072;
+    *((u16*)(VRAM + 0x6460)) = palAdders[1] + 0x8072;
+    *((u16*)(VRAM + 0x6462)) = palAdders[0] + 0x8072;
 }
 
-// Passed a pointer to the bg x/y
-// Used when hitting a Best at high RPM
-static void ShakeBgCoordForHit(s16* coord, u16 speed)
+static void sub_80832BC(s16* a0, u16 a1)
 {
-    if (*coord == 0)
-        *coord = (Random() % speed) - (speed / 2);
+    if (*a0 == 0)
+        *a0 = (Random() % a1) - (a1 / 2);
 }
 
-static void RestoreBgCoord(s16* coord)
+static void sub_80832E8(s16* a0)
 {
-    if (*coord < 0)
-        (*coord)++;
-    if (*coord > 0)
-        (*coord)--;
+    if (*a0 < 0)
+        (*a0)++;
+    if (*a0 > 0)
+        (*a0)--;
 }
 
-// For "unshaking" the screen after ShakeBgCoordForHit is called
-static void RestoreBgCoords(void)
+static void sub_808330C(void)
 {
-    RestoreBgCoord(&sBerryBlender->bg_X);
-    RestoreBgCoord(&sBerryBlender->bg_Y);
+    sub_80832E8(&sBerryBlenderData->bg_X);
+    sub_80832E8(&sBerryBlenderData->bg_Y);
 }
 
-static void BlenderLandShakeBgCoord(s16* coord, u16 timer)
+static void sub_8083334(s16* a0, u16 a1)
 {
-    s32 strength;
+    s32 var;
 
-    if (timer < 10)
-        strength = 16;
+    if (a1 < 10)
+        var = 16;
     else
-        strength = 8;
+        var = 8;
 
-    if (*coord == 0)
+    if (*a0 == 0)
     {
-        *coord = (Random() % strength) - (strength / 2);
+        *a0 = (Random() % var) - (var / 2);
     }
     else
     {
-        if (*coord < 0)
-            (*coord)++;
-        if (*coord > 0)
-            (*coord)--;
+        if (*a0 < 0)
+            (*a0)++;
+        if (*a0 > 0)
+            (*a0)--;
     }
 }
 
-// For shaking the screen when the blender lands after falling in at the start
-static bool8 UpdateBlenderLandScreenShake(void)
+static bool8 sub_8083380(void)
 {
-    if (sBerryBlender->framesToWait == 0)
+    if (sBerryBlenderData->framesToWait == 0)
     {
-        sBerryBlender->bg_X = 0;
-        sBerryBlender->bg_Y = 0;
+        sBerryBlenderData->bg_X = 0;
+        sBerryBlenderData->bg_Y = 0;
     }
 
-    sBerryBlender->framesToWait++;
-    BlenderLandShakeBgCoord(&sBerryBlender->bg_X, sBerryBlender->framesToWait);
-    BlenderLandShakeBgCoord(&sBerryBlender->bg_Y, sBerryBlender->framesToWait);
+    sBerryBlenderData->framesToWait++;
+    sub_8083334(&sBerryBlenderData->bg_X, sBerryBlenderData->framesToWait);
+    sub_8083334(&sBerryBlenderData->bg_Y, sBerryBlenderData->framesToWait);
 
-    if (sBerryBlender->framesToWait == 20)
+    if (sBerryBlenderData->framesToWait == 20)
     {
-        sBerryBlender->bg_X = 0;
-        sBerryBlender->bg_Y = 0;
+        sBerryBlenderData->bg_X = 0;
+        sBerryBlenderData->bg_Y = 0;
         return TRUE;
     }
 
     return FALSE;
 }
 
-static void SpriteCB_PlayerArrow(struct Sprite* sprite)
+static void sub_80833F8(struct Sprite* sprite)
 {
-   sprite->pos2.x = -(sBerryBlender->bg_X);
-   sprite->pos2.y = -(sBerryBlender->bg_Y);
+   sprite->pos2.x = -(sBerryBlenderData->bg_X);
+   sprite->pos2.y = -(sBerryBlenderData->bg_Y);
 }
 
 static void TryUpdateBerryBlenderRecord(void)
 {
-    if (gSaveBlock1Ptr->berryBlenderRecords[sBerryBlender->numPlayers - 2] < sBerryBlender->maxRPM)
-        gSaveBlock1Ptr->berryBlenderRecords[sBerryBlender->numPlayers - 2] = sBerryBlender->maxRPM;
+    if (gSaveBlock1Ptr->berryBlenderRecords[sBerryBlenderData->playersNo - 2] < sBerryBlenderData->max_RPM)
+        gSaveBlock1Ptr->berryBlenderRecords[sBerryBlenderData->playersNo - 2] = sBerryBlenderData->max_RPM;
 }
 
-static bool8 PrintBlendingResults(void)
+static bool8 Blender_PrintBlendingResults(void)
 {
     u16 i;
     s32 xPos, yPos;
 
     struct Pokeblock pokeblock;
-    u8 flavors[FLAVOR_COUNT + 1];
+    u8 flavors[6];
     u8 text[40];
     u16 berryIds[4]; // unused
 
-    switch (sBerryBlender->mainState)
+    switch (sBerryBlenderData->mainState)
     {
     case 0:
-        sBerryBlender->mainState++;
-        sBerryBlender->framesToWait = 17;
+        sBerryBlenderData->mainState++;
+        sBerryBlenderData->framesToWait = 17;
         break;
     case 1:
-        sBerryBlender->framesToWait -= 10;
-        if (sBerryBlender->framesToWait < 0)
+        sBerryBlenderData->framesToWait -= 10;
+        if (sBerryBlenderData->framesToWait < 0)
         {
-            sBerryBlender->framesToWait = 0;
-            sBerryBlender->mainState++;
+            sBerryBlenderData->framesToWait = 0;
+            sBerryBlenderData->mainState++;
         }
         break;
     case 2:
-        if (++sBerryBlender->framesToWait > 20)
+        if (++sBerryBlenderData->framesToWait > 20)
         {
-            for (i = 0; i < NUM_SCORE_TYPES; i++)
-                DestroySprite(&gSprites[sBerryBlender->scoreIconIds[i]]);
+            for (i = 0; i < BLENDER_SCORES_NO; i++)
+                DestroySprite(&gSprites[sBerryBlenderData->scoreIconIds[i]]);
 
-            sBerryBlender->framesToWait = 0;
-            sBerryBlender->mainState++;
+            sBerryBlenderData->framesToWait = 0;
+            sBerryBlenderData->mainState++;
         }
         break;
     case 3:
@@ -3497,91 +3263,92 @@ static bool8 PrintBlendingResults(void)
             xPos = GetStringCenterAlignXOffset(1, sText_BlendingResults, 0xA8);
             Blender_AddTextPrinter(5, sText_BlendingResults, xPos, 1, TEXT_SPEED_FF, 0);
 
-            if (sBerryBlender->numPlayers == BLENDER_MAX_PLAYERS)
+            if (sBerryBlenderData->playersNo == 4)
                 yPos = 17;
             else
                 yPos = 21;
 
-            for (i = 0; i < sBerryBlender->numPlayers; yPos += 16, i++)
+            for (i = 0; i < sBerryBlenderData->playersNo; yPos += 16, i++)
             {
-                u8 place = sBerryBlender->playerPlaces[i];
+                u8 place = sBerryBlenderData->playerPlaces[i];
 
-                ConvertIntToDecimalStringN(sBerryBlender->stringVar, i + 1, STR_CONV_MODE_LEFT_ALIGN, 1);
-                StringAppend(sBerryBlender->stringVar, sText_Dot);
-                StringAppend(sBerryBlender->stringVar, gText_Space);
-                StringAppend(sBerryBlender->stringVar, gLinkPlayers[place].name);
-                Blender_AddTextPrinter(5, sBerryBlender->stringVar, 8, yPos, TEXT_SPEED_FF, 3);
+                ConvertIntToDecimalStringN(sBerryBlenderData->stringVar, i + 1, STR_CONV_MODE_LEFT_ALIGN, 1);
+                StringAppend(sBerryBlenderData->stringVar, sText_Dot);
+                StringAppend(sBerryBlenderData->stringVar, gText_Space);
+                StringAppend(sBerryBlenderData->stringVar, gLinkPlayers[place].name);
+                Blender_AddTextPrinter(5, sBerryBlenderData->stringVar, 8, yPos, TEXT_SPEED_FF, 3);
 
-                StringCopy(sBerryBlender->stringVar, sBerryBlender->blendedBerries[place].name);
-                ConvertInternationalString(sBerryBlender->stringVar, gLinkPlayers[place].language);
-                StringAppend(sBerryBlender->stringVar, sText_SpaceBerry);
-                Blender_AddTextPrinter(5, sBerryBlender->stringVar, 0x54, yPos, TEXT_SPEED_FF, 3);
+                StringCopy(sBerryBlenderData->stringVar, sBerryBlenderData->blendedBerries[place].name);
+                ConvertInternationalString(sBerryBlenderData->stringVar, gLinkPlayers[place].language);
+                StringAppend(sBerryBlenderData->stringVar, sText_SpaceBerry);
+                Blender_AddTextPrinter(5, sBerryBlenderData->stringVar, 0x54, yPos, TEXT_SPEED_FF, 3);
             }
 
             Blender_AddTextPrinter(5, sText_MaximumSpeed, 0, 0x51, TEXT_SPEED_FF, 3);
-            ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->maxRPM / 100, STR_CONV_MODE_RIGHT_ALIGN, 3);
-            StringAppend(sBerryBlender->stringVar, sText_Dot);
+            ConvertIntToDecimalStringN(sBerryBlenderData->stringVar, sBerryBlenderData->max_RPM / 100, STR_CONV_MODE_RIGHT_ALIGN, 3);
+            StringAppend(sBerryBlenderData->stringVar, sText_Dot);
 
-            ConvertIntToDecimalStringN(text, sBerryBlender->maxRPM % 100, STR_CONV_MODE_LEADING_ZEROS, 2);
-            StringAppend(sBerryBlender->stringVar, text);
-            StringAppend(sBerryBlender->stringVar, sText_RPM);
+            ConvertIntToDecimalStringN(text, sBerryBlenderData->max_RPM % 100, STR_CONV_MODE_LEADING_ZEROS, 2);
+            StringAppend(sBerryBlenderData->stringVar, text);
+            StringAppend(sBerryBlenderData->stringVar, sText_RPM);
 
-            xPos = GetStringRightAlignXOffset(1, sBerryBlender->stringVar, 0xA8);
-            Blender_AddTextPrinter(5, sBerryBlender->stringVar, xPos, 0x51, TEXT_SPEED_FF, 3);
+            xPos = GetStringRightAlignXOffset(1, sBerryBlenderData->stringVar, 0xA8);
+            Blender_AddTextPrinter(5, sBerryBlenderData->stringVar, xPos, 0x51, TEXT_SPEED_FF, 3);
             Blender_AddTextPrinter(5, sText_Time, 0, 0x61, TEXT_SPEED_FF, 3);
 
-            seconds = (sBerryBlender->gameFrameTime / 60) % 60;
-            minutes = (sBerryBlender->gameFrameTime / (60 * 60));
+            seconds = (sBerryBlenderData->gameFrameTime / 60) % 60;
+            minutes = (sBerryBlenderData->gameFrameTime / (60 * 60));
 
-            ConvertIntToDecimalStringN(sBerryBlender->stringVar, minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
-            txtPtr = StringAppend(sBerryBlender->stringVar, sText_Min);
+            ConvertIntToDecimalStringN(sBerryBlenderData->stringVar, minutes, STR_CONV_MODE_LEADING_ZEROS, 2);
+            txtPtr = StringAppend(sBerryBlenderData->stringVar, sText_Min);
 
             ConvertIntToDecimalStringN(txtPtr, seconds, STR_CONV_MODE_LEADING_ZEROS, 2);
-            StringAppend(sBerryBlender->stringVar, sText_Sec);
+            StringAppend(sBerryBlenderData->stringVar, sText_Sec);
 
-            xPos = GetStringRightAlignXOffset(1, sBerryBlender->stringVar, 0xA8);
-            Blender_AddTextPrinter(5, sBerryBlender->stringVar, xPos, 0x61, TEXT_SPEED_FF, 3);
+            xPos = GetStringRightAlignXOffset(1, sBerryBlenderData->stringVar, 0xA8);
+            Blender_AddTextPrinter(5, sBerryBlenderData->stringVar, xPos, 0x61, TEXT_SPEED_FF, 3);
 
-            sBerryBlender->framesToWait = 0;
-            sBerryBlender->mainState++;
+            sBerryBlenderData->framesToWait = 0;
+            sBerryBlenderData->mainState++;
 
             CopyWindowToVram(5, 2);
         }
         break;
     case 4:
-        if (JOY_NEW(A_BUTTON))
-            sBerryBlender->mainState++;
+        if (gMain.newKeys & A_BUTTON)
+            sBerryBlenderData->mainState++;
         break;
     case 5:
         ClearStdWindowAndFrameToTransparent(5, 1);
 
         for (i = 0; i < BLENDER_MAX_PLAYERS; i++)
         {
-            if (sBerryBlender->chosenItemId[i] != 0)
-                berryIds[i] = sBerryBlender->chosenItemId[i] - FIRST_BERRY_INDEX;
-            if (sBerryBlender->arrowIdToPlayerId[i] != NO_PLAYER)
+            if (sBerryBlenderData->chosenItemId[i] != 0)
+                berryIds[i] = sBerryBlenderData->chosenItemId[i] - FIRST_BERRY_INDEX;
+            if (sBerryBlenderData->field_8E[i] != 0xFF)
             {
                 PutWindowTilemap(i);
                 CopyWindowToVram(i, 3);
             }
         }
 
-        Debug_SetStageVars();
-        CalculatePokeblock(sBerryBlender->blendedBerries, &pokeblock, sBerryBlender->numPlayers, flavors, sBerryBlender->maxRPM);
-        PrintMadePokeblockString(&pokeblock, sBerryBlender->stringVar);
-        TryAddContestLinkTvShow(&pokeblock, &sBerryBlender->tvBlender);
+        sub_8081E20();
 
-        CreateTask(Task_PlayPokeblockFanfare, 6);
+        Blender_CalculatePokeblock(sBerryBlenderData->blendedBerries, &pokeblock, sBerryBlenderData->playersNo, flavors, sBerryBlenderData->max_RPM);
+        Blender_PrintMadePokeblockString(&pokeblock, sBerryBlenderData->stringVar);
+        TryAddContestLinkTvShow(&pokeblock, &sBerryBlenderData->tvBlender);
+
+        CreateTask(sub_8083F3C, 6);
         IncrementDailyBerryBlender();
 
         RemoveBagItem(gSpecialVar_ItemId, 1);
         AddPokeblock(&pokeblock);
 
-        sBerryBlender->textState = 0;
-        sBerryBlender->mainState++;
+        sBerryBlenderData->textState = 0;
+        sBerryBlenderData->mainState++;
         break;
     case 6:
-        if (Blender_PrintText(&sBerryBlender->textState, sBerryBlender->stringVar, GetPlayerTextSpeedDelay()))
+        if (Blender_PrintText(&sBerryBlenderData->textState, sBerryBlenderData->stringVar, GetPlayerTextSpeedDelay()))
         {
             TryUpdateBerryBlenderRecord();
             return TRUE;
@@ -3592,7 +3359,7 @@ static bool8 PrintBlendingResults(void)
     return FALSE;
 }
 
-static void PrintMadePokeblockString(struct Pokeblock *pokeblock, u8 *dst)
+static void Blender_PrintMadePokeblockString(struct Pokeblock *pokeblock, u8 *dst)
 {
     u8 text[12];
     u8 flavorLvl, feel;
@@ -3617,7 +3384,7 @@ static void PrintMadePokeblockString(struct Pokeblock *pokeblock, u8 *dst)
     StringAppend(dst, sText_NewParagraph);
 }
 
-static void SortBasedOnPoints(u8 *places, u8 playersNum, u32 *scores)
+static void Blender_SortBasedOnPoints(u8 *places, u8 playersNum, u32 *scores)
 {
     s32 i, j;
 
@@ -3627,128 +3394,128 @@ static void SortBasedOnPoints(u8 *places, u8 playersNum, u32 *scores)
         {
             if (scores[places[i]] > scores[places[j]])
             {
-                u8 temp;
-                SWAP(places[i], places[j], temp);
+                u8 temp = places[i];
+                places[i] = places[j];
+                places[j] = temp;
             }
         }
     }
 }
 
-static void SortScores(void)
+static void Blender_SortScores(void)
 {
     u8 playerId;
     u8 i;
     u8 places[BLENDER_MAX_PLAYERS];
     u32 points[BLENDER_MAX_PLAYERS];
 
-    for (i = 0; i < sBerryBlender->numPlayers; i++)
+    for (i = 0; i < sBerryBlenderData->playersNo; i++)
         places[i] = i;
-    for (i = 0; i < sBerryBlender->numPlayers; i++)
+    for (i = 0; i < sBerryBlenderData->playersNo; i++)
     {
-        points[i] = 1000000 * sBerryBlender->scores[i][SCORE_BEST];
-        points[i] += 1000 * sBerryBlender->scores[i][SCORE_GOOD];
-        points[i] += 1000 - sBerryBlender->scores[i][SCORE_MISS];
+        points[i] = 1000000 * sBerryBlenderData->scores[i][BLENDER_SCORE_BEST];
+        points[i] += 1000 * sBerryBlenderData->scores[i][BLENDER_SCORE_GOOD];
+        points[i] += 1000 - sBerryBlenderData->scores[i][BLENDER_SCORE_MISS];
     }
-    SortBasedOnPoints(places, sBerryBlender->numPlayers, points);
-    for (i = 0; i < sBerryBlender->numPlayers; i++)
-        sBerryBlender->playerPlaces[i] = places[i];
+    Blender_SortBasedOnPoints(places, sBerryBlenderData->playersNo, points);
+    for (i = 0; i < sBerryBlenderData->playersNo; i++)
+        sBerryBlenderData->playerPlaces[i] = places[i];
 
-    if (!gReceivedRemoteLinkPlayers)
+    if (gReceivedRemoteLinkPlayers == 0)
         playerId = 0;
     else
         playerId = GetMultiplayerId();
 
-    for (i = 0; i < sBerryBlender->numPlayers; i++)
+    for (i = 0; i < sBerryBlenderData->playersNo; i++)
     {
-        if (sBerryBlender->playerPlaces[i] == playerId)
-            sBerryBlender->ownRanking = i;
+        if (sBerryBlenderData->playerPlaces[i] == playerId)
+            sBerryBlenderData->field_1A4 = i;
     }
 }
 
-static bool8 PrintBlendingRanking(void)
+static bool8 Blender_PrintBlendingRanking(void)
 {
     u16 i;
     s32 xPos, yPos;
 
-    switch (sBerryBlender->mainState)
+    switch (sBerryBlenderData->mainState)
     {
     case 0:
-        sBerryBlender->mainState++;
-        sBerryBlender->framesToWait = 255;
+        sBerryBlenderData->mainState++;
+        sBerryBlenderData->framesToWait = 255;
         break;
     case 1:
-        sBerryBlender->framesToWait -= 10;
-        if (sBerryBlender->framesToWait < 0)
+        sBerryBlenderData->framesToWait -= 10;
+        if (sBerryBlenderData->framesToWait < 0)
         {
-            sBerryBlender->framesToWait = 0;
-            sBerryBlender->mainState++;
+            sBerryBlenderData->framesToWait = 0;
+            sBerryBlenderData->mainState++;
         }
         break;
     case 2:
-        if (++sBerryBlender->framesToWait > 20)
+        if (++sBerryBlenderData->framesToWait > 20)
         {
-            sBerryBlender->framesToWait = 0;
-            sBerryBlender->mainState++;
+            sBerryBlenderData->framesToWait = 0;
+            sBerryBlenderData->mainState++;
         }
         break;
     case 3:
         DrawStdFrameWithCustomTileAndPalette(5, 0, 1, 0xD);
-        xPos = GetStringCenterAlignXOffset(1, sText_Ranking, 168);
+        xPos = GetStringCenterAlignXOffset(1, sText_Ranking, 0xA8);
         Blender_AddTextPrinter(5, sText_Ranking, xPos, 1, TEXT_SPEED_FF, 0);
 
-        sBerryBlender->scoreIconIds[SCORE_BEST] = CreateSprite(&sSpriteTemplate_ScoreSymbols, 128, 52, 0);
-        StartSpriteAnim(&gSprites[sBerryBlender->scoreIconIds[SCORE_BEST]], SCOREANIM_BEST_STATIC);
-        gSprites[sBerryBlender->scoreIconIds[SCORE_BEST]].callback = SpriteCallbackDummy;
+        sBerryBlenderData->scoreIconIds[BLENDER_SCORE_BEST] = CreateSprite(&sUnknown_08339B40, 128, 52, 0);
+        StartSpriteAnim(&gSprites[sBerryBlenderData->scoreIconIds[BLENDER_SCORE_BEST]], 3);
+        gSprites[sBerryBlenderData->scoreIconIds[BLENDER_SCORE_BEST]].callback = SpriteCallbackDummy;
 
-        sBerryBlender->scoreIconIds[SCORE_GOOD] = CreateSprite(&sSpriteTemplate_ScoreSymbols, 160, 52, 0);
-        // implicitly uses SCOREANIM_GOOD, no need to assign
-        gSprites[sBerryBlender->scoreIconIds[SCORE_GOOD]].callback = SpriteCallbackDummy;
+        sBerryBlenderData->scoreIconIds[BLENDER_SCORE_GOOD] = CreateSprite(&sUnknown_08339B40, 160, 52, 0);
+        gSprites[sBerryBlenderData->scoreIconIds[BLENDER_SCORE_GOOD]].callback = SpriteCallbackDummy;
 
-        sBerryBlender->scoreIconIds[SCORE_MISS] = CreateSprite(&sSpriteTemplate_ScoreSymbols, 192, 52, 0);
-        StartSpriteAnim(&gSprites[sBerryBlender->scoreIconIds[SCORE_MISS]], SCOREANIM_MISS);
-        gSprites[sBerryBlender->scoreIconIds[SCORE_MISS]].callback = SpriteCallbackDummy;
+        sBerryBlenderData->scoreIconIds[BLENDER_SCORE_MISS] = CreateSprite(&sUnknown_08339B40, 192, 52, 0);
+        StartSpriteAnim(&gSprites[sBerryBlenderData->scoreIconIds[BLENDER_SCORE_MISS]], 1);
+        gSprites[sBerryBlenderData->scoreIconIds[BLENDER_SCORE_MISS]].callback = SpriteCallbackDummy;
 
-        SortScores();
+        Blender_SortScores();
 
-        for (yPos = 41, i = 0; i < sBerryBlender->numPlayers; yPos += 16, i++)
+        for (yPos = 0x29, i = 0; i < sBerryBlenderData->playersNo; yPos += 0x10, i++)
         {
-            u8 place = sBerryBlender->playerPlaces[i];
+            u8 place = sBerryBlenderData->playerPlaces[i];
 
-            ConvertIntToDecimalStringN(sBerryBlender->stringVar, i + 1, STR_CONV_MODE_LEFT_ALIGN, 1);
-            StringAppend(sBerryBlender->stringVar, sText_Dot);
-            StringAppend(sBerryBlender->stringVar, gText_Space);
-            StringAppend(sBerryBlender->stringVar, gLinkPlayers[place].name);
-            Blender_AddTextPrinter(5, sBerryBlender->stringVar, 0, yPos, TEXT_SPEED_FF, 3);
+            ConvertIntToDecimalStringN(sBerryBlenderData->stringVar, i + 1, STR_CONV_MODE_LEFT_ALIGN, 1);
+            StringAppend(sBerryBlenderData->stringVar, sText_Dot);
+            StringAppend(sBerryBlenderData->stringVar, gText_Space);
+            StringAppend(sBerryBlenderData->stringVar, gLinkPlayers[place].name);
+            Blender_AddTextPrinter(5, sBerryBlenderData->stringVar, 0, yPos, TEXT_SPEED_FF, 3);
 
-            ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->scores[place][SCORE_BEST], STR_CONV_MODE_RIGHT_ALIGN, 3);
-            Blender_AddTextPrinter(5, sBerryBlender->stringVar, 78, yPos, TEXT_SPEED_FF, 3);
+            ConvertIntToDecimalStringN(sBerryBlenderData->stringVar, sBerryBlenderData->scores[place][BLENDER_SCORE_BEST], STR_CONV_MODE_RIGHT_ALIGN, 3);
+            Blender_AddTextPrinter(5, sBerryBlenderData->stringVar, 0x4E, yPos, TEXT_SPEED_FF, 3);
 
-            ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->scores[place][SCORE_GOOD], STR_CONV_MODE_RIGHT_ALIGN, 3);
-            Blender_AddTextPrinter(5, sBerryBlender->stringVar, 78 + 32, yPos, TEXT_SPEED_FF, 3);
+            ConvertIntToDecimalStringN(sBerryBlenderData->stringVar, sBerryBlenderData->scores[place][BLENDER_SCORE_GOOD], STR_CONV_MODE_RIGHT_ALIGN, 3);
+            Blender_AddTextPrinter(5, sBerryBlenderData->stringVar, 0x6E, yPos, TEXT_SPEED_FF, 3);
 
-            ConvertIntToDecimalStringN(sBerryBlender->stringVar, sBerryBlender->scores[place][SCORE_MISS], STR_CONV_MODE_RIGHT_ALIGN, 3);
-            Blender_AddTextPrinter(5, sBerryBlender->stringVar, 78 + 64, yPos, TEXT_SPEED_FF, 3);
+            ConvertIntToDecimalStringN(sBerryBlenderData->stringVar, sBerryBlenderData->scores[place][BLENDER_SCORE_MISS], STR_CONV_MODE_RIGHT_ALIGN, 3);
+            Blender_AddTextPrinter(5, sBerryBlenderData->stringVar, 0x8E, yPos, TEXT_SPEED_FF, 3);
         }
 
         PutWindowTilemap(5);
         CopyWindowToVram(5, 3);
 
-        sBerryBlender->framesToWait = 0;
-        sBerryBlender->mainState++;
+        sBerryBlenderData->framesToWait = 0;
+        sBerryBlenderData->mainState++;
         break;
     case 4:
-        if (++sBerryBlender->framesToWait > 20)
-            sBerryBlender->mainState++;
+        if (++sBerryBlenderData->framesToWait > 20)
+            sBerryBlenderData->mainState++;
         break;
     case 5:
-        if (JOY_NEW(A_BUTTON))
+        if (gMain.newKeys & A_BUTTON)
         {
             PlaySE(SE_SELECT);
-            sBerryBlender->mainState++;
+            sBerryBlenderData->mainState++;
         }
         break;
     case 6:
-        sBerryBlender->mainState = 0;
+        sBerryBlenderData->mainState = 0;
         return TRUE;
     }
 
@@ -3767,11 +3534,11 @@ void ShowBerryBlenderRecordWindow(void)
     DrawStdWindowFrame(gRecordsWindowId, 0);
     FillWindowPixelBuffer(gRecordsWindowId, PIXEL_FILL(1));
 
-    xPos = GetStringCenterAlignXOffset(1, gText_BlenderMaxSpeedRecord, 144);
+    xPos = GetStringCenterAlignXOffset(1, gText_BlenderMaxSpeedRecord, 0x90);
     AddTextPrinterParameterized(gRecordsWindowId, 1, gText_BlenderMaxSpeedRecord, xPos, 1, 0, NULL);
-    AddTextPrinterParameterized(gRecordsWindowId, 1, gText_234Players, 4, 41, 0, NULL);
+    AddTextPrinterParameterized(gRecordsWindowId, 1, gText_234Players, 4, 0x29, 0, NULL);
 
-    for (i = 0, yPos = 41; i < NUM_SCORE_TYPES; i++)
+    for (i = 0, yPos = 0x29; i < BLENDER_SCORES_NO; i++)
     {
         u8 *txtPtr;
         u32 record;
@@ -3783,7 +3550,7 @@ void ShowBerryBlenderRecordWindow(void)
         txtPtr = ConvertIntToDecimalStringN(txtPtr, record % 100, STR_CONV_MODE_LEADING_ZEROS, 2);
         txtPtr = StringAppend(txtPtr, sText_RPM);
 
-        xPos = GetStringRightAlignXOffset(1, text, 140);
+        xPos = GetStringRightAlignXOffset(1, text, 0x8C);
         AddTextPrinterParameterized(gRecordsWindowId, 1, text, xPos, yPos + (i * 16), 0, NULL);
     }
 
@@ -3791,16 +3558,16 @@ void ShowBerryBlenderRecordWindow(void)
     CopyWindowToVram(gRecordsWindowId, 3);
 }
 
-static void Task_PlayPokeblockFanfare(u8 taskId)
+static void sub_8083F3C(u8 taskId)
 {
     if (gTasks[taskId].data[0] == 0)
     {
-        PlayFanfare(MUS_LEVEL_UP);
+        PlayFanfare(MUS_FANFA1);
         gTasks[taskId].data[0]++;
     }
     if (IsFanfareTaskInactive())
     {
-        PlayBGM(sBerryBlender->savedMusic);
+        PlayBGM(sBerryBlenderData->field_154);
         DestroyTask(taskId);
     }
 }
@@ -3814,30 +3581,28 @@ static bool32 TryAddContestLinkTvShow(struct Pokeblock *pokeblock, struct TvBlen
     tvBlender->pokeblockColor = pokeblock->color;
     tvBlender->name[0] = EOS;
 
-    if (gReceivedRemoteLinkPlayers)
+    if (gReceivedRemoteLinkPlayers != 0)
     {
-        if (sBerryBlender->ownRanking == 0 && sheen > 20)
+        if (sBerryBlenderData->field_1A4 == 0 && sheen > 20)
         {
-            // Player came first, try to put on air
-            StringCopy(tvBlender->name, gLinkPlayers[sBerryBlender->playerPlaces[sBerryBlender->numPlayers - 1]].name);
+            StringCopy(tvBlender->name, gLinkPlayers[sBerryBlenderData->playerPlaces[sBerryBlenderData->playersNo - 1]].name);
             tvBlender->pokeblockFlavor = GetPokeblocksFlavor(pokeblock);
             if (Put3CheersForPokeblocksOnTheAir(tvBlender->name, tvBlender->pokeblockFlavor,
                                             tvBlender->pokeblockColor, tvBlender->pokeblockSheen,
-                                            gLinkPlayers[sBerryBlender->playerPlaces[sBerryBlender->numPlayers - 1]].language))
+                                            gLinkPlayers[sBerryBlenderData->playerPlaces[sBerryBlenderData->playersNo - 1]].language))
             {
                 return TRUE;
             }
 
             return FALSE;
         }
-        else if (sBerryBlender->ownRanking == sBerryBlender->numPlayers - 1 && sheen <= 20)
+        else if (sBerryBlenderData->field_1A4 == sBerryBlenderData->playersNo - 1 && sheen <= 20)
         {
-            // Player came last, try to put on air
-            StringCopy(tvBlender->name, gLinkPlayers[sBerryBlender->playerPlaces[0]].name);
+            StringCopy(tvBlender->name, gLinkPlayers[sBerryBlenderData->playerPlaces[0]].name);
             tvBlender->pokeblockFlavor = GetPokeblocksFlavor(pokeblock);
             if (Put3CheersForPokeblocksOnTheAir(tvBlender->name, tvBlender->pokeblockFlavor,
                                             tvBlender->pokeblockColor, tvBlender->pokeblockSheen,
-                                            gLinkPlayers[sBerryBlender->playerPlaces[0]].language))
+                                            gLinkPlayers[sBerryBlenderData->playerPlaces[0]].language))
             {
                 return TRUE;
             }
@@ -3858,19 +3623,19 @@ static void Blender_AddTextPrinter(u8 windowId, const u8 *string, u8 x, u8 y, s3
     {
     case 0:
     case 3:
-        txtColor[0] = TEXT_COLOR_WHITE;
-        txtColor[1] = TEXT_COLOR_DARK_GRAY;
-        txtColor[2] = TEXT_COLOR_LIGHT_GRAY;
+        txtColor[0] = 1;
+        txtColor[1] = 2;
+        txtColor[2] = 3;
         break;
     case 1:
-        txtColor[0] = TEXT_COLOR_TRANSPARENT;
-        txtColor[1] = TEXT_COLOR_DARK_GRAY;
-        txtColor[2] = TEXT_COLOR_LIGHT_GRAY;
+        txtColor[0] = 0;
+        txtColor[1] = 2;
+        txtColor[2] = 3;
         break;
     case 2:
-        txtColor[0] = TEXT_COLOR_TRANSPARENT;
-        txtColor[1] = TEXT_COLOR_RED;
-        txtColor[2] = TEXT_COLOR_LIGHT_RED;
+        txtColor[0] = 0;
+        txtColor[1] = 4;
+        txtColor[2] = 5;
         break;
     }
 

@@ -138,7 +138,7 @@ static void CB2_MysteryEventMenu(void)
         PutWindowTilemap(0);
         CopyWindowToVram(0, 3);
         ShowBg(0);
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0x10, 0, RGB_BLACK);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0x10, 0, RGB_BLACK);
         gMain.state++;
         break;
     case 1:
@@ -152,7 +152,7 @@ static void CB2_MysteryEventMenu(void)
         if (!IsTextPrinterActive(0))
         {
             gMain.state++;
-            gLinkType = LINKTYPE_MYSTERY_EVENT;
+            gLinkType = LINKTYPE_0x5501;
             OpenLink();
         }
         break;
@@ -163,7 +163,7 @@ static void CB2_MysteryEventMenu(void)
             PrintMysteryMenuText(0, gText_PressAToLoadEvent, 1, 2, 1);
             gMain.state++;
         }
-        if (JOY_NEW(B_BUTTON))
+        if (gMain.newKeys & B_BUTTON)
         {
             PlaySE(SE_SELECT);
             CloseLink();
@@ -177,7 +177,7 @@ static void CB2_MysteryEventMenu(void)
     case 5:
         if (GetLinkPlayerCount_2() == 2)
         {
-            if (JOY_NEW(A_BUTTON))
+            if (gMain.newKeys & A_BUTTON)
             {
                 PlaySE(SE_SELECT);
                 CheckShouldAdvanceLinkState();
@@ -187,7 +187,7 @@ static void CB2_MysteryEventMenu(void)
                 CopyWindowToVram(1, 3);
                 gMain.state++;
             }
-            else if (JOY_NEW(B_BUTTON))
+            else if (gMain.newKeys & B_BUTTON)
             {
                 PlaySE(SE_SELECT);
                 CloseLink();
@@ -206,9 +206,9 @@ static void CB2_MysteryEventMenu(void)
         {
             if (gReceivedRemoteLinkPlayers != 0)
             {
-                if (GetLinkPlayerDataExchangeStatusTimed(2, 2) == EXCHANGE_DIFF_SELECTIONS)
+                if (GetLinkPlayerDataExchangeStatusTimed(2, 2) == 3)
                 {
-                    SetCloseLinkCallback();
+                    sub_800AC34();
                     GetEventLoadMessage(gStringVar4, 1);
                     PrintMysteryMenuText(0, gStringVar4, 1, 2, 1);
                     gMain.state = 13;
@@ -227,7 +227,7 @@ static void CB2_MysteryEventMenu(void)
                 }
             }
         }
-        else if (JOY_NEW(B_BUTTON))
+        else if (gMain.newKeys & B_BUTTON)
         {
             PlaySE(SE_SELECT);
             CloseLink();
@@ -249,7 +249,7 @@ static void CB2_MysteryEventMenu(void)
         gMain.state++;
         break;
     case 10:
-        SetCloseLinkCallback();
+        sub_800AC34();
         gMain.state++;
         break;
     case 11:
@@ -274,14 +274,14 @@ static void CB2_MysteryEventMenu(void)
         }
         break;
     case 14:
-        if (JOY_NEW(A_BUTTON))
+        if (gMain.newKeys & A_BUTTON)
         {
             PlaySE(SE_SELECT);
             gMain.state++;
         }
         break;
     case 15:
-        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 0x10, RGB_BLACK);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 0x10, RGB_BLACK);
         gMain.state++;
         break;
     case 16:

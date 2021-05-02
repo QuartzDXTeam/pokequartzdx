@@ -4,6 +4,7 @@
 #include "random.h"
 #include "roamer.h"
 #include "constants/maps.h"
+#include "constants/species.h"
 
 enum
 {

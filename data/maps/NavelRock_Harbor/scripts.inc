@@ -1,6 +1,3 @@
-.set LOCALID_SAILOR, 1
-.set LOCALID_SS_TIDAL, 2
-
 NavelRock_Harbor_MapScripts:: @ 82690BC
 	.byte 0
 
@@ -15,8 +12,8 @@ NavelRock_Harbor_EventScript_Sailor:: @ 82690BD
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	delay 30
-	hideobjectat LOCALID_SAILOR, MAP_NAVEL_ROCK_HARBOR
-	setvar VAR_0x8004, LOCALID_SS_TIDAL
+	hideobjectat 1, MAP_NAVEL_ROCK_HARBOR
+	setvar VAR_0x8004, 2
 	call Common_EventScript_FerryDepartIsland
 	warp MAP_LILYCOVE_CITY_HARBOR, 255, 8, 11
 	waitstate

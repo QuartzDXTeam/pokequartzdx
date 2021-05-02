@@ -13,7 +13,7 @@
 static void AnimConfuseRayBallBounce(struct Sprite *);
 static void AnimConfuseRayBallBounce_Step1(struct Sprite *);
 static void AnimConfuseRayBallBounce_Step2(struct Sprite *);
-static void UpdateConfuseRayBallBlend(struct Sprite *);
+static void sub_8111764(struct Sprite *);
 static void AnimConfuseRayBallSpiral(struct Sprite *);
 static void AnimConfuseRayBallSpiral_Step(struct Sprite *);
 static void AnimTask_NightShadeClone_Step1(u8 taskId);
@@ -39,8 +39,8 @@ static void AnimGhostStatusSprite(struct Sprite *);
 static void AnimGhostStatusSprite_Step(struct Sprite *);
 static void AnimTask_GrudgeFlames_Step(u8 taskId);
 static void AnimGrudgeFlame(struct Sprite *);
-static void AnimMonMoveCircular(struct Sprite *);
-static void AnimMonMoveCircular_Step(struct Sprite *);
+static void sub_8112F60(struct Sprite *);
+static void sub_8112FB8(struct Sprite *);
 
 static const union AffineAnimCmd sAffineAnim_ConfuseRayBallBounce[] =
 {
@@ -124,16 +124,16 @@ const struct SpriteTemplate gLickSpriteTemplate =
     .callback = AnimLick,
 };
 
-static const union AffineAnimCmd sAffineAnim_Unused[] =
+static const union AffineAnimCmd gUnknown_08596DA4[] =
 {
     AFFINEANIMCMD_FRAME(0x200, 0x200, 0, 0),
     AFFINEANIMCMD_END,
 };
 
 // Unused
-static const union AffineAnimCmd *const sAffineAnims_Unused[] =
+static const union AffineAnimCmd *const gUnknown_08596DB4[] =
 {
-    sAffineAnim_Unused,
+    gUnknown_08596DA4,
 };
 
 const struct SpriteTemplate gDestinyBondWhiteShadowSpriteTemplate =
@@ -206,7 +206,7 @@ const struct SpriteTemplate gGrudgeFlameSpriteTemplate =
 };
 
 // Unused
-static const struct SpriteTemplate sMonMoveCircularSpriteTemplate =
+const struct SpriteTemplate gUnknown_08596E48 =
 {
     .tileTag = 0,
     .paletteTag = 0,
@@ -214,18 +214,18 @@ static const struct SpriteTemplate sMonMoveCircularSpriteTemplate =
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = AnimMonMoveCircular,
+    .callback = sub_8112F60,
 };
 
 static void AnimConfuseRayBallBounce(struct Sprite *sprite)
 {
-    InitSpritePosToAnimAttacker(sprite, TRUE);
+    InitSpritePosToAnimAttacker(sprite, 1);
     sprite->data[0] = gBattleAnimArgs[2];
     sprite->data[1] = sprite->pos1.x;
     sprite->data[2] = GetBattlerSpriteCoord(gBattleAnimTarget, 2);
     sprite->data[3] = sprite->pos1.y;
     sprite->data[4] = GetBattlerSpriteCoord(gBattleAnimTarget, 3);
-    InitAnimLinearTranslationWithSpeed(sprite);
+    sub_80A6FD4(sprite);
     sprite->callback = AnimConfuseRayBallBounce_Step1;
     sprite->data[6] = 16;
     SetGpuReg(REG_OFFSET_BLDCNT, (BLDCNT_EFFECT_BLEND | BLDCNT_TGT2_ALL));
@@ -236,7 +236,7 @@ static void AnimConfuseRayBallBounce_Step1(struct Sprite *sprite)
 {
     s16 r0;
     s16 r2;
-    UpdateConfuseRayBallBlend(sprite);
+    sub_8111764(sprite);
     if (AnimTranslateLinear(sprite))
     {
         sprite->callback = AnimConfuseRayBallBounce_Step2;
@@ -252,7 +252,7 @@ static void AnimConfuseRayBallBounce_Step1(struct Sprite *sprite)
         return;
     if (r0 <= 0)
         return;
-    PlaySE12WithPanning(SE_M_CONFUSE_RAY, gAnimCustomPanning);
+    PlaySE12WithPanning(SE_W109, gAnimCustomPanning);
 }
 
 static void AnimConfuseRayBallBounce_Step2(struct Sprite *sprite)
@@ -271,7 +271,7 @@ static void AnimConfuseRayBallBounce_Step2(struct Sprite *sprite)
     if (r2 == 0 || r2 > 196)
     {
         if (r0 > 0)
-            PlaySE(SE_M_CONFUSE_RAY);
+            PlaySE(SE_W109);
     }
 
     if (sprite->data[6] == 0)
@@ -280,11 +280,13 @@ static void AnimConfuseRayBallBounce_Step2(struct Sprite *sprite)
         sprite->callback = DestroyAnimSpriteAndDisableBlend;
     }
     else
-        UpdateConfuseRayBallBlend(sprite);
+        sub_8111764(sprite);
 }
 
-static void UpdateConfuseRayBallBlend(struct Sprite *sprite)
+static void sub_8111764(struct Sprite *sprite)
 {
+
+    s16 r0;
     if (sprite->data[6] > 0xFF)
     {
         if (++sprite->data[6] == 0x10d)
@@ -292,7 +294,10 @@ static void UpdateConfuseRayBallBlend(struct Sprite *sprite)
         return;
     }
 
-    if ((sprite->data[7]++ & 0xFF) == 0)
+    r0 = sprite->data[7];
+    sprite->data[7]++;
+
+    if ((r0 & 0xFF) == 0)
     {
         sprite->data[7] &= 0xff00;
         if ((sprite->data[7] & 0x100) != 0)
@@ -643,7 +648,7 @@ static void AnimTask_SpiteTargetShadow_Step1(u8 taskId)
         break;
     case 1:
         task->data[14] = (task->data[14] + 16) * 16;
-        CpuCopy32(&gPlttBufferUnfaded[task->data[4]], &gPlttBufferFaded[task->data[14]], 32);
+        CpuSet(&gPlttBufferUnfaded[task->data[4]], &gPlttBufferFaded[task->data[14]], 0x4000008);
         BlendPalette(task->data[4], 16, 10, RGB(13, 0, 15));
         task->data[15]++;
         break;
@@ -950,19 +955,19 @@ void AnimTask_CurseStretchingBlackBg(u8 taskId)
     SetGpuReg(REG_OFFSET_WINOUT, ((WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ) |
                                     (WINOUT_WINOBJ_BG_ALL | WINOUT_WINOBJ_OBJ | WINOUT_WINOBJ_CLR)));
     SetGpuReg(REG_OFFSET_BLDCNT, (BLDCNT_TGT1_BG3 | BLDCNT_EFFECT_DARKEN));
-    SetGpuReg(REG_OFFSET_BLDY, 16);
+    SetGpuReg(REG_OFFSET_BLDY, 0x10);
 
     if (GetBattlerSide(gBattleAnimAttacker) != B_SIDE_PLAYER || IsContest())
         startX = 40;
     else
         startX = 200;
 
-    gBattle_WIN0H = WIN_RANGE(startX, startX);
+    gBattle_WIN0H = (startX << 8) | startX;
     startY = 40;
-    gBattle_WIN0V = WIN_RANGE(startY, startY);
+    gBattle_WIN0V = (startY << 8) | startY;
 
     leftDistance = startX;
-    rightDistance = DISPLAY_WIDTH - startX;
+    rightDistance = 240 - startX;
     topDistance = startY;
     bottomDistance = 72;
     gTasks[taskId].data[1] = leftDistance;
@@ -1001,16 +1006,16 @@ static void AnimTask_CurseStretchingBlackBg_Step1(u8 taskId)
     else
     {
         left = 0;
-        right = DISPLAY_WIDTH;
+        right = 240;
         top = 0;
         bottom = 112;
-        selectedPalettes = GetBattleBgPalettesMask(1, 0, 0, 0, 0, 0, 0);
+        selectedPalettes = sub_80A75AC(1, 0, 0, 0, 0, 0, 0);
         BeginNormalPaletteFade(selectedPalettes, 0, 16, 16, RGB(0, 0, 0));
         gTasks[taskId].func = AnimTask_CurseStretchingBlackBg_Step2;
     }
 
-    gBattle_WIN0H = WIN_RANGE(left, right);
-    gBattle_WIN0V = WIN_RANGE(top, bottom);
+    gBattle_WIN0H = (left << 8) | right;
+    gBattle_WIN0V = (top  << 8) | bottom;
 }
 
 static void AnimTask_CurseStretchingBlackBg_Step2(u8 taskId)
@@ -1302,7 +1307,7 @@ static void AnimGrudgeFlame(struct Sprite *sprite)
     }
 }
 
-static void AnimMonMoveCircular(struct Sprite *sprite)
+static void sub_8112F60(struct Sprite *sprite)
 {
     sprite->invisible = TRUE;
     sprite->data[5] = gBattlerSpriteIds[gBattleAnimAttacker];
@@ -1310,12 +1315,12 @@ static void AnimMonMoveCircular(struct Sprite *sprite)
     sprite->data[1] = 10;
     sprite->data[2] = gBattleAnimArgs[0];
     sprite->data[3] = gBattleAnimArgs[1];
-    sprite->callback = AnimMonMoveCircular_Step;
+    sprite->callback = sub_8112FB8;
 
     gSprites[sprite->data[5]].pos1.y += 8;
 }
 
-static void AnimMonMoveCircular_Step(struct Sprite *sprite)
+static void sub_8112FB8(struct Sprite *sprite)
 {
     if (sprite->data[3])
     {

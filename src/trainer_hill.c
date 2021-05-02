@@ -29,6 +29,7 @@
 #include "constants/layouts.h"
 #include "constants/moves.h"
 #include "constants/maps.h"
+#include "constants/species.h"
 #include "constants/trainers.h"
 #include "constants/easy_chat.h"
 #include "constants/trainer_hill.h"
@@ -63,7 +64,7 @@ static void TrainerHillSetPlayerLost(void);
 static void TrainerHillGetChallengeStatus(void);
 static void BufferChallengeTime(void);
 static void GetAllFloorsUsed(void);
-static void GetInEReaderMode(void);
+static void ClearVarResult(void);
 static void IsTrainerHillChallengeActive(void);
 static void ShowTrainerHillPostBattleText(void);
 static void SetAllTrainerFlags(void);
@@ -74,7 +75,7 @@ static void GetChallengeWon(void);
 static void TrainerHillSetTag(void);
 static void SetUpDataStruct(void);
 static void FreeDataStruct(void);
-static void TrainerHillDummy(void);
+static void nullsub_2(void);
 static void SetTimerValue(u32 *dst, u32 val);
 static u32 GetTimerValue(u32 *src);
 static void SetTrainerHillMonLevel(struct Pokemon *mon, u8 level);
@@ -164,7 +165,7 @@ static const u16 sPrizeListElixir2[]     = {ITEM_ELIXIR,           ITEM_ETHER, I
 static const u16 sPrizeListBrickBreak[]  = {ITEM_TM31_BRICK_BREAK, ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
 static const u16 sPrizeListTorment[]     = {ITEM_TM41_TORMENT,     ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
 static const u16 sPrizeListSkillSwap[]   = {ITEM_TM48_SKILL_SWAP,  ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
-static const u16 sPrizeListGigaDrain[]   = {ITEM_TM19_GIGA_DRAIN,  ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
+static const u16 sPrizeListGigaSwap[]    = {ITEM_TM19_GIGA_DRAIN,  ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
 static const u16 sPrizeListAttract[]     = {ITEM_TM45_ATTRACT,     ITEM_ETHER, ITEM_MAX_POTION, ITEM_REVIVE, ITEM_FLUFFY_TAIL, ITEM_GREAT_BALL};
 
 static const u16 *const sPrizeLists1[NUM_TRAINER_HILL_PRIZE_LISTS] =
@@ -191,7 +192,7 @@ static const u16 *const sPrizeLists2[NUM_TRAINER_HILL_PRIZE_LISTS] =
 	sPrizeListBrickBreak,
 	sPrizeListTorment,
 	sPrizeListSkillSwap,
-	sPrizeListGigaDrain,
+	sPrizeListGigaSwap,
 	sPrizeListAttract
 };
 
@@ -201,8 +202,8 @@ static const u16 *const *const sPrizeListSets[] =
     sPrizeLists2
 };
 
-static const u16 sEReader_Pal[] = INCBIN_U16("graphics/misc/trainer_hill_ereader.gbapal");
-static const u8 sRecordWinColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
+static const u16 sUnknown_0862A5D4[] = INCBIN_U16("graphics/pokenav/862A5D4.gbapal");
+static const u8 sRecordWinColors[] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GREY, TEXT_COLOR_LIGHT_GREY};
 
 static const struct TrHillTag *const sDataPerTag[] =
 {
@@ -232,7 +233,7 @@ static void (* const sHillFunctions[])(void) =
     [TRAINER_HILL_FUNC_GET_CHALLENGE_STATUS]  = TrainerHillGetChallengeStatus,
     [TRAINER_HILL_FUNC_GET_CHALLENGE_TIME]    = BufferChallengeTime,
     [TRAINER_HILL_FUNC_GET_ALL_FLOORS_USED]   = GetAllFloorsUsed,
-    [TRAINER_HILL_FUNC_GET_IN_EREADER_MODE]   = GetInEReaderMode,
+    [TRAINER_HILL_FUNC_CLEAR_RESULT]          = ClearVarResult,
     [TRAINER_HILL_FUNC_IN_CHALLENGE]          = IsTrainerHillChallengeActive,
     [TRAINER_HILL_FUNC_POST_BATTLE_TEXT]      = ShowTrainerHillPostBattleText,
     [TRAINER_HILL_FUNC_SET_ALL_TRAINER_FLAGS] = SetAllTrainerFlags,
@@ -358,7 +359,7 @@ static void SetUpDataStruct(void)
         sHillData = AllocZeroed(sizeof(*sHillData));
         sHillData->floorId = gMapHeader.mapLayoutId - LAYOUT_TRAINER_HILL_1F;
         CpuCopy32(sDataPerTag[gSaveBlock1Ptr->trainerHill.tag], &sHillData->tag, sizeof(sHillData->tag) + 4 * sizeof(struct TrHillFloor));
-        TrainerHillDummy();
+        nullsub_2();
     }
 }
 
@@ -397,7 +398,7 @@ void CopyTrainerHillTrainerText(u8 which, u16 trainerId)
 
 static void TrainerHillStartChallenge(void)
 {
-    TrainerHillDummy();
+    nullsub_2();
     if (!ReadTrainerHillAndValidate())
         gSaveBlock1Ptr->trainerHill.field_3D6E_0f = 1;
     else
@@ -545,11 +546,10 @@ static void GetAllFloorsUsed(void)
 }
 
 // May have been dummied. Every time this is called a conditional for var result occurs afterwards
-// Relation to E-Reader is an assumption, most dummied Trainer Hill code seems to be JP E-Reader mode related
-static void GetInEReaderMode(void)
+static void ClearVarResult(void)
 {
     SetUpDataStruct();
-    gSpecialVar_Result = FALSE;
+    gSpecialVar_Result = 0;
     FreeDataStruct();
 }
 
@@ -573,12 +573,12 @@ static void IsTrainerHillChallengeActive(void)
         gSpecialVar_Result = TRUE;
 }
 
-static void TrainerHillDummy_Unused(void)
+void nullsub_129(void)
 {
 
 }
 
-static void TrainerHillDummy(void)
+static void nullsub_2(void)
 {
 
 }
@@ -671,18 +671,70 @@ bool32 LoadTrainerHillFloorObjectEventScripts(void)
     return TRUE;
 }
 
-static u16 GetMetatileForFloor(u8 floorId, u32 x, u32 y, u32 stride) // stride is always 16
+// Functionally equivalent.
+#ifdef NONMATCHING
+static u32 sub_81D5F58(u8 floorId, u32 bit, u32 arg2, u32 arg3)
 {
-    bool8 impassable;
-    u16 metatile;
-    u16 elevation;
+    u32 var0, var1, var2, var3;
 
-    impassable = (sHillData->floors[floorId].display.collisionData[y] >> (15 - x) & 1);
-    metatile = sHillData->floors[floorId].display.metatileData[stride * y + x] + NUM_METATILES_IN_PRIMARY;
-    elevation = 3 << METATILE_ELEVATION_SHIFT;
+    var0 = (sHillData->floors[floorId].display.unk3A0[arg2] >> (15 - bit)) & 1;
+    var1 = sHillData->floors[floorId].display.data[arg2 * arg3 + bit];
+    var3 = 0x200;
+    var2 = 0x3000;
 
-    return ((impassable << METATILE_COLLISION_SHIFT) & METATILE_COLLISION_MASK) | elevation | (metatile & METATILE_ID_MASK);
+    return ((var0 << 10) | var2) | (var1 | var3);
 }
+#else
+NAKED
+static u32 sub_81D5F58(u8 floorId, u32 bit, u32 arg2, u32 arg3)
+{
+    asm_unified("\n\
+    push {r4,r5,lr}\n\
+	lsls r0, 24\n\
+	lsrs r0, 24\n\
+	ldr r4, =sHillData\n\
+	ldr r4, [r4]\n\
+	mov r12, r4\n\
+	lsls r4, r2, 1\n\
+	lsls r5, r0, 4\n\
+	subs r5, r0\n\
+	lsls r5, 3\n\
+	subs r5, r0\n\
+	lsls r5, 3\n\
+	adds r4, r5\n\
+	movs r0, 0xE8\n\
+	lsls r0, 2\n\
+	add r0, r12\n\
+	adds r0, r4\n\
+	ldrh r0, [r0]\n\
+	movs r4, 0xF\n\
+	subs r4, r1\n\
+	asrs r0, r4\n\
+	movs r4, 0x1\n\
+	ands r0, r4\n\
+	muls r2, r3\n\
+	adds r2, r1\n\
+	adds r2, r5\n\
+	movs r1, 0xA8\n\
+	lsls r1, 2\n\
+	add r1, r12\n\
+	adds r1, r2\n\
+	ldrb r1, [r1]\n\
+	movs r2, 0x80\n\
+	lsls r2, 2\n\
+	adds r3, r2, 0\n\
+	movs r2, 0xC0\n\
+	lsls r2, 6\n\
+	lsls r0, 10\n\
+	orrs r0, r2\n\
+	orrs r1, r3\n\
+	orrs r0, r1\n\
+	pop {r4,r5}\n\
+	pop {r1}\n\
+	bx r1\n\
+	.pool");
+}
+#endif // NONMATCHING
 
 void GenerateTrainerHillFloorLayout(u16 *mapArg)
 {
@@ -710,8 +762,6 @@ void GenerateTrainerHillFloorLayout(u16 *mapArg)
     gBackupMapLayout.width = 31;
     gBackupMapLayout.height = 35;
     dst = mapArg + 224;
-
-    // First 5 rows of the map (Entrance / Exit) are always the same
     for (i = 0; i < 5; i++)
     {
         for (j = 0; j < 16; j++)
@@ -720,11 +770,10 @@ void GenerateTrainerHillFloorLayout(u16 *mapArg)
         src += 16;
     }
 
-    // Load the 16x16 floor-specific layout
     for (i = 0; i < 16; i++)
     {
         for (j = 0; j < 16; j++)
-            dst[j] = GetMetatileForFloor(mapId, j, i, 16);
+            dst[j] = sub_81D5F58(mapId, j, i, 0x10);
         dst += 31;
     }
 
@@ -855,7 +904,7 @@ const u8 *GetTrainerHillTrainerScript(void)
 static void ShowTrainerHillPostBattleText(void)
 {
     CopyTrainerHillTrainerText(TRAINER_HILL_TEXT_AFTER, gSpecialVar_LastTalked);
-    ShowFieldMessageFromBuffer();
+    sub_80982B8();
 }
 
 static void CreateNPCTrainerHillParty(u16 trainerId, u8 firstMonId)
@@ -948,11 +997,11 @@ static void SetAllTrainerFlags(void)
     gSaveBlock2Ptr->frontier.trainerFlags = 0xFF;
 }
 
-// Palette never loaded, OnTrainerHillEReaderChallengeFloor always FALSE
-void TryLoadTrainerHillEReaderPalette(void)
+// Palette never loaded, sub_81D6534 always FALSE
+void sub_81D64C0(void)
 {
-    if (OnTrainerHillEReaderChallengeFloor() == TRUE)
-        LoadPalette(sEReader_Pal, 0x70, 0x20);
+    if (sub_81D6534() == TRUE)
+        LoadPalette(sUnknown_0862A5D4, 0x70, 0x20);
 }
 
 static void GetGameSaved(void)
@@ -971,13 +1020,13 @@ static void ClearGameSaved(void)
 }
 
 // Always FALSE
-bool32 OnTrainerHillEReaderChallengeFloor(void)
+bool32 sub_81D6534(void)
 {
     if (!InTrainerHillChallenge() || GetCurrentTrainerHillMapId() == TRAINER_HILL_ENTRANCE)
         return FALSE;
 
-    GetInEReaderMode();
-    if (gSpecialVar_Result == FALSE)
+    ClearVarResult();
+    if (gSpecialVar_Result == 0)
         return FALSE;
     else
         return TRUE;

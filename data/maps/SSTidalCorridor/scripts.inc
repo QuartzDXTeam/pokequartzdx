@@ -1,6 +1,3 @@
-.set LOCALID_SAILOR, 1
-.set LOCALID_SCOTT, 5
-
 SSTidalCorridor_MapScripts:: @ 823BFCF
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, SSTidalCorridor_OnFrame
 	.byte 0
@@ -17,7 +14,7 @@ SSTidalCorridor_EventScript_DepartSlateportForLilycove:: @ 823BFFF
 	special SetSSTidalFlag
 	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_DEPART_SLATEPORT
 	lockall
-	playse SE_DING_DONG
+	playse SE_PINPON
 	msgbox SSTidal_Text_FastCurrentsHopeYouEnjoyVoyage, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -25,7 +22,7 @@ SSTidalCorridor_EventScript_DepartSlateportForLilycove:: @ 823BFFF
 SSTidalCorridor_EventScript_DepartLilycoveForSlateport:: @ 823C015
 	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_DEPART_LILYCOVE
 	lockall
-	playse SE_DING_DONG
+	playse SE_PINPON
 	msgbox SSTidal_Text_HopeYouEnjoyVoyage, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -33,14 +30,14 @@ SSTidalCorridor_EventScript_DepartLilycoveForSlateport:: @ 823C015
 SSTidalRooms_EventScript_HalfwayToSlateport:: @ 823C028
 	special SetSSTidalFlag
 	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_HALFWAY_SLATEPORT
-	playse SE_DING_DONG
+	playse SE_PINPON
 	msgbox SSTidal_Text_FastCurrentsHopeYouEnjoyVoyage, MSGBOX_DEFAULT
 	return
 
 SSTidalRooms_EventScript_ArrivedInLilycove:: @ 823C03C
 	special ResetSSTidalFlag
 	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_LILYCOVE
-	playse SE_DING_DONG
+	playse SE_PINPON
 	msgbox SSTidal_Text_MadeLandInLilycove, MSGBOX_DEFAULT
 	return
 
@@ -55,7 +52,7 @@ SSTidalCorridor_EventScript_HalfwayToLilycove:: @ 823C067
 	special ResetSSTidalFlag
 	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_HALFWAY_LILYCOVE
 	lockall
-	playse SE_DING_DONG
+	playse SE_PINPON
 	msgbox SSTidal_Text_HopeYouEnjoyVoyage, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -64,7 +61,7 @@ SSTidalCorridor_EventScript_ArrivedInSlateport:: @ 823C07D
 	special ResetSSTidalFlag
 	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_SLATEPORT
 	lockall
-	playse SE_DING_DONG
+	playse SE_PINPON
 	msgbox SSTidal_Text_MadeLandInSlateport, MSGBOX_DEFAULT
 	releaseall
 	end
@@ -72,7 +69,7 @@ SSTidalCorridor_EventScript_ArrivedInSlateport:: @ 823C07D
 SSTidalRooms_EventScript_ArrivedInSlateport:: @ 823C093
 	special ResetSSTidalFlag
 	setvar VAR_SS_TIDAL_STATE, SS_TIDAL_LAND_SLATEPORT
-	playse SE_DING_DONG
+	playse SE_PINPON
 	msgbox SSTidal_Text_MadeLandInSlateport, MSGBOX_DEFAULT
 	return
 
@@ -194,20 +191,20 @@ SSTidalCorridor_EventScript_TrainerNotDefeated:: @ 823C218
 
 SSTidalCorridor_EventScript_ScottScene:: @ 823C219
 	lockall
-	applymovement LOCALID_SCOTT, SSTidalCorridor_Movement_ScottApproachPlayer
+	applymovement 5, SSTidalCorridor_Movement_ScottApproachPlayer
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	msgbox SSTidalCorridor_Text_ScottBattleFrontierInvite, MSGBOX_DEFAULT
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, SSTidalCorridor_Movement_PlayerWatchScottExit
-	applymovement LOCALID_SAILOR, SSTidalCorridor_Movement_SailorMoveForScott
-	applymovement LOCALID_SCOTT, SSTidalCorridor_Movement_ScottExit
+	applymovement 1, SSTidalCorridor_Movement_SailorMoveForScott
+	applymovement 5, SSTidalCorridor_Movement_ScottExit
 	waitmovement 0
-	playse SE_EXIT
+	playse SE_KAIDAN
 	waitse
-	removeobject LOCALID_SCOTT
-	applymovement LOCALID_SAILOR, SSTidalCorridor_Movement_SailorReturn
+	removeobject 5
+	applymovement 1, SSTidalCorridor_Movement_SailorReturn
 	waitmovement 0
 	delay 30
 	setflag FLAG_MET_SCOTT_ON_SS_TIDAL

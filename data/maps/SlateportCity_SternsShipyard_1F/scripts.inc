@@ -1,5 +1,3 @@
-.set LOCALID_DOCK, 1
-
 SlateportCity_SternsShipyard_1F_MapScripts:: @ 8207F3F
 	.byte 0
 
@@ -10,11 +8,11 @@ SlateportCity_SternsShipyard_1F_EventScript_Dock:: @ 8207F40
 	goto_if_set FLAG_DELIVERED_DEVON_GOODS, SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran
 	goto_if_set FLAG_DOCK_REJECTED_DEVON_GOODS, SlateportCity_SternsShipyard_1F_EventScript_GoFindStern
 	msgbox SlateportCity_SternsShipyard_1F_Text_CantMakeHeadsOrTails, MSGBOX_DEFAULT
-	applymovement LOCALID_DOCK, Common_Movement_FacePlayer
+	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox SlateportCity_SternsShipyard_1F_Text_MeetDockDeliverToStern, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_DOCK, Common_Movement_FaceOriginalDirection
+	applymovement 1, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	setflag FLAG_DOCK_REJECTED_DEVON_GOODS
 	setflag FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA
@@ -22,31 +20,31 @@ SlateportCity_SternsShipyard_1F_EventScript_Dock:: @ 8207F40
 	end
 
 SlateportCity_SternsShipyard_1F_EventScript_FerryReady:: @ 8207F92
-	applymovement LOCALID_DOCK, Common_Movement_FacePlayer
+	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox SlateportCity_SternsShipyard_1F_Text_FerryIsReady, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SlateportCity_SternsShipyard_1F_EventScript_BrineyJoined:: @ 8207FA6
-	applymovement LOCALID_DOCK, Common_Movement_FacePlayer
+	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox SlateportCity_SternsShipyard_1F_Text_BrineyJoinedUs, MSGBOX_DEFAULT
 	releaseall
 	end
 
 SlateportCity_SternsShipyard_1F_EventScript_GoFindStern:: @ 8207FBA
-	applymovement LOCALID_DOCK, Common_Movement_FacePlayer
+	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox SlateportCity_SternsShipyard_1F_Text_CouldYouFindStern, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_DOCK, Common_Movement_FaceOriginalDirection
+	applymovement 1, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	releaseall
 	end
 
 SlateportCity_SternsShipyard_1F_EventScript_NeedVeteran:: @ 8207FD9
-	applymovement LOCALID_DOCK, Common_Movement_FacePlayer
+	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox SlateportCity_SternsShipyard_1F_Text_CouldUseAdviceFromVeteran, MSGBOX_DEFAULT
 	releaseall

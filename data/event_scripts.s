@@ -40,7 +40,6 @@
 #include "constants/moves.h"
 #include "constants/party_menu.h"
 #include "constants/pokemon.h"
-#include "constants/roulette.h"
 #include "constants/script_menu.h"
 #include "constants/secret_bases.h"
 #include "constants/songs.h"
@@ -151,7 +150,6 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Route132/scripts.inc"
 	.include "data/maps/Route133/scripts.inc"
 	.include "data/maps/Route134/scripts.inc"
-<<<<<<< HEAD
 	.include "data/maps/Underwater1/scripts.inc"
 	.include "data/maps/Underwater2/scripts.inc"
 	.include "data/maps/Underwater3/scripts.inc"
@@ -164,20 +162,6 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/BreezeTown_MaysHouse_1F/scripts.inc"
 	.include "data/maps/BreezeTown_MaysHouse_2F/scripts.inc"
 	.include "data/maps/BreezeTown_ProfessorBirchsLab/scripts.inc"
-=======
-	.include "data/maps/Underwater_Route124/scripts.inc"
-	.include "data/maps/Underwater_Route126/scripts.inc"
-	.include "data/maps/Underwater_Route127/scripts.inc"
-	.include "data/maps/Underwater_Route128/scripts.inc"
-	.include "data/maps/Underwater_Route129/scripts.inc"
-	.include "data/maps/Underwater_Route105/scripts.inc"
-	.include "data/maps/Underwater_Route125/scripts.inc"
-	.include "data/maps/LittlerootTown_BrendansHouse_1F/scripts.inc"
-	.include "data/maps/LittlerootTown_BrendansHouse_2F/scripts.inc"
-	.include "data/maps/LittlerootTown_MaysHouse_1F/scripts.inc"
-	.include "data/maps/LittlerootTown_MaysHouse_2F/scripts.inc"
-	.include "data/maps/LittlerootTown_ProfessorBirchsLab/scripts.inc"
->>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
 	.include "data/maps/OldaleTown_House1/scripts.inc"
 	.include "data/maps/OldaleTown_House2/scripts.inc"
 	.include "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
@@ -728,13 +712,13 @@ Common_EventScript_SetAbnormalWeather:: @ 827207A
 	return
 
 Common_EventScript_PlayGymBadgeFanfare:: @ 827207E
-	playfanfare MUS_OBTAIN_BADGE
+	playfanfare MUS_ME_BACHI
 	waitfanfare
 	return
 
 Common_EventScript_OutOfCenterPartyHeal:: @ 8272083
 	fadescreen FADE_TO_BLACK
-	playfanfare MUS_HEAL
+	playfanfare MUS_ME_ASA
 	waitfanfare
 	special HealPlayerParty
 	fadescreen FADE_FROM_BLACK
@@ -751,7 +735,7 @@ EventScript_RegionMap:: @ 827208F
 
 Common_EventScript_PlayBrineysBoatMusic:: @ 82720A0
 	setflag FLAG_DONT_TRANSITION_MUSIC
-	playbgm MUS_SAILING, 0
+	playbgm MUS_M_BOAT, 0
 	return
 
 Common_EventScript_StopBrineysBoatMusic:: @ 82720A8
@@ -791,8 +775,8 @@ EventScript_HideMrBriney:: @ 82721F8
 	return
 
 RusturfTunnel_EventScript_SetRusturfTunnelOpen:: @ 8272216
-	removeobject LOCALID_WANDAS_BF
-	removeobject LOCALID_WANDA
+	removeobject 1
+	removeobject 10
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDAS_BOYFRIEND
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WANDA
 	setvar VAR_RUSTURF_TUNNEL_STATE, 6
@@ -835,7 +819,7 @@ Common_EventScript_NameReceivedPartyMon:: @ 82723DD
 
 Common_EventScript_PlayerHandedOverTheItem:: @ 82723E4
 	bufferitemname 0, VAR_0x8004
-	playfanfare MUS_OBTAIN_TMHM
+	playfanfare MUS_ME_WAZA
 	message gText_PlayerHandedOverTheItem
 	waitmessage
 	waitfanfare

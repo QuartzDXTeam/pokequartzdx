@@ -1,7 +1,3 @@
-.set LOCALID_GRUNT_1, 12
-.set LOCALID_GRUNT_2, 13
-.set LOCALID_GRUNT_3, 14
-
 Route121_MapScripts:: @ 81F5DFC
 	.byte 0
 
@@ -19,19 +15,19 @@ Route121_EventScript_SafariZoneSign:: @ 81F5E0F
 
 Route121_EventScript_AquaGruntsMoveOut:: @ 81F5E18
 	lockall
-	playbgm MUS_ENCOUNTER_AQUA, 0
-	applymovement LOCALID_GRUNT_2, Common_Movement_WalkInPlaceRight
+	playbgm MUS_AQA_0, 0
+	applymovement 13, Common_Movement_WalkInPlaceRight
 	waitmovement 0
 	msgbox Route121_Text_OkayMoveOutToMtPyre, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_GRUNT_1, Route121_Movement_Grunt1Exit
-	applymovement LOCALID_GRUNT_2, Route121_Movement_Grunt2Exit
-	applymovement LOCALID_GRUNT_3, Route121_Movement_Grunt3Exit
+	applymovement 12, Route121_Movement_Grunt1Exit
+	applymovement 13, Route121_Movement_Grunt2Exit
+	applymovement 14, Route121_Movement_Grunt3Exit
 	waitmovement 0
 	fadedefaultbgm
-	removeobject LOCALID_GRUNT_1
-	removeobject LOCALID_GRUNT_2
-	removeobject LOCALID_GRUNT_3
+	removeobject 12
+	removeobject 13
+	removeobject 14
 	setvar VAR_ROUTE121_STATE, 1
 	releaseall
 	end

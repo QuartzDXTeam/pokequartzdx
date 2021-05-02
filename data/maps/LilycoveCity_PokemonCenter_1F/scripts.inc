@@ -1,5 +1,3 @@
-.set LOCALID_NURSE, 1
-
 LilycoveCity_PokemonCenter_1F_MapScripts:: @ 821C5B2
 	map_script MAP_SCRIPT_ON_TRANSITION, LilycoveCity_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
@@ -27,8 +25,9 @@ LilycoveCity_PokemonCenter_1F_EventScript_ShowContestLadyMon:: @ 821C5E4
 	clearflag FLAG_HIDE_LILYCOVE_POKEMON_CENTER_CONTEST_LADY_MON
 	end
 
+@ VAR_0x800B is the Nurse's object event id
 LilycoveCity_PokemonCenter_1F_EventScript_Nurse:: @ 821C5E8
-	setvar VAR_0x800B, LOCALID_NURSE
+	setvar VAR_0x800B, 1
 	call Common_EventScript_PkmnCenterNurse
 	waitmessage
 	waitbuttonpress

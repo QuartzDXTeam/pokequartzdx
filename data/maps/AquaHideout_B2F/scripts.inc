@@ -1,6 +1,3 @@
-.set LOCALID_MATT, 1
-.set LOCALID_SUBMARINE, 4
-
 AquaHideout_B2F_MapScripts:: @ 8233DCF
 	map_script MAP_SCRIPT_ON_TRANSITION, AquaHideout_B2F_OnTransition
 	.byte 0
@@ -15,7 +12,7 @@ AquaHideout_B2F_EventScript_PreventMattNoticing:: @ 8233DDF
 
 AquaHideout_B2F_EventScript_MattNoticePlayer:: @ 8233DE5
 	lockall
-	setvar VAR_0x8008, LOCALID_MATT
+	setvar VAR_0x8008, 1  @ Matt object event id
 	playse SE_PIN
 	applymovement VAR_0x8008, Common_Movement_ExclamationMark
 	waitmovement 0
@@ -32,8 +29,8 @@ AquaHideout_B2F_EventScript_Matt:: @ 8233E09
 	end
 
 AquaHideout_B2F_EventScript_SubmarineEscape:: @ 8233E25
-	setvar VAR_0x8008, LOCALID_MATT
-	setvar VAR_0x8009, LOCALID_SUBMARINE
+	setvar VAR_0x8008, 1  @ Matt object event id
+	setvar VAR_0x8009, 4  @ Submarine object event id
 	applymovement VAR_0x8008, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	delay 20

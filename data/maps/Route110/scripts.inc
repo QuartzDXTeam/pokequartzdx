@@ -1,8 +1,3 @@
-.set LOCALID_CHALLENGE_BIKER, 21
-.set LOCALID_RIVAL, 28
-.set LOCALID_RIVAL_ON_BIKE, 29
-.set LOCALID_BIRCH, 36
-
 Route110_MapScripts:: @ 81EF269
 	map_script MAP_SCRIPT_ON_RESUME, Route110_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, Route110_OnTransition
@@ -312,7 +307,7 @@ Route110_EventScript_Alyssa:: @ 81EF64A
 
 Route110_EventScript_CyclingChallengeEnd:: @ 81EF661
 	lockall
-	applymovement LOCALID_CHALLENGE_BIKER, Common_Movement_WalkInPlaceFastestRight
+	applymovement 21, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	call Route110_EventScript_CyclingChallengeResults
 	releaseall
@@ -387,17 +382,12 @@ Route110_EventScript_RivalScene:: @ 81EF76E
 	compare VAR_RESULT, MALE
 	call_if_eq Route110_EventScript_PlayMayMusic
 	compare VAR_RESULT, FEMALE
-<<<<<<< HEAD
 	call_if_eq Route110_EventScript_PlayAkiraMusic
 	applymovement 28, Common_Movement_WalkInPlaceFastestDown
-=======
-	call_if_eq Route110_EventScript_PlayBrendanMusic
-	applymovement LOCALID_RIVAL, Common_Movement_WalkInPlaceFastestDown
->>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
 	waitmovement 0
-	applymovement LOCALID_RIVAL, Common_Movement_ExclamationMark
+	applymovement 28, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_RIVAL, Common_Movement_Delay48
+	applymovement 28, Common_Movement_Delay48
 	waitmovement 0
 	delay 30
 	compare VAR_0x8008, 1
@@ -415,16 +405,11 @@ Route110_EventScript_RivalScene:: @ 81EF76E
 	end
 
 Route110_EventScript_PlayMayMusic:: @ 81EF7E1
-	playbgm MUS_ENCOUNTER_MAY, 1
+	playbgm MUS_GIRL_SUP, 1
 	return
 
-<<<<<<< HEAD
 Route110_EventScript_PlayAkiraMusic:: @ 81EF7E6
 	playbgm MUS_BOY_SUP, 1
-=======
-Route110_EventScript_PlayBrendanMusic:: @ 81EF7E6
-	playbgm MUS_ENCOUNTER_BRENDAN, 1
->>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
 	return
 
 Route110_EventScript_MayBattle:: @ 81EF7EB
@@ -457,13 +442,8 @@ Route110_EventScript_MayDefeated:: @ 81EF84A
 	goto Route110_EventScript_RivalExit
 	end
 
-<<<<<<< HEAD
 Route110_EventScript_AkiraBattle:: @ 81EF865
 	msgbox Route110_Text_BrendayLetsBattle, MSGBOX_DEFAULT
-=======
-Route110_EventScript_BrendanBattle:: @ 81EF865
-	msgbox Route110_Text_BrendanLetsBattle, MSGBOX_DEFAULT
->>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
 	switch VAR_STARTER_MON
 	case 0, Route110_EventScript_AkiraBattleTreecko
 	case 1, Route110_EventScript_AkiraBattleTorchic
@@ -504,10 +484,10 @@ Route110_EventScript_RivalExit:: @ 81EF8EC
 	call_if_eq Route110_EventScript_MoveRival2
 	compare VAR_0x8008, 3
 	call_if_eq Route110_EventScript_MoveRival3
-	setobjectmovementtype LOCALID_RIVAL, MOVEMENT_TYPE_FACE_RIGHT
-	setobjectmovementtype LOCALID_RIVAL_ON_BIKE, MOVEMENT_TYPE_FACE_RIGHT
-	removeobject LOCALID_RIVAL
-	addobject LOCALID_RIVAL_ON_BIKE
+	setobjectmovementtype 28, MOVEMENT_TYPE_FACE_RIGHT
+	setobjectmovementtype 29, MOVEMENT_TYPE_FACE_RIGHT
+	removeobject 28
+	addobject 29
 	delay 45
 	compare VAR_0x8008, 1
 	call_if_eq Route110_EventScript_RivalExit1
@@ -515,7 +495,7 @@ Route110_EventScript_RivalExit:: @ 81EF8EC
 	call_if_eq Route110_EventScript_RivalExit2
 	compare VAR_0x8008, 3
 	call_if_eq Route110_EventScript_RivalExit3
-	removeobject LOCALID_RIVAL_ON_BIKE
+	removeobject 29
 	setvar VAR_ROUTE110_STATE, 1
 	savebgm MUS_DUMMY
 	fadedefaultbgm
@@ -523,45 +503,45 @@ Route110_EventScript_RivalExit:: @ 81EF8EC
 	end
 
 Route110_EventScript_RivalApproachPlayer1:: @ 81EF94E
-	applymovement LOCALID_RIVAL, Route110_Movement_RivalApproachPlayer1
+	applymovement 28, Route110_Movement_RivalApproachPlayer1
 	waitmovement 0
 	return
 
 Route110_EventScript_RivalApproachPlayer2:: @ 81EF959
-	applymovement LOCALID_RIVAL, Route110_Movement_RivalApproachPlayer2
+	applymovement 28, Route110_Movement_RivalApproachPlayer2
 	waitmovement 0
 	return
 
 Route110_EventScript_RivalApproachPlayer3:: @ 81EF964
-	applymovement LOCALID_RIVAL, Route110_Movement_RivalApproachPlayer3
+	applymovement 28, Route110_Movement_RivalApproachPlayer3
 	waitmovement 0
 	return
 
 Route110_EventScript_RivalExit1:: @ 81EF96F
-	applymovement LOCALID_RIVAL_ON_BIKE, Route110_Movement_RivalExit1
+	applymovement 29, Route110_Movement_RivalExit1
 	waitmovement 0
 	return
 
 Route110_EventScript_RivalExit2:: @ 81EF97A
-	applymovement LOCALID_RIVAL_ON_BIKE, Route110_Movement_RivalExit2
+	applymovement 29, Route110_Movement_RivalExit2
 	waitmovement 0
 	return
 
 Route110_EventScript_RivalExit3:: @ 81EF985
-	applymovement LOCALID_RIVAL_ON_BIKE, Route110_Movement_RivalExit3
+	applymovement 29, Route110_Movement_RivalExit3
 	waitmovement 0
 	return
 
 Route110_EventScript_MoveRival1:: @ 81EF990
-	setobjectxyperm LOCALID_RIVAL_ON_BIKE, 33, 55
+	setobjectxyperm 29, 33, 55
 	return
 
 Route110_EventScript_MoveRival2:: @ 81EF998
-	setobjectxyperm LOCALID_RIVAL_ON_BIKE, 34, 55
+	setobjectxyperm 29, 34, 55
 	return
 
 Route110_EventScript_MoveRival3:: @ 81EF9A0
-	setobjectxyperm LOCALID_RIVAL_ON_BIKE, 35, 55
+	setobjectxyperm 29, 35, 55
 	return
 
 Route110_Movement_RivalApproachPlayer1: @ 81EF9A8
@@ -632,13 +612,13 @@ Route110_EventScript_BirchScene4:: @ 81EF9EC
 	goto Route110_EventScript_BirchScene
 
 Route110_EventScript_BirchScene:: @ 81EF9F7
-	addobject LOCALID_BIRCH
-	applymovement LOCALID_BIRCH, Route110_Movement_BirchEntrance
+	addobject 36
+	applymovement 36, Route110_Movement_BirchEntrance
 	waitmovement 0
 	playse SE_PIN
-	applymovement LOCALID_BIRCH, Common_Movement_ExclamationMark
+	applymovement 36, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_BIRCH, Common_Movement_Delay48
+	applymovement 36, Common_Movement_Delay48
 	waitmovement 0
 	compare VAR_0x8008, 1
 	call_if_eq Route110_EventScript_BirchApproachPlayer1
@@ -651,19 +631,19 @@ Route110_EventScript_BirchScene:: @ 81EF9F7
 	msgbox Route110_Text_ImagineSeeingYouHere, MSGBOX_DEFAULT
 	closemessage
 	delay 20
-	applymovement LOCALID_BIRCH, Common_Movement_WalkInPlaceFastestLeft
+	applymovement 36, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	delay 10
-	applymovement LOCALID_BIRCH, Common_Movement_WalkInPlaceFastestRight
+	applymovement 36, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	delay 20
-	applymovement LOCALID_BIRCH, Common_Movement_WalkInPlaceFastestDown
+	applymovement 36, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	delay 30
 	msgbox Route110_Text_HeardYouInstallMatchCall, MSGBOX_DEFAULT
 	closemessage
 	delay 30
-	playfanfare MUS_REGISTER_MATCH_CALL
+	playfanfare MUS_ME_TORE_EYE
 	msgbox Route110_Text_RegisteredBirchInPokenav, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
@@ -679,48 +659,48 @@ Route110_EventScript_BirchScene:: @ 81EF9F7
 	call_if_eq Route110_EventScript_BirchExit3
 	compare VAR_0x8008, 4
 	call_if_eq Route110_EventScript_BirchExit4
-	removeobject LOCALID_BIRCH
+	removeobject 36
 	setvar VAR_REGISTER_BIRCH_STATE, 2
 	releaseall
 	end
 
 Route110_EventScript_BirchApproachPlayer1:: @ 81EFAD8
-	applymovement LOCALID_BIRCH, Route110_Movement_BirchApproachPlayer1
+	applymovement 36, Route110_Movement_BirchApproachPlayer1
 	waitmovement 0
 	return
 
 Route110_EventScript_BirchApproachPlayer2:: @ 81EFAE3
-	applymovement LOCALID_BIRCH, Route110_Movement_BirchApproachPlayer2
+	applymovement 36, Route110_Movement_BirchApproachPlayer2
 	waitmovement 0
 	return
 
 Route110_EventScript_BirchApproachPlayer3:: @ 81EFAEE
-	applymovement LOCALID_BIRCH, Route110_Movement_BirchApproachPlayer3
+	applymovement 36, Route110_Movement_BirchApproachPlayer3
 	waitmovement 0
 	return
 
 Route110_EventScript_BirchApproachPlayer4:: @ 81EFAF9
-	applymovement LOCALID_BIRCH, Route110_Movement_BirchApproachPlayer4
+	applymovement 36, Route110_Movement_BirchApproachPlayer4
 	waitmovement 0
 	return
 
 Route110_EventScript_BirchExit1:: @ 81EFB04
-	applymovement LOCALID_BIRCH, Route110_Movement_BirchExit1
+	applymovement 36, Route110_Movement_BirchExit1
 	waitmovement 0
 	return
 
 Route110_EventScript_BirchExit2:: @ 81EFB0F
-	applymovement LOCALID_BIRCH, Route110_Movement_BirchExit2
+	applymovement 36, Route110_Movement_BirchExit2
 	waitmovement 0
 	return
 
 Route110_EventScript_BirchExit3:: @ 81EFB1A
-	applymovement LOCALID_BIRCH, Route110_Movement_BirchExit3
+	applymovement 36, Route110_Movement_BirchExit3
 	waitmovement 0
 	return
 
 Route110_EventScript_BirchExit4:: @ 81EFB25
-	applymovement LOCALID_BIRCH, Route110_Movement_BirchExit4
+	applymovement 36, Route110_Movement_BirchExit4
 	waitmovement 0
 	return
 
@@ -829,13 +809,8 @@ Route110_Text_MayExplainItemfinder: @ 81EFD58
 	.string "me, but I think you should train a lot\l"
 	.string "harder for the next time.$"
 
-<<<<<<< HEAD
 Route110_Text_BrendayLetsBattle: @ 81EFE3F
 	.string "AKIRA: Hey, {PLAYER}.\n"
-=======
-Route110_Text_BrendanLetsBattle: @ 81EFE3F
-	.string "BRENDAN: Hey, {PLAYER}.\n"
->>>>>>> 24e02085d77a71834cead3886b4ae2fbfbb72b6f
 	.string "So this is where you were.\l"
 	.string "How's it going?\p"
 	.string "Have you been raising your POKéMON?\n"

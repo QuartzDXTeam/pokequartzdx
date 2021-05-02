@@ -1,11 +1,3 @@
-.set LOCALID_ARCHIE, 2
-.set LOCALID_OLD_LADY, 3
-.set LOCALID_GRUNT_1, 4
-.set LOCALID_GRUNT_2, 5
-.set LOCALID_GRUNT_3, 6
-.set LOCALID_GRUNT_4, 7
-.set LOCALID_MAXIE, 8
-
 MtPyre_Summit_MapScripts:: @ 8231FF7
 	map_script MAP_SCRIPT_ON_TRANSITION, MtPyre_Summit_OnTransition
 	.byte 0
@@ -16,8 +8,8 @@ MtPyre_Summit_OnTransition: @ 8231FFD
 	end
 
 MtPyre_Summit_EventScript_SetArchieMaxiePositions:: @ 8232009
-	setobjectxyperm LOCALID_MAXIE, 23, 6
-	setobjectxyperm LOCALID_ARCHIE, 22, 6
+	setobjectxyperm 8, 23, 6
+	setobjectxyperm 2, 22, 6
 	end
 
 MtPyre_Summit_EventScript_TeamAquaTrigger0:: @ 8232018
@@ -39,10 +31,10 @@ MtPyre_Summit_EventScript_TeamAquaTrigger2:: @ 8232030
 	end
 
 MtPyre_Summit_EventScript_TeamAquaExits:: @ 823203C
-	playbgm MUS_ENCOUNTER_AQUA, 0
+	playbgm MUS_AQA_0, 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
 	waitmovement 0
-	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestDown
+	applymovement 2, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
 	delay 50
 	compare VAR_0x8008, 0
@@ -54,11 +46,11 @@ MtPyre_Summit_EventScript_TeamAquaExits:: @ 823203C
 	msgbox MtPyre_Summit_Text_ArchieWeGotTheOrbLetsGo, MSGBOX_DEFAULT
 	closemessage
 	fadescreen FADE_TO_BLACK
-	removeobject LOCALID_ARCHIE
-	removeobject LOCALID_GRUNT_1
-	removeobject LOCALID_GRUNT_2
-	removeobject LOCALID_GRUNT_3
-	removeobject LOCALID_GRUNT_4
+	removeobject 2
+	removeobject 4
+	removeobject 5
+	removeobject 6
+	removeobject 7
 	setflag FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE
 	setflag FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA
 	fadedefaultbgm
@@ -79,7 +71,7 @@ MtPyre_Summit_EventScript_TeamAquaExits:: @ 823203C
 	end
 
 MtPyre_Summit_EventScript_ArchieFacePlayer0:: @ 82320E0
-	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieFacePlayer0
+	applymovement 2, MtPyre_Summit_Movement_ArchieFacePlayer0
 	waitmovement 0
 	return
 
@@ -88,24 +80,24 @@ MtPyre_Summit_EventScript_ArchieFacePlayer1:: @ 82320EB
 	return
 
 MtPyre_Summit_EventScript_ArchieFacePlayer2:: @ 82320EC
-	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieFacePlayer2
+	applymovement 2, MtPyre_Summit_Movement_ArchieFacePlayer2
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_OldLadyApproachPlayer0:: @ 82320F7
-	applymovement LOCALID_OLD_LADY, MtPyre_Summit_Movement_OldLadyApproachPlayer0
+	applymovement 3, MtPyre_Summit_Movement_OldLadyApproachPlayer0
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_OldLadyApproachPlayer1:: @ 823210C
-	applymovement LOCALID_OLD_LADY, MtPyre_Summit_Movement_OldLadyApproachPlayer1
+	applymovement 3, MtPyre_Summit_Movement_OldLadyApproachPlayer1
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_OldLadyApproachPlayer2:: @ 8232117
-	applymovement LOCALID_OLD_LADY, MtPyre_Summit_Movement_OldLadyApproachPlayer2
+	applymovement 3, MtPyre_Summit_Movement_OldLadyApproachPlayer2
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
@@ -226,9 +218,9 @@ MtPyre_Summit_EventScript_ArchieMaxieReturnOrbs:: @ 8232210
 	compare VAR_0x8008, 2
 	call_if_eq MtPyre_Summit_EventScript_ArchieMaxieBeginExit2
 	playse SE_PIN
-	applymovement LOCALID_MAXIE, Common_Movement_ExclamationMark
+	applymovement 8, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_MAXIE, Common_Movement_Delay48
+	applymovement 8, Common_Movement_Delay48
 	waitmovement 0
 	delay 30
 	compare VAR_0x8008, 0
@@ -246,78 +238,78 @@ MtPyre_Summit_EventScript_ArchieMaxieReturnOrbs:: @ 8232210
 	compare VAR_0x8008, 2
 	call_if_eq MtPyre_Summit_EventScript_MaxieApproachArchie2
 	delay 30
-	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieExit
-	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieExit
+	applymovement 2, MtPyre_Summit_Movement_MaxieExit
+	applymovement 8, MtPyre_Summit_Movement_ArchieExit
 	waitmovement 0
-	removeobject LOCALID_ARCHIE
-	removeobject LOCALID_MAXIE
+	removeobject 2
+	removeobject 8
 	setvar VAR_MT_PYRE_STATE, 3
 	releaseall
 	end
 
 MtPyre_Summit_EventScript_ArchieMaxieBeginExit0:: @ 82322C4
 	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit0
-	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieExit
-	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieExit
+	applymovement 2, MtPyre_Summit_Movement_MaxieExit
+	applymovement 8, MtPyre_Summit_Movement_ArchieExit
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_ArchieMaxieBeginExit1:: @ 82322DD
 	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit1
-	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieExit
-	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieExit
+	applymovement 2, MtPyre_Summit_Movement_MaxieExit
+	applymovement 8, MtPyre_Summit_Movement_ArchieExit
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_ArchieMaxieBeginExit2:: @ 82322F6
 	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerWatchArchieMaxieExit2
-	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieExit
-	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieExit
+	applymovement 2, MtPyre_Summit_Movement_MaxieExit
+	applymovement 8, MtPyre_Summit_Movement_ArchieExit
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_MaxieApproachPlayer0:: @ 823230F
 	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerFaceMaxie0
-	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieWatchMaxie
-	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieApproachPlayer0
+	applymovement 2, MtPyre_Summit_Movement_ArchieWatchMaxie
+	applymovement 8, MtPyre_Summit_Movement_MaxieApproachPlayer0
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_MaxieApproachPlayer1:: @ 8232328
 	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerFaceMaxie
-	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieWatchMaxie
-	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieApproachPlayer1
+	applymovement 2, MtPyre_Summit_Movement_ArchieWatchMaxie
+	applymovement 8, MtPyre_Summit_Movement_MaxieApproachPlayer1
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_MaxieApproachPlayer2:: @ 8232341
 	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerFaceMaxie
-	applymovement LOCALID_ARCHIE, MtPyre_Summit_Movement_ArchieWatchMaxie
-	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieApproachPlayer2
+	applymovement 2, MtPyre_Summit_Movement_ArchieWatchMaxie
+	applymovement 8, MtPyre_Summit_Movement_MaxieApproachPlayer2
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_MaxieApproachArchie0:: @ 823235A
 	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerWatchMaxie
-	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieApproachArchie0
+	applymovement 8, MtPyre_Summit_Movement_MaxieApproachArchie0
 	waitmovement 0
-	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestRight
+	applymovement 2, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_MaxieApproachArchie1:: @ 8232376
 	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerWatchMaxie
-	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieApproachArchie1
+	applymovement 8, MtPyre_Summit_Movement_MaxieApproachArchie1
 	waitmovement 0
-	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestRight
+	applymovement 2, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	return
 
 MtPyre_Summit_EventScript_MaxieApproachArchie2:: @ 8232392
 	applymovement OBJ_EVENT_ID_PLAYER, MtPyre_Summit_Movement_PlayerWatchMaxie
-	applymovement LOCALID_MAXIE, MtPyre_Summit_Movement_MaxieApproachArchie2
+	applymovement 8, MtPyre_Summit_Movement_MaxieApproachArchie2
 	waitmovement 0
-	applymovement LOCALID_ARCHIE, Common_Movement_WalkInPlaceFastestRight
+	applymovement 2, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	return
 
@@ -333,7 +325,7 @@ MtPyre_Summit_Movement_PlayerFaceMaxie: @ 82323B2
 	walk_in_place_fastest_left
 	step_end
 
-MtPyre_Summit_Movement_ArchieExit: @ 82323B6
+MtPyre_Summit_Movement_MaxieExit: @ 82323B6
 	walk_down
 	walk_down
 	walk_down
@@ -342,7 +334,7 @@ MtPyre_Summit_Movement_ArchieExit: @ 82323B6
 	walk_down
 	step_end
 
-MtPyre_Summit_Movement_MaxieExit: @ 82323BD
+MtPyre_Summit_Movement_ArchieExit: @ 82323BD
 	walk_down
 	walk_down
 	walk_down

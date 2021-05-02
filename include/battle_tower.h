@@ -43,9 +43,7 @@ extern const struct BattleFrontierTrainer gBattleFrontierTrainers[];
 extern const struct FacilityMon gSlateportBattleTentMons[];
 extern const struct BattleFrontierTrainer gSlateportBattleTentTrainers[];
 
-// Temporary storage for monIds of the opponent team
-// during team generation in battle factory and similar facilities.
-extern u16 gFrontierTempParty[];
+extern u16 gUnknown_03006298[];
 
 extern const struct BattleFrontierTrainer *gFacilityTrainers;
 extern const struct FacilityMon *gFacilityTrainerMons;
@@ -83,6 +81,6 @@ u8 GetFrontierEnemyMonLevel(u8 lvlMode);
 s32 GetHighestLevelInPlayerParty(void);
 u8 FacilityClassToGraphicsId(u8 facilityClass);
 bool32 ValidateBattleTowerRecord(u8 recordId); // unused
-void TrySetLinkBattleTowerEnemyPartyLevel(void);
+void sub_8166188(void);
 
 #endif //GUARD_BATTLE_TOWER_H

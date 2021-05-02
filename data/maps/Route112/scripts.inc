@@ -1,6 +1,3 @@
-.set LOCALID_GRUNT_1, 1
-.set LOCALID_GRUNT_2, 6
-
 Route112_MapScripts:: @ 81F1DA8
 	map_script MAP_SCRIPT_ON_TRANSITION, Route112_OnTransition
 	.byte 0
@@ -13,36 +10,36 @@ Route112_OnTransition: @ 81F1DAE
 Route112_EventScript_MagmaGrunts:: @ 81F1DB7
 	lockall
 	delay 40
-	applymovement LOCALID_GRUNT_1, Common_Movement_WalkInPlaceFastestRight
+	applymovement 1, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	delay 20
 	msgbox Route112_Text_LeaderGoingToAwakenThing, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_GRUNT_1, Common_Movement_FaceOriginalDirection
+	applymovement 1, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	delay 40
-	applymovement LOCALID_GRUNT_2, Common_Movement_WalkInPlaceFastestLeft
+	applymovement 6, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	delay 20
 	msgbox Route112_Text_YeahWeNeedMeteorite, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_GRUNT_2, Common_Movement_FaceOriginalDirection
+	applymovement 6, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	delay 40
-	applymovement LOCALID_GRUNT_1, Common_Movement_WalkInPlaceFastestRight
+	applymovement 1, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	delay 20
 	msgbox Route112_Text_OhThatsWhyCrewWentToFallarbor, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_GRUNT_1, Common_Movement_FaceOriginalDirection
+	applymovement 1, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	delay 40
-	applymovement LOCALID_GRUNT_2, Common_Movement_WalkInPlaceFastestLeft
+	applymovement 6, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	delay 20
 	msgbox Route112_Text_CantLetAnyonePassUntilTheyreBack, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_GRUNT_2, Common_Movement_FaceOriginalDirection
+	applymovement 6, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	releaseall
 	end

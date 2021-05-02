@@ -1,9 +1,3 @@
-.set LOCALID_MECHADOLL_1, 1
-.set LOCALID_MECHADOLL_2, 2
-.set LOCALID_MECHADOLL_3, 3
-.set LOCALID_MECHADOLL_4, 4
-.set LOCALID_MECHADOLL_5, 5
-
 Route110_TrickHousePuzzle5_MapScripts:: @ 826CAF0
 	map_script MAP_SCRIPT_ON_TRANSITION, Route110_TrickHousePuzzle5_OnTransition
 	.byte 0
@@ -31,7 +25,7 @@ Route110_TrickHousePuzzle5_EventScript_FoundScroll:: @ 826CB27
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1:: @ 826CB32
 	lockall
-	applymovement LOCALID_MECHADOLL_1, Common_Movement_FacePlayer
+	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
 	compare VAR_TEMP_1, 1
 	goto_if_eq Route110_TrickHousePuzzle5_EventScript_CorrectGoThrough
@@ -41,7 +35,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll1:: @ 826CB32
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2:: @ 826CB53
 	lockall
-	applymovement LOCALID_MECHADOLL_2, Common_Movement_FacePlayer
+	applymovement 2, Common_Movement_FacePlayer
 	waitmovement 0
 	compare VAR_TEMP_2, 1
 	goto_if_eq Route110_TrickHousePuzzle5_EventScript_CorrectGoThrough
@@ -51,7 +45,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll2:: @ 826CB53
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3:: @ 826CB74
 	lockall
-	applymovement LOCALID_MECHADOLL_3, Common_Movement_FacePlayer
+	applymovement 3, Common_Movement_FacePlayer
 	waitmovement 0
 	compare VAR_TEMP_3, 1
 	goto_if_eq Route110_TrickHousePuzzle5_EventScript_CorrectGoThrough
@@ -61,7 +55,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll3:: @ 826CB74
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4:: @ 826CB95
 	lockall
-	applymovement LOCALID_MECHADOLL_4, Common_Movement_FacePlayer
+	applymovement 4, Common_Movement_FacePlayer
 	waitmovement 0
 	compare VAR_TEMP_4, 1
 	goto_if_eq Route110_TrickHousePuzzle5_EventScript_CorrectGoThrough
@@ -71,7 +65,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll4:: @ 826CB95
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5:: @ 826CBB6
 	lockall
-	applymovement LOCALID_MECHADOLL_5, Common_Movement_FacePlayer
+	applymovement 5, Common_Movement_FacePlayer
 	waitmovement 0
 	compare VAR_TEMP_5, 1
 	goto_if_eq Route110_TrickHousePuzzle5_EventScript_CorrectGoThrough
@@ -220,11 +214,11 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll5Trigger0:: @ 826CCDF
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1Activate:: @ 826CCEB
 	setvar VAR_TEMP_1, 1
-	setvar VAR_TEMP_8, LOCALID_MECHADOLL_1
+	setvar VAR_TEMP_8, 1
 	playse SE_PIN
-	applymovement LOCALID_MECHADOLL_1, Common_Movement_ExclamationMark
+	applymovement 1, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_MECHADOLL_1, Common_Movement_Delay48
+	applymovement 1, Common_Movement_Delay48
 	waitmovement 0
 	compare VAR_TEMP_9, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_MechadollWalkLeft1
@@ -244,11 +238,11 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll1Activate:: @ 826CCEB
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2Activate:: @ 826CD6A
 	setvar VAR_TEMP_2, 1
-	setvar VAR_TEMP_8, LOCALID_MECHADOLL_2
+	setvar VAR_TEMP_8, 2
 	playse SE_PIN
-	applymovement LOCALID_MECHADOLL_2, Common_Movement_ExclamationMark
+	applymovement 2, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_MECHADOLL_2, Common_Movement_Delay48
+	applymovement 2, Common_Movement_Delay48
 	waitmovement 0
 	compare VAR_TEMP_9, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_MechadollWalkRight1
@@ -270,11 +264,11 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll2Activate:: @ 826CD6A
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3Activate:: @ 826CDF4
 	setvar VAR_TEMP_3, 1
-	setvar VAR_TEMP_8, LOCALID_MECHADOLL_3
+	setvar VAR_TEMP_8, 3
 	playse SE_PIN
-	applymovement LOCALID_MECHADOLL_3, Common_Movement_ExclamationMark
+	applymovement 3, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_MECHADOLL_3, Common_Movement_Delay48
+	applymovement 3, Common_Movement_Delay48
 	waitmovement 0
 	compare VAR_TEMP_9, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_MechadollWalkLeft1
@@ -294,11 +288,11 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll3Activate:: @ 826CDF4
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4Activate:: @ 826CE73
 	setvar VAR_TEMP_4, 1
-	setvar VAR_TEMP_8, LOCALID_MECHADOLL_4
+	setvar VAR_TEMP_8, 4
 	playse SE_PIN
-	applymovement LOCALID_MECHADOLL_4, Common_Movement_ExclamationMark
+	applymovement 4, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_MECHADOLL_4, Common_Movement_Delay48
+	applymovement 4, Common_Movement_Delay48
 	waitmovement 0
 	compare VAR_TEMP_9, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_MechadollWalkLeft1
@@ -318,11 +312,11 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll4Activate:: @ 826CE73
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5Activate:: @ 826CEF2
 	setvar VAR_TEMP_5, 1
-	setvar VAR_TEMP_8, LOCALID_MECHADOLL_5
+	setvar VAR_TEMP_8, 5
 	playse SE_PIN
-	applymovement LOCALID_MECHADOLL_5, Common_Movement_ExclamationMark
+	applymovement 5, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_MECHADOLL_5, Common_Movement_Delay48
+	applymovement 5, Common_Movement_Delay48
 	waitmovement 0
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll5Intro, MSGBOX_DEFAULT
 	random 3
@@ -334,7 +328,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll5Activate:: @ 826CEF2
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1Quiz1:: @ 826CF45
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll1Quiz1, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL1_Q1, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL1_Q1, 1
 	switch VAR_RESULT
 	case 2, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -342,7 +336,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll1Quiz1:: @ 826CF45
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1Quiz2:: @ 826CF68
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll1Quiz2, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL1_Q2, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL1_Q2, 1
 	switch VAR_RESULT
 	case 0, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -350,7 +344,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll1Quiz2:: @ 826CF68
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1Quiz3:: @ 826CF8B
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll1Quiz3, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL1_Q3, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL1_Q3, 1
 	switch VAR_RESULT
 	case 0, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -358,7 +352,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll1Quiz3:: @ 826CF8B
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2Quiz1:: @ 826CFAE
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll2Quiz1, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL2_Q1, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL2_Q1, 1
 	switch VAR_RESULT
 	case 1, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -366,7 +360,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll2Quiz1:: @ 826CFAE
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2Quiz2:: @ 826CFD1
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll2Quiz2, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL2_Q2, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL2_Q2, 1
 	switch VAR_RESULT
 	case 2, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -374,7 +368,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll2Quiz2:: @ 826CFD1
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2Quiz3:: @ 826CFF4
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll2Quiz3, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL2_Q3, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL2_Q3, 1
 	switch VAR_RESULT
 	case 0, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -382,7 +376,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll2Quiz3:: @ 826CFF4
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3Quiz1:: @ 826D017
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll3Quiz1, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL3_Q1, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL3_Q1, 1
 	switch VAR_RESULT
 	case 0, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -390,7 +384,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll3Quiz1:: @ 826D017
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3Quiz2:: @ 826D03A
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll3Quiz2, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL3_Q2, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL3_Q2, 1
 	switch VAR_RESULT
 	case 2, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -398,7 +392,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll3Quiz2:: @ 826D03A
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3Quiz3:: @ 826D05D
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll3Quiz3, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL3_Q3, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL3_Q3, 1
 	switch VAR_RESULT
 	case 1, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -406,7 +400,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll3Quiz3:: @ 826D05D
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4Quiz1:: @ 826D080
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll4Quiz1, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL4_Q1, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL4_Q1, 1
 	switch VAR_RESULT
 	case 0, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -414,7 +408,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll4Quiz1:: @ 826D080
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4Quiz2:: @ 826D0A3
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll4Quiz2, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL4_Q2, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL4_Q2, 1
 	switch VAR_RESULT
 	case 0, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -422,7 +416,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll4Quiz2:: @ 826D0A3
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4Quiz3:: @ 826D0C6
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll4Quiz3, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL4_Q3, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL4_Q3, 1
 	switch VAR_RESULT
 	case 1, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -430,7 +424,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll4Quiz3:: @ 826D0C6
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5Quiz1:: @ 826D0E9
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll5Quiz1, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL5_Q1, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL5_Q1, 1
 	switch VAR_RESULT
 	case 1, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -438,7 +432,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll5Quiz1:: @ 826D0E9
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5Quiz2:: @ 826D10C
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll5Quiz2, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL5_Q2, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL5_Q2, 1
 	switch VAR_RESULT
 	case 0, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -446,7 +440,7 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll5Quiz2:: @ 826D10C
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5Quiz3:: @ 826D12F
 	msgbox Route110_TrickHousePuzzle5_Text_Mechadoll5Quiz3, MSGBOX_DEFAULT
-	multichoice 0, 0, MULTI_MECHADOLL5_Q3, TRUE
+	multichoice 0, 0, MULTI_MECHADOLL5_Q3, 1
 	switch VAR_RESULT
 	case 2, Route110_TrickHousePuzzle5_EventScript_CorrectAnswer
 	goto Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer
@@ -454,13 +448,13 @@ Route110_TrickHousePuzzle5_EventScript_Mechadoll5Quiz3:: @ 826D12F
 
 Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer:: @ 826D152
 	waitse
-	playse SE_FAILURE
+	playse SE_HAZURE
 	msgbox Route110_TrickHousePuzzle5_Text_DisappointmentError, MSGBOX_DEFAULT
-	applymovement LOCALID_MECHADOLL_1, Route110_TrickHousePuzzle5_Movement_MechadollShake
-	applymovement LOCALID_MECHADOLL_2, Route110_TrickHousePuzzle5_Movement_MechadollShake
-	applymovement LOCALID_MECHADOLL_3, Route110_TrickHousePuzzle5_Movement_MechadollShake
-	applymovement LOCALID_MECHADOLL_4, Route110_TrickHousePuzzle5_Movement_MechadollShake
-	applymovement LOCALID_MECHADOLL_5, Route110_TrickHousePuzzle5_Movement_MechadollShake
+	applymovement 1, Route110_TrickHousePuzzle5_Movement_MechadollShake
+	applymovement 2, Route110_TrickHousePuzzle5_Movement_MechadollShake
+	applymovement 3, Route110_TrickHousePuzzle5_Movement_MechadollShake
+	applymovement 4, Route110_TrickHousePuzzle5_Movement_MechadollShake
+	applymovement 5, Route110_TrickHousePuzzle5_Movement_MechadollShake
 	msgbox Route110_TrickHousePuzzle5_Text_Wahahahaha, MSGBOX_DEFAULT
 	waitmovement 0
 	msgbox Route110_TrickHousePuzzle5_Text_WaitForNextChallenge, MSGBOX_DEFAULT
@@ -472,7 +466,7 @@ Route110_TrickHousePuzzle5_EventScript_IncorrectAnswer:: @ 826D152
 
 Route110_TrickHousePuzzle5_EventScript_CorrectAnswer:: @ 826D1A0
 	waitse
-	playse SE_SUCCESS
+	playse SE_SEIKAI
 	goto Route110_TrickHousePuzzle5_EventScript_CorrectGoThrough
 	end
 
@@ -487,382 +481,382 @@ Route110_TrickHousePuzzle5_EventScript_CorrectGoThrough:: @ 826D1AA
 @   Mechadoll 5 never walks, all the Mechadoll5Walk scripts are unused
 @   No mechadoll walks left 5 paces, all the WalkLeft5 scripts are unused
 Route110_TrickHousePuzzle5_EventScript_MechadollWalkLeft1:: @ 826D1B4
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_1
+	compare VAR_TEMP_8, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkLeft1
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_2
+	compare VAR_TEMP_8, 2
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkLeft1
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_3
+	compare VAR_TEMP_8, 3
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkLeft1
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_4
+	compare VAR_TEMP_8, 4
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkLeft1
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_5
+	compare VAR_TEMP_8, 5
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkLeft1
 	return
 
 Route110_TrickHousePuzzle5_EventScript_MechadollWalkLeft2:: @ 826D1EC
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_1
+	compare VAR_TEMP_8, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkLeft2
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_2
+	compare VAR_TEMP_8, 2
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkLeft2
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_3
+	compare VAR_TEMP_8, 3
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkLeft2
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_4
+	compare VAR_TEMP_8, 4
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkLeft2
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_5
+	compare VAR_TEMP_8, 5
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkLeft2
 	return
 
 Route110_TrickHousePuzzle5_EventScript_MechadollWalkLeft3:: @ 826D224
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_1
+	compare VAR_TEMP_8, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkLeft3
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_2
+	compare VAR_TEMP_8, 2
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkLeft3
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_3
+	compare VAR_TEMP_8, 3
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkLeft3
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_4
+	compare VAR_TEMP_8, 4
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkLeft3
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_5
+	compare VAR_TEMP_8, 5
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkLeft3
 	return
 
 Route110_TrickHousePuzzle5_EventScript_MechadollWalkLeft4:: @ 826D25C
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_1
+	compare VAR_TEMP_8, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkLeft4
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_2
+	compare VAR_TEMP_8, 2
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkLeft4
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_3
+	compare VAR_TEMP_8, 3
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkLeft4
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_4
+	compare VAR_TEMP_8, 4
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkLeft4
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_5
+	compare VAR_TEMP_8, 5
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkLeft4
 	return
 
 Route110_TrickHousePuzzle5_EventScript_MechadollWalkLeft5:: @ 826D294
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_1
+	compare VAR_TEMP_8, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkLeft5
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_2
+	compare VAR_TEMP_8, 2
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkLeft5
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_3
+	compare VAR_TEMP_8, 3
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkLeft5
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_4
+	compare VAR_TEMP_8, 4
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkLeft5
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_5
+	compare VAR_TEMP_8, 5
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkLeft5
 	return
 
 Route110_TrickHousePuzzle5_EventScript_MechadollWalkRight1:: @ 826D2CC
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_1
+	compare VAR_TEMP_8, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkRight1
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_2
+	compare VAR_TEMP_8, 2
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkRight1
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_3
+	compare VAR_TEMP_8, 3
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkRight1
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_4
+	compare VAR_TEMP_8, 4
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkRight1
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_5
+	compare VAR_TEMP_8, 5
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkRight1
 	return
 
 Route110_TrickHousePuzzle5_EventScript_MechadollWalkRight2:: @ 826D304
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_1
+	compare VAR_TEMP_8, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkRight2
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_2
+	compare VAR_TEMP_8, 2
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkRight2
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_3
+	compare VAR_TEMP_8, 3
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkRight2
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_4
+	compare VAR_TEMP_8, 4
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkRight2
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_5
+	compare VAR_TEMP_8, 5
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkRight2
 	return
 
 Route110_TrickHousePuzzle5_EventScript_MechadollWalkRight3:: @ 826D33C
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_1
+	compare VAR_TEMP_8, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkRight3
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_2
+	compare VAR_TEMP_8, 2
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkRight3
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_3
+	compare VAR_TEMP_8, 3
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkRight3
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_4
+	compare VAR_TEMP_8, 4
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkRight3
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_5
+	compare VAR_TEMP_8, 5
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkRight3
 	return
 
 Route110_TrickHousePuzzle5_EventScript_MechadollWalkRight4:: @ 826D374
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_1
+	compare VAR_TEMP_8, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkRight4
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_2
+	compare VAR_TEMP_8, 2
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkRight4
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_3
+	compare VAR_TEMP_8, 3
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkRight4
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_4
+	compare VAR_TEMP_8, 4
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkRight4
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_5
+	compare VAR_TEMP_8, 5
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkRight4
 	return
 
 Route110_TrickHousePuzzle5_EventScript_MechadollWalkRight5:: @ 826D3AC
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_1
+	compare VAR_TEMP_8, 1
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkRight5
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_2
+	compare VAR_TEMP_8, 2
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkRight5
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_3
+	compare VAR_TEMP_8, 3
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkRight5
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_4
+	compare VAR_TEMP_8, 4
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkRight5
-	compare VAR_TEMP_8, LOCALID_MECHADOLL_5
+	compare VAR_TEMP_8, 5
 	call_if_eq Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkRight5
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkLeft1:: @ 826D3E4
-	applymovement LOCALID_MECHADOLL_1, Route110_TrickHousePuzzle5_Movement_WalkLeft1
+	applymovement 1, Route110_TrickHousePuzzle5_Movement_WalkLeft1
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkLeft1:: @ 826D3EF
-	applymovement LOCALID_MECHADOLL_2, Route110_TrickHousePuzzle5_Movement_WalkLeft1
+	applymovement 2, Route110_TrickHousePuzzle5_Movement_WalkLeft1
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkLeft1:: @ 826D3FA
-	applymovement LOCALID_MECHADOLL_3, Route110_TrickHousePuzzle5_Movement_WalkLeft1
+	applymovement 3, Route110_TrickHousePuzzle5_Movement_WalkLeft1
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkLeft1:: @ 826D405
-	applymovement LOCALID_MECHADOLL_4, Route110_TrickHousePuzzle5_Movement_WalkLeft1
+	applymovement 4, Route110_TrickHousePuzzle5_Movement_WalkLeft1
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkLeft1:: @ 826D410
-	applymovement LOCALID_MECHADOLL_5, Route110_TrickHousePuzzle5_Movement_WalkLeft1
+	applymovement 5, Route110_TrickHousePuzzle5_Movement_WalkLeft1
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkLeft2:: @ 826D41B
-	applymovement LOCALID_MECHADOLL_1, Route110_TrickHousePuzzle5_Movement_WalkLeft2
+	applymovement 1, Route110_TrickHousePuzzle5_Movement_WalkLeft2
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkLeft2:: @ 826D426
-	applymovement LOCALID_MECHADOLL_2, Route110_TrickHousePuzzle5_Movement_WalkLeft2
+	applymovement 2, Route110_TrickHousePuzzle5_Movement_WalkLeft2
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkLeft2:: @ 826D431
-	applymovement LOCALID_MECHADOLL_3, Route110_TrickHousePuzzle5_Movement_WalkLeft2
+	applymovement 3, Route110_TrickHousePuzzle5_Movement_WalkLeft2
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkLeft2:: @ 826D43C
-	applymovement LOCALID_MECHADOLL_4, Route110_TrickHousePuzzle5_Movement_WalkLeft2
+	applymovement 4, Route110_TrickHousePuzzle5_Movement_WalkLeft2
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkLeft2:: @ 826D447
-	applymovement LOCALID_MECHADOLL_5, Route110_TrickHousePuzzle5_Movement_WalkLeft2
+	applymovement 5, Route110_TrickHousePuzzle5_Movement_WalkLeft2
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkLeft3:: @ 826D452
-	applymovement LOCALID_MECHADOLL_1, Route110_TrickHousePuzzle5_Movement_WalkLeft3
+	applymovement 1, Route110_TrickHousePuzzle5_Movement_WalkLeft3
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkLeft3:: @ 826D45D
-	applymovement LOCALID_MECHADOLL_2, Route110_TrickHousePuzzle5_Movement_WalkLeft3
+	applymovement 2, Route110_TrickHousePuzzle5_Movement_WalkLeft3
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkLeft3:: @ 826D468
-	applymovement LOCALID_MECHADOLL_3, Route110_TrickHousePuzzle5_Movement_WalkLeft3
+	applymovement 3, Route110_TrickHousePuzzle5_Movement_WalkLeft3
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkLeft3:: @ 826D473
-	applymovement LOCALID_MECHADOLL_4, Route110_TrickHousePuzzle5_Movement_WalkLeft3
+	applymovement 4, Route110_TrickHousePuzzle5_Movement_WalkLeft3
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkLeft3:: @ 826D47E
-	applymovement LOCALID_MECHADOLL_5, Route110_TrickHousePuzzle5_Movement_WalkLeft3
+	applymovement 5, Route110_TrickHousePuzzle5_Movement_WalkLeft3
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkLeft4:: @ 826D489
-	applymovement LOCALID_MECHADOLL_1, Route110_TrickHousePuzzle5_Movement_WalkLeft4
+	applymovement 1, Route110_TrickHousePuzzle5_Movement_WalkLeft4
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkLeft4:: @ 826D494
-	applymovement LOCALID_MECHADOLL_2, Route110_TrickHousePuzzle5_Movement_WalkLeft4
+	applymovement 2, Route110_TrickHousePuzzle5_Movement_WalkLeft4
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkLeft4:: @ 826D49F
-	applymovement LOCALID_MECHADOLL_3, Route110_TrickHousePuzzle5_Movement_WalkLeft4
+	applymovement 3, Route110_TrickHousePuzzle5_Movement_WalkLeft4
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkLeft4:: @ 826D4AA
-	applymovement LOCALID_MECHADOLL_4, Route110_TrickHousePuzzle5_Movement_WalkLeft4
+	applymovement 4, Route110_TrickHousePuzzle5_Movement_WalkLeft4
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkLeft4:: @ 826D4B5
-	applymovement LOCALID_MECHADOLL_5, Route110_TrickHousePuzzle5_Movement_WalkLeft4
+	applymovement 5, Route110_TrickHousePuzzle5_Movement_WalkLeft4
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkLeft5:: @ 826D4C0
-	applymovement LOCALID_MECHADOLL_1, Route110_TrickHousePuzzle5_Movement_WalkLeft5
+	applymovement 1, Route110_TrickHousePuzzle5_Movement_WalkLeft5
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkLeft5:: @ 826D4CB
-	applymovement LOCALID_MECHADOLL_2, Route110_TrickHousePuzzle5_Movement_WalkLeft5
+	applymovement 2, Route110_TrickHousePuzzle5_Movement_WalkLeft5
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkLeft5:: @ 826D4D6
-	applymovement LOCALID_MECHADOLL_3, Route110_TrickHousePuzzle5_Movement_WalkLeft5
+	applymovement 3, Route110_TrickHousePuzzle5_Movement_WalkLeft5
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkLeft5:: @ 826D4E1
-	applymovement LOCALID_MECHADOLL_4, Route110_TrickHousePuzzle5_Movement_WalkLeft5
+	applymovement 4, Route110_TrickHousePuzzle5_Movement_WalkLeft5
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkLeft5:: @ 826D4EC
-	applymovement LOCALID_MECHADOLL_5, Route110_TrickHousePuzzle5_Movement_WalkLeft5
+	applymovement 5, Route110_TrickHousePuzzle5_Movement_WalkLeft5
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkRight1:: @ 826D4F7
-	applymovement LOCALID_MECHADOLL_1, Route110_TrickHousePuzzle5_Movement_WalkRight1
+	applymovement 1, Route110_TrickHousePuzzle5_Movement_WalkRight1
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkRight1:: @ 826D502
-	applymovement LOCALID_MECHADOLL_2, Route110_TrickHousePuzzle5_Movement_WalkRight1
+	applymovement 2, Route110_TrickHousePuzzle5_Movement_WalkRight1
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkRight1:: @ 826D50D
-	applymovement LOCALID_MECHADOLL_3, Route110_TrickHousePuzzle5_Movement_WalkRight1
+	applymovement 3, Route110_TrickHousePuzzle5_Movement_WalkRight1
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkRight1:: @ 826D518
-	applymovement LOCALID_MECHADOLL_4, Route110_TrickHousePuzzle5_Movement_WalkRight1
+	applymovement 4, Route110_TrickHousePuzzle5_Movement_WalkRight1
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkRight1:: @ 826D523
-	applymovement LOCALID_MECHADOLL_5, Route110_TrickHousePuzzle5_Movement_WalkRight1
+	applymovement 5, Route110_TrickHousePuzzle5_Movement_WalkRight1
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkRight2:: @ 826D52E
-	applymovement LOCALID_MECHADOLL_1, Route110_TrickHousePuzzle5_Movement_WalkRight2
+	applymovement 1, Route110_TrickHousePuzzle5_Movement_WalkRight2
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkRight2:: @ 826D539
-	applymovement LOCALID_MECHADOLL_2, Route110_TrickHousePuzzle5_Movement_WalkRight2
+	applymovement 2, Route110_TrickHousePuzzle5_Movement_WalkRight2
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkRight2:: @ 826D544
-	applymovement LOCALID_MECHADOLL_3, Route110_TrickHousePuzzle5_Movement_WalkRight2
+	applymovement 3, Route110_TrickHousePuzzle5_Movement_WalkRight2
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkRight2:: @ 826D54F
-	applymovement LOCALID_MECHADOLL_4, Route110_TrickHousePuzzle5_Movement_WalkRight2
+	applymovement 4, Route110_TrickHousePuzzle5_Movement_WalkRight2
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkRight2:: @ 826D55A
-	applymovement LOCALID_MECHADOLL_5, Route110_TrickHousePuzzle5_Movement_WalkRight2
+	applymovement 5, Route110_TrickHousePuzzle5_Movement_WalkRight2
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkRight3:: @ 826D565
-	applymovement LOCALID_MECHADOLL_1, Route110_TrickHousePuzzle5_Movement_WalkRight3
+	applymovement 1, Route110_TrickHousePuzzle5_Movement_WalkRight3
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkRight3:: @ 826D570
-	applymovement LOCALID_MECHADOLL_2, Route110_TrickHousePuzzle5_Movement_WalkRight3
+	applymovement 2, Route110_TrickHousePuzzle5_Movement_WalkRight3
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkRight3:: @ 826D57B
-	applymovement LOCALID_MECHADOLL_3, Route110_TrickHousePuzzle5_Movement_WalkRight3
+	applymovement 3, Route110_TrickHousePuzzle5_Movement_WalkRight3
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkRight3:: @ 826D586
-	applymovement LOCALID_MECHADOLL_4, Route110_TrickHousePuzzle5_Movement_WalkRight3
+	applymovement 4, Route110_TrickHousePuzzle5_Movement_WalkRight3
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkRight3:: @ 826D591
-	applymovement LOCALID_MECHADOLL_5, Route110_TrickHousePuzzle5_Movement_WalkRight3
+	applymovement 5, Route110_TrickHousePuzzle5_Movement_WalkRight3
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkRight4:: @ 826D59C
-	applymovement LOCALID_MECHADOLL_1, Route110_TrickHousePuzzle5_Movement_WalkRight4
+	applymovement 1, Route110_TrickHousePuzzle5_Movement_WalkRight4
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkRight4:: @ 826D5A7
-	applymovement LOCALID_MECHADOLL_2, Route110_TrickHousePuzzle5_Movement_WalkRight4
+	applymovement 2, Route110_TrickHousePuzzle5_Movement_WalkRight4
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkRight4:: @ 826D5B2
-	applymovement LOCALID_MECHADOLL_3, Route110_TrickHousePuzzle5_Movement_WalkRight4
+	applymovement 3, Route110_TrickHousePuzzle5_Movement_WalkRight4
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkRight4:: @ 826D5BD
-	applymovement LOCALID_MECHADOLL_4, Route110_TrickHousePuzzle5_Movement_WalkRight4
+	applymovement 4, Route110_TrickHousePuzzle5_Movement_WalkRight4
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkRight4:: @ 826D5C8
-	applymovement LOCALID_MECHADOLL_5, Route110_TrickHousePuzzle5_Movement_WalkRight4
+	applymovement 5, Route110_TrickHousePuzzle5_Movement_WalkRight4
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll1WalkRight5:: @ 826D5D3
-	applymovement LOCALID_MECHADOLL_1, Route110_TrickHousePuzzle5_Movement_WalkRight5
+	applymovement 1, Route110_TrickHousePuzzle5_Movement_WalkRight5
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll2WalkRight5:: @ 826D5DE
-	applymovement LOCALID_MECHADOLL_2, Route110_TrickHousePuzzle5_Movement_WalkRight5
+	applymovement 2, Route110_TrickHousePuzzle5_Movement_WalkRight5
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll3WalkRight5:: @ 826D5E9
-	applymovement LOCALID_MECHADOLL_3, Route110_TrickHousePuzzle5_Movement_WalkRight5
+	applymovement 3, Route110_TrickHousePuzzle5_Movement_WalkRight5
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll4WalkRight5:: @ 826D5F4
-	applymovement LOCALID_MECHADOLL_4, Route110_TrickHousePuzzle5_Movement_WalkRight5
+	applymovement 4, Route110_TrickHousePuzzle5_Movement_WalkRight5
 	waitmovement 0
 	return
 
 Route110_TrickHousePuzzle5_EventScript_Mechadoll5WalkRight5:: @ 826D5FF
-	applymovement LOCALID_MECHADOLL_5, Route110_TrickHousePuzzle5_Movement_WalkRight5
+	applymovement 5, Route110_TrickHousePuzzle5_Movement_WalkRight5
 	waitmovement 0
 	return
 

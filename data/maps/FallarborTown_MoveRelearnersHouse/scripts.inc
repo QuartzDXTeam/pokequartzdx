@@ -1,11 +1,9 @@
-.set LOCALID_MOVE_RELEARNER, 1
-
 FallarborTown_MoveRelearnersHouse_MapScripts:: @ 8201382
 	.byte 0
 
 FallarborTown_MoveRelearnersHouse_EventScript_MoveRelearner:: @ 8201383
 	lockall
-	applymovement LOCALID_MOVE_RELEARNER, Common_Movement_FacePlayer
+	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
 	goto_if_set FLAG_TEMP_1, FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove
 	msgbox FallarborTown_MoveRelearnersHouse_Text_ImTheMoveTutor, MSGBOX_DEFAULT
@@ -15,7 +13,7 @@ FallarborTown_MoveRelearnersHouse_EventScript_MoveRelearner:: @ 8201383
 
 FallarborTown_MoveRelearnersHouse_EventScript_AskTeachMove:: @ 82013A8
 	checkitem ITEM_HEART_SCALE, 1
-	compare VAR_RESULT, FALSE
+	compare VAR_RESULT, 0
 	goto_if_eq FallarborTown_MoveRelearnersHouse_EventScript_ComeBackWithHeartScale
 	msgbox FallarborTown_MoveRelearnersHouse_Text_ThatsAHeartScaleWantMeToTeachMove, MSGBOX_YESNO
 	switch VAR_RESULT

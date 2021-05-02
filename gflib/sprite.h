@@ -2,7 +2,6 @@
 #define GUARD_SPRITE_H
 
 #define MAX_SPRITES 64
-#define SPRITE_NONE 0xFF
 #define SPRITE_INVALID_TAG 0xFFFF
 
 struct SpriteSheet
@@ -183,10 +182,6 @@ struct SpriteTemplate
     SpriteCallback callback;
 };
 
-// UB: template pointer is often used to point to temporary storage,
-// then later dereferenced after being freed. Usually this won't
-// be visible in-game, but this is (part of) what causes the item
-// icon palette to flicker when changing items in the bag.
 struct Sprite
 {
     /*0x00*/ struct OamData oam;

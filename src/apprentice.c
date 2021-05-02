@@ -27,6 +27,7 @@
 #include "constants/items.h"
 #include "constants/pokemon.h"
 #include "constants/songs.h"
+#include "constants/species.h"
 #include "constants/trainers.h"
 #include "constants/moves.h"
 
@@ -144,7 +145,7 @@ void ResetApprenticeStruct(struct Apprentice *apprentice)
     u8 i;
 
     for (i = 0; i < ARRAY_COUNT(apprentice->speechWon); i++)
-        apprentice->speechWon[i] = EC_EMPTY_WORD;
+        apprentice->speechWon[i] = 0xFFFF;
 
     apprentice->playerName[0] = EOS;
     apprentice->id = NUM_APPRENTICES;
@@ -158,7 +159,7 @@ void ResetAllApprenticeData(void)
     for (i = 0; i < APPRENTICE_COUNT; i++)
     {
         for (j = 0; j < ARRAY_COUNT(gSaveBlock2Ptr->apprentices[i].speechWon); j++)
-            gSaveBlock2Ptr->apprentices[i].speechWon[j] = EC_EMPTY_WORD;
+            gSaveBlock2Ptr->apprentices[i].speechWon[j] = 0xFFFF;
         gSaveBlock2Ptr->apprentices[i].id = NUM_APPRENTICES;
         gSaveBlock2Ptr->apprentices[i].playerName[0] = EOS;
         gSaveBlock2Ptr->apprentices[i].lvlMode = 0;
@@ -322,12 +323,17 @@ static void SetRandomQuestionData(void)
     FREE_AND_SET_NULL(gApprenticePartyMovesData);
 }
 
-#define APPRENTICE_SPECIES_ID(monId) \
-    ((monId < MULTI_PARTY_SIZE) ? (PLAYER_APPRENTICE.speciesIds[monId] >> (((PLAYER_APPRENTICE.party >> monId) & 1) << 2) & 0xF) : 0)
+// No idea why a do-while loop is needed, but it will not match without it.
 
-#define APPRENTICE_SPECIES_ID_NO_COND(monId, count) \
-    monId = ((PLAYER_APPRENTICE.party >> count) & 1); \
-    monId = ((PLAYER_APPRENTICE.speciesIds[count]) >> (monId << 2)) & 0xF; \
+#define APPRENTICE_SPECIES_ID(speciesArrId, monId) speciesArrId = (PLAYER_APPRENTICE.speciesIds[monId] >> \
+                                                                  (((PLAYER_APPRENTICE.party >> monId) & 1) << 2)) & 0xF; \
+                                                   do {} while (0)
+
+// Why the need to have two macros do the exact thing differently?
+#define APPRENTICE_SPECIES_ID_2(speciesArrId, monId) {  u8 a0 = ((PLAYER_APPRENTICE.party >> monId) & 1);\
+                                                        speciesArrId = PLAYER_APPRENTICE.speciesIds[monId];     \
+                                                        speciesArrId = ((speciesArrId) >> (a0 << 2)) & 0xF; \
+                                                     }
 
 // Get the second move choice for the "Which move" question
 // Unlike the first move choice, this can be either a level up move or a TM/HM move
@@ -343,7 +349,15 @@ static u16 GetRandomAlternateMove(u8 monId)
     bool32 shouldUseMove;
     u8 level;
 
-    id = APPRENTICE_SPECIES_ID(monId);
+    if (monId < MULTI_PARTY_SIZE)
+    {
+        APPRENTICE_SPECIES_ID(id, monId);
+    }
+    else
+    {
+        id = 0;
+    }
+
     species = gApprentices[PLAYER_APPRENTICE.id].species[id];
     learnset = gLevelUpLearnsets[species];
     j = 0;
@@ -538,7 +552,7 @@ static void SaveApprenticeParty(u8 numQuestions)
     // Save party species
     for (i = 0; i < MULTI_PARTY_SIZE; i++)
     {
-        speciesTableId = APPRENTICE_SPECIES_ID(i);
+        APPRENTICE_SPECIES_ID(speciesTableId, i);
         apprenticeMons[i]->species = gApprentices[PLAYER_APPRENTICE.id].species[speciesTableId];
         GetLatestLearnedMoves(apprenticeMons[i]->species, apprenticeMons[i]->moves);
     }
@@ -592,7 +606,7 @@ static void CreateApprenticeMenu(u8 menu)
             u16 species;
             u32 speciesTableId;
 
-            speciesTableId = APPRENTICE_SPECIES_ID(i);
+            APPRENTICE_SPECIES_ID(speciesTableId, i);
             species =  gApprentices[PLAYER_APPRENTICE.id].species[speciesTableId];
             strings[i] = gSpeciesNames[species];
         }
@@ -910,7 +924,7 @@ static void Script_PrintApprenticeMessage(void)
 {
     ScriptContext2_Enable();
     FreezeObjectEvents();
-    PlayerFreeze();
+    sub_808B864();
     sub_808BCF4();
     DrawDialogueFrame(0, 1);
     PrintApprenticeMessage();
@@ -1003,7 +1017,7 @@ static void InitQuestionData(void)
         {
             // count re-used as monId
             count = PLAYER_APPRENTICE.questions[CURRENT_QUESTION_NUM].monId;
-            APPRENTICE_SPECIES_ID_NO_COND(id1, count);
+            APPRENTICE_SPECIES_ID_2(id1, count);
             gApprenticeQuestionData->speciesId = gApprentices[PLAYER_APPRENTICE.id].species[id1];
             gApprenticeQuestionData->moveId1 = GetDefaultMove(count, id1, PLAYER_APPRENTICE.questions[CURRENT_QUESTION_NUM].moveSlot);
             gApprenticeQuestionData->moveId2 = PLAYER_APPRENTICE.questions[CURRENT_QUESTION_NUM].data;
@@ -1017,7 +1031,7 @@ static void InitQuestionData(void)
         {
             // count re-used as monId
             count = PLAYER_APPRENTICE.questions[CURRENT_QUESTION_NUM].monId;
-            APPRENTICE_SPECIES_ID_NO_COND(id2, count);
+            APPRENTICE_SPECIES_ID_2(id2, count);
             gApprenticeQuestionData->speciesId = gApprentices[PLAYER_APPRENTICE.id].species[id2];
         }
     }
@@ -1070,7 +1084,7 @@ static void ApprenticeBufferString(void)
         StringCopy(stringDst, ItemId_GetName(PLAYER_APPRENTICE.questions[CURRENT_QUESTION_NUM].data));
         break;
     case APPRENTICE_BUFF_NAME:
-        TVShowConvertInternationalString(text, GetApprenticeNameInLanguage(PLAYER_APPRENTICE.id, GAME_LANGUAGE), GAME_LANGUAGE);
+        TVShowConvertInternationalString(text, GetApprenticeNameInLanguage(PLAYER_APPRENTICE.id, LANGUAGE_ENGLISH), LANGUAGE_ENGLISH);
         StringCopy(stringDst, text);
         break;
     case APPRENTICE_BUFF_LEVEL:
@@ -1084,7 +1098,14 @@ static void ApprenticeBufferString(void)
         StringCopy(stringDst, gStringVar4);
         break;
     case APPRENTICE_BUFF_LEAD_MON_SPECIES:
-        speciesArrayId = APPRENTICE_SPECIES_ID(PLAYER_APPRENTICE.leadMonId);
+        if (PLAYER_APPRENTICE.leadMonId < MULTI_PARTY_SIZE)
+        {
+            APPRENTICE_SPECIES_ID(speciesArrayId, PLAYER_APPRENTICE.leadMonId);
+        }
+        else
+        {
+            speciesArrayId = 0;
+        }
         StringCopy(stringDst, gSpeciesNames[gApprentices[PLAYER_APPRENTICE.id].species[speciesArrayId]]);
         break;
     }
@@ -1276,13 +1297,13 @@ const u8 *GetApprenticeNameInLanguage(u32 apprenticeId, s32 language)
 // Functionally unused
 static void Task_SwitchToFollowupFuncAfterButtonPress(u8 taskId)
 {
-    if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
+    if (gMain.newKeys & A_BUTTON || gMain.newKeys & B_BUTTON)
         SwitchTaskToFollowupFunc(taskId);
 }
 
 static void Task_ExecuteFuncAfterButtonPress(u8 taskId)
 {
-    if (JOY_NEW(A_BUTTON) || JOY_NEW(B_BUTTON))
+    if (gMain.newKeys & A_BUTTON || gMain.newKeys & B_BUTTON)
     {
         gApprenticeFunc = (void*)(u32)(((u16)gTasks[taskId].data[0] | (gTasks[taskId].data[1] << 16)));
         gApprenticeFunc();

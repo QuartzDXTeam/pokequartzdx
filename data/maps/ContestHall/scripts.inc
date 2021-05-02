@@ -18,7 +18,7 @@ ContestHall_OnTransition: @ 823B79F
 
 ContestHall_EventScript_ReadyContestMusic:: @ 823B7AF
 	call ContestHall_EventScript_TryWaitForLink
-	special GetContestMultiplayerId
+	special ScriptGetMultiplayerId
 	compare VAR_RESULT, 0
 	call_if_eq ContestHall_EventScript_SaveContestMusicPlayer1
 	compare VAR_RESULT, 1
@@ -32,23 +32,23 @@ ContestHall_EventScript_ReadyContestMusic:: @ 823B7AF
 	return
 
 ContestHall_EventScript_SaveContestMusicPlayer1:: @ 823B7EF
-	savebgm MUS_LINK_CONTEST_P1
+	savebgm MUS_TEST1
 	return
 
 ContestHall_EventScript_SaveContestMusicPlayer2:: @ 823B7F3
-	savebgm MUS_LINK_CONTEST_P2
+	savebgm MUS_TEST2
 	return
 
 ContestHall_EventScript_SaveContestMusicPlayer3:: @ 823B7F7
-	savebgm MUS_LINK_CONTEST_P3
+	savebgm MUS_TEST3
 	return
 
 ContestHall_EventScript_SaveContestMusicPlayer4:: @ 823B7FB
-	savebgm MUS_LINK_CONTEST_P4
+	savebgm MUS_TEST4
 	return
 
 ContestHall_EventScript_SaveContestMusic:: @ 823B7FF
-	savebgm MUS_CONTEST
+	savebgm MUS_CONTEST0
 	return
 
 ContestHall_OnResume: @ 823B803
@@ -136,7 +136,7 @@ ContestHall_EventScript_SetRandomAudience7:: @ 823B8ED
 
 ContestHall_EventScript_GetRandomAudienceGfxId:: @ 823B8F8
 	setvar VAR_RESULT, 32
-	special GenerateContestRand
+	special ScriptRandom
 	addvar VAR_RESULT, 1
 	switch VAR_RESULT
 	case 1, ContestHall_EventScript_RandomAudienceNinjaBoy

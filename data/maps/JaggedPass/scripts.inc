@@ -1,5 +1,3 @@
-.set LOCALID_HIDEOUT_GUARD, 5
-
 JaggedPass_MapScripts:: @ 8230656
 	map_script MAP_SCRIPT_ON_RESUME, JaggedPass_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, JaggedPass_OnTransition
@@ -14,7 +12,7 @@ JaggedPass_OnResume: @ 8230666
 
 JaggedPass_EventScript_CheckHasMagmaEmblem:: @ 8230674
 	checkitem ITEM_MAGMA_EMBLEM, 1
-	compare VAR_RESULT, TRUE
+	compare VAR_RESULT, 1
 	goto_if_eq JaggedPass_EventScript_SetReadyToOpenHideout
 	return
 
@@ -58,7 +56,7 @@ JaggedPass_EventScript_OpenMagmaHideout:: @ 82306BB
 	setvar VAR_0x8007, 3   @ shake delay
 	special ShakeCamera
 	waitstate
-	playse SE_EFFECTIVE
+	playse SE_KOUKA_M
 	setmetatile 16, 17, METATILE_Lavaridge_CaveEntrance_Top, 1
 	setmetatile 16, 18, METATILE_Lavaridge_CaveEntrance_Bottom, 0
 	special DrawWholeMapView
@@ -73,27 +71,27 @@ JaggedPass_EventScript_MagmaHideoutGuard:: @ 8230718
 	goto_if_set FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS, JaggedPass_EventScript_GuardDefeated
 	waitse
 	playse SE_PIN
-	applymovement LOCALID_HIDEOUT_GUARD, Common_Movement_ExclamationMark
+	applymovement 5, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_HIDEOUT_GUARD, Common_Movement_Delay48
+	applymovement 5, Common_Movement_Delay48
 	waitmovement 0
-	applymovement LOCALID_HIDEOUT_GUARD, Common_Movement_FacePlayer
+	applymovement 5, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox JaggedPass_Text_GruntIntro, MSGBOX_DEFAULT
 	closemessage
 	trainerbattle_no_intro TRAINER_GRUNT_JAGGED_PASS, JaggedPass_Text_GruntDefeat
 	setflag FLAG_BEAT_MAGMA_GRUNT_JAGGED_PASS
-	applymovement LOCALID_HIDEOUT_GUARD, Common_Movement_FaceOriginalDirection
+	applymovement 5, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	releaseall
 	end
 
 JaggedPass_EventScript_GuardDefeated:: @ 8230766
-	applymovement LOCALID_HIDEOUT_GUARD, Common_Movement_FacePlayer
+	applymovement 5, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox JaggedPass_Text_GoWhereverYouWant, MSGBOX_DEFAULT
 	closemessage
-	applymovement LOCALID_HIDEOUT_GUARD, Common_Movement_FaceOriginalDirection
+	applymovement 5, Common_Movement_FaceOriginalDirection
 	waitmovement 0
 	releaseall
 	end
@@ -106,7 +104,7 @@ JaggedPass_EventScript_Eric:: @ 8230785
 JaggedPass_EventScript_Diana:: @ 823079C
 	trainerbattle_single TRAINER_DIANA_1, JaggedPass_Text_DianaIntro, JaggedPass_Text_DianaDefeat, JaggedPass_EventScript_RegisterDiana
 	specialvar VAR_RESULT, ShouldTryRematchBattle
-	compare VAR_RESULT, TRUE
+	compare VAR_RESULT, 1
 	goto_if_eq JaggedPass_EventScript_DianaRematch
 	msgbox JaggedPass_Text_DianaPostBattle, MSGBOX_DEFAULT
 	release
@@ -127,7 +125,7 @@ JaggedPass_EventScript_DianaRematch:: @ 82307E4
 JaggedPass_EventScript_Ethan:: @ 82307FB
 	trainerbattle_single TRAINER_ETHAN_1, JaggedPass_Text_EthanIntro, JaggedPass_Text_EthanDefeat, JaggedPass_EventScript_RegisterEthan
 	specialvar VAR_RESULT, ShouldTryRematchBattle
-	compare VAR_RESULT, TRUE
+	compare VAR_RESULT, 1
 	goto_if_eq JaggedPass_EventScript_EthanRematch
 	msgbox JaggedPass_Text_EthanPostBattle, MSGBOX_DEFAULT
 	release

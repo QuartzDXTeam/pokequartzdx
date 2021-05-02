@@ -1,6 +1,3 @@
-.set LOCALID_BRINEY, 11
-.set LOCALID_WANDAS_BF_OUTSIDE, 21
-
 Route116_MapScripts:: @ 81F2C0C
 	map_script MAP_SCRIPT_ON_TRANSITION, Route116_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, Route116_OnLoad
@@ -18,7 +15,7 @@ Route116_OnTransition: @ 81F2C1C
 	end
 
 Route116_EventScript_SetWandasBoyfriendPos:: @ 81F2C47
-	setobjectxyperm LOCALID_WANDAS_BF_OUTSIDE, 38, 10
+	setobjectxyperm 21, 38, 10
 	return
 
 Route116_OnLoad: @ 81F2C4F
@@ -154,7 +151,7 @@ Route116_EventScript_Briney:: @ 81F2D84
 
 Route116_EventScript_BrineyTrigger:: @ 81F2D95
 	lockall
-	applymovement LOCALID_BRINEY, Common_Movement_WalkInPlaceFastestRight
+	applymovement 11, Common_Movement_WalkInPlaceFastestRight
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox Route116_Text_ScoundrelMadeOffWithPeeko, MSGBOX_DEFAULT

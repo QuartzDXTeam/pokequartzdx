@@ -335,11 +335,11 @@ s32 DoMysteryGiftListMenu(const struct WindowTemplate *windowTemplate, const str
         break;
     case 1:
         sMysteryGiftLinkMenu.currItemId = ListMenu_ProcessInput(sMysteryGiftLinkMenu.listTaskId);
-        if (JOY_NEW(A_BUTTON))
+        if (gMain.newKeys & A_BUTTON)
         {
             sMysteryGiftLinkMenu.state = 2;
         }
-        if (JOY_NEW(B_BUTTON))
+        if (gMain.newKeys & B_BUTTON)
         {
             sMysteryGiftLinkMenu.currItemId = LIST_CANCEL;
             sMysteryGiftLinkMenu.state = 2;
@@ -410,20 +410,20 @@ s32 ListMenu_ProcessInput(u8 listTaskId)
 {
     struct ListMenu *list = (void*) gTasks[listTaskId].data;
 
-    if (JOY_NEW(A_BUTTON))
+    if (gMain.newKeys & A_BUTTON)
     {
         return list->template.items[list->scrollOffset + list->selectedRow].id;
     }
-    else if (JOY_NEW(B_BUTTON))
+    else if (gMain.newKeys & B_BUTTON)
     {
         return LIST_CANCEL;
     }
-    else if (JOY_REPEAT(DPAD_UP))
+    else if (gMain.newAndRepeatedKeys & DPAD_UP)
     {
         ListMenuChangeSelection(list, TRUE, 1, FALSE);
         return LIST_NOTHING_CHOSEN;
     }
-    else if (JOY_REPEAT(DPAD_DOWN))
+    else if (gMain.newAndRepeatedKeys & DPAD_DOWN)
     {
         ListMenuChangeSelection(list, TRUE, 1, TRUE);
         return LIST_NOTHING_CHOSEN;
@@ -439,12 +439,10 @@ s32 ListMenu_ProcessInput(u8 listTaskId)
             rightButton = FALSE;
             break;
         case LIST_MULTIPLE_SCROLL_DPAD:
-            // note: JOY_REPEAT won't match here
             leftButton = gMain.newAndRepeatedKeys & DPAD_LEFT;
             rightButton = gMain.newAndRepeatedKeys & DPAD_RIGHT;
             break;
         case LIST_MULTIPLE_SCROLL_L_R:
-            // same as above
             leftButton = gMain.newAndRepeatedKeys & L_BUTTON;
             rightButton = gMain.newAndRepeatedKeys & R_BUTTON;
             break;
@@ -466,6 +464,8 @@ s32 ListMenu_ProcessInput(u8 listTaskId)
         }
     }
 }
+
+#define TASK_NONE 0xFF
 
 void DestroyListMenuTask(u8 listTaskId, u16 *scrollOffset, u16 *selectedRow)
 {
@@ -679,7 +679,7 @@ static u8 ListMenuAddCursorObject(struct ListMenu *list, u32 cursorKind)
     struct CursorStruct cursor;
 
     cursor.left = 0;
-    cursor.top = DISPLAY_HEIGHT;
+    cursor.top = 160;
     cursor.rowWidth = GetWindowAttribute(list->template.windowId, WINDOW_WIDTH) * 8 + 2;
     cursor.rowHeight = GetFontAttribute(list->template.fontId, FONTATTR_MAX_LETTER_HEIGHT) + 2;
     cursor.tileTag = 0x4000;
@@ -1282,7 +1282,7 @@ void ListMenuSetUpRedOutlineCursorSpriteOamTable(u16 rowWidth, u16 rowHeight, st
         {
             subsprites[id] = sSubsprite_RedOutline3;
             subsprites[id].x = i - 120;
-            subsprites[id].y = -120;
+            subsprites[id].y = 136;
             id++;
 
             subsprites[id] = sSubsprite_RedOutline6;

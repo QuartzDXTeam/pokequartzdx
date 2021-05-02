@@ -1,5 +1,3 @@
-.set LOCALID_ATTENDANT, 1
-
 SlateportCity_BattleTentLobby_MapScripts:: @ 8208730
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, SlateportCity_BattleTentLobby_OnFrame
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, SlateportCity_BattleTentLobby_OnWarp
@@ -53,7 +51,7 @@ SlateportCity_BattleTentLobby_EventScript_GivePrize:: @ 82087E9
 	frontier_set FRONTIER_DATA_CHALLENGE_STATUS, 0
 	message BattleFrontier_BattleTowerLobby_Text_ReceivedPrize  @ Odd that it uses Tower's instead of Factory's or its own
 	waitmessage
-	playfanfare MUS_OBTAIN_ITEM
+	playfanfare MUS_FANFA4
 	waitfanfare
 	goto SlateportCity_BattleTentLobby_EventScript_EndGivePrize
 
@@ -100,7 +98,7 @@ SlateportCity_BattleTentLobby_EventScript_Attendant:: @ 82088AA
 SlateportCity_BattleTentLobby_EventScript_AskEnterChallenge:: @ 82088CA
 	message SlateportCity_BattleTentLobby_Text_TakeChallenge
 	waitmessage
-	multichoice 17, 6, MULTI_CHALLENGEINFO, FALSE
+	multichoice 17, 6, MULTI_CHALLENGEINFO, 0
 	switch VAR_RESULT
 	case 0, SlateportCity_BattleTentLobby_EventScript_TryEnterChallenge
 	case 1, SlateportCity_BattleTentLobby_EventScript_ExplainChallenge
@@ -140,12 +138,12 @@ SlateportCity_BattleTentLobby_EventScript_EnterChallenge:: @ 82089AC
 	end
 
 SlateportCity_BattleTentLobby_EventScript_WalkToDoor:: @ 82089C9
-	applymovement LOCALID_ATTENDANT, SlateportCity_BattleTentLobby_Movement_AttendantWalkToDoor
+	applymovement 1, SlateportCity_BattleTentLobby_Movement_AttendantWalkToDoor
 	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_BattleTentLobby_Movement_PlayerWalkToDoor
 	waitmovement 0
 	opendoor 6, 1
 	waitdooranim
-	applymovement LOCALID_ATTENDANT, SlateportCity_BattleTentLobby_Movement_AttendantEnterDoor
+	applymovement 1, SlateportCity_BattleTentLobby_Movement_AttendantEnterDoor
 	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_BattleTentLobby_Movement_PlayerEnterDoor
 	waitmovement 0
 	closedoor 6, 1
@@ -237,7 +235,7 @@ SlateportCity_BattleTentLobby_EventScript_RulesBoard:: @ 8208A99
 SlateportCity_BattleTentLobby_EventScript_ReadRulesBoard:: @ 8208AA8
 	message BattleFrontier_BattleFactoryLobby_Text_ReadWhichHeading
 	waitmessage
-	multichoice 17, 0, MULTI_SLATEPORT_TENT_RULES, FALSE
+	multichoice 17, 0, MULTI_SLATEPORT_TENT_RULES, 0
 	switch VAR_RESULT
 	case 0, SlateportCity_BattleTentLobby_EventScript_RulesBasics
 	case 1, SlateportCity_BattleTentLobby_EventScript_RulesSwapPartner

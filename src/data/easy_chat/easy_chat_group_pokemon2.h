@@ -1,3 +1,5 @@
+#include "constants/species.h"
+
 const u16 gEasyChatGroup_Pokemon2[] = {
 	SPECIES_ACORNEL,
 	SPECIES_AENGUILE,

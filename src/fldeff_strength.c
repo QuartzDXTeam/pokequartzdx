@@ -11,8 +11,8 @@
 #include "constants/field_effects.h"
 
 // static functions
-static void FieldCallback_Strength(void);
-static void StartStrengthFieldEffect(void);
+static void FldEff_UseStrength(void);
+static void sub_8145E74(void);
 
 // text
 bool8 SetUpFieldMove_Strength(void)
@@ -21,29 +21,28 @@ bool8 SetUpFieldMove_Strength(void)
     {
         gSpecialVar_Result = GetCursorSelectionMonId();
         gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
-        gPostMenuFieldCallback = FieldCallback_Strength;
+        gPostMenuFieldCallback = FldEff_UseStrength;
         return TRUE;
     }
     return FALSE;
 }
 
-static void FieldCallback_Strength(void)
+static void FldEff_UseStrength(void)
 {
     gFieldEffectArguments[0] = GetCursorSelectionMonId();
-    ScriptContext1_SetupScript(EventScript_UseStrength);
+    ScriptContext1_SetupScript(EventScript_FldEffStrength);
 }
 
-bool8 FldEff_UseStrength(void)
+bool8 sub_8145E2C(void)
 {
-    u8 taskId = CreateFieldMoveTask();
-    gTasks[taskId].data[8] = (u32)StartStrengthFieldEffect >> 16;
-    gTasks[taskId].data[9] = (u32)StartStrengthFieldEffect;
+    u8 taskId = oei_task_add();
+    gTasks[taskId].data[8] = (u32)sub_8145E74 >> 16;
+    gTasks[taskId].data[9] = (u32)sub_8145E74;
     GetMonNickname(&gPlayerParty[gFieldEffectArguments[0]], gStringVar1);
     return FALSE;
 }
 
-// Just passes control back to EventScript_UseStrength
-static void StartStrengthFieldEffect(void)
+static void sub_8145E74(void)
 {
     FieldEffectActiveListRemove(FLDEFF_USE_STRENGTH);
     EnableBothScriptContexts();

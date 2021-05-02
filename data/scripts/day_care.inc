@@ -1,5 +1,3 @@
-.set LOCALID_DAYCARE_LADY, 1
-
 Route117_EventScript_DaycareMan:: @ 8291C18
 	lock
 	faceplayer
@@ -38,7 +36,7 @@ Route117_EventScript_DaycareAcceptEgg:: @ 8291C83
 
 Route117_EventScript_DaycareReceiveEgg:: @ 8291C9D
 	message Route117_Text_ReceivedEgg
-	playfanfare MUS_LEVEL_UP
+	playfanfare MUS_FANFA1
 	waitfanfare
 	waitbuttonpress
 	msgbox Route117_Text_TakeGoodCareOfIt, MSGBOX_DEFAULT
@@ -213,11 +211,11 @@ Route117_PokemonDayCare_EventScript_CheckEnoughMoney:: @ 8291EC8
 	end
 
 Route117_PokemonDayCare_EventScript_RetrieveMon:: @ 8291EE2
-	applymovement LOCALID_DAYCARE_LADY, Route117_PokemonDayCare_Movement_RetrieveDaycareMon
+	applymovement 1, Route117_PokemonDayCare_Movement_RetrieveDaycareMon
 	waitmovement 0
 	specialvar VAR_RESULT, TakePokemonFromDaycare
 	special SubtractMoneyFromVar0x8005
-	playse SE_SHOP
+	playse SE_REGI
 	msgbox Route117_PokemonDayCare_Text_HeresYourMon, MSGBOX_DEFAULT
 	waitse
 	playmoncry VAR_RESULT, 0

@@ -1,7 +1,3 @@
-.set LOCALID_NURSE, 1
-.set LOCALID_GUARD_1, 3
-.set LOCALID_GUARD_2, 4
-
 EverGrandeCity_PokemonLeague_1F_MapScripts:: @ 82295D2
 	map_script MAP_SCRIPT_ON_TRANSITION, EverGrandeCity_PokemonLeague_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
@@ -14,12 +10,13 @@ EverGrandeCity_PokemonLeague_1F_OnTransition: @ 82295DD
 	end
 
 EverGrandeCity_PokemonLeague_1F_EventScript_GuardsBlockDoor:: @ 82295ED
-	setobjectxyperm LOCALID_GUARD_1, 9, 2
-	setobjectxyperm LOCALID_GUARD_2, 10, 2
+	setobjectxyperm 3, 9, 2
+	setobjectxyperm 4, 10, 2
 	return
 
+@ VAR_0x800B is the Nurse's object event id
 EverGrandeCity_PokemonLeague_1F_EventScript_Nurse:: @ 82295FC
-	setvar VAR_0x800B, LOCALID_NURSE
+	setvar VAR_0x800B, 1
 	call Common_EventScript_PkmnCenterNurse
 	waitmessage
 	waitbuttonpress
@@ -64,17 +61,17 @@ EverGrandeCity_PokemonLeague_1F_EventScript_DoorGuard:: @ 8229636
 	delay 120
 	goto_if_unset FLAG_BADGE06_GET, EverGrandeCity_PokemonLeague_1F_EventScript_NotAllBadges
 	closemessage
-	applymovement LOCALID_GUARD_1, EverGrandeCity_PokemonLeague_1F_Movement_LeftGuardOutOfWay
-	applymovement LOCALID_GUARD_2, EverGrandeCity_PokemonLeague_1F_Movement_RightGuardOutOfWay
+	applymovement 3, EverGrandeCity_PokemonLeague_1F_Movement_LeftGuardOutOfWay
+	applymovement 4, EverGrandeCity_PokemonLeague_1F_Movement_RightGuardOutOfWay
 	waitmovement 0
 	delay 10
-	playfanfare MUS_OBTAIN_BADGE
+	playfanfare MUS_ME_BACHI
 	message EverGrandeCity_PokemonLeague_1F_Text_GoForth
 	waitmessage
 	waitfanfare
 	closemessage
-	copyobjectxytoperm LOCALID_GUARD_1
-	copyobjectxytoperm LOCALID_GUARD_2
+	copyobjectxytoperm 3
+	copyobjectxytoperm 4
 	setflag FLAG_ENTERED_ELITE_FOUR
 	releaseall
 	end
@@ -90,7 +87,7 @@ EverGrandeCity_PokemonLeague_1F_EventScript_PlayerMoveToFrontFromLeft:: @ 82296A
 	return
 
 EverGrandeCity_PokemonLeague_1F_EventScript_NotAllBadges:: @ 82296AE
-	playse SE_FAILURE
+	playse SE_HAZURE
 	msgbox EverGrandeCity_PokemonLeague_1F_Text_HaventObtainedAllBadges, MSGBOX_DEFAULT
 	releaseall
 	end

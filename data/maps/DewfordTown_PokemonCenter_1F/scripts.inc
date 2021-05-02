@@ -1,5 +1,3 @@
-.set LOCALID_NURSE, 1
-
 DewfordTown_PokemonCenter_1F_MapScripts:: @ 81FC523
 	map_script MAP_SCRIPT_ON_TRANSITION, DewfordTown_PokemonCenter_1F_OnTransition
 	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
@@ -10,8 +8,9 @@ DewfordTown_PokemonCenter_1F_OnTransition: @ 81FC52E
 	call Common_EventScript_UpdateBrineyLocation
 	end
 
+@ VAR_0x800B is the Nurse's object event id
 DewfordTown_PokemonCenter_1F_EventScript_Nurse:: @ 81FC537
-	setvar VAR_0x800B, LOCALID_NURSE
+	setvar VAR_0x800B, 1
 	call Common_EventScript_PkmnCenterNurse
 	waitmessage
 	waitbuttonpress

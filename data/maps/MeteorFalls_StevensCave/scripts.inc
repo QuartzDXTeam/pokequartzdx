@@ -1,5 +1,3 @@
-.set LOCALID_STEVEN, 1
-
 MeteorFalls_StevensCave_MapScripts:: @ 823B181
 	.byte 0
 
@@ -8,11 +6,11 @@ MeteorFalls_StevensCave_EventScript_Steven:: @ 823B182
 	goto_if_set FLAG_DEFEATED_METEOR_FALLS_STEVEN, MeteorFalls_StevensCave_EventScript_Defeated
 	waitse
 	playse SE_PIN
-	applymovement LOCALID_STEVEN, Common_Movement_ExclamationMark
+	applymovement 1, Common_Movement_ExclamationMark
 	waitmovement 0
-	applymovement LOCALID_STEVEN, Common_Movement_Delay48
+	applymovement 1, Common_Movement_Delay48
 	waitmovement 0
-	applymovement LOCALID_STEVEN, Common_Movement_FacePlayer
+	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox MeteorFalls_StevensCave_Text_ShouldKnowHowGoodIAmExpectWorst, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_STEVEN, MeteorFalls_StevensCave_Text_StevenDefeat
@@ -22,7 +20,7 @@ MeteorFalls_StevensCave_EventScript_Steven:: @ 823B182
 	end
 
 MeteorFalls_StevensCave_EventScript_Defeated:: @ 823B1CD
-	applymovement LOCALID_STEVEN, Common_Movement_FacePlayer
+	applymovement 1, Common_Movement_FacePlayer
 	waitmovement 0
 	msgbox MeteorFalls_StevensCave_Text_MyPredictionCameTrue, MSGBOX_DEFAULT
 	release

@@ -39,7 +39,7 @@ static void CameraPanningCB_PanAhead(void);
 static struct FieldCameraOffset sFieldCameraOffset;
 static s16 sHorizontalCameraPan;
 static s16 sVerticalCameraPan;
-static bool8 sBikeCameraPanFlag;
+static u8 gUnknown_03000E2C;
 static void (*sFieldCameraPanningCallback)(void);
 
 struct CameraObject gFieldCamera;
@@ -47,7 +47,7 @@ u16 gTotalCameraPixelOffsetY;
 u16 gTotalCameraPixelOffsetX;
 
 // text
-static void ResetCameraOffset(struct FieldCameraOffset *cameraOffset)
+static void move_tilemap_camera_to_upper_left_corner_(struct FieldCameraOffset *cameraOffset)
 {
     cameraOffset->xTileOffset = 0;
     cameraOffset->yTileOffset = 0;
@@ -56,23 +56,23 @@ static void ResetCameraOffset(struct FieldCameraOffset *cameraOffset)
     cameraOffset->copyBGToVRAM = TRUE;
 }
 
-static void AddCameraTileOffset(struct FieldCameraOffset *cameraOffset, u32 xOffset, u32 yOffset)
+static void tilemap_move_something(struct FieldCameraOffset *cameraOffset, u32 b, u32 c)
 {
-    cameraOffset->xTileOffset += xOffset;
+    cameraOffset->xTileOffset += b;
     cameraOffset->xTileOffset %= 32;
-    cameraOffset->yTileOffset += yOffset;
+    cameraOffset->yTileOffset += c;
     cameraOffset->yTileOffset %= 32;
 }
 
-static void AddCameraPixelOffset(struct FieldCameraOffset *cameraOffset, u32 xOffset, u32 yOffset)
+static void coords8_add(struct FieldCameraOffset *cameraOffset, u32 b, u32 c)
 {
-    cameraOffset->xPixelOffset += xOffset;
-    cameraOffset->yPixelOffset += yOffset;
+    cameraOffset->xPixelOffset += b;
+    cameraOffset->yPixelOffset += c;
 }
 
-void ResetFieldCamera(void)
+void move_tilemap_camera_to_upper_left_corner(void)
 {
-    ResetCameraOffset(&sFieldCameraOffset);
+    move_tilemap_camera_to_upper_left_corner_(&sFieldCameraOffset);
 }
 
 void FieldUpdateBgTilemapScroll(void)
@@ -89,10 +89,10 @@ void FieldUpdateBgTilemapScroll(void)
     SetGpuReg(REG_OFFSET_BG3VOFS, r4);
 }
 
-void GetCameraOffsetWithPan(s16 *x, s16 *y)
+void sub_8089C08(s16 *a, s16 *b)
 {
-    *x = sFieldCameraOffset.xPixelOffset + sHorizontalCameraPan;
-    *y = sFieldCameraOffset.yPixelOffset + sVerticalCameraPan + 8;
+    *a = sFieldCameraOffset.xPixelOffset + sHorizontalCameraPan;
+    *b = sFieldCameraOffset.yPixelOffset + sVerticalCameraPan + 8;
 }
 
 void DrawWholeMapView(void)
@@ -306,9 +306,9 @@ static void DrawMetatile(s32 metatileLayerType, u16 *metatiles, u16 offset)
         gBGTilemapBuffers2[offset + 0x21] = metatiles[7];
         break;
     }
-    ScheduleBgCopyTilemapToVram(1);
-    ScheduleBgCopyTilemapToVram(2);
-    ScheduleBgCopyTilemapToVram(3);
+    schedule_bg_copy_tilemap_to_vram(1);
+    schedule_bg_copy_tilemap_to_vram(2);
+    schedule_bg_copy_tilemap_to_vram(3);
 }
 
 static s32 MapPosToBgTilemapOffset(struct FieldCameraOffset *cameraOffset, s32 x, s32 y)
@@ -417,12 +417,12 @@ void CameraUpdate(void)
         CameraMove(deltaX, deltaY);
         UpdateObjectEventsForCameraUpdate(deltaX, deltaY);
         RotatingGatePuzzleCameraUpdate(deltaX, deltaY);
-        SetBerryTreesSeen();
-        AddCameraTileOffset(&sFieldCameraOffset, deltaX * 2, deltaY * 2);
+        ResetBerryTreeSparkleFlags();
+        tilemap_move_something(&sFieldCameraOffset, deltaX * 2, deltaY * 2);
         RedrawMapSlicesForCameraUpdate(&sFieldCameraOffset, deltaX * 2, deltaY * 2);
     }
 
-    AddCameraPixelOffset(&sFieldCameraOffset, movementSpeedX, movementSpeedY);
+    coords8_add(&sFieldCameraOffset, movementSpeedX, movementSpeedY);
     gTotalCameraPixelOffsetX -= movementSpeedX;
     gTotalCameraPixelOffsetY -= movementSpeedY;
 }
@@ -436,9 +436,9 @@ void MoveCameraAndRedrawMap(int deltaX, int deltaY) //unused
     gTotalCameraPixelOffsetY -= deltaY * 16;
 }
 
-void SetCameraPanningCallback(void (*callback)(void))
+void SetCameraPanningCallback(void (*a)(void))
 {
-    sFieldCameraPanningCallback = callback;
+    sFieldCameraPanningCallback = a;
 }
 
 void SetCameraPanning(s16 a, s16 b)
@@ -450,7 +450,7 @@ void SetCameraPanning(s16 a, s16 b)
 void InstallCameraPanAheadCallback(void)
 {
     sFieldCameraPanningCallback = CameraPanningCB_PanAhead;
-    sBikeCameraPanFlag = FALSE;
+    gUnknown_03000E2C = 0;
     sHorizontalCameraPan = 0;
     sVerticalCameraPan = 32;
 }
@@ -474,16 +474,16 @@ static void CameraPanningCB_PanAhead(void)
     }
     else
     {
-        // this code is never reached
+        // this code is never reached.
         if (gPlayerAvatar.tileTransitionState == T_TILE_TRANSITION)
         {
-            sBikeCameraPanFlag ^= 1;
-            if (sBikeCameraPanFlag == FALSE)
+            gUnknown_03000E2C ^= 1;
+            if (gUnknown_03000E2C == 0)
                 return;
         }
         else
         {
-            sBikeCameraPanFlag = FALSE;
+            gUnknown_03000E2C = 0;
         }
 
         var = GetPlayerMovementDirection();

@@ -1,5 +1,3 @@
-.set LOCALID_OLD_WOMAN, 2
-
 BattleFrontier_Mart_MapScripts:: @ 8267ACB
 	.byte 0
 
@@ -38,7 +36,7 @@ BattleFrontier_Mart_EventScript_OldMan:: @ 8267B02
 
 BattleFrontier_Mart_EventScript_OldWoman:: @ 8267B0B
 	lock
-	applymovement LOCALID_OLD_WOMAN, Common_Movement_FaceDown
+	applymovement 2, Common_Movement_FaceDown
 	waitmovement 0
 	msgbox BattleFrontier_Mart_Text_ProteinMakeNiceGift, MSGBOX_DEFAULT
 	release
