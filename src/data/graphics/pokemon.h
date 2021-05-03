@@ -2321,6 +2321,11 @@ const u8 gMonFootprint_Garotao[] = INCBIN_U8("graphics/pokemon/garotao/footprint
 const u32 gMonPalette_Garotao[] = INCBIN_U32("graphics/pokemon/garotao/normal.gbapal.lz");
 const u32 gMonShinyPalette_Garotao[] = INCBIN_U32("graphics/pokemon/garotao/shiny.gbapal.lz");
 
+// Probably the leftover space from the other Deoxys forms
+static const u8 sEmpty[0x6800] = {0};
+
+const u16 gUnknown_D437F8[] = INCBIN_U16("graphics/unknown/unknown_D437F8.bin");
+
 const u32 gMonStillFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/front.4bpp.lz");
 const u32 gMonPalette_Egg[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
 

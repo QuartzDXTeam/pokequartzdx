@@ -56,7 +56,7 @@
 #define VAR_CYCLING_ROAD_RECORD_COLLISIONS   0x4027
 #define VAR_CYCLING_ROAD_RECORD_TIME_L       0x4028
 #define VAR_CYCLING_ROAD_RECORD_TIME_H       0x4029
-#define VAR_HAPPINESS_STEP_COUNTER           0x402A
+#define VAR_FRIENDSHIP_STEP_COUNTER          0x402A
 #define VAR_POISON_STEP_COUNTER              0x402B
 #define VAR_RESET_RTC_ENABLE                 0x402C
 #define VAR_ENIGMA_BERRY_AVAILABLE           0x402D
@@ -146,7 +146,7 @@
 #define VAR_ROUTE132_STATE                   0x407F // Unused Var
 #define VAR_ROUTE133_STATE                   0x4080 // Unused Var
 #define VAR_ROUTE134_STATE                   0x4081 // Unused Var
-#define VAR_LITTLEROOT_HOUSES_STATE_MAY      0x4082
+#define VAR_BREEZE_HOUSES_STATE_MAY      0x4082
 #define VAR_UNUSED_0x4083                    0x4083 // Unused Var
 #define VAR_BIRCH_LAB_STATE                  0x4084
 #define VAR_PETALBURG_GYM_STATE              0x4085 // 0-1: Wally tutorial, 2-6: 0-4 badges, 7: Defeated Norman, 8: Rematch Norman
@@ -156,13 +156,13 @@
 #define VAR_SECRET_BASE_INITIALIZED          0x4089
 #define VAR_CONTEST_PRIZE_PICKUP             0x408A
 #define VAR_UNUSED_0x408B                    0x408B // Unused Var
-#define VAR_LITTLEROOT_HOUSES_STATE_AKIRA  0x408C
-#define VAR_LITTLEROOT_RIVAL_STATE           0x408D
+#define VAR_BREEZE_HOUSES_STATE_AKIRA  0x408C
+#define VAR_BREEZE_RIVAL_STATE           0x408D
 #define VAR_BOARD_BRINEY_BOAT_STATE          0x408E
 #define VAR_DEVON_CORP_3F_STATE              0x408F
 #define VAR_BRINEY_HOUSE_STATE               0x4090
 #define VAR_UNUSED_0x4091                    0x4091 // Unused Var
-#define VAR_LITTLEROOT_INTRO_STATE           0x4092
+#define VAR_BREEZE_INTRO_STATE           0x4092
 #define VAR_MAUVILLE_GYM_STATE               0x4093
 #define VAR_LILYCOVE_MUSEUM_2F_STATE         0x4094
 #define VAR_LILYCOVE_FAN_CLUB_STATE          0x4095
@@ -274,6 +274,7 @@
 #define VAR_UNUSED_0x40FF                    0x40FF // Unused Var
 
 #define VARS_END                             0x40FF
+#define VARS_COUNT                           (VARS_END - VARS_START + 1)
 
 #define SPECIAL_VARS_START            0x8000
 // special vars

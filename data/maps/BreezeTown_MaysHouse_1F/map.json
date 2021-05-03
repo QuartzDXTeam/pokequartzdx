@@ -2,17 +2,17 @@
   "id": "MAP_BREEZE_TOWN_MAYS_HOUSE_1F",
   "name": "BreezeTown_MaysHouse_1F",
   "layout": "LAYOUT_BREEZE_TOWN_MAYS_HOUSE_1F",
-  "music": "MUS_MISHIRO",
+  "music": "MUS_CREDITS",
   "region_map_section": "MAPSEC_BREEZE_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
-  "allow_bike": false,
-  "allow_escape_rope": false,
+  "allow_cycling": false,
+  "allow_escaping": false,
   "allow_running": false,
   "show_map_name": false,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": 0,
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_MOM",
@@ -135,7 +135,7 @@
       "x": 2,
       "y": 8,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_INTRO_STATE",
+      "var": "VAR_BREEZE_INTRO_STATE",
       "var_value": "4",
       "script": "BreezeTown_MaysHouse_1F_EventScript_GoSeeRoom"
     },
@@ -144,7 +144,7 @@
       "x": 1,
       "y": 3,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_RIVAL_STATE",
+      "var": "VAR_BREEZE_RIVAL_STATE",
       "var_value": "2",
       "script": "BreezeTown_MaysHouse_1F_EventScript_MeetRival0"
     },
@@ -153,7 +153,7 @@
       "x": 2,
       "y": 4,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_RIVAL_STATE",
+      "var": "VAR_BREEZE_RIVAL_STATE",
       "var_value": "2",
       "script": "BreezeTown_MaysHouse_1F_EventScript_MeetRival1"
     },
@@ -162,10 +162,14 @@
       "x": 3,
       "y": 3,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_RIVAL_STATE",
+      "var": "VAR_BREEZE_RIVAL_STATE",
       "var_value": "2",
       "script": "BreezeTown_MaysHouse_1F_EventScript_MeetRival2"
     }
   ],
-  "bg_events": []
+  "bg_events": [
+
+  ],
+  "allow_bike": "",
+  "allow_escape_rope": ""
 }

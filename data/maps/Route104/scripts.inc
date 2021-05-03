@@ -102,7 +102,7 @@ Route104_EventScript_MayEncounter:: @ 81ECD4B
 	msgbox Route104_Text_MayWeShouldRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
-	playfanfare MUS_ME_TORE_EYE
+	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox Route104_Text_RegisteredMay, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
@@ -191,7 +191,7 @@ Route104_EventScript_AkiraEncounter:: @ 81ECE6F
 	msgbox Route104_Text_AkiraWeShouldRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
-	playfanfare MUS_ME_TORE_EYE
+	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox Route104_Text_RegisteredAkira, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
@@ -383,7 +383,7 @@ Route104_EventScript_SailToDewfordDadCalls:: @ 81ED0EF
 	pokenavcall Route104_Text_DadPokenavCall
 	waitmessage
 	delay 30
-	playfanfare MUS_ME_TORE_EYE
+	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox Route104_Text_RegisteredDadInPokenav, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage

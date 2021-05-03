@@ -4,7 +4,7 @@ EverGrandeCity_HallOfFame_EventScript_SetGameClearFlags:: @ 82717C1
 	call EverGrandeCity_HallOfFame_EventScript_ResetDefeatedEventLegendaries
 	compare VAR_FOSSIL_MANIAC_STATE, 0
 	call_if_eq EverGrandeCity_HallOfFame_EventScript_SetDesertUnderpassCommentReady
-	clearflag FLAG_HIDE_LILCOVE_MOTEL_GAME_DESIGNERS
+	clearflag FLAG_HIDE_LILYCOVE_MOTEL_GAME_DESIGNERS
 	call EverGrandeCity_HallOfFame_EventScript_ResetEliteFour
 	setflag FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY
 	clearflag FLAG_HIDE_SS_TIDAL_CORRIDOR_MR_BRINEY
@@ -43,8 +43,8 @@ EverGrandeCity_HallOfFame_EventScript_ShowStevensHouseBeldum:: @ 827183F
 	return
 
 EverGrandeCity_HallOfFame_EventScript_ReadyReceiveSSTicketEvent:: @ 8271843
-	setvar VAR_LITTLEROOT_HOUSES_STATE_MAY, 3
-	setvar VAR_LITTLEROOT_HOUSES_STATE_AKIRA, 3
+	setvar VAR_BREEZE_HOUSES_STATE_MAY, 3
+	setvar VAR_BREEZE_HOUSES_STATE_AKIRA, 3
 	clearflag FLAG_HIDE_PLAYERS_HOUSE_DAD
 	return
 

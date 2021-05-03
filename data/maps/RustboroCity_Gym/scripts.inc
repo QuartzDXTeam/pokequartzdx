@@ -96,7 +96,7 @@ RustboroCity_Gym_EventScript_RegisterBetti:: @ 821307B
 	pokenavcall RustboroCity_Gym_Text_BettiRegisterCall
 	waitmessage
 	delay 30
-	playfanfare MUS_ME_TORE_EYE
+	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox RustboroCity_Gym_Text_RegisteredBetti, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage

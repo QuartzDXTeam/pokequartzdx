@@ -456,7 +456,7 @@ LilycoveCity_Text_MayDefeat: @ 81E3275
 
 LilycoveCity_Text_MayGoingBackToLittleroot: @ 81E32FB
 	.string "MAY: I'm thinking of going back to\n"
-	.string "LITTLEROOT soon.\p"
+	.string "BREEZE soon.\p"
 	.string "I've caught a decent group of POKéMON,\n"
 	.string "and my POKéDEX is coming along, so\l"
 	.string "I'm going home to show my dad.$"
@@ -518,7 +518,7 @@ LilycoveCity_Text_AkiraDefeat: @ 81E3777
 
 LilycoveCity_Text_AkiraGoingBackToLittleroot: @ 81E37D7
 	.string "AKIRA: I…\n"
-	.string "I plan on going home to LITTLEROOT.\p"
+	.string "I plan on going home to BREEZE.\p"
 	.string "You know I'm helping out my dad on his\n"
 	.string "POKéDEX. It's coming together pretty\l"
 	.string "decently, so I should go show him.$"

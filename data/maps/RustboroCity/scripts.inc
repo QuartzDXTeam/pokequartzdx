@@ -849,7 +849,7 @@ RustboroCity_EventScript_MayEncounter:: @ 81E100B
 	msgbox RustboroCity_Text_MayHiLetsRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
-	playfanfare MUS_ME_TORE_EYE
+	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox RustboroCity_Text_RegisteredMay, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
@@ -920,7 +920,7 @@ RustboroCity_EventScript_AkiraEncounter:: @ 81E1114
 	msgbox RustboroCity_Text_AkiraHiLetsRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
-	playfanfare MUS_ME_TORE_EYE
+	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox RustboroCity_Text_RegisteredAkira, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage

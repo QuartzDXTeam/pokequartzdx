@@ -15,7 +15,7 @@ GraniteCave_StevensRoom_EventScript_Steven:: @ 822DC7B
 	msgbox GraniteCave_StevensRoom_Text_CouldBecomeChampionLetsRegister, MSGBOX_DEFAULT
 	closemessage
 	delay 30
-	playfanfare MUS_ME_TORE_EYE
+	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox GraniteCave_StevensRoom_Text_RegisteredSteven, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage

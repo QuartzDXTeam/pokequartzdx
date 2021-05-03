@@ -1,3 +1,5 @@
+.set LOCALID_SUDOWOODO, 14
+
 BattleFrontier_OutsideEast_MapScripts:: @ 8242C04
 	map_script MAP_SCRIPT_ON_RESUME, BattleFrontier_OutsideEast_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_OutsideEast_OnTransition
@@ -52,7 +54,7 @@ BattleFrontier_OutsideEast_EventScript_Hiker:: @ 8242C79
 	msgbox BattleFrontier_OutsideEast_Text_PyramidTooHarsh, MSGBOX_NPC
 	end
 
-BattleFrontier_OutsideEast_EventScript_Buffoon:: @ 8242C82
+BattleFrontier_OutsideEast_EventScript_HexManiac:: @ 8242C82
 	msgbox BattleFrontier_OutsideEast_Text_ThriveInDarkness, MSGBOX_NPC
 	end
 
@@ -106,8 +108,8 @@ BattleFrontier_OutsideEast_EventScript_Sudowoodo:: @ 8242CEA
 	lock
 	faceplayer
 	waitse
-	playse 269
-	applymovement 14, BattleFrontier_OutsideEast_Movement_SudowoodoShake
+	playse SE_SUDOWOODO_SHAKE
+	applymovement LOCALID_SUDOWOODO, BattleFrontier_OutsideEast_Movement_SudowoodoShake
 	waitmovement 0
 	release
 	end
@@ -118,8 +120,8 @@ BattleFrontier_OutsideEast_EventScript_WaterSudowoodo:: @ 8242CFC
 	special DoWateringBerryTreeAnim
 	waitstate
 	waitse
-	playse SE_USSOKI
-	applymovement 14, BattleFrontier_OutsideEast_Movement_SudowoodoShake
+	playse SE_SUDOWOODO_SHAKE
+	applymovement LOCALID_SUDOWOODO, BattleFrontier_OutsideEast_Movement_SudowoodoShake
 	waitmovement 0
 	msgbox gText_Sudowoodo_Attacked, MSGBOX_DEFAULT
 	closemessage
@@ -127,7 +129,7 @@ BattleFrontier_OutsideEast_EventScript_WaterSudowoodo:: @ 8242CFC
 	playmoncry SPECIES_SUDOWOODO, 2
 	delay 40
 	waitmoncry
-	setvar VAR_LAST_TALKED, 14  @ Sudowoodo object event id
+	setvar VAR_LAST_TALKED, LOCALID_SUDOWOODO
 	setwildbattle SPECIES_SUDOWOODO, 40, ITEM_NONE
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	dowildbattle

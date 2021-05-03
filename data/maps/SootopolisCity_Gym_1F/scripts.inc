@@ -110,7 +110,7 @@ SootopolisCity_Gym_1F_EventScript_JuanDefeated:: @ 8224F82
 	call SootopolisCity_Gym_1F_EventScript_GiveWaterPulse
 	closemessage
 	delay 30
-	playfanfare MUS_ME_TORE_EYE
+	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox SootopolisCity_Gym_1F_Text_RegisteredJuan, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage

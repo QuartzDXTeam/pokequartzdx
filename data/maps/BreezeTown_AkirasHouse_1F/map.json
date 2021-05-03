@@ -2,7 +2,7 @@
   "id": "MAP_BREEZE_TOWN_AKIRAS_HOUSE_1F",
   "name": "BreezeTown_AkirasHouse_1F",
   "layout": "LAYOUT_BREEZE_TOWN_AKIRAS_HOUSE_1F",
-  "music": "MUS_MISHIRO",
+  "music": "MUS_CREDITS",
   "region_map_section": "MAPSEC_BREEZE_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -135,7 +135,7 @@
       "x": 8,
       "y": 8,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_INTRO_STATE",
+      "var": "VAR_BREEZE_INTRO_STATE",
       "var_value": "4",
       "script": "BreezeTown_AkirasHouse_1F_EventScript_GoSeeRoom"
     },
@@ -144,7 +144,7 @@
       "x": 7,
       "y": 3,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_RIVAL_STATE",
+      "var": "VAR_BREEZE_RIVAL_STATE",
       "var_value": "2",
       "script": "BreezeTown_AkirasHouse_1F_EventScript_MeetRival0"
     },
@@ -153,7 +153,7 @@
       "x": 8,
       "y": 4,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_RIVAL_STATE",
+      "var": "VAR_BREEZE_RIVAL_STATE",
       "var_value": "2",
       "script": "BreezeTown_AkirasHouse_1F_EventScript_MeetRival1"
     },
@@ -162,7 +162,7 @@
       "x": 9,
       "y": 3,
       "elevation": 0,
-      "var": "VAR_LITTLEROOT_RIVAL_STATE",
+      "var": "VAR_BREEZE_RIVAL_STATE",
       "var_value": "2",
       "script": "BreezeTown_AkirasHouse_1F_EventScript_MeetRival2"
     }

@@ -1,6 +1,6 @@
 Common_EventScript_SetGymTrainers:: @ 8271F43
 	switch VAR_0x8008
-	case 1, RusboroCity_Gym_SetGymTrainers
+	case 1, RustboroCity_Gym_SetGymTrainers
 	case 2, DewfordTown_Gym_SetGymTrainers
 	case 3, MauvilleCity_Gym_SetGymTrainers
 	case 4, LavaridgeTown_Gym_SetGymTrainers

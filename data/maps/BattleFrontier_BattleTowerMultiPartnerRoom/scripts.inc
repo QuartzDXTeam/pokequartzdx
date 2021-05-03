@@ -1,3 +1,5 @@
+.set LOCALID_ATTENDANT, 1
+
 BattleFrontier_BattleTowerMultiPartnerRoom_MapScripts:: @ 8243D92
 	map_script MAP_SCRIPT_ON_RESUME, BattleFrontier_BattleTowerMultiPartnerRoom_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_BattleTowerMultiPartnerRoom_OnTransition
@@ -33,7 +35,7 @@ BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_ChosePartner:: @ 8243DDA
 	setvar VAR_OBJ_GFX_ID_7, OBJ_EVENT_GFX_BOY_1
 	setvar VAR_TEMP_1, 1
 	setvar VAR_TEMP_3, 1
-	setobjectxyperm 1, 10, 2
+	setobjectxyperm LOCALID_ATTENDANT, 10, 2
 	end
 
 BattleFrontier_BattleTowerMultiPartnerRoom_OnWarp: @ 8243E14
@@ -59,9 +61,9 @@ BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterRoom:: @ 8243E41
 	lockall
 	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterRoom
 	waitmovement 0
-	applymovement 1, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantBlockExit
+	applymovement LOCALID_ATTENDANT, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantBlockExit
 	waitmovement 0
-	copyobjectxytoperm 1
+	copyobjectxytoperm LOCALID_ATTENDANT
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox BattleFrontier_BattleTowerMultiPartnerRoom_Text_PleaseFindPartner, MSGBOX_DEFAULT
@@ -84,7 +86,7 @@ BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_Attendant:: @ 8243E7A
 	faceplayer
 	message BattleFrontier_BattleTowerMultiPartnerRoom_Text_QuitLookingForPartner
 	waitmessage
-	multichoicedefault 20, 8, MULTI_YESNO, 1, 0
+	multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE
 	compare VAR_RESULT, 0
 	goto_if_eq BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_QuitChallenge
 	msgbox BattleFrontier_BattleTowerMultiPartnerRoom_Text_PleaseFindPartner2, MSGBOX_DEFAULT
@@ -99,7 +101,7 @@ BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_QuitChallenge:: @ 8243E9D
 BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterElevator:: @ 8243EB5
 	msgbox BattleFrontier_BattleTowerMultiPartnerRoom_Text_ThankYouForChoosingPartner, MSGBOX_DEFAULT
 	closemessage
-	applymovement 1, Common_Movement_WalkInPlaceFastestUp
+	applymovement LOCALID_ATTENDANT, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	opendoor 10, 1
 	waitdooranim
@@ -112,21 +114,21 @@ BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_EnterElevator:: @ 8243EB5
 	end
 
 BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_MoveToElevator:: @ 8243EE4
-	applymovement 1, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantEnterElevator
+	applymovement LOCALID_ATTENDANT, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantEnterElevator
 	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterElevator
 	waitmovement 0
 	return
 
 @ Unused
 BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_MoveToElevatorEast: @ 8243EF6
-	applymovement 1, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantEnterElevator
+	applymovement LOCALID_ATTENDANT, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantEnterElevator
 	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEnterElevatorEast
 	waitmovement 0
 	return
 
 @ Unused
 BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_MoveToElevatorWest: @ 8243F08
-	applymovement 1, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantEnterElevator
+	applymovement LOCALID_ATTENDANT, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_AttendantEnterElevator
 	applymovement OBJ_EVENT_ID_PLAYER, BattleFrontier_BattleTowerMultiPartnerRoom_Movement_PlayerEneterElevatorWest
 	waitmovement 0
 	return
@@ -173,7 +175,7 @@ BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_TalkToPotentialPartner:: 
 	waitbuttonpress
 	tower_dopartnermsg PARTNER_MSGID_MON2_ASK
 	waitmessage
-	multichoicedefault 20, 8, MULTI_YESNO, 1, 0
+	multichoicedefault 20, 8, MULTI_YESNO, 1, FALSE
 	switch VAR_RESULT
 	case 1, BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_RejectPartner
 	case MULTI_B_PRESSED, BattleFrontier_BattleTowerMultiPartnerRoom_EventScript_RejectPartner
@@ -1010,24 +1012,24 @@ BattleFrontier_BattleTowerMultiPartnerRoom_Text_TuberFReject:: @ 824670A
 	.string "If we'd become partners, we could\n"
 	.string "have been so strong!$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_BuffoonIntro:: @ 8246741
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacIntro:: @ 8246741
 	.string "Greetings…\n"
-	.string "I am BUFFOON {STR_VAR_1}…$"
+	.string "I am HEX MANIAC {STR_VAR_1}…$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_BuffoonMon1:: @ 8246760
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacMon1:: @ 8246760
 	.string "I bear with me one {STR_VAR_1}-using\n"
 	.string "{STR_VAR_2} together with one$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_BuffoonMon2Ask:: @ 8246791
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacMon2Ask:: @ 8246791
 	.string "{STR_VAR_1}-using {STR_VAR_2}…\p"
 	.string "I beseech you…\n"
 	.string "Join me in a tag team…$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_BuffoonAccept:: @ 82467C4
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacAccept:: @ 82467C4
 	.string "I thank you…\n"
 	.string "I shall register us…$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_BuffoonReject:: @ 82467E6
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_HexManiacReject:: @ 82467E6
 	.string "I so longed to join you…$"
 
 BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnBreederMIntro:: @ 82467FF
@@ -1455,25 +1457,25 @@ BattleFrontier_BattleTowerMultiPartnerRoom_Text_PkmnRangerFReject:: @ 8247C23
 	.string "I hope you'll choose my POKéMON\n"
 	.string "next time.$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_PainterIntro:: @ 8247C4E
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyIntro:: @ 8247C4E
 	.string "Pleased to meet you. I'm {STR_VAR_1}.\n"
 	.string "I consider myself an AROMA LADY.$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_PainterMon1:: @ 8247C8C
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyMon1:: @ 8247C8C
 	.string "I travel with one {STR_VAR_2}\n"
 	.string "that uses {STR_VAR_1} and$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_PainterMon2Ask:: @ 8247CB2
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyMon2Ask:: @ 8247CB2
 	.string "one {STR_VAR_2} that uses\n"
 	.string "{STR_VAR_1}.\p"
 	.string "I hope they strike your fancy.\n"
 	.string "Would you care to be my partner?$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_PainterAccept:: @ 8247D07
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyAccept:: @ 8247D07
 	.string "I'm honored by your acceptance.\n"
 	.string "I will go register right this instant.$"
 
-BattleFrontier_BattleTowerMultiPartnerRoom_Text_PainterReject:: @ 8247D4E
+BattleFrontier_BattleTowerMultiPartnerRoom_Text_AromaLadyReject:: @ 8247D4E
 	.string "It would be wonderful if we could form\n"
 	.string "a tag team the next time we meet.$"
 
