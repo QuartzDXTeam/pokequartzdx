@@ -2,7 +2,7 @@
   "id": "MAP_BREEZE_WAY",
   "name": "BreezeWay",
   "layout": "LAYOUT_BREEZE_WAY",
-  "music": "MUS_P_SCHOOL",
+  "music": "MUS_SCHOOL",
   "region_map_section": "MAPSEC_BREEZE_WAY",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",

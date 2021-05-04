@@ -19,7 +19,7 @@
     "id": "MAP_LILYCOVE_CITY_DEPARTMENT_STORE_1F",
     "layout": "LAYOUT_LILYCOVE_CITY_DEPARTMENT_STORE_1F",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_MINAMO",
+    "music": "MUS_LILYCOVE",
     "name": "LilycoveCity_DepartmentStore_1F",
     "object_events": [
         {

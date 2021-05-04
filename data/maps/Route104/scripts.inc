@@ -80,11 +80,11 @@ Route104_EventScript_PlayRivalMusic:: @ 81ECD11
 	return
 
 Route104_EventScript_PlayMayMusic:: @ 81ECD29
-	playbgm MUS_GIRL_SUP, 1
+	playbgm MUS_ENCOUNTER_MAY, 1
 	return
 
 Route104_EventScript_PlayAkiraMusic:: @ 81ECD2E
-	playbgm MUS_BOY_SUP, 1
+	playbgm MUS_ENCOUNTER_AKIRA, 1
 	return
 
 Route104_EventScript_RivalEncounter:: @ 81ECD33

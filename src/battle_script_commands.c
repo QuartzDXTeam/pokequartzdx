@@ -833,9 +833,9 @@ static const u8 sTerrainToType[] =
 // - ITEM_ULTRA_BALL skips Master Ball and ITEM_NONE
 static const u8 sBallCatchBonuses[] =
 {
-    [ITEM_ULTRA_BALL - ITEM_ULTRA_BALL]  = 20,
-    [ITEM_GREAT_BALL - ITEM_ULTRA_BALL]  = 15,
-    [ITEM_POKE_BALL - ITEM_ULTRA_BALL]   = 10,
+    [ITEM_ULTRA_BALL - ITEM_ULTRA_BALL]  = 20, 
+    [ITEM_GREAT_BALL - ITEM_ULTRA_BALL]  = 15, 
+    [ITEM_POKE_BALL - ITEM_ULTRA_BALL]   = 10, 
     [ITEM_SAFARI_BALL - ITEM_ULTRA_BALL] = 15
 };
 
@@ -1737,7 +1737,7 @@ static void Cmd_attackanimation(void)
     if ((gHitMarker & HITMARKER_NO_ANIMATIONS) && (gCurrentMove != MOVE_TRANSFORM && gCurrentMove != MOVE_SUBSTITUTE))
     {
         BattleScriptPush(gBattlescriptCurrInstr + 1);
-        gBattlescriptCurrInstr = BattleScript_Pausex8;
+        gBattlescriptCurrInstr = BattleScript_Pausex20;
         gBattleScripting.animTurn++;
         gBattleScripting.animTargetsHit++;
     }
@@ -1778,7 +1778,7 @@ static void Cmd_attackanimation(void)
         else
         {
             BattleScriptPush(gBattlescriptCurrInstr + 1);
-            gBattlescriptCurrInstr = BattleScript_Pausex8;
+            gBattlescriptCurrInstr = BattleScript_Pausex20;
         }
     }
 }
@@ -3517,7 +3517,7 @@ static void Cmd_unknown_24(void)
 
     if (HP_count == 0)
         gBattleOutcome |= B_OUTCOME_LOST;
-
+    
     HP_count = 0;
 
     for (i = 0; i < PARTY_SIZE; i++)
@@ -3542,7 +3542,7 @@ static void Cmd_unknown_24(void)
             if ((gHitMarker & HITMARKER_FAINTED2(i)) && (!gSpecialStatuses[i].flag40))
                 foundPlayer++;
         }
-
+        
         foundOpponent = 0;
 
         for (i = 1; i < gBattlersCount; i += 2)
@@ -3978,7 +3978,7 @@ static void Cmd_playanimation(void)
     else if (gHitMarker & HITMARKER_NO_ANIMATIONS)
     {
         BattleScriptPush(gBattlescriptCurrInstr + 7);
-        gBattlescriptCurrInstr = BattleScript_Pausex8;
+        gBattlescriptCurrInstr = BattleScript_Pausex20;
     }
     else if (gBattlescriptCurrInstr[2] == B_ANIM_RAIN_CONTINUES
              || gBattlescriptCurrInstr[2] == B_ANIM_SUN_CONTINUES
@@ -4608,9 +4608,9 @@ static void Cmd_switchindataupdate(void)
 
     SwitchInClearSetData();
 
-    if (gBattleTypeFlags & BATTLE_TYPE_PALACE
+    if (gBattleTypeFlags & BATTLE_TYPE_PALACE 
         && gBattleMons[gActiveBattler].maxHP / 2 >= gBattleMons[gActiveBattler].hp
-        && gBattleMons[gActiveBattler].hp != 0
+        && gBattleMons[gActiveBattler].hp != 0 
         && !(gBattleMons[gActiveBattler].status1 & STATUS1_SLEEP))
     {
         gBattleStruct->palaceFlags |= gBitTable[gActiveBattler];

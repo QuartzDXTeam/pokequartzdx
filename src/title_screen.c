@@ -69,7 +69,7 @@ static const u32 sTitleScreenLogoShineGfx[] = INCBIN_U32("graphics/title_screen/
 
 
 
-const u16 gIntroWaterDropAlphaBlend[] =
+const u16 gTitleScreenAlphaBlend[64] =
 {
     BLDALPHA_BLEND(16, 0),
     BLDALPHA_BLEND(16, 1),

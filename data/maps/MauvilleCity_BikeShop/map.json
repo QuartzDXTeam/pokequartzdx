@@ -27,7 +27,7 @@
     "id": "MAP_MAUVILLE_CITY_BIKE_SHOP",
     "layout": "LAYOUT_MAUVILLE_CITY_BIKE_SHOP",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_GOTOWN",
+    "music": "MUS_RUSTBORO",
     "name": "MauvilleCity_BikeShop",
     "object_events": [
         {

@@ -405,11 +405,11 @@ Route110_EventScript_RivalScene:: @ 81EF76E
 	end
 
 Route110_EventScript_PlayMayMusic:: @ 81EF7E1
-	playbgm MUS_GIRL_SUP, 1
+	playbgm MUS_ENCOUNTER_MAY, 1
 	return
 
 Route110_EventScript_PlayAkiraMusic:: @ 81EF7E6
-	playbgm MUS_BOY_SUP, 1
+	playbgm MUS_ENCOUNTER_AKIRA, 1
 	return
 
 Route110_EventScript_MayBattle:: @ 81EF7EB

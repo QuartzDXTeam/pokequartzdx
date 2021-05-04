@@ -221,7 +221,7 @@ Route110_TrickHouseEntrance_EventScript_BeginChallenge:: @ 8269CF8
 	delay 20
 	applymovement 1, Route110_TrickHouse_Movement_TrickMasterSpin
 	waitmovement 0
-	playse SE_W153
+	playse SE_M_EXPLOSION
 	applymovement 1, Route110_TrickHouse_Movement_TrickMasterJumpAway
 	waitmovement 0
 	removeobject 1
@@ -478,7 +478,7 @@ Route110_TrickHouseEntrance_EventScript_ReceivedTent:: @ 826A09A
 	waitmovement 0
 	applymovement 1, Route110_TrickHouse_Movement_TrickMasterSpin
 	waitmovement 0
-	playse SE_W153
+	playse SE_M_EXPLOSION
 	applymovement 1, Route110_TrickHouse_Movement_TrickMasterJumpAway
 	waitmovement 0
 	removeobject 1
@@ -709,7 +709,7 @@ Route110_TrickHousePuzzle_EventScript_ReadScrollAgain:: @ 826A3DB
 	end
 
 Route110_TrickHousePuzzle_EventScript_FoundScroll:: @ 826A3E5
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	message Route110_TrickHousePuzzle_Text_FoundAScroll
 	waitfanfare
 	msgbox Route110_TrickHousePuzzle_Text_MemorizedSecretCode, MSGBOX_DEFAULT

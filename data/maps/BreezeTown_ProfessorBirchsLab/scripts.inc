@@ -113,7 +113,7 @@ BreezeTown_ProfessorBirchsLab_EventScript_GiveStarterEvent:: @ 81F9DDB
 	bufferleadmonspeciesname 0
 	message BreezeTown_ProfessorBirchsLab_Text_LikeYouToHavePokemon
 	waitmessage
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	waitfanfare
 	msgbox BreezeTown_ProfessorBirchsLab_Text_WhyNotGiveNicknameToMon, MSGBOX_YESNO
 	compare VAR_RESULT, YES
@@ -176,13 +176,13 @@ BreezeTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex:: @ 81F9E80
 	applymovement 2, BreezeTown_ProfessorBirchsLab_Movement_BirchRetrievePokedexes
 	waitmovement 0
 	delay 20
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	delay 10
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	delay 10
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	delay 10
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	delay 20
 	applymovement 3, Common_Movement_WalkInPlaceFastestRight
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
@@ -201,7 +201,7 @@ BreezeTown_ProfessorBirchsLab_EventScript_UpgradeToNationalDex:: @ 81F9E80
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	msgbox BreezeTown_ProfessorBirchsLab_Text_OkayAllDone, MSGBOX_DEFAULT
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	message BreezeTown_ProfessorBirchsLab_Text_PokedexUpgradedToNational
 	waitmessage
 	waitfanfare
@@ -485,7 +485,7 @@ BreezeTown_ProfessorBirchsLab_EventScript_ReceivedChikorita:: @ 81FA23F
 	end
 
 BreezeTown_ProfessorBirchsLab_EventScript_ReceivedJohtoStarter:: @ 81FA24F
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	message BreezeTown_ProfessorBirchsLab_Text_ReceivedJohtoStarter
 	waitmessage
 	waitfanfare
@@ -580,7 +580,7 @@ BreezeTown_ProfessorBirchsLab_EventScript_AkiraGivePokeBalls:: @ 81FA37F
 	return
 
 BreezeTown_ProfessorBirchsLab_EventScript_ReceivePokedex:: @ 81FA3AC
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	message BreezeTown_ProfessorBirchsLab_Text_ReceivedPokedex
 	waitfanfare
 	setflag FLAG_SYS_POKEDEX_GET

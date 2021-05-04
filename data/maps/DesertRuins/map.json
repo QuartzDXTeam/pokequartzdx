@@ -35,7 +35,7 @@
     "id": "MAP_DESERT_RUINS",
     "layout": "LAYOUT_DESERT_RUINS",
     "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_MABOROSI",
+    "music": "MUS_SEALED_CHAMBER",
     "name": "DesertRuins",
     "object_events": [
         {

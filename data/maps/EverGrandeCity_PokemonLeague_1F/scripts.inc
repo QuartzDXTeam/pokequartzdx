@@ -65,7 +65,7 @@ EverGrandeCity_PokemonLeague_1F_EventScript_DoorGuard:: @ 8229636
 	applymovement 4, EverGrandeCity_PokemonLeague_1F_Movement_RightGuardOutOfWay
 	waitmovement 0
 	delay 10
-	playfanfare MUS_ME_BACHI
+	playfanfare MUS_OBTAIN_BADGE
 	message EverGrandeCity_PokemonLeague_1F_Text_GoForth
 	waitmessage
 	waitfanfare
@@ -87,7 +87,7 @@ EverGrandeCity_PokemonLeague_1F_EventScript_PlayerMoveToFrontFromLeft:: @ 82296A
 	return
 
 EverGrandeCity_PokemonLeague_1F_EventScript_NotAllBadges:: @ 82296AE
-	playse SE_HAZURE
+	playse SE_FAILURE
 	msgbox EverGrandeCity_PokemonLeague_1F_Text_HaventObtainedAllBadges, MSGBOX_DEFAULT
 	releaseall
 	end

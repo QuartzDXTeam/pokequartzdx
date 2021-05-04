@@ -36,7 +36,7 @@ RustboroCity_EventScript_ScientistAddMatchCall:: @ 81E0715
 	setvar VAR_ROUTE104_STATE, 1
 	applymovement OBJ_EVENT_ID_PLAYER, RustboroCity_Movement_PlayerWalkDown
 	waitmovement 0
-	playse SE_KAIDAN
+	playse SE_EXIT
 	delay 10
 	addobject 15
 	applymovement 15, RustboroCity_Movement_ScientistApproachPlayer
@@ -55,13 +55,13 @@ RustboroCity_EventScript_ScientistAddMatchCall:: @ 81E0715
 	setflag FLAG_HAS_MATCH_CALL
 	applymovement 15, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	delay 10
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	delay 10
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	delay 10
-	playse SE_TK_KASYA
+	playse SE_CLICK
 	delay 20
 	applymovement 15, Common_Movement_WalkInPlaceFastestDown
 	waitmovement 0
@@ -96,7 +96,7 @@ RustboroCity_EventScript_MatchCallTutorial:: @ 81E07BD
 	closemessage
 	applymovement 15, RustboroCity_Movement_ScientistLeave
 	waitmovement 0
-	playse SE_KAIDAN
+	playse SE_EXIT
 	removeobject 15
 	setflag FLAG_HIDE_RUSTBORO_CITY_SCIENTIST
 	setvar VAR_RUSTBORO_CITY_STATE, 7
@@ -287,7 +287,7 @@ RustboroCity_EventScript_StolenGoodsTrigger4:: @ 81E09B6
 RustboroCity_EventScript_StolenGoodsScene:: @ 81E09CD
 	msgbox RustboroCity_Text_OutOfTheWay, MSGBOX_DEFAULT
 	closemessage
-	playbgm MUS_AQA_0, 0
+	playbgm MUS_ENCOUNTER_AQUA, 0
 	addobject 10
 	addobject 9
 	applymovement 10, RustboroCity_Movement_GruntEscape
@@ -699,11 +699,11 @@ RustboroCity_EventScript_PlayRivalMusic:: @ 81E0DD1
 	return
 
 RustboroCity_EventScript_PlayMayMusic:: @ 81E0DE9
-	playbgm MUS_GIRL_SUP, 1
+	playbgm MUS_ENCOUNTER_MAY, 1
 	return
 
 RustboroCity_EventScript_PlayAkiraMusic:: @ 81E0DEE
-	playbgm MUS_BOY_SUP, 1
+	playbgm MUS_ENCOUNTER_AKIRA, 1
 	return
 
 RustboroCity_EventScript_RivalTrigger0:: @ 81E0DF3

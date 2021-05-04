@@ -11,7 +11,7 @@
     "id": "MAP_UNDERWATER_SOOTOPOLIS_CITY",
     "layout": "LAYOUT_UNDERWATER_SOOTOPOLIS_CITY",
     "map_type": "MAP_TYPE_UNDERWATER",
-    "music": "MUS_DEEPDEEP",
+    "music": "MUS_UNDERWATER",
     "name": "Underwater_SootopolisCity",
     "object_events": [
     ],

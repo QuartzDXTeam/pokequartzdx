@@ -21,7 +21,7 @@ PetalburgCity_EventScript_MoveBoyToWestEntrance:: @ 81DC307
 
 PetalburgCity_EventScript_DisableMapNameAndMusic:: @ 81DC30F
 	setflag FLAG_HIDE_MAP_NAME_POPUP
-	savebgm MUS_TSURETEK
+	savebgm MUS_FOLLOW_ME
 	return
 
 PetalburgCity_EventScript_SetGymDoorsUnlocked:: @ 81DC316
@@ -72,7 +72,7 @@ PetalburgCity_EventScript_WalkToWallyHouse:: @ 81DC390
 	applymovement 5, PetalburgCity_Movement_WalkInsideHouseUncle
 	applymovement OBJ_EVENT_ID_PLAYER, PetalburgCity_Movement_WalkInsideHousePlayer
 	waitmovement 0
-	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_UNCLE
+	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD
 	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_PETALBURG_CITY
 	closedoor VAR_0x8004, VAR_0x8005
 	waitdooranim
@@ -265,7 +265,7 @@ PetalburgCity_EventScript_ShowGymToPlayer3:: @ 81DC4BE
 PetalburgCity_EventScript_ShowGymToPlayer:: @ 81DC4CA
 	applymovement 8, Common_Movement_FacePlayer
 	waitmovement 0
-	playbgm MUS_TSURETEK, 0
+	playbgm MUS_FOLLOW_ME, 0
 	playse SE_PIN
 	applymovement 8, Common_Movement_ExclamationMark
 	waitmovement 0

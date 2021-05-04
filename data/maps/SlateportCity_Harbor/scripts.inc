@@ -15,7 +15,7 @@ SlateportCity_Harbor_EventScript_ShowSSTidal:: @ 820C9A5
 	return
 
 SlateportCity_Harbor_EventScript_ReadyAquaEscapeScene:: @ 820C9A9
-	savebgm MUS_AQA_0
+	savebgm MUS_ENCOUNTER_AQUA
 	setobjectxyperm 4, 12, 13
 	setobjectmovementtype 4, MOVEMENT_TYPE_FACE_LEFT
 	setflag FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS
@@ -64,7 +64,7 @@ SlateportCity_Harbor_EventScript_AquaEscapeScene:: @ 820C9F5
 	removeobject 8
 	setvar VAR_SLATEPORT_HARBOR_STATE, 2
 	setflag FLAG_MET_TEAM_AQUA_HARBOR
-	setflag FLAG_HIDE_LILCOVE_MOTEL_SCOTT
+	setflag FLAG_HIDE_LILYCOVE_MOTEL_SCOTT
 	compare VAR_0x8008, 0
 	call_if_eq SlateportCity_Harbor_EventScript_SternApproachPlayer0
 	compare VAR_0x8008, 1

@@ -36,7 +36,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PetalburgCity_EventScript_WallyAunt",
-      "flag": "FLAG_HIDE_PETALBURG_CITY_WALLYS_AUNT"
+      "flag": "FLAG_HIDE_PETALBURG_CITY_WALLYS_MOM"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WALLY",
@@ -88,7 +88,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_PETALBURG_CITY_WALLYS_UNCLE"
+      "flag": "FLAG_HIDE_PETALBURG_CITY_WALLYS_DAD"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",

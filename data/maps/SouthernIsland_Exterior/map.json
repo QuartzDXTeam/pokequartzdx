@@ -19,7 +19,7 @@
     "id": "MAP_SOUTHERN_ISLAND_EXTERIOR",
     "layout": "LAYOUT_SOUTHERN_ISLAND_EXTERIOR",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_DAN02",
+    "music": "MUS_ABANDONED_SHIP ",
     "name": "SouthernIsland_Exterior",
     "object_events": [
         {

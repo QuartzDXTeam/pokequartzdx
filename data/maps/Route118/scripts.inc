@@ -95,7 +95,7 @@ Route118_EventScript_StevenTrigger2:: @ 81F3EC4
 	end
 
 Route118_EventScript_StevenTrigger:: @ 81F3EE4
-	playse SE_DANSA
+	playse SE_LEDGE
 	applymovement 19, Route118_Movement_StevenJumpLedge
 	waitmovement 0
 	delay 30

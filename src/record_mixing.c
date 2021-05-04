@@ -76,7 +76,7 @@ struct PlayerRecordsEmerald
 union PlayerRecords
 {
     struct PlayerRecordsRS ruby;
-    struct PlayerRecordsEmerald quartzdx;
+    struct PlayerRecordsEmerald emerald;
 };
 
 // Static RAM declarations
@@ -236,21 +236,21 @@ static void PrepareExchangePacket(void)
     }
     else
     {
-        memcpy(sSentRecord->quartzdx.secretBases, sSecretBasesSave, sizeof(sSentRecord->quartzdx.secretBases));
-        memcpy(sSentRecord->quartzdx.tvShows, sTvShowsSave, sizeof(sSentRecord->quartzdx.tvShows));
-        memcpy(sSentRecord->quartzdx.pokeNews, sPokeNewsSave, sizeof(sSentRecord->quartzdx.pokeNews));
-        memcpy(&sSentRecord->quartzdx.oldMan, sOldManSave, sizeof(sSentRecord->quartzdx.oldMan));
-        memcpy(&sSentRecord->quartzdx.lilycoveLady, sLilycoveLadySave, sizeof(sSentRecord->quartzdx.lilycoveLady));
-        memcpy(sSentRecord->quartzdx.dewfordTrends, sDewfordTrendsSave, sizeof(sSentRecord->quartzdx.dewfordTrends));
-        GetRecordMixingDaycareMail(&sSentRecord->quartzdx.daycareMail);
-        memcpy(&sSentRecord->quartzdx.battleTowerRecord, sBattleTowerSave, sizeof(sSentRecord->quartzdx.battleTowerRecord));
-        SanitizeEmeraldBattleTowerRecord(&sSentRecord->quartzdx.battleTowerRecord);
+        memcpy(sSentRecord->emerald.secretBases, sSecretBasesSave, sizeof(sSentRecord->emerald.secretBases));
+        memcpy(sSentRecord->emerald.tvShows, sTvShowsSave, sizeof(sSentRecord->emerald.tvShows));
+        memcpy(sSentRecord->emerald.pokeNews, sPokeNewsSave, sizeof(sSentRecord->emerald.pokeNews));
+        memcpy(&sSentRecord->emerald.oldMan, sOldManSave, sizeof(sSentRecord->emerald.oldMan));
+        memcpy(&sSentRecord->emerald.lilycoveLady, sLilycoveLadySave, sizeof(sSentRecord->emerald.lilycoveLady));
+        memcpy(sSentRecord->emerald.dewfordTrends, sDewfordTrendsSave, sizeof(sSentRecord->emerald.dewfordTrends));
+        GetRecordMixingDaycareMail(&sSentRecord->emerald.daycareMail);
+        memcpy(&sSentRecord->emerald.battleTowerRecord, sBattleTowerSave, sizeof(sSentRecord->emerald.battleTowerRecord));
+        SanitizeEmeraldBattleTowerRecord(&sSentRecord->emerald.battleTowerRecord);
 
         if (GetMultiplayerId() == 0)
-            sSentRecord->quartzdx.giftItem = GetRecordMixingGift();
+            sSentRecord->emerald.giftItem = GetRecordMixingGift();
 
-        GetSavedApprentices(sSentRecord->quartzdx.apprentices, sApprenticesSave);
-        GetPlayerHallRecords(&sSentRecord->quartzdx.hallRecords);
+        GetSavedApprentices(sSentRecord->emerald.apprentices, sApprenticesSave);
+        GetPlayerHallRecords(&sSentRecord->emerald.hallRecords);
     }
 }
 
@@ -272,18 +272,18 @@ static void ReceiveExchangePacket(u32 which)
     else
     {
         // Emerald
-        sub_80E7B2C((void *)sReceivedRecords->quartzdx.tvShows);
-        ReceiveSecretBasesData(sReceivedRecords->quartzdx.secretBases, sizeof(struct PlayerRecordsEmerald), which);
-        ReceiveTvShowsData(sReceivedRecords->quartzdx.tvShows, sizeof(struct PlayerRecordsEmerald), which);
-        ReceivePokeNewsData(sReceivedRecords->quartzdx.pokeNews, sizeof(struct PlayerRecordsEmerald), which);
-        ReceiveOldManData(&sReceivedRecords->quartzdx.oldMan, sizeof(struct PlayerRecordsEmerald), which);
-        ReceiveDewfordTrendData(sReceivedRecords->quartzdx.dewfordTrends, sizeof(struct PlayerRecordsEmerald), which);
-        ReceiveDaycareMailData(&sReceivedRecords->quartzdx.daycareMail, sizeof(struct PlayerRecordsEmerald), which, sReceivedRecords->quartzdx.tvShows);
-        ReceiveBattleTowerData(&sReceivedRecords->quartzdx.battleTowerRecord, sizeof(struct PlayerRecordsEmerald), which);
-        ReceiveGiftItem(&sReceivedRecords->quartzdx.giftItem, which);
-        ReceiveLilycoveLadyData(&sReceivedRecords->quartzdx.lilycoveLady, sizeof(struct PlayerRecordsEmerald), which);
-        ReceiveApprenticeData(sReceivedRecords->quartzdx.apprentices, sizeof(struct PlayerRecordsEmerald), (u8) which);
-        ReceiveRankingHallRecords(&sReceivedRecords->quartzdx.hallRecords, sizeof(struct PlayerRecordsEmerald), (u8) which);
+        sub_80E7B2C((void *)sReceivedRecords->emerald.tvShows);
+        ReceiveSecretBasesData(sReceivedRecords->emerald.secretBases, sizeof(struct PlayerRecordsEmerald), which);
+        ReceiveTvShowsData(sReceivedRecords->emerald.tvShows, sizeof(struct PlayerRecordsEmerald), which);
+        ReceivePokeNewsData(sReceivedRecords->emerald.pokeNews, sizeof(struct PlayerRecordsEmerald), which);
+        ReceiveOldManData(&sReceivedRecords->emerald.oldMan, sizeof(struct PlayerRecordsEmerald), which);
+        ReceiveDewfordTrendData(sReceivedRecords->emerald.dewfordTrends, sizeof(struct PlayerRecordsEmerald), which);
+        ReceiveDaycareMailData(&sReceivedRecords->emerald.daycareMail, sizeof(struct PlayerRecordsEmerald), which, sReceivedRecords->emerald.tvShows);
+        ReceiveBattleTowerData(&sReceivedRecords->emerald.battleTowerRecord, sizeof(struct PlayerRecordsEmerald), which);
+        ReceiveGiftItem(&sReceivedRecords->emerald.giftItem, which);
+        ReceiveLilycoveLadyData(&sReceivedRecords->emerald.lilycoveLady, sizeof(struct PlayerRecordsEmerald), which);
+        ReceiveApprenticeData(sReceivedRecords->emerald.apprentices, sizeof(struct PlayerRecordsEmerald), (u8) which);
+        ReceiveRankingHallRecords(&sReceivedRecords->emerald.hallRecords, sizeof(struct PlayerRecordsEmerald), (u8) which);
     }
 }
 

@@ -31,7 +31,7 @@ GraniteCave_StevensRoom_EventScript_Steven:: @ 822DC7B
 	call_if_eq GraniteCave_StevensRoom_EventScript_StevenExitWestEast
 	compare VAR_FACING, DIR_EAST
 	call_if_eq GraniteCave_StevensRoom_EventScript_StevenExitWestEast
-	playse SE_KAIDAN
+	playse SE_EXIT
 	removeobject 1
 	release
 	end

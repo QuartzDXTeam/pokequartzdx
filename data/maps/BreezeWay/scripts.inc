@@ -18,7 +18,7 @@ BreezeWay_EventScript_HideMapNamePopup:: @ 81EBCD5
 
 BreezeWay_EventScript_StartBirchRescue:: @ 81EBCDE
 	lockall
-	playbgm MUS_EVENT0, 1
+	playbgm MUS_HELP, 1
 	msgbox BreezeWay_Text_HelpMe, MSGBOX_DEFAULT
 	closemessage
 	setobjectxyperm 2, 0, 23

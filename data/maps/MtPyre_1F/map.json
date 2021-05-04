@@ -11,7 +11,7 @@
     "id": "MAP_MT_PYRE_1F",
     "layout": "LAYOUT_MT_PYRE_1F",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_M_DUNGON",
+    "music": "MUS_MT_PYRE",
     "name": "MtPyre_1F",
     "object_events": [
         {

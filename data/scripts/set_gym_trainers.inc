@@ -10,7 +10,7 @@ Common_EventScript_SetGymTrainers:: @ 8271F43
 	case 8, SootopolisCity_Gym_SetGymTrainers
 	end
 
-RusboroCity_Gym_SetGymTrainers:: @ 8271FA1
+RustboroCity_Gym_SetGymTrainers:: @ 8271FA1
 	settrainerflag TRAINER_JACOBO
 	settrainerflag TRAINER_MIKEY
 	settrainerflag TRAINER_ANACLETO

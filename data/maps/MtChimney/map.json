@@ -27,7 +27,7 @@
     "id": "MAP_MT_CHIMNEY",
     "layout": "LAYOUT_MT_CHIMNEY",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_TOZAN",
+    "music": "MUS_MT_CHIMNEY",
     "name": "MtChimney",
     "object_events": [
         {

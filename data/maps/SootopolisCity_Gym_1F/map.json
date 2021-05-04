@@ -27,7 +27,7 @@
     "id": "MAP_SOOTOPOLIS_CITY_GYM_1F",
     "layout": "LAYOUT_SOOTOPOLIS_CITY_GYM_1F",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_GIM",
+    "music": "MUS_GYM",
     "name": "SootopolisCity_Gym_1F",
     "object_events": [
         {

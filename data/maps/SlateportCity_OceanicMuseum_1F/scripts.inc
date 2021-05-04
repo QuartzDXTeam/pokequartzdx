@@ -35,7 +35,7 @@ SlateportCity_OceanicMuseum_1F_EventScript_CheckMoneyForFee:: @ 820ADE8
 	checkmoney 50, 0
 	compare VAR_RESULT, 0
 	goto_if_eq SlateportCity_OceanicMuseum_1F_EventScript_NotEnoughMoney
-	playse SE_REGI
+	playse SE_SHOP
 	removemoney 50, 0
 	updatemoneybox 0, 0
 	msgbox SlateportCity_OceanicMuseum_1F_Text_PleaseEnjoyYourself, MSGBOX_DEFAULT
@@ -189,7 +189,7 @@ SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExitWestEast:: @ 820AF93
 
 SlateportCity_OceanicMuseum_1F_EventScript_FamiliarGruntExited:: @ 820AFAA
 	setflag FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_FAMILIAR_AQUA_GRUNT
-	playse SE_KAIDAN
+	playse SE_EXIT
 	removeobject 13
 	release
 	end

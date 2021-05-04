@@ -11,7 +11,7 @@
     "id": "MAP_ROUTE104_MR_BRINEYS_HOUSE",
     "layout": "LAYOUT_ROUTE104_MR_BRINEYS_HOUSE",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_MACHI_S2",
+    "music": "MUS_PETALBURG",
     "name": "Route104_MrBrineysHouse",
     "object_events": [
         {

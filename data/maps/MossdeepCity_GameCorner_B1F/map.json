@@ -11,7 +11,7 @@
     "id": "MAP_MOSSDEEP_CITY_GAME_CORNER_B1F",
     "layout": "LAYOUT_MOSSDEEP_CITY_GAME_CORNER_B1F",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_GOTOWN",
+    "music": "MUS_RUSTBORO",
     "name": "MossdeepCity_GameCorner_B1F",
     "object_events": [
         {

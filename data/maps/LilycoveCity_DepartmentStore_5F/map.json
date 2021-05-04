@@ -11,7 +11,7 @@
     "id": "MAP_LILYCOVE_CITY_DEPARTMENT_STORE_5F",
     "layout": "LAYOUT_LILYCOVE_CITY_DEPARTMENT_STORE_5F",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_FRIENDLY",
+    "music": "MUS_POKE_MART",
     "name": "LilycoveCity_DepartmentStore_5F",
     "object_events": [
         {

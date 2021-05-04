@@ -107,7 +107,7 @@
     "id": "MAP_LILYCOVE_CITY_CONTEST_LOBBY",
     "layout": "LAYOUT_LILYCOVE_CITY_CONTEST_LOBBY",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_CONLOBBY",
+    "music": "MUS_CONTEST_LOBBY",
     "name": "LilycoveCity_ContestLobby",
     "object_events": [
         {

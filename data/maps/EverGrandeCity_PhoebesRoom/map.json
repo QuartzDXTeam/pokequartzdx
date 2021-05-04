@@ -11,7 +11,7 @@
     "id": "MAP_EVER_GRANDE_CITY_PHOEBES_ROOM",
     "layout": "LAYOUT_EVER_GRANDE_CITY_PHOEBES_ROOM",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_C_ROAD",
+    "music": "MUS_VICTORY_ROAD",
     "name": "EverGrandeCity_PhoebesRoom",
     "object_events": [
         {

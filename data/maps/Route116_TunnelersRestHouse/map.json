@@ -11,7 +11,7 @@
     "id": "MAP_ROUTE116_TUNNELERS_REST_HOUSE",
     "layout": "LAYOUT_ROUTE116_TUNNELERS_REST_HOUSE",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_GOTOWN",
+    "music": "MUS_RUSTBORO",
     "name": "Route116_TunnelersRestHouse",
     "object_events": [
         {
