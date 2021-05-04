@@ -31,7 +31,7 @@ else
 EXE :=
 endif
 
-TITLE       := POKEMON EMER
+TITLE       := POKEMON QUDX
 GAME_CODE   := BPEE
 MAKER_CODE  := 01
 REVISION    := 0
@@ -60,6 +60,8 @@ SONG_BUILDDIR = $(OBJ_DIR)/$(SONG_SUBDIR)
 MID_BUILDDIR = $(OBJ_DIR)/$(MID_SUBDIR)
 
 ASFLAGS := -mcpu=arm7tdmi --defsym MODERN=$(MODERN)
+
+GCC_VER = $(shell $(CC) -dumpversion)
 
 ifeq ($(MODERN),0)
 CC1             := tools/agbcc/bin/agbcc$(EXE)
