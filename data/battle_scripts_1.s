@@ -2115,7 +2115,6 @@ BattleScript_EffectStockpile::
 
 BattleScript_EffectSpitUp::
 	attackcanceler
-	jumpifbyte CMP_EQUAL, cMISS_TYPE, B_MSG_PROTECTED, BattleScript_SpitUpFailProtect
 	attackstring
 	ppreduce
 	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
@@ -2126,15 +2125,6 @@ BattleScript_EffectSpitUp::
 BattleScript_SpitUpFail::
 	pause B_WAIT_TIME_SHORT
 	printstring STRINGID_FAILEDTOSPITUP
-	waitmessage B_WAIT_TIME_LONG
-	goto BattleScript_MoveEnd
-
-BattleScript_SpitUpFailProtect::
-	attackstring
-	ppreduce
-	pause B_WAIT_TIME_LONG
-	stockpiletobasedamage BattleScript_SpitUpFail
-	resultmessage
 	waitmessage B_WAIT_TIME_LONG
 	goto BattleScript_MoveEnd
 
@@ -3164,7 +3154,7 @@ BattleScript_PursuitDmgOnSwitchOut::
 BattleScript_PursuitDmgOnSwitchOutRet:
 	return
 
-BattleScript_Pausex20::
+BattleScript_Pausex8::
 	pause B_WAIT_TIME_SHORT
 	return
 
@@ -3991,11 +3981,11 @@ BattleScript_TraceActivates::
 	end3
 
 BattleScript_RainDishActivates::
-	printstring STRINGID_PKMNSXRESTOREDHPALITTLE2
-	waitmessage B_WAIT_TIME_LONG
 	orword gHitMarker, HITMARKER_IGNORE_SUBSTITUTE
 	healthbarupdate BS_ATTACKER
-	datahpupdate BS_ATTACKER
+	datahpupdate BS_ATTACKER	
+	printstring STRINGID_PKMNSXRESTOREDHPALITTLE2
+	waitmessage B_WAIT_TIME_MED
 	end3
 
 BattleScript_SandstreamActivates::
@@ -4032,11 +4022,9 @@ BattleScript_DoCastformChange::
 	return
 
 BattleScript_IntimidateActivatesEnd3::
-	call BattleScript_PauseIntimidateActivates
+	call BattleScript_IntimidateActivates
 	end3
 
-BattleScript_PauseIntimidateActivates:
-	pause B_WAIT_TIME_SHORT
 BattleScript_IntimidateActivates::
 	setbyte gBattlerTarget, 0
 	setstatchanger STAT_ATK, 1, TRUE
@@ -4064,7 +4052,6 @@ BattleScript_IntimidatePrevented:
 	goto BattleScript_IntimidateActivatesLoopIncrement
 	
 BattleScript_DroughtActivates::
-	pause B_WAIT_TIME_SHORT
 	printstring STRINGID_PKMNSXINTENSIFIEDSUN
 	waitstate
 	playanimation BS_BATTLER_0, B_ANIM_SUN_CONTINUES, NULL
