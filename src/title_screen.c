@@ -784,12 +784,12 @@ static void CB2_GoToBerryFixScreen(void)
 
 static void UpdateLegendaryMarkingColor(u8 frameNum)
 {
-    if ((frameNum % 4) == 0) // Change color every 4th frame
+    if ((frameNum % 6) == 0) // Change color every 6th frame
     {
         s32 intensity = Cos(frameNum, 128) + 128;
-        s32 r = 9 - ((intensity * 10 - intensity) / 256);
-        s32 g = 26 - (intensity * 20 / 256);
-        s32 b = 11;
+        s32 r = 9 - ((intensity * 5) / 256);
+        s32 g = 26 - ((intensity * 24) / 256);
+        s32 b = 11 - ((intensity * 6) / 256);
 
         u16 color = RGB(r, g, b);
         LoadPalette(&color, 0xEF, sizeof(color));
