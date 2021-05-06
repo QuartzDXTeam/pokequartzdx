@@ -667,7 +667,7 @@ $(WALLPAPERGFXDIR)/pikachu/tiles.4bpp: $(WALLPAPERGFXDIR)/friends_frame2.4bpp $(
 	@cat $^ >$@
 
 $(PSSGFXDIR)/legendary.4bpp: $(PSSGFXDIR)/legendary_frame.4bpp $(PSSGFXDIR)/legendary_bg.4bpp
-$(WALLPAPERGFXDIR)/legendary/tiles.4bpp: $(WALLPAPERGFXDIR)/friends_frame2.4bpp $(WALLPAPERGFXDIR)/legendary/bg.4bpp
+$(WALLPAPERGFXDIR)/legendary/tiles.4bpp: $(WALLPAPERGFXDIR)/legendary/frame.4bpp $(WALLPAPERGFXDIR)/legendary/bg.4bpp
 	@cat $^ >$@
 
 $(WALLPAPERGFXDIR)/dusclops/tiles.4bpp: $(WALLPAPERGFXDIR)/friends_frame2.4bpp $(WALLPAPERGFXDIR)/dusclops/bg.4bpp
