@@ -94,7 +94,7 @@
     {
       "id": "LAYOUT_BREEZE_TOWN",
       "name": "BreezeTown_Layout",
-      "width": 34,
+      "width": 38,
       "height": 22,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Petalburg",
