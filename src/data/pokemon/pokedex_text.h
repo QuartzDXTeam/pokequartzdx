@@ -114,9 +114,9 @@ const u8 gPidgeotPokedexText[] = _(
 
 const u8 gRattataPokedexText[] = _(
     "Unless there is danger nearby, it will\n"
-    "never move as it stays in the same position\n"
-    "even when sleeping. In these cases, only\n"
-    "a strong gust of wind can disrupt it.");
+    "remain completely motionless even while\n"
+    "it sleeps. In these cases, only a strong\n"
+    "gust of wind will disrupt it.");
 
 const u8 gRaticatePokedexText[] = _(
     "Despite being in a permanent comatose\n"
@@ -125,34 +125,34 @@ const u8 gRaticatePokedexText[] = _(
     "power if it dreams about battling.");
 
 const u8 gSpearowPokedexText[] = _(
-    "Some cultures take part in a 'Turkur dance',\n"
-    "a dance inspired by Turkur's odd way of\n"
-    "walking. It is renowned for being a\n"
-    "popular Thanksgiving appetizer.");
+	"While completely flightless, sways its\n"
+	"entire body and head back and forth as\n"
+	"it walks. Some cultures take part in\n"
+	"dances inspired by this odd movement.");
 
 const u8 gFearowPokedexText[] = _(
     "Males spread open their colorful tails\n"
-    "fully when it is mating season.\n"
-    "The one with the most attractive feathers\n"
+    "fully when it is mating season. The one\n"
+    "with the most attractive feathers\n"
     "and songs wins the most mates.");
 
 const u8 gEkansPokedexText[] = _(
-    "A parasitic Pokémon that sticks onto a\n"
-    "large mammalian Pokémon and doesn't let\n"
-    "go until it evolves. Fortunately, it\n"
-    "can't suck enough blood to harm its victim.");
+    "It leeches off the blood from large\n"
+	"mammalian Pokémon, becoming impossible\n"
+	"to remove once attached. It lacks\n"
+	"teeth, so it rarely causes much harm.");
 
 const u8 gArbokPokedexText[] = _(
-    "It became a hunter because it's too large\n"
-    "to maintain its parasitic lifestyle.\n"
-    "Old habits die hard as it still attempts\n"
-    "to leech from large mammalian Pokémon.");
+    "After growing too large to maintain its\n"
+	"parasitic lifestyle, it became a hunter.\n"
+	"A Leeckey's bite both saps blood from\n"
+	"its victim and injects them with poison.");
 
 const u8 gPikachuPokedexText[] = _(
-    "Covolts hangs motionless from trees until\n"
-    "it is ready to evolve. At night, its red\n"
-    "glowing tail lights the way for adventurers\n"
-    "that find themselves lost in the forest.");
+    "Covolts hangs motionless from trees,\n"
+    "relying on its shell's face to scare\n"
+	"predators. At night, its tail lights the\n"
+	"way for trainers lost in the forest.");
 
 const u8 gRaichuPokedexText[] = _(
     "It wears a piece of its discarded shell\n"
@@ -161,16 +161,16 @@ const u8 gRaichuPokedexText[] = _(
     "without much difficulty.");
 
 const u8 gSandshrewPokedexText[] = _(
-    "When it curls up in a ball, it can make any\n"
-    "attack bounce off harmlessly. Its hide has\n"
-    "turned tough and solid as a result of\n"
-    "living in the desert.");
+    "Nole's large nose doesn't make it easy to\n"
+	"burrow tunnels, so it bows its head while\n"
+	"its nose touches the ground when it digs.\n"
+	"This leaves behind a distinct trail.");
 
 const u8 gSandslashPokedexText[] = _(
-    "It curls up in a ball to protect itself from\n"
-    "enemy attacks. It also curls up to prevent\n"
-    "heatstroke during the daytime when\n"
-    "temperatures rise sharply.");
+    "Groundoe wears Blackglasses to protect\n"
+	"its eyes and to make it look cooler.\n"
+	"Its nose is powerful enough to smell food\n"
+	"from any chamber in its tunnels.");
 
 const u8 gNidoranFPokedexText[] = _(
     "Its highly toxic barbs are thought to have\n"

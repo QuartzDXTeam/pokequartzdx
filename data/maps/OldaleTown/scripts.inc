@@ -30,7 +30,7 @@ OldaleTown_EventScript_CitySign:: @ 81E8EEA
 	end
 
 OldaleTown_EventScript_Girl:: @ 81E8EF3
-	msgbox OldaleTown_Text_SavingMyProgress, MSGBOX_NPC
+	msgbox OldaleTown_Text_ItsFourAMIFeelNothingButMurder, MSGBOX_NPC
 	end
 
 OldaleTown_EventScript_MartEmployee:: @ 81E8EFC
@@ -40,7 +40,7 @@ OldaleTown_EventScript_MartEmployee:: @ 81E8EFC
 	goto_if_set FLAG_TEMP_1, OldaleTown_EventScript_ExplainPotion
 	setflag FLAG_TEMP_1
 	playbgm MUS_FOLLOW_ME, 0
-	msgbox OldaleTown_Text_IWorkAtPokemonMart, MSGBOX_DEFAULT
+	msgbox OldaleTown_Text_KnowWhatCenterIs, MSGBOX_DEFAULT
 	closemessage
 	switch VAR_FACING
 	case DIR_SOUTH, OldaleTown_EventScript_GoToMartSouth
@@ -70,7 +70,7 @@ OldaleTown_EventScript_GoToMartEast:: @ 81E8F75
 	end
 
 OldaleTown_EventScript_ExplainPokemonMart:: @ 81E8F8C
-	msgbox OldaleTown_Text_ThisIsAPokemonMart, MSGBOX_DEFAULT
+	msgbox OldaleTown_Text_ThisIsAPokemonCenter, MSGBOX_DEFAULT
 	giveitem ITEM_POTION
 	compare VAR_RESULT, 0
 	goto_if_eq OldaleTown_EventScript_BagIsFull
@@ -345,27 +345,27 @@ OldaleTown_Movement_ReturnToOriginalPosition: @ 81E918B
 	walk_left
 	step_end
 
-OldaleTown_Text_SavingMyProgress: @ 81E918E
-	.string "I want to take a rest, so I'm saving my\n"
-	.string "progress.$"
+OldaleTown_Text_ItsFourAMIFeelNothingButMurder: @ 81E918E
+	.string "Ahh… living here in Pink Town really\n"
+	.string "is la vie en rose!$"
 
-OldaleTown_Text_IWorkAtPokemonMart: @ 81E91C0
-	.string "Hi!\n"
-	.string "I work at a POKéMON MART.\p"
-	.string "Can I get you to come with me?$"
+OldaleTown_Text_KnowWhatCenterIs: @ 81E91C0
+	.string "Heya!\n"
+	.string "You're a trainer, right?\p"
+	.string "You know what Pokémon Centers are?$"
 
-OldaleTown_Text_ThisIsAPokemonMart: @ 81E91FD
-	.string "This is a POKéMON MART.\n"
-	.string "Just look for our blue roof.\p"
-	.string "We sell a variety of goods including\n"
-	.string "POKé BALLS for catching POKéMON.\p"
-	.string "Here, I'd like you to have this as\n"
-	.string "a promotional item.$"
+OldaleTown_Text_ThisIsAPokemonCenter: @ 81E91FD
+	.string "This is a Pokémon Center.\n"
+	.string "You can fully heal your Pokémon and\l"
+	.string "chat with other trainers here.\p"
+	.string "Plus, the nurse is drop dead gorgeous!\p"
+	.string "But if you're out of town, items can\n"
+	.string "heal your Pokémon up too.$"
 
 OldaleTown_Text_PotionExplanation: @ 81E92AF
-	.string "A POTION can be used anytime, so it's\n"
-	.string "even more useful than a POKéMON CENTER\l"
-	.string "in certain situations.$"
+	.string "Potions can be used at any time, but\n"
+	.string "most items won't heal Pokemon up fully…\l"
+	.string "That's why Centers are really helpful!$"
 
 OldaleTown_Text_WaitDontComeInHere: @ 81E9313
 	.string "Aaaaah! Wait!\n"
@@ -388,14 +388,14 @@ OldaleTown_Text_FinishedSketchingFootprints: @ 81E93F8
 	.string "own footprints…$"
 
 OldaleTown_Text_MayLetsGoBack: @ 81E9462
-	.string "MAY: {PLAYER}{KUN}!\n"
-	.string "Over here!\l"
-	.string "Let's hurry home!$"
+	.string "Ran: {PLAYER}! There you are!\p"
+	.string "Let's head back to Baro's,\n"
+	.string "I want to see what he wants!$"
 
 OldaleTown_Text_AkiraLetsGoBack: @ 81E948A
-	.string "AKIRA: I'm heading back to my dad's\n"
-	.string "LAB now.\l"
-	.string "{PLAYER}, you should hustle back, too.$"
+	.string "Akira: Well if it isn't {PLAYER}!\p"
+	.string "I'm headin' off to Baro's now,\n"
+	.string "you wanna come with?$"
 
 OldaleTown_Text_CitySign: @ 81E94DA
 	.string "OLDALE TOWN\n"

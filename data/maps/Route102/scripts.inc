@@ -2,7 +2,7 @@ Route102_MapScripts:: @ 81EC0E0
 	.byte 0
 
 Route102_EventScript_LittleBoy:: @ 81EC0E1
-	msgbox Route102_Text_ImNotVeryTall, MSGBOX_NPC
+	msgbox Route102_Text_YouFoundMe, MSGBOX_NPC
 	end
 
 Route102_EventScript_RouteSignOldale:: @ 81EC0EA
@@ -91,21 +91,21 @@ Route102_Text_LetsGoBack: @ 81EC297
 	.string "{PLAYER}, thank you!\n"
 	.string "Let's go back to the GYM!$"
 
-Route102_Text_ImNotVeryTall: @ 81EC2C0
-	.string "I'm…not very tall, so I sink right\n"
-	.string "into tall grass.\p"
-	.string "The grass goes up my nose and…\n"
-	.string "Fwafwafwafwafwa…\p"
-	.string "Fwatchoo!$"
+Route102_Text_YouFoundMe: 
+	.string "Hey, you found me!\p"
+	.string "As a reward, I'll give you this\n"
+	.string "toy I found in the grass…\p"
+	.string "{PLAYER} obtained a Master Ball!\p"
+	.string "Just kidding! I'm not THAT dumb!$"
 
 Route102_Text_CatchWholeBunchOfPokemon: @ 81EC32E
 	.string "I'm going to catch a whole bunch of\n"
 	.string "POKéMON!$"
 
 Route102_Text_RouteSignOldale: @ 81EC35B
-	.string "ROUTE 102\n"
-	.string "{RIGHT_ARROW} OLDALE TOWN$"
+	.string "Cloud Way\n"
+	.string "{RIGHT_ARROW} Pink Town$"
 
 Route102_Text_RouteSignPetalburg: @ 81EC373
-	.string "ROUTE 102\n"
-	.string "{LEFT_ARROW} PETALBURG CITY$"
+	.string "Cloud Way\n"
+	.string "{LEFT_ARROW} Cloudain City$"
