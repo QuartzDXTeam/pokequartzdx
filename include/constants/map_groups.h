@@ -6,7 +6,7 @@
 //
 
 // Map Group 0
-#define MAP_PETALBURG_CITY      (0 | (0 << 8))
+#define MAP_CLOUDAIN_CITY       (0 | (0 << 8))
 #define MAP_SLATEPORT_CITY      (1 | (0 << 8))
 #define MAP_MAUVILLE_CITY       (2 | (0 << 8))
 #define MAP_RUSTBORO_CITY       (3 | (0 << 8))
@@ -16,7 +16,7 @@
 #define MAP_SOOTOPOLIS_CITY     (7 | (0 << 8))
 #define MAP_EVER_GRANDE_CITY    (8 | (0 << 8))
 #define MAP_BREEZE_TOWN         (9 | (0 << 8))
-#define MAP_OLDALE_TOWN         (10 | (0 << 8))
+#define MAP_PINK_TOWN           (10 | (0 << 8))
 #define MAP_DEWFORD_TOWN        (11 | (0 << 8))
 #define MAP_LAVARIDGE_TOWN      (12 | (0 << 8))
 #define MAP_FALLARBOR_TOWN      (13 | (0 << 8))
@@ -72,11 +72,11 @@
 #define MAP_BREEZE_TOWN_PROFESSOR_BAROS_LAB (4 | (1 << 8))
 
 // Map Group 2
-#define MAP_OLDALE_TOWN_HOUSE1            (0 | (2 << 8))
-#define MAP_OLDALE_TOWN_HOUSE2            (1 | (2 << 8))
-#define MAP_OLDALE_TOWN_POKEMON_CENTER_1F (2 | (2 << 8))
-#define MAP_OLDALE_TOWN_POKEMON_CENTER_2F (3 | (2 << 8))
-#define MAP_OLDALE_TOWN_MART              (4 | (2 << 8))
+#define MAP_PINK_TOWN_HOUSE1            (0 | (2 << 8))
+#define MAP_PINK_TOWN_HOUSE2            (1 | (2 << 8))
+#define MAP_PINK_TOWN_POKEMON_CENTER_1F (2 | (2 << 8))
+#define MAP_PINK_TOWN_POKEMON_CENTER_2F (3 | (2 << 8))
+#define MAP_PINK_TOWN_MART              (4 | (2 << 8))
 
 // Map Group 3
 #define MAP_DEWFORD_TOWN_HOUSE1            (0 | (3 << 8))
@@ -126,13 +126,13 @@
 #define MAP_PACIFIDLOG_TOWN_HOUSE5            (6 | (7 << 8))
 
 // Map Group 8
-#define MAP_PETALBURG_CITY_WALLYS_HOUSE      (0 | (8 << 8))
-#define MAP_PETALBURG_CITY_GYM               (1 | (8 << 8))
-#define MAP_PETALBURG_CITY_HOUSE1            (2 | (8 << 8))
-#define MAP_PETALBURG_CITY_HOUSE2            (3 | (8 << 8))
-#define MAP_PETALBURG_CITY_POKEMON_CENTER_1F (4 | (8 << 8))
-#define MAP_PETALBURG_CITY_POKEMON_CENTER_2F (5 | (8 << 8))
-#define MAP_PETALBURG_CITY_MART              (6 | (8 << 8))
+#define MAP_CLOUDAIN_CITY_WALLYS_HOUSE      (0 | (8 << 8))
+#define MAP_CLOUDAIN_CITY_GYM               (1 | (8 << 8))
+#define MAP_CLOUDAIN_CITY_HOUSE1            (2 | (8 << 8))
+#define MAP_CLOUDAIN_CITY_HOUSE2            (3 | (8 << 8))
+#define MAP_CLOUDAIN_CITY_POKEMON_CENTER_1F (4 | (8 << 8))
+#define MAP_CLOUDAIN_CITY_POKEMON_CENTER_2F (5 | (8 << 8))
+#define MAP_CLOUDAIN_CITY_MART              (6 | (8 << 8))
 
 // Map Group 9
 #define MAP_SLATEPORT_CITY_STERNS_SHIPYARD_1F      (0 | (9 << 8))
@@ -303,7 +303,7 @@
 #define MAP_GRANITE_CAVE_B1F                         (8 | (24 << 8))
 #define MAP_GRANITE_CAVE_B2F                         (9 | (24 << 8))
 #define MAP_GRANITE_CAVE_STEVENS_ROOM                (10 | (24 << 8))
-#define MAP_PETALBURG_WOODS                          (11 | (24 << 8))
+#define MAP_CLOUDAIN_WOODS                           (11 | (24 << 8))
 #define MAP_MT_CHIMNEY                               (12 | (24 << 8))
 #define MAP_JAGGED_PASS                              (13 | (24 << 8))
 #define MAP_FIERY_PATH                               (14 | (24 << 8))

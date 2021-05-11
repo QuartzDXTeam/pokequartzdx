@@ -139,7 +139,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_Gabrielle1},
     },
 
-    [TRAINER_GRUNT_PETALBURG_WOODS] =
+    [TRAINER_GRUNT_CLOUDAIN_WOODS] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_TEAM_AQUA,
@@ -149,8 +149,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
-        .partySize = ARRAY_COUNT(sParty_GruntPetalburgWoods),
-        .party = {.NoItemDefaultMoves = sParty_GruntPetalburgWoods},
+        .partySize = ARRAY_COUNT(sParty_GruntCloudainWoods),
+        .party = {.NoItemDefaultMoves = sParty_GruntCloudainWoods},
     },
 
     [TRAINER_MARCEL] =

@@ -59,7 +59,7 @@ $(CASTFORMGFXDIR)/shiny.gbapal: $(CASTFORMGFXDIR)/shiny_normal_form.gbapal \
 
 ### Tilesets ###
 
-$(TILESETGFXDIR)/secondary/petalburg/tiles.4bpp: %.4bpp: %.png
+$(TILESETGFXDIR)/secondary/cloudain/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 159
 
 $(TILESETGFXDIR)/secondary/rustboro/tiles.4bpp: %.4bpp: %.png
@@ -234,7 +234,7 @@ $(TILESETGFXDIR)/secondary/dewford_gym/tiles.4bpp: %.4bpp: %.png
 $(TILESETGFXDIR)/secondary/lavaridge_gym/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 54
 
-$(TILESETGFXDIR)/secondary/petalburg_gym/tiles.4bpp: %.4bpp: %.png
+$(TILESETGFXDIR)/secondary/cloudain_gym/tiles.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -num_tiles 148
 
 $(TILESETGFXDIR)/secondary/fortree_gym/tiles.4bpp: %.4bpp: %.png

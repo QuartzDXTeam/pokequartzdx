@@ -159,10 +159,10 @@ VerdanturfTown_WandasHouse_Text_DaughtersBoyfriendWasDigging: @ 8202F19
 VerdanturfTown_WandasHouse_Text_IfAnythingHappenedToWally: @ 8202F73
 	.string "If anything were to happen to WALLY,\n"
 	.string "I would never be able to look his\l"
-	.string "parents in PETALBURG in the eye…$"
+	.string "parents in CLOUDAIN in the eye…$"
 
 VerdanturfTown_WandasHouse_Text_WallyWasInEverGrande: @ 8202FDB
 	.string "WALLY was in EVER GRANDE?\p"
-	.string "His parents in PETALBURG would be\n"
+	.string "His parents in CLOUDAIN would be\n"
 	.string "astonished to hear that!$"
 

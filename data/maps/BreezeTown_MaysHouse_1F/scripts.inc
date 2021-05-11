@@ -53,7 +53,7 @@ BreezeTown_MaysHouse_1F_EventScript_MoveMomToDoor:: @ 81F892E
 BreezeTown_MaysHouse_1F_OnFrame: @ 81F893A
 	map_script_2 VAR_BREEZE_INTRO_STATE, 3, BreezeTown_MaysHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_BREEZE_INTRO_STATE, 5, BreezeTown_MaysHouse_1F_EventScript_GoUpstairsToSetClock
-	map_script_2 VAR_BREEZE_INTRO_STATE, 6, BreezeTown_MaysHouse_1F_EventScript_PetalburgGymReport
+	map_script_2 VAR_BREEZE_INTRO_STATE, 6, BreezeTown_MaysHouse_1F_EventScript_CloudainGymReport
 	map_script_2 VAR_BREEZE_HOUSES_STATE_AKIRA, 1, BreezeTown_MaysHouse_1F_EventScript_YoureNewNeighbor
 	map_script_2 VAR_BREEZE_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
 	.2byte 0
@@ -81,11 +81,11 @@ BreezeTown_MaysHouse_1F_EventScript_EnterHouseMovingIn:: @ 81F898C
 	goto PlayersHouse_1F_EventScript_EnterHouseMovingIn
 	end
 
-BreezeTown_MaysHouse_1F_EventScript_PetalburgGymReport:: @ 81F899D
+BreezeTown_MaysHouse_1F_EventScript_CloudainGymReport:: @ 81F899D
 	lockall
 	setvar VAR_0x8004, 1
 	setvar VAR_0x8005, 1
-	goto PlayersHouse_1F_EventScript_PetalburgGymReportFemale
+	goto PlayersHouse_1F_EventScript_CloudainGymReportFemale
 	end
 
 BreezeTown_MaysHouse_1F_EventScript_YoureNewNeighbor:: @ 81F89AE

@@ -143,8 +143,8 @@ Route103_EventScript_RivalEnd:: @ 81EC5A2
 	setvar VAR_BARO_LAB_STATE, 4
 	clearflag FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_RIVAL
 	setflag FLAG_DEFEATED_RIVAL_ROUTE103
-	setvar VAR_OLDALE_RIVAL_STATE, 1
-	clearflag FLAG_HIDE_OLDALE_TOWN_RIVAL
+	setvar VAR_PINK_RIVAL_STATE, 1
+	clearflag FLAG_HIDE_PINK_TOWN_RIVAL
 	savebgm MUS_DUMMY
 	fadedefaultbgm
 	releaseall
@@ -194,7 +194,7 @@ Route103_EventScript_Boy:: @ 81EC5D9
 	end
 
 Route103_EventScript_Man:: @ 81EC5E2
-	msgbox Route103_Text_ShortcutToOldale, MSGBOX_NPC
+	msgbox Route103_Text_ShortcutToPink, MSGBOX_NPC
 	end
 
 Route103_EventScript_RouteSign:: @ 81EC5EB
@@ -347,12 +347,12 @@ Route103_Text_ShouldHaveBroughtPotion: @ 81ECB73
 	.string "My POKéMON is staggeringly tired…\n"
 	.string "I should have brought a POTION…$"
 
-Route103_Text_ShortcutToOldale: @ 81ECBB5
+Route103_Text_ShortcutToPink: @ 81ECBB5
 	.string "If you cross the sea from here,\n"
-	.string "it'll be a shortcut to OLDALE TOWN.\p"
+	.string "it'll be a shortcut to PINK TOWN.\p"
 	.string "Fufufu, that's useful, isn't it?$"
 
 Route103_Text_RouteSign: @ 81ECC1A
 	.string "ROUTE 103\n"
-	.string "{DOWN_ARROW} OLDALE TOWN$"
+	.string "{DOWN_ARROW} PINK TOWN$"
 

@@ -11,7 +11,7 @@
     "id": "MAP_LAVARIDGE_TOWN_HERB_SHOP",
     "layout": "LAYOUT_LAVARIDGE_TOWN_HERB_SHOP",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_OLDALE",
+    "music": "MUS_PINK",
     "name": "LavaridgeTown_HerbShop",
     "object_events": [
         {

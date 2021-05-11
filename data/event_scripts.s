@@ -101,7 +101,7 @@ gStdScripts:: @ 81DC2A0
 	.4byte Std_10
 gStdScripts_End:: @ 81DC2CC
 
-	.include "data/maps/PetalburgCity/scripts.inc"
+	.include "data/maps/CloudainCity/scripts.inc"
 	.include "data/maps/SlateportCity/scripts.inc"
 	.include "data/maps/MauvilleCity/scripts.inc"
 	.include "data/maps/RustboroCity/scripts.inc"
@@ -111,7 +111,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/SootopolisCity/scripts.inc"
 	.include "data/maps/EverGrandeCity/scripts.inc"
 	.include "data/maps/BreezeTown/scripts.inc"
-	.include "data/maps/OldaleTown/scripts.inc"
+	.include "data/maps/PinkTown/scripts.inc"
 	.include "data/maps/DewfordTown/scripts.inc"
 	.include "data/maps/LavaridgeTown/scripts.inc"
 	.include "data/maps/FallarborTown/scripts.inc"
@@ -163,11 +163,11 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/BreezeTown_MaysHouse_1F/scripts.inc"
 	.include "data/maps/BreezeTown_MaysHouse_2F/scripts.inc"
 	.include "data/maps/BreezeTown_ProfessorBarosLab/scripts.inc"
-	.include "data/maps/OldaleTown_House1/scripts.inc"
-	.include "data/maps/OldaleTown_House2/scripts.inc"
-	.include "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
-	.include "data/maps/OldaleTown_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/OldaleTown_Mart/scripts.inc"
+	.include "data/maps/PinkTown_House1/scripts.inc"
+	.include "data/maps/PinkTown_House2/scripts.inc"
+	.include "data/maps/PinkTown_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/PinkTown_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/PinkTown_Mart/scripts.inc"
 	.include "data/maps/DewfordTown_House1/scripts.inc"
 	.include "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/DewfordTown_PokemonCenter_2F/scripts.inc"
@@ -205,13 +205,13 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/PacifidlogTown_House3/scripts.inc"
 	.include "data/maps/PacifidlogTown_House4/scripts.inc"
 	.include "data/maps/PacifidlogTown_House5/scripts.inc"
-	.include "data/maps/PetalburgCity_WallysHouse/scripts.inc"
-	.include "data/maps/PetalburgCity_Gym/scripts.inc"
-	.include "data/maps/PetalburgCity_House1/scripts.inc"
-	.include "data/maps/PetalburgCity_House2/scripts.inc"
-	.include "data/maps/PetalburgCity_PokemonCenter_1F/scripts.inc"
-	.include "data/maps/PetalburgCity_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/PetalburgCity_Mart/scripts.inc"
+	.include "data/maps/CloudainCity_WallysHouse/scripts.inc"
+	.include "data/maps/CloudainCity_Gym/scripts.inc"
+	.include "data/maps/CloudainCity_House1/scripts.inc"
+	.include "data/maps/CloudainCity_House2/scripts.inc"
+	.include "data/maps/CloudainCity_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/CloudainCity_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/CloudainCity_Mart/scripts.inc"
 	.include "data/maps/SlateportCity_SternsShipyard_1F/scripts.inc"
 	.include "data/maps/SlateportCity_SternsShipyard_2F/scripts.inc"
 	.include "data/maps/SlateportCity_BattleTentLobby/scripts.inc"
@@ -350,7 +350,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/GraniteCave_B1F/scripts.inc"
 	.include "data/maps/GraniteCave_B2F/scripts.inc"
 	.include "data/maps/GraniteCave_StevensRoom/scripts.inc"
-	.include "data/maps/PetalburgWoods/scripts.inc"
+	.include "data/maps/CloudainWoods/scripts.inc"
 	.include "data/maps/MtChimney/scripts.inc"
 	.include "data/maps/JaggedPass/scripts.inc"
 	.include "data/maps/FieryPath/scripts.inc"
@@ -632,7 +632,7 @@ EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
 
 Common_EventScript_UpdateBrineyLocation:: @ 82718DE
 	goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
-	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, Common_EventScript_NopReturn
+	goto_if_set FLAG_DEFEATED_CLOUDAIN_GYM, Common_EventScript_NopReturn
 	goto_if_unset FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT, EventScript_SetBrineyLocation_House
 	goto_if_unset FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN, EventScript_SetBrineyLocation_Dewford
 	goto_if_unset FLAG_HIDE_ROUTE_109_MR_BRINEY, EventScript_SetBrineyLocation_Route109
@@ -670,9 +670,9 @@ Common_ShowEasyChatScreen:: @ 8271E7C
 	fadescreen FADE_FROM_BLACK
 	return
 
-Common_EventScript_ReadyPetalburgGymForBattle:: @ 8271E84
-	clearflag FLAG_HIDE_PETALBURG_GYM_GREETER
-	setflag FLAG_PETALBURG_MART_EXPANDED_ITEMS
+Common_EventScript_ReadyCloudainGymForBattle:: @ 8271E84
+	clearflag FLAG_HIDE_CLOUDAIN_GYM_GREETER
+	setflag FLAG_CLOUDAIN_MART_EXPANDED_ITEMS
 	return
 
 Common_EventScript_BufferTrendyPhrase:: @ 8271E8B

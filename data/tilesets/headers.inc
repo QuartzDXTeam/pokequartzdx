@@ -10,15 +10,15 @@ gTileset_General:: @ 83DF704
 	.4byte InitTilesetAnim_General
 
 	.align 2
-gTileset_Petalburg:: @ 83DF71C
+gTileset_Cloudain:: @ 83DF71C
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_Petalburg
-	.4byte gTilesetPalettes_Petalburg
-	.4byte gMetatiles_Petalburg
-	.4byte gMetatileAttributes_Petalburg
-	.4byte InitTilesetAnim_Petalburg
+	.4byte gTilesetTiles_Cloudain
+	.4byte gTilesetPalettes_Cloudain
+	.4byte gMetatiles_Cloudain
+	.4byte gMetatileAttributes_Cloudain
+	.4byte InitTilesetAnim_Cloudain
 
 	.align 2
 gTileset_Rustboro:: @ 83DF734
@@ -494,14 +494,14 @@ gTileset_Underwater:: @ 83DFB24
 	.4byte InitTilesetAnim_Underwater
 
 	.align 2
-gTileset_PetalburgGym:: @ 83DFB3C
+gTileset_CloudainGym:: @ 83DFB3C
 	.byte TRUE @ is compressed
 	.byte TRUE @ is secondary tileset
 	.2byte 0 @ padding
-	.4byte gTilesetTiles_PetalburgGym
-	.4byte gTilesetPalettes_PetalburgGym
-	.4byte gMetatiles_PetalburgGym
-	.4byte gMetatileAttributes_PetalburgGym
+	.4byte gTilesetTiles_CloudainGym
+	.4byte gTilesetPalettes_CloudainGym
+	.4byte gMetatiles_CloudainGym
+	.4byte gMetatileAttributes_CloudainGym
 	.4byte NULL @ animation callback
 
 	.align 2

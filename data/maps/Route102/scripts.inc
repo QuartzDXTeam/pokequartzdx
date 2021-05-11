@@ -5,12 +5,12 @@ Route102_EventScript_LittleBoy:: @ 81EC0E1
 	msgbox Route102_Text_YouFoundMe, MSGBOX_NPC
 	end
 
-Route102_EventScript_RouteSignOldale:: @ 81EC0EA
-	msgbox Route102_Text_RouteSignOldale, MSGBOX_SIGN
+Route102_EventScript_RouteSignPink:: @ 81EC0EA
+	msgbox Route102_Text_RouteSignPink, MSGBOX_SIGN
 	end
 
-Route102_EventScript_RouteSignPetalburg:: @ 81EC0F3
-	msgbox Route102_Text_RouteSignPetalburg, MSGBOX_SIGN
+Route102_EventScript_RouteSignCloudain:: @ 81EC0F3
+	msgbox Route102_Text_RouteSignCloudain, MSGBOX_SIGN
 	end
 
 Route102_EventScript_Boy:: @ 81EC0FC
@@ -102,10 +102,10 @@ Route102_Text_CatchWholeBunchOfPokemon: @ 81EC32E
 	.string "I'm going to catch a whole bunch of\n"
 	.string "POKéMON!$"
 
-Route102_Text_RouteSignOldale: @ 81EC35B
+Route102_Text_RouteSignPink: @ 81EC35B
 	.string "Cloud Way\n"
 	.string "{RIGHT_ARROW} Pink Town$"
 
-Route102_Text_RouteSignPetalburg: @ 81EC373
+Route102_Text_RouteSignCloudain: @ 81EC373
 	.string "Cloud Way\n"
 	.string "{LEFT_ARROW} Cloudain City$"

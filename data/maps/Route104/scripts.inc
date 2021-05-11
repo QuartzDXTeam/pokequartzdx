@@ -311,8 +311,8 @@ Route104_EventScript_BrineysCottageSign:: @ 81ED018
 	msgbox Route104_Text_MrBrineysCottage, MSGBOX_SIGN
 	end
 
-Route104_EventScript_RouteSignPetalburg:: @ 81ED021
-	msgbox Route104_Text_RouteSignPetalburg, MSGBOX_SIGN
+Route104_EventScript_RouteSignCloudain:: @ 81ED021
+	msgbox Route104_Text_RouteSignCloudain, MSGBOX_SIGN
 	end
 
 Route104_EventScript_RouteSignRustboro:: @ 81ED02A
@@ -1075,9 +1075,9 @@ Route104_Text_FlowerShopSellingSaplings: @ 81EDA0F
 Route104_Text_MrBrineysCottage: @ 81EDA8C
 	.string "MR. BRINEY'S COTTAGE$"
 
-Route104_Text_RouteSignPetalburg: @ 81EDAA1
+Route104_Text_RouteSignCloudain: @ 81EDAA1
 	.string "ROUTE 1O4\n"
-	.string "{RIGHT_ARROW} PETALBURG CITY$"
+	.string "{RIGHT_ARROW} CLOUDAIN CITY$"
 
 Route104_Text_RouteSignRustboro: @ 81EDABC
 	.string "ROUTE 1O4\n"

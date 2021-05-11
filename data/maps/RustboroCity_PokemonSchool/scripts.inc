@@ -306,7 +306,7 @@ RustboroCity_PokemonSchool_Text_StudentsNotes: @ 82147A2
 
 RustboroCity_PokemonSchool_Text_ScottMetAlreadyCut: @ 82148C0
 	.string "Hello? Didn't we meet before?\n"
-	.string "I think back in PETALBURG CITY.\p"
+	.string "I think back in CLOUDAIN CITY.\p"
 	.string "Let me introduce myself.\n"
 	.string "My name's SCOTT.\p"
 	.string "I've been traveling everywhere in\n"
@@ -336,7 +336,7 @@ RustboroCity_PokemonSchool_Text_ScottStoneBadge: @ 8214AB6
 
 RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge: @ 8214B8A
 	.string "Hello? Didn't we meet before?\n"
-	.string "I think back in PETALBURG CITY.\p"
+	.string "I think back in CLOUDAIN CITY.\p"
 	.string "Let me introduce myself.\n"
 	.string "My name's SCOTT.\p"
 	.string "I've been traveling everywhere in\n"

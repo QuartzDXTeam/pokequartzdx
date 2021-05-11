@@ -66,9 +66,9 @@ LavaridgeTown_Gym_1F_EventScript_FlanneryDefeated:: @ 81FE7C1
 	setflag FLAG_WHITEOUT_TO_LAVARIDGE
 	setflag FLAG_DEFEATED_LAVARIDGE_GYM
 	setflag FLAG_BADGE04_GET
-	addvar VAR_PETALBURG_GYM_STATE, 1
-	compare VAR_PETALBURG_GYM_STATE, 6
-	call_if_eq Common_EventScript_ReadyPetalburgGymForBattle
+	addvar VAR_CLOUDAIN_GYM_STATE, 1
+	compare VAR_CLOUDAIN_GYM_STATE, 6
+	call_if_eq Common_EventScript_ReadyCloudainGymForBattle
 	setvar VAR_0x8008, 4
 	call Common_EventScript_SetGymTrainers
 	setflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
@@ -364,7 +364,7 @@ LavaridgeTown_Gym_1F_Text_RegisteredFlannery: @ 81FF517
 LavaridgeTown_Gym_1F_Text_FlanneryPostBattle: @ 81FF546
 	.string "Your power reminds me of someone…\p"
 	.string "Oh! I know! You battle like NORMAN,\n"
-	.string "the GYM LEADER of PETALBURG.$"
+	.string "the GYM LEADER of CLOUDAIN.$"
 
 LavaridgeTown_Gym_1F_Text_GymStatue: @ 81FF5A9
 	.string "LAVARIDGE TOWN POKéMON GYM$"

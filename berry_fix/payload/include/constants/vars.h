@@ -82,7 +82,7 @@
 #define VAR_LAVARIDGE_RIVAL_STATE  0x4053
 #define VAR_CURRENT_SECRET_BASE    0x4054
 
-#define VAR_PETALBURG_STATE        0x4057
+#define VAR_CLOUDAIN_STATE        0x4057
 #define VAR_SLATEPORT_STATE        0x4058
 
 #define VAR_RUSTBORO_STATE         0x405A
@@ -106,7 +106,7 @@
 #define VAR_BREEZE_HOUSES_STATE 0x4082 // TODO: needs more investigation
 
 #define VAR_BARO_LAB_STATE         0x4084
-#define VAR_PETALBURG_GYM_STATE     0x4085
+#define VAR_CLOUDAIN_GYM_STATE     0x4085
 #define VAR_LINK_CONTEST_ROOM_STATE 0x4086
 #define VAR_CABLE_CLUB_STATE        0x4087
 #define VAR_CONTEST_LOCATION        0x4088
@@ -125,7 +125,7 @@
 #define VAR_LILYCOVE_FAN_CLUB_STATE  0x4095
 #define VAR_BRINEY_LOCATION          0x4096
 #define VAR_0x4097                   0x4097 // TODO: related to creating new secret base
-#define VAR_PETALBURG_WOODS_STATE    0x4098
+#define VAR_CLOUDAIN_WOODS_STATE    0x4098
 #define VAR_LILYCOVE_CONTEST_LOBBY_STATE 0x4099
 #define VAR_RUSTURF_TUNNEL_STATE     0x409a
 #define VAR_CAVE_OF_ORIGIN_B4F_STATE 0x409B
@@ -170,7 +170,7 @@
 #define VAR_FOSSIL_RESURRECTION_STATE        0x40C4
 #define VAR_WHICH_FOSSIL_REVIVED             0x40C5
 #define VAR_STEVENS_HOUSE_STATE              0x40C6
-#define VAR_OLDALE_STATE                     0x40C7
+#define VAR_PINK_STATE                     0x40C7
 
 // special vars
 // They are commonly used as parameters to commands, or return values from commands.

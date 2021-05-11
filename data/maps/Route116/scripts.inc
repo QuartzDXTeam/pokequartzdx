@@ -403,7 +403,7 @@ Route116_Text_GoonHightailedItOutOfTunnel: @ 81F32C1
 Route116_Text_ThankYouTokenOfAppreciation: @ 81F3317
 	.string "Oh! It's you!\p"
 	.string "You're that person who not only helped\n"
-	.string "me in PETALBURG WOODS, but also got\l"
+	.string "me in CLOUDAIN WOODS, but also got\l"
 	.string "back my stolen package and then even\l"
 	.string "graciously delivered it to SLATEPORT!\p"
 	.string "CAPT. STERN informed us that the\n"

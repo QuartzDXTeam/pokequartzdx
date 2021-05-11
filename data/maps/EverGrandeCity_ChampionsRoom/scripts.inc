@@ -136,7 +136,7 @@ EverGrandeCity_ChampionsRoom_EventScript_BaroArrivesExitForHoF:: @ 8228B30
 	applymovement 1, EverGrandeCity_ChampionsRoom_Movement_WallaceExit
 	applymovement OBJ_EVENT_ID_PLAYER, EverGrandeCity_ChampionsRoom_Movement_PlayerExit
 	waitmovement 0
-	setflag FLAG_HIDE_PETALBURG_GYM_GREETER
+	setflag FLAG_HIDE_CLOUDAIN_GYM_GREETER
 	warp MAP_EVER_GRANDE_CITY_HALL_OF_FAME, 255, 7, 16
 	waitstate
 	releaseall
@@ -302,7 +302,7 @@ EverGrandeCity_ChampionsRoom_Text_BaroArriveRatePokedex: @ 82291E6
 	.string "… … … … … … … …\n"
 	.string "{PLAYER}{KUN}, you've finally done it.\p"
 	.string "When I heard that you defeated your\n"
-	.string "own father at the PETALBURG GYM,\l"
+	.string "own father at the CLOUDAIN GYM,\l"
 	.string "I thought perhaps you had a chance…\p"
 	.string "But to think you've actually become\n"
 	.string "the CHAMPION!\p"

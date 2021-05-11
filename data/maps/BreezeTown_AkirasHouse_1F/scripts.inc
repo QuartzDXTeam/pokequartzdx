@@ -54,7 +54,7 @@ BreezeTown_AkirasHouse_1F_EventScript_MoveMomToDoor:: @ 81F77DE
 BreezeTown_AkirasHouse_1F_OnFrame: @ 81F77EA
 	map_script_2 VAR_BREEZE_INTRO_STATE, 3, BreezeTown_AkirasHouse_1F_EventScript_EnterHouseMovingIn
 	map_script_2 VAR_BREEZE_INTRO_STATE, 5, BreezeTown_AkirasHouse_1F_EventScript_GoUpstairsToSetClock
-	map_script_2 VAR_BREEZE_INTRO_STATE, 6, BreezeTown_AkirasHouse_1F_EventScript_PetalburgGymReport
+	map_script_2 VAR_BREEZE_INTRO_STATE, 6, BreezeTown_AkirasHouse_1F_EventScript_CloudainGymReport
 	map_script_2 VAR_BREEZE_HOUSES_STATE_MAY, 1, BreezeTown_AkirasHouse_1F_EventScript_YoureNewNeighbor
 	map_script_2 VAR_BREEZE_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
 	.2byte 0
@@ -82,11 +82,11 @@ BreezeTown_AkirasHouse_1F_EventScript_EnterHouseMovingIn:: @ 81F783C
 	goto PlayersHouse_1F_EventScript_EnterHouseMovingIn
 	end
 
-BreezeTown_AkirasHouse_1F_EventScript_PetalburgGymReport:: @ 81F784D
+BreezeTown_AkirasHouse_1F_EventScript_CloudainGymReport:: @ 81F784D
 	lockall
 	setvar VAR_0x8004, 0
 	setvar VAR_0x8005, 1  @ Object event ID for Mom
-	goto PlayersHouse_1F_EventScript_PetalburgGymReportMale
+	goto PlayersHouse_1F_EventScript_CloudainGymReportMale
 	end
 
 BreezeTown_AkirasHouse_1F_EventScript_YoureNewNeighbor:: @ 81F785E
@@ -323,7 +323,7 @@ PlayersHouse_1F_Text_OhComeQuickly: @ 81F7B96
 	.string "Quick! Come quickly!$"
 
 PlayersHouse_1F_Text_MaybeDadWillBeOn: @ 81F7BBC
-	.string "MOM: Look! It's PETALBURG GYM!\n"
+	.string "MOM: Look! It's CLOUDAIN GYM!\n"
 	.string "Maybe DAD will be on!$"
 
 PlayersHouse_1F_Text_ItsOverWeMissedHim: @ 81F7BF1
@@ -379,9 +379,9 @@ PlayersHouse_1F_Text_Vigoroth1: @ 81F7EA8
 PlayersHouse_1F_Text_Vigoroth2: @ 81F7EB3
 	.string "Huggoh, uggo uggo…$"
 
-PlayersHouse_1F_Text_ReportFromPetalburgGym: @ 81F7EC6
+PlayersHouse_1F_Text_ReportFromCloudainGym: @ 81F7EC6
 	.string "INTERVIEWER: …We brought you this\n"
-	.string "report from in front of PETALBURG GYM.$"
+	.string "report from in front of CLOUDAIN GYM.$"
 
 PlayersHouse_1F_Text_TheresAMovieOnTV: @ 81F7F0F
 	.string "There is a movie on TV.\p"
@@ -414,7 +414,7 @@ PlayersHouse_1F_Text_PortsInSlateportLilycove: @ 81F80FE
 	.string "SLATEPORT and LILYCOVE.$"
 
 PlayersHouse_1F_Text_BetterGetBackToGym: @ 81F815B
-	.string "I'd better get back to PETALBURG GYM.\p"
+	.string "I'd better get back to CLOUDAIN GYM.\p"
 	.string "MOM, thanks for looking after the house\n"
 	.string "while I'm away.$"
 

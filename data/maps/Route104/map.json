@@ -26,7 +26,7 @@
     {
       "direction": "right",
       "offset": 50,
-      "map": "MAP_PETALBURG_CITY"
+      "map": "MAP_CLOUDAIN_CITY"
     }
   ],
   "object_events": [
@@ -492,42 +492,42 @@
       "x": 33,
       "y": 27,
       "elevation": 3,
-      "dest_map": "MAP_PETALBURG_WOODS",
+      "dest_map": "MAP_CLOUDAIN_WOODS",
       "dest_warp_id": 0
     },
     {
       "x": 34,
       "y": 27,
       "elevation": 3,
-      "dest_map": "MAP_PETALBURG_WOODS",
+      "dest_map": "MAP_CLOUDAIN_WOODS",
       "dest_warp_id": 1
     },
     {
       "x": 13,
       "y": 38,
       "elevation": 3,
-      "dest_map": "MAP_PETALBURG_WOODS",
+      "dest_map": "MAP_CLOUDAIN_WOODS",
       "dest_warp_id": 2
     },
     {
       "x": 14,
       "y": 38,
       "elevation": 3,
-      "dest_map": "MAP_PETALBURG_WOODS",
+      "dest_map": "MAP_CLOUDAIN_WOODS",
       "dest_warp_id": 3
     },
     {
       "x": 35,
       "y": 38,
       "elevation": 3,
-      "dest_map": "MAP_PETALBURG_WOODS",
+      "dest_map": "MAP_CLOUDAIN_WOODS",
       "dest_warp_id": 4
     },
     {
       "x": 36,
       "y": 38,
       "elevation": 3,
-      "dest_map": "MAP_PETALBURG_WOODS",
+      "dest_map": "MAP_CLOUDAIN_WOODS",
       "dest_warp_id": 5
     },
     {
@@ -564,7 +564,7 @@
       "y": 62,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route104_EventScript_RouteSignPetalburg"
+      "script": "Route104_EventScript_RouteSignCloudain"
     },
     {
       "type": "sign",

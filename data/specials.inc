@@ -156,8 +156,8 @@ gSpecials:: @ 81DBA64
 	def_special DrawWholeMapView
 	def_special StorePlayerCoordsInVars
 	def_special MauvilleGymDeactivatePuzzle
-	def_special PetalburgGymSlideOpenRoomDoors
-	def_special PetalburgGymUnlockRoomDoors
+	def_special CloudainGymSlideOpenRoomDoors
+	def_special CloudainGymUnlockRoomDoors
 	def_special GetPlayerTrainerIdOnesDigit
 	def_special GetPlayerBigGuyGirlString
 	def_special GetRivalSonDaughterString

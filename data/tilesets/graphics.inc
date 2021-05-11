@@ -1,25 +1,25 @@
 	.align 2
-gTilesetTiles_Petalburg:: @ 8339E08
-	.incbin "data/tilesets/secondary/petalburg/tiles.4bpp.lz"
+gTilesetTiles_Cloudain:: @ 8339E08
+	.incbin "data/tilesets/secondary/cloudain/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_Petalburg:: @ 833A704
-	.incbin "data/tilesets/secondary/petalburg/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/petalburg/palettes/15.gbapal"
+gTilesetPalettes_Cloudain:: @ 833A704
+	.incbin "data/tilesets/secondary/cloudain/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/cloudain/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_Rustboro:: @ 833A904
@@ -1176,27 +1176,27 @@ gTilesetPalettes_LavaridgeGym:: @ 83762AC
 	.incbin "data/tilesets/secondary/lavaridge_gym/palettes/15.gbapal"
 
 	.align 2
-gTilesetTiles_PetalburgGym:: @ 83764AC
-	.incbin "data/tilesets/secondary/petalburg_gym/tiles.4bpp.lz"
+gTilesetTiles_CloudainGym:: @ 83764AC
+	.incbin "data/tilesets/secondary/cloudain_gym/tiles.4bpp.lz"
 
 	.align 2
-gTilesetPalettes_PetalburgGym:: @ 8376B50
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/00.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/01.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/02.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/03.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/04.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/05.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/06.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/07.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/08.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/09.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/10.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/11.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/12.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/13.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/14.gbapal"
-	.incbin "data/tilesets/secondary/petalburg_gym/palettes/15.gbapal"
+gTilesetPalettes_CloudainGym:: @ 8376B50
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/12.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/13.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/14.gbapal"
+	.incbin "data/tilesets/secondary/cloudain_gym/palettes/15.gbapal"
 
 	.align 2
 gTilesetTiles_FortreeGym:: @ 8376D50

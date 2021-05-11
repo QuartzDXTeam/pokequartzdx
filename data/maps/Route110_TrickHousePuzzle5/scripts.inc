@@ -1031,7 +1031,7 @@ Route110_TrickHousePuzzle5_Text_Mechadoll2Quiz2: @ 826D98C
 Route110_TrickHousePuzzle5_Text_Mechadoll2Quiz3: @ 826D9CE
 	.string "MECHADOLL 2 QUIZ.\p"
 	.string "Which of these POKéMON did TEAM AQUA\n"
-	.string "use in PETALBURG FOREST?$"
+	.string "use in CLOUDAIN FOREST?$"
 
 Route110_TrickHousePuzzle5_Text_Mechadoll3Intro: @ 826DA1E
 	.string "CLICKETY-CLACK…\n"

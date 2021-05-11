@@ -384,19 +384,19 @@
 #define METATILE_Pacifidlog_SubmergedLogs_Vertical0        0x25A
 #define METATILE_Pacifidlog_SubmergedLogs_Vertical1        0x262
 
-// gTileset_PetalburgGym
-#define METATILE_PetalburgGym_RoomEntrance_Left   0x210
-#define METATILE_PetalburgGym_RoomEntrance_Right  0x211
-#define METATILE_PetalburgGym_SlidingDoor_Frame0  0x218
-#define METATILE_PetalburgGym_SlidingDoor_Frame1  0x219
-#define METATILE_PetalburgGym_SlidingDoor_Frame2  0x21A
-#define METATILE_PetalburgGym_SlidingDoor_Frame3  0x21B
-#define METATILE_PetalburgGym_SlidingDoor_Frame4  0x21C
+// gTileset_CloudainGym
+#define METATILE_CloudainGym_RoomEntrance_Left   0x210
+#define METATILE_CloudainGym_RoomEntrance_Right  0x211
+#define METATILE_CloudainGym_SlidingDoor_Frame0  0x218
+#define METATILE_CloudainGym_SlidingDoor_Frame1  0x219
+#define METATILE_CloudainGym_SlidingDoor_Frame2  0x21A
+#define METATILE_CloudainGym_SlidingDoor_Frame3  0x21B
+#define METATILE_CloudainGym_SlidingDoor_Frame4  0x21C
 
-// gTileset_Petalburg
-#define METATILE_Petalburg_Door_BarosLab   0x249
-#define METATILE_Petalburg_Door_Littleroot  0x248
-#define METATILE_Petalburg_Door_Oldale      0x287
+// gTileset_Cloudain
+#define METATILE_Cloudain_Door_BarosLab   0x249
+#define METATILE_Cloudain_Door_Littleroot  0x248
+#define METATILE_Cloudain_Door_Pink      0x287
 
 // gTileset_PokemonCenter
 #define METATILE_PokemonCenter_CounterBarrier            0x25D

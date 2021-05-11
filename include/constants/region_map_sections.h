@@ -2,13 +2,13 @@
 #define GUARD_REGIONMAPSEC_H
 
 #define MAPSEC_BREEZE_TOWN              0x00
-#define MAPSEC_OLDALE_TOWN                  0x01
+#define MAPSEC_PINK_TOWN                  0x01
 #define MAPSEC_DEWFORD_TOWN                 0x02
 #define MAPSEC_LAVARIDGE_TOWN               0x03
 #define MAPSEC_FALLARBOR_TOWN               0x04
 #define MAPSEC_VERDANTURF_TOWN              0x05
 #define MAPSEC_PACIFIDLOG_TOWN              0x06
-#define MAPSEC_PETALBURG_CITY               0x07
+#define MAPSEC_CLOUDAIN_CITY               0x07
 #define MAPSEC_SLATEPORT_CITY               0x08
 #define MAPSEC_MAUVILLE_CITY                0x09
 #define MAPSEC_RUSTBORO_CITY                0x0A
@@ -60,7 +60,7 @@
 #define MAPSEC_MT_CHIMNEY                   0x38
 #define MAPSEC_SAFARI_ZONE                  0x39
 #define MAPSEC_BATTLE_FRONTIER              0x3A
-#define MAPSEC_PETALBURG_WOODS              0x3B
+#define MAPSEC_CLOUDAIN_WOODS              0x3B
 #define MAPSEC_RUSTURF_TUNNEL               0x3C
 #define MAPSEC_ABANDONED_SHIP               0x3D
 #define MAPSEC_NEW_MAUVILLE                 0x3E

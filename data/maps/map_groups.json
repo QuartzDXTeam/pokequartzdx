@@ -37,7 +37,7 @@
     "gMapGroup33"
   ],
   "gMapGroup0": [
-    "PetalburgCity",
+    "CloudainCity",
     "SlateportCity",
     "MauvilleCity",
     "RustboroCity",
@@ -47,7 +47,7 @@
     "SootopolisCity",
     "EverGrandeCity",
     "BreezeTown",
-    "OldaleTown",
+    "PinkTown",
     "DewfordTown",
     "LavaridgeTown",
     "FallarborTown",
@@ -103,11 +103,11 @@
     "BreezeTown_ProfessorBarosLab"
   ],
   "gMapGroup2": [
-    "OldaleTown_House1",
-    "OldaleTown_House2",
-    "OldaleTown_PokemonCenter_1F",
-    "OldaleTown_PokemonCenter_2F",
-    "OldaleTown_Mart"
+    "PinkTown_House1",
+    "PinkTown_House2",
+    "PinkTown_PokemonCenter_1F",
+    "PinkTown_PokemonCenter_2F",
+    "PinkTown_Mart"
   ],
   "gMapGroup3": [
     "DewfordTown_House1",
@@ -157,13 +157,13 @@
     "PacifidlogTown_House5"
   ],
   "gMapGroup8": [
-    "PetalburgCity_WallysHouse",
-    "PetalburgCity_Gym",
-    "PetalburgCity_House1",
-    "PetalburgCity_House2",
-    "PetalburgCity_PokemonCenter_1F",
-    "PetalburgCity_PokemonCenter_2F",
-    "PetalburgCity_Mart"
+    "CloudainCity_WallysHouse",
+    "CloudainCity_Gym",
+    "CloudainCity_House1",
+    "CloudainCity_House2",
+    "CloudainCity_PokemonCenter_1F",
+    "CloudainCity_PokemonCenter_2F",
+    "CloudainCity_Mart"
   ],
   "gMapGroup9": [
     "SlateportCity_SternsShipyard_1F",
@@ -334,7 +334,7 @@
     "GraniteCave_B1F",
     "GraniteCave_B2F",
     "GraniteCave_StevensRoom",
-    "PetalburgWoods",
+    "CloudainWoods",
     "MtChimney",
     "JaggedPass",
     "FieryPath",

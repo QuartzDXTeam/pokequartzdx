@@ -153,7 +153,7 @@ PlayersHouse_1F_EventScript_SetWatchedBroadcast:: @ 8292866
 	releaseall
 	end
 
-PlayersHouse_1F_EventScript_PetalburgGymReportMale:: @ 829286D
+PlayersHouse_1F_EventScript_CloudainGymReportMale:: @ 829286D
 	applymovement VAR_0x8005, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
 	call PlayersHouse_1F_EventScript_MomNoticeGymBroadcast
@@ -178,7 +178,7 @@ PlayersHouse_1F_EventScript_PetalburgGymReportMale:: @ 829286D
 	goto PlayersHouse_1F_EventScript_SetWatchedBroadcast
 	end
 
-PlayersHouse_1F_EventScript_PetalburgGymReportFemale:: @ 82928DC
+PlayersHouse_1F_EventScript_CloudainGymReportFemale:: @ 82928DC
 	applymovement VAR_0x8005, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	call PlayersHouse_1F_EventScript_MomNoticeGymBroadcast
@@ -216,7 +216,7 @@ PlayersHouse_1F_EventScript_MomNoticeGymBroadcast:: @ 829294B
 PlayersHouse_1F_EventScript_WatchGymBroadcast:: @ 829296C
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
-	msgbox PlayersHouse_1F_Text_ReportFromPetalburgGym, MSGBOX_DEFAULT
+	msgbox PlayersHouse_1F_Text_ReportFromCloudainGym, MSGBOX_DEFAULT
 	fadedefaultbgm
 	special TurnOffTVScreen
 	setflag FLAG_SYS_TV_HOME

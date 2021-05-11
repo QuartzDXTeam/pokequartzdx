@@ -302,11 +302,11 @@ Route134_EventScript_ItemStarPiece:: @ 82910A7
 	finditem ITEM_STAR_PIECE
 	end
 
-PetalburgCity_EventScript_ItemMaxRevive:: @ 82910B4
+CloudainCity_EventScript_ItemMaxRevive:: @ 82910B4
 	finditem ITEM_MAX_REVIVE
 	end
 
-PetalburgCity_EventScript_ItemEther:: @ 82910C1
+CloudainCity_EventScript_ItemEther:: @ 82910C1
 	finditem ITEM_ETHER
 	end
 
@@ -326,19 +326,19 @@ MossdeepCity_EventScript_ItemNetBall:: @ 82910F5
 	finditem ITEM_NET_BALL
 	end
 
-PetalburgWoods_EventScript_ItemXAttack:: @ 8291102
+CloudainWoods_EventScript_ItemXAttack:: @ 8291102
 	finditem ITEM_X_ATTACK
 	end
 
-PetalburgWoods_EventScript_ItemGreatBall:: @ 829110F
+CloudainWoods_EventScript_ItemGreatBall:: @ 829110F
 	finditem ITEM_GREAT_BALL
 	end
 
-PetalburgWoods_EventScript_ItemEther:: @ 829111C
+CloudainWoods_EventScript_ItemEther:: @ 829111C
 	finditem ITEM_ETHER
 	end
 
-PetalburgWoods_EventScript_ItemParalyzeHeal:: @ 8291129
+CloudainWoods_EventScript_ItemParalyzeHeal:: @ 8291129
 	finditem ITEM_PARALYZE_HEAL
 	end
 

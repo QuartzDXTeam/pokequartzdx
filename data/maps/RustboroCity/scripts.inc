@@ -1123,7 +1123,7 @@ RustboroCity_Text_WaitDontTakeMyGoods: @ 81E1817
 RustboroCity_Text_HelpMeIWasRobbed: @ 81E183E
 	.string "Oh, it's you!\p"
 	.string "You're that fantastic TRAINER who\n"
-	.string "helped me in PETALBURG WOODS!\p"
+	.string "helped me in CLOUDAIN WOODS!\p"
 	.string "Help me! I was robbed by TEAM AQUA!\n"
 	.string "I have to get the DEVON GOODS back!\p"
 	.string "If I don't…\n"
@@ -1164,7 +1164,7 @@ RustboroCity_Text_RegisteredMay: @ 81E1ADB
 
 RustboroCity_Text_MayPassedBrineyWantToBattle: @ 81E1AFA
 	.string "MAY: Oh, by the way, I passed\n"
-	.string "MR. BRINEY in PETALBURG WOODS.\p"
+	.string "MR. BRINEY in CLOUDAIN WOODS.\p"
 	.string "I guess he's on his way home to his\n"
 	.string "cottage by the sea.\p"
 	.string "How's your POKéDEX coming along,\n"
@@ -1211,7 +1211,7 @@ RustboroCity_Text_RegisteredAkira: @ 81E1E11
 
 RustboroCity_Text_AkiraPassedBrineyWantToBattle: @ 81E1E34
 	.string "AKIRA: By the way, {PLAYER}, I walked\n"
-	.string "by MR. BRINEY in PETALBURG WOODS.\p"
+	.string "by MR. BRINEY in CLOUDAIN WOODS.\p"
 	.string "I bet he was on his way home to his\n"
 	.string "cottage by the sea.\p"
 	.string "{PLAYER}, how's your POKéDEX?\n"

@@ -7,12 +7,12 @@ gMetatileAttributes_General:: @ 83980F0
 	.incbin "data/tilesets/primary/general/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_Petalburg:: @ 83984F0
-	.incbin "data/tilesets/secondary/petalburg/metatiles.bin"
+gMetatiles_Cloudain:: @ 83984F0
+	.incbin "data/tilesets/secondary/cloudain/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_Petalburg:: @ 8398DF0
-	.incbin "data/tilesets/secondary/petalburg/metatile_attributes.bin"
+gMetatileAttributes_Cloudain:: @ 8398DF0
+	.incbin "data/tilesets/secondary/cloudain/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_Rustboro:: @ 8398F10
@@ -367,12 +367,12 @@ gMetatileAttributes_LavaridgeGym:: @ 83C591A
 	.incbin "data/tilesets/secondary/lavaridge_gym/metatile_attributes.bin"
 
 	.align 1
-gMetatiles_PetalburgGym:: @ 83C5994
-	.incbin "data/tilesets/secondary/petalburg_gym/metatiles.bin"
+gMetatiles_CloudainGym:: @ 83C5994
+	.incbin "data/tilesets/secondary/cloudain_gym/metatiles.bin"
 
 	.align 1
-gMetatileAttributes_PetalburgGym:: @ 83C6794
-	.incbin "data/tilesets/secondary/petalburg_gym/metatile_attributes.bin"
+gMetatileAttributes_CloudainGym:: @ 83C6794
+	.incbin "data/tilesets/secondary/cloudain_gym/metatile_attributes.bin"
 
 	.align 1
 gMetatiles_FortreeGym:: @ 83C6954

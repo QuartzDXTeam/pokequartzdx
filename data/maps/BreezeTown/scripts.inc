@@ -46,8 +46,8 @@ BreezeTown_OnTransition: @ 81E7DDB
 	call_if_eq BreezeTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
 	compare VAR_BREEZE_HOUSES_STATE_AKIRA, 4
 	call_if_eq BreezeTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
-	compare VAR_OLDALE_RIVAL_STATE, 1
-	call_if_eq BreezeTown_EventScript_MoveRivalFromOldale
+	compare VAR_PINK_RIVAL_STATE, 1
+	call_if_eq BreezeTown_EventScript_MoveRivalFromPink
 	compare VAR_BREEZE_RIVAL_STATE, 3
 	call_if_eq BreezeTown_EventScript_SetRivalLeftForRoute103
 	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1
@@ -68,9 +68,9 @@ BreezeTown_EventScript_SetRivalLeftForRoute103:: @ 81E7E4F
 	setflag FLAG_RIVAL_LEFT_FOR_ROUTE103
 	return
 
-BreezeTown_EventScript_MoveRivalFromOldale:: @ 81E7E53
-	setvar VAR_OLDALE_RIVAL_STATE, 2
-	setflag FLAG_HIDE_OLDALE_TOWN_RIVAL
+BreezeTown_EventScript_MoveRivalFromPink:: @ 81E7E53
+	setvar VAR_PINK_RIVAL_STATE, 2
+	setflag FLAG_HIDE_PINK_TOWN_RIVAL
 	return
 
 BreezeTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent:: @ 81E7E5C

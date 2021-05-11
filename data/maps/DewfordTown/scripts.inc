@@ -9,21 +9,21 @@ DewfordTown_OnTransition: @ 81E950D
 DewfordTown_EventScript_Briney:: @ 81E9511
 	lock
 	faceplayer
-	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, DewfordTown_EventScript_ReturnToPetalburgPrompt
+	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, DewfordTown_EventScript_ReturnToCloudainPrompt
 	message DewfordTown_Text_WhereAreWeBound
 	waitmessage
 	multichoicedefault 21, 6, MULTI_BRINEY_ON_DEWFORD, 2, 0
 	switch VAR_RESULT
-	case 0, DewfordTown_EventScript_ChoosePetalburg
+	case 0, DewfordTown_EventScript_ChooseCloudain
 	case 1, DewfordTown_EventScript_ChooseSlateport
 	case 2, DewfordTown_EventScript_CancelSailSelect
 	case MULTI_B_PRESSED, DewfordTown_EventScript_CancelSailSelect
 	end
 
-DewfordTown_EventScript_ChoosePetalburg:: @ 81E955A
-	msgbox DewfordTown_Text_PetalburgWereSettingSail, MSGBOX_DEFAULT
+DewfordTown_EventScript_ChooseCloudain:: @ 81E955A
+	msgbox DewfordTown_Text_CloudainWereSettingSail, MSGBOX_DEFAULT
 	closemessage
-	goto DewfordTown_EventScript_SailToPetalburg
+	goto DewfordTown_EventScript_SailToCloudain
 	release
 	end
 
@@ -40,18 +40,18 @@ DewfordTown_EventScript_CancelSailSelect:: @ 81E957A
 	release
 	end
 
-DewfordTown_EventScript_ReturnToPetalburgPrompt:: @ 81E9585
-	msgbox DewfordTown_Text_SetSailBackToPetalburg, MSGBOX_YESNO
+DewfordTown_EventScript_ReturnToCloudainPrompt:: @ 81E9585
+	msgbox DewfordTown_Text_SetSailBackToCloudain, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq DewfordTown_EventScript_SailBackToPetalburg
+	goto_if_eq DewfordTown_EventScript_SailBackToCloudain
 	msgbox DewfordTown_Text_GoDeliverIllBeWaiting, MSGBOX_DEFAULT
 	release
 	end
 
-DewfordTown_EventScript_SailBackToPetalburg:: @ 81E95A2
-	msgbox DewfordTown_Text_PetalburgWereSettingSail2, MSGBOX_DEFAULT
+DewfordTown_EventScript_SailBackToCloudain:: @ 81E95A2
+	msgbox DewfordTown_Text_CloudainWereSettingSail2, MSGBOX_DEFAULT
 	closemessage
-	goto DewfordTown_EventScript_SailToPetalburg
+	goto DewfordTown_EventScript_SailToCloudain
 	end
 
 DewfordTown_EventScript_Woman:: @ 81E95B1
@@ -114,7 +114,7 @@ DewfordTown_EventScript_FishingNotSoGood:: @ 81E9656
 	release
 	end
 
-DewfordTown_EventScript_SailToPetalburg:: @ 81E9660
+DewfordTown_EventScript_SailToCloudain:: @ 81E9660
 	call EventScript_BackupMrBrineyLocation
 	setobjectpriority 2, MAP_DEWFORD_TOWN, 0
 	setobjectpriority OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN, 0
@@ -125,12 +125,12 @@ DewfordTown_EventScript_SailToPetalburg:: @ 81E9660
 	waitmovement 0
 	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_DEWFORD_TOWN
 	call Common_EventScript_PlayBrineysBoatMusic
-	applymovement 4, DewfordTown_Movement_SailToPetalburg
-	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_SailToPetalburg
+	applymovement 4, DewfordTown_Movement_SailToCloudain
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_SailToCloudain
 	waitmovement 0
 	showobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE104
 	call Common_EventScript_StopBrineysBoatMusic
-	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_ExitBoatPetalburg
+	applymovement OBJ_EVENT_ID_PLAYER, DewfordTown_Movement_ExitBoatCloudain
 	waitmovement 0
 	showobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE104
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
@@ -192,7 +192,7 @@ DewfordTown_EventScript_LandedSlateport:: @ 81E9799
 	msgbox DewfordTown_Text_BrineyLandedInSlateport, MSGBOX_DEFAULT
 	return
 
-DewfordTown_Movement_SailToPetalburg: @ 81E97A2
+DewfordTown_Movement_SailToCloudain: @ 81E97A2
 	walk_up
 	walk_up
 	walk_fast_up
@@ -568,7 +568,7 @@ DewfordTown_Movement_PlayerBoardBoat: @ 81E9911
 	walk_up
 	step_end
 
-DewfordTown_Movement_ExitBoatPetalburg: @ 81E9914
+DewfordTown_Movement_ExitBoatCloudain: @ 81E9914
 	walk_up
 	walk_up
 	walk_up
@@ -660,14 +660,14 @@ Route104_Text_LandedInDewfordDeliverLetter: @ 81E9AAF
 	.string "I suppose you're off to deliver that\n"
 	.string "LETTER to, who was it now, STEVEN!$"
 
-DewfordTown_Text_SetSailBackToPetalburg: @ 81E9B24
+DewfordTown_Text_SetSailBackToCloudain: @ 81E9B24
 	.string "MR. BRINEY: Have you delivered your\n"
 	.string "LETTER?\p"
 	.string "Or were you meaning to sail back to\n"
-	.string "PETALBURG?$"
+	.string "CLOUDAIN?$"
 
-DewfordTown_Text_PetalburgWereSettingSail2: @ 81E9B7F
-	.string "MR. BRINEY: PETALBURG it is, then!\p"
+DewfordTown_Text_CloudainWereSettingSail2: @ 81E9B7F
+	.string "MR. BRINEY: CLOUDAIN it is, then!\p"
 	.string "Anchors aweigh!\n"
 	.string "PEEKO, we're setting sail, my darling!$"
 
@@ -686,8 +686,8 @@ DewfordTown_Text_WhereAreWeBound: @ 81E9C8A
 	.string "For you, I'll go out to sea anytime!\p"
 	.string "Now, my friend, where are we bound?$"
 
-DewfordTown_Text_PetalburgWereSettingSail: @ 81E9CE5
-	.string "MR. BRINEY: PETALBURG, is it?\p"
+DewfordTown_Text_CloudainWereSettingSail: @ 81E9CE5
+	.string "MR. BRINEY: CLOUDAIN, is it?\p"
 	.string "Anchors aweigh!\n"
 	.string "PEEKO, we're setting sail, my darling!$"
 
