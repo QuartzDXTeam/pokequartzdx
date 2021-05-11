@@ -129,6 +129,20 @@
 #define METATILE_Cave_ShoalCave_DirtPile_Large           0x358
 #define METATILE_Cave_ShoalCave_DirtPile_Small           0x35A
 
+// gTileset_CloudainGym
+#define METATILE_CloudainGym_RoomEntrance_Left   0x210
+#define METATILE_CloudainGym_RoomEntrance_Right  0x211
+#define METATILE_CloudainGym_SlidingDoor_Frame0  0x218
+#define METATILE_CloudainGym_SlidingDoor_Frame1  0x219
+#define METATILE_CloudainGym_SlidingDoor_Frame2  0x21A
+#define METATILE_CloudainGym_SlidingDoor_Frame3  0x21B
+#define METATILE_CloudainGym_SlidingDoor_Frame4  0x21C
+
+// gTileset_Cloudain
+#define METATILE_Cloudain_Door_BarosLab    0x249
+#define METATILE_Cloudain_Door_Littleroot  0x248
+#define METATILE_Cloudain_Door_Pink        0x287
+
 // gTileset_Contest
 #define METATILE_Contest_CounterFlap_Bottom  0x2D9
 #define METATILE_Contest_CounterFlap_Top     0x2D1
@@ -383,20 +397,6 @@
 #define METATILE_Pacifidlog_SubmergedLogs_Horizontal1      0x255
 #define METATILE_Pacifidlog_SubmergedLogs_Vertical0        0x25A
 #define METATILE_Pacifidlog_SubmergedLogs_Vertical1        0x262
-
-// gTileset_CloudainGym
-#define METATILE_CloudainGym_RoomEntrance_Left   0x210
-#define METATILE_CloudainGym_RoomEntrance_Right  0x211
-#define METATILE_CloudainGym_SlidingDoor_Frame0  0x218
-#define METATILE_CloudainGym_SlidingDoor_Frame1  0x219
-#define METATILE_CloudainGym_SlidingDoor_Frame2  0x21A
-#define METATILE_CloudainGym_SlidingDoor_Frame3  0x21B
-#define METATILE_CloudainGym_SlidingDoor_Frame4  0x21C
-
-// gTileset_Cloudain
-#define METATILE_Cloudain_Door_BarosLab   0x249
-#define METATILE_Cloudain_Door_Littleroot  0x248
-#define METATILE_Cloudain_Door_Pink      0x287
 
 // gTileset_PokemonCenter
 #define METATILE_PokemonCenter_CounterBarrier            0x25D
