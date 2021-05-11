@@ -6,7 +6,7 @@ BreezeTown_MapScripts:: @ 81E7DCB
 
 	@ State descriptions for VAR_BREEZE_TOWN_STATE
 	@ 1: Met Rival
-	@ 2: Saving Birch
+	@ 2: Saving Baro
 	@ 3: Received Pokedex
 	@ 4: Received Running Shoes
 
@@ -39,7 +39,7 @@ BreezeTown_OnTransition: @ 81E7DDB
 	call Common_EventScript_SetupRivalGfxId
 	compare VAR_BREEZE_INTRO_STATE, 2
 	call_if_eq BreezeTown_EventScript_MoveMomToMaysDoor
-	call_if_unset FLAG_RESCUED_BIRCH, BreezeTown_EventScript_SetTwinPos
+	call_if_unset FLAG_RESCUED_BARO, BreezeTown_EventScript_SetTwinPos
 	compare VAR_BREEZE_TOWN_STATE, 3
 	call_if_eq BreezeTown_EventScript_SetMomStandingInFrontOfDoorPos
 	compare VAR_BREEZE_HOUSES_STATE_MAY, 4
@@ -219,36 +219,36 @@ BreezeTown_EventScript_BeginDexUpgradeScene:: @ 81E7FB1
 	applymovement 8, Common_Movement_ExclamationMark
 	waitmovement 0
 	delay 80
-	msgbox BreezeTown_Text_BirchSomethingToShowYouAtLab, MSGBOX_DEFAULT
+	msgbox BreezeTown_Text_BaroSomethingToShowYouAtLab, MSGBOX_DEFAULT
 	closemessage
 	clearflag FLAG_HIDE_BREEZE_TOWN_RIVAL
-	clearflag FLAG_HIDE_BREEZE_TOWN_BIRCH
+	clearflag FLAG_HIDE_BREEZE_TOWN_BARO
 	delay 20
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	warp MAP_BREEZE_TOWN_PROFESSOR_BIRCHS_LAB, 255, 6, 5
+	warp MAP_BREEZE_TOWN_PROFESSOR_BAROS_LAB, 255, 6, 5
 	waitstate
 	releaseall
 	end
 
 BreezeTown_OnWarp: @ 81E7FE2
-	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, BreezeTown_EventScript_SetRivalBirchPosForDexUpgrade
+	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, BreezeTown_EventScript_SetRivalBaroPosForDexUpgrade
 	.2byte 0
 
-BreezeTown_EventScript_SetRivalBirchPosForDexUpgrade:: @ 81E7FEC
+BreezeTown_EventScript_SetRivalBaroPosForDexUpgrade:: @ 81E7FEC
 	addobject 8
 	addobject 7
 	checkplayergender
 	compare VAR_RESULT, MALE
-	goto_if_eq BreezeTown_EventScript_SetRivalBirchPosForDexUpgradeMale
-	goto BreezeTown_EventScript_SetRivalBirchPosForDexUpgradeFemale
+	goto_if_eq BreezeTown_EventScript_SetRivalBaroPosForDexUpgradeMale
+	goto BreezeTown_EventScript_SetRivalBaroPosForDexUpgradeFemale
 	end
 
-BreezeTown_EventScript_SetRivalBirchPosForDexUpgradeMale:: @ 81E8004
+BreezeTown_EventScript_SetRivalBaroPosForDexUpgradeMale:: @ 81E8004
 	setobjectxy 7, 6, 10
 	setobjectxy 8, 5, 10
 	end
 
-BreezeTown_EventScript_SetRivalBirchPosForDexUpgradeFemale:: @ 81E8013
+BreezeTown_EventScript_SetRivalBaroPosForDexUpgradeFemale:: @ 81E8013
 	setobjectxy 7, 13, 10
 	setobjectxy 8, 14, 10
 	end
@@ -258,21 +258,21 @@ BreezeTown_EventScript_FatMan:: @ 81E8022
 	end
 
 BreezeTown_EventScript_Boy:: @ 81E802B
-	msgbox BreezeTown_Text_BirchSpendsDaysInLab, MSGBOX_NPC
+	msgbox BreezeTown_Text_BaroSpendsDaysInLab, MSGBOX_NPC
 	end
 
 BreezeTown_EventScript_Twin:: @ 81E8034
 	lock
 	faceplayer
 	goto_if_set FLAG_ADVENTURE_STARTED, BreezeTown_EventScript_GoodLuck
-	goto_if_set FLAG_RESCUED_BIRCH, BreezeTown_EventScript_YouSavedBirch
+	goto_if_set FLAG_RESCUED_BARO, BreezeTown_EventScript_YouSavedBaro
 	compare VAR_BREEZE_TOWN_STATE, 0
-	goto_if_ne BreezeTown_EventScript_GoSaveBirch
+	goto_if_ne BreezeTown_EventScript_GoSaveBaro
 	msgbox BreezeTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT
 	release
 	end
 
-BreezeTown_EventScript_GoSaveBirch:: @ 81E805D
+BreezeTown_EventScript_GoSaveBaro:: @ 81E805D
 	special GetPlayerBigGuyGirlString
 	msgbox BreezeTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT
 	closemessage
@@ -282,9 +282,9 @@ BreezeTown_EventScript_GoSaveBirch:: @ 81E805D
 	release
 	end
 
-BreezeTown_EventScript_YouSavedBirch:: @ 81E807A
+BreezeTown_EventScript_YouSavedBaro:: @ 81E807A
 	special GetPlayerBigGuyGirlString
-	msgbox BreezeTown_Text_YouSavedBirch, MSGBOX_DEFAULT
+	msgbox BreezeTown_Text_YouSavedBaro, MSGBOX_DEFAULT
 	release
 	end
 
@@ -385,7 +385,7 @@ BreezeTown_Movement_TwinReturnRight: @ 81E8118
 	walk_in_place_fastest_down
 	step_end
 
-BreezeTown_EventScript_GoSaveBirchTrigger:: @ 81E811F
+BreezeTown_EventScript_GoSaveBaroTrigger:: @ 81E811F
 	lockall
 	applymovement 1, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
@@ -404,8 +404,8 @@ BreezeTown_EventScript_TownSign:: @ 81E8151
 	msgbox BreezeTown_Text_TownSign, MSGBOX_SIGN
 	end
 
-BreezeTown_EventScript_BirchsLabSign:: @ 81E815A
-	msgbox BreezeTown_Text_ProfBirchsLab, MSGBOX_SIGN
+BreezeTown_EventScript_BarosLabSign:: @ 81E815A
+	msgbox BreezeTown_Text_ProfBarosLab, MSGBOX_SIGN
 	end
 
 BreezeTown_EventScript_AkirasHouseSign:: @ 81E8163
@@ -414,7 +414,7 @@ BreezeTown_EventScript_AkirasHouseSign:: @ 81E8163
 	compare VAR_RESULT, MALE
 	call_if_eq BreezeTown_EventScript_PlayersHouseSignMale
 	compare VAR_RESULT, FEMALE
-	call_if_eq BreezeTown_EventScript_BirchsHouseSignFemale
+	call_if_eq BreezeTown_EventScript_BarosHouseSignFemale
 	releaseall
 	end
 
@@ -422,22 +422,22 @@ BreezeTown_EventScript_PlayersHouseSignMale:: @ 81E817D
 	msgbox BreezeTown_Text_PlayersHouse, MSGBOX_DEFAULT
 	return
 
-BreezeTown_EventScript_BirchsHouseSignFemale:: @ 81E8186
-	msgbox BreezeTown_Text_ProfBirchsHouse, MSGBOX_DEFAULT
+BreezeTown_EventScript_BarosHouseSignFemale:: @ 81E8186
+	msgbox BreezeTown_Text_ProfBarosHouse, MSGBOX_DEFAULT
 	return
 
 BreezeTown_EventScript_MaysHouseSign:: @ 81E818F
 	lockall
 	checkplayergender
 	compare VAR_RESULT, MALE
-	call_if_eq BreezeTown_EventScript_BirchsHouseSignMale
+	call_if_eq BreezeTown_EventScript_BarosHouseSignMale
 	compare VAR_RESULT, FEMALE
 	call_if_eq BreezeTown_EventScript_PlayersHouseSignFemale
 	releaseall
 	end
 
-BreezeTown_EventScript_BirchsHouseSignMale:: @ 81E81A9
-	msgbox BreezeTown_Text_ProfBirchsHouse, MSGBOX_DEFAULT
+BreezeTown_EventScript_BarosHouseSignMale:: @ 81E81A9
+	msgbox BreezeTown_Text_ProfBarosHouse, MSGBOX_DEFAULT
 	return
 
 BreezeTown_EventScript_PlayersHouseSignFemale:: @ 81E81B2
@@ -972,9 +972,9 @@ BreezeTown_Text_WaitPlayer: @ 81E87E1
 
 BreezeTown_Text_WearTheseRunningShoes: @ 81E87F0
 	.string "MOM: {PLAYER}! {PLAYER}! Did you\n"
-	.string "introduce yourself to PROF. BIRCH?\p"
+	.string "introduce yourself to PROF. BARO?\p"
 	.string "Oh! What an adorable POKéMON!\n"
-	.string "You got it from PROF. BIRCH. How nice!\p"
+	.string "You got it from PROF. BARO. How nice!\p"
 	.string "You're your father's child, all right.\n"
 	.string "You look good together with POKéMON!\p"
 	.string "Here, honey! If you're going out on an\n"
@@ -1008,11 +1008,11 @@ BreezeTown_Text_CanUsePCToStoreItems: @ 81E8ACF
 	.string "and POKéMON.\p"
 	.string "The power of science is staggering!$"
 
-BreezeTown_Text_BirchSpendsDaysInLab: @ 81E8B25
-	.string "PROF. BIRCH spends days in his LAB\n"
+BreezeTown_Text_BaroSpendsDaysInLab: @ 81E8B25
+	.string "PROF. BARO spends days in his LAB\n"
 	.string "studying, then he'll suddenly go out in\l"
 	.string "the wild to do more research…\p"
-	.string "When does PROF. BIRCH spend time\n"
+	.string "When does PROF. BARO spend time\n"
 	.string "at home?$"
 
 BreezeTown_Text_IfYouGoInGrassPokemonWillJumpOut: @ 81E8BB8
@@ -1033,8 +1033,8 @@ BreezeTown_Text_CanYouGoSeeWhatsHappening: @ 81E8C3A
 	.string "Can you go see what's happening\n"
 	.string "for me?$"
 
-BreezeTown_Text_YouSavedBirch: @ 81E8CE3
-	.string "You saved PROF. BIRCH!\n"
+BreezeTown_Text_YouSavedBaro: @ 81E8CE3
+	.string "You saved PROF. BARO!\n"
 	.string "I'm so glad!$"
 
 BreezeTown_Text_GoodLuckCatchingPokemon: @ 81E8D07
@@ -1045,17 +1045,17 @@ BreezeTown_Text_TownSign: @ 81E8D32
 	.string "BREEZE TOWN\n"
 	.string "“A town that can't be shaded any hue.”$"
 
-BreezeTown_Text_ProfBirchsLab: @ 81E8D69
+BreezeTown_Text_ProfBarosLab: @ 81E8D69
 	.string "Prof. Baro's Pokémon Lab$"
 
 BreezeTown_Text_PlayersHouse: @ 81E8D83
 	.string "{PLAYER}'s House$"
 
-BreezeTown_Text_ProfBirchsHouse: @ 81E8D8E
+BreezeTown_Text_ProfBarosHouse: @ 81E8D8E
 	.string "{RIVAL}'s House$"
 
-BreezeTown_Text_BirchSomethingToShowYouAtLab: @ 81E8DA2
-	.string "PROF. BIRCH: Well, well, {PLAYER}{KUN}!\n"
+BreezeTown_Text_BaroSomethingToShowYouAtLab: @ 81E8DA2
+	.string "PROF. BARO: Well, well, {PLAYER}{KUN}!\n"
 	.string "That was good work out there!\p"
 	.string "I knew there was something special\n"
 	.string "about you when I first saw you,\l"

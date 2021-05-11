@@ -1,4 +1,4 @@
-gText_Birch_Welcome:: @ 82C897B
+gText_Baro_Welcome:: @ 82C897B
 	.string "Hullo! We're about to arrive...\n"
 	.string "OK!\p"
 	
@@ -9,11 +9,11 @@ gText_Birch_Welcome:: @ 82C897B
 	.string "lived in Kanto.\p"
 	.string "$"
 
-gText_Birch_Pokemon:: @ 82C89FB
+gText_Baro_Pokemon:: @ 82C89FB
 	.string "You'll see new Pokémon in Corna.\p"
 	.string "$"
 
-gText_Birch_MainSpeech:: @ 82C8A1F
+gText_Baro_MainSpeech:: @ 82C8A1F
 	.string "Like this funky Plug-Oink!\n"
 	.string "It's so cool!\p"
 	
@@ -42,21 +42,21 @@ gText_Birch_MainSpeech:: @ 82C8A1F
 	.string "Well, I'll tell you later...\p"
 	.string "$"
 
-gText_Birch_AndYouAre:: @ 82C8BD0
+gText_Baro_AndYouAre:: @ 82C8BD0
 	.string "Well... I...$"
 
-gText_Birch_BoyOrGirl:: @ 82C8BDD
+gText_Baro_BoyOrGirl:: @ 82C8BDD
 	.string "Are you a boy or a girl,\n"
 	.string "dude?$"
 
-gText_Birch_WhatsYourName:: @ 82C8BFF
+gText_Baro_WhatsYourName:: @ 82C8BFF
 	.string "Sure!\n"
 	.string "And your name is..?$"
 
-gText_Birch_SoItsPlayer:: @ 82C8C1C
+gText_Baro_SoItsPlayer:: @ 82C8C1C
 	.string "{PLAYER}? Isn't it?$"
 
-gText_Birch_YourePlayer:: @ 82C8C2A
+gText_Baro_YourePlayer:: @ 82C8C2A
 	.string "The truck stopped...\p"
 	
 	.string "That means we've arrived\n"
@@ -65,7 +65,7 @@ gText_Birch_YourePlayer:: @ 82C8C2A
 	.string "Well, let's go!\p"
 	.string "$"
 
-gText_Birch_AreYouReady:: @ 82C8C7A
+gText_Baro_AreYouReady:: @ 82C8C7A
 	.string "Hey you!\p"
 	
 	.string "When arrive home,\n"

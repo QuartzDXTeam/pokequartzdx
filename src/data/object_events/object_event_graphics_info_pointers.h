@@ -62,7 +62,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BerryTree;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BerryTreeEarlyStages;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BerryTreeLateStages;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_AkiraAcroBike;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ProfBirch;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ProfBaro;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Man4;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Man5;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ReporterM;
@@ -95,7 +95,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayFieldMove;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Truck;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_VigorothCarryingBox;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_VigorothFacingAway;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BirchsBag;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BarosBag;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_EnemyZigzagoon;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Artist;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RivalAkiraNormal;
@@ -311,7 +311,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_BERRY_TREE_EARLY_STAGES] =  &gObjectEventGraphicsInfo_BerryTreeEarlyStages,
     [OBJ_EVENT_GFX_BERRY_TREE_LATE_STAGES] =   &gObjectEventGraphicsInfo_BerryTreeLateStages,
     [OBJ_EVENT_GFX_AKIRA_ACRO_BIKE] =        &gObjectEventGraphicsInfo_AkiraAcroBike,
-    [OBJ_EVENT_GFX_PROF_BIRCH] =               &gObjectEventGraphicsInfo_ProfBirch,
+    [OBJ_EVENT_GFX_PROF_BARO] =               &gObjectEventGraphicsInfo_ProfBaro,
     [OBJ_EVENT_GFX_MAN_4] =                    &gObjectEventGraphicsInfo_Man4,
     [OBJ_EVENT_GFX_MAN_5] =                    &gObjectEventGraphicsInfo_Man5,
     [OBJ_EVENT_GFX_REPORTER_M] =               &gObjectEventGraphicsInfo_ReporterM,
@@ -344,7 +344,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_TRUCK] =                    &gObjectEventGraphicsInfo_Truck,
     [OBJ_EVENT_GFX_VIGOROTH_CARRYING_BOX] =    &gObjectEventGraphicsInfo_VigorothCarryingBox,
     [OBJ_EVENT_GFX_VIGOROTH_FACING_AWAY] =     &gObjectEventGraphicsInfo_VigorothFacingAway,
-    [OBJ_EVENT_GFX_BIRCHS_BAG] =               &gObjectEventGraphicsInfo_BirchsBag,
+    [OBJ_EVENT_GFX_BAROS_BAG] =               &gObjectEventGraphicsInfo_BarosBag,
     [OBJ_EVENT_GFX_ZIGZAGOON_1] =              &gObjectEventGraphicsInfo_EnemyZigzagoon,
     [OBJ_EVENT_GFX_ARTIST] =                   &gObjectEventGraphicsInfo_Artist,
     [OBJ_EVENT_GFX_RIVAL_AKIRA_NORMAL] =     &gObjectEventGraphicsInfo_RivalAkiraNormal,

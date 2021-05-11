@@ -315,11 +315,11 @@ PlayersHouse_1F_EventScript_Mom:: @ 82929C5
 	compare VAR_BREEZE_HOUSES_STATE_AKIRA, 4
 	goto_if_eq PlayersHouse_1F_EventScript_DontPushYourselfTooHard
 	goto_if_set FLAG_HAS_MATCH_CALL, PlayersHouse_1F_EventScript_TryRegisterMom
-	goto_if_set FLAG_RESCUED_BIRCH, PlayersHouse_1F_EventScript_MomHealsParty
+	goto_if_set FLAG_RESCUED_BARO, PlayersHouse_1F_EventScript_MomHealsParty
 	compare VAR_TEMP_1, 1
 	goto_if_eq PlayersHouse_1F_EventScript_SeeYouHoney
 	compare VAR_BREEZE_INTRO_STATE, 7
-	goto_if_eq PlayersHouse_1F_EventScript_DidYouMeetProfBirch
+	goto_if_eq PlayersHouse_1F_EventScript_DidYouMeetProfBaro
 	msgbox PlayersHouse_1F_Text_IsntItNiceInHere, MSGBOX_DEFAULT
 	release
 	end
@@ -376,8 +376,8 @@ PlayersHouse_1F_EventScript_HealParty:: @ 8292A9E
 	release
 	end
 
-PlayersHouse_1F_EventScript_DidYouMeetProfBirch:: @ 8292AB0
-	msgbox PlayersHouse_1F_Text_DidYouMeetProfBirch, MSGBOX_DEFAULT
+PlayersHouse_1F_EventScript_DidYouMeetProfBaro:: @ 8292AB0
+	msgbox PlayersHouse_1F_Text_DidYouMeetProfBaro, MSGBOX_DEFAULT
 	release
 	end
 

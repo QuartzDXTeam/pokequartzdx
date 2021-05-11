@@ -218,8 +218,8 @@ PetalburgCity_Gym_EventScript_BeginWallyTutorial:: @ 8204AAC
 	setvar VAR_PETALBURG_CITY_STATE, 2
 	clearflag FLAG_HIDE_PETALBURG_CITY_WALLY
 	clearflag FLAG_HIDE_PETALBURG_GYM_WALLY
-	setflag FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_RIVAL
-	special InitBirchState
+	setflag FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_RIVAL
+	special InitBaroState
 	warp MAP_PETALBURG_CITY, 255, 15, 8
 	waitstate
 	release

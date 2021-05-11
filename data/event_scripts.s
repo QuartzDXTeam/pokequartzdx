@@ -162,7 +162,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/BreezeTown_AkirasHouse_2F/scripts.inc"
 	.include "data/maps/BreezeTown_MaysHouse_1F/scripts.inc"
 	.include "data/maps/BreezeTown_MaysHouse_2F/scripts.inc"
-	.include "data/maps/BreezeTown_ProfessorBirchsLab/scripts.inc"
+	.include "data/maps/BreezeTown_ProfessorBarosLab/scripts.inc"
 	.include "data/maps/OldaleTown_House1/scripts.inc"
 	.include "data/maps/OldaleTown_House2/scripts.inc"
 	.include "data/maps/OldaleTown_PokemonCenter_1F/scripts.inc"
@@ -744,7 +744,7 @@ Common_EventScript_StopBrineysBoatMusic:: @ 82720A8
 	fadedefaultbgm
 	return
 
-	.include "data/scripts/prof_birch.inc"
+	.include "data/scripts/prof_baro.inc"
 
 @ Below could be split as ferry.inc aside from the Rusturf tunnel script
 Common_EventScript_FerryDepart:: @ 82721E2
@@ -1059,4 +1059,4 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/scripts/test_signpost.inc"
 	.include "data/text/frontier_brain.inc"
 	.include "data/text/save.inc"
-	.include "data/text/birch_speech.inc"
+	.include "data/text/baro_speech.inc"

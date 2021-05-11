@@ -19,7 +19,7 @@ enum
     MC_TYPE_NPC,
     MC_TYPE_TRAINER,
     MC_TYPE_WALLY,
-    MC_TYPE_BIRCH,
+    MC_TYPE_BARO,
     MC_TYPE_RIVAL,
     MC_TYPE_LEADER
 };
@@ -73,7 +73,7 @@ struct MatchCallWally {
     const struct MatchCallLocationOverride *locationData;
 };
 
-struct MatchCallBirch {
+struct MatchCallBaro {
     u8 type;
     u8 mapSec;
     u16 flag;
@@ -95,7 +95,7 @@ typedef union {
     const struct MatchCallStructNPC *npc;
     const struct MatchCallStructTrainer *trainer;
     const struct MatchCallWally *wally;
-    const struct MatchCallBirch *birch;
+    const struct MatchCallBaro *baro;
     const struct MatchCallRival *rival;
     const struct MatchCallStructTrainer *leader;
 } match_call_t;
@@ -114,43 +114,43 @@ struct MatchCallCheckPageOverride {
 static bool32 MatchCall_GetEnabled_NPC(match_call_t);
 static bool32 MatchCall_GetEnabled_Trainer(match_call_t);
 static bool32 MatchCall_GetEnabled_Wally(match_call_t);
-static bool32 MatchCall_GetEnabled_Birch(match_call_t);
+static bool32 MatchCall_GetEnabled_Baro(match_call_t);
 static bool32 MatchCall_GetEnabled_Rival(match_call_t);
 
 static u8 MatchCall_GetMapSec_NPC(match_call_t);
 static u8 MatchCall_GetMapSec_Trainer(match_call_t);
 static u8 MatchCall_GetMapSec_Wally(match_call_t);
-static u8 MatchCall_GetMapSec_Birch(match_call_t);
+static u8 MatchCall_GetMapSec_Baro(match_call_t);
 static u8 MatchCall_GetMapSec_Rival(match_call_t);
 
 static bool32 MatchCall_IsRematchable_NPC(match_call_t);
 static bool32 MatchCall_IsRematchable_Trainer(match_call_t);
 static bool32 MatchCall_IsRematchable_Wally(match_call_t);
-static bool32 MatchCall_IsRematchable_Birch(match_call_t);
+static bool32 MatchCall_IsRematchable_Baro(match_call_t);
 static bool32 MatchCall_IsRematchable_Rival(match_call_t);
 
 static bool32 MatchCall_HasCheckPage_NPC(match_call_t);
 static bool32 MatchCall_HasCheckPage_Trainer(match_call_t);
 static bool32 MatchCall_HasCheckPage_Wally(match_call_t);
-static bool32 MatchCall_HasCheckPage_Birch(match_call_t);
+static bool32 MatchCall_HasCheckPage_Baro(match_call_t);
 static bool32 MatchCall_HasCheckPage_Rival(match_call_t);
 
 static u32 MatchCall_GetRematchTableIdx_NPC(match_call_t);
 static u32 MatchCall_GetRematchTableIdx_Trainer(match_call_t);
 static u32 MatchCall_GetRematchTableIdx_Wally(match_call_t);
-static u32 MatchCall_GetRematchTableIdx_Birch(match_call_t);
+static u32 MatchCall_GetRematchTableIdx_Baro(match_call_t);
 static u32 MatchCall_GetRematchTableIdx_Rival(match_call_t);
 
 static void MatchCall_GetMessage_NPC(match_call_t, u8 *);
 static void MatchCall_GetMessage_Trainer(match_call_t, u8 *);
 static void MatchCall_GetMessage_Wally(match_call_t, u8 *);
-static void MatchCall_GetMessage_Birch(match_call_t, u8 *);
+static void MatchCall_GetMessage_Baro(match_call_t, u8 *);
 static void MatchCall_GetMessage_Rival(match_call_t, u8 *);
 
 static void MatchCall_GetNameAndDesc_NPC(match_call_t, const u8 **, const u8 **);
 static void MatchCall_GetNameAndDesc_Trainer(match_call_t, const u8 **, const u8 **);
 static void MatchCall_GetNameAndDesc_Wally(match_call_t, const u8 **, const u8 **);
-static void MatchCall_GetNameAndDesc_Birch(match_call_t, const u8 **, const u8 **);
+static void MatchCall_GetNameAndDesc_Baro(match_call_t, const u8 **, const u8 **);
 static void MatchCall_GetNameAndDesc_Rival(match_call_t, const u8 **, const u8 **);
 
 static void MatchCall_BufferCallMessageText(const match_call_text_data_t *, u8 *);
@@ -208,13 +208,13 @@ static const struct MatchCallStructTrainer sNormanMatchCallHeader =
     .textData = sNormanTextScripts
 };
 
-static const struct MatchCallBirch sProfBirchMatchCallHeader =
+static const struct MatchCallBaro sProfBaroMatchCallHeader =
 {
-    .type = MC_TYPE_BIRCH,
+    .type = MC_TYPE_BARO,
     .mapSec = 0,
-    .flag = FLAG_ENABLE_PROF_BIRCH_MATCH_CALL,
-    .desc = gText_ProfBirchMatchCallDesc,
-    .name = gText_ProfBirchMatchCallName
+    .flag = FLAG_ENABLE_PROF_BARO_MATCH_CALL,
+    .desc = gText_ProfBaroMatchCallDesc,
+    .name = gText_ProfBaroMatchCallName
 };
 
 static const match_call_text_data_t sMomTextScripts[] = {
@@ -579,7 +579,7 @@ static const struct MatchCallStructTrainer sWallaceMatchCallHeader =
 
 static const match_call_t sMatchCallHeaders[] = {
     [MC_HEADER_MR_STONE]   = {.npc    = &sMrStoneMatchCallHeader},
-    [MC_HEADER_PROF_BIRCH] = {.birch  = &sProfBirchMatchCallHeader},
+    [MC_HEADER_PROF_BARO] = {.baro  = &sProfBaroMatchCallHeader},
     [MC_HEADER_AKIRA]    = {.rival  = &sAkiraMatchCallHeader},
     [MC_HEADER_MAY]        = {.rival  = &sMayMatchCallHeader},
     [MC_HEADER_WALLY]      = {.wally  = &sWallyMatchCallHeader},
@@ -606,7 +606,7 @@ static bool32 (*const sMatchCallGetEnabledFuncs[])(match_call_t) = {
     MatchCall_GetEnabled_Trainer,
     MatchCall_GetEnabled_Wally,
     MatchCall_GetEnabled_Rival,
-    MatchCall_GetEnabled_Birch
+    MatchCall_GetEnabled_Baro
 };
 
 static u8 (*const sMatchCallGetMapSecFuncs[])(match_call_t) = {
@@ -614,7 +614,7 @@ static u8 (*const sMatchCallGetMapSecFuncs[])(match_call_t) = {
     MatchCall_GetMapSec_Trainer,
     MatchCall_GetMapSec_Wally,
     MatchCall_GetMapSec_Rival,
-    MatchCall_GetMapSec_Birch
+    MatchCall_GetMapSec_Baro
 };
 
 static bool32 (*const sMatchCall_IsRematchableFunctions[])(match_call_t) = {
@@ -622,7 +622,7 @@ static bool32 (*const sMatchCall_IsRematchableFunctions[])(match_call_t) = {
     MatchCall_IsRematchable_Trainer,
     MatchCall_IsRematchable_Wally,
     MatchCall_IsRematchable_Rival,
-    MatchCall_IsRematchable_Birch
+    MatchCall_IsRematchable_Baro
 };
 
 static bool32 (*const sMatchCall_HasCheckPageFunctions[])(match_call_t) = {
@@ -630,7 +630,7 @@ static bool32 (*const sMatchCall_HasCheckPageFunctions[])(match_call_t) = {
     MatchCall_HasCheckPage_Trainer,
     MatchCall_HasCheckPage_Wally,
     MatchCall_HasCheckPage_Rival,
-    MatchCall_HasCheckPage_Birch
+    MatchCall_HasCheckPage_Baro
 };
 
 static u32 (*const sMatchCall_GetRematchTableIdxFunctions[])(match_call_t) = {
@@ -638,7 +638,7 @@ static u32 (*const sMatchCall_GetRematchTableIdxFunctions[])(match_call_t) = {
     MatchCall_GetRematchTableIdx_Trainer,
     MatchCall_GetRematchTableIdx_Wally,
     MatchCall_GetRematchTableIdx_Rival,
-    MatchCall_GetRematchTableIdx_Birch
+    MatchCall_GetRematchTableIdx_Baro
 };
 
 static void (*const sMatchCall_GetMessageFunctions[])(match_call_t, u8 *) = {
@@ -646,7 +646,7 @@ static void (*const sMatchCall_GetMessageFunctions[])(match_call_t, u8 *) = {
     MatchCall_GetMessage_Trainer,
     MatchCall_GetMessage_Wally,
     MatchCall_GetMessage_Rival,
-    MatchCall_GetMessage_Birch
+    MatchCall_GetMessage_Baro
 };
 
 static void (*const sMatchCall_GetNameAndDescFunctions[])(match_call_t, const u8 **, const u8 **) = {
@@ -654,7 +654,7 @@ static void (*const sMatchCall_GetNameAndDescFunctions[])(match_call_t, const u8
     MatchCall_GetNameAndDesc_Trainer,
     MatchCall_GetNameAndDesc_Wally,
     MatchCall_GetNameAndDesc_Rival,
-    MatchCall_GetNameAndDesc_Birch
+    MatchCall_GetNameAndDesc_Baro
 };
 
 static const struct MatchCallCheckPageOverride sCheckPageOverrides[] = {
@@ -710,7 +710,7 @@ static u32 MatchCallGetFunctionIndex(match_call_t matchCall)
             return 2;
         case MC_TYPE_RIVAL:
             return 3;
-        case MC_TYPE_BIRCH:
+        case MC_TYPE_BARO:
             return 4;
     }
 }
@@ -774,9 +774,9 @@ static bool32 MatchCall_GetEnabled_Rival(match_call_t matchCall)
     return FlagGet(matchCall.rival->flag);
 }
 
-static bool32 MatchCall_GetEnabled_Birch(match_call_t matchCall)
+static bool32 MatchCall_GetEnabled_Baro(match_call_t matchCall)
 {
-    return FlagGet(matchCall.birch->flag);
+    return FlagGet(matchCall.baro->flag);
 }
 
 u8 MatchCall_GetMapSec(u32 idx)
@@ -818,7 +818,7 @@ static u8 MatchCall_GetMapSec_Rival(match_call_t matchCall)
     return MAPSEC_NONE;
 }
 
-static u8 MatchCall_GetMapSec_Birch(match_call_t matchCall)
+static u8 MatchCall_GetMapSec_Baro(match_call_t matchCall)
 {
     return MAPSEC_NONE;
 }
@@ -857,7 +857,7 @@ static bool32 MatchCall_IsRematchable_Rival(match_call_t matchCall)
     return FALSE;
 }
 
-static bool32 MatchCall_IsRematchable_Birch(match_call_t matchCall)
+static bool32 MatchCall_IsRematchable_Baro(match_call_t matchCall)
 {
     return FALSE;
 }
@@ -901,7 +901,7 @@ static bool32 MatchCall_HasCheckPage_Rival(match_call_t matchCall)
     return FALSE;
 }
 
-static bool32 MatchCall_HasCheckPage_Birch(match_call_t matchCall)
+static bool32 MatchCall_HasCheckPage_Baro(match_call_t matchCall)
 {
     return FALSE;
 }
@@ -938,7 +938,7 @@ static u32 MatchCall_GetRematchTableIdx_Rival(match_call_t matchCall)
     return REMATCH_TABLE_ENTRIES;
 }
 
-static u32 MatchCall_GetRematchTableIdx_Birch(match_call_t matchCall)
+static u32 MatchCall_GetRematchTableIdx_Baro(match_call_t matchCall)
 {
     return REMATCH_TABLE_ENTRIES;
 }
@@ -979,7 +979,7 @@ static void MatchCall_GetMessage_Rival(match_call_t matchCall, u8 *dest)
     MatchCall_BufferCallMessageText(matchCall.rival->textData, dest);
 }
 
-static void MatchCall_GetMessage_Birch(match_call_t matchCall, u8 *dest)
+static void MatchCall_GetMessage_Baro(match_call_t matchCall, u8 *dest)
 {
     BufferPokedexRatingForMatchCall(dest);
 }
@@ -1079,10 +1079,10 @@ static void MatchCall_GetNameAndDesc_Rival(match_call_t matchCall, const u8 **de
     *name = matchCall.rival->name;
 }
 
-static void MatchCall_GetNameAndDesc_Birch(match_call_t matchCall, const u8 **desc, const u8 **name)
+static void MatchCall_GetNameAndDesc_Baro(match_call_t matchCall, const u8 **desc, const u8 **name)
 {
-    *desc = matchCall.birch->desc;
-    *name = matchCall.birch->name;
+    *desc = matchCall.baro->desc;
+    *name = matchCall.baro->name;
 }
 
 static void MatchCall_GetNameAndDescByRematchIdx(u32 idx, const u8 **desc, const u8 **name)

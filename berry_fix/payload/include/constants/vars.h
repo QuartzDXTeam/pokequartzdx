@@ -70,7 +70,7 @@
 #define VAR_NATIONAL_DEX           0x4046
 #define VAR_SHROOMISH_SIZE_RECORD  0x4047
 #define VAR_ASH_GATHER_COUNT       0x4048
-#define VAR_BIRCH_STATE            0x4049
+#define VAR_BARO_STATE            0x4049
 #define VAR_CRUISE_STEP_COUNT      0x404A
 #define VAR_LOTTERY_RND_L          0x404B
 #define VAR_LOTTERY_RND_H          0x404C
@@ -105,7 +105,7 @@
 
 #define VAR_BREEZE_HOUSES_STATE 0x4082 // TODO: needs more investigation
 
-#define VAR_BIRCH_LAB_STATE         0x4084
+#define VAR_BARO_LAB_STATE         0x4084
 #define VAR_PETALBURG_GYM_STATE     0x4085
 #define VAR_LINK_CONTEST_ROOM_STATE 0x4086
 #define VAR_CABLE_CLUB_STATE        0x4087

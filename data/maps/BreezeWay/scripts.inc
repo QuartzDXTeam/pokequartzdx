@@ -4,7 +4,7 @@ BreezeWay_MapScripts:: @ 81EBCBA
 	.byte 0
 
 BreezeWay_OnTransition: @ 81EBCC5
-	call ProfBirch_EventScript_UpdateLocation
+	call ProfBaro_EventScript_UpdateLocation
 	end
 
 BreezeWay_OnFrame: @ 81EBCCB
@@ -16,7 +16,7 @@ BreezeWay_EventScript_HideMapNamePopup:: @ 81EBCD5
 	setvar VAR_BREEZE_WAY_STATE, 1
 	end
 
-BreezeWay_EventScript_StartBirchRescue:: @ 81EBCDE
+BreezeWay_EventScript_StartBaroRescue:: @ 81EBCDE
 	lockall
 	playbgm MUS_HELP, 1
 	msgbox BreezeWay_Text_HelpMe, MSGBOX_DEFAULT
@@ -25,12 +25,12 @@ BreezeWay_EventScript_StartBirchRescue:: @ 81EBCDE
 	setobjectxyperm 4, 0, 21
 	applymovement OBJ_EVENT_ID_PLAYER, BreezeWay_Movement_EnterScene
 	applymovement 4, BreezeWay_Movement_PoochyenaChaseInCircles
-	applymovement 2, BreezeWay_Movement_BirchRunInCircles
+	applymovement 2, BreezeWay_Movement_BaroRunInCircles
 	waitmovement 0
 	applymovement 2, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
-	applymovement 4, BreezeWay_Movement_PoochyenaFaceBirch
-	applymovement 2, BreezeWay_Movement_BirchFacePoochyena
+	applymovement 4, BreezeWay_Movement_PoochyenaFaceBaro
+	applymovement 2, BreezeWay_Movement_BaroFacePoochyena
 	waitmovement 0
 	msgbox BreezeWay_Text_PleaseHelp, MSGBOX_DEFAULT
 	closemessage
@@ -122,7 +122,7 @@ BreezeWay_Movement_PoochyenaChase1: @ 81EBDB5
 @ Leftover data? This command is unused.
 	step_end
 
-BreezeWay_Movement_PoochyenaFaceBirch: @ 81EBDBD
+BreezeWay_Movement_PoochyenaFaceBaro: @ 81EBDBD
 	walk_in_place_fast_left
 	walk_in_place_fast_left
 	walk_in_place_fast_left
@@ -137,7 +137,7 @@ BreezeWay_Movement_EnterScene: @ 81EBDC2
 	walk_in_place_fastest_left
 	step_end
 
-BreezeWay_Movement_BirchRunInCircles: @ 81EBDC8
+BreezeWay_Movement_BaroRunInCircles: @ 81EBDC8
 	walk_fast_up
 	walk_fast_up
 	walk_fast_right
@@ -170,7 +170,7 @@ BreezeWay_Movement_BirchRunInCircles: @ 81EBDC8
 	walk_fast_left
 	step_end
 
-BreezeWay_Movement_BirchRunAway1: @ 81EBDE7
+BreezeWay_Movement_BaroRunAway1: @ 81EBDE7
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right
@@ -182,7 +182,7 @@ BreezeWay_Movement_BirchRunAway1: @ 81EBDE7
 @ Leftover data? This command is unused.
 	step_end
 
-BreezeWay_Movement_BirchFacePoochyena: @ 81EBDEF
+BreezeWay_Movement_BaroFacePoochyena: @ 81EBDEF
 	walk_in_place_fast_right
 	walk_in_place_fast_right
 	walk_in_place_fast_right
@@ -212,11 +212,11 @@ BreezeWay_EventScript_RouteSign:: @ 81EBE0D
 	msgbox BreezeWay_Text_RouteSign, MSGBOX_SIGN
 	end
 
-BreezeWay_EventScript_BirchsBag:: @ 81EBE16
+BreezeWay_EventScript_BarosBag:: @ 81EBE16
 	lock
 	faceplayer
 	setflag FLAG_SYS_POKEMON_GET
-	setflag FLAG_RESCUED_BIRCH
+	setflag FLAG_RESCUED_BARO
 	fadescreen FADE_TO_BLACK
 	removeobject 4
 	setobjectxy OBJ_EVENT_ID_PLAYER, 6, 13
@@ -224,14 +224,14 @@ BreezeWay_EventScript_BirchsBag:: @ 81EBE16
 	waitmovement 0
 	special ChooseStarter
 	waitstate
-	applymovement 2, BreezeWay_Movement_BirchApproachPlayer
+	applymovement 2, BreezeWay_Movement_BaroApproachPlayer
 	waitmovement 0
 	msgbox BreezeWay_Text_PutosSeverDeLos, MSGBOX_DEFAULT
 	special HealPlayerParty
-	setflag FLAG_HIDE_BREEZE_WAY_BIRCH_ZIGZAGOON_BATTLE
-	clearflag FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_BIRCH
-	setflag FLAG_HIDE_BREEZE_WAY_BIRCH_STARTERS_BAG
-	setvar VAR_BIRCH_LAB_STATE, 2
+	setflag FLAG_HIDE_BREEZE_WAY_BARO_SEVER_BATTLE
+	clearflag FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_BARO
+	setflag FLAG_HIDE_BREEZE_WAY_BARO_STARTERS_BAG
+	setvar VAR_BARO_LAB_STATE, 2
 	setvar VAR_BREEZE_WAY_STATE, 3
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	checkplayergender
@@ -239,7 +239,7 @@ BreezeWay_EventScript_BirchsBag:: @ 81EBE16
 	call_if_eq BreezeWay_EventScript_HideMayInBedroom
 	compare VAR_RESULT, FEMALE
 	call_if_eq BreezeWay_EventScript_HideAkiraInBedroom
-	warp MAP_BREEZE_TOWN_PROFESSOR_BIRCHS_LAB, 255, 6, 5
+	warp MAP_BREEZE_TOWN_PROFESSOR_BAROS_LAB, 255, 6, 5
 	waitstate
 	release
 	end
@@ -252,7 +252,7 @@ BreezeWay_EventScript_HideAkiraInBedroom:: @ 81EBE89
 	setflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_RIVAL_BEDROOM
 	return
 
-BreezeWay_Movement_BirchApproachPlayer: @ 81EBE8D
+BreezeWay_Movement_BaroApproachPlayer: @ 81EBE8D
 	walk_right
 	step_end
 

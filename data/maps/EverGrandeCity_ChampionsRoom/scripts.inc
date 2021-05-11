@@ -84,7 +84,7 @@ EverGrandeCity_ChampionsRoom_EventScript_MayAdvice:: @ 8228AC6
 	waitmovement 0
 	call EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth
 	msgbox EverGrandeCity_ChampionsRoom_Text_MayItsAlreadyOver, MSGBOX_DEFAULT
-	goto EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF
+	goto EverGrandeCity_ChampionsRoom_EventScript_BaroArrivesExitForHoF
 	end
 
 EverGrandeCity_ChampionsRoom_EventScript_AkiraAdvice:: @ 8228AFB
@@ -97,19 +97,19 @@ EverGrandeCity_ChampionsRoom_EventScript_AkiraAdvice:: @ 8228AFB
 	waitmovement 0
 	call EverGrandeCity_ChampionsRoom_EventScript_RivalLookBackAndForth
 	msgbox EverGrandeCity_ChampionsRoom_Text_AkiraYouveWon, MSGBOX_DEFAULT
-	goto EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF
+	goto EverGrandeCity_ChampionsRoom_EventScript_BaroArrivesExitForHoF
 	end
 
-EverGrandeCity_ChampionsRoom_EventScript_BirchArrivesExitForHoF:: @ 8228B30
+EverGrandeCity_ChampionsRoom_EventScript_BaroArrivesExitForHoF:: @ 8228B30
 	closemessage
 	addobject 3
-	applymovement 3, EverGrandeCity_ChampionsRoom_Movement_BirchArrives
+	applymovement 3, EverGrandeCity_ChampionsRoom_Movement_BaroArrives
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestRight
 	waitmovement 0
-	msgbox EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex, MSGBOX_DEFAULT
-	call ProfBirch_EventScript_RatePokedex
-	msgbox EverGrandeCity_ChampionsRoom_Text_BirchCongratulations, MSGBOX_DEFAULT
+	msgbox EverGrandeCity_ChampionsRoom_Text_BaroArriveRatePokedex, MSGBOX_DEFAULT
+	call ProfBaro_EventScript_RatePokedex
+	msgbox EverGrandeCity_ChampionsRoom_Text_BaroCongratulations, MSGBOX_DEFAULT
 	applymovement 1, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	delay 20
@@ -214,7 +214,7 @@ EverGrandeCity_ChampionsRoom_Movement_WallaceExit: @ 8228C3F
 	set_invisible
 	step_end
 
-EverGrandeCity_ChampionsRoom_Movement_BirchArrives: @ 8228C43
+EverGrandeCity_ChampionsRoom_Movement_BaroArrives: @ 8228C43
 	walk_up
 	walk_up
 	walk_up
@@ -294,8 +294,8 @@ EverGrandeCity_ChampionsRoom_Text_AkiraYouveWon: @ 82291A2
 	.string "Are you trying to tell me…\n"
 	.string "You've beaten the CHAMPION?$"
 
-EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex: @ 82291E6
-	.string "PROF. BIRCH: See?\n"
+EverGrandeCity_ChampionsRoom_Text_BaroArriveRatePokedex: @ 82291E6
+	.string "PROF. BARO: See?\n"
 	.string "What did I tell you, {RIVAL}?\p"
 	.string "Didn't I tell you that you don't need\n"
 	.string "to worry about {PLAYER}{KUN}?\p"
@@ -310,8 +310,8 @@ EverGrandeCity_ChampionsRoom_Text_BirchArriveRatePokedex: @ 82291E6
 	.string "What became of your POKéDEX?\n"
 	.string "Here, let me see.$"
 
-EverGrandeCity_ChampionsRoom_Text_BirchCongratulations: @ 822934D
-	.string "PROF. BIRCH: Anyways,\n"
+EverGrandeCity_ChampionsRoom_Text_BaroCongratulations: @ 822934D
+	.string "PROF. BARO: Anyways,\n"
 	.string "congratulations!\p"
 	.string "Now, go proudly into the final room!$"
 
@@ -326,7 +326,7 @@ EverGrandeCity_ChampionsRoom_Text_WallaceWaitOutside: @ 82293EB
 	.string "From here on, only those TRAINERS who\n"
 	.string "have become CHAMPIONS may enter.\p"
 	.string "You'll have to wait outside with\n"
-	.string "PROF. BIRCH.$"
+	.string "PROF. BARO.$"
 
 EverGrandeCity_ChampionsRoom_Text_MayCongratulations: @ 8229479
 	.string "MAY: Groan…\p"

@@ -572,14 +572,14 @@
       "blockdata_filepath": "data/layouts/BreezeTown_MaysHouse_2F/map.bin"
     },
     {
-      "id": "LAYOUT_BREEZE_TOWN_PROFESSOR_BIRCHS_LAB",
-      "name": "BreezeTown_ProfessorBirchsLab_Layout",
+      "id": "LAYOUT_BREEZE_TOWN_PROFESSOR_BAROS_LAB",
+      "name": "BreezeTown_ProfessorBarosLab_Layout",
       "width": 13,
       "height": 13,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Lab",
-      "border_filepath": "data/layouts/BreezeTown_ProfessorBirchsLab/border.bin",
-      "blockdata_filepath": "data/layouts/BreezeTown_ProfessorBirchsLab/map.bin"
+      "border_filepath": "data/layouts/BreezeTown_ProfessorBarosLab/border.bin",
+      "blockdata_filepath": "data/layouts/BreezeTown_ProfessorBarosLab/map.bin"
     },
     {
       "id": "LAYOUT_HOUSE1",
@@ -4312,14 +4312,14 @@
       "blockdata_filepath": "data/layouts/MeteorFalls_StevensCave/map.bin"
     },
     {
-      "id": "LAYOUT_BREEZE_TOWN_PROFESSOR_BIRCHS_LAB_WITH_TABLE",
-      "name": "BreezeTown_ProfessorBirchsLabWithTable_Layout",
+      "id": "LAYOUT_BREEZE_TOWN_PROFESSOR_BAROS_LAB_WITH_TABLE",
+      "name": "BreezeTown_ProfessorBarosLabWithTable_Layout",
       "width": 13,
       "height": 13,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_Lab",
-      "border_filepath": "data/layouts/BreezeTown_ProfessorBirchsLabWithTable/border.bin",
-      "blockdata_filepath": "data/layouts/BreezeTown_ProfessorBirchsLabWithTable/map.bin"
+      "border_filepath": "data/layouts/BreezeTown_ProfessorBarosLabWithTable/border.bin",
+      "blockdata_filepath": "data/layouts/BreezeTown_ProfessorBarosLabWithTable/map.bin"
     },
     {
       "id": "LAYOUT_SKY_PILLAR_1F_CLEAN",

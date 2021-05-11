@@ -591,29 +591,29 @@ Route110_Movement_RivalExit3: @ 81EF9C3
 	walk_fast_up
 	step_end
 
-Route110_EventScript_BirchScene1:: @ 81EF9CB
+Route110_EventScript_BaroScene1:: @ 81EF9CB
 	lockall
 	setvar VAR_0x8008, 1
-	goto Route110_EventScript_BirchScene
+	goto Route110_EventScript_BaroScene
 
-Route110_EventScript_BirchScene2:: @ 81EF9D6
+Route110_EventScript_BaroScene2:: @ 81EF9D6
 	lockall
 	setvar VAR_0x8008, 2
-	goto Route110_EventScript_BirchScene
+	goto Route110_EventScript_BaroScene
 
-Route110_EventScript_BirchScene3:: @ 81EF9E1
+Route110_EventScript_BaroScene3:: @ 81EF9E1
 	lockall
 	setvar VAR_0x8008, 3
-	goto Route110_EventScript_BirchScene
+	goto Route110_EventScript_BaroScene
 
-Route110_EventScript_BirchScene4:: @ 81EF9EC
+Route110_EventScript_BaroScene4:: @ 81EF9EC
 	lockall
 	setvar VAR_0x8008, 4
-	goto Route110_EventScript_BirchScene
+	goto Route110_EventScript_BaroScene
 
-Route110_EventScript_BirchScene:: @ 81EF9F7
+Route110_EventScript_BaroScene:: @ 81EF9F7
 	addobject 36
-	applymovement 36, Route110_Movement_BirchEntrance
+	applymovement 36, Route110_Movement_BaroEntrance
 	waitmovement 0
 	playse SE_PIN
 	applymovement 36, Common_Movement_ExclamationMark
@@ -621,13 +621,13 @@ Route110_EventScript_BirchScene:: @ 81EF9F7
 	applymovement 36, Common_Movement_Delay48
 	waitmovement 0
 	compare VAR_0x8008, 1
-	call_if_eq Route110_EventScript_BirchApproachPlayer1
+	call_if_eq Route110_EventScript_BaroApproachPlayer1
 	compare VAR_0x8008, 2
-	call_if_eq Route110_EventScript_BirchApproachPlayer2
+	call_if_eq Route110_EventScript_BaroApproachPlayer2
 	compare VAR_0x8008, 3
-	call_if_eq Route110_EventScript_BirchApproachPlayer3
+	call_if_eq Route110_EventScript_BaroApproachPlayer3
 	compare VAR_0x8008, 4
-	call_if_eq Route110_EventScript_BirchApproachPlayer4
+	call_if_eq Route110_EventScript_BaroApproachPlayer4
 	msgbox Route110_Text_ImagineSeeingYouHere, MSGBOX_DEFAULT
 	closemessage
 	delay 20
@@ -644,97 +644,97 @@ Route110_EventScript_BirchScene:: @ 81EF9F7
 	closemessage
 	delay 30
 	playfanfare MUS_REGISTER_MATCH_CALL
-	msgbox Route110_Text_RegisteredBirchInPokenav, MSGBOX_DEFAULT
+	msgbox Route110_Text_RegisteredBaroInPokenav, MSGBOX_DEFAULT
 	waitfanfare
 	closemessage
 	delay 30
-	setflag FLAG_ENABLE_PROF_BIRCH_MATCH_CALL
+	setflag FLAG_ENABLE_PROF_BARO_MATCH_CALL
 	msgbox Route110_Text_KeepAnEyeOutForRival, MSGBOX_DEFAULT
 	closemessage
 	compare VAR_0x8008, 1
-	call_if_eq Route110_EventScript_BirchExit1
+	call_if_eq Route110_EventScript_BaroExit1
 	compare VAR_0x8008, 2
-	call_if_eq Route110_EventScript_BirchExit2
+	call_if_eq Route110_EventScript_BaroExit2
 	compare VAR_0x8008, 3
-	call_if_eq Route110_EventScript_BirchExit3
+	call_if_eq Route110_EventScript_BaroExit3
 	compare VAR_0x8008, 4
-	call_if_eq Route110_EventScript_BirchExit4
+	call_if_eq Route110_EventScript_BaroExit4
 	removeobject 36
-	setvar VAR_REGISTER_BIRCH_STATE, 2
+	setvar VAR_REGISTER_BARO_STATE, 2
 	releaseall
 	end
 
-Route110_EventScript_BirchApproachPlayer1:: @ 81EFAD8
-	applymovement 36, Route110_Movement_BirchApproachPlayer1
+Route110_EventScript_BaroApproachPlayer1:: @ 81EFAD8
+	applymovement 36, Route110_Movement_BaroApproachPlayer1
 	waitmovement 0
 	return
 
-Route110_EventScript_BirchApproachPlayer2:: @ 81EFAE3
-	applymovement 36, Route110_Movement_BirchApproachPlayer2
+Route110_EventScript_BaroApproachPlayer2:: @ 81EFAE3
+	applymovement 36, Route110_Movement_BaroApproachPlayer2
 	waitmovement 0
 	return
 
-Route110_EventScript_BirchApproachPlayer3:: @ 81EFAEE
-	applymovement 36, Route110_Movement_BirchApproachPlayer3
+Route110_EventScript_BaroApproachPlayer3:: @ 81EFAEE
+	applymovement 36, Route110_Movement_BaroApproachPlayer3
 	waitmovement 0
 	return
 
-Route110_EventScript_BirchApproachPlayer4:: @ 81EFAF9
-	applymovement 36, Route110_Movement_BirchApproachPlayer4
+Route110_EventScript_BaroApproachPlayer4:: @ 81EFAF9
+	applymovement 36, Route110_Movement_BaroApproachPlayer4
 	waitmovement 0
 	return
 
-Route110_EventScript_BirchExit1:: @ 81EFB04
-	applymovement 36, Route110_Movement_BirchExit1
+Route110_EventScript_BaroExit1:: @ 81EFB04
+	applymovement 36, Route110_Movement_BaroExit1
 	waitmovement 0
 	return
 
-Route110_EventScript_BirchExit2:: @ 81EFB0F
-	applymovement 36, Route110_Movement_BirchExit2
+Route110_EventScript_BaroExit2:: @ 81EFB0F
+	applymovement 36, Route110_Movement_BaroExit2
 	waitmovement 0
 	return
 
-Route110_EventScript_BirchExit3:: @ 81EFB1A
-	applymovement 36, Route110_Movement_BirchExit3
+Route110_EventScript_BaroExit3:: @ 81EFB1A
+	applymovement 36, Route110_Movement_BaroExit3
 	waitmovement 0
 	return
 
-Route110_EventScript_BirchExit4:: @ 81EFB25
-	applymovement 36, Route110_Movement_BirchExit4
+Route110_EventScript_BaroExit4:: @ 81EFB25
+	applymovement 36, Route110_Movement_BaroExit4
 	waitmovement 0
 	return
 
-Route110_Movement_BirchEntrance: @ 81EFB30
+Route110_Movement_BaroEntrance: @ 81EFB30
 	walk_down
 	walk_down
 	walk_down
 	step_end
 
-Route110_Movement_BirchApproachPlayer1: @ 81EFB34
+Route110_Movement_BaroApproachPlayer1: @ 81EFB34
 	walk_down
 	walk_left
 	walk_left
 	walk_down
 	step_end
 
-Route110_Movement_BirchApproachPlayer2: @ 81EFB39
+Route110_Movement_BaroApproachPlayer2: @ 81EFB39
 	walk_down
 	walk_left
 	walk_down
 	step_end
 
-Route110_Movement_BirchApproachPlayer3: @ 81EFB3D
+Route110_Movement_BaroApproachPlayer3: @ 81EFB3D
 	walk_down
 	walk_down
 	step_end
 
-Route110_Movement_BirchApproachPlayer4: @ 81EFB40
+Route110_Movement_BaroApproachPlayer4: @ 81EFB40
 	walk_down
 	walk_right
 	walk_down
 	step_end
 
-Route110_Movement_BirchExit1: @ 81EFB44
+Route110_Movement_BaroExit1: @ 81EFB44
 	walk_up
 	walk_up
 	walk_right
@@ -743,7 +743,7 @@ Route110_Movement_BirchExit1: @ 81EFB44
 	walk_up
 	step_end
 
-Route110_Movement_BirchExit2: @ 81EFB4B
+Route110_Movement_BaroExit2: @ 81EFB4B
 	walk_up
 	walk_up
 	walk_up
@@ -751,7 +751,7 @@ Route110_Movement_BirchExit2: @ 81EFB4B
 	walk_up
 	step_end
 
-Route110_Movement_BirchExit3: @ 81EFB51
+Route110_Movement_BaroExit3: @ 81EFB51
 	walk_up
 	walk_up
 	walk_up
@@ -759,7 +759,7 @@ Route110_Movement_BirchExit3: @ 81EFB51
 	walk_up
 	step_end
 
-Route110_Movement_BirchExit4: @ 81EFB57
+Route110_Movement_BaroExit4: @ 81EFB57
 	walk_up
 	walk_up
 	walk_up
@@ -989,7 +989,7 @@ Route110_Text_ThereIsNoRecord: @ 81F0A5E
 	.string "challenge. There is no record…$"
 
 Route110_Text_ImagineSeeingYouHere: @ 81F0AB5
-	.string "PROF. BIRCH: Oh, {PLAYER}{KUN}!\n"
+	.string "PROF. BARO: Oh, {PLAYER}{KUN}!\n"
 	.string "Imagine seeing you here!\p"
 	.string "And where might my {RIVAL} be?$"
 
@@ -1005,12 +1005,12 @@ Route110_Text_HeardYouInstallMatchCall: @ 81F0AFF
 	.string "I can rate your POKéDEX anytime.\p"
 	.string "… … … … … …$"
 
-Route110_Text_RegisteredBirchInPokenav: @ 81F0C0C
-	.string "Registered PROF. BIRCH\n"
+Route110_Text_RegisteredBaroInPokenav: @ 81F0C0C
+	.string "Registered PROF. BARO\n"
 	.string "in the POKéNAV.$"
 
 Route110_Text_KeepAnEyeOutForRival: @ 81F0C33
-	.string "PROF. BIRCH: {PLAYER}{KUN}…\p"
+	.string "PROF. BARO: {PLAYER}{KUN}…\p"
 	.string "Please keep an eye out for my {RIVAL}.\n"
 	.string "… … … … … …\p"
 	.string "Well, I had better get going.\n"

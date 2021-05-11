@@ -1,7 +1,7 @@
 {
-  "id": "MAP_BREEZE_TOWN_PROFESSOR_BIRCHS_LAB",
-  "name": "BreezeTown_ProfessorBirchsLab",
-  "layout": "LAYOUT_BREEZE_TOWN_PROFESSOR_BIRCHS_LAB",
+  "id": "MAP_BREEZE_TOWN_PROFESSOR_BAROS_LAB",
+  "name": "BreezeTown_ProfessorBarosLab",
+  "layout": "LAYOUT_BREEZE_TOWN_PROFESSOR_BAROS_LAB",
   "music": "MUS_BIRCH_LAB",
   "region_map_section": "MAPSEC_BREEZE_TOWN",
   "requires_flash": false,
@@ -24,11 +24,11 @@
       "movement_range_y": 1,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Aide",
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Aide",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
+      "graphics_id": "OBJ_EVENT_GFX_PROF_BARO",
       "x": 6,
       "y": 4,
       "elevation": 3,
@@ -37,8 +37,8 @@
       "movement_range_y": 0,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Birch",
-      "flag": "FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_BIRCH"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Baro",
+      "flag": "FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_BARO"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_VAR_0",
@@ -50,8 +50,8 @@
       "movement_range_y": 1,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Rival",
-      "flag": "FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_RIVAL"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Rival",
+      "flag": "FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_RIVAL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -63,8 +63,8 @@
       "movement_range_y": 1,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Cyndaquil",
-      "flag": "FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_POKEBALL_CYNDAQUIL"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Cyndaquil",
+      "flag": "FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_POKEBALL_CYNDAQUIL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -76,8 +76,8 @@
       "movement_range_y": 1,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Totodile",
-      "flag": "FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_POKEBALL_TOTODILE"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Totodile",
+      "flag": "FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_POKEBALL_TOTODILE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -89,8 +89,8 @@
       "movement_range_y": 1,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Chikorita",
-      "flag": "FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_POKEBALL_CHIKORITA"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Chikorita",
+      "flag": "FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_POKEBALL_CHIKORITA"
     }
   ],
   "warp_events": [
@@ -119,7 +119,7 @@
       "y": 7,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Machine"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Machine"
     },
     {
       "type": "sign",
@@ -127,7 +127,7 @@
       "y": 7,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Machine"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Machine"
     },
     {
       "type": "sign",
@@ -135,7 +135,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Book"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Book"
     },
     {
       "type": "sign",
@@ -143,7 +143,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Book"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Book"
     },
     {
       "type": "sign",
@@ -151,7 +151,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Bookshelf"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Bookshelf"
     },
     {
       "type": "sign",
@@ -159,7 +159,7 @@
       "y": 7,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Bookshelf"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Bookshelf"
     },
     {
       "type": "sign",
@@ -167,7 +167,7 @@
       "y": 7,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Bookshelf"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Bookshelf"
     },
     {
       "type": "sign",
@@ -175,7 +175,7 @@
       "y": 7,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Bookshelf"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Bookshelf"
     },
     {
       "type": "sign",
@@ -183,7 +183,7 @@
       "y": 7,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_Bookshelf"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_Bookshelf"
     },
     {
       "type": "sign",
@@ -191,7 +191,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_PC"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_PC"
     },
     {
       "type": "sign",
@@ -199,7 +199,7 @@
       "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_PC"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_PC"
     },
     {
       "type": "sign",
@@ -207,7 +207,7 @@
       "y": 10,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_PC"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_PC"
     },
     {
       "type": "sign",
@@ -215,7 +215,7 @@
       "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_PC"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_PC"
     },
     {
       "type": "sign",
@@ -223,7 +223,7 @@
       "y": 10,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_PC"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_PC"
     },
     {
       "type": "sign",
@@ -231,7 +231,7 @@
       "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "BreezeTown_ProfessorBirchsLab_EventScript_PC"
+      "script": "BreezeTown_ProfessorBarosLab_EventScript_PC"
     }
   ],
   "allow_bike": "",

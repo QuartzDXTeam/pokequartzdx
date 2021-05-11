@@ -1016,9 +1016,9 @@ static const struct MatchCallText *const sMatchCallGeneralTopics[] =
     [GEN_TOPIC_B_PYRAMID - 1]     = sMatchCallBattlePyramidTexts,
 };
 
-extern const u8 gBirchDexRatingText_AreYouCurious[];
-extern const u8 gBirchDexRatingText_SoYouveSeenAndCaught[];
-extern const u8 gBirchDexRatingText_OnANationwideBasis[];
+extern const u8 gBaroDexRatingText_AreYouCurious[];
+extern const u8 gBaroDexRatingText_SoYouveSeenAndCaught[];
+extern const u8 gBaroDexRatingText_OnANationwideBasis[];
 
 void InitMatchCallCounters(void)
 {
@@ -2034,29 +2034,29 @@ static u8 GetPokedexRatingLevel(u16 numSeen)
         return 20;
 }
 
-static const u8 *const sBirchDexRatingTexts[] =
+static const u8 *const sBaroDexRatingTexts[] =
 {
-    gBirchDexRatingText_LessThan10,
-    gBirchDexRatingText_LessThan20,
-    gBirchDexRatingText_LessThan30,
-    gBirchDexRatingText_LessThan40,
-    gBirchDexRatingText_LessThan50,
-    gBirchDexRatingText_LessThan60,
-    gBirchDexRatingText_LessThan70,
-    gBirchDexRatingText_LessThan80,
-    gBirchDexRatingText_LessThan90,
-    gBirchDexRatingText_LessThan100,
-    gBirchDexRatingText_LessThan110,
-    gBirchDexRatingText_LessThan120,
-    gBirchDexRatingText_LessThan130,
-    gBirchDexRatingText_LessThan140,
-    gBirchDexRatingText_LessThan150,
-    gBirchDexRatingText_LessThan160,
-    gBirchDexRatingText_LessThan170,
-    gBirchDexRatingText_LessThan180,
-    gBirchDexRatingText_LessThan190,
-    gBirchDexRatingText_LessThan200,
-    gBirchDexRatingText_DexCompleted,
+    gBaroDexRatingText_LessThan10,
+    gBaroDexRatingText_LessThan20,
+    gBaroDexRatingText_LessThan30,
+    gBaroDexRatingText_LessThan40,
+    gBaroDexRatingText_LessThan50,
+    gBaroDexRatingText_LessThan60,
+    gBaroDexRatingText_LessThan70,
+    gBaroDexRatingText_LessThan80,
+    gBaroDexRatingText_LessThan90,
+    gBaroDexRatingText_LessThan100,
+    gBaroDexRatingText_LessThan110,
+    gBaroDexRatingText_LessThan120,
+    gBaroDexRatingText_LessThan130,
+    gBaroDexRatingText_LessThan140,
+    gBaroDexRatingText_LessThan150,
+    gBaroDexRatingText_LessThan160,
+    gBaroDexRatingText_LessThan170,
+    gBaroDexRatingText_LessThan180,
+    gBaroDexRatingText_LessThan190,
+    gBaroDexRatingText_LessThan200,
+    gBaroDexRatingText_DexCompleted,
 };
 
 void BufferPokedexRatingForMatchCall(u8 *destStr)
@@ -2077,11 +2077,11 @@ void BufferPokedexRatingForMatchCall(u8 *destStr)
     ConvertIntToDecimalStringN(gStringVar1, numSeen, STR_CONV_MODE_LEFT_ALIGN, 3);
     ConvertIntToDecimalStringN(gStringVar2, numCaught, STR_CONV_MODE_LEFT_ALIGN, 3);
     dexRatingLevel = GetPokedexRatingLevel(numCaught);
-    str = StringCopy(buffer, gBirchDexRatingText_AreYouCurious);
+    str = StringCopy(buffer, gBaroDexRatingText_AreYouCurious);
     *(str++) = CHAR_PROMPT_CLEAR;
-    str = StringCopy(str, gBirchDexRatingText_SoYouveSeenAndCaught);
+    str = StringCopy(str, gBaroDexRatingText_SoYouveSeenAndCaught);
     *(str++) = CHAR_PROMPT_CLEAR;
-    StringCopy(str, sBirchDexRatingTexts[dexRatingLevel]);
+    StringCopy(str, sBaroDexRatingTexts[dexRatingLevel]);
     str = StringExpandPlaceholders(destStr, buffer);
 
     if (IsNationalPokedexEnabled())
@@ -2091,7 +2091,7 @@ void BufferPokedexRatingForMatchCall(u8 *destStr)
         numCaught = GetNationalPokedexCount(FLAG_GET_CAUGHT);
         ConvertIntToDecimalStringN(gStringVar1, numSeen, STR_CONV_MODE_LEFT_ALIGN, 3);
         ConvertIntToDecimalStringN(gStringVar2, numCaught, STR_CONV_MODE_LEFT_ALIGN, 3);
-        StringExpandPlaceholders(str, gBirchDexRatingText_OnANationwideBasis);
+        StringExpandPlaceholders(str, gBaroDexRatingText_OnANationwideBasis);
     }
 
     Free(buffer);

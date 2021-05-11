@@ -334,16 +334,16 @@ PlayersHouse_1F_Text_ItsOverWeMissedHim: @ 81F7BF1
 PlayersHouse_1F_Text_GoIntroduceYourselfNextDoor: @ 81F7C35
 	.string "Oh, yes.\n"
 	.string "One of DAD's friends lives in town.\p"
-	.string "PROF. BIRCH is his name.\p"
+	.string "PROF. BARO is his name.\p"
 	.string "He lives right next door, so you should\n"
 	.string "go over and introduce yourself.$"
 
 PlayersHouse_1F_Text_SeeYouHoney: @ 81F7CC3
 	.string "MOM: See you, honey!$"
 
-PlayersHouse_1F_Text_DidYouMeetProfBirch: @ 81F7CD8
+PlayersHouse_1F_Text_DidYouMeetProfBaro: @ 81F7CD8
 	.string "MOM: Did you introduce yourself to\n"
-	.string "PROF. BIRCH?$"
+	.string "PROF. BARO?$"
 
 PlayersHouse_1F_Text_YouShouldRestABit: @ 81F7D08
 	.string "MOM: How are you doing, {PLAYER}?\n"

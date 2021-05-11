@@ -243,9 +243,9 @@ extern const struct CompressedSpriteSheet gTrainerFrontPicTable[];
 extern u8 *gFieldEffectScriptPointers[];
 extern const struct SpriteTemplate *const gFieldEffectObjectTemplatePointers[];
 
-static const u32 sNewGameBirch_Gfx[] = INCBIN_U32("graphics/birch_speech/birch.4bpp");
-static const u32 sUnusedBirchBeauty[] = INCBIN_U32("graphics/unused/intro_birch_beauty.4bpp");
-static const u16 sNewGameBirch_Pal[16] = INCBIN_U16("graphics/birch_speech/birch.gbapal");
+static const u32 sNewGameBaro_Gfx[] = INCBIN_U32("graphics/baro_speech/baro.4bpp");
+static const u32 sUnusedBaroBeauty[] = INCBIN_U32("graphics/unused/intro_birch_beauty.4bpp");
+static const u16 sNewGameBaro_Pal[16] = INCBIN_U16("graphics/baro_speech/baro.gbapal");
 static const u32 sPokeballGlow_Gfx[] = INCBIN_U32("graphics/misc/pokeball_glow.4bpp");
 static const u16 sPokeballGlow_Pal[16] = INCBIN_U16("graphics/field_effects/palettes/pokeball_glow.gbapal");
 static const u32 sPokecenterMonitor0_Gfx[] = INCBIN_U32("graphics/misc/pokecenter_monitor/0.4bpp");
@@ -325,35 +325,35 @@ static const struct OamData sOam_16x16 =
     .paletteNum = 0,
 };
 
-static const struct SpriteFrameImage sPicTable_NewGameBirch[] =
+static const struct SpriteFrameImage sPicTable_NewGameBaro[] =
 {
-    obj_frame_tiles(sNewGameBirch_Gfx)
+    obj_frame_tiles(sNewGameBaro_Gfx)
 };
 
-static const struct SpritePalette sSpritePalette_NewGameBirch =
+static const struct SpritePalette sSpritePalette_NewGameBaro =
 {
-    .data = sNewGameBirch_Pal,
+    .data = sNewGameBaro_Pal,
     .tag = 0x1006
 };
 
-static const union AnimCmd sAnim_NewGameBirch[] =
+static const union AnimCmd sAnim_NewGameBaro[] =
 {
     ANIMCMD_FRAME(.imageValue = 0, .duration = 1),
     ANIMCMD_END
 };
 
-static const union AnimCmd *const sAnimTable_NewGameBirch[] =
+static const union AnimCmd *const sAnimTable_NewGameBaro[] =
 {
-    sAnim_NewGameBirch
+    sAnim_NewGameBaro
 };
 
-static const struct SpriteTemplate sSpriteTemplate_NewGameBirch =
+static const struct SpriteTemplate sSpriteTemplate_NewGameBaro =
 {
     .tileTag = 0xFFFF,
     .paletteTag = 0x1006,
     .oam = &sOam_64x64,
-    .anims = sAnimTable_NewGameBirch,
-    .images = sPicTable_NewGameBirch,
+    .anims = sAnimTable_NewGameBaro,
+    .images = sPicTable_NewGameBaro,
     .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
@@ -896,10 +896,10 @@ void LoadTrainerGfx_TrainerCard(u8 gender, u16 palOffset, u8 *dest)
     LoadCompressedPalette(gTrainerFrontPicPaletteTable[gender].data, palOffset, 0x20);
 }
 
-u8 AddNewGameBirchObject(s16 x, s16 y, u8 subpriority)
+u8 AddNewGameBaroObject(s16 x, s16 y, u8 subpriority)
 {
-    LoadSpritePalette(&sSpritePalette_NewGameBirch);
-    return CreateSprite(&sSpriteTemplate_NewGameBirch, x, y, subpriority);
+    LoadSpritePalette(&sSpritePalette_NewGameBaro);
+    return CreateSprite(&sSpriteTemplate_NewGameBaro, x, y, subpriority);
 }
 
 u8 CreateMonSprite_PicBox(u16 species, s16 x, s16 y, u8 subpriority)

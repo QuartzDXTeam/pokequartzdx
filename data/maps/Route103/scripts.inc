@@ -5,7 +5,7 @@ Route103_MapScripts:: @ 81EC38E
 
 Route103_OnTransition: @ 81EC399
 	call Common_EventScript_SetupRivalGfxId
-	call ProfBirch_EventScript_UpdateLocation
+	call ProfBaro_EventScript_UpdateLocation
 	end
 
 Route103_OnLoad: @ 81EC3A4
@@ -140,8 +140,8 @@ Route103_EventScript_RivalExitFacingSouth:: @ 81EC585
 
 Route103_EventScript_RivalEnd:: @ 81EC5A2
 	removeobject 2
-	setvar VAR_BIRCH_LAB_STATE, 4
-	clearflag FLAG_HIDE_BREEZE_TOWN_BIRCHS_LAB_RIVAL
+	setvar VAR_BARO_LAB_STATE, 4
+	clearflag FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_RIVAL
 	setflag FLAG_DEFEATED_RIVAL_ROUTE103
 	setvar VAR_OLDALE_RIVAL_STATE, 1
 	clearflag FLAG_HIDE_OLDALE_TOWN_RIVAL

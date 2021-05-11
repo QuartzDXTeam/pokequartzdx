@@ -196,9 +196,9 @@ static void CB2_SaveFailedScreen(void)
         DmaFill16(3, 0, VRAM, VRAM_SIZE);
         DmaFill32(3, 0, OAM, OAM_SIZE);
         DmaFill16(3, 0, PLTT, PLTT_SIZE);
-        LZ77UnCompVram(gBirchHelpGfx, (void *)VRAM);
-        LZ77UnCompVram(gBirchBagTilemap, (void *)(BG_SCREEN_ADDR(14)));
-        LZ77UnCompVram(gBirchGrassTilemap, (void *)(BG_SCREEN_ADDR(15)));
+        LZ77UnCompVram(gBaroHelpGfx, (void *)VRAM);
+        LZ77UnCompVram(gBaroBagTilemap, (void *)(BG_SCREEN_ADDR(14)));
+        LZ77UnCompVram(gBaroGrassTilemap, (void *)(BG_SCREEN_ADDR(15)));
         LZ77UnCompVram(sSaveFailedClockGfx, (void *)(OBJ_VRAM0 + 0x20));
         ResetBgsAndClearDma3BusyFlags(0);
         InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
@@ -214,7 +214,7 @@ static void CB2_SaveFailedScreen(void)
         ResetSpriteData();
         ResetTasks();
         ResetPaletteFade();
-        LoadPalette(gBirchBagGrassPal, 0, 0x40);
+        LoadPalette(gBaroBagGrassPal, 0, 0x40);
         LoadPalette(sSaveFailedClockPal, 0x100, 0x20);
         LoadPalette(gTextWindowFrame1_Pal, 0xE0, 0x20);
         LoadPalette(gUnknown_0860F074, 0xF0, 0x20);

@@ -51,17 +51,17 @@ static void SpriteCB_StarterPokemon(struct Sprite *sprite);
 
 static u16 sStarterLabelWindowId;
 
-const u16 gBirchBagGrassPal[][16] =
+const u16 gBaroBagGrassPal[][16] =
 {
-    INCBIN_U16("graphics/misc/birch_bag.gbapal"),
-    INCBIN_U16("graphics/misc/birch_grass.gbapal"),
+    INCBIN_U16("graphics/misc/baro_bag.gbapal"),
+    INCBIN_U16("graphics/misc/baro_grass.gbapal"),
 };
 
 static const u16 sPokeballSelection_Pal[] = INCBIN_U16("graphics/misc/pokeball_selection.gbapal");
 static const u16 sStarterCircle_Pal[] = INCBIN_U16("graphics/misc/starter_circle.gbapal");
-const u32 gBirchBagTilemap[] = INCBIN_U32("graphics/misc/birch_bag_map.bin.lz");
-const u32 gBirchGrassTilemap[] = INCBIN_U32("graphics/misc/birch_grass_map.bin.lz");
-const u32 gBirchHelpGfx[] = INCBIN_U32("graphics/misc/birch_help.4bpp.lz"); // Birch bag and grass combined
+const u32 gBaroBagTilemap[] = INCBIN_U32("graphics/misc/baro_bag_map.bin.lz");
+const u32 gBaroGrassTilemap[] = INCBIN_U32("graphics/misc/baro_grass_map.bin.lz");
+const u32 gBaroHelpGfx[] = INCBIN_U32("graphics/misc/baro_help.4bpp.lz"); // Baro bag and grass combined
 const u32 gPokeballSelection_Gfx[] = INCBIN_U32("graphics/misc/pokeball_selection.4bpp.lz");
 static const u32 sStarterCircle_Gfx[] = INCBIN_U32("graphics/misc/starter_circle.4bpp.lz");
 
@@ -402,9 +402,9 @@ void CB2_ChooseStarter(void)
     DmaFill32(3, 0, OAM, OAM_SIZE);
     DmaFill16(3, 0, PLTT, PLTT_SIZE);
 
-    LZ77UnCompVram(gBirchHelpGfx, (void *)VRAM);
-    LZ77UnCompVram(gBirchBagTilemap, (void *)(BG_SCREEN_ADDR(6)));
-    LZ77UnCompVram(gBirchGrassTilemap, (void *)(BG_SCREEN_ADDR(7)));
+    LZ77UnCompVram(gBaroHelpGfx, (void *)VRAM);
+    LZ77UnCompVram(gBaroBagTilemap, (void *)(BG_SCREEN_ADDR(6)));
+    LZ77UnCompVram(gBaroGrassTilemap, (void *)(BG_SCREEN_ADDR(7)));
 
     ResetBgsAndClearDma3BusyFlags(0);
     InitBgsFromTemplates(0, sBgTemplates, ARRAY_COUNT(sBgTemplates));
@@ -421,7 +421,7 @@ void CB2_ChooseStarter(void)
     ResetAllPicSprites();
 
     LoadPalette(GetOverworldTextboxPalettePtr(), 0xE0, 0x20);
-    LoadPalette(gBirchBagGrassPal, 0, 0x40);
+    LoadPalette(gBaroBagGrassPal, 0, 0x40);
     LoadCompressedSpriteSheet(&sSpriteSheet_PokeballSelect[0]);
     LoadCompressedSpriteSheet(&sSpriteSheet_StarterCircle[0]);
     LoadSpritePalettes(sSpritePalettes_StarterChoose);
@@ -480,7 +480,7 @@ static void Task_StarterChoose(u8 taskId)
 {
     CreateStarterPokemonLabel(gTasks[taskId].tStarterSelection);
     DrawStdFrameWithCustomTileAndPalette(0, FALSE, 0x2A8, 0xD);
-    AddTextPrinterParameterized(0, 1, gText_BirchInTrouble, 0, 1, 0, NULL);
+    AddTextPrinterParameterized(0, 1, gText_BaroInTrouble, 0, 1, 0, NULL);
     PutWindowTilemap(0);
     ScheduleBgCopyTilemapToVram(0);
     gTasks[taskId].func = Task_HandleStarterChooseInput;

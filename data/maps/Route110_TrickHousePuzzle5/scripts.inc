@@ -1026,7 +1026,7 @@ Route110_TrickHousePuzzle5_Text_Mechadoll2Quiz1: @ 826D940
 Route110_TrickHousePuzzle5_Text_Mechadoll2Quiz2: @ 826D98C
 	.string "MECHADOLL 2 QUIZ.\p"
 	.string "Which of these POKéMON was chasing\n"
-	.string "PROF. BIRCH?$"
+	.string "PROF. BARO?$"
 
 Route110_TrickHousePuzzle5_Text_Mechadoll2Quiz3: @ 826D9CE
 	.string "MECHADOLL 2 QUIZ.\p"

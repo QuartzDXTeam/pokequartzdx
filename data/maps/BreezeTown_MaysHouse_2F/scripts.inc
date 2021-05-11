@@ -16,7 +16,7 @@ BreezeTown_MaysHouse_2F_OnTransition: @ 81F92A1
 
 BreezeTown_MaysHouse_2F_EventScript_CheckShouldUpdateMayPos:: @ 81F92CD
 	goto_if_set FLAG_MET_RIVAL_LILYCOVE, BreezeTown_MaysHouse_2F_EventScript_TryUpdateMayPos
-	compare VAR_BIRCH_LAB_STATE, 2
+	compare VAR_BARO_LAB_STATE, 2
 	goto_if_ge BreezeTown_MaysHouse_2F_EventScript_Ret
 	goto BreezeTown_MaysHouse_2F_EventScript_TryUpdateMayPos
 
@@ -340,7 +340,7 @@ RivalsHouse_2F_Text_MayWhoAreYou: @ 81F959C
 	.string "I have this dream of becoming friends\l"
 	.string "with POKéMON all over the world.\p"
 	.string "I… I heard about you, {PLAYER}{KUN}, from\n"
-	.string "my dad, PROF. BIRCH.\p"
+	.string "my dad, PROF. BARO.\p"
 	.string "I was hoping that you would be nice,\n"
 	.string "{PLAYER}{KUN}, and that we could be friends.\p"
 	.string "Oh, this is silly, isn't it?\n"
@@ -362,7 +362,7 @@ RivalsHouse_2F_Text_AkiraWhoAreYou: @ 81F97B4
 	.string "Oh, you're {PLAYER}, aren't you?\n"
 	.string "Moved in next door, right?\p"
 	.string "I didn't know that you're a girl.\p"
-	.string "Dad, PROF. BIRCH, said that our new\n"
+	.string "Dad, PROF. BARO, said that our new\n"
 	.string "next-door neighbor is a GYM LEADER's\l"
 	.string "kid, so I assumed you'd be a guy.\p"
 	.string "My name's AKIRA.\n"
