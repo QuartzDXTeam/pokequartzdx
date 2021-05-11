@@ -1,9 +1,9 @@
 {
-  "id": "MAP_CLOUDAIN_WOODS",
-  "name": "CloudainWoods",
-  "layout": "LAYOUT_CLOUDAIN_WOODS",
+  "id": "MAP_DARKNESS_FOREST",
+  "name": "DarknessForest",
+  "layout": "LAYOUT_DARKNESS_FOREST",
   "music": "MUS_PETALBURG_WOODS",
-  "region_map_section": "MAPSEC_CLOUDAIN_WOODS",
+  "region_map_section": "MAPSEC_DARKNESS_FOREST",
   "requires_flash": false,
   "weather": "WEATHER_SHADE",
   "map_type": "MAP_TYPE_ROUTE",
@@ -51,7 +51,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_CLOUDAIN_WOODS_AQUA_GRUNT"
+      "flag": "FLAG_HIDE_DARKNESS_FOREST_AQUA_GRUNT"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_2",
@@ -64,7 +64,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_CLOUDAIN_WOODS_DEVON_EMPLOYEE"
+      "flag": "FLAG_HIDE_DARKNESS_FOREST_DEVON_EMPLOYEE"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -76,8 +76,8 @@
       "movement_range_y": 0,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CloudainWoods_EventScript_ItemGreatBall",
-      "flag": "FLAG_ITEM_CLOUDAIN_WOODS_GREAT_BALL"
+      "script": "DarknessForest_EventScript_ItemGreatBall",
+      "flag": "FLAG_ITEM_DARKNESS_FOREST_GREAT_BALL"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -89,8 +89,8 @@
       "movement_range_y": 0,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CloudainWoods_EventScript_ItemXAttack",
-      "flag": "FLAG_ITEM_CLOUDAIN_WOODS_X_ATTACK"
+      "script": "DarknessForest_EventScript_ItemXAttack",
+      "flag": "FLAG_ITEM_DARKNESS_FOREST_X_ATTACK"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -102,8 +102,8 @@
       "movement_range_y": 0,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CloudainWoods_EventScript_ItemEther",
-      "flag": "FLAG_ITEM_CLOUDAIN_WOODS_ETHER"
+      "script": "DarknessForest_EventScript_ItemEther",
+      "flag": "FLAG_ITEM_DARKNESS_FOREST_ETHER"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BOY_2",
@@ -115,7 +115,7 @@
       "movement_range_y": 2,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CloudainWoods_EventScript_Boy1",
+      "script": "DarknessForest_EventScript_Boy1",
       "flag": "0"
     },
     {
@@ -128,7 +128,7 @@
       "movement_range_y": 0,
       "trainer_type": "1",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "CloudainWoods_EventScript_Lyle",
+      "script": "DarknessForest_EventScript_Lyle",
       "flag": "0"
     },
     {
@@ -141,7 +141,7 @@
       "movement_range_y": 0,
       "trainer_type": "1",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "CloudainWoods_EventScript_James",
+      "script": "DarknessForest_EventScript_James",
       "flag": "0"
     },
     {
@@ -154,7 +154,7 @@
       "movement_range_y": 1,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CloudainWoods_EventScript_Boy2",
+      "script": "DarknessForest_EventScript_Boy2",
       "flag": "0"
     },
     {
@@ -167,7 +167,7 @@
       "movement_range_y": 1,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CloudainWoods_EventScript_ItemParalyzeHeal",
+      "script": "DarknessForest_EventScript_ItemParalyzeHeal",
       "flag": "FLAG_ITEM_PETALBURD_WOODS_PARALYZE_HEAL"
     },
     {
@@ -180,7 +180,7 @@
       "movement_range_y": 1,
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CloudainWoods_EventScript_Girl",
+      "script": "DarknessForest_EventScript_Girl",
       "flag": "0"
     }
   ],
@@ -234,18 +234,18 @@
       "x": 26,
       "y": 23,
       "elevation": 3,
-      "var": "VAR_CLOUDAIN_WOODS_STATE",
+      "var": "VAR_DARKNESS_FOREST_STATE",
       "var_value": "0",
-      "script": "CloudainWoods_EventScript_DevonResearcherLeft"
+      "script": "DarknessForest_EventScript_DevonResearcherLeft"
     },
     {
       "type": "trigger",
       "x": 27,
       "y": 23,
       "elevation": 3,
-      "var": "VAR_CLOUDAIN_WOODS_STATE",
+      "var": "VAR_DARKNESS_FOREST_STATE",
       "var_value": "0",
-      "script": "CloudainWoods_EventScript_DevonResearcherRight"
+      "script": "DarknessForest_EventScript_DevonResearcherRight"
     }
   ],
   "bg_events": [
@@ -255,7 +255,7 @@
       "y": 32,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "CloudainWoods_EventScript_Sign1"
+      "script": "DarknessForest_EventScript_Sign1"
     },
     {
       "type": "hidden_item",
@@ -263,7 +263,7 @@
       "y": 35,
       "elevation": 3,
       "item": "ITEM_POTION",
-      "flag": "FLAG_HIDDEN_ITEM_CLOUDAIN_WOODS_POTION"
+      "flag": "FLAG_HIDDEN_ITEM_DARKNESS_FOREST_POTION"
     },
     {
       "type": "hidden_item",
@@ -271,7 +271,7 @@
       "y": 6,
       "elevation": 3,
       "item": "ITEM_TINY_MUSHROOM",
-      "flag": "FLAG_HIDDEN_ITEM_CLOUDAIN_WOODS_TINY_MUSHROOM_1"
+      "flag": "FLAG_HIDDEN_ITEM_DARKNESS_FOREST_TINY_MUSHROOM_1"
     },
     {
       "type": "hidden_item",
@@ -279,7 +279,7 @@
       "y": 29,
       "elevation": 3,
       "item": "ITEM_TINY_MUSHROOM",
-      "flag": "FLAG_HIDDEN_ITEM_CLOUDAIN_WOODS_TINY_MUSHROOM_2"
+      "flag": "FLAG_HIDDEN_ITEM_DARKNESS_FOREST_TINY_MUSHROOM_2"
     },
     {
       "type": "hidden_item",
@@ -287,7 +287,7 @@
       "y": 19,
       "elevation": 3,
       "item": "ITEM_POKE_BALL",
-      "flag": "FLAG_HIDDEN_ITEM_CLOUDAIN_WOODS_POKE_BALL"
+      "flag": "FLAG_HIDDEN_ITEM_DARKNESS_FOREST_POKE_BALL"
     },
     {
       "type": "sign",
@@ -295,7 +295,7 @@
       "y": 8,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "CloudainWoods_EventScript_Sign2"
+      "script": "DarknessForest_EventScript_Sign2"
     }
   ],
   "allow_bike": "",

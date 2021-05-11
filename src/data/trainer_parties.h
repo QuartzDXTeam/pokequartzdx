@@ -100,7 +100,7 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Gabrielle1[] = {
     }
 };
 
-static const struct TrainerMonNoItemDefaultMoves sParty_GruntCloudainWoods[] = {
+static const struct TrainerMonNoItemDefaultMoves sParty_GruntDarknessForest[] = {
     {
     .iv = 0,
     .lvl = 9,

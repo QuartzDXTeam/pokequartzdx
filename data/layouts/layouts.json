@@ -1342,14 +1342,14 @@
       "blockdata_filepath": "data/layouts/GraniteCave_B2F/map.bin"
     },
     {
-      "id": "LAYOUT_CLOUDAIN_WOODS",
-      "name": "CloudainWoods_Layout",
+      "id": "LAYOUT_DARKNESS_FOREST",
+      "name": "DarknessForest_Layout",
       "width": 48,
       "height": 44,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Rustboro",
-      "border_filepath": "data/layouts/CloudainWoods/border.bin",
-      "blockdata_filepath": "data/layouts/CloudainWoods/map.bin"
+      "border_filepath": "data/layouts/DarknessForest/border.bin",
+      "blockdata_filepath": "data/layouts/DarknessForest/map.bin"
     },
     {
       "id": "LAYOUT_MT_CHIMNEY",

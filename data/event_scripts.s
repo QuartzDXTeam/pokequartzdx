@@ -350,7 +350,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/GraniteCave_B1F/scripts.inc"
 	.include "data/maps/GraniteCave_B2F/scripts.inc"
 	.include "data/maps/GraniteCave_StevensRoom/scripts.inc"
-	.include "data/maps/CloudainWoods/scripts.inc"
+	.include "data/maps/DarknessForest/scripts.inc"
 	.include "data/maps/MtChimney/scripts.inc"
 	.include "data/maps/JaggedPass/scripts.inc"
 	.include "data/maps/FieryPath/scripts.inc"

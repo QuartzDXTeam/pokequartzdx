@@ -326,19 +326,19 @@ MossdeepCity_EventScript_ItemNetBall:: @ 82910F5
 	finditem ITEM_NET_BALL
 	end
 
-CloudainWoods_EventScript_ItemXAttack:: @ 8291102
+DarknessForest_EventScript_ItemXAttack:: @ 8291102
 	finditem ITEM_X_ATTACK
 	end
 
-CloudainWoods_EventScript_ItemGreatBall:: @ 829110F
+DarknessForest_EventScript_ItemGreatBall:: @ 829110F
 	finditem ITEM_GREAT_BALL
 	end
 
-CloudainWoods_EventScript_ItemEther:: @ 829111C
+DarknessForest_EventScript_ItemEther:: @ 829111C
 	finditem ITEM_ETHER
 	end
 
-CloudainWoods_EventScript_ItemParalyzeHeal:: @ 8291129
+DarknessForest_EventScript_ItemParalyzeHeal:: @ 8291129
 	finditem ITEM_PARALYZE_HEAL
 	end
 

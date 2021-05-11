@@ -1,6 +1,10 @@
 #ifndef GUARD_CONSTANTS_MAP_GROUPS_H
 #define GUARD_CONSTANTS_MAP_GROUPS_H
 
+//
+// DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json
+//
+
 // Map Group 0
 #define MAP_BREEZE_TOWN         (0 | (0 << 8))
 #define MAP_PINK_TOWN           (1 | (0 << 8))
@@ -299,7 +303,7 @@
 #define MAP_GRANITE_CAVE_B1F                         (8 | (24 << 8))
 #define MAP_GRANITE_CAVE_B2F                         (9 | (24 << 8))
 #define MAP_GRANITE_CAVE_STEVENS_ROOM                (10 | (24 << 8))
-#define MAP_CLOUDAIN_WOODS                           (11 | (24 << 8))
+#define MAP_DARKNESS_FOREST                           (11 | (24 << 8))
 #define MAP_MT_CHIMNEY                               (12 | (24 << 8))
 #define MAP_JAGGED_PASS                              (13 | (24 << 8))
 #define MAP_FIERY_PATH                               (14 | (24 << 8))

@@ -1823,8 +1823,8 @@
           }
         },
         {
-          "map": "MAP_CLOUDAIN_WOODS",
-          "base_label": "gCloudainWoods",
+          "map": "MAP_DARKNESS_FOREST",
+          "base_label": "gDarknessForest",
           "land_mons": {
             "encounter_rate": 20,
             "mons": [
