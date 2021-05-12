@@ -117,8 +117,8 @@ BreezeTown_MaysHouse_1F_Movement_RivalMomApproach: @ 81F89EC
 RivalsHouse_1F_EventScript_RivalMom:: @ 81F89F3
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_RIVAL_ROUTE103, RivalsHouse_1F_EventScript_GoHomeEverySoOften
-	goto_if_set FLAG_SYS_POKEMON_GET, RivalsHouse_1F_EventScript_RivalIsOnRoute103
+	goto_if_set FLAG_DEFEATED_RIVAL_ROCKCANYON, RivalsHouse_1F_EventScript_GoHomeEverySoOften
+	goto_if_set FLAG_SYS_POKEMON_GET, RivalsHouse_1F_EventScript_RivalIsOnRockCanyon
 	compare VAR_BREEZE_RIVAL_STATE, 3
 	goto_if_eq RivalsHouse_1F_EventScript_RivalTooBusy
 	special GetRivalSonDaughterString
@@ -131,8 +131,8 @@ RivalsHouse_1F_EventScript_RivalTooBusy:: @ 81F8A1F
 	release
 	end
 
-RivalsHouse_1F_EventScript_RivalIsOnRoute103:: @ 81F8A29
-	msgbox RivalsHouse_1F_Text_WentOutToRoute103, MSGBOX_DEFAULT
+RivalsHouse_1F_EventScript_RivalIsOnRockCanyon:: @ 81F8A29
+	msgbox RivalsHouse_1F_Text_WentOutToRockCanyon, MSGBOX_DEFAULT
 	release
 	end
 
@@ -354,7 +354,7 @@ RivalsHouse_1F_Text_TooBusyToNoticeVisit: @ 81F8D37
 	.string "POKéMON to notice that you came\l"
 	.string "to visit, {PLAYER}{KUN}.$"
 
-RivalsHouse_1F_Text_WentOutToRoute103: @ 81F8D93
+RivalsHouse_1F_Text_WentOutToRockCanyon: @ 81F8D93
 	.string "Oh, {RIVAL} went out to ROUTE 103\n"
 	.string "just a little while ago.\p"
 	.string "Like father, like child.\n"

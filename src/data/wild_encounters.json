@@ -146,8 +146,8 @@
           }
         },
         {
-          "map": "MAP_ROUTE102",
-          "base_label": "gRoute102",
+          "map": "MAP_CLOUDWAY",
+          "base_label": "gCloudWay",
           "water_mons": {
             "encounter_rate": 4,
             "mons": [
@@ -300,8 +300,8 @@
           }
         },
         {
-          "map": "MAP_ROUTE103",
-          "base_label": "gRoute103",
+          "map": "MAP_ROCKCANYON",
+          "base_label": "gRockCanyon",
           "water_mons": {
             "encounter_rate": 4,
             "mons": [
@@ -455,7 +455,7 @@
         },
         {
           "map": "MAP_ROUTE104",
-          "base_label": "gRoute104",
+          "base_label": "gCloudBeach",
           "water_mons": {
             "encounter_rate": 4,
             "mons": [
@@ -609,7 +609,7 @@
         },
         {
           "map": "MAP_ROUTE105",
-          "base_label": "gRoute105",
+          "base_label": "gBrokeSea",
           "water_mons": {
             "encounter_rate": 4,
             "mons": [
@@ -8582,8 +8582,8 @@
           }
         },
         {
-          "map": "MAP_DEWFORD_TOWN",
-          "base_label": "gDewfordTown",
+          "map": "MAP_GOLDEN_ISLAND",
+          "base_label": "gGoldenIsland",
           "water_mons": {
             "encounter_rate": 4,
             "mons": [

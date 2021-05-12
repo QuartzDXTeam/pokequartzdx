@@ -43,7 +43,7 @@
     "SlateportCity",
     "MauvilleCity",
     "RustboroCity",
-    "DewfordTown",
+    "GoldenIsland",
     "FortreeCity",
     "LilycoveCity",
     "MossdeepCity",
@@ -54,10 +54,10 @@
     "SootopolisCity",
     "EverGrandeCity",
     "BreezeWay",
-    "Route102",
-    "Route103",
-    "Route104",
-    "Route105",
+    "CloudWay",
+    "RockCanyon",
+    "CloudBeach",
+    "BrokeSea",
     "Route106",
     "Route107",
     "Route108",
@@ -92,7 +92,7 @@
     "Underwater_Route127",
     "Underwater_Route128",
     "Underwater_Route129",
-    "Underwater_Route105",
+    "Underwater_BrokeSea",
     "Underwater_Route125"
   ],
   "gMapGroup1": [
@@ -110,12 +110,12 @@
     "PinkTown_Mart"
   ],
   "gMapGroup3": [
-    "DewfordTown_House1",
-    "DewfordTown_PokemonCenter_1F",
-    "DewfordTown_PokemonCenter_2F",
-    "DewfordTown_Gym",
-    "DewfordTown_Hall",
-    "DewfordTown_House2"
+    "GoldenIsland_House1",
+    "GoldenIsland_PokemonCenter_1F",
+    "GoldenIsland_PokemonCenter_2F",
+    "GoldenIsland_Gym",
+    "GoldenIsland_Hall",
+    "GoldenIsland_House2"
   ],
   "gMapGroup4": [
     "LavaridgeTown_HerbShop",
@@ -297,8 +297,8 @@
     "EverGrandeCity_PokemonLeague_2F"
   ],
   "gMapGroup17": [
-    "Route104_MrBrineysHouse",
-    "Route104_PrettyPetalFlowerShop"
+    "CloudBeach_MsBritneysHouse",
+    "CloudBeach_PrettyPetalFlowerShop"
   ],
   "gMapGroup18": [
     "Route111_WinstrateFamilysHouse",

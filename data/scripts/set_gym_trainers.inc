@@ -1,7 +1,7 @@
 Common_EventScript_SetGymTrainers:: @ 8271F43
 	switch VAR_0x8008
 	case 1, RustboroCity_Gym_SetGymTrainers
-	case 2, DewfordTown_Gym_SetGymTrainers
+	case 2, GoldenIsland_Gym_SetGymTrainers
 	case 3, MauvilleCity_Gym_SetGymTrainers
 	case 4, LavaridgeTown_Gym_SetGymTrainers
 	case 5, CloudainCity_Gym_SetGymTrainers
@@ -16,7 +16,7 @@ RustboroCity_Gym_SetGymTrainers:: @ 8271FA1
 	settrainerflag TRAINER_ANACLETO
 	return
 
-DewfordTown_Gym_SetGymTrainers:: @ 8271FAB
+GoldenIsland_Gym_SetGymTrainers:: @ 8271FAB
 	settrainerflag TRAINER_TAKAO
 	settrainerflag TRAINER_JOCELYN
 	settrainerflag TRAINER_LAURA

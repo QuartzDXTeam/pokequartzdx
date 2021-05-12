@@ -104,8 +104,8 @@ Route110_EventScript_VandalizedSign:: @ 81EF353
 	msgbox Route110_Text_AquaWasHere, MSGBOX_SIGN
 	end
 
-Route110_EventScript_Route103Sign:: @ 81EF35C
-	msgbox Route110_Text_Route103Sign, MSGBOX_SIGN
+Route110_EventScript_RockCanyonSign:: @ 81EF35C
+	msgbox Route110_Text_RockCanyonSign, MSGBOX_SIGN
 	end
 
 Route110_EventScript_SeasideParkingSign:: @ 81EF365
@@ -951,7 +951,7 @@ Route110_Text_AquaWasHere: @ 81F0842
 	.string "“TEAM MAGMA rules!” is what it\n"
 	.string "says now.$"
 
-Route110_Text_Route103Sign: @ 81F08CD
+Route110_Text_RockCanyonSign: @ 81F08CD
 	.string "ROUTE 110\n"
 	.string "{LEFT_ARROW} ROUTE 103$"
 

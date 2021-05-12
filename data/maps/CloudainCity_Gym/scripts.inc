@@ -418,7 +418,7 @@ CloudainCity_Gym_EventScript_NormanBattle:: @ 8204E3B
 	setvar VAR_CLOUDAIN_GYM_STATE, 7
 	setflag FLAG_BADGE05_GET
 	special ResetHealLocationFromDewford
-	call EventScript_HideMrBriney
+	call EventScript_HideMsBritney
 	setflag FLAG_HIDE_MAUVILLE_GYM_WATTSON
 	clearflag FLAG_HIDE_MAUVILLE_CITY_WATTSON
 	setvar VAR_0x8008, 5

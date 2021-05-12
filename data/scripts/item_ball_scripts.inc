@@ -1,32 +1,32 @@
-Route102_EventScript_ItemPotion:: @ 8290CD8
+CloudWay_EventScript_ItemPotion:: @ 8290CD8
 	finditem ITEM_POTION
 	end
 
-Route103_EventScript_ItemGuardSpec:: @ 8290CE5
+RockCanyon_EventScript_ItemGuardSpec:: @ 8290CE5
 	finditem ITEM_GUARD_SPEC
 	end
 
-Route103_EventScript_ItemPPUp:: @ 8290CF2
+RockCanyon_EventScript_ItemPPUp:: @ 8290CF2
 	finditem ITEM_PP_UP
 	end
 
-Route104_EventScript_ItemPPUp:: @ 8290CFF
+CloudBeach_EventScript_ItemPPUp:: @ 8290CFF
 	finditem ITEM_PP_UP
 	end
 
-Route104_EventScript_ItemPokeBall:: @ 8290D0C
+CloudBeach_EventScript_ItemPokeBall:: @ 8290D0C
 	finditem ITEM_POKE_BALL
 	end
 
-Route104_EventScript_ItemXAccuracy:: @ 8290D19
+CloudBeach_EventScript_ItemXAccuracy:: @ 8290D19
 	finditem ITEM_X_ACCURACY
 	end
 
-Route104_EventScript_ItemPotion:: @ 8290D26
+CloudBeach_EventScript_ItemPotion:: @ 8290D26
 	finditem ITEM_POTION
 	end
 
-Route105_EventScript_ItemIron:: @ 8290D33
+BrokeSea_EventScript_ItemIron:: @ 8290D33
 	finditem ITEM_IRON
 	end
 

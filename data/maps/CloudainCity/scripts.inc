@@ -40,13 +40,13 @@ CloudainCity_EventScript_WallyTutorial:: @ 81DC32E
 	applymovement 2, CloudainCity_Movement_WallyTutorialWally
 	applymovement OBJ_EVENT_ID_PLAYER, CloudainCity_Movement_WallyTutorialPlayer
 	waitmovement 0
-	msgbox Route102_Text_WatchMeCatchPokemon, MSGBOX_DEFAULT
+	msgbox CloudWay_Text_WatchMeCatchPokemon, MSGBOX_DEFAULT
 	special StartWallyTutorialBattle
 	waitstate
-	msgbox Route102_Text_WallyIDidIt, MSGBOX_DEFAULT
+	msgbox CloudWay_Text_WallyIDidIt, MSGBOX_DEFAULT
 	applymovement 2, Common_Movement_WalkInPlaceFastestLeft, MAP_CLOUDAIN_CITY
 	waitmovement 2, MAP_CLOUDAIN_CITY
-	msgbox Route102_Text_LetsGoBack, MSGBOX_DEFAULT
+	msgbox CloudWay_Text_LetsGoBack, MSGBOX_DEFAULT
 	closemessage
 	clearflag FLAG_HIDE_MAP_NAME_POPUP
 	setvar VAR_CLOUDAIN_CITY_STATE, 3

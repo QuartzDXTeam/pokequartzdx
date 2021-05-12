@@ -112,16 +112,16 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/EverGrandeCity/scripts.inc"
 	.include "data/maps/BreezeTown/scripts.inc"
 	.include "data/maps/PinkTown/scripts.inc"
-	.include "data/maps/DewfordTown/scripts.inc"
+	.include "data/maps/GoldenIsland/scripts.inc"
 	.include "data/maps/LavaridgeTown/scripts.inc"
 	.include "data/maps/FallarborTown/scripts.inc"
 	.include "data/maps/VerdanturfTown/scripts.inc"
 	.include "data/maps/PacifidlogTown/scripts.inc"
 	.include "data/maps/BreezeWay/scripts.inc"
-	.include "data/maps/Route102/scripts.inc"
-	.include "data/maps/Route103/scripts.inc"
-	.include "data/maps/Route104/scripts.inc"
-	.include "data/maps/Route105/scripts.inc"
+	.include "data/maps/CloudWay/scripts.inc"
+	.include "data/maps/RockCanyon/scripts.inc"
+	.include "data/maps/CloudBeach/scripts.inc"
+	.include "data/maps/BrokeSea/scripts.inc"
 	.include "data/maps/Route106/scripts.inc"
 	.include "data/maps/Route107/scripts.inc"
 	.include "data/maps/Route108/scripts.inc"
@@ -156,7 +156,7 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/Underwater_Route127/scripts.inc"
 	.include "data/maps/Underwater_Route128/scripts.inc"
 	.include "data/maps/Underwater_Route129/scripts.inc"
-	.include "data/maps/Underwater_Route105/scripts.inc"
+	.include "data/maps/Underwater_BrokeSea/scripts.inc"
 	.include "data/maps/Underwater_Route125/scripts.inc"
 	.include "data/maps/BreezeTown_AkirasHouse_1F/scripts.inc"
 	.include "data/maps/BreezeTown_AkirasHouse_2F/scripts.inc"
@@ -168,12 +168,12 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/PinkTown_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/PinkTown_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/PinkTown_Mart/scripts.inc"
-	.include "data/maps/DewfordTown_House1/scripts.inc"
-	.include "data/maps/DewfordTown_PokemonCenter_1F/scripts.inc"
-	.include "data/maps/DewfordTown_PokemonCenter_2F/scripts.inc"
-	.include "data/maps/DewfordTown_Gym/scripts.inc"
-	.include "data/maps/DewfordTown_Hall/scripts.inc"
-	.include "data/maps/DewfordTown_House2/scripts.inc"
+	.include "data/maps/GoldenIsland_House1/scripts.inc"
+	.include "data/maps/GoldenIsland_PokemonCenter_1F/scripts.inc"
+	.include "data/maps/GoldenIsland_PokemonCenter_2F/scripts.inc"
+	.include "data/maps/GoldenIsland_Gym/scripts.inc"
+	.include "data/maps/GoldenIsland_Hall/scripts.inc"
+	.include "data/maps/GoldenIsland_House2/scripts.inc"
 	.include "data/maps/LavaridgeTown_HerbShop/scripts.inc"
 	.include "data/maps/LavaridgeTown_Gym_1F/scripts.inc"
 	.include "data/maps/LavaridgeTown_Gym_B1F/scripts.inc"
@@ -327,8 +327,8 @@ gStdScripts_End:: @ 81DC2CC
 	.include "data/maps/EverGrandeCity_PokemonCenter_1F/scripts.inc"
 	.include "data/maps/EverGrandeCity_PokemonCenter_2F/scripts.inc"
 	.include "data/maps/EverGrandeCity_PokemonLeague_2F/scripts.inc"
-	.include "data/maps/Route104_MrBrineysHouse/scripts.inc"
-	.include "data/maps/Route104_PrettyPetalFlowerShop/scripts.inc"
+	.include "data/maps/CloudBeach_MsBritneysHouse/scripts.inc"
+	.include "data/maps/CloudBeach_PrettyPetalFlowerShop/scripts.inc"
 	.include "data/maps/Route111_WinstrateFamilysHouse/scripts.inc"
 	.include "data/maps/Route111_OldLadysRestStop/scripts.inc"
 	.include "data/maps/Route112_CableCarStation/scripts.inc"
@@ -578,46 +578,46 @@ gStdScripts_End:: @ 81DC2CC
 
 EventScript_WhiteOut:: @ 8271857
 	call EverGrandeCity_HallOfFame_EventScript_ResetEliteFour
-	goto EventScript_ResetMrBriney
+	goto EventScript_ResetMsBritney
 	end
 
-EventScript_ResetMrBriney:: @ 8271862
+EventScript_ResetMsBritney:: @ 8271862
 	compare VAR_BRINEY_LOCATION, 1
-	goto_if_eq EventScript_MoveMrBrineyToHouse
+	goto_if_eq EventScript_MoveMsBritneyToHouse
 	compare VAR_BRINEY_LOCATION, 2
-	goto_if_eq EventScript_MoveMrBrineyToDewford
+	goto_if_eq EventScript_MoveMsBritneyToDewford
 	compare VAR_BRINEY_LOCATION, 3
-	goto_if_eq EventScript_MoveMrBrineyToRoute109
+	goto_if_eq EventScript_MoveMsBritneyToRoute109
 	end
 
-EventScript_MoveMrBrineyToHouse:: @ 8271884
-	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+EventScript_MoveMsBritneyToHouse:: @ 8271884
+	setflag FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND
+	setflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
-	clearflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
+	clearflag FLAG_HIDE_CLOUD_BEACH_MR_BRINEY_BOAT
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	end
 
-EventScript_MoveMrBrineyToDewford:: @ 827189A
+EventScript_MoveMsBritneyToDewford:: @ 827189A
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY
-	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
+	setflag FLAG_HIDE_CLOUD_BEACH_MR_BRINEY
+	setflag FLAG_HIDE_CLOUD_BEACH_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	clearflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
-	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	clearflag FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND
+	clearflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
 	end
 
-EventScript_MoveMrBrineyToRoute109:: @ 82718B3
-	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY
-	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
+EventScript_MoveMsBritneyToRoute109:: @ 82718B3
+	setflag FLAG_HIDE_CLOUD_BEACH_MR_BRINEY
+	setflag FLAG_HIDE_CLOUD_BEACH_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	setflag FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND
+	setflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY
 	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
 	end
@@ -633,8 +633,8 @@ EverGrandeCity_HallOfFame_EventScript_ResetEliteFour:: @ 82718CC
 Common_EventScript_UpdateBrineyLocation:: @ 82718DE
 	goto_if_unset FLAG_RECEIVED_POKENAV, Common_EventScript_NopReturn
 	goto_if_set FLAG_DEFEATED_CLOUDAIN_GYM, Common_EventScript_NopReturn
-	goto_if_unset FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT, EventScript_SetBrineyLocation_House
-	goto_if_unset FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN, EventScript_SetBrineyLocation_Dewford
+	goto_if_unset FLAG_HIDE_CLOUD_BEACH_MR_BRINEY_BOAT, EventScript_SetBrineyLocation_House
+	goto_if_unset FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND, EventScript_SetBrineyLocation_Dewford
 	goto_if_unset FLAG_HIDE_ROUTE_109_MR_BRINEY, EventScript_SetBrineyLocation_Route109
 	return
 
@@ -681,7 +681,7 @@ Common_EventScript_BufferTrendyPhrase:: @ 8271E8B
 	special BufferTrendyPhraseString
 	return
 
-EventScript_BackupMrBrineyLocation:: @ 8271E95
+EventScript_BackupMsBritneyLocation:: @ 8271E95
 	copyvar VAR_0x8008, VAR_BRINEY_LOCATION
 	setvar VAR_BRINEY_LOCATION, 0
 	return
@@ -763,13 +763,13 @@ Movement_FerryDepart: @ 82721F0
 	walk_right
 	step_end
 
-EventScript_HideMrBriney:: @ 82721F8
-	setflag FLAG_HIDE_MR_BRINEY_DEWFORD_TOWN
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+EventScript_HideMsBritney:: @ 82721F8
+	setflag FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND
+	setflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY
 	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY
-	setflag FLAG_HIDE_ROUTE_104_MR_BRINEY_BOAT
+	setflag FLAG_HIDE_CLOUD_BEACH_MR_BRINEY
+	setflag FLAG_HIDE_CLOUD_BEACH_MR_BRINEY_BOAT
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	setvar VAR_BRINEY_LOCATION, 0

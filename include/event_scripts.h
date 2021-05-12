@@ -590,7 +590,7 @@ extern u8 BattleFrontier_OutsideEast_EventScript_WaterSudowoodo[];
 
 // overworld
 extern const u8 EventScript_WhiteOut[];
-extern const u8 EventScript_ResetMrBriney[];
+extern const u8 EventScript_ResetMsBritney[];
 extern const u8 EventScript_DoLinkRoomExit[];
 extern const u8 CableClub_EventScript_TooBusyToNotice[];
 extern const u8 CableClub_EventScript_ReadTrainerCard[];

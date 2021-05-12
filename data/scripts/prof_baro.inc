@@ -11,9 +11,9 @@ ProfBaro_EventScript_UpdateLocation:: @ 82720AD
 	compare VAR_BARO_STATE, 3
 	call_if_eq ProfBaro_EventScript_MoveToBreezeWay
 	compare VAR_BARO_STATE, 4
-	call_if_eq ProfBaro_EventScript_MoveToRoute103
+	call_if_eq ProfBaro_EventScript_MoveToRockCanyon
 	compare VAR_BARO_STATE, 5
-	call_if_eq ProfBaro_EventScript_MoveToRoute103
+	call_if_eq ProfBaro_EventScript_MoveToRockCanyon
 	compare VAR_BARO_STATE, 6
 	call_if_eq ProfBaro_EventScript_MoveToLab
 	compare VAR_BARO_STATE, 7
@@ -24,18 +24,18 @@ ProfBaro_EventScript_MoveToLab:: @ 827211A
 	clearflag FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_BARO
 	clearflag FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_UNKNOWN_0x380
 	setflag FLAG_HIDE_BREEZE_WAY_BARO
-	setflag FLAG_HIDE_ROUTE_103_BARO
+	setflag FLAG_HIDE_ROCK_CANYON_BARO
 	return
 
 ProfBaro_EventScript_MoveToBreezeWay:: @ 8272127
 	clearflag FLAG_HIDE_BREEZE_WAY_BARO
 	setflag FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_BARO
 	setflag FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_UNKNOWN_0x380
-	setflag FLAG_HIDE_ROUTE_103_BARO
+	setflag FLAG_HIDE_ROCK_CANYON_BARO
 	return
 
-ProfBaro_EventScript_MoveToRoute103:: @ 8272134
-	clearflag FLAG_HIDE_ROUTE_103_BARO
+ProfBaro_EventScript_MoveToRockCanyon:: @ 8272134
+	clearflag FLAG_HIDE_ROCK_CANYON_BARO
 	setflag FLAG_HIDE_BREEZE_WAY_BARO
 	setflag FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_BARO
 	setflag FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_UNKNOWN_0x380

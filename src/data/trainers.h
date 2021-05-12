@@ -7279,7 +7279,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemCustomMoves = sParty_WallyVR1},
     },
 
-    [TRAINER_AKIRA_ROUTE_103_MUDKIP] =
+    [TRAINER_AKIRA_ROCK_CANYON_MUDKIP] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
@@ -7289,8 +7289,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_AkiraRoute103Mudkip),
-        .party = {.NoItemDefaultMoves = sParty_AkiraRoute103Mudkip},
+        .partySize = ARRAY_COUNT(sParty_AkiraRockCanyonMudkip),
+        .party = {.NoItemDefaultMoves = sParty_AkiraRockCanyonMudkip},
     },
 
     [TRAINER_AKIRA_ROUTE_110_MUDKIP] =
@@ -7321,7 +7321,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_AkiraRoute119Mudkip},
     },
 
-    [TRAINER_AKIRA_ROUTE_103_TREECKO] =
+    [TRAINER_AKIRA_ROCK_CANYON_TREECKO] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
@@ -7331,8 +7331,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_SETUP_FIRST_TURN,
-        .partySize = ARRAY_COUNT(sParty_AkiraRoute103Treecko),
-        .party = {.NoItemDefaultMoves = sParty_AkiraRoute103Treecko},
+        .partySize = ARRAY_COUNT(sParty_AkiraRockCanyonTreecko),
+        .party = {.NoItemDefaultMoves = sParty_AkiraRockCanyonTreecko},
     },
 
     [TRAINER_AKIRA_ROUTE_110_TREECKO] =
@@ -7363,7 +7363,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_AkiraRoute119Treecko},
     },
 
-    [TRAINER_AKIRA_ROUTE_103_TORCHIC] =
+    [TRAINER_AKIRA_ROCK_CANYON_TORCHIC] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
@@ -7373,8 +7373,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_AkiraRoute103Torchic),
-        .party = {.NoItemDefaultMoves = sParty_AkiraRoute103Torchic},
+        .partySize = ARRAY_COUNT(sParty_AkiraRockCanyonTorchic),
+        .party = {.NoItemDefaultMoves = sParty_AkiraRockCanyonTorchic},
     },
 
     [TRAINER_AKIRA_ROUTE_110_TORCHIC] =
@@ -7405,7 +7405,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_AkiraRoute119Torchic},
     },
 
-    [TRAINER_MAY_ROUTE_103_MUDKIP] =
+    [TRAINER_MAY_ROCK_CANYON_MUDKIP] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
@@ -7415,8 +7415,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_MayRoute103Mudkip),
-        .party = {.NoItemDefaultMoves = sParty_MayRoute103Mudkip},
+        .partySize = ARRAY_COUNT(sParty_MayRockCanyonMudkip),
+        .party = {.NoItemDefaultMoves = sParty_MayRockCanyonMudkip},
     },
 
     [TRAINER_MAY_ROUTE_110_MUDKIP] =
@@ -7447,7 +7447,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_MayRoute119Mudkip},
     },
 
-    [TRAINER_MAY_ROUTE_103_TREECKO] =
+    [TRAINER_MAY_ROCK_CANYON_TREECKO] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
@@ -7457,8 +7457,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_MayRoute103Treecko),
-        .party = {.NoItemDefaultMoves = sParty_MayRoute103Treecko},
+        .partySize = ARRAY_COUNT(sParty_MayRockCanyonTreecko),
+        .party = {.NoItemDefaultMoves = sParty_MayRockCanyonTreecko},
     },
 
     [TRAINER_MAY_ROUTE_110_TREECKO] =
@@ -7489,7 +7489,7 @@ const struct Trainer gTrainers[] = {
         .party = {.NoItemDefaultMoves = sParty_MayRoute119Treecko},
     },
 
-    [TRAINER_MAY_ROUTE_103_TORCHIC] =
+    [TRAINER_MAY_ROCK_CANYON_TORCHIC] =
     {
         .partyFlags = 0,
         .trainerClass = TRAINER_CLASS_PKMN_TRAINER_3,
@@ -7499,8 +7499,8 @@ const struct Trainer gTrainers[] = {
         .items = {},
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_MayRoute103Torchic),
-        .party = {.NoItemDefaultMoves = sParty_MayRoute103Torchic},
+        .partySize = ARRAY_COUNT(sParty_MayRockCanyonTorchic),
+        .party = {.NoItemDefaultMoves = sParty_MayRockCanyonTorchic},
     },
 
     [TRAINER_MAY_ROUTE_110_TORCHIC] =

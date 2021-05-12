@@ -1,536 +1,536 @@
-Route102_Text_CalvinIntro: @ 8294513
+CloudWay_Text_CalvinIntro: @ 8294513
 	.string "If you have POKéMON with you, then\n"
 	.string "you're an official POKéMON TRAINER!\l"
 	.string "You can't say no to my challenge!$"
 
-Route102_Text_CalvinDefeated: @ 829457C
+CloudWay_Text_CalvinDefeated: @ 829457C
 	.string "Arrgh, I lost…\n"
 	.string "I should have trained mine more…$"
 
-Route102_Text_CalvinPostBattle: @ 82945AC
+CloudWay_Text_CalvinPostBattle: @ 82945AC
 	.string "Listen, you. If you're strong,\n"
 	.string "you should have told me before!$"
 
-Route102_Text_CalvinRegister: @ 82945EB
+CloudWay_Text_CalvinRegister: @ 82945EB
 	.string "I've been working hard at this since\n"
 	.string "I saw you before.\p"
 	.string "I'd like to battle you again, so can\n"
 	.string "you register me in your POKéNAV?$"
 
-Route102_Text_CalvinRegisterShort: @ 8294668
+CloudWay_Text_CalvinRegisterShort: @ 8294668
 	.string "I'd like to battle you again, so can\n"
 	.string "you register me in your POKéNAV?$"
 
-Route102_Text_CalvinRematchIntro: @ 82946AE
+CloudWay_Text_CalvinRematchIntro: @ 82946AE
 	.string "Ever since I lost to you, I desperately\n"
 	.string "trained my POKéMON.\l"
 	.string "You can't say no to my challenge!$"
 
-Route102_Text_CalvinRematchDefeated: @ 829470C
+CloudWay_Text_CalvinRematchDefeated: @ 829470C
 	.string "Arrgh, I lost…\n"
 	.string "Is my training method not right?$"
 
-Route102_Text_CalvinRematchPostBattle: @ 829473C
+CloudWay_Text_CalvinRematchPostBattle: @ 829473C
 	.string "If you're going to get stronger,\n"
 	.string "I'll get stronger, too.$"
 
-Route102_Text_AllenIntro: @ 8294775
+CloudWay_Text_AllenIntro: @ 8294775
 	.string "Did you just become a TRAINER?\n"
 	.string "We're both beginners!$"
 
-Route102_Text_AllenDefeated: @ 82947AA
+CloudWay_Text_AllenDefeated: @ 82947AA
 	.string "I called you because I thought\n"
 	.string "I could beat you…$"
 
-Route102_Text_AllenPostBattle: @ 82947DB
+CloudWay_Text_AllenPostBattle: @ 82947DB
 	.string "I haven't won once yet…\n"
 	.string "I wish I would win soon…$"
 
-Route102_Text_RickIntro: @ 829480C
+CloudWay_Text_RickIntro: @ 829480C
 	.string "Hahah! Our eyes met!\n"
 	.string "I'll take you on with my BUG POKéMON!$"
 
-Route102_Text_RickDefeated: @ 8294847
+CloudWay_Text_RickDefeated: @ 8294847
 	.string "Ow! Down and out!$"
 
-Route102_Text_RickPostBattle: @ 8294859
+CloudWay_Text_RickPostBattle: @ 8294859
 	.string "If you lock eyes with a TRAINER,\n"
 	.string "you have to challenge! It's a rule!$"
 
-Route102_Text_TianaIntro: @ 829489E
+CloudWay_Text_TianaIntro: @ 829489E
 	.string "I'm going to keep winning and aim\n"
 	.string "to be the best TRAINER.\p"
 	.string "Help me further my career!$"
 
-Route102_Text_TianaDefeated: @ 82948F3
+CloudWay_Text_TianaDefeated: @ 82948F3
 	.string "I ended up furthering your career…$"
 
-Route102_Text_TianaPostBattle: @ 8294916
+CloudWay_Text_TianaPostBattle: @ 8294916
 	.string "To keep winning my way up, I see that\n"
 	.string "I have to catch more POKéMON.$"
 
-Route103_Text_DaisyIntro: @ 829495A
+RockCanyon_Text_DaisyIntro: @ 829495A
 	.string "Did you feel the tug of our\n"
 	.string "soul-soothing fragrance?$"
 
-Route103_Text_DaisyDefeated: @ 829498F
+RockCanyon_Text_DaisyDefeated: @ 829498F
 	.string "You weren't led astray by our aroma…$"
 
-Route103_Text_DaisyPostBattle: @ 82949B4
+RockCanyon_Text_DaisyPostBattle: @ 82949B4
 	.string "Aromatherapy is a form of mental\n"
 	.string "healing that works with fragrances.$"
 
-Route103_Text_AmyIntro: @ 82949F9
+RockCanyon_Text_AmyIntro: @ 82949F9
 	.string "AMY: I'm AMY.\n"
 	.string "And this is my little sister LIV.\l"
 	.string "We battle together!$"
 
-Route103_Text_AmyDefeated: @ 8294A3D
+RockCanyon_Text_AmyDefeated: @ 8294A3D
 	.string "AMY: Uh-oh, we lost.$"
 
-Route103_Text_AmyPostBattle: @ 8294A52
+RockCanyon_Text_AmyPostBattle: @ 8294A52
 	.string "AMY: You have to think about all\n"
 	.string "kinds of things when you're battling\l"
 	.string "against two TRAINERS.$"
 
-Route103_Text_AmyNotEnoughPokemon: @ 8294AAE
+RockCanyon_Text_AmyNotEnoughPokemon: @ 8294AAE
 	.string "AMY: Uh-oh, you have only one\n"
 	.string "POKéMON with you.\l"
 	.string "You can't battle us like that.$"
 
-Route103_Text_LivIntro: @ 8294AFD
+RockCanyon_Text_LivIntro: @ 8294AFD
 	.string "LIV: We battle together as one\n"
 	.string "team.$"
 
-Route103_Text_LivDefeated: @ 8294B22
+RockCanyon_Text_LivDefeated: @ 8294B22
 	.string "LIV: Oh, we lost, big sister…$"
 
-Route103_Text_LivPostBattle: @ 8294B40
+RockCanyon_Text_LivPostBattle: @ 8294B40
 	.string "LIV: We work perfectly together,\n"
 	.string "me and my big sister…\p"
 	.string "But we still lost…$"
 
-Route103_Text_AmyLivRegister: @ 8294B8A
+RockCanyon_Text_AmyLivRegister: @ 8294B8A
 	.string "LIV: Really, we're a lot better…\n"
 	.string "It's true! We'll show you next time!$"
 
-Route103_Text_LivNotEnoughPokemon: @ 8294BD0
+RockCanyon_Text_LivNotEnoughPokemon: @ 8294BD0
 	.string "LIV: If you want to battle us,\n"
 	.string "you have to have two POKéMON!\l"
 	.string "It's not fair if you don't!$"
 
-Route103_Text_AmyRematchIntro: @ 8294C29
+RockCanyon_Text_AmyRematchIntro: @ 8294C29
 	.string "AMY: I'm AMY.\n"
 	.string "And this is my little sister LIV.\l"
 	.string "We battle together!$"
 
-Route103_Text_AmyRematchDefeated: @ 8294C6D
+RockCanyon_Text_AmyRematchDefeated: @ 8294C6D
 	.string "AMY: Aww, boo!\n"
 	.string "We couldn't win again…$"
 
-Route103_Text_AmyRematchPostBattle: @ 8294C93
+RockCanyon_Text_AmyRematchPostBattle: @ 8294C93
 	.string "AMY: You have to think about all\n"
 	.string "kinds of things when you're battling\l"
 	.string "against two TRAINERS.$"
 
-Route103_Text_AmyRematchNotEnoughPokemon: @ 8294CEF
+RockCanyon_Text_AmyRematchNotEnoughPokemon: @ 8294CEF
 	.string "AMY: Uh-oh, you have only one\n"
 	.string "POKéMON with you.\l"
 	.string "You can't battle us like that.$"
 
-Route103_Text_LivRematchIntro: @ 8294D3E
+RockCanyon_Text_LivRematchIntro: @ 8294D3E
 	.string "LIV: We battle together as one\n"
 	.string "team.$"
 
-Route103_Text_LivRematchDefeated: @ 8294D63
+RockCanyon_Text_LivRematchDefeated: @ 8294D63
 	.string "LIV: Awww, we lost again…\n"
 	.string "Big sister…$"
 
-Route103_Text_LivRematchPostBattle: @ 8294D89
+RockCanyon_Text_LivRematchPostBattle: @ 8294D89
 	.string "LIV: We work perfectly together,\n"
 	.string "me and my big sister…\p"
 	.string "But why did we lose again?$"
 
-Route103_Text_LivRematchNotEnoughPokemon: @ 8294DDB
+RockCanyon_Text_LivRematchNotEnoughPokemon: @ 8294DDB
 	.string "LIV: If you want to battle us, you\n"
 	.string "have to have two POKéMON!\l"
 	.string "It's not fair if you don't!$"
 
-Route103_Text_AndrewIntro: @ 8294E34
+RockCanyon_Text_AndrewIntro: @ 8294E34
 	.string "Gah! My fishing line's all snarled up!\n"
 	.string "I'm getting frustrated and mean!\l"
 	.string "That's it! Battle me!$"
 
-Route103_Text_AndrewDefeated: @ 8294E92
+RockCanyon_Text_AndrewDefeated: @ 8294E92
 	.string "Gah! Lost it!\n"
 	.string "I'm even more annoyed now!$"
 
-Route103_Text_AndrewPostBattle: @ 8294EBB
+RockCanyon_Text_AndrewPostBattle: @ 8294EBB
 	.string "Gah, I'm still boiling mad…\n"
 	.string "Grrrrr…$"
 
-Route103_Text_MiguelIntro: @ 8294EDF
+RockCanyon_Text_MiguelIntro: @ 8294EDF
 	.string "My POKéMON is delightfully adorable!\n"
 	.string "Don't be shy--I'll show you!$"
 
-Route103_Text_MiguelDefeated: @ 8294F21
+RockCanyon_Text_MiguelDefeated: @ 8294F21
 	.string "Oh, my gosh!\n"
 	.string "My darling POKéMON!$"
 
-Route103_Text_MiguelPostBattle: @ 8294F42
+RockCanyon_Text_MiguelPostBattle: @ 8294F42
 	.string "My delightful POKéMON looks darling\n"
 	.string "even when it's fainted!$"
 
-Route103_Text_MiguelRegister: @ 8294F7E
+RockCanyon_Text_MiguelRegister: @ 8294F7E
 	.string "I'll get you to come out and look in\n"
 	.string "on my delightful POKéMON again!$"
 
-Route103_Text_MiguelRematchIntro: @ 8294FC3
+RockCanyon_Text_MiguelRematchIntro: @ 8294FC3
 	.string "Hi, you! My delightfully adorable\n"
 	.string "POKéMON has become more darling!$"
 
-Route103_Text_MiguelRematchDefeated: @ 8295006
+RockCanyon_Text_MiguelRematchDefeated: @ 8295006
 	.string "Oh!\n"
 	.string "My darling POKéMON!$"
 
-Route103_Text_MiguelRematchPostBattle: @ 829501E
+RockCanyon_Text_MiguelRematchPostBattle: @ 829501E
 	.string "The more I spend time with it,\n"
 	.string "the more adorable my POKéMON becomes.$"
 
-Route103_Text_PeteIntro: @ 8295063
+RockCanyon_Text_PeteIntro: @ 8295063
 	.string "This sort of distance…\n"
 	.string "You should just swim it!$"
 
-Route103_Text_PeteDefeated: @ 8295093
+RockCanyon_Text_PeteDefeated: @ 8295093
 	.string "Oh, that's good going!$"
 
-Route103_Text_PetePostBattle: @ 82950AA
+RockCanyon_Text_PetePostBattle: @ 82950AA
 	.string "Oh, I understand where you're coming\n"
 	.string "from now.\p"
 	.string "If I had a POKéMON that trusty,\n"
 	.string "I'd want to SURF on it, too!$"
 
-Route103_Text_IsabelleIntro: @ 8295116
+RockCanyon_Text_IsabelleIntro: @ 8295116
 	.string "Watch where you're going!\n"
 	.string "We're going to crash!$"
 
-Route103_Text_IsabelleDefeated: @ 8295146
+RockCanyon_Text_IsabelleDefeated: @ 8295146
 	.string "Groan…$"
 
-Route103_Text_IsabellePostBattle: @ 829514D
+RockCanyon_Text_IsabellePostBattle: @ 829514D
 	.string "I'm a poor swimmer so I was practicing…\n"
 	.string "Sorry for almost crashing into you.$"
 
-Route103_Text_RhettIntro: @ 8295199
+RockCanyon_Text_RhettIntro: @ 8295199
 	.string "Whoa!\n"
 	.string "How'd you get into a space this small?$"
 
-Route103_Text_RhettDefeated: @ 82951C6
+RockCanyon_Text_RhettDefeated: @ 82951C6
 	.string "Whoa!\n"
 	.string "The kid can rock!$"
 
-Route103_Text_RhettPostBattle: @ 82951DE
+RockCanyon_Text_RhettPostBattle: @ 82951DE
 	.string "Do you like cramped quarters\n"
 	.string "like this?$"
 
-Route103_Text_MarcosIntro: @ 8295206
+RockCanyon_Text_MarcosIntro: @ 8295206
 	.string "Did my guitar's wailing draw you in?$"
 
-Route103_Text_MarcosDefeated: @ 829522B
+RockCanyon_Text_MarcosDefeated: @ 829522B
 	.string "My one-man show is ruined…$"
 
-Route103_Text_MarcosPostBattle: @ 8295246
+RockCanyon_Text_MarcosPostBattle: @ 8295246
 	.string "I was playing my guitar where few\n"
 	.string "people were around, but a lot of fans\l"
 	.string "have gathered.\p"
 	.string "Heh, maybe I should turn pro.$"
 
-Route104_Text_GinaIntro: @ 82952BB
+CloudBeach_Text_GinaIntro: @ 82952BB
 	.string "GINA: Okay, let's battle with our\n"
 	.string "POKéMON!$"
 
-Route104_Text_GinaDefeat: @ 82952E6
+CloudBeach_Text_GinaDefeat: @ 82952E6
 	.string "GINA: Losing upsets me!$"
 
-Route104_Text_GinaPostBattle: @ 82952FE
+CloudBeach_Text_GinaPostBattle: @ 82952FE
 	.string "GINA: You are strong!\n"
 	.string "We have to train lots more!$"
 
-Route104_Text_GinaNotEnoughMons: @ 8295330
+CloudBeach_Text_GinaNotEnoughMons: @ 8295330
 	.string "GINA: Oh? Only one POKéMON?\n"
 	.string "Then, we don't battle with you.\p"
 	.string "If there's only one POKéMON, it will\n"
 	.string "be lonesome. That's not nice.$"
 
-Route104_Text_MiaIntro: @ 82953AF
+CloudBeach_Text_MiaIntro: @ 82953AF
 	.string "MIA: We are twins, so we battle\n"
 	.string "POKéMON together.$"
 
-Route104_Text_MiaDefeat: @ 82953E1
+CloudBeach_Text_MiaDefeat: @ 82953E1
 	.string "MIA: We battled together, but we\n"
 	.string "both lost…$"
 
-Route104_Text_MiaPostBattle: @ 829540D
+CloudBeach_Text_MiaPostBattle: @ 829540D
 	.string "MIA: We will train our POKéMON more\n"
 	.string "and be strong like you.$"
 
-Route104_Text_MiaNotEnoughMons: @ 8295449
+CloudBeach_Text_MiaNotEnoughMons: @ 8295449
 	.string "MIA: You want to battle with us?\p"
 	.string "It's a big no-no if you don't have two\n"
 	.string "POKéMON with you.\l"
 	.string "We're too strong for you!$"
 
-Route104_Text_IvanIntro: @ 82954BD
+CloudBeach_Text_IvanIntro: @ 82954BD
 	.string "Why keep it a secret?\n"
 	.string "I'm the WATER POKéMON expert!\p"
 	.string "Huh?\n"
 	.string "You don't know me?$"
 
-Route104_Text_IvanDefeat: @ 8295509
+CloudBeach_Text_IvanDefeat: @ 8295509
 	.string "I thought I wasn't too bad, if I may\n"
 	.string "say so, but I guess not… Bleah…$"
 
-Route104_Text_IvanPostBattle: @ 829554E
+CloudBeach_Text_IvanPostBattle: @ 829554E
 	.string "I got too into fishing.\n"
 	.string "I forgot I had to raise my POKéMON…$"
 
-Route104_Text_BillyIntro: @ 829558A
+CloudBeach_Text_BillyIntro: @ 829558A
 	.string "Leaving footprints in the sand is\n"
 	.string "so fun!$"
 
-Route104_Text_BillyDefeat: @ 82955B4
+CloudBeach_Text_BillyDefeat: @ 82955B4
 	.string "Waah! I got sand in my runners!\n"
 	.string "They're all gritty!$"
 
-Route104_Text_BillyPostBattle: @ 82955E8
+CloudBeach_Text_BillyPostBattle: @ 82955E8
 	.string "I want to leave my footprints in\n"
 	.string "the sand everywhere, but they\l"
 	.string "disappear quickly…$"
 
-Route104_Text_HaleyIntro: @ 829563A
+CloudBeach_Text_HaleyIntro: @ 829563A
 	.string "Should I…\n"
 	.string "Or shouldn't I?\p"
 	.string "Okay, sure, I will battle!$"
 
-Route104_Text_HaleyDefeat: @ 829566F
+CloudBeach_Text_HaleyDefeat: @ 829566F
 	.string "I shouldn't have battled…$"
 
-Route104_Text_HaleyPostBattle: @ 8295689
+CloudBeach_Text_HaleyPostBattle: @ 8295689
 	.string "If you're faced with a decision and\n"
 	.string "you let someone else choose for you,\l"
 	.string "you will regret it, however things\l"
 	.string "turn out.$"
 
-Route104_Text_HaleyRegister1: @ 82956FF
+CloudBeach_Text_HaleyRegister1: @ 82956FF
 	.string "You're strong, but should I register\n"
 	.string "you in my POKéNAV?\l"
 	.string "Maybe I shouldn't…\p"
 	.string "Okay, sure, I will register you!$"
 
-Route104_Text_HaleyRegister2: @ 829576B
+CloudBeach_Text_HaleyRegister2: @ 829576B
 	.string "You're strong, but should I register\n"
 	.string "you in my POKéNAV?\l"
 	.string "Maybe I shouldn't…\p"
 	.string "Okay, sure, I will register you!$"
 
-Route104_Text_HaleyRematchIntro: @ 82957D7
+CloudBeach_Text_HaleyRematchIntro: @ 82957D7
 	.string "Come on, battle with me!$"
 
-Route104_Text_HaleyRematchDefeat: @ 82957F0
+CloudBeach_Text_HaleyRematchDefeat: @ 82957F0
 	.string "Ohh…\n"
 	.string "I thought I could win…$"
 
-Route104_Text_HaleyPostRematch: @ 829580C
+CloudBeach_Text_HaleyPostRematch: @ 829580C
 	.string "I made the decision to battle, so\n"
 	.string "I can accept this loss with grace.\p"
 	.string "I am still upset about losing!$"
 
-Route104_Text_WinstonIntro: @ 8295870
+CloudBeach_Text_WinstonIntro: @ 8295870
 	.string "Oh, sure, I'll accept your challenge.\n"
 	.string "I have a lot of money.$"
 
-Route104_Text_WinstonDefeat: @ 82958AD
+CloudBeach_Text_WinstonDefeat: @ 82958AD
 	.string "Why couldn't I win?$"
 
-Route104_Text_WinstonPostBattle: @ 82958C1
+CloudBeach_Text_WinstonPostBattle: @ 82958C1
 	.string "There are some things money can't buy.\n"
 	.string "That's POKéMON…$"
 
-Route104_Text_WinstonRegister1: @ 82958F8
+CloudBeach_Text_WinstonRegister1: @ 82958F8
 	.string "Hm?\n"
 	.string "Ah, you've obtained a POKéNAV.\p"
 	.string "I will gladly register you.\n"
 	.string "After all, I have plenty of money.$"
 
-Route104_Text_WinstonRegister2: @ 829595A
+CloudBeach_Text_WinstonRegister2: @ 829595A
 	.string "Hm?\n"
 	.string "Ah, you've obtained a POKéNAV.\p"
 	.string "I will gladly register you.\n"
 	.string "After all, I have plenty of money.$"
 
-Route104_Text_WinstonRematchIntro: @ 82959BC
+CloudBeach_Text_WinstonRematchIntro: @ 82959BC
 	.string "After I lost to you, I learned a bunch\n"
 	.string "of things about POKéMON.$"
 
-Route104_Text_WinstonRematchDefeat: @ 82959FC
+CloudBeach_Text_WinstonRematchDefeat: @ 82959FC
 	.string "I lost again?\n"
 	.string "Why couldn't I win?$"
 
-Route104_Text_WinstonPostRematch: @ 8295A1E
+CloudBeach_Text_WinstonPostRematch: @ 8295A1E
 	.string "I'm fabulously wealthy, but I can't\n"
 	.string "seem to win at POKéMON…\p"
 	.string "It's so deep, the world of POKéMON…$"
 
-Route104_Text_CindyIntro: @ 8295A7E
+CloudBeach_Text_CindyIntro: @ 8295A7E
 	.string "We must have been fated to meet.\n"
 	.string "May I ask you for a battle?$"
 
-Route104_Text_CindyDefeat: @ 8295ABB
+CloudBeach_Text_CindyDefeat: @ 8295ABB
 	.string "Oh, my!$"
 
-Route104_Text_CindyPostBattle: @ 8295AC3
+CloudBeach_Text_CindyPostBattle: @ 8295AC3
 	.string "“Hello” is the beginning of “good-bye.”\n"
 	.string "I hope we meet again.$"
 
-Route104_Text_CindyRegister1: @ 8295B01
+CloudBeach_Text_CindyRegister1: @ 8295B01
 	.string "Hello, we meet again.\p"
 	.string "We seem to be drawn together. Let's\n"
 	.string "register each other in our POKéNAVS.$"
 
-Route104_Text_CindyRegister2: @ 8295B60
+CloudBeach_Text_CindyRegister2: @ 8295B60
 	.string "We should commemorate how we seem\n"
 	.string "to be drawn to each other.\p"
 	.string "Let's register each other in our\n"
 	.string "POKéNAVS.$"
 
-Route104_Text_CindyRematchIntro: @ 8295BC8
+CloudBeach_Text_CindyRematchIntro: @ 8295BC8
 	.string "Hello, we meet again.\n"
 	.string "May I ask you for a battle?$"
 
-Route104_Text_CindyRematchDefeat: @ 8295BFA
+CloudBeach_Text_CindyRematchDefeat: @ 8295BFA
 	.string "Oh, my…\n"
 	.string "I did the best that I could…$"
 
-Route104_Text_CindyPostRematch: @ 8295C1F
+CloudBeach_Text_CindyPostRematch: @ 8295C1F
 	.string "“Hello” is the beginning of “good-bye.”\n"
 	.string "I hope we meet again.$"
 
-Route104_Text_DarianIntro: @ 8295C5D
+CloudBeach_Text_DarianIntro: @ 8295C5D
 	.string "I fished up a tough-looking POKéMON!\p"
 	.string "It has this magical quality to it!\n"
 	.string "It surely looks tough, yes it does!$"
 
-Route104_Text_DarianDefeat: @ 8295CC9
+CloudBeach_Text_DarianDefeat: @ 8295CC9
 	.string "What the…$"
 
-Route104_Text_DarianPostBattle: @ 8295CD3
+CloudBeach_Text_DarianPostBattle: @ 8295CD3
 	.string "Hey, MAGIKARP, you sure don't live up\n"
 	.string "to your name, do you?$"
 
-Route105_Text_FosterIntro: @ 8295D0F
+BrokeSea_Text_FosterIntro: @ 8295D0F
 	.string "There's supposed to be a mystical\n"
 	.string "rock around here.\l"
 	.string "Do you know anything about it?$"
 
-Route105_Text_FosterDefeated: @ 8295D62
+BrokeSea_Text_FosterDefeated: @ 8295D62
 	.string "I was thinking too much about that\n"
 	.string "rock, while my POKéMON remained weak…$"
 
-Route105_Text_FosterPostBattle: @ 8295DAB
+BrokeSea_Text_FosterPostBattle: @ 8295DAB
 	.string "I can spend hours and hours staring\n"
 	.string "at a nice rock without growing bored.$"
 
-Route105_Text_LuisIntro: @ 8295DF5
+BrokeSea_Text_LuisIntro: @ 8295DF5
 	.string "Whew! I was worried that a kid was\n"
 	.string "drowning when I saw you.\p"
 	.string "You seem to be okay, so what do you\n"
 	.string "say to a battle?$"
 
-Route105_Text_LuisDefeated: @ 8295E66
+BrokeSea_Text_LuisDefeated: @ 8295E66
 	.string "Glub… Glub…$"
 
-Route105_Text_LuisPostBattle: @ 8295E72
+BrokeSea_Text_LuisPostBattle: @ 8295E72
 	.string "If you are drowning, the signal is to\n"
 	.string "wave one arm toward the beach.$"
 
-Route105_Text_DominikIntro: @ 8295EB7
+BrokeSea_Text_DominikIntro: @ 8295EB7
 	.string "Swimming the deep blue sea…\n"
 	.string "It feels the greatest!$"
 
-Route105_Text_DominikDefeated: @ 8295EEA
+BrokeSea_Text_DominikDefeated: @ 8295EEA
 	.string "I lost…\n"
 	.string "Now I'm feeling blue…$"
 
-Route105_Text_DominikPostBattle: @ 8295F08
+BrokeSea_Text_DominikPostBattle: @ 8295F08
 	.string "Why is the sea blue?\p"
 	.string "I learned about that at the MUSEUM in\n"
 	.string "SLATEPORT, but I forgot.$"
 
-Route105_Text_BeverlyIntro: @ 8295F5C
+BrokeSea_Text_BeverlyIntro: @ 8295F5C
 	.string "My body feels lighter in the water.\n"
 	.string "It's as if I've gotten slimmer!$"
 
-Route105_Text_BeverlyDefeated: @ 8295FA0
+BrokeSea_Text_BeverlyDefeated: @ 8295FA0
 	.string "I'm floating…$"
 
-Route105_Text_PostBattle: @ 8295FAE
+BrokeSea_Text_PostBattle: @ 8295FAE
 	.string "Your body weight is reduced to just\n"
 	.string "one tenth in the water.\p"
 	.string "That would make me…\n"
 	.string "Whoops! I'm not telling you my weight!$"
 
-Route105_Text_ImaniIntro: @ 8296025
+BrokeSea_Text_ImaniIntro: @ 8296025
 	.string "The blue, blue sky…\n"
 	.string "The vast sea…\l"
 	.string "It's so peaceful…$"
 
-Route105_Text_ImaniDefeated: @ 8296059
+BrokeSea_Text_ImaniDefeated: @ 8296059
 	.string "I lost while I was lounging!$"
 
-Route105_Text_ImaniPostBattle: @ 8296076
+BrokeSea_Text_ImaniPostBattle: @ 8296076
 	.string "I want to be told I'm relaxing to be\n"
 	.string "with. Giggle.$"
 
-Route105_Text_AndresIntro: @ 82960A9
+BrokeSea_Text_AndresIntro: @ 82960A9
 	.string "I'm convinced that the sea keeps\n"
 	.string "secrets from us.$"
 
-Route105_Text_AndresDefeated: @ 82960DB
+BrokeSea_Text_AndresDefeated: @ 82960DB
 	.string "Yes…\n"
 	.string "I am no good at battling…$"
 
-Route105_Text_AndresPostBattle: @ 82960FA
+BrokeSea_Text_AndresPostBattle: @ 82960FA
 	.string "I'm sure there are many secrets to be\n"
 	.string "discovered in the world's seas.\p"
 	.string "I mean to find them all!$"
 
-Route105_Text_AndresRegister: @ 8296159
+BrokeSea_Text_AndresRegister: @ 8296159
 	.string "Huh? I'm so weak, but you're willing\n"
 	.string "to register me in your POKéNAV?$"
 
-Route105_Text_AndresRematchIntro: @ 829619E
+BrokeSea_Text_AndresRematchIntro: @ 829619E
 	.string "I've told you that I'm weak…\n"
 	.string "Are you sure you want to do this?$"
 
-Route105_Text_AndresRematchDefeated: @ 82961DD
+BrokeSea_Text_AndresRematchDefeated: @ 82961DD
 	.string "Yes…\n"
 	.string "I didn't think I could win.$"
 
-Route105_Text_AndresRematchPostBattle: @ 82961FE
+BrokeSea_Text_AndresRematchPostBattle: @ 82961FE
 	.string "I may be weak at battling, but my\n"
 	.string "drive to explore can't be bested.\p"
 	.string "I will travel the seas all around\n"
 	.string "the world!$"
 
-Route105_Text_JosueIntro: @ 829626F
+BrokeSea_Text_JosueIntro: @ 829626F
 	.string "I'm exhausted from swimming.\n"
 	.string "I'm just not used to it.\p"
 	.string "I need a battle for a change of pace!$"
 
-Route105_Text_JosueDefeated: @ 82962CB
+BrokeSea_Text_JosueDefeated: @ 82962CB
 	.string "I lost because I battled at sea.$"
 
-Route105_Text_JosuePostBattle: @ 82962EC
+BrokeSea_Text_JosuePostBattle: @ 82962EC
 	.string "Yeah, for me, the sky is a much better\n"
 	.string "match than the sea.$"
 

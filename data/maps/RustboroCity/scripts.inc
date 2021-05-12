@@ -173,12 +173,12 @@ RustboroCity_EventScript_Boy2:: @ 81E08B2
 	lock
 	faceplayer
 	goto_if_set FLAG_RECEIVED_POKENAV, RustboroCity_EventScript_Boy2BrineyLeftTunnel
-	msgbox RustboroCity_Text_MrBrineyWalksInTheTunnel, MSGBOX_DEFAULT
+	msgbox RustboroCity_Text_MsBritneyWalksInTheTunnel, MSGBOX_DEFAULT
 	release
 	end
 
 RustboroCity_EventScript_Boy2BrineyLeftTunnel:: @ 81E08C7
-	msgbox RustboroCity_Text_MrBrineyLovesPeeko, MSGBOX_DEFAULT
+	msgbox RustboroCity_Text_MsBritneyLovesPeeko, MSGBOX_DEFAULT
 	release
 	end
 
@@ -884,7 +884,7 @@ RustboroCity_EventScript_BattleMay:: @ 81E1092
 	end
 
 RustboroCity_EventScript_MayBrineyHint:: @ 81E10C1
-	msgbox RustboroCity_Text_MayMrBrineyHint, MSGBOX_DEFAULT
+	msgbox RustboroCity_Text_MayMsBritneyHint, MSGBOX_DEFAULT
 	compare VAR_0x8008, 0
 	call_if_eq RustboroCity_EventScript_RestoreBgm
 	releaseall
@@ -953,7 +953,7 @@ RustboroCity_EventScript_BattleAkira:: @ 81E1191
 	end
 
 RustboroCity_EventScript_AkiraBrineyHint:: @ 81E11C0
-	msgbox RustboroCity_Text_AkiraMrBrineyHint, MSGBOX_DEFAULT
+	msgbox RustboroCity_Text_AkiraMsBritneyHint, MSGBOX_DEFAULT
 	compare VAR_0x8008, 0
 	call_if_eq RustboroCity_EventScript_RestoreBgm
 	releaseall
@@ -1073,13 +1073,13 @@ RustboroCity_Text_GymLeaderIsntEasyWithFire: @ 81E1480
 	.string "FIRE-type POKéMON don't match up\n"
 	.string "well against ROCK-type POKéMON…$"
 
-RustboroCity_Text_MrBrineyWalksInTheTunnel: @ 81E1520
+RustboroCity_Text_MsBritneyWalksInTheTunnel: @ 81E1520
 	.string "The old sailor MR. BRINEY lives in\n"
 	.string "a cottage by the sea.\p"
 	.string "He goes for walks in the tunnel every\n"
 	.string "so often.$"
 
-RustboroCity_Text_MrBrineyLovesPeeko: @ 81E1589
+RustboroCity_Text_MsBritneyLovesPeeko: @ 81E1589
 	.string "The old sailor MR. BRINEY lives in\n"
 	.string "a cottage by the sea.\p"
 	.string "He said he was going shopping in\n"
@@ -1190,7 +1190,7 @@ RustboroCity_Text_MayDefeat: @ 81E1CC1
 	.string "Yikes!\n"
 	.string "You're better than I expected!$"
 
-RustboroCity_Text_MayMrBrineyHint: @ 81E1CE7
+RustboroCity_Text_MayMsBritneyHint: @ 81E1CE7
 	.string "MAY: Oh, by the way, MR. BRINEY, who\n"
 	.string "I just passed…\p"
 	.string "{PLAYER}{KUN}, you just moved here so you\n"
@@ -1236,7 +1236,7 @@ RustboroCity_Text_AkiraDefeat: @ 81E1FE9
 	.string "Hmm…\n"
 	.string "You're pretty good.$"
 
-RustboroCity_Text_AkiraMrBrineyHint: @ 81E2002
+RustboroCity_Text_AkiraMsBritneyHint: @ 81E2002
 	.string "AKIRA: By the way, you know\n"
 	.string "MR. BRINEY? The guy I just passed?\p"
 	.string "I bet you didn't know this, since you\n"

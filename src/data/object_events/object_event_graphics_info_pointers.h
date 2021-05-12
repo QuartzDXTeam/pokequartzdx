@@ -86,7 +86,7 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RooftopSaleWoman;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Teala;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BreakableRock;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PushableBoulder;
-const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MrBrineysBoat;
+const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MsBritneysBoat;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayNormal;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayMachBike;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_MayAcroBike;
@@ -335,7 +335,7 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_TEALA] =                    &gObjectEventGraphicsInfo_Teala,
     [OBJ_EVENT_GFX_BREAKABLE_ROCK] =           &gObjectEventGraphicsInfo_BreakableRock,
     [OBJ_EVENT_GFX_PUSHABLE_BOULDER] =         &gObjectEventGraphicsInfo_PushableBoulder,
-    [OBJ_EVENT_GFX_MR_BRINEYS_BOAT] =          &gObjectEventGraphicsInfo_MrBrineysBoat,
+    [OBJ_EVENT_GFX_MR_BRINEYS_BOAT] =          &gObjectEventGraphicsInfo_MsBritneysBoat,
     [OBJ_EVENT_GFX_MAY_NORMAL] =               &gObjectEventGraphicsInfo_MayNormal,
     [OBJ_EVENT_GFX_MAY_MACH_BIKE] =            &gObjectEventGraphicsInfo_MayMachBike,
     [OBJ_EVENT_GFX_MAY_ACRO_BIKE] =            &gObjectEventGraphicsInfo_MayAcroBike,

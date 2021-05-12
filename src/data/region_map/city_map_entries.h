@@ -11,7 +11,7 @@ static const struct CityMapEntry sPokenavCityMaps[NUM_CITY_MAPS] =
         .tilemap = gPokenavCityMap_Pink_0,
     },
     {
-        .mapSecId = MAPSEC_DEWFORD_TOWN,
+        .mapSecId = MAPSEC_GOLDEN_ISLAND,
         .index = 0,
         .tilemap = gPokenavCityMap_Dewford_0,
     },

@@ -49,7 +49,7 @@ BreezeTown_OnTransition: @ 81E7DDB
 	compare VAR_PINK_RIVAL_STATE, 1
 	call_if_eq BreezeTown_EventScript_MoveRivalFromPink
 	compare VAR_BREEZE_RIVAL_STATE, 3
-	call_if_eq BreezeTown_EventScript_SetRivalLeftForRoute103
+	call_if_eq BreezeTown_EventScript_SetRivalLeftForRockCanyon
 	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1
 	call_if_eq BreezeTown_EventScript_HideMapNamePopup
 	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2
@@ -64,8 +64,8 @@ BreezeTown_EventScript_HideMapNamePopup:: @ 81E7E4B
 	setflag FLAG_HIDE_MAP_NAME_POPUP
 	return
 
-BreezeTown_EventScript_SetRivalLeftForRoute103:: @ 81E7E4F
-	setflag FLAG_RIVAL_LEFT_FOR_ROUTE103
+BreezeTown_EventScript_SetRivalLeftForRockCanyon:: @ 81E7E4F
+	setflag FLAG_RIVAL_LEFT_FOR_ROCKCANYON
 	return
 
 BreezeTown_EventScript_MoveRivalFromPink:: @ 81E7E53

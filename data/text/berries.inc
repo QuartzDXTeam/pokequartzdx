@@ -3,14 +3,14 @@ CloudainCity_Gym_Text_GiveEnigmaBerry: @ 82A6D3D
 	.string "I just received a very rare BERRY.\n"
 	.string "I'd like you to have it.$"
 
-Route104_Text_PlantBerriesInSoilTakeThis: @ 82A6D86
+CloudBeach_Text_PlantBerriesInSoilTakeThis: @ 82A6D86
 	.string "If you see BERRIES growing in loamy\n"
 	.string "soil, feel free to take them.\p"
 	.string "But make sure you plant a BERRY in the\n"
 	.string "same spot. That's common courtesy.\p"
 	.string "Here, I'll share this with you.$"
 
-Route104_Text_TrainersOftenMakeMonHoldBerries: @ 82A6E32
+CloudBeach_Text_TrainersOftenMakeMonHoldBerries: @ 82A6E32
 	.string "The way you look, you must be a\n"
 	.string "TRAINER, no?\p"
 	.string "TRAINERS often make POKéMON hold\n"
@@ -134,23 +134,23 @@ Route123_BerryMastersHouse_Text_JoyNeverGoesOutOfMyLife: @ 82A761B
 Route123_BerryMastersHouse_Text_Ah: @ 82A7682
 	.string "Ah…$"
 
-Route104_PrettyPetalFlowerShop_Text_ThisIsPrettyPetalFlowerShop: @ 82A7686
+CloudBeach_PrettyPetalFlowerShop_Text_ThisIsPrettyPetalFlowerShop: @ 82A7686
 	.string "Hello!\p"
 	.string "This is the PRETTY PETAL flower shop.\n"
 	.string "Spreading flowers all over the world!$"
 
-Route104_PrettyPetalFlowerShop_Text_LearnAboutBerries: @ 82A76D9
+CloudBeach_PrettyPetalFlowerShop_Text_LearnAboutBerries: @ 82A76D9
 	.string "{PLAYER}{KUN}, would you like to learn about\n"
 	.string "BERRIES?$"
 
-Route104_PrettyPetalFlowerShop_Text_IntroLearnAboutBerries: @ 82A7706
+CloudBeach_PrettyPetalFlowerShop_Text_IntroLearnAboutBerries: @ 82A7706
 	.string "Your name is?\p"
 	.string "{PLAYER}{KUN}.\n"
 	.string "That's a nice name.\p"
 	.string "{PLAYER}{KUN}, would you like to learn about\n"
 	.string "BERRIES?$"
 
-Route104_PrettyPetalFlowerShop_Text_BerriesExplanation: @ 82A775B
+CloudBeach_PrettyPetalFlowerShop_Text_BerriesExplanation: @ 82A775B
 	.string "BERRIES grow on trees that thrive\n"
 	.string "only in soft, loamy soil.\p"
 	.string "If you take some BERRIES, be sure to\n"
@@ -164,18 +164,18 @@ Route104_PrettyPetalFlowerShop_Text_BerriesExplanation: @ 82A775B
 	.string "Please help me, {PLAYER}{KUN}. Plant BERRIES\n"
 	.string "and bring more flowers into the world.$"
 
-Route104_PrettyPetalFlowerShop_Text_FlowersBringHappiness: @ 82A78DF
+CloudBeach_PrettyPetalFlowerShop_Text_FlowersBringHappiness: @ 82A78DF
 	.string "Flowers bring so much happiness to\n"
 	.string "people, don't they?$"
 
-Route104_PrettyPetalFlowerShop_Text_YouCanHaveThis: @ 82A7916
+CloudBeach_PrettyPetalFlowerShop_Text_YouCanHaveThis: @ 82A7916
 	.string "Hello!\p"
 	.string "The more attention you give to flowers,\n"
 	.string "the more beautifully they bloom.\p"
 	.string "You'll like tending flowers. I'm sure\n"
 	.string "of it. You can have this.$"
 
-Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation: @ 82A79A6
+CloudBeach_PrettyPetalFlowerShop_Text_WailmerPailExplanation: @ 82A79A6
 	.string "While BERRY plants are growing,\n"
 	.string "water them with the WAILMER PAIL.\p"
 	.string "Oh, another thing.\p"
@@ -185,13 +185,13 @@ Route104_PrettyPetalFlowerShop_Text_WailmerPailExplanation: @ 82A79A6
 	.string "Isn't that awesome?\n"
 	.string "It's like they have the will to live.$"
 
-Route104_PrettyPetalFlowerShop_Text_ImGrowingFlowers: @ 82A7A98
+CloudBeach_PrettyPetalFlowerShop_Text_ImGrowingFlowers: @ 82A7A98
 	.string "I'm trying to be like my big sisters.\n"
 	.string "I'm growing flowers, too!\p"
 	.string "Here you go!\n"
 	.string "It's for you!$"
 
-Route104_PrettyPetalFlowerShop_Text_MachineMixesBerries: @ 82A7AF3
+CloudBeach_PrettyPetalFlowerShop_Text_MachineMixesBerries: @ 82A7AF3
 	.string "You can plant a BERRY and grow it big,\n"
 	.string "or you can make a POKéMON hold it.\p"
 	.string "But now they have a machine that mixes\n"
