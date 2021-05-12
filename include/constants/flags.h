@@ -147,7 +147,7 @@
 #define FLAG_MET_PRETTY_PETAL_SHOP_OWNER     0x7F
 #define FLAG_ENABLE_BETTI_FIRST_CALL       0x80 // Set after defeating Brawly. This will activate a call with Betti in order to register her.
 #define FLAG_KYOGRE_ESCAPED_SEAFLOOR_CAVERN  0x81
-#define FLAG_DEFEATED_RIVAL_ROCKCANYON         0x82
+#define FLAG_DEFEATED_RIVAL_ROCK_CANYON         0x82
 #define FLAG_RECEIVED_DOLL_LANETTE           0x83
 #define FLAG_RECEIVED_POTION_PINK          0x84
 #define FLAG_RECEIVED_AMULET_COIN            0x85
@@ -322,7 +322,7 @@
 #define FLAG_RECEIVED_BELDUM                 0x12A
 #define FLAG_RECEIVED_FANCLUB_TM_THIS_WEEK   0x12B
 #define FLAG_MET_FANCLUB_YOUNGER_BROTHER     0x12C
-#define FLAG_RIVAL_LEFT_FOR_ROCKCANYON         0x12D
+#define FLAG_RIVAL_LEFT_FOR_ROCK_CANYON         0x12D
 #define FLAG_OMIT_DIVE_FROM_STEVEN_LETTER    0x12E
 #define FLAG_HAS_MATCH_CALL                  0x12F
 #define FLAG_ADDED_MATCH_CALL_TO_POKENAV     0x130

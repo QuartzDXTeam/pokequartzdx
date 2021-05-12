@@ -117,7 +117,7 @@ BreezeTown_MaysHouse_1F_Movement_RivalMomApproach: @ 81F89EC
 RivalsHouse_1F_EventScript_RivalMom:: @ 81F89F3
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_RIVAL_ROCKCANYON, RivalsHouse_1F_EventScript_GoHomeEverySoOften
+	goto_if_set FLAG_DEFEATED_RIVAL_ROCK_CANYON, RivalsHouse_1F_EventScript_GoHomeEverySoOften
 	goto_if_set FLAG_SYS_POKEMON_GET, RivalsHouse_1F_EventScript_RivalIsOnRockCanyon
 	compare VAR_BREEZE_RIVAL_STATE, 3
 	goto_if_eq RivalsHouse_1F_EventScript_RivalTooBusy

@@ -50,7 +50,7 @@ CloudBeach_EventScript_RivalTrigger:: @ 81ECCB3
 	lockall
 	setflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
 	setvar VAR_RUSTBORO_CITY_STATE, 8
-	setvar VAR_ROUTE104_STATE, 2
+	setvar VAR_CLOUD_BEACH_STATE, 2
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
 	waitmovement 0
 	delay 10
@@ -357,14 +357,14 @@ CloudBeach_EventScript_Girl2:: @ 81ED090
 	end
 
 CloudBeach_EventScript_SailToDewford:: @ 81ED099
-	setobjectpriority 8, MAP_ROUTE104, 0
-	setobjectpriority OBJ_EVENT_ID_PLAYER, MAP_ROUTE104, 0
+	setobjectpriority 8, MAP_CLOUD_BEACH, 0
+	setobjectpriority OBJ_EVENT_ID_PLAYER, MAP_CLOUD_BEACH, 0
 	applymovement 8, CloudBeach_Movement_BrineyBoardBoat
 	waitmovement 0
 	removeobject 8
 	applymovement OBJ_EVENT_ID_PLAYER, CloudBeach_Movement_PlayerBoardBoat
 	waitmovement 0
-	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE104
+	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_CLOUD_BEACH
 	call Common_EventScript_PlayBrineysBoatMusic
 	goto_if_set FLAG_ENABLE_NORMAN_MATCH_CALL, CloudBeach_EventScript_SailToDewfordNoCall
 	goto_if_unset FLAG_ENABLE_NORMAN_MATCH_CALL, CloudBeach_EventScript_SailToDewfordDadCalls
@@ -390,8 +390,8 @@ CloudBeach_EventScript_SailToDewfordDadCalls:: @ 81ED0EF
 	delay 30
 	setflag FLAG_ENABLE_NORMAN_MATCH_CALL
 	applymovement OBJ_EVENT_ID_PLAYER, CloudBeach_Movement_SailToDewfordAfterDadCalls
-	applymovement 7, CloudBeach_Movement_SailToDewfordAfterDadCalls, MAP_ROUTE104
-	waitmovement 7, MAP_ROUTE104
+	applymovement 7, CloudBeach_Movement_SailToDewfordAfterDadCalls, MAP_CLOUD_BEACH
+	waitmovement 7, MAP_CLOUD_BEACH
 	waitmovement 0
 	goto CloudBeach_EventScript_ArriveInDewford
 
@@ -413,9 +413,9 @@ CloudBeach_EventScript_ArriveInDewford:: @ 81ED139
 	clearflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
 	call Common_EventScript_StopBrineysBoatMusic
 	setflag FLAG_HIDE_CLOUD_BEACH_MR_BRINEY_BOAT
-	hideobjectat 7, MAP_ROUTE104
+	hideobjectat 7, MAP_CLOUD_BEACH
 	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
-	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_ROUTE104
+	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_CLOUD_BEACH
 	resetobjectpriority 2, MAP_GOLDEN_ISLAND
 	copyobjectxytoperm 2
 	setvar VAR_BOARD_BRINEY_BOAT_STATE, 0

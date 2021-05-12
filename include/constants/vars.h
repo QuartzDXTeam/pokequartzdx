@@ -113,10 +113,10 @@
 #define VAR_SOOTOPOLIS_CITY_STATE            0x405E
 #define VAR_EVER_GRANDE_CITY_STATE           0x405F // Unused Var
 #define VAR_BREEZE_WAY_STATE                   0x4060
-#define VAR_CLOUDWAY_STATE                   0x4061 // Unused Var
-#define VAR_ROCKCANYON_STATE                   0x4062 // Unused Var
-#define VAR_ROUTE104_STATE                   0x4063
-#define VAR_ROUTE105_STATE                   0x4064 // Unused Var
+#define VAR_CLOUD_WAY_STATE                   0x4061 // Unused Var
+#define VAR_ROCK_CANYON_STATE                   0x4062 // Unused Var
+#define VAR_CLOUD_BEACH_STATE                   0x4063
+#define VAR_BROKE_SEA_STATE                   0x4064 // Unused Var
 #define VAR_ROUTE106_STATE                   0x4065 // Unused Var
 #define VAR_ROUTE107_STATE                   0x4066 // Unused Var
 #define VAR_ROUTE108_STATE                   0x4067 // Unused Var

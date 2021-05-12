@@ -1,7 +1,7 @@
 {
-  "id": "MAP_UNDERWATER_ROUTE105",
+  "id": "MAP_UNDERWATER_BROKE_SEA",
   "name": "Underwater_BrokeSea",
-  "layout": "LAYOUT_UNDERWATER_ROUTE105",
+  "layout": "LAYOUT_UNDERWATER_BROKE_SEA",
   "music": "MUS_UNDERWATER",
   "region_map_section": "MAPSEC_UNDERWATER_105",
   "requires_flash": false,
@@ -16,7 +16,7 @@
     {
       "direction": "emerge",
       "offset": 0,
-      "map": "MAP_ROUTE105"
+      "map": "MAP_BROKE_SEA"
     }
   ],
   "object_events": [],

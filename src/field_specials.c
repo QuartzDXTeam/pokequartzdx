@@ -3574,8 +3574,8 @@ bool32 GetAbnormalWeatherMapNameAndType(void)
         MAP_NUM(ROUTE116),
         MAP_NUM(ROUTE118),
         MAP_NUM(ROUTE118),
-        MAP_NUM(ROUTE105),
-        MAP_NUM(ROUTE105),
+        MAP_NUM(BROKE_SEA),
+        MAP_NUM(BROKE_SEA),
         MAP_NUM(ROUTE125),
         MAP_NUM(ROUTE125),
         MAP_NUM(ROUTE127),
@@ -3606,8 +3606,8 @@ bool8 AbnormalWeatherHasExpired(void)
         MAP_NUM(ROUTE116),
         MAP_NUM(ROUTE118),
         MAP_NUM(ROUTE118),
-        MAP_NUM(ROUTE105),
-        MAP_NUM(ROUTE105),
+        MAP_NUM(BROKE_SEA),
+        MAP_NUM(BROKE_SEA),
         MAP_NUM(ROUTE125),
         MAP_NUM(ROUTE125),
         MAP_NUM(ROUTE127),
@@ -3649,7 +3649,7 @@ bool8 AbnormalWeatherHasExpired(void)
             {
                 case MAP_NUM(UNDERWATER_ROUTE127):
                 case MAP_NUM(UNDERWATER_ROUTE129):
-                case MAP_NUM(UNDERWATER_ROUTE105):
+                case MAP_NUM(UNDERWATER_BROKE_SEA):
                 case MAP_NUM(UNDERWATER_ROUTE125):
                     VarSet(VAR_SHOULD_END_ABNORMAL_WEATHER, 1);
                     return FALSE;

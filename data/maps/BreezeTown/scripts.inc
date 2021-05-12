@@ -65,7 +65,7 @@ BreezeTown_EventScript_HideMapNamePopup:: @ 81E7E4B
 	return
 
 BreezeTown_EventScript_SetRivalLeftForRockCanyon:: @ 81E7E4F
-	setflag FLAG_RIVAL_LEFT_FOR_ROCKCANYON
+	setflag FLAG_RIVAL_LEFT_FOR_ROCK_CANYON
 	return
 
 BreezeTown_EventScript_MoveRivalFromPink:: @ 81E7E53

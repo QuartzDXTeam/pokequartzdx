@@ -80,10 +80,10 @@ CloudBeach_MsBritneysHouse_EventScript_SailToDewford:: @ 8229E27
 	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	setvar VAR_RUSTBORO_CITY_STATE, 8
-	setvar VAR_ROUTE104_STATE, 2
+	setvar VAR_CLOUD_BEACH_STATE, 2
 	setflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
 	setflag FLAG_HIDE_CLOUD_BEACH_RIVAL
-	warp MAP_ROUTE104, 255, 13, 51
+	warp MAP_CLOUD_BEACH, 255, 13, 51
 	waitstate
 	releaseall
 	end

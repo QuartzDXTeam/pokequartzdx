@@ -394,11 +394,11 @@ AbnormalWeather_Underwater_SetupEscapeWarp:: @ 8274223
 	return
 
 AbnormalWeather_Underwater_SetupEscapeWarpBrokeSeaNorth:: @ 8274281
-	setescapewarp MAP_ROUTE105, 255, 11, 29
+	setescapewarp MAP_BROKE_SEA, 255, 11, 29
 	return
 
 AbnormalWeather_Underwater_SetupEscapeWarpBrokeSeaSouth:: @ 827428A
-	setescapewarp MAP_ROUTE105, 255, 21, 54
+	setescapewarp MAP_BROKE_SEA, 255, 21, 54
 	return
 
 AbnormalWeather_Underwater_SetupEscapeWarpRoute125West:: @ 8274293

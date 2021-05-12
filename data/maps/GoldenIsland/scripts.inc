@@ -128,11 +128,11 @@ GoldenIsland_EventScript_SailToCloudain:: @ 81E9660
 	applymovement 4, GoldenIsland_Movement_SailToCloudain
 	applymovement OBJ_EVENT_ID_PLAYER, GoldenIsland_Movement_SailToCloudain
 	waitmovement 0
-	showobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE104
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_CLOUD_BEACH
 	call Common_EventScript_StopBrineysBoatMusic
 	applymovement OBJ_EVENT_ID_PLAYER, GoldenIsland_Movement_ExitBoatCloudain
 	waitmovement 0
-	showobjectat OBJ_EVENT_ID_PLAYER, MAP_ROUTE104
+	showobjectat OBJ_EVENT_ID_PLAYER, MAP_CLOUD_BEACH
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
 	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
 	clearflag FLAG_HIDE_CLOUD_BEACH_MR_BRINEY_BOAT
@@ -140,7 +140,7 @@ GoldenIsland_EventScript_SailToCloudain:: @ 81E9660
 	hideobjectat 4, MAP_GOLDEN_ISLAND
 	setvar VAR_BOARD_BRINEY_BOAT_STATE, 2
 	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_GOLDEN_ISLAND
-	warp MAP_ROUTE104_MR_BRINEYS_HOUSE, 255, 5, 4
+	warp MAP_CLOUD_BEACH_MR_BRINEYS_HOUSE, 255, 5, 4
 	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
 	waitstate
 	release

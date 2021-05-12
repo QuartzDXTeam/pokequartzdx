@@ -1,7 +1,7 @@
 {
-  "id": "MAP_ROUTE104_PRETTY_PETAL_FLOWER_SHOP",
+  "id": "MAP_CLOUD_BEACH_PRETTY_PETAL_FLOWER_SHOP",
   "name": "CloudBeach_PrettyPetalFlowerShop",
-  "layout": "LAYOUT_ROUTE104_PRETTY_PETAL_FLOWER_SHOP",
+  "layout": "LAYOUT_CLOUD_BEACH_PRETTY_PETAL_FLOWER_SHOP",
   "music": "MUS_PETALBURG",
   "region_map_section": "MAPSEC_CLOUD_BEACH",
   "requires_flash": false,
@@ -59,14 +59,14 @@
       "x": 2,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE104",
+      "dest_map": "MAP_CLOUD_BEACH",
       "dest_warp_id": 1
     },
     {
       "x": 3,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE104",
+      "dest_map": "MAP_CLOUD_BEACH",
       "dest_warp_id": 1
     }
   ],

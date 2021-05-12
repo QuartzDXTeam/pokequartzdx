@@ -33,7 +33,7 @@ RustboroCity_OnFrame: @ 81E070B
 
 RustboroCity_EventScript_ScientistAddMatchCall:: @ 81E0715
 	lockall
-	setvar VAR_ROUTE104_STATE, 1
+	setvar VAR_CLOUD_BEACH_STATE, 1
 	applymovement OBJ_EVENT_ID_PLAYER, RustboroCity_Movement_PlayerWalkDown
 	waitmovement 0
 	playse SE_EXIT
@@ -856,7 +856,7 @@ RustboroCity_EventScript_MayEncounter:: @ 81E100B
 	delay 30
 	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 	setvar VAR_RUSTBORO_CITY_STATE, 8
-	setvar VAR_ROUTE104_STATE, 2
+	setvar VAR_CLOUD_BEACH_STATE, 2
 	setvar VAR_0x8008, 0
 	msgbox RustboroCity_Text_MayPassedBrineyWantToBattle, MSGBOX_YESNO
 	compare VAR_RESULT, YES
@@ -927,7 +927,7 @@ RustboroCity_EventScript_AkiraEncounter:: @ 81E1114
 	delay 30
 	setflag FLAG_ENABLE_RIVAL_MATCH_CALL
 	setvar VAR_RUSTBORO_CITY_STATE, 8
-	setvar VAR_ROUTE104_STATE, 2
+	setvar VAR_CLOUD_BEACH_STATE, 2
 	msgbox RustboroCity_Text_AkiraPassedBrineyWantToBattle, MSGBOX_YESNO
 	compare VAR_RESULT, YES
 	goto_if_eq RustboroCity_EventScript_BattleAkira

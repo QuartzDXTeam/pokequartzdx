@@ -1,7 +1,7 @@
 {
   "id": "MAP_CLOUD_BEACH",
   "name": "CloudBeach",
-  "layout": "LAYOUT_ROUTE104",
+  "layout": "LAYOUT_CLOUD_BEACH",
   "music": "MUS_ROUTE104",
   "region_map_section": "MAPSEC_CLOUD_BEACH",
   "requires_flash": false,
@@ -17,6 +17,11 @@
       "direction": "up",
       "offset": 0,
       "map": "MAP_RUSTBORO_CITY"
+    },
+    {
+      "direction": "down",
+      "offset": 0,
+      "map": "MAP_BROKE_SEA"
     },
     {
       "direction": "right",
@@ -470,6 +475,20 @@
   ],
   "warp_events": [
     {
+      "x": 17,
+      "y": 50,
+      "elevation": 0,
+      "dest_map": "MAP_CLOUD_BEACH_MR_BRINEYS_HOUSE",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 5,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_CLOUD_BEACH_PRETTY_PETAL_FLOWER_SHOP",
+      "dest_warp_id": 0
+    },
+    {
       "x": 33,
       "y": 27,
       "elevation": 3,
@@ -510,6 +529,13 @@
       "elevation": 3,
       "dest_map": "MAP_DARKNESS_FOREST",
       "dest_warp_id": 5
+    },
+    {
+      "x": 34,
+      "y": 28,
+      "elevation": 0,
+      "dest_map": "MAP_CLOUD_BEACH",
+      "dest_warp_id": 0
     }
   ],
   "coord_events": [
@@ -518,7 +544,7 @@
       "x": 17,
       "y": 51,
       "elevation": 3,
-      "var": "VAR_ROUTE104_STATE",
+      "var": "VAR_CLOUD_BEACH_STATE",
       "var_value": "1",
       "script": "CloudBeach_EventScript_RivalTrigger"
     }

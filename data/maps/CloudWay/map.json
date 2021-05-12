@@ -1,7 +1,7 @@
 {
-  "id": "MAP_CLOUDWAY",
+  "id": "MAP_CLOUD_WAY",
   "name": "CloudWay",
-  "layout": "LAYOUT_CLOUDWAY",
+  "layout": "LAYOUT_CLOUD_WAY",
   "music": "MUS_SCHOOL",
   "region_map_section": "MAPSEC_CLOUD_WAY",
   "requires_flash": false,
