@@ -1,5 +1,5 @@
 {
-  "id": "MAP_ROUTE104",
+  "id": "MAP_CLOUD_BEACH",
   "name": "CloudBeach",
   "layout": "LAYOUT_ROUTE104",
   "music": "MUS_ROUTE104",
@@ -17,11 +17,6 @@
       "direction": "up",
       "offset": 0,
       "map": "MAP_RUSTBORO_CITY"
-    },
-    {
-      "direction": "down",
-      "offset": 0,
-      "map": "MAP_ROUTE105"
     },
     {
       "direction": "right",
@@ -475,20 +470,6 @@
   ],
   "warp_events": [
     {
-      "x": 17,
-      "y": 50,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE104_MR_BRINEYS_HOUSE",
-      "dest_warp_id": 0
-    },
-    {
-      "x": 5,
-      "y": 18,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE104_PRETTY_PETAL_FLOWER_SHOP",
-      "dest_warp_id": 0
-    },
-    {
       "x": 33,
       "y": 27,
       "elevation": 3,
@@ -529,13 +510,6 @@
       "elevation": 3,
       "dest_map": "MAP_DARKNESS_FOREST",
       "dest_warp_id": 5
-    },
-    {
-      "x": 34,
-      "y": 28,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE104",
-      "dest_warp_id": 0
     }
   ],
   "coord_events": [
