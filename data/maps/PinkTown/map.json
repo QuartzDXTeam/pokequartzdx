@@ -2,7 +2,7 @@
   "id": "MAP_PINK_TOWN",
   "name": "PinkTown",
   "layout": "LAYOUT_PINK_TOWN",
-  "music": "MUS_PINK",
+  "music": "MUS_QDXPINK",
   "region_map_section": "MAPSEC_SLATEPORT_CITY",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
