@@ -89,7 +89,7 @@
 #define OBJ_EVENT_GFX_TEALA                       85
 #define OBJ_EVENT_GFX_BREAKABLE_ROCK              86
 #define OBJ_EVENT_GFX_PUSHABLE_BOULDER            87
-#define OBJ_EVENT_GFX_MR_BRINEYS_BOAT             88
+#define OBJ_EVENT_GFX_MS_BRITNEYS_BOAT             88
 #define OBJ_EVENT_GFX_MAY_NORMAL                  89
 #define OBJ_EVENT_GFX_MAY_MACH_BIKE               90
 #define OBJ_EVENT_GFX_MAY_ACRO_BIKE               91

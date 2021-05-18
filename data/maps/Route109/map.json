@@ -26,7 +26,7 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_MR_BRINEYS_BOAT",
+      "graphics_id": "OBJ_EVENT_GFX_MS_BRITNEYS_BOAT",
       "x": 21,
       "y": 26,
       "elevation": 1,
@@ -36,7 +36,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT"
+      "flag": "FLAG_HIDE_ROUTE_109_MS_BRITNEY_BOAT"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
@@ -49,7 +49,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route109_EventScript_MsBritney",
-      "flag": "FLAG_HIDE_ROUTE_109_MR_BRINEY"
+      "flag": "FLAG_HIDE_ROUTE_109_MS_BRITNEY"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",

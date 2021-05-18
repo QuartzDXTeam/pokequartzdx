@@ -262,7 +262,7 @@
 #define MAP_EVER_GRANDE_CITY_POKEMON_LEAGUE_2F (14 | (16 << 8))
 
 // Map Group 17
-#define MAP_CLOUD_BEACH_MR_BRINEYS_HOUSE        (0 | (17 << 8))
+#define MAP_CLOUD_BEACH_MS_BRITNEYS_HOUSE        (0 | (17 << 8))
 #define MAP_CLOUD_BEACH_PRETTY_PETAL_FLOWER_SHOP (1 | (17 << 8))
 
 // Map Group 18

@@ -4,7 +4,7 @@ CloudBeach_MapScripts:: @ 81ECC32
 	.byte 0
 
 CloudBeach_OnFrame: @ 81ECC3D
-	map_script_2 VAR_BOARD_BRINEY_BOAT_STATE, 1, CloudBeach_EventScript_StartSailToDewford
+	map_script_2 VAR_BOARD_BRITNEY_BOAT_STATE, 1, CloudBeach_EventScript_StartSailToDewford
 	.2byte 0
 
 CloudBeach_EventScript_StartSailToDewford:: @ 81ECC47
@@ -29,7 +29,7 @@ CloudBeach_EventScript_HideWhiteHerbFlorist:: @ 81ECC74
 	return
 
 CloudBeach_EventScript_TrySetRivalPos:: @ 81ECC78
-	compare VAR_BOARD_BRINEY_BOAT_STATE, 1
+	compare VAR_BOARD_BRITNEY_BOAT_STATE, 1
 	goto_if_ge CloudBeach_EventScript_DontSetRivalPos
 	goto_if_set FLAG_MET_RIVAL_RUSTBORO, CloudBeach_EventScript_DontSetRivalPos
 	goto_if_unset FLAG_REGISTER_RIVAL_POKENAV, CloudBeach_EventScript_DontSetRivalPos
@@ -406,19 +406,19 @@ CloudBeach_EventScript_ArriveInDewford:: @ 81ED139
 	setobjectxyperm 2, 12, 8
 	addobject 2
 	setobjectpriority 2, MAP_GOLDEN_ISLAND, 0
-	clearflag FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND
+	clearflag FLAG_HIDE_MS_BRITNEY_GOLDEN_ISLAND
 	applymovement 2, CloudBeach_Movement_BrineyExitBoat
 	waitmovement 0
 	addobject 4
-	clearflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
+	clearflag FLAG_HIDE_MS_BRITNEY_BOAT_GOLDEN_ISLAND
 	call Common_EventScript_StopBrineysBoatMusic
-	setflag FLAG_HIDE_CLOUD_BEACH_MR_BRINEY_BOAT
+	setflag FLAG_HIDE_CLOUD_BEACH_MS_BRITNEY_BOAT
 	hideobjectat 7, MAP_CLOUD_BEACH
-	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
+	copyvar VAR_BRITNEY_LOCATION, VAR_0x8008
 	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_CLOUD_BEACH
 	resetobjectpriority 2, MAP_GOLDEN_ISLAND
 	copyobjectxytoperm 2
-	setvar VAR_BOARD_BRINEY_BOAT_STATE, 0
+	setvar VAR_BOARD_BRITNEY_BOAT_STATE, 0
 	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, CloudBeach_EventScript_DeliverLetterReminder
 	goto_if_set FLAG_DELIVERED_STEVEN_LETTER, CloudBeach_EventScript_LandedInDewford
 	end
@@ -1016,7 +1016,7 @@ CloudBeach_EventScript_Darian:: @ 81ED5D5
 
 CloudBeach_Text_BrineyLivesInSeasideCottage: @ 81ED5EC
 	.string "That seaside cottage is where\n"
-	.string "MR. BRINEY lives.\p"
+	.string "MR. BRITNEY lives.\p"
 	.string "He was once a mighty sailor who never\n"
 	.string "feared the sea, however stormy.$"
 
@@ -1073,7 +1073,7 @@ CloudBeach_Text_FlowerShopSellingSaplings: @ 81EDA0F
 	.string "shopping. Where should I put them?$"
 
 CloudBeach_Text_MsBritneysCottage: @ 81EDA8C
-	.string "MR. BRINEY'S COTTAGE$"
+	.string "MR. BRITNEY'S COTTAGE$"
 
 CloudBeach_Text_RouteSignCloudain: @ 81EDAA1
 	.string "ROUTE 1O4\n"
@@ -1139,7 +1139,7 @@ CloudBeach_Text_MayPostBattle: @ 81EDE3E
 	.string "MAY: I can tell you've gotten pretty\n"
 	.string "good with the way you handle POKéMON.\p"
 	.string "But instead of only making them\n"
-	.string "battle, you should be like MR. BRINEY.\p"
+	.string "battle, you should be like MR. BRITNEY.\p"
 	.string "It's important to become friends with\n"
 	.string "POKéMON, too.$"
 
@@ -1184,5 +1184,5 @@ CloudBeach_Text_AkiraPostBattle: @ 81EE120
 	.string "at handling POKéMON.\p"
 	.string "But, you know, you shouldn't just be\n"
 	.string "making POKéMON battle.\p"
-	.string "Like MR. BRINEY, it's important to\n"
+	.string "Like MR. BRITNEY, it's important to\n"
 	.string "become friends with your POKéMON.$"

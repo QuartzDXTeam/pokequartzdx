@@ -1,7 +1,7 @@
 .equ LOCALID_WANDAS_BF, 1
-.set LOCALID_BRINEY, 5
+.set LOCALID_BRITNEY, 5
 .set LOCALID_GRUNT, 6
-.set LOCALID_PEEKO, 7
+.set LOCALID_BOLICHANO, 7
 .equ LOCALID_WANDA, 10
 
 RusturfTunnel_MapScripts:: @ 822CE27
@@ -20,7 +20,7 @@ RusturfTunnel_OnTransition: @ 822CE44
 	end
 
 RusturfTunnel_EventScript_SetAquaGruntAndPeekoPos:: @ 822CE50
-	setobjectxyperm LOCALID_PEEKO, 13, 4
+	setobjectxyperm LOCALID_BOLICHANO, 13, 4
 	setobjectxyperm LOCALID_GRUNT, 13, 5
 	return
 
@@ -289,10 +289,10 @@ RusturfTunnel_EventScript_AquaGruntBackUp:: @ 822D083
 	msgbox RusturfTunnel_Text_ComeAndGetSome, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_GRUNT, RusturfTunnel_Movement_GruntAndPeekoBackUp
-	applymovement LOCALID_PEEKO, RusturfTunnel_Movement_GruntAndPeekoBackUp
+	applymovement LOCALID_BOLICHANO, RusturfTunnel_Movement_GruntAndPeekoBackUp
 	waitmovement 0
 	copyobjectxytoperm LOCALID_GRUNT
-	copyobjectxytoperm LOCALID_PEEKO
+	copyobjectxytoperm LOCALID_BOLICHANO
 	setvar VAR_RUSTURF_TUNNEL_STATE, 3
 	releaseall
 	end
@@ -327,14 +327,14 @@ RusturfTunnel_EventScript_Grunt:: @ 822D0C2
 	waitmovement 0
 	removeobject LOCALID_GRUNT
 	delay 50
-	addobject LOCALID_BRINEY
-	applymovement LOCALID_BRINEY, RusturfTunnel_Movement_BrineyApproachPeeko1
+	addobject LOCALID_BRITNEY
+	applymovement LOCALID_BRITNEY, RusturfTunnel_Movement_BrineyApproachPeeko1
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, RusturfTunnel_Movement_PlayerMoveAsideForBriney
-	applymovement LOCALID_BRINEY, RusturfTunnel_Movement_BrineyApproachPeeko2
+	applymovement LOCALID_BRITNEY, RusturfTunnel_Movement_BrineyApproachPeeko2
 	waitmovement 0
 	msgbox RusturfTunnel_Text_PeekoGladToSeeYouSafe, MSGBOX_DEFAULT
-	applymovement LOCALID_BRINEY, Common_Movement_FacePlayer
+	applymovement LOCALID_BRITNEY, Common_Movement_FacePlayer
 	waitmovement 0
 	message RusturfTunnel_Text_ThankYouLetsGoHomePeeko
 	waitmessage
@@ -344,16 +344,16 @@ RusturfTunnel_EventScript_Grunt:: @ 822D0C2
 	waitmoncry
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, RusturfTunnel_Movement_PlayerWatchBrineyExit
-	applymovement LOCALID_BRINEY, RusturfTunnel_Movement_BrineyExit
-	applymovement LOCALID_PEEKO, RusturfTunnel_Movement_PeekoExit
+	applymovement LOCALID_BRITNEY, RusturfTunnel_Movement_BrineyExit
+	applymovement LOCALID_BOLICHANO, RusturfTunnel_Movement_PeekoExit
 	waitmovement 0
-	removeobject LOCALID_BRINEY
-	removeobject LOCALID_PEEKO
+	removeobject LOCALID_BRITNEY
+	removeobject LOCALID_BOLICHANO
 	clearflag FLAG_DEVON_GOODS_STOLEN
 	setflag FLAG_RECOVERED_DEVON_GOODS
 	setvar VAR_RUSTBORO_CITY_STATE, 4
-	setvar VAR_BRINEY_HOUSE_STATE, 1
-	setflag FLAG_HIDE_ROUTE_116_MR_BRINEY
+	setvar VAR_BRITNEY_HOUSE_STATE, 1
+	setflag FLAG_HIDE_ROUTE_116_MS_BRITNEY
 	release
 	end
 
@@ -440,7 +440,7 @@ RusturfTunnel_Text_ComeAndGetSome: @ 822D1C8
 	.string "Come and get some, then!$"
 
 RusturfTunnel_Text_Peeko: @ 822D1F7
-	.string "PEEKO: Pii pihyoh!$"
+	.string "BOLICHANO: Pii pihyoh!$"
 
 RusturfTunnel_Text_GruntIntro: @ 822D20A
 	.string "Grah, keelhaul it all!\p"
@@ -465,12 +465,12 @@ RusturfTunnel_Text_GruntTakePackage: @ 822D2E1
 	.string "You want it back that badly, take it!$"
 
 RusturfTunnel_Text_PeekoGladToSeeYouSafe: @ 822D395
-	.string "PEEKO!\n"
+	.string "BOLICHANO!\n"
 	.string "Am I glad to see you're safe!$"
 
 RusturfTunnel_Text_ThankYouLetsGoHomePeeko: @ 822D3BA
-	.string "PEEKO owes her life to you!\p"
-	.string "They call me MR. BRINEY.\n"
+	.string "BOLICHANO owes her life to you!\p"
+	.string "They call me MR. BRITNEY.\n"
 	.string "And, you are?\p"
 	.string "… … … … … … … …\n"
 	.string "… … … … … … … …\p"
@@ -480,9 +480,9 @@ RusturfTunnel_Text_ThankYouLetsGoHomePeeko: @ 822D3BA
 	.string "you, don't hesitate to tell me!\p"
 	.string "You can usually find me in my cottage\n"
 	.string "by the sea near CLOUDAIN WOODS.\p"
-	.string "Come, PEEKO, we should make our way\n"
+	.string "Come, BOLICHANO, we should make our way\n"
 	.string "home.\p"
-	.string "PEEKO: Pihyoh!$"
+	.string "BOLICHANO: Pihyoh!$"
 
 RusturfTunnel_Text_WhyCantTheyKeepDigging: @ 822D510
 	.string "… …\p"

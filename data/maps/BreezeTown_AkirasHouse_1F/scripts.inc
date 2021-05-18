@@ -406,7 +406,7 @@ PlayersHouse_1F_Text_TicketFromBrineyCameForYou: @ 81F800E
 	.string "But your old man hasn't given up yet!\p"
 	.string "Oh, yes, I have something for you.\n"
 	.string "This came to you from someone named\l"
-	.string "MR. BRINEY.$"
+	.string "MR. BRITNEY.$"
 
 PlayersHouse_1F_Text_PortsInSlateportLilycove: @ 81F80FE
 	.string "DAD: Hm, a TICKET for a ferry?\p"

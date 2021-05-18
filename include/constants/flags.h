@@ -164,7 +164,7 @@
 #define FLAG_RETURNED_DEVON_GOODS            0x90
 #define FLAG_CAUGHT_LUGIA                    0x91
 #define FLAG_CAUGHT_HO_OH                    0x92
-#define FLAG_MR_BRINEY_SAILING_INTRO         0x93
+#define FLAG_MS_BRITNEY_SAILING_INTRO         0x93
 #define FLAG_DOCK_REJECTED_DEVON_GOODS       0x94
 #define FLAG_DELIVERED_DEVON_GOODS           0x95
 #define FLAG_RECEIVED_CONTEST_PASS           0x96 // Unused, leftover from R/S
@@ -780,13 +780,13 @@
 #define FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_RIVAL_SIBLING      0x2DF
 #define FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_RIVAL_SIBLING          0x2E0
 #define FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_MAGMA_NOTE             0x2E1
-#define FLAG_HIDE_CLOUD_BEACH_MR_BRINEY                               0x2E2
-#define FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY                           0x2E3
-#define FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND                            0x2E4
-#define FLAG_HIDE_ROUTE_109_MR_BRINEY                               0x2E5
-#define FLAG_HIDE_CLOUD_BEACH_MR_BRINEY_BOAT                          0x2E6
-#define FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND                       0x2E7
-#define FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT                          0x2E8
+#define FLAG_HIDE_CLOUD_BEACH_MS_BRITNEY                               0x2E2
+#define FLAG_HIDE_BRITNEYS_HOUSE_MS_BRITNEY                           0x2E3
+#define FLAG_HIDE_MS_BRITNEY_GOLDEN_ISLAND                            0x2E4
+#define FLAG_HIDE_ROUTE_109_MS_BRITNEY                               0x2E5
+#define FLAG_HIDE_CLOUD_BEACH_MS_BRITNEY_BOAT                          0x2E6
+#define FLAG_HIDE_MS_BRITNEY_BOAT_GOLDEN_ISLAND                       0x2E7
+#define FLAG_HIDE_ROUTE_109_MS_BRITNEY_BOAT                          0x2E8
 #define FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_AKIRA            0x2E9
 #define FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_MAY                    0x2EA
 #define FLAG_HIDE_SAFARI_ZONE_SOUTH_EAST_EXPANSION                  0x2EB
@@ -911,7 +911,7 @@
 #define FLAG_HIDE_CLOUDAIN_GYM_WALLY                               0x362
 #define FLAG_UNKNOWN_0x363                                          0x363 // Set, however has no purpose.
 #define FLAG_HIDE_BREEZE_TOWN_FAT_MAN                               0x364
-#define FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MR_BRINEY          0x365
+#define FLAG_HIDE_SLATEPORT_CITY_STERNS_SHIPYARD_MS_BRITNEY          0x365
 #define FLAG_HIDE_LANETTES_HOUSE_LANETTE                            0x366
 #define FLAG_HIDE_FALLORBOR_POKEMON_CENTER_LANETTE                  0x367
 #define FLAG_HIDE_TRICK_HOUSE_ENTRANCE_MAN                          0x368
@@ -921,9 +921,9 @@
 #define FLAG_HIDE_ROUTE_111_DESERT_FOSSIL                           0x36C
 #define FLAG_HIDE_MT_CHIMNEY_TRAINERS                               0x36D
 #define FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT                         0x36E
-#define FLAG_HIDE_RUSTURF_TUNNEL_BRINEY                             0x36F
-#define FLAG_HIDE_RUSTURF_TUNNEL_PEEKO                              0x370
-#define FLAG_HIDE_BRINEYS_HOUSE_PEEKO                               0x371
+#define FLAG_HIDE_RUSTURF_TUNNEL_BRITNEY                             0x36F
+#define FLAG_HIDE_RUSTURF_TUNNEL_BOLICHANO                              0x370
+#define FLAG_HIDE_BRITNEYS_HOUSE_BOLICHANO                               0x371
 #define FLAG_HIDE_SLATEPORT_CITY_TEAM_AQUA                          0x372
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_AQUA_GRUNTS         0x373
 #define FLAG_HIDE_SLATEPORT_CITY_OCEANIC_MUSEUM_2F_AQUA_GRUNT_1     0x374
@@ -933,7 +933,7 @@
 #define FLAG_HIDE_BATTLE_TOWER_OPPONENT                             0x378
 #define FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_RIVAL                  0x379
 #define FLAG_HIDE_ROUTE_119_TEAM_AQUA                               0x37A
-#define FLAG_HIDE_ROUTE_116_MR_BRINEY                               0x37B
+#define FLAG_HIDE_ROUTE_116_MS_BRITNEY                               0x37B
 #define FLAG_HIDE_WEATHER_INSTITUTE_1F_WORKERS                      0x37C
 #define FLAG_HIDE_WEATHER_INSTITUTE_2F_WORKERS                      0x37D
 #define FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND                        0x37E
@@ -992,7 +992,7 @@
 #define FLAG_HIDE_ROUTE_116_DEVON_EMPLOYEE                          0x3B3
 #define FLAG_HIDE_SLATEPORT_CITY_TM_SALESMAN                        0x3B4
 #define FLAG_HIDE_RUSTBORO_CITY_DEVON_CORP_3F_EMPLOYEE              0x3B5
-#define FLAG_HIDE_SS_TIDAL_CORRIDOR_MR_BRINEY                       0x3B6
+#define FLAG_HIDE_SS_TIDAL_CORRIDOR_MS_BRITNEY                       0x3B6
 #define FLAG_HIDE_SS_TIDAL_ROOMS_SNATCH_GIVER                       0x3B7
 #define FLAG_RECEIVED_SHOAL_SALT_1                                  0x3B8
 #define FLAG_RECEIVED_SHOAL_SALT_2                                  0x3B9
@@ -1413,7 +1413,7 @@
 #define FLAG_SYS_RIBBON_GET                         (SYSTEM_FLAGS + 0x3B)
 
 #define FLAG_LANDMARK_FLOWER_SHOP                   (SYSTEM_FLAGS + 0x3C)
-#define FLAG_LANDMARK_MR_BRINEY_HOUSE               (SYSTEM_FLAGS + 0x3D)
+#define FLAG_LANDMARK_MS_BRITNEY_HOUSE               (SYSTEM_FLAGS + 0x3D)
 #define FLAG_LANDMARK_ABANDONED_SHIP                (SYSTEM_FLAGS + 0x3E)
 #define FLAG_LANDMARK_SEASHORE_HOUSE                (SYSTEM_FLAGS + 0x3F)
 #define FLAG_LANDMARK_NEW_MAUVILLE                  (SYSTEM_FLAGS + 0x40)

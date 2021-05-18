@@ -8,7 +8,7 @@ EventTicket_Text_OldSeaMapTooFar: @ 82C68A5
     .string "I'm afraid I can't help you…$"
 
 EventTicket_Text_BrineyHoldOnASecond: @ 82C6951
-    .string "BRINEY: Hold on a second!\p"
+    .string "BRITNEY: Hold on a second!\p"
     .string "What's the idea of turning down\n"
     .string "someone that I owe so much to?$"
 
@@ -32,7 +32,7 @@ EventTicket_Text_OddTicketGetOnBoard: @ 82C6A71
     .string "Get on board, youngster!$"
 
 FarawayIsland_Entrance_Text_SailorReturn: @ 82C6B42
-    .string "CAPT. BRINEY can be so maddeningly\n"
+    .string "CAPT. BRITNEY can be so maddeningly\n"
     .string "fickle…\p"
     .string "Do you want to return to LILYCOVE?$"
 

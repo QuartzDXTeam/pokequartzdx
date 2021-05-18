@@ -2337,9 +2337,9 @@ MatchCall_Text_AkiraRayquazaCall: @ 82B39C6
 
 MatchCall_Text_May1:: @ 2B3AB3
 	.string "MAY: Hi, {PLAYER}{KUN}!\p"
-	.string "MR. BRINEY retired as a SAILOR,\n"
+	.string "MR. BRITNEY retired as a SAILOR,\n"
 	.string "but I still see him out on the sea\l"
-	.string "with his pet PEEKO sometimes.\p"
+	.string "with his pet BOLICHANO sometimes.\p"
 	.string "He must love the sea still.$"
 
 MatchCall_Text_May2:: @ 2B3B3F
@@ -2462,9 +2462,9 @@ MatchCall_Text_May15:: @ 2B4350
 
 MatchCall_Text_Akira1:: @ 2B43EF
 	.string "AKIRA: Hey, {PLAYER}!\p"
-	.string "MR. BRINEY retired as a SAILOR,\n"
+	.string "MR. BRITNEY retired as a SAILOR,\n"
 	.string "but I still see him out on the sea\l"
-	.string "with his pet PEEKO sometimes.\p"
+	.string "with his pet BOLICHANO sometimes.\p"
 	.string "I guess he must love\n"
 	.string "the sea still.$"
 

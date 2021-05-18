@@ -371,11 +371,11 @@ Route116_EventScript_Johnson:: @ 81F3086
 
 Route116_Text_ScoundrelMadeOffWithPeeko: @ 81F309D
 	.string "Ohhh, what am I to do?\p"
-	.string "We were on our walk, PEEKO and I, when\n"
+	.string "We were on our walk, BOLICHANO and I, when\n"
 	.string "we were jumped by an odd thug…\p"
 	.string "The scoundrel made off with my\n"
-	.string "darling PEEKO!\p"
-	.string "Wrrrooooooaaaar! PEEKO!$"
+	.string "darling BOLICHANO!\p"
+	.string "Wrrrooooooaaaar! BOLICHANO!$"
 
 Route116_Text_WantToDigTunnel: @ 81F3140
 	.string "Nnn… Roar!\p"

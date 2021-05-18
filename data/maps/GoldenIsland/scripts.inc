@@ -12,7 +12,7 @@ GoldenIsland_EventScript_Briney:: @ 81E9511
 	goto_if_unset FLAG_DELIVERED_STEVEN_LETTER, GoldenIsland_EventScript_ReturnToCloudainPrompt
 	message GoldenIsland_Text_WhereAreWeBound
 	waitmessage
-	multichoicedefault 21, 6, MULTI_BRINEY_ON_DEWFORD, 2, 0
+	multichoicedefault 21, 6, MULTI_BRITNEY_ON_DEWFORD, 2, 0
 	switch VAR_RESULT
 	case 0, GoldenIsland_EventScript_ChooseCloudain
 	case 1, GoldenIsland_EventScript_ChooseSlateport
@@ -133,15 +133,15 @@ GoldenIsland_EventScript_SailToCloudain:: @ 81E9660
 	applymovement OBJ_EVENT_ID_PLAYER, GoldenIsland_Movement_ExitBoatCloudain
 	waitmovement 0
 	showobjectat OBJ_EVENT_ID_PLAYER, MAP_CLOUD_BEACH
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
-	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
-	clearflag FLAG_HIDE_CLOUD_BEACH_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
+	clearflag FLAG_HIDE_BRITNEYS_HOUSE_MS_BRITNEY
+	clearflag FLAG_HIDE_BRITNEYS_HOUSE_BOLICHANO
+	clearflag FLAG_HIDE_CLOUD_BEACH_MS_BRITNEY_BOAT
+	setflag FLAG_HIDE_MS_BRITNEY_BOAT_GOLDEN_ISLAND
 	hideobjectat 4, MAP_GOLDEN_ISLAND
-	setvar VAR_BOARD_BRINEY_BOAT_STATE, 2
+	setvar VAR_BOARD_BRITNEY_BOAT_STATE, 2
 	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_GOLDEN_ISLAND
-	warp MAP_CLOUD_BEACH_MR_BRINEYS_HOUSE, 255, 5, 4
-	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
+	warp MAP_CLOUD_BEACH_MS_BRITNEYS_HOUSE, 255, 5, 4
+	copyvar VAR_BRITNEY_LOCATION, VAR_0x8008
 	waitstate
 	release
 	end
@@ -169,15 +169,15 @@ GoldenIsland_EventScript_SailToSlateport:: @ 81E96E7
 	setobjectpriority 2, MAP_ROUTE109, 0
 	applymovement 2, GoldenIsland_Movement_BrineyExitBoat
 	waitmovement 0
-	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY
+	clearflag FLAG_HIDE_ROUTE_109_MS_BRITNEY
 	addobject 1
-	clearflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
-	setflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
+	clearflag FLAG_HIDE_ROUTE_109_MS_BRITNEY_BOAT
+	setflag FLAG_HIDE_MS_BRITNEY_BOAT_GOLDEN_ISLAND
 	hideobjectat 4, MAP_GOLDEN_ISLAND
 	call_if_unset FLAG_DELIVERED_DEVON_GOODS, GoldenIsland_EventScript_LandedSlateportDeliverGoods
 	call_if_set FLAG_DELIVERED_DEVON_GOODS, GoldenIsland_EventScript_LandedSlateport
 	closemessage
-	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
+	copyvar VAR_BRITNEY_LOCATION, VAR_0x8008
 	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_GOLDEN_ISLAND
 	resetobjectpriority 2, MAP_ROUTE109
 	copyobjectxytoperm 2
@@ -655,49 +655,49 @@ GoldenIsland_Text_HallSign: @ 81E9A7F
 	.string "“Everyone's information exchange!”$"
 
 CloudBeach_Text_LandedInDewfordDeliverLetter: @ 81E9AAF
-	.string "MR. BRINEY: Ahoy!\n"
+	.string "MR. BRITNEY: Ahoy!\n"
 	.string "We've hit land in DEWFORD.\p"
 	.string "I suppose you're off to deliver that\n"
 	.string "LETTER to, who was it now, STEVEN!$"
 
 GoldenIsland_Text_SetSailBackToCloudain: @ 81E9B24
-	.string "MR. BRINEY: Have you delivered your\n"
+	.string "MR. BRITNEY: Have you delivered your\n"
 	.string "LETTER?\p"
 	.string "Or were you meaning to sail back to\n"
 	.string "CLOUDAIN?$"
 
 GoldenIsland_Text_CloudainWereSettingSail2: @ 81E9B7F
-	.string "MR. BRINEY: CLOUDAIN it is, then!\p"
+	.string "MR. BRITNEY: CLOUDAIN it is, then!\p"
 	.string "Anchors aweigh!\n"
-	.string "PEEKO, we're setting sail, my darling!$"
+	.string "BOLICHANO, we're setting sail, my darling!$"
 
 GoldenIsland_Text_GoDeliverIllBeWaiting: @ 81E9BD9
-	.string "MR. BRINEY: Then you go on and deliver\n"
+	.string "MR. BRITNEY: Then you go on and deliver\n"
 	.string "the LETTER. I'll be waiting.$"
 
 GoldenIsland_Text_BrineyLandedInDewford: @ 81E9C1D
-	.string "MR. BRINEY: Ahoy!\n"
+	.string "MR. BRITNEY: Ahoy!\n"
 	.string "We've hit land in DEWFORD!\p"
 	.string "You just go on and tell me whenever\n"
 	.string "you want to set sail again!$"
 
 GoldenIsland_Text_WhereAreWeBound: @ 81E9C8A
-	.string "MR. BRINEY: Ahoy!\n"
+	.string "MR. BRITNEY: Ahoy!\n"
 	.string "For you, I'll go out to sea anytime!\p"
 	.string "Now, my friend, where are we bound?$"
 
 GoldenIsland_Text_CloudainWereSettingSail: @ 81E9CE5
-	.string "MR. BRINEY: CLOUDAIN, is it?\p"
+	.string "MR. BRITNEY: CLOUDAIN, is it?\p"
 	.string "Anchors aweigh!\n"
-	.string "PEEKO, we're setting sail, my darling!$"
+	.string "BOLICHANO, we're setting sail, my darling!$"
 
 GoldenIsland_Text_SlateportWereSettingSail: @ 81E9D3A
-	.string "MR. BRINEY: SLATEPORT, is it?\p"
+	.string "MR. BRITNEY: SLATEPORT, is it?\p"
 	.string "Anchors aweigh!\n"
-	.string "PEEKO, we're setting sail, my darling!$"
+	.string "BOLICHANO, we're setting sail, my darling!$"
 
 GoldenIsland_Text_JustTellMeWhenYouNeedToSetSail: @ 81E9D8F
-	.string "MR. BRINEY: You just tell me whenever\n"
+	.string "MR. BRITNEY: You just tell me whenever\n"
 	.string "you need to set sail again!$"
 
 GoldenIsland_Text_GettingItchToFish: @ 81E9DD1

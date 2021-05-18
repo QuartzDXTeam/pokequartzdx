@@ -321,17 +321,17 @@ SSTidalCorridor_Text_HorizonSpreadsBeyondPorthole: @ 823C6C3
 	.string "the porthole.$"
 
 SSTidalCorridor_Text_BrineyWelcomeAboard: @ 823C6EC
-	.string "MR. BRINEY: Welcome aboard, {PLAYER}{KUN}!\p"
+	.string "MR. BRITNEY: Welcome aboard, {PLAYER}{KUN}!\p"
 	.string "They made me honorary captain of\n"
 	.string "the S.S. TIDAL!\p"
-	.string "You can call me CAPTAIN BRINEY now!\p"
+	.string "You can call me CAPTAIN BRITNEY now!\p"
 	.string "You know, I retired once before,\n"
 	.string "but when I saw this majestic ship…\p"
 	.string "Let me just say, it stirred my sleeping\n"
 	.string "soul as a sailor!$"
 
 SSTidalCorridor_Text_Peeko: @ 823C7E1
-	.string "PEEKO: Pihyo pihyohyo…$"
+	.string "BOLICHANO: Pihyo pihyohyo…$"
 
 SSTidalCorridor_Text_Cabin1: @ 823C7F8
 	.string "Cabin 1$"

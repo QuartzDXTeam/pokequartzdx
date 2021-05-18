@@ -8,15 +8,15 @@
     "connections": null,
     "coord_events": [
     ],
-    "id": "MAP_CLOUD_BEACH_MR_BRINEYS_HOUSE",
-    "layout": "LAYOUT_CLOUD_BEACH_MR_BRINEYS_HOUSE",
+    "id": "MAP_CLOUD_BEACH_MS_BRITNEYS_HOUSE",
+    "layout": "LAYOUT_CLOUD_BEACH_MS_BRITNEYS_HOUSE",
     "map_type": "MAP_TYPE_INDOOR",
     "music": "MUS_PETALBURG",
     "name": "CloudBeach_MsBritneysHouse",
     "object_events": [
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY",
+            "flag": "FLAG_HIDE_BRITNEYS_HOUSE_MS_BRITNEY",
             "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
             "movement_range_x": 3,
             "movement_range_y": 3,
@@ -29,7 +29,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_BRINEYS_HOUSE_PEEKO",
+            "flag": "FLAG_HIDE_BRITNEYS_HOUSE_BOLICHANO",
             "graphics_id": "OBJ_EVENT_GFX_WINGULL",
             "movement_range_x": 3,
             "movement_range_y": 3,

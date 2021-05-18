@@ -307,11 +307,11 @@ RustboroCity_EventScript_StolenGoodsScene:: @ 81E09CD
 	setvar VAR_RUSTBORO_CITY_STATE, 2
 	setvar VAR_RUSTURF_TUNNEL_STATE, 2
 	setvar VAR_ROUTE116_STATE, 1
-	clearflag FLAG_HIDE_ROUTE_116_MR_BRINEY
-	clearflag FLAG_HIDE_RUSTURF_TUNNEL_PEEKO
+	clearflag FLAG_HIDE_ROUTE_116_MS_BRITNEY
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_BOLICHANO
 	clearflag FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT
-	setflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
-	setflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	setflag FLAG_HIDE_BRITNEYS_HOUSE_MS_BRITNEY
+	setflag FLAG_HIDE_BRITNEYS_HOUSE_BOLICHANO
 	releaseall
 	end
 
@@ -1074,18 +1074,18 @@ RustboroCity_Text_GymLeaderIsntEasyWithFire: @ 81E1480
 	.string "well against ROCK-type POKéMON…$"
 
 RustboroCity_Text_MsBritneyWalksInTheTunnel: @ 81E1520
-	.string "The old sailor MR. BRINEY lives in\n"
+	.string "The old sailor MR. BRITNEY lives in\n"
 	.string "a cottage by the sea.\p"
 	.string "He goes for walks in the tunnel every\n"
 	.string "so often.$"
 
 RustboroCity_Text_MsBritneyLovesPeeko: @ 81E1589
-	.string "The old sailor MR. BRINEY lives in\n"
+	.string "The old sailor MR. BRITNEY lives in\n"
 	.string "a cottage by the sea.\p"
 	.string "He said he was going shopping in\n"
-	.string "SLATEPORT for his pet, PEEKO.\p"
+	.string "SLATEPORT for his pet, BOLICHANO.\p"
 	.string "That old sea dog, he must really love\n"
-	.string "that PEEKO.$"
+	.string "that BOLICHANO.$"
 
 RustboroCity_Text_WowYouHavePokemon: @ 81E1633
 	.string "Wow, you have POKéMON with you, too.\p"
@@ -1164,7 +1164,7 @@ RustboroCity_Text_RegisteredMay: @ 81E1ADB
 
 RustboroCity_Text_MayPassedBrineyWantToBattle: @ 81E1AFA
 	.string "MAY: Oh, by the way, I passed\n"
-	.string "MR. BRINEY in CLOUDAIN WOODS.\p"
+	.string "MR. BRITNEY in CLOUDAIN WOODS.\p"
 	.string "I guess he's on his way home to his\n"
 	.string "cottage by the sea.\p"
 	.string "How's your POKéDEX coming along,\n"
@@ -1191,10 +1191,10 @@ RustboroCity_Text_MayDefeat: @ 81E1CC1
 	.string "You're better than I expected!$"
 
 RustboroCity_Text_MayMsBritneyHint: @ 81E1CE7
-	.string "MAY: Oh, by the way, MR. BRINEY, who\n"
+	.string "MAY: Oh, by the way, MR. BRITNEY, who\n"
 	.string "I just passed…\p"
 	.string "{PLAYER}{KUN}, you just moved here so you\n"
-	.string "might not know this, but MR. BRINEY\l"
+	.string "might not know this, but MR. BRITNEY\l"
 	.string "was once a revered seafarer.$"
 
 RustboroCity_Text_AkiraHiLetsRegister: @ 81E1D7D
@@ -1211,7 +1211,7 @@ RustboroCity_Text_RegisteredAkira: @ 81E1E11
 
 RustboroCity_Text_AkiraPassedBrineyWantToBattle: @ 81E1E34
 	.string "AKIRA: By the way, {PLAYER}, I walked\n"
-	.string "by MR. BRINEY in CLOUDAIN WOODS.\p"
+	.string "by MR. BRITNEY in CLOUDAIN WOODS.\p"
 	.string "I bet he was on his way home to his\n"
 	.string "cottage by the sea.\p"
 	.string "{PLAYER}, how's your POKéDEX?\n"
@@ -1238,10 +1238,10 @@ RustboroCity_Text_AkiraDefeat: @ 81E1FE9
 
 RustboroCity_Text_AkiraMsBritneyHint: @ 81E2002
 	.string "AKIRA: By the way, you know\n"
-	.string "MR. BRINEY? The guy I just passed?\p"
+	.string "MR. BRITNEY? The guy I just passed?\p"
 	.string "I bet you didn't know this, since you\n"
 	.string "just moved here, {PLAYER}, but\l"
-	.string "MR. BRINEY was once a great sailor.$"
+	.string "MR. BRITNEY was once a great sailor.$"
 
 RustboroCity_Text_TunnelNearingCompletion: @ 81E20A6
 	.string "“Timesaving tunnel nearing\n"

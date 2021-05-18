@@ -44,18 +44,18 @@ Route109_EventScript_DoSailToDewford:: @ 81EE7D5
 	applymovement OBJ_EVENT_ID_PLAYER, Route109_Movement_PlayerExitBoat
 	waitmovement 0
 	addobject 4
-	clearflag FLAG_HIDE_MR_BRINEY_BOAT_GOLDEN_ISLAND
+	clearflag FLAG_HIDE_MS_BRITNEY_BOAT_GOLDEN_ISLAND
 	setobjectxyperm 2, 12, 8
 	addobject 2
 	setobjectpriority 2, MAP_GOLDEN_ISLAND, 0
 	applymovement 2, Route109_Movement_BrineyExitBoat
 	waitmovement 0
-	clearflag FLAG_HIDE_MR_BRINEY_GOLDEN_ISLAND
-	setflag FLAG_HIDE_ROUTE_109_MR_BRINEY_BOAT
+	clearflag FLAG_HIDE_MS_BRITNEY_GOLDEN_ISLAND
+	setflag FLAG_HIDE_ROUTE_109_MS_BRITNEY_BOAT
 	hideobjectat 1, MAP_ROUTE109
 	msgbox GoldenIsland_Text_BrineyLandedInDewford, MSGBOX_DEFAULT
 	closemessage
-	copyvar VAR_BRINEY_LOCATION, VAR_0x8008
+	copyvar VAR_BRITNEY_LOCATION, VAR_0x8008
 	resetobjectpriority OBJ_EVENT_ID_PLAYER, MAP_ROUTE109
 	resetobjectpriority 2, MAP_GOLDEN_ISLAND
 	copyobjectxytoperm 2
@@ -287,7 +287,7 @@ Route109_EventScript_HaveNotDeliveredDevonGood:: @ 81EE921
 Route109_EventScript_DeliveredDevonGoods:: @ 81EE93F
 	message Route109_Text_BrineyWhereAreWeBound
 	waitmessage
-	multichoicedefault 21, 8, MULTI_BRINEY_OFF_DEWFORD, 1, 0
+	multichoicedefault 21, 8, MULTI_BRITNEY_OFF_DEWFORD, 1, 0
 	switch VAR_RESULT
 	case 0, Route109_EventScript_SailToDewford
 	case 1, Route109_EventScript_ChoseNotToSail
@@ -478,39 +478,39 @@ Route109_EventScript_Elijah:: @ 81EEC06
 	end
 
 GoldenIsland_Text_BrineyLandedInSlateportDeliverGoods: @ 81EEC1D
-	.string "MR. BRINEY: Ahoy!\n"
+	.string "MR. BRITNEY: Ahoy!\n"
 	.string "We've made land in SLATEPORT!\p"
 	.string "I suppose you're going to visit CAPT.\n"
 	.string "STERN and deliver the DEVON GOODS?$"
 
 Route109_Text_BrineySailToDewfordQuestion: @ 81EEC96
-	.string "MR. BRINEY: I thought you're supposed\n"
+	.string "MR. BRITNEY: I thought you're supposed\n"
 	.string "to deliver the DEVON GOODS.\p"
 	.string "Would you like to sail back to\n"
 	.string "DEWFORD, then?$"
 
 Route109_Text_BrineyDewfordItIs: @ 81EED06
-	.string "MR. BRINEY: DEWFORD it is, then!\p"
+	.string "MR. BRITNEY: DEWFORD it is, then!\p"
 	.string "Anchors aweigh!\n"
-	.string "PEEKO, we're setting sail, my darling!$"
+	.string "BOLICHANO, we're setting sail, my darling!$"
 
 Route109_Text_BrineyDeliverDevonGoods: @ 81EED5E
-	.string "MR. BRINEY: Then you go on and deliver\n"
+	.string "MR. BRITNEY: Then you go on and deliver\n"
 	.string "the DEVON GOODS. I'll be waiting.$"
 
 GoldenIsland_Text_BrineyLandedInSlateport: @ 81EEDA7
-	.string "MR. BRINEY: Ahoy! We've made land in\n"
+	.string "MR. BRITNEY: Ahoy! We've made land in\n"
 	.string "SLATEPORT!\p"
 	.string "You just go on and tell me whenever\n"
 	.string "you want to set sail again!$"
 
 Route109_Text_BrineyWhereAreWeBound: @ 81EEE17
-	.string "MR. BRINEY: Ahoy!\n"
+	.string "MR. BRITNEY: Ahoy!\n"
 	.string "For you, I'll go out to sea anytime!\p"
 	.string "Now, my friend, where are we bound?$"
 
 Route109_Text_BrineyTellMeWhenYouNeedToSail: @ 81EEE72
-	.string "MR. BRINEY: You just tell me whenever\n"
+	.string "MR. BRITNEY: You just tell me whenever\n"
 	.string "you need to set sail again!$"
 
 Route109_Text_ChillAtMyPapasSpot: @ 81EEEB4
