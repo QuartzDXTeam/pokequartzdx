@@ -107,7 +107,7 @@
       "width": 32,
       "height": 24,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cloudain",
+      "secondary_tileset": "gTileset_Pink",
       "border_filepath": "data/layouts/PinkTown/border.bin",
       "blockdata_filepath": "data/layouts/PinkTown/map.bin"
     },
@@ -167,7 +167,7 @@
       "width": 38,
       "height": 30,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cloudain",
+      "secondary_tileset": "gTileset_Pink",
       "border_filepath": "data/layouts/BreezeWay/border.bin",
       "blockdata_filepath": "data/layouts/BreezeWay/map.bin"
     },
@@ -177,7 +177,7 @@
       "width": 50,
       "height": 24,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cloudain",
+      "secondary_tileset": "gTileset_Pink",
       "border_filepath": "data/layouts/CloudWay/border.bin",
       "blockdata_filepath": "data/layouts/CloudWay/map.bin"
     },
@@ -187,7 +187,7 @@
       "width": 80,
       "height": 26,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cloudain",
+      "secondary_tileset": "gTileset_Pink",
       "border_filepath": "data/layouts/RockCanyon/border.bin",
       "blockdata_filepath": "data/layouts/RockCanyon/map.bin"
     },

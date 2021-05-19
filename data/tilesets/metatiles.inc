@@ -565,3 +565,10 @@ gMetatiles_OilPlatform::
 	.align 1
 gMetatileAttributes_OilPlatform::
 	.incbin "data/tilesets/secondary/oilplatform/metatile_attributes.bin"
+	.align 1
+gMetatiles_Pink::
+	.incbin "data/tilesets/secondary/pink/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Pink::
+	.incbin "data/tilesets/secondary/pink/metatile_attributes.bin"

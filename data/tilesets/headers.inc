@@ -841,3 +841,14 @@ gTileset_OilPlatform::
 	.4byte gMetatiles_OilPlatform
 	.4byte gMetatileAttributes_OilPlatform
 	.4byte NULL
+
+	.align 2
+gTileset_Pink::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_Pink
+	.4byte gTilesetPalettes_Pink
+	.4byte gMetatiles_Pink
+	.4byte gMetatileAttributes_Pink
+	.4byte NULL
