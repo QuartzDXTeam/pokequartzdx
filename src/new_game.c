@@ -126,7 +126,10 @@ static void ClearFrontierRecord(void)
 
 static void WarpToTruck(void)
 {
-    SetWarpDestination(MAP_GROUP(BREEZE_TOWN_AKIRAS_HOUSE_2F), MAP_NUM(BREEZE_TOWN_AKIRAS_HOUSE_2F), -1, -1, -1);
+    if (gSaveBlock2Ptr->playerGender == MALE)
+        SetWarpDestination(MAP_GROUP(BREEZE_TOWN_AKIRAS_HOUSE_2F), MAP_NUM(BREEZE_TOWN_AKIRAS_HOUSE_2F), -1, 1, 5); // replace with male warp and coords
+    else
+        SetWarpDestination(MAP_GROUP(BREEZE_TOWN_MAYS_HOUSE_2F), MAP_NUM(BREEZE_TOWN_MAYS_HOUSE_2F), -1, 7, 4); // replace with female warp and coords
     WarpIntoMap();
 }
 
