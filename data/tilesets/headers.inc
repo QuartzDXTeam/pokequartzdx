@@ -852,3 +852,14 @@ gTileset_Pink::
 	.4byte gMetatiles_Pink
 	.4byte gMetatileAttributes_Pink
 	.4byte NULL
+
+	.align 2
+gTileset_Breeze::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_Breeze
+	.4byte gTilesetPalettes_Breeze
+	.4byte gMetatiles_Breeze
+	.4byte gMetatileAttributes_Breeze
+	.4byte NULL

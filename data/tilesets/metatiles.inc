@@ -572,3 +572,10 @@ gMetatiles_Pink::
 	.align 1
 gMetatileAttributes_Pink::
 	.incbin "data/tilesets/secondary/pink/metatile_attributes.bin"
+	.align 1
+gMetatiles_Breeze::
+	.incbin "data/tilesets/secondary/breeze/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Breeze::
+	.incbin "data/tilesets/secondary/breeze/metatile_attributes.bin"

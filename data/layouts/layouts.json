@@ -97,7 +97,7 @@
       "width": 38,
       "height": 22,
       "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Cloudain",
+      "secondary_tileset": "gTileset_Breeze",
       "border_filepath": "data/layouts/BreezeTown/border.bin",
       "blockdata_filepath": "data/layouts/BreezeTown/map.bin"
     },

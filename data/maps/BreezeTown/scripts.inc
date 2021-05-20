@@ -268,13 +268,13 @@ BreezeTown_EventScript_Twin:: @ 81E8034
 	goto_if_set FLAG_RESCUED_BARO, BreezeTown_EventScript_YouSavedBaro
 	compare VAR_BREEZE_TOWN_STATE, 0
 	goto_if_ne BreezeTown_EventScript_GoSaveBaro
-	msgbox BreezeTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT
+	msgbox BreezeTown_Text_SeverAreMad, MSGBOX_DEFAULT
 	release
 	end
 
 BreezeTown_EventScript_GoSaveBaro:: @ 81E805D
 	special GetPlayerBigGuyGirlString
-	msgbox BreezeTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT
+	msgbox BreezeTown_Text_GoAndHelp, MSGBOX_DEFAULT
 	closemessage
 	applymovement 1, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -304,12 +304,12 @@ BreezeTown_EventScript_NeedPokemonTriggerLeft:: @ 81E8091
 	end
 
 BreezeTown_EventScript_DangerousWithoutPokemon:: @ 81E80AD
-	msgbox BreezeTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT
+	msgbox BreezeTown_Text_SeverAreMad, MSGBOX_DEFAULT
 	closemessage
 	applymovement 1, BreezeTown_Movement_TwinPushPlayerFromRoute
 	applymovement OBJ_EVENT_ID_PLAYER, BreezeTown_Movement_PushPlayerBackFromRoute
 	waitmovement 0
-	msgbox BreezeTown_Text_DangerousIfYouDontHavePokemon, MSGBOX_DEFAULT
+	msgbox BreezeTown_Text_BaroHadAnotherAccident, MSGBOX_DEFAULT
 	closemessage
 	return
 
@@ -392,7 +392,7 @@ BreezeTown_EventScript_GoSaveBaroTrigger:: @ 81E811F
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	special GetPlayerBigGuyGirlString
-	msgbox BreezeTown_Text_CanYouGoSeeWhatsHappening, MSGBOX_DEFAULT
+	msgbox BreezeTown_Text_GoAndHelp, MSGBOX_DEFAULT
 	closemessage
 	applymovement 1, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -1015,38 +1015,36 @@ BreezeTown_Text_BaroSpendsDaysInLab: @ 81E8B25
 	.string "When does PROF. BARO spend time\n"
 	.string "at home?$"
 
-BreezeTown_Text_IfYouGoInGrassPokemonWillJumpOut: @ 81E8BB8
-	.string "Um, um, um!\p"
-	.string "If you go outside and go in the grass,\n"
-	.string "wild POKéMON will jump out!$"
+BreezeTown_Text_SeverAreMad: @ 81E8BB8
+	.string "Hey, you!\p"
+	.string "You shouldn't go out in Breeze Way,\n"
+	.string "the Sever are mad today!$"
 
-BreezeTown_Text_DangerousIfYouDontHavePokemon: @ 81E8C07
-	.string "It's dangerous if you don't have\n"
-	.string "your own POKéMON.$"
+BreezeTown_Text_BaroHadAnotherAccident: @ 81E8C07
+	.string "Mr. Baro had another accident with\n"
+	.string "the Sever today.$"
 
-BreezeTown_Text_CanYouGoSeeWhatsHappening: @ 81E8C3A
-	.string "Um, hi!\p"
-	.string "There are scary POKéMON outside!\n"
-	.string "I can hear their cries!\p"
-	.string "I want to go see what's going on,\n"
-	.string "but I don't have any POKéMON…\p"
-	.string "Can you go see what's happening\n"
-	.string "for me?$"
+BreezeTown_Text_GoAndHelp: @ 81E8C3A
+	.string "Baro scared off a lot of Sever…\p"
+	.string "What should I do now? Should we\n"
+	.string "go over there and check?\p"
+	.string "Wahh, go and help Prof. Baro, please!$"
 
 BreezeTown_Text_YouSavedBaro: @ 81E8CE3
-	.string "You saved PROF. BARO!\n"
-	.string "I'm so glad!$"
+	.string "Oh! Thank you for saving Prof. Baro!\n"
+	.string "That was great!$"
 
 BreezeTown_Text_GoodLuckCatchingPokemon: @ 81E8D07
 	.string "Are you going to catch POKéMON?\n"
 	.string "Good luck!$"
 
 BreezeTown_Text_TownSign: @ 81E8D32
-	.string "BREEZE TOWN\n"
-	.string "“A town that can't be shaded any hue.”$"
+	.string "Breeze Town\n"
+	.string "“Where the breeze gives life and prosperity.”$"
 
 BreezeTown_Text_ProfBarosLab: @ 81E8D69
-	.string "Prof. Baro's Pokémon Lab$"
+	.string "Prof. Baro's Lab\n"
+	.string "“¡Pasa, hombre!”$"
 
 BreezeTown_Text_PlayersHouse: @ 81E8D83
 	.string "{PLAYER}'s House$"

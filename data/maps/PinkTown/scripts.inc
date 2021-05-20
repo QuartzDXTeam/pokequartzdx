@@ -192,7 +192,7 @@ PinkTown_EventScript_FootprintsMan:: @ 81E901F
 	lock
 	faceplayer
 	goto_if_set FLAG_ADVENTURE_STARTED, PinkTown_EventScript_NotBlockingPath
-	msgbox PinkTown_Text_DiscoveredFootprints, MSGBOX_DEFAULT
+	msgbox PinkTown_Text_BandofDelinquents, MSGBOX_DEFAULT
 	closemessage
 	applymovement 3, Common_Movement_FaceOriginalDirection
 	waitmovement 0
@@ -204,7 +204,7 @@ PinkTown_EventScript_BlockedPath:: @ 81E903F
 	applymovement OBJ_EVENT_ID_PLAYER, PinkTown_Movement_PlayerStepBack
 	applymovement 3, PinkTown_Movement_BackUp
 	waitmovement 0
-	msgbox PinkTown_Text_WaitDontComeInHere, MSGBOX_DEFAULT
+	msgbox PinkTown_Text_StopRightThere, MSGBOX_DEFAULT
 	closemessage
 	applymovement 3, PinkTown_Movement_ReturnToOriginalPosition
 	waitmovement 0
@@ -212,7 +212,7 @@ PinkTown_EventScript_BlockedPath:: @ 81E903F
 	end
 
 PinkTown_EventScript_NotBlockingPath:: @ 81E9066
-	msgbox PinkTown_Text_FinishedSketchingFootprints, MSGBOX_DEFAULT
+	msgbox PinkTown_Text_DidntCatchCriminals, MSGBOX_DEFAULT
 	release
 	end
 
@@ -263,7 +263,7 @@ PinkTown_EventScript_ShowRivalMessage:: @ 81E90E6
 	end
 
 PinkTown_EventScript_ShowMayMessage:: @ 81E90FE
-	msgbox PinkTown_Text_MayLetsGoBack, MSGBOX_DEFAULT
+	msgbox PinkTown_Text_RanLetsGoBack, MSGBOX_DEFAULT
 	goto PinkTown_EventScript_RivalFinish
 	end
 
@@ -367,27 +367,27 @@ PinkTown_Text_PotionExplanation: @ 81E92AF
 	.string "most items won't heal Pokemon up fully…\l"
 	.string "That's why Centers are really helpful!$"
 
-PinkTown_Text_WaitDontComeInHere: @ 81E9313
-	.string "Aaaaah! Wait!\n"
-	.string "Please don't come in here.\p"
-	.string "I just discovered the footprints of\n"
-	.string "a rare POKéMON!\p"
-	.string "Wait until I finish sketching\n"
-	.string "them, okay?$"
+PinkTown_Text_StopRightThere: @ 81E9313
+	.string "STOP RIGHT THERE!\p"
+	.string "Jenny: You can't go to Cloud Way right now!\n"
+	.string "We're looking for any leads on a band of\l"
+	.string "delinquents sighted nearby.\p"
+	.string "Please wait until we've finished\n"
+	.string "our investigation.$"
 
-PinkTown_Text_DiscoveredFootprints: @ 81E939A
-	.string "I just discovered the footprints of\n"
-	.string "a rare POKéMON!\p"
-	.string "Wait until I finish sketching\n"
-	.string "them, okay?$"
+PinkTown_Text_BandofDelinquents: @ 81E939A
+	.string "Jenny: Sorry kid!\n"
+	.string "We can't allow anyone in Cloud Way yet.\p"
+	.string "We're looking for a band of delinquents\n"
+	.string "that's been making wild Sever act wildly.$"
 
-PinkTown_Text_FinishedSketchingFootprints: @ 81E93F8
-	.string "I finished sketching the footprints of\n"
-	.string "a rare POKéMON.\p"
-	.string "But it turns out they were only my\n"
-	.string "own footprints…$"
+PinkTown_Text_DidntCatchCriminals: @ 81E93F8
+	.string "Jenny: We didn't catch those criminals\n"
+	.string "this time…\p"
+	.string "But we've doubled security in Breeze Way\n"
+	.string "to keep the Sever from acting up!$"
 
-PinkTown_Text_MayLetsGoBack: @ 81E9462
+PinkTown_Text_RanLetsGoBack: @ 81E9462
 	.string "Ran: {PLAYER}! There you are!\p"
 	.string "Let's head back to Baro's,\n"
 	.string "I want to see what he wants!$"
@@ -397,7 +397,7 @@ PinkTown_Text_AkiraLetsGoBack: @ 81E948A
 	.string "I'm headin' off to Baro's now,\n"
 	.string "you wanna come with?$"
 
-PinkTown_Text_CitySign: @ 81E94DA
-	.string "PINK TOWN\n"
-	.string "“Where things start off scarce.”$"
+PinkTown_Text_CitySign:
+	.string "Pink Town\n"
+	.string "“A quiet town far from loud noise.”$"
 
