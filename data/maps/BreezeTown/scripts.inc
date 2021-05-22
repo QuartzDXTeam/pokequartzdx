@@ -1,5 +1,5 @@
 BreezeTown_MapScripts:: @ 81E7DCB
-	map_script MAP_SCRIPT_ON_TRANSITION, BreezeTown_OnTransition
+	map_script MAP_SCRIPT_ON_LOAD, BreezeTown_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, BreezeTown_OnFrame
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, BreezeTown_OnWarp
 	.byte 0
@@ -122,9 +122,6 @@ BreezeTown_EventScript_StepOffTruckMale:: @ 81E7EDB
 	lockall
 	setvar VAR_0x8004, 5
 	setvar VAR_0x8005, 8
-	call BreezeTown_EventScript_GoInsideWithMom
-	setflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_TRUCK
-	warpsilent MAP_BREEZE_TOWN_AKIRAS_HOUSE_1F, 255, 8, 8
 	waitstate
 	releaseall
 	end
@@ -133,46 +130,9 @@ BreezeTown_EventScript_StepOffTruckFemale:: @ 81E7EF9
 	lockall
 	setvar VAR_0x8004, 14
 	setvar VAR_0x8005, 8
-	call BreezeTown_EventScript_GoInsideWithMom
-	setflag FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_TRUCK
-	warpsilent MAP_BREEZE_TOWN_MAYS_HOUSE_1F, 255, 2, 8
 	waitstate
 	releaseall
 	end
-
-BreezeTown_EventScript_GoInsideWithMom:: @ 81E7F17
-	delay 15
-	playse SE_LEDGE
-	applymovement OBJ_EVENT_ID_PLAYER, BreezeTown_Movement_PlayerStepOffTruck
-	waitmovement 0
-	opendoor VAR_0x8004, VAR_0x8005
-	waitdooranim
-	addobject 4
-	applymovement 4, BreezeTown_Movement_MomExitHouse
-	waitmovement 0
-	closedoor VAR_0x8004, VAR_0x8005
-	waitdooranim
-	delay 10
-	applymovement 4, BreezeTown_Movement_MomApproachPlayerAtTruck
-	waitmovement 0
-	msgbox BreezeTown_Text_OurNewHomeLetsGoInside, MSGBOX_DEFAULT
-	closemessage
-	applymovement 4, BreezeTown_Movement_MomApproachDoor
-	applymovement OBJ_EVENT_ID_PLAYER, BreezeTown_Movement_PlayerApproachDoor
-	waitmovement 0
-	opendoor VAR_0x8004, VAR_0x8005
-	waitdooranim
-	applymovement 4, BreezeTown_Movement_MomEnterHouse
-	applymovement OBJ_EVENT_ID_PLAYER, BreezeTown_Movement_PlayerEnterHouse
-	waitmovement 0
-	setflag FLAG_HIDE_BREEZE_TOWN_MOM_OUTSIDE
-	setvar VAR_BREEZE_INTRO_STATE, 3
-	hideobjectat OBJ_EVENT_ID_PLAYER, 0
-	closedoor VAR_0x8004, VAR_0x8005
-	waitdooranim
-	clearflag FLAG_HIDE_BREEZE_TOWN_FAT_MAN
-	clearflag FLAG_HIDE_MAP_NAME_POPUP
-	return
 
 BreezeTown_Movement_MomExitHouse: @ 81E7F98
 	walk_down

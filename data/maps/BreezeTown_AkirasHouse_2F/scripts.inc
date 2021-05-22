@@ -14,6 +14,36 @@ BreezeTown_AkirasHouse_2F_OnTransition: @ 81F83EE
 	setvar VAR_SECRET_BASE_INITIALIZED, 0
 	end
 
+PlayersHouse_2F_EventScript_SetGender::
+	checkplayergender
+	compare VAR_RESULT, MALE
+	goto_if_eq PlayersHouse_2F_EventScript_SetIntroFlagsMale
+	compare VAR_RESULT, FEMALE
+	goto_if_eq PlayersHouse_2F_EventScript_SetIntroFlagsFemale
+	end
+
+PlayersHouse_2F_EventScript_SetIntroFlagsMale:: @ 823BF20
+	setrespawn HEAL_LOCATION_BREEZE_TOWN_AKIRAS_HOUSE_2F
+	setvar VAR_BREEZE_INTRO_STATE, 1
+	setflag FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_MOM
+	setflag FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_TRUCK
+	setflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_RIVAL_MOM
+	setflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_RIVAL_SIBLING
+	setvar VAR_BREEZE_HOUSES_STATE_AKIRA, 1
+	releaseall
+	end
+
+PlayersHouse_2F_EventScript_SetIntroFlagsFemale:: @ 823BF46
+	setrespawn HEAL_LOCATION_BREEZE_TOWN_MAYS_HOUSE_2F
+	setvar VAR_BREEZE_INTRO_STATE, 2
+	setflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_MOM
+	setflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_TRUCK
+	setflag FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_RIVAL_MOM
+	setflag FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_RIVAL_SIBLING
+	setvar VAR_BREEZE_HOUSES_STATE_MAY, 1
+	releaseall
+	end
+
 BreezeTown_AkirasHouse_2F_EventScript_CheckShouldUpdateAkiraPos:: @ 81F841A
 	goto_if_set FLAG_MET_RIVAL_LILYCOVE, BreezeTown_AkirasHouse_2F_EventScript_TryUpdateAkiraPos
 	compare VAR_BARO_LAB_STATE, 2

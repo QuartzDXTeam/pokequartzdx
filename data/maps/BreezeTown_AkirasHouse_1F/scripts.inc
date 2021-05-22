@@ -56,7 +56,7 @@ BreezeTown_AkirasHouse_1F_OnFrame: @ 81F77EA
 	map_script_2 VAR_BREEZE_INTRO_STATE, 5, BreezeTown_AkirasHouse_1F_EventScript_GoUpstairsToSetClock
 	map_script_2 VAR_BREEZE_INTRO_STATE, 6, BreezeTown_AkirasHouse_1F_EventScript_CloudainGymReport
 	map_script_2 VAR_BREEZE_HOUSES_STATE_MAY, 1, BreezeTown_AkirasHouse_1F_EventScript_YoureNewNeighbor
-	map_script_2 VAR_BREEZE_HOUSES_STATE_MAY, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
+	map_script_2 VAR_BREEZE_HOUSES_STATE_AKIRA, 3, PlayersHouse_1F_EventScript_GetSSTicketAndSeeLatiTV
 	.2byte 0
 
 BreezeTown_AkirasHouse_1F_EventScript_GoUpstairsToSetClock:: @ 81F7814
