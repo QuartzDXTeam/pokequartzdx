@@ -113,65 +113,8 @@ BreezeTown_EventScript_SetMomInFrontOfDoorFemale:: @ 81E7EB9
 	return
 
 BreezeTown_OnFrame: @ 81E7EC1
-	map_script_2 VAR_BREEZE_INTRO_STATE, 1, BreezeTown_EventScript_StepOffTruckMale
-	map_script_2 VAR_BREEZE_INTRO_STATE, 2, BreezeTown_EventScript_StepOffTruckFemale
 	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, BreezeTown_EventScript_BeginDexUpgradeScene
 	.2byte 0
-
-BreezeTown_EventScript_StepOffTruckMale:: @ 81E7EDB
-	lockall
-	setvar VAR_0x8004, 5
-	setvar VAR_0x8005, 8
-	waitstate
-	releaseall
-	end
-
-BreezeTown_EventScript_StepOffTruckFemale:: @ 81E7EF9
-	lockall
-	setvar VAR_0x8004, 14
-	setvar VAR_0x8005, 8
-	waitstate
-	releaseall
-	end
-
-BreezeTown_Movement_MomExitHouse: @ 81E7F98
-	walk_down
-	step_end
-
-BreezeTown_Movement_MomApproachPlayerAtTruck: @ 81E7F9A
-	walk_down
-	walk_in_place_fastest_left
-	step_end
-
-BreezeTown_Movement_MomApproachDoor: @ 81E7F9D
-	delay_16
-	delay_8
-	walk_up
-	step_end
-
-BreezeTown_Movement_MomEnterHouse: @ 81E7FA1
-	walk_up
-	set_invisible
-	step_end
-
-BreezeTown_Movement_PlayerApproachDoor: @ 81E7FA4
-	delay_16
-	delay_8
-	walk_right
-	walk_in_place_fastest_up
-	step_end
-
-BreezeTown_Movement_PlayerEnterHouse: @ 81E7FA9
-	walk_up
-	walk_up
-	step_end
-
-BreezeTown_Movement_PlayerStepOffTruck: @ 81E7FAC
-	jump_right
-	delay_16
-	delay_16
-	delay_16
-	step_end
 
 BreezeTown_EventScript_BeginDexUpgradeScene:: @ 81E7FB1
 	lockall

@@ -30,6 +30,7 @@ PlayersHouse_2F_EventScript_SetIntroFlagsMale:: @ 823BF20
 	setflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_RIVAL_MOM
 	setflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_RIVAL_SIBLING
 	setvar VAR_BREEZE_HOUSES_STATE_AKIRA, 1
+	setflag FLAG_SET_GENDER
 	releaseall
 	end
 
@@ -41,6 +42,7 @@ PlayersHouse_2F_EventScript_SetIntroFlagsFemale:: @ 823BF46
 	setflag FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_RIVAL_MOM
 	setflag FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_RIVAL_SIBLING
 	setvar VAR_BREEZE_HOUSES_STATE_MAY, 1
+	setflag FLAG_SET_GENDER
 	releaseall
 	end
 
@@ -306,10 +308,6 @@ BreezeTown_AkirasHouse_2F_EventScript_CheckRivalsPC:: @ 81F864C
 	releaseall
 	end
 
-PlayersHouse_2F_EventScript_Notebook:: @ 81F8656
-	msgbox PlayersHouse_2F_Text_Notebook, MSGBOX_SIGN
-	end
-
 PlayersHouse_2F_EventScript_GameCube:: @ 81F865F
 	msgbox PlayersHouse_2F_Text_ItsAGameCube, MSGBOX_SIGN
 	end
@@ -327,14 +325,6 @@ PlayersHouse_2F_Text_HowDoYouLikeYourRoom: @ 81F869A
 	.string "POKéMON movers are so convenient!\p"
 	.string "Oh, you should make sure that\n"
 	.string "everything's all there on your desk.$"
-
-PlayersHouse_2F_Text_Notebook: @ 81F877F
-	.string "{PLAYER} flipped open the notebook.\p"
-	.string "ADVENTURE RULE NO. 1\n"
-	.string "Open the MENU with START.\p"
-	.string "ADVENTURE RULE NO. 2\n"
-	.string "Record your progress with SAVE.\p"
-	.string "The remaining pages are blank…$"
 
 Common_Text_LookCloserAtMap: @ 81F8820
 	.string "{PLAYER} took a closer look at the\n"

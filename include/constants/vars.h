@@ -96,14 +96,14 @@
 #define VAR_POKELOT_PRIZE_PLACE              0x404D
 #define VAR_REPEL_LAST_USED                  0x404E
 #define VAR_LOTAD_SIZE_RECORD                0x404F
-#define VAR_BREEZE_TOWN_STATE            0x4050
-#define VAR_PINK_TOWN_STATE                0x4051
-#define VAR_GOLDEN_ISLAND_STATE               0x4052 // Unused Var
+#define VAR_BREEZE_TOWN_STATE                0x4050
+#define VAR_PINK_TOWN_STATE                  0x4051
+#define VAR_GOLDEN_ISLAND_STATE              0x4052 // Unused Var
 #define VAR_LAVARIDGE_TOWN_STATE             0x4053
 #define VAR_CURRENT_SECRET_BASE              0x4054 // was probably allocated for VAR_FALLARBOR_TOWN_STATE at one point
 #define VAR_VERDANTURF_TOWN_STATE            0x4055 // Unused Var
 #define VAR_PACIFIDLOG_TOWN_STATE            0x4056 // Unused Var
-#define VAR_CLOUDAIN_CITY_STATE             0x4057
+#define VAR_CLOUDAIN_CITY_STATE              0x4057
 #define VAR_SLATEPORT_CITY_STATE             0x4058
 #define VAR_MAUVILLE_CITY_STATE              0x4059 // Unused Var
 #define VAR_RUSTBORO_CITY_STATE              0x405A
@@ -112,11 +112,11 @@
 #define VAR_MOSSDEEP_CITY_STATE              0x405D
 #define VAR_SOOTOPOLIS_CITY_STATE            0x405E
 #define VAR_EVER_GRANDE_CITY_STATE           0x405F // Unused Var
-#define VAR_BREEZE_WAY_STATE                   0x4060
-#define VAR_CLOUD_WAY_STATE                   0x4061 // Unused Var
-#define VAR_ROCK_CANYON_STATE                   0x4062 // Unused Var
-#define VAR_CLOUD_BEACH_STATE                   0x4063
-#define VAR_BROKE_SEA_STATE                   0x4064 // Unused Var
+#define VAR_BREEZE_WAY_STATE                 0x4060
+#define VAR_CLOUD_WAY_STATE                  0x4061 // Unused Var
+#define VAR_ROCK_CANYON_STATE                0x4062 // Unused Var
+#define VAR_CLOUD_BEACH_STATE                0x4063
+#define VAR_BROKE_SEA_STATE                  0x4064 // Unused Var
 #define VAR_ROUTE106_STATE                   0x4065 // Unused Var
 #define VAR_ROUTE107_STATE                   0x4066 // Unused Var
 #define VAR_ROUTE108_STATE                   0x4067 // Unused Var
@@ -146,27 +146,27 @@
 #define VAR_ROUTE132_STATE                   0x407F // Unused Var
 #define VAR_ROUTE133_STATE                   0x4080 // Unused Var
 #define VAR_ROUTE134_STATE                   0x4081 // Unused Var
-#define VAR_BREEZE_HOUSES_STATE_MAY      0x4082
+#define VAR_BREEZE_HOUSES_STATE_MAY          0x4082
 #define VAR_UNUSED_0x4083                    0x4083 // Unused Var
-#define VAR_BARO_LAB_STATE                  0x4084
-#define VAR_CLOUDAIN_GYM_STATE              0x4085 // 0-1: Wally tutorial, 2-6: 0-4 badges, 7: Defeated Norman, 8: Rematch Norman
+#define VAR_BARO_LAB_STATE                   0x4084
+#define VAR_CLOUDAIN_GYM_STATE               0x4085 // 0-1: Wally tutorial, 2-6: 0-4 badges, 7: Defeated Norman, 8: Rematch Norman
 #define VAR_CONTEST_HALL_STATE               0x4086
 #define VAR_CABLE_CLUB_STATE                 0x4087
 #define VAR_CONTEST_TYPE                     0x4088
 #define VAR_SECRET_BASE_INITIALIZED          0x4089
 #define VAR_CONTEST_PRIZE_PICKUP             0x408A
 #define VAR_UNUSED_0x408B                    0x408B // Unused Var
-#define VAR_BREEZE_HOUSES_STATE_AKIRA  0x408C
-#define VAR_BREEZE_RIVAL_STATE           0x408D
-#define VAR_BOARD_BRITNEY_BOAT_STATE          0x408E
+#define VAR_BREEZE_HOUSES_STATE_AKIRA        0x408C
+#define VAR_BREEZE_RIVAL_STATE               0x408D
+#define VAR_BOARD_BRITNEY_BOAT_STATE         0x408E
 #define VAR_DEVON_CORP_3F_STATE              0x408F
-#define VAR_BRITNEY_HOUSE_STATE               0x4090
+#define VAR_BRITNEY_HOUSE_STATE              0x4090
 #define VAR_UNUSED_0x4091                    0x4091 // Unused Var
-#define VAR_BREEZE_INTRO_STATE           0x4092
+#define VAR_BREEZE_INTRO_STATE               0x4092
 #define VAR_MAUVILLE_GYM_STATE               0x4093
 #define VAR_LILYCOVE_MUSEUM_2F_STATE         0x4094
 #define VAR_LILYCOVE_FAN_CLUB_STATE          0x4095
-#define VAR_BRITNEY_LOCATION                  0x4096
+#define VAR_BRITNEY_LOCATION                 0x4096
 #define VAR_INIT_SECRET_BASE                 0x4097
 #define VAR_DARKNESS_FOREST_STATE            0x4098
 #define VAR_LILYCOVE_CONTEST_LOBBY_STATE     0x4099
@@ -215,9 +215,9 @@
 #define VAR_FOSSIL_RESURRECTION_STATE        0x40C4
 #define VAR_WHICH_FOSSIL_REVIVED             0x40C5
 #define VAR_STEVENS_HOUSE_STATE              0x40C6
-#define VAR_PINK_RIVAL_STATE               0x40C7
+#define VAR_PINK_RIVAL_STATE                 0x40C7
 #define VAR_JAGGED_PASS_STATE                0x40C8
-#define VAR_SCOTT_CLOUDAIN_ENCOUNTER        0x40C9
+#define VAR_SCOTT_CLOUDAIN_ENCOUNTER         0x40C9
 #define VAR_SKY_PILLAR_STATE                 0x40CA
 #define VAR_MIRAGE_TOWER_STATE               0x40CB
 #define VAR_FOSSIL_MANIAC_STATE              0x40CC
@@ -260,7 +260,7 @@
 #define VAR_DAILY_BP                         0x40F1
 #define VAR_WALLY_CALL_STEP_COUNTER          0x40F2
 #define VAR_SCOTT_FORTREE_CALL_STEP_COUNTER  0x40F3
-#define VAR_BETTI_CALL_STEP_COUNTER        0x40F4
+#define VAR_BETTI_CALL_STEP_COUNTER          0x40F4
 #define VAR_SCOTT_BF_CALL_STEP_COUNTER       0x40F5
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER 0x40F6
 #define VAR_UNUSED_0x40F7                    0x40F7 // Unused Var
