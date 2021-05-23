@@ -251,7 +251,7 @@ BattleFrontier_ExchangeServiceCorner_EventScript_CharizardDoll:: @ 825F459
 	compare VAR_RESULT, NO
 	goto_if_eq BattleFrontier_ExchangeServiceCorner_EventScript_ChooseDecor2
 	setvar VAR_0x8008, 256
-	setvar VAR_0x8009, DECOR_CHARIZARD_DOLL
+	setvar VAR_0x8009, DECOR_ROELLAMA_DOLL
 	goto BattleFrontier_ExchangeServiceCorner_EventScript_TryPurchasePrize
 	end
 

@@ -550,8 +550,8 @@ const u16 DecorGfx_SWABLU_DOLL[] = {
     OBJ_EVENT_GFX_SWABLU_DOLL
 };
 
-const u16 DecorGfx_GULPIN_DOLL[] = {
-    OBJ_EVENT_GFX_GULPIN_DOLL
+const u16 DecorGfx_PLUGOINK_DOLL[] = {
+    OBJ_EVENT_GFX_PLUGOINK_DOLL
 };
 
 const u16 DecorGfx_LOTAD_DOLL[] = {
@@ -618,8 +618,8 @@ const u16 DecorGfx_VENUSAUR_DOLL[] = {
     OBJ_EVENT_GFX_BIG_VENUSAUR_DOLL
 };
 
-const u16 DecorGfx_CHARIZARD_DOLL[] = {
-    OBJ_EVENT_GFX_BIG_CHARIZARD_DOLL
+const u16 DecorGfx_ROELLAMA_DOLL[] = {
+    OBJ_EVENT_GFX_ROELLAMA_DOLL
 };
 
 const u16 DecorGfx_BLASTOISE_DOLL[] = {

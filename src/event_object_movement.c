@@ -427,8 +427,8 @@ const u8 gInitialMovementTypeFacingDirections[] = {
     [MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_RIGHT] = DIR_EAST,
 };
 
-#define OBJ_EVENT_PAL_TAG_AKIRA                 0x1100
-#define OBJ_EVENT_PAL_TAG_AKIRA_REFLECTION      0x1101
+#define OBJ_EVENT_PAL_TAG_AKIRA                   0x1100
+#define OBJ_EVENT_PAL_TAG_AKIRA_REFLECTION        0x1101
 #define OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION       0x1102
 #define OBJ_EVENT_PAL_TAG_NPC_1                   0x1103
 #define OBJ_EVENT_PAL_TAG_NPC_2                   0x1104
@@ -461,8 +461,9 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_BIRTH_ISLAND_STONE      0x111F
 #define OBJ_EVENT_PAL_TAG_HO_OH                   0x1120
 #define OBJ_EVENT_PAL_TAG_LUGIA                   0x1121
-#define OBJ_EVENT_PAL_TAG_RS_AKIRA              0x1122
+#define OBJ_EVENT_PAL_TAG_RS_AKIRA                0x1122
 #define OBJ_EVENT_PAL_TAG_RS_MAY                  0x1123
+#define OBJ_EVENT_PAL_TAG_ROELLAMA                0x1124
 #define OBJ_EVENT_PAL_TAG_NONE                    0x11FF
 
 #include "data/object_events/object_event_graphics_info_pointers.h"
@@ -482,8 +483,8 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Npc2Reflection,        OBJ_EVENT_PAL_TAG_NPC_2_REFLECTION},
     {gObjectEventPal_Npc3Reflection,        OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION},
     {gObjectEventPal_Npc4Reflection,        OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION},
-    {gObjectEventPal_Akira,               OBJ_EVENT_PAL_TAG_AKIRA},
-    {gObjectEventPal_AkiraReflection,     OBJ_EVENT_PAL_TAG_AKIRA_REFLECTION},
+    {gObjectEventPal_Akira,               	OBJ_EVENT_PAL_TAG_AKIRA},
+    {gObjectEventPal_AkiraReflection,       OBJ_EVENT_PAL_TAG_AKIRA_REFLECTION},
     {gObjectEventPal_BridgeReflection,      OBJ_EVENT_PAL_TAG_BRIDGE_REFLECTION},
     {gObjectEventPal_PlayerUnderwater,      OBJ_EVENT_PAL_TAG_PLAYER_UNDERWATER},
     {gObjectEventPal_QuintyPlump,           OBJ_EVENT_PAL_TAG_QUINTY_PLUMP},
@@ -507,8 +508,9 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_BirthIslandStone,      OBJ_EVENT_PAL_TAG_BIRTH_ISLAND_STONE},
     {gObjectEventPal_HoOh,                  OBJ_EVENT_PAL_TAG_HO_OH},
     {gObjectEventPal_Lugia,                 OBJ_EVENT_PAL_TAG_LUGIA},
-    {gObjectEventPal_RubySapphireAkira,   OBJ_EVENT_PAL_TAG_RS_AKIRA},
+    {gObjectEventPal_RubySapphireAkira,     OBJ_EVENT_PAL_TAG_RS_AKIRA},
     {gObjectEventPal_RubySapphireMay,       OBJ_EVENT_PAL_TAG_RS_MAY},
+	{gObjectEventPal_Roellama,				OBJ_EVENT_PAL_TAG_ROELLAMA},
     {NULL,                                  0x0000},
 };
 
@@ -618,7 +620,7 @@ static const u16 sReflectionPaletteTags_RedLeaf[] = {
 };
 
 static const struct PairedPalettes sSpecialObjectReflectionPaletteSets[] = {
-    {OBJ_EVENT_PAL_TAG_AKIRA,          sReflectionPaletteTags_Akira},
+    {OBJ_EVENT_PAL_TAG_AKIRA,      	     sReflectionPaletteTags_Akira},
     {OBJ_EVENT_PAL_TAG_MAY,              sReflectionPaletteTags_May},
     {OBJ_EVENT_PAL_TAG_QUINTY_PLUMP,     sReflectionPaletteTags_QuintyPlump},
     {OBJ_EVENT_PAL_TAG_TRUCK,            sReflectionPaletteTags_Truck},
@@ -645,6 +647,7 @@ static const u16 sObjectPaletteTags0[] = {
     OBJ_EVENT_PAL_TAG_NPC_2_REFLECTION,
     OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION,
     OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION,
+	OBJ_EVENT_PAL_TAG_ROELLAMA,
 };
 
 static const u16 sObjectPaletteTags1[] = {
@@ -658,6 +661,7 @@ static const u16 sObjectPaletteTags1[] = {
     OBJ_EVENT_PAL_TAG_NPC_2_REFLECTION,
     OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION,
     OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION,
+	OBJ_EVENT_PAL_TAG_ROELLAMA,
 };
 
 static const u16 sObjectPaletteTags2[] = {
@@ -671,6 +675,7 @@ static const u16 sObjectPaletteTags2[] = {
     OBJ_EVENT_PAL_TAG_NPC_2_REFLECTION,
     OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION,
     OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION,
+	OBJ_EVENT_PAL_TAG_ROELLAMA,
 };
 
 static const u16 sObjectPaletteTags3[] = {
@@ -684,6 +689,7 @@ static const u16 sObjectPaletteTags3[] = {
     OBJ_EVENT_PAL_TAG_NPC_2_REFLECTION,
     OBJ_EVENT_PAL_TAG_NPC_3_REFLECTION,
     OBJ_EVENT_PAL_TAG_NPC_4_REFLECTION,
+	OBJ_EVENT_PAL_TAG_ROELLAMA,
 };
 
 static const u16 *const sObjectPaletteTagSets[] = {

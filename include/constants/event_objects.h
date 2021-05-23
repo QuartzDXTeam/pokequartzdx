@@ -165,7 +165,7 @@
 #define OBJ_EVENT_GFX_AZURILL_DOLL               161
 #define OBJ_EVENT_GFX_SKITTY_DOLL                162
 #define OBJ_EVENT_GFX_SWABLU_DOLL                163
-#define OBJ_EVENT_GFX_GULPIN_DOLL                164
+#define OBJ_EVENT_GFX_PLUGOINK_DOLL                164
 #define OBJ_EVENT_GFX_LOTAD_DOLL                 165
 #define OBJ_EVENT_GFX_SEEDOT_DOLL                166
 #define OBJ_EVENT_GFX_PIKA_CUSHION               167
@@ -182,7 +182,7 @@
 #define OBJ_EVENT_GFX_BIG_RHYDON_DOLL            178
 #define OBJ_EVENT_GFX_BIG_LAPRAS_DOLL            179
 #define OBJ_EVENT_GFX_BIG_VENUSAUR_DOLL          180
-#define OBJ_EVENT_GFX_BIG_CHARIZARD_DOLL         181
+#define OBJ_EVENT_GFX_ROELLAMA_DOLL         181
 #define OBJ_EVENT_GFX_BIG_BLASTOISE_DOLL         182
 #define OBJ_EVENT_GFX_BIG_WAILMER_DOLL           183
 #define OBJ_EVENT_GFX_BIG_REGIROCK_DOLL          184

@@ -1176,16 +1176,16 @@ const struct Decoration gDecorations[] =
         .tiles = DecorGfx_SWABLU_DOLL,
     },
 
-    [DECOR_GULPIN_DOLL] =
+    [DECOR_PLUGOINK_DOLL] =
     {
-        .id = DECOR_GULPIN_DOLL,
-        .name = _("GULPIN DOLL"),
+        .id = DECOR_PLUGOINK_DOLL,
+        .name = _("Plug-Oink Doll"),
         .permission = DECORPERM_SPRITE,
         .shape = DECORSHAPE_1x1,
         .category = DECORCAT_DOLL,
         .price = 3000,
-        .description = DecorDesc_GULPIN_DOLL,
-        .tiles = DecorGfx_GULPIN_DOLL,
+        .description = DecorDesc_PLUGOINK_DOLL,
+        .tiles = DecorGfx_PLUGOINK_DOLL,
     },
 
     [DECOR_LOTAD_DOLL] =
@@ -1380,16 +1380,16 @@ const struct Decoration gDecorations[] =
         .tiles = DecorGfx_VENUSAUR_DOLL,
     },
 
-    [DECOR_CHARIZARD_DOLL] =
+    [DECOR_ROELLAMA_DOLL] =
     {
-        .id = DECOR_CHARIZARD_DOLL,
-        .name = _("CHARIZARD DOLL"),
+        .id = DECOR_ROELLAMA_DOLL,
+        .name = _("Roellama Doll"),
         .permission = DECORPERM_SPRITE,
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_DOLL,
         .price = 10000,
-        .description = DecorDesc_CHARIZARD_DOLL,
-        .tiles = DecorGfx_CHARIZARD_DOLL,
+        .description = DecorDesc_ROELLAMA_DOLL,
+        .tiles = DecorGfx_ROELLAMA_DOLL,
     },
 
     [DECOR_BLASTOISE_DOLL] =
