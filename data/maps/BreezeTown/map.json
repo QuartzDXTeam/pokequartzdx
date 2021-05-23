@@ -44,7 +44,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BreezeTown_EventScript_FatMan",
-      "flag": "FLAG_HIDE_BREEZE_TOWN_FAT_MAN"
+      "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BOY_2",
@@ -74,7 +74,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_VAR_0",
-      "x": 18,
+      "x": 17,
       "y": 9,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
@@ -134,7 +134,7 @@
     },
     {
       "type": "trigger",
-      "x": 19,
+      "x": 20,
       "y": 0,
       "elevation": 3,
       "var": "VAR_BREEZE_TOWN_STATE",
@@ -203,12 +203,57 @@
       "var": "VAR_BREEZE_TOWN_STATE",
       "var_value": "3",
       "script": "BreezeTown_EventScript_GiveRunningShoesTrigger1"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 0,
+      "elevation": 3,
+      "var": "VAR_BREEZE_TOWN_STATE",
+      "var_value": "0",
+      "script": "BreezeTown_EventScript_NeedPokemonTriggerLeft"
+    },
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 0,
+      "elevation": 3,
+      "var": "VAR_BREEZE_TOWN_STATE",
+      "var_value": "0",
+      "script": "BreezeTown_EventScript_NeedPokemonTriggerRight"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 0,
+      "elevation": 3,
+      "var": "VAR_BREEZE_TOWN_STATE",
+      "var_value": "1",
+      "script": "BreezeTown_EventScript_GoSaveBaroTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 0,
+      "elevation": 3,
+      "var": "VAR_BREEZE_TOWN_STATE",
+      "var_value": "1",
+      "script": "BreezeTown_EventScript_GoSaveBaroTrigger"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 0,
+      "elevation": 3,
+      "var": "VAR_BREEZE_TOWN_STATE",
+      "var_value": "1",
+      "script": "BreezeTown_EventScript_GoSaveBaroTrigger"
     }
   ],
   "bg_events": [
     {
       "type": "sign",
-      "x": 21,
+      "x": 23,
       "y": 4,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",

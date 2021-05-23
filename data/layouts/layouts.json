@@ -544,7 +544,7 @@
     {
       "id": "LAYOUT_BREEZE_TOWN_AKIRAS_HOUSE_2F",
       "name": "BreezeTown_AkirasHouse_2F_Layout",
-      "width": 9,
+      "width": 10,
       "height": 8,
       "primary_tileset": "gTileset_Building",
       "secondary_tileset": "gTileset_AkirasMaysHouse",
