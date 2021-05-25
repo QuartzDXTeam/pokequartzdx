@@ -266,7 +266,7 @@
 #define FLAG_USED_ROOM_4_KEY                 0xF2
 #define FLAG_USED_ROOM_6_KEY                 0xF3
 #define FLAG_MET_PROF_COZMO                  0xF4
-#define FLAG_RECEIVED_WAILMER_DOLL           0xF5
+#define FLAG_RECEIVED_COLOSSIO_DOLL           0xF5
 #define FLAG_RECEIVED_CHESTO_BERRY_CLOUD_BEACH 0xF6
 #define FLAG_DEFEATED_SS_TIDAL_TRAINERS      0xF7
 #define FLAG_RECEIVED_SPELON_BERRY           0xF8

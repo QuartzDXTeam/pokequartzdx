@@ -350,7 +350,7 @@ PinkTown_Text_ItsFourAMIFeelNothingButMurder: @ 81E918E
 	.string "is la vie en rose!$"
 
 PinkTown_Text_KnowWhatCenterIs: @ 81E91C0
-	.string "Heya!\n"
+	.string "Hey!\n"
 	.string "You're a trainer, right?\p"
 	.string "You know what Pokémon Centers are?$"
 
@@ -389,7 +389,7 @@ PinkTown_Text_DidntCatchCriminals: @ 81E93F8
 
 PinkTown_Text_RanLetsGoBack: @ 81E9462
 	.string "Ran: {PLAYER}! There you are!\p"
-	.string "Let's head back to Baro's,\n"
+	.string "Let's head back to Baro's lab,\n"
 	.string "I want to see what he wants!$"
 
 PinkTown_Text_AkiraLetsGoBack: @ 81E948A

@@ -626,8 +626,8 @@ const u16 DecorGfx_BLASTOISE_DOLL[] = {
     OBJ_EVENT_GFX_BIG_BLASTOISE_DOLL
 };
 
-const u16 DecorGfx_WAILMER_DOLL[] = {
-    OBJ_EVENT_GFX_BIG_WAILMER_DOLL
+const u16 DecorGfx_COLOSSIO_DOLL[] = {
+    OBJ_EVENT_GFX_COLOSSIO_DOLL
 };
 
 const u16 DecorGfx_REGIROCK_DOLL[] = {

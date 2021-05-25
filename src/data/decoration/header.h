@@ -1404,16 +1404,16 @@ const struct Decoration gDecorations[] =
         .tiles = DecorGfx_BLASTOISE_DOLL,
     },
 
-    [DECOR_WAILMER_DOLL] =
+    [DECOR_COLOSSIO_DOLL] =
     {
-        .id = DECOR_WAILMER_DOLL,
+        .id = DECOR_COLOSSIO_DOLL,
         .name = _("Colossio Doll"),
         .permission = DECORPERM_SPRITE,
         .shape = DECORSHAPE_1x2,
         .category = DECORCAT_DOLL,
         .price = 10000,
-        .description = DecorDesc_WAILMER_DOLL,
-        .tiles = DecorGfx_WAILMER_DOLL,
+        .description = DecorDesc_COLOSSIO_DOLL,
+        .tiles = DecorGfx_COLOSSIO_DOLL,
     },
 
     [DECOR_REGIROCK_DOLL] =
