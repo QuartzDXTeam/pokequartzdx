@@ -238,7 +238,7 @@
       "x": 2,
       "y": 4,
       "elevation": 0,
-      "var": "VAR_BREEZE_INTRO_STATE",
+      "var": "VAR_LITTLEROOT_INTRO_STATE",
       "var_value": "0",
       "script": "PlayersHouse_2F_EventScript_SetGender"
     },
@@ -247,7 +247,7 @@
       "x": 2,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_BREEZE_INTRO_STATE",
+      "var": "VAR_LITTLEROOT_INTRO_STATE",
       "var_value": "0",
       "script": "PlayersHouse_2F_EventScript_SetGender"
     },
@@ -256,7 +256,7 @@
       "x": 0,
       "y": 4,
       "elevation": 0,
-      "var": "VAR_BREEZE_INTRO_STATE",
+      "var": "VAR_LITTLEROOT_INTRO_STATE",
       "var_value": "0",
       "script": "PlayersHouse_2F_EventScript_SetGender"
     },
@@ -265,7 +265,7 @@
       "x": 0,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_BREEZE_INTRO_STATE",
+      "var": "VAR_LITTLEROOT_INTRO_STATE",
       "var_value": "0",
       "script": "PlayersHouse_2F_EventScript_SetGender"
     }

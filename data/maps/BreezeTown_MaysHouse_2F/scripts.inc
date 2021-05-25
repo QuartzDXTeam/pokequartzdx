@@ -8,7 +8,7 @@ BreezeTown_MaysHouse_2F_OnTransition: @ 81F92A1
 	call_if_lt BreezeTown_MaysHouse_2F_EventScript_CheckSetReadyToMeetMay
 	compare VAR_BREEZE_RIVAL_STATE, 3
 	call_if_ge BreezeTown_MaysHouse_2F_EventScript_CheckShouldUpdateMayPos
-	compare VAR_BREEZE_INTRO_STATE, 4
+	compare VAR_LITTLEROOT_INTRO_STATE, 4
 	call_if_eq PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet
 	call SecretBase_EventScript_SetDecorationFlags
 	setvar VAR_SECRET_BASE_INITIALIZED, 0

@@ -8,7 +8,7 @@ BreezeTown_AkirasHouse_2F_OnTransition: @ 81F83EE
 	call_if_lt BreezeTown_AkirasHouse_2F_EventScript_CheckSetReadyToMeetAkira
 	compare VAR_BREEZE_RIVAL_STATE, 3
 	call_if_ge BreezeTown_AkirasHouse_2F_EventScript_CheckShouldUpdateAkiraPos
-	compare VAR_BREEZE_INTRO_STATE, 4
+	compare VAR_LITTLEROOT_INTRO_STATE, 4
 	call_if_eq PlayersHouse_2F_EventScript_BlockStairsUntilClockIsSet
 	call SecretBase_EventScript_SetDecorationFlags
 	setvar VAR_SECRET_BASE_INITIALIZED, 0
@@ -24,7 +24,7 @@ PlayersHouse_2F_EventScript_SetGender::
 
 PlayersHouse_2F_EventScript_SetIntroFlagsMale:: @ 823BF20
 	setrespawn HEAL_LOCATION_BREEZE_TOWN_AKIRAS_HOUSE_2F
-	setvar VAR_BREEZE_INTRO_STATE, 1
+	setvar VAR_LITTLEROOT_INTRO_STATE, 1
 	setflag FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_MOM
 	setflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_RIVAL_MOM
 	setflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_RIVAL_SIBLING
@@ -35,7 +35,7 @@ PlayersHouse_2F_EventScript_SetIntroFlagsMale:: @ 823BF20
 
 PlayersHouse_2F_EventScript_SetIntroFlagsFemale:: @ 823BF46
 	setrespawn HEAL_LOCATION_BREEZE_TOWN_MAYS_HOUSE_2F
-	setvar VAR_BREEZE_INTRO_STATE, 2
+	setvar VAR_LITTLEROOT_INTRO_STATE, 2
 	setflag FLAG_HIDE_BREEZE_TOWN_AKIRAS_HOUSE_MOM
 	setflag FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_RIVAL_MOM
 	setflag FLAG_HIDE_BREEZE_TOWN_MAYS_HOUSE_RIVAL_SIBLING

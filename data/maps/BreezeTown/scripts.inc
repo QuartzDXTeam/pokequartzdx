@@ -10,7 +10,7 @@ BreezeTown_MapScripts:: @ 81E7DCB
 	@ 3: Received Pokedex
 	@ 4: Received Running Shoes
 
-	@ State descriptions for VAR_BREEZE_INTRO_STATE
+	@ State descriptions for VAR_LITTLEROOT_INTRO_STATE
 	@ 1: In truck male
 	@ 2: In truck female
 	@ 3: Entered house
@@ -37,7 +37,7 @@ BreezeTown_MapScripts:: @ 81E7DCB
 BreezeTown_OnTransition: @ 81E7DDB
 	setflag FLAG_VISITED_BREEZE_TOWN
 	call Common_EventScript_SetupRivalGfxId
-	compare VAR_BREEZE_INTRO_STATE, 2
+	compare VAR_LITTLEROOT_INTRO_STATE, 2
 	call_if_eq BreezeTown_EventScript_MoveMomToMaysDoor
 	call_if_unset FLAG_RESCUED_BARO, BreezeTown_EventScript_SetTwinPos
 	compare VAR_BREEZE_TOWN_STATE, 3

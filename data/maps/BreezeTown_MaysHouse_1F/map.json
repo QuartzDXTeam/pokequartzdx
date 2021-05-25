@@ -135,7 +135,7 @@
       "x": 2,
       "y": 8,
       "elevation": 0,
-      "var": "VAR_BREEZE_INTRO_STATE",
+      "var": "VAR_LITTLEROOT_INTRO_STATE",
       "var_value": "4",
       "script": "BreezeTown_MaysHouse_1F_EventScript_GoSeeRoom"
     },
