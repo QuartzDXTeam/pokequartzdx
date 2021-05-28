@@ -167,46 +167,46 @@ const u8 gSandshrewPokedexText[] = _(
 	"This leaves behind a distinct trail.");
 
 const u8 gSandslashPokedexText[] = _(
-    "Groundoe wears Blackglasses to protect\n"
+    "Groundoe wears BlackGlasses to protect\n"
 	"its eyes and to make it look cooler.\n"
 	"Its nose is powerful enough to smell food\n"
 	"from any chamber in its tunnels.");
 
 const u8 gNidoranFPokedexText[] = _(
-    "Its highly toxic barbs are thought to have\n"
-    "developed as protection for this small-\n"
-    "bodied POKéMON. When enraged, it releases\n"
-    "a horrible toxin from its horn.");
+	"Urtiga's porous skin secretes a powerful\n"
+	"toxin when touched. The poisons can easily\n"
+	"be absorbed into the body, so it's best to\n"
+	"only handle this Pokémon with gloves.");
 
 const u8 gNidorinaPokedexText[] = _(
-    "When it is with its friends or\n"
-    "family, its barbs are tucked away to\n"
-    "prevent injury. It appears to become\n"
-    "nervous if separated from the others.");
+    "Urtigere and Urtigoro are notable for\n"
+	"being extremely similar. The absence of\n"
+	"male Urtigere and female Urtigoro has led\n"
+	"any to believe they are the same species.");
 
 const u8 gNidoqueenPokedexText[] = _(
-    "It is adept at sending foes flying with\n"
-    "harsh tackles using its tough, scaly body.\n"
-    "This POKéMON is at its strongest when\n"
-    "it is defending its young.");
+    "Despite its metallic texture, its tough\n"
+	"skin has millions of pores that constantly\n"
+	"secrete toxins. It has an awkward gait due\n"
+	"to its small feet and lack of legs.");
 
 const u8 gNidoranMPokedexText[] = _(
-    "The male NIDORAN has developed muscles\n"
-    "that freely move its ears in any direction.\n"
-    "Even the slightest sound does not escape\n"
-    "this POKéMON's notice.");
+    "While Urtiga and Urtigo are treated as the\n"
+	"same Pokémon by biologists, trainers raise\n"
+	"them differently due to their temperament\n"
+	"and differences in fighting capabilities.");
 
 const u8 gNidorinoPokedexText[] = _(
-    "Its horn is harder than a diamond.\n"
-    "If it senses a hostile presence, all the\n"
-    "barbs on its back bristle up at once, and it\n"
-    "challenges the foe with all its might.");
+    "Urtigoro's toxins are only slightly less\n"
+	"potent than an Urtigere's, but researchers\n"
+	"are unsure why. It makes up for this by\n"
+	"being significantly more aggressive.");
 
 const u8 gNidokingPokedexText[] = _(
-    "A NIDOKING's thick tail packs enormously\n"
-    "destructive power capable of toppling\n"
-    "a metal transmission tower. Once it goes\n"
-    "on a rampage, there is no stopping it.");
+    "Its body is constantly producing poison,\n"
+	"to the point that it sometimes overflows\n"
+	"from its body through sits body fluids\n"
+	"and pollutes the land around it.");
 
 const u8 gClefairyPokedexText[] = _(
     "On every night of a full moon, they come\n"
