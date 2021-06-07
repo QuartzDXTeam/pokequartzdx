@@ -579,3 +579,10 @@ gMetatiles_Breeze::
 	.align 1
 gMetatileAttributes_Breeze::
 	.incbin "data/tilesets/secondary/breeze/metatile_attributes.bin"
+	.align 1
+gMetatiles_DarknessForest::
+	.incbin "data/tilesets/secondary/darknessforest/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_DarknessForest::
+	.incbin "data/tilesets/secondary/darknessforest/metatile_attributes.bin"

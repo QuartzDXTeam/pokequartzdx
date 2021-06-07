@@ -863,3 +863,14 @@ gTileset_Breeze::
 	.4byte gMetatiles_Breeze
 	.4byte gMetatileAttributes_Breeze
 	.4byte NULL
+
+	.align 2
+gTileset_DarknessForest::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_DarknessForest
+	.4byte gTilesetPalettes_DarknessForest
+	.4byte gMetatiles_DarknessForest
+	.4byte gMetatileAttributes_DarknessForest
+	.4byte NULL

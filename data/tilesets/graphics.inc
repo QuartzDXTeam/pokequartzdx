@@ -1789,3 +1789,23 @@ gTilesetPalettes_Breeze::
 	.align 2
 gTilesetTiles_Breeze::
 	.incbin "data/tilesets/secondary/breeze/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_DarknessForest::
+	.incbin "data/tilesets/secondary/darknessforest/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/darknessforest/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/darknessforest/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/darknessforest/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/darknessforest/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/darknessforest/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/darknessforest/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/darknessforest/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/darknessforest/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/darknessforest/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/darknessforest/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/darknessforest/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/darknessforest/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_DarknessForest::
+	.incbin "data/tilesets/secondary/darknessforest/tiles.4bpp.lz"
