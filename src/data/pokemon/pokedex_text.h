@@ -205,7 +205,7 @@ const u8 gNidorinoPokedexText[] = _(
 const u8 gNidokingPokedexText[] = _(
     "Its body is constantly producing poison,\n"
 	"to the point that it sometimes overflows\n"
-	"from its body through sits body fluids\n"
+	"from its body through its body fluids\n"
 	"and pollutes the land around it.");
 
 const u8 gClefairyPokedexText[] = _(
