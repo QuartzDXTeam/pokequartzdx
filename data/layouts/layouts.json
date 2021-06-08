@@ -1346,7 +1346,7 @@
       "name": "DarknessForest_Layout",
       "width": 48,
       "height": 48,
-      "primary_tileset": "gTileset_General",
+      "primary_tileset": "gTileset_GeneralDark",
       "secondary_tileset": "gTileset_DarknessForest",
       "border_filepath": "data/layouts/DarknessForest/border.bin",
       "blockdata_filepath": "data/layouts/DarknessForest/map.bin"
