@@ -586,3 +586,10 @@ gMetatiles_DarknessForest::
 	.align 1
 gMetatileAttributes_DarknessForest::
 	.incbin "data/tilesets/secondary/darknessforest/metatile_attributes.bin"
+	.align 1
+gMetatiles_GeneralDark::
+	.incbin "data/tilesets/primary/generaldark/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_GeneralDark::
+	.incbin "data/tilesets/primary/generaldark/metatile_attributes.bin"

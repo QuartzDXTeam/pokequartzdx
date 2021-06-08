@@ -1809,3 +1809,23 @@ gTilesetPalettes_DarknessForest::
 	.align 2
 gTilesetTiles_DarknessForest::
 	.incbin "data/tilesets/secondary/darknessforest/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_GeneralDark::
+	.incbin "data/tilesets/primary/generaldark/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/generaldark/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/generaldark/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/generaldark/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/generaldark/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/generaldark/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/generaldark/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/generaldark/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/generaldark/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/generaldark/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/generaldark/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/generaldark/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/generaldark/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_GeneralDark::
+	.incbin "data/tilesets/primary/generaldark/tiles.4bpp.lz"

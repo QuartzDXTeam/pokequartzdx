@@ -874,3 +874,14 @@ gTileset_DarknessForest::
 	.4byte gMetatiles_DarknessForest
 	.4byte gMetatileAttributes_DarknessForest
 	.4byte NULL
+
+	.align 2
+gTileset_GeneralDark::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_GeneralDark
+	.4byte gTilesetPalettes_GeneralDark
+	.4byte gMetatiles_GeneralDark
+	.4byte gMetatileAttributes_GeneralDark
+	.4byte NULL
