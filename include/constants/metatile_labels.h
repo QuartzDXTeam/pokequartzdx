@@ -142,6 +142,7 @@
 #define METATILE_Cloudain_Door_BarosLab    0x249
 #define METATILE_Cloudain_Door_Littleroot  0x248
 #define METATILE_Cloudain_Door_Pink        0x287
+#define METATILE_Cloudain_Door_PokeCenter  0x292
 
 // gTileset_Contest
 #define METATILE_Contest_CounterFlap_Bottom  0x2D9

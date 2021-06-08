@@ -5,7 +5,7 @@
   "music": "MUS_ROUTE104",
   "region_map_section": "MAPSEC_CLOUD_BEACH",
   "requires_flash": false,
-  "weather": "WEATHER_SUNNY",
+  "weather": "WEATHER_RAIN",
   "map_type": "MAP_TYPE_ROUTE",
   "allow_cycling": true,
   "allow_escaping": false,
@@ -58,7 +58,7 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS",
-      "x": 31,
+      "x": 35,
       "y": 24,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
@@ -84,8 +84,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
-      "x": 28,
-      "y": 45,
+      "x": 25,
+      "y": 42,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 1,
@@ -122,7 +122,7 @@
       "flag": "FLAG_HIDE_CLOUD_BEACH_MS_BRITNEY_BOAT"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_EXPERT_M",
+      "graphics_id": "OBJ_EVENT_GFX_TEALA",
       "x": 12,
       "y": 51,
       "elevation": 4,
@@ -149,8 +149,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
-      "x": 34,
-      "y": 6,
+      "x": 25,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -162,8 +162,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
-      "x": 35,
-      "y": 6,
+      "x": 29,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -176,7 +176,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
       "x": 36,
-      "y": 6,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -188,8 +188,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
-      "x": 27,
-      "y": 33,
+      "x": 35,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -201,8 +201,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
-      "x": 25,
-      "y": 33,
+      "x": 33,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -214,8 +214,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
-      "x": 26,
-      "y": 33,
+      "x": 34,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -240,8 +240,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
-      "x": 3,
-      "y": 22,
+      "x": 32,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -253,8 +253,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
-      "x": 3,
-      "y": 23,
+      "x": 26,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -266,8 +266,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
-      "x": 3,
-      "y": 24,
+      "x": 27,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -279,8 +279,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
-      "x": 3,
-      "y": 25,
+      "x": 28,
+      "y": 20,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_BERRY_TREE_GROWTH",
       "movement_range_x": 0,
@@ -344,8 +344,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_RICH_BOY",
-      "x": 21,
-      "y": 25,
+      "x": 23,
+      "y": 23,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
       "movement_range_x": 0,
@@ -357,8 +357,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
-      "x": 13,
-      "y": 44,
+      "x": 11,
+      "y": 45,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_RIGHT",
       "movement_range_x": 0,
@@ -396,8 +396,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 37,
-      "y": 22,
+      "x": 32,
+      "y": 10,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -409,8 +409,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CUTTABLE_TREE",
-      "x": 35,
-      "y": 22,
+      "x": 39,
+      "y": 21,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
@@ -475,7 +475,7 @@
   ],
   "warp_events": [
     {
-      "x": 5,
+      "x": 31,
       "y": 18,
       "elevation": 0,
       "dest_map": "MAP_CLOUD_BEACH_PRETTY_PETAL_FLOWER_SHOP",
@@ -496,14 +496,14 @@
       "dest_warp_id": 1
     },
     {
-      "x": 13,
+      "x": 12,
       "y": 38,
       "elevation": 3,
       "dest_map": "MAP_DARKNESS_FOREST",
       "dest_warp_id": 2
     },
     {
-      "x": 14,
+      "x": 13,
       "y": 38,
       "elevation": 3,
       "dest_map": "MAP_DARKNESS_FOREST",
@@ -561,48 +561,48 @@
     },
     {
       "type": "sign",
-      "x": 23,
-      "y": 5,
+      "x": 18,
+      "y": 1,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CloudBeach_EventScript_RouteSignRustboro"
     },
     {
       "type": "sign",
-      "x": 7,
-      "y": 20,
+      "x": 34,
+      "y": 18,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CloudBeach_EventScript_FlowerShopSign"
     },
     {
       "type": "sign",
-      "x": 17,
-      "y": 23,
+      "x": 40,
+      "y": 6,
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CloudBeach_EventScript_TrainerTipsDoubleBattles"
     },
     {
       "type": "hidden_item",
-      "x": 7,
-      "y": 6,
+      "x": 2,
+      "y": 23,
       "elevation": 3,
       "item": "ITEM_SUPER_POTION",
       "flag": "FLAG_HIDDEN_ITEM_CLOUD_BEACH_SUPER_POTION"
     },
     {
       "type": "hidden_item",
-      "x": 3,
-      "y": 9,
+      "x": 4,
+      "y": 6,
       "elevation": 3,
       "item": "ITEM_POKE_BALL",
       "flag": "FLAG_HIDDEN_ITEM_CLOUD_BEACH_POKE_BALL"
     },
     {
       "type": "hidden_item",
-      "x": 29,
-      "y": 52,
+      "x": 22,
+      "y": 68,
       "elevation": 3,
       "item": "ITEM_POTION",
       "flag": "FLAG_HIDDEN_ITEM_CLOUD_BEACH_POTION"
@@ -610,14 +610,14 @@
     {
       "type": "hidden_item",
       "x": 22,
-      "y": 64,
+      "y": 60,
       "elevation": 3,
       "item": "ITEM_ANTIDOTE",
       "flag": "FLAG_HIDDEN_ITEM_CLOUD_BEACH_ANTIDOTE"
     },
     {
       "type": "hidden_item",
-      "x": 24,
+      "x": 25,
       "y": 70,
       "elevation": 3,
       "item": "ITEM_HEART_SCALE",
