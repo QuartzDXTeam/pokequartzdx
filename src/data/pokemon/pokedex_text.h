@@ -20,7 +20,7 @@ const u8 gVenusaurPokedexText[] = _(
 	"A Denfrota's trunk is nearly impenetrable\n"
 	"due to minerals it leeches from the soil.\n"
 	"Legends state that it can grow stronger\n"
-	"when it absorbs chaos energy.");
+	"when it absorbs Chaos energy.");
 
 const u8 gCharmanderPokedexText[] = _(
     "When startled, its fur becomes hot enough\n"
@@ -38,7 +38,7 @@ const u8 gCharizardPokedexText[] = _(
     "Easily enraged, it often erupts into\n"
 	"flames and tries to burn all in its path.\n"
 	"Legends tell of a powerful Roellama\n"
-	"that was engulfed in chaos energy.");
+	"that was engulfed in Chaos energy.");
 
 const u8 gSquirtlePokedexText[] = _(
     "It spends its time playing carefree in\n"
@@ -56,7 +56,7 @@ const u8 gBlastoisePokedexText[] = _(
 	"A Bultoad's lungs can draw the water from\n"
 	"the air, allowing it to survive on land.\n"
 	"Rumors tell of Bultoad that grew violent\n"
-	"after being bathed in chaos energy.");
+	"after being bathed in Chaos energy.");
 
 const u8 gCaterpiePokedexText[] = _(
     "Eating is like a competition for a\n"
