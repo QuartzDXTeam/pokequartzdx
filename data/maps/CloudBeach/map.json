@@ -482,53 +482,46 @@
       "dest_warp_id": 0
     },
     {
+      "x": 13,
+      "y": 38,
+      "elevation": 3,
+      "dest_map": "MAP_DARKNESS_FOREST",
+      "dest_warp_id": 1
+    },
+    {
       "x": 33,
       "y": 27,
       "elevation": 3,
       "dest_map": "MAP_DARKNESS_FOREST",
-      "dest_warp_id": 0
-    },
-    {
-      "x": 34,
-      "y": 27,
-      "elevation": 3,
-      "dest_map": "MAP_DARKNESS_FOREST",
-      "dest_warp_id": 1
+      "dest_warp_id": 3
     },
     {
       "x": 12,
       "y": 38,
       "elevation": 3,
       "dest_map": "MAP_DARKNESS_FOREST",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 34,
+      "y": 27,
+      "elevation": 3,
+      "dest_map": "MAP_DARKNESS_FOREST",
       "dest_warp_id": 2
     },
     {
-      "x": 13,
-      "y": 38,
-      "elevation": 3,
-      "dest_map": "MAP_DARKNESS_FOREST",
-      "dest_warp_id": 3
-    },
-    {
       "x": 35,
-      "y": 38,
+      "y": 39,
       "elevation": 3,
       "dest_map": "MAP_DARKNESS_FOREST",
       "dest_warp_id": 4
     },
     {
       "x": 36,
-      "y": 38,
+      "y": 39,
       "elevation": 3,
       "dest_map": "MAP_DARKNESS_FOREST",
       "dest_warp_id": 5
-    },
-    {
-      "x": 34,
-      "y": 28,
-      "elevation": 0,
-      "dest_map": "MAP_CLOUD_BEACH",
-      "dest_warp_id": 0
     }
   ],
   "coord_events": [
@@ -586,7 +579,7 @@
     {
       "type": "hidden_item",
       "x": 2,
-      "y": 23,
+      "y": 27,
       "elevation": 3,
       "item": "ITEM_SUPER_POTION",
       "flag": "FLAG_HIDDEN_ITEM_CLOUD_BEACH_SUPER_POTION"
