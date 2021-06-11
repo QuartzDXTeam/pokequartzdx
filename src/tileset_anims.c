@@ -24,6 +24,7 @@ static void (*sSecondaryTilesetAnimCallback)(u16);
 static void _InitPrimaryTilesetAnimation(void);
 static void _InitSecondaryTilesetAnimation(void);
 static void TilesetAnim_General(u16);
+static void TilesetAnim_GeneralDark(u16);
 static void TilesetAnim_Building(u16);
 static void TilesetAnim_Rustboro(u16);
 static void TilesetAnim_Dewford(u16);
@@ -48,6 +49,7 @@ static void QueueAnimTiles_General_Water(u16);
 static void QueueAnimTiles_General_SandWaterEdge(u16);
 static void QueueAnimTiles_General_Waterfall(u16);
 static void QueueAnimTiles_General_LandWaterEdge(u16);
+static void QueueAnimTiles_GeneralDark_Flower(u16);
 static void QueueAnimTiles_Building_TVTurnedOn(u16);
 static void QueueAnimTiles_Rustboro_WindyWater(u16, u8);
 static void QueueAnimTiles_Rustboro_Fountain(u16);
@@ -147,6 +149,17 @@ const u16 *const gTilesetAnims_General_LandWaterEdge[] = {
     gTilesetAnims_General_LandWaterEdge_Frame1,
     gTilesetAnims_General_LandWaterEdge_Frame2,
     gTilesetAnims_General_LandWaterEdge_Frame3
+};
+
+const u16 gTilesetAnims_GeneralDark_Flower_Frame1[] = INCBIN_U16("data/tilesets/primary/generaldark/anim/flower/1.4bpp");
+const u16 gTilesetAnims_GeneralDark_Flower_Frame0[] = INCBIN_U16("data/tilesets/primary/generaldark/anim/flower/0.4bpp");
+const u16 gTilesetAnims_GeneralDark_Flower_Frame2[] = INCBIN_U16("data/tilesets/primary/generaldark/anim/flower/2.4bpp");
+
+const u16 *const gTilesetAnims_GeneralDark_Flower[] = {
+    gTilesetAnims_GeneralDark_Flower_Frame0,
+    gTilesetAnims_GeneralDark_Flower_Frame1,
+    gTilesetAnims_GeneralDark_Flower_Frame0,
+    gTilesetAnims_GeneralDark_Flower_Frame2
 };
 
 const u16 gTilesetAnims_Lavaridge_Steam_Frame0[] = INCBIN_U16("data/tilesets/secondary/lavaridge/anim/steam/0.4bpp");
@@ -643,6 +656,12 @@ static void TilesetAnim_General(u16 timer)
         QueueAnimTiles_General_LandWaterEdge(timer >> 4);
 }
 
+static void TilesetAnim_GeneralDark(u16 timer)
+{
+    if (timer % 16 == 0)
+        QueueAnimTiles_GeneralDark_Flower(timer >> 4);
+}
+
 static void TilesetAnim_Building(u16 timer)
 {
     if (timer % 8 == 0)
@@ -671,6 +690,12 @@ static void QueueAnimTiles_General_Waterfall(u16 timer)
 {
     u16 i = timer % 4;
     AppendTilesetAnimToBuffer(gTilesetAnims_General_Waterfall[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(496)), 0xc0);
+}
+
+static void QueueAnimTiles_GeneralDark_Flower(u16 timer)
+{
+    u16 i = timer % 4;
+    AppendTilesetAnimToBuffer(gTilesetAnims_GeneralDark_Flower[i], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(508)), 0x80);
 }
 
 void InitTilesetAnim_Cloudain(void)
