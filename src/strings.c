@@ -216,11 +216,11 @@ const u8 gText_PlayerUsedVar2[] = _("{PLAYER} used the\n{STR_VAR_2}.{PAUSE_UNTIL
 const u8 gText_RepelEffectsLingered[] = _("But the effects of a REPEL\nlingered from earlier.{PAUSE_UNTIL_PRESS}");
 const u8 gText_UsedVar2WildLured[] = _("{PLAYER} used the\n{STR_VAR_2}.\pWild POKéMON will be lured.{PAUSE_UNTIL_PRESS}");
 const u8 gText_UsedVar2WildRepelled[] = _("{PLAYER} used the\n{STR_VAR_2}.\pWild POKéMON will be repelled.{PAUSE_UNTIL_PRESS}");
-const u8 gText_BoxFull[] = _("The BOX is full.{PAUSE_UNTIL_PRESS}");
-const u8 gText_PowderQty[] = _("POWDER QTY: {STR_VAR_1}{PAUSE_UNTIL_PRESS}");
+const u8 gText_BoxFull[] = _("The box is full.{PAUSE_UNTIL_PRESS}");
+const u8 gText_PowderQty[] = _("Powder: {STR_VAR_1}{PAUSE_UNTIL_PRESS}");
 const u8 gText_TheField[] = _("the field");
 const u8 gText_TheBattle[] = _("the battle");
-const u8 gText_ThePokemonList[] = _("the POKéMON LIST");
+const u8 gText_ThePokemonList[] = _("the Pokémon List");
 const u8 gText_TheShop[] = _("the shop");
 const u8 gText_ThePC[] = _("the PC");
 
