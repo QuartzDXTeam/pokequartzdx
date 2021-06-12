@@ -101,9 +101,9 @@ const u8 gPidgeyPokedexText[] = _(
 	"bird Pokémon hunting for food.");
 
 const u8 gPidgeottoPokedexText[] = _(
-	"One Wasoo can control several sections\n"
+	"One Wasóo can control several sections\n"
 	"of a forest, protecting any Ornlil in it.\n"
-	"Other Wasoo compete for the land through\n"
+	"Other Wasóo compete for the land through\n"
 	"beautiful singing contests.");
 
 const u8 gPidgeotPokedexText[] = _(
