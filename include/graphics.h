@@ -4028,6 +4028,8 @@ extern const u32 gBattleAnimBgTilemap_ScaryFaceContest[];
 extern const u32 gBattleAnimSpriteGfx_Bird[];
 extern const u32 gBattleAnimSpriteGfx_CrossImpact[];
 
+extern const u32 gBattleAnimSpritePal_Bubble[];
+extern const u32 gBattleAnimSpritePal_SweatBead[];
 extern const u32 gBattleAnimSpritePal_Bone[];
 extern const u32 gBattleAnimSpritePal_Spark[];
 extern const u32 gBattleAnimSpritePal_Pencil[];
