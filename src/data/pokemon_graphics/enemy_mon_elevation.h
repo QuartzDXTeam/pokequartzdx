@@ -29,7 +29,6 @@ const u8 gEnemyMonElevation[NUM_SPECIES] =
     [SPECIES_DRAGONITE] = 5,
     [SPECIES_MEW] = 8,
     [SPECIES_LEDIAN] = 8,
-    [SPECIES_YANMA] = 8,
     [SPECIES_MISDREAVUS] = 8,
     [SPECIES_UNOWN] = 8,
     [SPECIES_GLIGAR] = 6,
