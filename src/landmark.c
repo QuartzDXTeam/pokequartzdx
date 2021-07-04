@@ -164,33 +164,33 @@ static const struct Landmark *const Landmarks_Route110_2[]  =
     NULL,
 };
 
-static const struct Landmark *const Landmarks_Route111_0[]  =
+static const struct Landmark *const Landmarks_BrownHill_0[]  =
 {
     &Landmark_OldLadysRestShop,
     NULL,
 };
 
-static const struct Landmark *const Landmarks_Route111_1[]  =
+static const struct Landmark *const Landmarks_BrownHill_1[]  =
 {
     &Landmark_Desert,
     NULL,
 };
 
-static const struct Landmark *const Landmarks_Route111_2[]  =
+static const struct Landmark *const Landmarks_BrownHill_2[]  =
 {
     &Landmark_MirageTower,
     &Landmark_Desert,
     NULL,
 };
 
-static const struct Landmark *const Landmarks_Route111_3[]  =
+static const struct Landmark *const Landmarks_BrownHill_3[]  =
 {
     &Landmark_DesertRuins,
     &Landmark_Desert,
     NULL,
 };
 
-static const struct Landmark *const Landmarks_Route111_4[]  =
+static const struct Landmark *const Landmarks_BrownHill_4[]  =
 {
     &Landmark_TrainerHill,
     &Landmark_WinstrateFamily,
@@ -348,11 +348,11 @@ static const struct LandmarkList gLandmarkLists[] =
     {MAPSEC_ROUTE_110, 0, Landmarks_Route110_0},
     {MAPSEC_ROUTE_110, 1, Landmarks_Route110_1},
     {MAPSEC_ROUTE_110, 2, Landmarks_Route110_2},
-    {MAPSEC_ROUTE_111, 0, Landmarks_Route111_0},
-    {MAPSEC_ROUTE_111, 1, Landmarks_Route111_1},
-    {MAPSEC_ROUTE_111, 2, Landmarks_Route111_2},
-    {MAPSEC_ROUTE_111, 3, Landmarks_Route111_3},
-    {MAPSEC_ROUTE_111, 4, Landmarks_Route111_4},
+    {MAPSEC_BROWN_HILL, 0, Landmarks_BrownHill_0},
+    {MAPSEC_BROWN_HILL, 1, Landmarks_BrownHill_1},
+    {MAPSEC_BROWN_HILL, 2, Landmarks_BrownHill_2},
+    {MAPSEC_BROWN_HILL, 3, Landmarks_BrownHill_3},
+    {MAPSEC_BROWN_HILL, 4, Landmarks_BrownHill_4},
     {MAPSEC_ROUTE_112, 0, Landmarks_Route112_0},
     {MAPSEC_ROUTE_112, 1, Landmarks_Route112_1},
     {MAPSEC_ROUTE_113, 1, Landmarks_Route113_1},

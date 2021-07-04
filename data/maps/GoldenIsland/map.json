@@ -15,7 +15,7 @@
   "connections": [
     {
       "direction": "up",
-      "offset": -56,
+      "offset": -52,
       "map": "MAP_ROUTE106"
     },
     {
@@ -40,8 +40,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_TEALA",
-      "x": 17,
-      "y": 9,
+      "x": 21,
+      "y": 8,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -53,8 +53,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
-      "x": 20,
-      "y": 12,
+      "x": 25,
+      "y": 11,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
       "movement_range_x": 1,
@@ -66,8 +66,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MS_BRITNEYS_BOAT",
-      "x": 17,
-      "y": 8,
+      "x": 21,
+      "y": 7,
       "elevation": 1,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -142,7 +142,7 @@
     },
     {
       "type": "sign",
-      "x": 4,
+      "x": 5,
       "y": 12,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",

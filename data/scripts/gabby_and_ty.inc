@@ -17,12 +17,12 @@ GabbyAndTy_EventScript_UpdateLocation:: @ 828CCC7
 	end
 
 GabbyAndTy_EventScript_MoveForBattle1:: @ 828CD38
-	call GabbyAndTy_EventScript_ShowAtRoute111_1
+	call GabbyAndTy_EventScript_ShowAtBrownHill_1
 	return
 
 GabbyAndTy_EventScript_MoveForBattle2:: @ 828CD3E
 	call GabbyAndTy_EventScript_ShowAtRoute118_1
-	call GabbyAndTy_EventScript_HideAtRoute111_1
+	call GabbyAndTy_EventScript_HideAtBrownHill_1
 	return
 
 GabbyAndTy_EventScript_MoveForBattle3:: @ 828CD49
@@ -31,13 +31,13 @@ GabbyAndTy_EventScript_MoveForBattle3:: @ 828CD49
 	return
 
 GabbyAndTy_EventScript_MoveForBattle4:: @ 828CD54
-	call GabbyAndTy_EventScript_ShowAtRoute111_3
+	call GabbyAndTy_EventScript_ShowAtBrownHill_3
 	call GabbyAndTy_EventScript_HideAtRoute120_1
 	return
 
 GabbyAndTy_EventScript_MoveForBattle5:: @ 828CD5F
 	call GabbyAndTy_EventScript_ShowAtRoute118_2
-	call GabbyAndTy_EventScript_HideAtRoute111_3
+	call GabbyAndTy_EventScript_HideAtBrownHill_3
 	return
 
 GabbyAndTy_EventScript_MoveForBattle6:: @ 828CD6A
@@ -46,13 +46,13 @@ GabbyAndTy_EventScript_MoveForBattle6:: @ 828CD6A
 	return
 
 GabbyAndTy_EventScript_MoveForBattle7:: @ 828CD75
-	call GabbyAndTy_EventScript_ShowAtRoute111_2
+	call GabbyAndTy_EventScript_ShowAtBrownHill_2
 	call GabbyAndTy_EventScript_HideAtRoute120_2
 	return
 
 GabbyAndTy_EventScript_MoveForBattle8:: @ 828CD80
 	call GabbyAndTy_EventScript_ShowAtRoute118_3
-	call GabbyAndTy_EventScript_HideAtRoute111_2
+	call GabbyAndTy_EventScript_HideAtBrownHill_2
 	return
 
 GabbyAndTy_EventScript_MoveForBattle9:: @ 828CD8B
@@ -60,12 +60,12 @@ GabbyAndTy_EventScript_MoveForBattle9:: @ 828CD8B
 	call GabbyAndTy_EventScript_HideAtRoute118_3
 	return
 
-GabbyAndTy_EventScript_HideAtRoute111_1:: @ 828CD96
-	setflag FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1
+GabbyAndTy_EventScript_HideAtBrownHill_1:: @ 828CD96
+	setflag FLAG_HIDE_BROWN_HILL_GABBY_AND_TY_1
 	return
 
-GabbyAndTy_EventScript_ShowAtRoute111_1:: @ 828CD9A
-	clearflag FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1
+GabbyAndTy_EventScript_ShowAtBrownHill_1:: @ 828CD9A
+	clearflag FLAG_HIDE_BROWN_HILL_GABBY_AND_TY_1
 	return
 
 GabbyAndTy_EventScript_HideAtRoute118_1:: @ 828CD9E
@@ -84,12 +84,12 @@ GabbyAndTy_EventScript_ShowAtRoute120_1:: @ 828CDAA
 	clearflag FLAG_HIDE_ROUTE_120_GABBY_AND_TY_1
 	return
 
-GabbyAndTy_EventScript_HideAtRoute111_3:: @ 828CDAE
-	setflag FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3
+GabbyAndTy_EventScript_HideAtBrownHill_3:: @ 828CDAE
+	setflag FLAG_HIDE_BROWN_HILL_GABBY_AND_TY_3
 	return
 
-GabbyAndTy_EventScript_ShowAtRoute111_3:: @ 828CDB2
-	clearflag FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3
+GabbyAndTy_EventScript_ShowAtBrownHill_3:: @ 828CDB2
+	clearflag FLAG_HIDE_BROWN_HILL_GABBY_AND_TY_3
 	return
 
 GabbyAndTy_EventScript_HideAtRoute118_2:: @ 828CDB6
@@ -108,12 +108,12 @@ GabbyAndTy_EventScript_ShowAtRoute120_2:: @ 828CDC2
 	clearflag FLAG_HIDE_ROUTE_120_GABBY_AND_TY_2
 	return
 
-GabbyAndTy_EventScript_HideAtRoute111_2:: @ 828CDC6
-	setflag FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2
+GabbyAndTy_EventScript_HideAtBrownHill_2:: @ 828CDC6
+	setflag FLAG_HIDE_BROWN_HILL_GABBY_AND_TY_2
 	return
 
-GabbyAndTy_EventScript_ShowAtRoute111_2:: @ 828CDCA
-	clearflag FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2
+GabbyAndTy_EventScript_ShowAtBrownHill_2:: @ 828CDCA
+	clearflag FLAG_HIDE_BROWN_HILL_GABBY_AND_TY_2
 	return
 
 GabbyAndTy_EventScript_HideAtRoute118_3:: @ 828CDCE

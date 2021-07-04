@@ -58,19 +58,19 @@ Route110_EventScript_ItemElixir:: @ 8290D8E
 	finditem ITEM_ELIXIR
 	end
 
-Route111_EventScript_ItemTM37:: @ 8290D9B
+BrownHill_EventScript_ItemTM37:: @ 8290D9B
 	finditem ITEM_TM37
 	end
 
-Route111_EventScript_ItemStardust:: @ 8290DA8
+BrownHill_EventScript_ItemStardust:: @ 8290DA8
 	finditem ITEM_STARDUST
 	end
 
-Route111_EventScript_ItemHPUp:: @ 8290DB5
+BrownHill_EventScript_ItemHPUp:: @ 8290DB5
 	finditem ITEM_HP_UP
 	end
 
-Route111_EventScript_ItemElixir:: @ 8290DC2
+BrownHill_EventScript_ItemElixir:: @ 8290DC2
 	finditem ITEM_ELIXIR
 	end
 

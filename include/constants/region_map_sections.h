@@ -27,7 +27,7 @@
 #define MAPSEC_ROUTE_108                    0x17
 #define MAPSEC_ROUTE_109                    0x18
 #define MAPSEC_ROUTE_110                    0x19
-#define MAPSEC_ROUTE_111                    0x1A
+#define MAPSEC_BROWN_HILL                    0x1A
 #define MAPSEC_ROUTE_112                    0x1B
 #define MAPSEC_ROUTE_113                    0x1C
 #define MAPSEC_ROUTE_114                    0x1D

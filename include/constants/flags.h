@@ -615,9 +615,9 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_110_GREAT_BALL                (FLAG_HIDDEN_ITEMS_START + 0x35)
 #define FLAG_HIDDEN_ITEM_ROUTE_110_POKE_BALL                 (FLAG_HIDDEN_ITEMS_START + 0x41)
 #define FLAG_HIDDEN_ITEM_ROUTE_110_FULL_HEAL                 (FLAG_HIDDEN_ITEMS_START + 0x37)
-#define FLAG_HIDDEN_ITEM_ROUTE_111_STARDUST                  (FLAG_HIDDEN_ITEMS_START + 0x02)
-#define FLAG_HIDDEN_ITEM_ROUTE_111_PROTEIN                   (FLAG_HIDDEN_ITEMS_START + 0x38)
-#define FLAG_HIDDEN_ITEM_ROUTE_111_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x39)
+#define FLAG_HIDDEN_ITEM_BROWN_HILL_STARDUST                  (FLAG_HIDDEN_ITEMS_START + 0x02)
+#define FLAG_HIDDEN_ITEM_BROWN_HILL_PROTEIN                   (FLAG_HIDDEN_ITEMS_START + 0x38)
+#define FLAG_HIDDEN_ITEM_BROWN_HILL_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x39)
 #define FLAG_HIDDEN_ITEM_ROUTE_113_ETHER                     (FLAG_HIDDEN_ITEMS_START + 0x03)
 #define FLAG_HIDDEN_ITEM_ROUTE_113_TM_32                     (FLAG_HIDDEN_ITEMS_START + 0x1E)
 #define FLAG_HIDDEN_ITEM_ROUTE_113_NUGGET                    (FLAG_HIDDEN_ITEMS_START + 0x62)
@@ -810,10 +810,10 @@
 #define FLAG_HIDE_MAUVILLE_CITY_SCOTT                               0x2FD
 #define FLAG_HIDE_VERDANTURF_TOWN_SCOTT                             0x2FE
 #define FLAG_HIDE_FALLARBOR_TOWN_BATTLE_TENT_SCOTT                  0x2FF
-#define FLAG_HIDE_ROUTE_111_VICTOR_WINSTRATE                        0x300
-#define FLAG_HIDE_ROUTE_111_VICTORIA_WINSTRATE                      0x301
-#define FLAG_HIDE_ROUTE_111_VIVI_WINSTRATE                          0x302
-#define FLAG_HIDE_ROUTE_111_VICKY_WINSTRATE                         0x303
+#define FLAG_HIDE_BROWN_HILL_VICTOR_WINSTRATE                        0x300
+#define FLAG_HIDE_BROWN_HILL_VICTORIA_WINSTRATE                      0x301
+#define FLAG_HIDE_BROWN_HILL_VIVI_WINSTRATE                          0x302
+#define FLAG_HIDE_BROWN_HILL_VICKY_WINSTRATE                         0x303
 #define FLAG_HIDE_CLOUDAIN_GYM_NORMAN                              0x304
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA                           0x305
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_CONTEST_ATTENDANT_1         0x306
@@ -838,10 +838,10 @@
 #define FLAG_HIDE_EVER_GRANDE_POKEMON_CENTER_1F_SCOTT               0x319
 #define FLAG_HIDE_BREEZE_TOWN_RIVAL                             0x31A
 #define FLAG_HIDE_BREEZE_TOWN_BARO                             0x31B
-#define FLAG_HIDE_ROUTE_111_GABBY_AND_TY_1                          0x31C
+#define FLAG_HIDE_BROWN_HILL_GABBY_AND_TY_1                          0x31C
 #define FLAG_HIDE_ROUTE_118_GABBY_AND_TY_1                          0x31D
 #define FLAG_HIDE_ROUTE_120_GABBY_AND_TY_1                          0x31E
-#define FLAG_HIDE_ROUTE_111_GABBY_AND_TY_3                          0x31F
+#define FLAG_HIDE_BROWN_HILL_GABBY_AND_TY_3                          0x31F
 #define FLAG_HIDE_LUGIA                                             0x320
 #define FLAG_HIDE_HO_OH                                             0x321
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_REPORTER                    0x322
@@ -885,7 +885,7 @@
 #define FLAG_HIDE_SLATEPORT_CITY_CAPTAIN_STERN                      0x348
 #define FLAG_HIDE_SLATEPORT_CITY_HARBOR_CAPTAIN_STERN               0x349
 #define FLAG_HIDE_BATTLE_FRONTIER_SUDOWOODO                         0x34A
-#define FLAG_HIDE_ROUTE_111_ROCK_SMASH_TIP_GUY                      0x34B
+#define FLAG_HIDE_BROWN_HILL_ROCK_SMASH_TIP_GUY                      0x34B
 #define FLAG_HIDE_RUSTBORO_CITY_SCIENTIST                           0x34C
 #define FLAG_HIDE_SLATEPORT_CITY_HARBOR_AQUA_GRUNT                  0x34D
 #define FLAG_HIDE_SLATEPORT_CITY_HARBOR_ARCHIE                      0x34E
@@ -917,8 +917,8 @@
 #define FLAG_HIDE_TRICK_HOUSE_ENTRANCE_MAN                          0x368
 #define FLAG_HIDE_LILYCOVE_CONTEST_HALL_BLEND_MASTER_REPLACEMENT    0x369
 #define FLAG_HIDE_DESERT_UNDERPASS_FOSSIL                           0x36A
-#define FLAG_HIDE_ROUTE_111_PLAYER_DESCENT                          0x36B
-#define FLAG_HIDE_ROUTE_111_DESERT_FOSSIL                           0x36C
+#define FLAG_HIDE_BROWN_HILL_PLAYER_DESCENT                          0x36B
+#define FLAG_HIDE_BROWN_HILL_DESERT_FOSSIL                           0x36C
 #define FLAG_HIDE_MT_CHIMNEY_TRAINERS                               0x36D
 #define FLAG_HIDE_RUSTURF_TUNNEL_AQUA_GRUNT                         0x36E
 #define FLAG_HIDE_RUSTURF_TUNNEL_BRITNEY                             0x36F
@@ -945,7 +945,7 @@
 #define FLAG_HIDE_ROUTE_110_TEAM_AQUA                               0x384
 #define FLAG_HIDE_ROUTE_118_GABBY_AND_TY_2                          0x385
 #define FLAG_HIDE_ROUTE_120_GABBY_AND_TY_2                          0x386
-#define FLAG_HIDE_ROUTE_111_GABBY_AND_TY_2                          0x387
+#define FLAG_HIDE_BROWN_HILL_GABBY_AND_TY_2                          0x387
 #define FLAG_HIDE_ROUTE_118_GABBY_AND_TY_3                          0x388
 #define FLAG_HIDE_SLATEPORT_CITY_HARBOR_PATRONS                     0x389
 #define FLAG_HIDE_CLOUD_BEACH_WHITE_HERB_FLORIST                      0x38A
@@ -1002,7 +1002,7 @@
 #define FLAG_RECEIVED_SHOAL_SHELL_2                                 0x3BD
 #define FLAG_RECEIVED_SHOAL_SHELL_3                                 0x3BE
 #define FLAG_RECEIVED_SHOAL_SHELL_4                                 0x3BF
-#define FLAG_HIDE_ROUTE_111_SECRET_POWER_MAN                        0x3C0
+#define FLAG_HIDE_BROWN_HILL_SECRET_POWER_MAN                        0x3C0
 #define FLAG_HIDE_SLATEPORT_MUSEUM_POPULATION                       0x3C1
 #define FLAG_HIDE_LILYCOVE_DEPARTMENT_STORE_ROOFTOP_SALE_WOMAN      0x3C2
 #define FLAG_HIDE_MIRAGE_TOWER_ROOT_FOSSIL                          0x3C3
@@ -1052,9 +1052,9 @@
 #define FLAG_ITEM_ROUTE_109_PP_UP                                   0x3ED
 #define FLAG_ITEM_ROUTE_109_RARE_CANDY                              0x3EE
 #define FLAG_ITEM_ROUTE_110_DIRE_HIT                                0x3EF
-#define FLAG_ITEM_ROUTE_111_TM_37                                   0x3F0
-#define FLAG_ITEM_ROUTE_111_STARDUST                                0x3F1
-#define FLAG_ITEM_ROUTE_111_HP_UP                                   0x3F2
+#define FLAG_ITEM_BROWN_HILL_TM_37                                   0x3F0
+#define FLAG_ITEM_BROWN_HILL_STARDUST                                0x3F1
+#define FLAG_ITEM_BROWN_HILL_HP_UP                                   0x3F2
 #define FLAG_ITEM_ROUTE_112_NUGGET                                  0x3F3
 #define FLAG_ITEM_ROUTE_113_MAX_ETHER                               0x3F4
 #define FLAG_ITEM_ROUTE_113_SUPER_REPEL                             0x3F5
@@ -1186,7 +1186,7 @@
 #define FLAG_ITEM_ROUTE_108_STAR_PIECE                              0x473
 #define FLAG_ITEM_ROUTE_109_POTION                                  0x474
 #define FLAG_ITEM_ROUTE_110_ELIXIR                                  0x475
-#define FLAG_ITEM_ROUTE_111_ELIXIR                                  0x476
+#define FLAG_ITEM_BROWN_HILL_ELIXIR                                  0x476
 #define FLAG_ITEM_ROUTE_113_HYPER_POTION                            0x477
 #define FLAG_ITEM_ROUTE_115_HEAL_POWDER                             0x478
 #define FLAG_UNUSED_0x479                                           0x479 // Unused Flag
@@ -1576,7 +1576,7 @@
 #define FLAG_UNUSED_0x929                           (DAILY_FLAGS_START + 0x9)  // Unused Flag
 #define FLAG_DAILY_PICKED_LOTO_TICKET               (DAILY_FLAGS_START + 0xA)
 #define FLAG_DAILY_ROUTE_114_RECEIVED_BERRY         (DAILY_FLAGS_START + 0xB)
-#define FLAG_DAILY_ROUTE_111_RECEIVED_BERRY         (DAILY_FLAGS_START + 0xC)
+#define FLAG_DAILY_BROWN_HILL_RECEIVED_BERRY         (DAILY_FLAGS_START + 0xC)
 #define FLAG_DAILY_BERRY_MASTER_RECEIVED_BERRY      (DAILY_FLAGS_START + 0xD)
 #define FLAG_DAILY_ROUTE_120_RECEIVED_BERRY         (DAILY_FLAGS_START + 0xE)
 #define FLAG_DAILY_LILYCOVE_RECEIVED_BERRY          (DAILY_FLAGS_START + 0xF)

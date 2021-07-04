@@ -32,7 +32,7 @@
 #define MAP_ROUTE108             (23 | (0 << 8))
 #define MAP_ROUTE109             (24 | (0 << 8))
 #define MAP_ROUTE110             (25 | (0 << 8))
-#define MAP_ROUTE111             (26 | (0 << 8))
+#define MAP_BROWNHILL            (26 | (0 << 8))
 #define MAP_ROUTE112             (27 | (0 << 8))
 #define MAP_ROUTE113             (28 | (0 << 8))
 #define MAP_ROUTE114             (29 | (0 << 8))
@@ -270,8 +270,8 @@
 #define MAP_CLOUD_BEACH_PRETTY_PETAL_FLOWER_SHOP (1 | (17 << 8))
 
 // Map Group 18
-#define MAP_ROUTE111_WINSTRATE_FAMILYS_HOUSE (0 | (18 << 8))
-#define MAP_ROUTE111_OLD_LADYS_REST_STOP     (1 | (18 << 8))
+#define MAP_BROWNHILL_WINSTRATE_FAMILYS_HOUSE (0 | (18 << 8))
+#define MAP_BROWNHILL_OLD_LADYS_REST_STOP     (1 | (18 << 8))
 
 // Map Group 19
 #define MAP_ROUTE112_CABLE_CAR_STATION   (0 | (19 << 8))

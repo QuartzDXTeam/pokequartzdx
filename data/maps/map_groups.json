@@ -63,7 +63,7 @@
     "Route108",
     "Route109",
     "Route110",
-    "Route111",
+    "BrownHill",
     "Route112",
     "Route113",
     "Route114",
@@ -301,8 +301,8 @@
     "CloudBeach_PrettyPetalFlowerShop"
   ],
   "gMapGroup18": [
-    "Route111_WinstrateFamilysHouse",
-    "Route111_OldLadysRestStop"
+    "BrownHill_WinstrateFamilysHouse",
+    "BrownHill_OldLadysRestStop"
   ],
   "gMapGroup19": [
     "Route112_CableCarStation",
