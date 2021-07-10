@@ -1,5 +1,5 @@
 {
-  "id": "MAP_BROWNHILL_WINSTRATE_FAMILYS_HOUSE",
+  "id": "MAP_BROWN_HILL_WINSTRATE_FAMILYS_HOUSE",
   "name": "BrownHill_WinstrateFamilysHouse",
   "layout": "LAYOUT_HOUSE2",
   "music": "MUS_RUSTBORO",
@@ -72,14 +72,14 @@
       "x": 3,
       "y": 7,
       "elevation": 0,
-      "dest_map": "MAP_BROWNHILL",
+      "dest_map": "MAP_BROWN_HILL",
       "dest_warp_id": 0
     },
     {
       "x": 4,
       "y": 7,
       "elevation": 0,
-      "dest_map": "MAP_BROWNHILL",
+      "dest_map": "MAP_BROWN_HILL",
       "dest_warp_id": 0
     }
   ],

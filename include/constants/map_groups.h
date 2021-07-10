@@ -1,10 +1,6 @@
 #ifndef GUARD_CONSTANTS_MAP_GROUPS_H
 #define GUARD_CONSTANTS_MAP_GROUPS_H
 
-//
-// DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json
-//
-
 // Map Group 0
 #define MAP_BREEZE_TOWN          (0 | (0 << 8))
 #define MAP_PINK_TOWN            (1 | (0 << 8))
@@ -32,7 +28,7 @@
 #define MAP_ROUTE108             (23 | (0 << 8))
 #define MAP_ROUTE109             (24 | (0 << 8))
 #define MAP_ROUTE110             (25 | (0 << 8))
-#define MAP_BROWNHILL            (26 | (0 << 8))
+#define MAP_BROWN_HILL           (26 | (0 << 8))
 #define MAP_ROUTE112             (27 | (0 << 8))
 #define MAP_ROUTE113             (28 | (0 << 8))
 #define MAP_ROUTE114             (29 | (0 << 8))
@@ -270,8 +266,8 @@
 #define MAP_CLOUD_BEACH_PRETTY_PETAL_FLOWER_SHOP (1 | (17 << 8))
 
 // Map Group 18
-#define MAP_BROWNHILL_WINSTRATE_FAMILYS_HOUSE (0 | (18 << 8))
-#define MAP_BROWNHILL_OLD_LADYS_REST_STOP     (1 | (18 << 8))
+#define MAP_BROWN_HILL_WINSTRATE_FAMILYS_HOUSE (0 | (18 << 8))
+#define MAP_BROWN_HILL_OLD_LADYS_REST_STOP     (1 | (18 << 8))
 
 // Map Group 19
 #define MAP_ROUTE112_CABLE_CAR_STATION   (0 | (19 << 8))

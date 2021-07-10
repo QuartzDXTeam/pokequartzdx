@@ -1,5 +1,5 @@
 {
-  "id": "MAP_BROWNHILL",
+  "id": "MAP_BROWN_HILL",
   "name": "BrownHill",
   "layout": "LAYOUT_BROWNHILL",
   "music": "MUS_ROUTE110",
@@ -27,6 +27,11 @@
       "direction": "left",
       "offset": 20,
       "map": "MAP_ROUTE112"
+    },
+    {
+      "direction": "down",
+      "offset": 0,
+      "map": "MAP_MAUVILLE_CITY"
     }
   ],
   "object_events": [
@@ -631,24 +636,10 @@
   ],
   "warp_events": [
     {
-      "x": 13,
-      "y": 113,
-      "elevation": 0,
-      "dest_map": "MAP_BROWNHILL_WINSTRATE_FAMILYS_HOUSE",
-      "dest_warp_id": 0
-    },
-    {
       "x": 29,
       "y": 87,
       "elevation": 0,
       "dest_map": "MAP_DESERT_RUINS",
-      "dest_warp_id": 0
-    },
-    {
-      "x": 26,
-      "y": 18,
-      "elevation": 0,
-      "dest_map": "MAP_BROWNHILL_OLD_LADYS_REST_STOP",
       "dest_warp_id": 0
     },
     {

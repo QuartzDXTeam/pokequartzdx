@@ -1,5 +1,5 @@
 {
-  "id": "MAP_BROWNHILL_OLD_LADYS_REST_STOP",
+  "id": "MAP_BROWN_HILL_OLD_LADYS_REST_STOP",
   "name": "BrownHill_OldLadysRestStop",
   "layout": "LAYOUT_HOUSE3",
   "music": "MUS_RUSTBORO",
@@ -33,14 +33,14 @@
       "x": 3,
       "y": 7,
       "elevation": 0,
-      "dest_map": "MAP_BROWNHILL",
+      "dest_map": "MAP_BROWN_HILL",
       "dest_warp_id": 2
     },
     {
       "x": 4,
       "y": 7,
       "elevation": 0,
-      "dest_map": "MAP_BROWNHILL",
+      "dest_map": "MAP_BROWN_HILL",
       "dest_warp_id": 2
     }
   ],
