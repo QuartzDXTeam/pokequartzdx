@@ -1098,8 +1098,8 @@ u16 GetCurrLocationDefaultMusic(void)
     u16 music;
 
     // Play the desert music only when the sandstorm is active on Route 111.
-    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BROWNHILL)
-     && gSaveBlock1Ptr->location.mapNum == MAP_NUM(BROWNHILL)
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BROWN_HILL)
+     && gSaveBlock1Ptr->location.mapNum == MAP_NUM(BROWN_HILL)
      && GetSav1Weather() == WEATHER_SANDSTORM)
         return MUS_ROUTE111;
 

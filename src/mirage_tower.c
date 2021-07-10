@@ -261,7 +261,7 @@ static u16 gUnknown_030012A8[8];
 
 bool8 IsMirageTowerVisible(void)
 {
-    if (!(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BROWNHILL) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(BROWNHILL)))
+    if (!(gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(BROWN_HILL) && gSaveBlock1Ptr->location.mapNum == MAP_NUM(BROWN_HILL)))
         return FALSE;
     return FlagGet(FLAG_MIRAGE_TOWER_VISIBLE);
 }
@@ -284,8 +284,8 @@ void TryStartMirageTowerPulseBlendEffect(void)
         return;
     }
 
-    if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(BROWNHILL)
-     || gSaveBlock1Ptr->location.mapNum != MAP_NUM(BROWNHILL)
+    if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(BROWN_HILL)
+     || gSaveBlock1Ptr->location.mapNum != MAP_NUM(BROWN_HILL)
      || !FlagGet(FLAG_MIRAGE_TOWER_VISIBLE))
         return;
 
@@ -298,8 +298,8 @@ void TryStartMirageTowerPulseBlendEffect(void)
 
 void ClearMirageTowerPulseBlendEffect(void)
 {
-    if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(BROWNHILL)
-     || gSaveBlock1Ptr->location.mapNum   != MAP_NUM(BROWNHILL)
+    if (gSaveBlock1Ptr->location.mapGroup != MAP_GROUP(BROWN_HILL)
+     || gSaveBlock1Ptr->location.mapNum   != MAP_NUM(BROWN_HILL)
      || !FlagGet(FLAG_MIRAGE_TOWER_VISIBLE)
      || sMirageTowerPulseBlend == NULL)
         return;

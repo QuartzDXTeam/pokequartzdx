@@ -262,7 +262,7 @@
       "blockdata_filepath": "data/layouts/Route110/map.bin"
     },
     {
-      "id": "LAYOUT_BROWNHILL",
+      "id": "LAYOUT_BROWN_HILL",
       "name": "BrownHill_Layout",
       "width": 40,
       "height": 140,
@@ -3912,7 +3912,7 @@
       "blockdata_filepath": "data/layouts/BattleFrontier_BattleTowerMultiCorridor/map.bin"
     },
     {
-      "id": "LAYOUT_BROWNHILL_NO_MIRAGE_TOWER",
+      "id": "LAYOUT_BROWN_HILL_NO_MIRAGE_TOWER",
       "name": "BrownHill_NoMirageTower_Layout",
       "width": 40,
       "height": 140,

@@ -95,7 +95,7 @@ BrownHill_EventScript_SetWinstratesNotDefeated:: @ 81F0E26
 	end
 
 BrownHill_EventScript_SetLayoutNoMirageTower:: @ 81F0E3C
-	setmaplayoutindex LAYOUT_BROWNHILL_NO_MIRAGE_TOWER
+	setmaplayoutindex LAYOUT_BROWN_HILL_NO_MIRAGE_TOWER
 	return
 
 BrownHill_EventScript_SetMirageTowerGone:: @ 81F0E40

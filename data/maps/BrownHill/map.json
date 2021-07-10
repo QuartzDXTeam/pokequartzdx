@@ -1,7 +1,7 @@
 {
   "id": "MAP_BROWN_HILL",
   "name": "BrownHill",
-  "layout": "LAYOUT_BROWNHILL",
+  "layout": "LAYOUT_BROWN_HILL",
   "music": "MUS_ROUTE110",
   "region_map_section": "MAPSEC_BROWN_HILL",
   "requires_flash": false,
