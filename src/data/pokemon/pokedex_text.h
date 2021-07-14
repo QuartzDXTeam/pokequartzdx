@@ -53,34 +53,34 @@ const u8 gWartortlePokedexText[] = _(
 	"swallow an entire lake overnight.");
 
 const u8 gBlastoisePokedexText[] = _(
-	"A Bultoad's lungs can draw the water from\n"
-	"the air, allowing it to survive on land.\n"
-	"Rumors tell of Bultoad that grew violent\n"
-	"after being bathed in Chaos energy.");
+	"Its lungs can draw water from the air,\n"
+	"allowing it to survive on land.\n"
+	"Rumors tell of a Bultoad that grew\n"
+	"violent after bathing in Chaos energy.");
 
 const u8 gCaterpiePokedexText[] = _(
-    "Eating is like a competition for a\n"
-	"Larvet because it becomes stronger\n"
-	"if it evolves on a full stomach. Grass\n"
-    "Pokémon avoid Larvet at all costs.");
+    "The more that a Larvet eats, the\n"
+	"stronger it becomes when it evolves.\n"
+	"Grass-type Pokémon avoid Larvet swarms\n"
+	"at all costs to escape the frenzy.");
 
 const u8 gMetapodPokedexText[] = _(
-    "Since it can't fight much on its own, it\n"
-	"relies on its facelike markings to scare\n"
-	"predators away. The shell's flexibility\n"
+    "It relies on its face-like markings\n"
+	"to scare enemies away since it can't\n"
+	"defend itself. Its shell's flexibility\n"
 	"makes up for its brittleness.");
 
 const u8 gButterfreePokedexText[] = _(
-    "With its tiny, streamlined body, it flies\n"
-    "through the air gracefully at the speed\n"
-    "of a jet. If it crashes into you at top\n"
-    "speed, both of you will be badly injured!");
+    "Its tiny, streamlined body lets it fly\n"
+    "through the air at jet speed. If it\n"
+    "crashes into you at top speed,\n"
+    "both of you will be badly injured!");
 
 const u8 gWeedlePokedexText[] = _(
-    "Using the long stinger on its face, it can\n"
-    "siphon blood and inject poison into its\n"
-    "opponent. Sometimes it will sting itself\n"
-    "to regulate its blood pressure.");
+    "Drosofly siphons blood and injects venom\n"
+	"into its prey by using the long stinger\n"
+	"on its face. It will sometimes sting itself\n"
+	"to regulate its blood pressure.");
 
 const u8 gKakunaPokedexText[] = _(
     "When it gains enough nutrients, a Drosofly\n"
@@ -89,10 +89,10 @@ const u8 gKakunaPokedexText[] = _(
 	"on leaves without getting hurt.");
 
 const u8 gBeedrillPokedexText[] = _(
-	"Before it swoops down on its prey,\n"
-	"it lets out a loud buzzing sound like\n"
-	"a broken trumpet. Its sting is easily\n"
-	"identified by the red ring it leaves.");
+	"It not only has a deadly sting, but its\n"
+	"wings also makes an awful trumpet-like\n"
+	"buzzing sound. Luckily, its prey has\n"
+	"enough time to hear it and escape.");
 
 const u8 gPidgeyPokedexText[] = _(
     "Born blind and flightless, it relies on\n"
@@ -101,16 +101,16 @@ const u8 gPidgeyPokedexText[] = _(
 	"bird Pokémon hunting for food.");
 
 const u8 gPidgeottoPokedexText[] = _(
-	"One Wasóo can control several sections\n"
-	"of a forest, protecting any Ornlil in it.\n"
-	"Other Wasóo compete for the land through\n"
-	"beautiful singing contests.");
+	"When it's not singing, it controls areas\n"
+	"the of forest to protect its young. Other\n"
+	"Wasóo compete with each other to see\n"
+	"who's singing is louder.");
 
 const u8 gPidgeotPokedexText[] = _(
-    "Known as the ''King of the Forest'', it\n"
-    "flies around its home defending it from\n"
-    "trouble. It threatens foes by puffing\n"
-    "its chest and showing its belly marks.");
+    "The ''King of the Forest'', it flies\n"
+	"around and defends its home from danger.\n"
+	"It threatens foes by puffing its chest\n"
+	"out, showing off its belly markings.");
 
 const u8 gRattataPokedexText[] = _(
     "Unless there is danger nearby, it will\n"
@@ -149,57 +149,57 @@ const u8 gArbokPokedexText[] = _(
 	"its victim and injects them with poison.");
 
 const u8 gPikachuPokedexText[] = _(
-    "Covolts hangs motionless from trees,\n"
-    "relying on its shell's face to scare\n"
-	"predators. At night, its tail lights the\n"
-	"way for trainers lost in the forest.");
+    "It hangs from trees, waiting for a\n"
+	"strong electric current to trigger its\n"
+	"evolution. At night, its glowing tail\n"
+	"can guide explorers through the forest.");
 
 const u8 gRaichuPokedexText[] = _(
-    "It wears a piece of its discarded shell\n"
-    "over its head. Its wings are powerful\n"
-    "enough to support it during flight\n"
-    "without much difficulty.");
+    "It wears a piece of its old shell on\n"
+    "its head as protection. Its wings are\n"
+    "powerful enough to support its weight\n"
+    "during flight without difficulty.");
 
 const u8 gSandshrewPokedexText[] = _(
-    "Nole's large nose doesn't make it easy to\n"
-	"burrow tunnels, so it bows its head while\n"
-	"its nose touches the ground when it digs.\n"
-	"This leaves behind a distinct trail.");
+    "Nole's big nose makes it hard for it\n"
+	"to dig tunnels. It has to lower its\n"
+	"head as its nose touches the ground,\n"
+	"creating obvious trails for predators.");
 
 const u8 gSandslashPokedexText[] = _(
-    "Groundoe wears BlackGlasses to protect\n"
-	"its eyes and to make it look cooler.\n"
-	"Its nose is powerful enough to smell food\n"
-	"from any chamber in its tunnels.");
+    "Groundoe wears Blackglasses to protect\n"
+	"its eyes from sunlight and to look cool.\n"
+	"Its nose is keen enough to sniff out\n"
+	"unlucky Larvet while it's deep underground.");
 
 const u8 gNidoranFPokedexText[] = _(
-	"Urtiga's porous skin secretes a powerful\n"
-	"toxin when touched. The poisons can easily\n"
-	"be absorbed into the body, so it's best to\n"
+	"Urtiga's porous skin secretes powerful\n"
+	"toxins when touched. The poisons can be\n"
+	"absorbed into your body, so it's best to\n"
 	"only handle this Pokémon with gloves.");
 
 const u8 gNidorinaPokedexText[] = _(
-    "Urtigere and Urtigoro are notable for\n"
-	"being extremely similar. The absence of\n"
-	"male Urtigere and female Urtigoro has led\n"
-	"any to believe they are the same species.");
+    "Urtigere and Urtigoro are known for\n"
+	"their similarity. The absence of male\n"
+	"Urtigere and female Urtigoro has led\n"
+	"many to think they are the same species.");
 
 const u8 gNidoqueenPokedexText[] = _(
-    "Despite its metallic texture, its tough\n"
+    "Despite its metallic sheen, its tough\n"
 	"skin has millions of pores that constantly\n"
-	"secrete toxins. It has an awkward gait due\n"
+	"secrete toxins. Its awkward gait is due\n"
 	"to its small feet and lack of legs.");
 
 const u8 gNidoranMPokedexText[] = _(
     "While Urtiga and Urtigo are treated as the\n"
 	"same Pokémon by biologists, trainers raise\n"
-	"them differently due to their temperament\n"
-	"and differences in fighting capabilities.");
+	"them differently due to their different\n"
+	"temperament and fighting capabilities.");
 
 const u8 gNidorinoPokedexText[] = _(
-    "Urtigoro's toxins are only slightly less\n"
-	"potent than an Urtigere's, but researchers\n"
-	"are unsure why. It makes up for this by\n"
+    "An Urtigoro's toxins are slightly weaker\n"
+	"than an Urtigere's, but researchers\n"
+	"aren't sure why. It makes up for this by\n"
 	"being significantly more aggressive.");
 
 const u8 gNidokingPokedexText[] = _(
@@ -209,58 +209,58 @@ const u8 gNidokingPokedexText[] = _(
 	"and pollutes the land around it.");
 
 const u8 gClefairyPokedexText[] = _(
-    "On every night of a full moon, they come\n"
-    "out to play. When dawn arrives, the tired\n"
-    "CLEFAIRY go to sleep nestled up against\n"
-    "each other in deep and quiet mountains.");
+    "Amairi is believed to be born from\n"
+	"pink clouds. It loves eating Berries\n"
+	"and gets Berry Juice all over itself,\n"
+	"dyeing its body in bright colors.");
 
 const u8 gClefablePokedexText[] = _(
-    "A CLEFABLE uses its wings to skip lightly \n"
-    "as if it were flying. Its bouncy step\n"
-    "lets it even walk on water. On quiet,\n"
-    "moonlit nights, it strolls on lakes.");
+    "Ograiri is a friendly Pokémon that loves\n"
+	"being around people, though it has\n"
+	"trouble communicating with them. It is\n"
+	"very popular among girls of all ages.");
 
 const u8 gVulpixPokedexText[] = _(
-    "It can freely control fire, making fiery\n"
-    "orbs fly like will-o'-the-wisps. Just\n"
-    "before evolution, its six tails grow hot \n"
-    "as if on fire.");
+    "After breathing in heaps of oxygen from\n"
+	"the air, it will slowly heat it using its\n"
+	"tube-like mouth. If it isn't careful,\n"
+	"it can catch itself on fire.");
 
 const u8 gNinetalesPokedexText[] = _(
-    "It has long been said that each of the\n"
-    "nine tails embody an enchanted power.\n"
-    "A long-lived NINETALES will have fur that\n"
-    "shines like gold.");
+    "Having poor balance, it moves slowly to\n"
+	"avoid falling. The shaggy fur on a\n"
+	"Llamose is prized for its warmth but can\n"
+	"easily cause the Pokémon to overheat.");
 
 const u8 gJigglypuffPokedexText[] = _(
-    "Nothing can avoid falling asleep hearing a\n"
-    "JIGGLYPUFF's song. The sound waves of its\n"
-    "singing voice match the brain waves of\n"
-    "someone in a deep sleep.");
+    "Despite being gluttonous, all Fatte have\n"
+	"a picky habit of only eating the tastiest\n"
+	"and healthiest berries in an area.\n"
+	"Its taste in food never changes.");
 
 const u8 gWigglytuffPokedexText[] = _(
-    "Its fur is the ultimate in luxuriousness.\n"
-    "Sleeping alongside a WIGGLYTUFF is simply\n"
-    "divine. Its body expands seemingly without\n"
-    "end when it inhales.");
+    "When it smells a Berry, its mind becomes\n"
+	"consumed by hunger and it will start a\n"
+	"feeding frenzy. The gluttonous rampage\n"
+	"ends after it eats fistfuls of its home.");
 
 const u8 gZubatPokedexText[] = _(
-    "While living in pitch-black caverns, their\n"
-    "eyes gradually grew shut and deprived\n"
-    "them of vision. They use ultrasonic waves\n"
-    "to detect obstacles.");
+    "It moves by hopping and tends to bump\n"
+	"into things. As it hops around, it\n"
+	"scatters various spores that can either\n"
+	"poison someone or put them to sleep.");
 
 const u8 gGolbatPokedexText[] = _(
-    "Its fangs easily puncture even thick\n"
-    "animal hide. It loves to feast on the blood\n"
-    "of people and POKéMON. It flits about in\n"
-    "darkness and strikes from behind.");
+    "Fungio is short-tempered and will\n"
+	"violently scatter its spores if it's\n"
+	"interrupted while eating soil. Despite\n"
+	"being a Poison-type, it's safe to eat.");
 
 const u8 gOddishPokedexText[] = _(
-    "This POKéMON grows by absorbing moonlight.\n"
-    "During the daytime, it buries itself in the\n"
-    "ground, leaving only its leaves exposed to\n"
-    "avoid detection by its enemies.");
+    "Semilleto buries itself in the ground\n"
+	"and feeds on the soil to occupy itself.\n"
+	"The more time it spends in the ground,\n"
+	"the sooner it evolves.");
 
 const u8 gGloomPokedexText[] = _(
     "A horribly noxious honey drools from its\n"
