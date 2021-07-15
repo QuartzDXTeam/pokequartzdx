@@ -6,6 +6,9 @@ $(MID_BUILDDIR)/%.o: $(MID_SUBDIR)/%.s
 $(MID_SUBDIR)/mus_qdxpink.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G191 -V084
 	
+$(MID_SUBDIR)/mus_qdxdarkforest.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G191 -V080
+		
 $(MID_SUBDIR)/mus_aqua_magma_hideout.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G076 -V084
 
@@ -158,9 +161,6 @@ $(MID_SUBDIR)/mus_obtain_item.s: %.s: %.mid
 
 $(MID_SUBDIR)/mus_evolved.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G012 -V090 -P5
-
-$(MID_SUBDIR)/mus_gsc_route38.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -V080
 
 $(MID_SUBDIR)/mus_slateport.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G079 -V070

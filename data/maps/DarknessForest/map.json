@@ -2,7 +2,7 @@
   "id": "MAP_DARKNESS_FOREST",
   "name": "DarknessForest",
   "layout": "LAYOUT_DARKNESS_FOREST",
-  "music": "MUS_PETALBURG_WOODS",
+  "music": "MUS_QDXDARKFOREST",
   "region_map_section": "MAPSEC_DARKNESS_FOREST",
   "requires_flash": false,
   "weather": "WEATHER_SHADE",

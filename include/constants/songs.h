@@ -279,7 +279,7 @@
 
 // Music
 #define MUS_LITTLEROOT_TEST         350 // MUS_TETSUJI
-#define MUS_GSC_ROUTE38             351 // MUS_FIELD13
+#define MUS_QDXDARKFOREST           351 // DARKNESS FOREST
 #define MUS_CAUGHT                  352 // MUS_KACHI22
 #define MUS_VICTORY_WILD            353 // MUS_KACHI2
 #define MUS_VICTORY_GYM_LEADER      354 // MUS_KACHI3
@@ -287,11 +287,11 @@
 #define MUS_C_COMM_CENTER           356 // MUS_PCC
 #define MUS_GSC_PEWTER              357 // MUS_NIBI
 #define MUS_C_VS_LEGEND_BEAST       358 // MUS_SUIKUN
-#define MUS_BREEZEWAY                359 // MUS_DOORO1
+#define MUS_BREEZEWAY               359 // MUS_DOORO1
 #define MUS_ROUTE110                360 // MUS_DOORO_X1
 #define MUS_ROUTE120                361 // MUS_DOORO_X3
 #define MUS_PETALBURG               362 // MUS_MACHI_S2
-#define MUS_PINK                  363 // MUS_MACHI_S4
+#define MUS_PINK                    363 // MUS_MACHI_S4
 #define MUS_GYM                     364 // MUS_GIM
 #define MUS_SURF                    365 // MUS_NAMINORI
 #define MUS_PETALBURG_WOODS         366 // MUS_DAN01
