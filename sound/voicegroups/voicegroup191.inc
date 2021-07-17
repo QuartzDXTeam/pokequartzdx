@@ -113,3 +113,4 @@ voicegroup191:: @ 86A8CBC
 	voice_noise_alt 60, 0, 0, 0, 4, 0, 1  @																				DMG NOISE 2					110
 	voice_noise_alt 60, 0, 0, 0, 2, 6, 2  @ 86A92A4																		DMG NOISE 3					111
 	voice_noise_alt 60, 0, 0, 0, 6, 0, 1  @ 86A92B0																		DMG NOISE 4					112
+	

@@ -5,6 +5,12 @@ $(MID_BUILDDIR)/%.o: $(MID_SUBDIR)/%.s
 
 $(MID_SUBDIR)/mus_qdxpink.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G191 -V084
+
+$(MID_SUBDIR)/mus_qdxcloudain.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G191 -V084
+
+$(MID_SUBDIR)/mus_vs_garotao.s: %.s: %.mid
+	$(MID) $< $@ -E -R$(STD_REVERB) -G192 -V080 -P1
 	
 $(MID_SUBDIR)/mus_qdxdarkforest.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G191 -V080
@@ -606,9 +612,6 @@ $(MID_SUBDIR)/mus_link_contest_p3.s: %.s: %.mid
 $(MID_SUBDIR)/mus_link_contest_p4.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G042 -V090
 
-$(MID_SUBDIR)/mus_littleroot_test.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G034 -V099
-
 $(MID_SUBDIR)/mus_credits.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G101 -V100
 
@@ -1093,16 +1096,16 @@ $(MID_SUBDIR)/se_thunder2.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -V110 -P3
 
 $(MID_SUBDIR)/se_rain.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -V080 -P2
+	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -V050 -P2
 
 $(MID_SUBDIR)/se_rain_stop.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -V080 -P2
 
 $(MID_SUBDIR)/se_downpour.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -V100 -P2
+	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -V70 -P2
 
 $(MID_SUBDIR)/se_downpour_stop.s: %.s: %.mid
-	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -V100 -P2
+	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -V70 -P2
 
 $(MID_SUBDIR)/se_orb.s: %.s: %.mid
 	$(MID) $< $@ -E -R$(STD_REVERB) -G128 -V100 -P5

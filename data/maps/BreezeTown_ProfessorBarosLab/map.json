@@ -93,8 +93,8 @@
       "flag": "FLAG_HIDE_BREEZE_TOWN_BAROS_LAB_POKEBALL_CHIKORITA"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_PLUGOINK_DOLL",
-      "x": 1,
+      "graphics_id": "OBJ_EVENT_GFX_KIRLIA",
+      "x": 2,
       "y": 5,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_UP_RIGHT_DOWN",

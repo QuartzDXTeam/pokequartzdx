@@ -2,7 +2,7 @@
   "id": "MAP_CLOUDAIN_CITY",
   "name": "CloudainCity",
   "layout": "LAYOUT_CLOUDAIN_CITY",
-  "music": "MUS_LITTLEROOT",
+  "music": "MUS_QDXCLOUDAIN",
   "region_map_section": "MAPSEC_CLOUDAIN_CITY",
   "requires_flash": false,
   "weather": "WEATHER_RAIN",

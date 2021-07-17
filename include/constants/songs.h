@@ -278,7 +278,7 @@
 #define SE_SUDOWOODO_SHAKE          269 // SE_USSOKI
 
 // Music
-#define MUS_LITTLEROOT_TEST         350 // MUS_TETSUJI
+#define MUS_QDXCLOUDAIN             350 // CLOUDAIN CITY
 #define MUS_QDXDARKFOREST           351 // DARKNESS FOREST
 #define MUS_CAUGHT                  352 // MUS_KACHI22
 #define MUS_VICTORY_WILD            353 // MUS_KACHI2
@@ -540,7 +540,8 @@
 #define PH_NURSE_BLEND              607
 #define PH_NURSE_HELD               608
 #define PH_NURSE_SOLO               609
-#define MUS_QDXPINK					610 //don't ask why it's down here. i've done things to this code i'm not proud of
+#define MUS_QDXPINK					610 //don't ask why it's down here ok
+#define MUS_VS_GAROTAO				611 //(FATHER IN HEAVEN FORGIVE ME FOR THIS)
 
 #define MUS_ROUTE118                0x7FFF  // Map is split into 2 music sections. controlled by GetCurrLocationDefaultMusic().
 
