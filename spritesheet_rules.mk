@@ -429,7 +429,7 @@ $(OBJEVENTGFXDIR)/pokemon/ho_oh.4bpp: %.4bpp: %.png
 $(OBJEVENTGFXDIR)/pokemon/kecleon.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 2
 
-$(OBJEVENTGFXDIR)/pokemon/kirlia.4bpp: %.4bpp: %.png
+$(OBJEVENTGFXDIR)/pokemon/plugoink.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
 
 $(OBJEVENTGFXDIR)/pokemon/kyogre.4bpp: %.4bpp: %.png
