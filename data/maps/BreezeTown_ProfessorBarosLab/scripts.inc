@@ -21,45 +21,11 @@ BreezeTown_ProfessorBarosLab_MapScripts:: @ 81F9C91
 
 BreezeTown_ProfessorBarosLab_OnTransition: @ 81F9CA1
 	call Common_EventScript_SetupRivalGfxId
-	call ProfBaro_EventScript_UpdateLocation
-	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
-	goto_if_ge BreezeTown_ProfessorBarosLab_EventScript_SetAfterJohtoStarterLayout
-	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4
-	goto_if_ge BreezeTown_ProfessorBarosLab_EventScript_SetJohtoStarterLayout
-	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_CheckReadyForJohtoStarter
 	end
 
-BreezeTown_ProfessorBarosLab_EventScript_CheckReadyForJohtoStarter:: @ 81F9CCD
-	specialvar VAR_RESULT, HasAllCornaMons
-	compare VAR_RESULT, TRUE
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_SetReadyForJohtoStarter
-	setobjectmovementtype 3, MOVEMENT_TYPE_WANDER_UP_AND_DOWN
-	setobjectxyperm 3, 5, 10
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_SetReadyForJohtoStarter:: @ 81F9CE9
-	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4
-	goto BreezeTown_ProfessorBarosLab_EventScript_SetJohtoStarterLayout
-
-BreezeTown_ProfessorBarosLab_EventScript_SetJohtoStarterLayout:: @ 81F9CF3
-	setmaplayoutindex LAYOUT_BREEZE_TOWN_PROFESSOR_BAROS_LAB_WITH_TABLE
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_SetAfterJohtoStarterLayout:: @ 81F9CF7
-	setmaplayoutindex LAYOUT_BREEZE_TOWN_PROFESSOR_BAROS_LAB_WITH_TABLE
-	setobjectmovementtype 3, MOVEMENT_TYPE_WANDER_UP_AND_DOWN
-	setobjectxyperm 3, 5, 10
-	end
 
 BreezeTown_ProfessorBarosLab_OnWarp: @ 81F9D06
 	map_script_2 VAR_BARO_LAB_STATE, 2, BreezeTown_ProfessorBarosLab_EventScript_SetPlayerPosForReceiveStarter
-	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, BreezeTown_ProfessorBarosLab_EventScript_SetObjectPosForDexUpgrade
-	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2, BreezeTown_ProfessorBarosLab_EventScript_SetObjectPosForDexUpgrade
-	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 3, BreezeTown_ProfessorBarosLab_EventScript_AddRivalObject
-	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6, BreezeTown_ProfessorBarosLab_EventScript_AddRivalObject
-	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4, BreezeTown_ProfessorBarosLab_EventScript_SetObjectPosForJohtoStarters
-	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 5, BreezeTown_ProfessorBarosLab_EventScript_SetObjectPosForJohtoStarters
 	.2byte 0
 
 BreezeTown_ProfessorBarosLab_EventScript_SetPlayerPosForReceiveStarter:: @ 81F9D40
@@ -82,28 +48,10 @@ BreezeTown_ProfessorBarosLab_EventScript_AddRivalObject:: @ 81F9D71
 	addobject 3
 	end
 
-BreezeTown_ProfessorBarosLab_EventScript_SetObjectPosForJohtoStarters:: @ 81F9D75
-	addobject 4
-	addobject 5
-	addobject 6
-	addobject 3
-	turnobject 4, DIR_SOUTH
-	setobjectxy 4, 8, 4
-	turnobject 5, DIR_SOUTH
-	setobjectxy 5, 9, 4
-	turnobject 6, DIR_SOUTH
-	setobjectxy 6, 10, 4
-	turnobject 2, DIR_SOUTH
-	setobjectxy 2, 6, 4
-	turnobject 3, DIR_EAST
-	setobjectxy 3, 5, 5
-	end
-
 BreezeTown_ProfessorBarosLab_OnFrame: @ 81F9DB9
 	map_script_2 VAR_BARO_LAB_STATE, 2, BreezeTown_ProfessorBarosLab_EventScript_GiveStarterEvent
 	map_script_2 VAR_BARO_LAB_STATE, 4, BreezeTown_ProfessorBarosLab_EventScript_GivePokedexEvent
 	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 1, BreezeTown_ProfessorBarosLab_EventScript_UpgradeToNationalDex
-	map_script_2 VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 4, BreezeTown_ProfessorBarosLab_EventScript_ChooseJohtoStarter
 	.2byte 0
 
 @ The starter is technically given prior to this on Route 101 by special ChooseStarter
@@ -259,25 +207,6 @@ BreezeTown_ProfessorBarosLab_Movement_BaroReturnPokedex: @ 81F9F58
 	walk_in_place_fastest_down
 	step_end
 
-BreezeTown_ProfessorBarosLab_EventScript_ChooseJohtoStarter:: @ 81F9F62
-	lockall
-	applymovement OBJ_EVENT_ID_PLAYER, BreezeTown_ProfessorBarosLab_Movement_PlayerEnterLabForJohtoStarter
-	waitmovement 0
-	msgbox BreezeTown_ProfessorBarosLab_Text_CompletedDexChoosePokemon, MSGBOX_DEFAULT
-	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 5
-	releaseall
-	end
-
-BreezeTown_ProfessorBarosLab_Movement_PlayerEnterLabForJohtoStarter: @ 81F9F7C
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	walk_up
-	step_end
-
 BreezeTown_ProfessorBarosLab_EventScript_Aide:: @ 81F9F84
 	lock
 	faceplayer
@@ -299,213 +228,12 @@ BreezeTown_ProfessorBarosLab_EventScript_AideReceivedStarter:: @ 81F9FB1
 	release
 	end
 
-BreezeTown_ProfessorBarosLab_EventScript_Cyndaquil:: @ 81F9FBB
-	release
-	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
-	goto_if_ge BreezeTown_ProfessorBarosLab_EventScript_AlreadyChoseJohtoStarter
-	applymovement 2, Common_Movement_WalkInPlaceFastestRight
-	waitmovement 0
-	showmonpic SPECIES_CYNDAQUIL, 10, 3
-	msgbox BreezeTown_ProfessorBarosLab_Text_YoullTakeCyndaquil, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_TakeYourTime
-	goto BreezeTown_ProfessorBarosLab_EventScript_GiveCyndaquil
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_Totodile:: @ 81F9FEF
-	release
-	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
-	goto_if_ge BreezeTown_ProfessorBarosLab_EventScript_AlreadyChoseJohtoStarter
-	applymovement 2, Common_Movement_WalkInPlaceFastestRight
-	waitmovement 0
-	showmonpic SPECIES_TOTODILE, 10, 3
-	msgbox BreezeTown_ProfessorBarosLab_Text_YoullTakeTotodile, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_TakeYourTime
-	goto BreezeTown_ProfessorBarosLab_EventScript_GiveTotodile
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_Chikorita:: @ 81FA023
-	release
-	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
-	goto_if_ge BreezeTown_ProfessorBarosLab_EventScript_AlreadyChoseJohtoStarter
-	applymovement 2, Common_Movement_WalkInPlaceFastestRight
-	waitmovement 0
-	showmonpic SPECIES_CHIKORITA, 10, 3
-	msgbox BreezeTown_ProfessorBarosLab_Text_YoullTakeChikorita, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_TakeYourTime
-	goto BreezeTown_ProfessorBarosLab_EventScript_GiveChikorita
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_AlreadyChoseJohtoStarter:: @ 81FA057
-	msgbox BreezeTown_ProfessorBarosLab_Text_BetterLeaveOthersAlone, MSGBOX_DEFAULT
-	releaseall
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_TakeYourTime:: @ 81FA061
-	hidemonpic
-	msgbox BreezeTown_ProfessorBarosLab_Text_TakeYourTimeAllInvaluable, MSGBOX_DEFAULT
-	releaseall
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_GiveCyndaquil:: @ 81FA06C
-	bufferspeciesname 0, SPECIES_CYNDAQUIL
-	setvar VAR_TEMP_1, SPECIES_CYNDAQUIL
-	givemon SPECIES_CYNDAQUIL, 5, ITEM_NONE
-	compare VAR_RESULT, 0
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_SendCyndaquilToParty
-	compare VAR_RESULT, 1
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_SendCyndaquilToPC
-	hidemonpic
-	goto Common_EventScript_NoMoreRoomForPokemon
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_SendCyndaquilToParty:: @ 81FA0A1
-	call BreezeTown_ProfessorBarosLab_EventScript_ReceivedJohtoStarter
-	removeobject 4
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_ReceivedCyndaquil
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
-	goto BreezeTown_ProfessorBarosLab_EventScript_ReceivedCyndaquil
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_SendCyndaquilToPC:: @ 81FA0CC
-	call BreezeTown_ProfessorBarosLab_EventScript_ReceivedJohtoStarter
-	removeobject 4
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_CyndaquilTransferredToPC
-	call Common_EventScript_NameReceivedBoxMon
-	goto BreezeTown_ProfessorBarosLab_EventScript_CyndaquilTransferredToPC
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_CyndaquilTransferredToPC:: @ 81FA0F2
-	call Common_EventScript_TransferredToPC
-	goto BreezeTown_ProfessorBarosLab_EventScript_ReceivedCyndaquil
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_ReceivedCyndaquil:: @ 81FA0FD
-	hidemonpic
-	msgbox BreezeTown_ProfessorBarosLab_Text_GrassyPatchWaiting, MSGBOX_DEFAULT
-	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
-	releaseall
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_GiveTotodile:: @ 81FA10D
-	bufferspeciesname 0, SPECIES_TOTODILE
-	setvar VAR_TEMP_1, SPECIES_TOTODILE
-	givemon SPECIES_TOTODILE, 5, ITEM_NONE
-	compare VAR_RESULT, 0
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_SendTotodileToParty
-	compare VAR_RESULT, 1
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_SendTotodileToPC
-	hidemonpic
-	goto Common_EventScript_NoMoreRoomForPokemon
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_SendTotodileToParty:: @ 81FA142
-	call BreezeTown_ProfessorBarosLab_EventScript_ReceivedJohtoStarter
-	removeobject 5
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_ReceivedTotodile
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
-	goto BreezeTown_ProfessorBarosLab_EventScript_ReceivedTotodile
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_SendTotodileToPC:: @ 81FA16D
-	call BreezeTown_ProfessorBarosLab_EventScript_ReceivedJohtoStarter
-	removeobject 5
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_TotodileTransferredToPC
-	call Common_EventScript_NameReceivedBoxMon
-	goto BreezeTown_ProfessorBarosLab_EventScript_TotodileTransferredToPC
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_TotodileTransferredToPC:: @ 81FA193
-	call Common_EventScript_TransferredToPC
-	goto BreezeTown_ProfessorBarosLab_EventScript_ReceivedTotodile
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_ReceivedTotodile:: @ 81FA19E
-	hidemonpic
-	msgbox BreezeTown_ProfessorBarosLab_Text_GrassyPatchWaiting, MSGBOX_DEFAULT
-	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
-	releaseall
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_GiveChikorita:: @ 81FA1AE
-	bufferspeciesname 0, SPECIES_CHIKORITA
-	setvar VAR_TEMP_1, SPECIES_CHIKORITA
-	givemon SPECIES_CHIKORITA, 5, ITEM_NONE
-	compare VAR_RESULT, 0
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_SendChikoritaToParty
-	compare VAR_RESULT, 1
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_SendChikoritaToPC
-	hidemonpic
-	goto Common_EventScript_NoMoreRoomForPokemon
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_SendChikoritaToParty:: @ 81FA1E3
-	call BreezeTown_ProfessorBarosLab_EventScript_ReceivedJohtoStarter
-	removeobject 6
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_ReceivedChikorita
-	call Common_EventScript_GetGiftMonPartySlot
-	call Common_EventScript_NameReceivedPartyMon
-	goto BreezeTown_ProfessorBarosLab_EventScript_ReceivedChikorita
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_SendChikoritaToPC:: @ 81FA20E
-	call BreezeTown_ProfessorBarosLab_EventScript_ReceivedJohtoStarter
-	removeobject 6
-	msgbox gText_NicknameThisPokemon, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_ChikoritaTransferredToPC
-	call Common_EventScript_NameReceivedBoxMon
-	goto BreezeTown_ProfessorBarosLab_EventScript_ChikoritaTransferredToPC
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_ChikoritaTransferredToPC:: @ 81FA234
-	call Common_EventScript_TransferredToPC
-	goto BreezeTown_ProfessorBarosLab_EventScript_ReceivedChikorita
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_ReceivedChikorita:: @ 81FA23F
-	hidemonpic
-	msgbox BreezeTown_ProfessorBarosLab_Text_GrassyPatchWaiting, MSGBOX_DEFAULT
-	setvar VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
-	releaseall
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_ReceivedJohtoStarter:: @ 81FA24F
-	playfanfare MUS_OBTAIN_ITEM
-	message BreezeTown_ProfessorBarosLab_Text_ReceivedJohtoStarter
-	waitmessage
-	waitfanfare
-	return
-
 BreezeTown_ProfessorBarosLab_EventScript_Baro:: @ 81FA25A
 	lock
 	faceplayer
-	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 5
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_CanHaveAnyOneOfRarePokemon
-	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_GrassyPatchWaiting
 	goto_if_unset FLAG_HAS_MATCH_CALL, BreezeTown_ProfessorBarosLab_EventScript_TryRatePokedexOrRegister
 	goto_if_unset FLAG_ENABLE_PROF_BARO_MATCH_CALL, EventScript_RegisterProfBaro
 	goto BreezeTown_ProfessorBarosLab_EventScript_TryRatePokedexOrRegister
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_CanHaveAnyOneOfRarePokemon:: @ 81FA28A
-	msgbox BreezeTown_ProfessorBarosLab_Text_CanHaveAnyOneOfRarePokemon, MSGBOX_DEFAULT
-	release
 	end
 
 BreezeTown_ProfessorBarosLab_EventScript_GrassyPatchWaiting:: @ 81FA294
@@ -614,12 +342,6 @@ BreezeTown_ProfessorBarosLab_EventScript_Machine:: @ 81FA3E3
 BreezeTown_ProfessorBarosLab_EventScript_Rival:: @ 81FA3EC
 	lock
 	faceplayer
-	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 5
-	goto_if_eq BreezeTown_ProfessorBarosLab_EventScript_RivalFuturePlans
-	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 6
-	goto_if_ge BreezeTown_ProfessorBarosLab_EventScript_RivalHaveYouGoneToBattleFrontier
-	compare VAR_DEX_UPGRADE_JOHTO_STARTER_STATE, 2
-	goto_if_ge BreezeTown_ProfessorBarosLab_EventScript_RivalTakeBreakFromFieldwork
 	checkplayergender
 	compare VAR_RESULT, MALE
 	call_if_eq BreezeTown_ProfessorBarosLab_EventScript_MayWhereShouldIGoNext
@@ -651,23 +373,6 @@ BreezeTown_ProfessorBarosLab_EventScript_MayWhatNextImStayingHere:: @ 81FA453
 
 BreezeTown_ProfessorBarosLab_EventScript_AkiraPreferCollectingSlowly: @ 81FA45C
 	msgbox BreezeTown_ProfessorBarosLab_Text_AkiraPreferCollectingSlowly, MSGBOX_DEFAULT
-	return
-
-BreezeTown_ProfessorBarosLab_EventScript_RivalHaveYouGoneToBattleFrontier:: @ 81FA465
-	checkplayergender
-	compare VAR_RESULT, MALE
-	call_if_eq BreezeTown_ProfessorBarosLab_EventScript_MayHaveYouGoneToBattleFrontier
-	compare VAR_RESULT, FEMALE
-	call_if_eq BreezeTown_ProfessorBarosLab_EventScript_AkiraHaveYouGoneToBattleFrontier
-	release
-	end
-
-BreezeTown_ProfessorBarosLab_EventScript_MayHaveYouGoneToBattleFrontier:: @ 81FA47E
-	msgbox BreezeTown_ProfessorBarosLab_Text_MayHaveYouGoneToBattleFrontier, MSGBOX_DEFAULT
-	return
-
-BreezeTown_ProfessorBarosLab_EventScript_AkiraHaveYouGoneToBattleFrontier:: @ 81FA487
-	msgbox BreezeTown_ProfessorBarosLab_Text_AkiraHaveYouGoneToBattleFrontier, MSGBOX_DEFAULT
 	return
 
 BreezeTown_ProfessorBarosLab_EventScript_RivalTakeBreakFromFieldwork:: @ 81FA490
@@ -811,7 +516,7 @@ BreezeTown_ProfessorBarosLab_Text_CountlessPokemonAwait: @ 81FAD6F
 	.string "and do fieldwork again!$"
 
 BreezeTown_ProfessorBarosLab_Text_MayGotPokedexTooTakeThese: @ 81FADD7
-	.string "MAY: Oh, wow, {PLAYER}{KUN}!\n"
+	.string "MAY: Oh, wow, {PLAYER}!\n"
 	.string "You got a POKéDEX, too!\p"
 	.string "That's great! Just like me!\n"
 	.string "I've got something for you, too!$"
@@ -925,66 +630,6 @@ BreezeTown_ProfessorBarosLab_Text_AkiraTakeBreakFromFieldwork: @ 81FB58A
 	.string "I'll be helping out the PROF here\n"
 	.string "for a while.$"
 
-BreezeTown_ProfessorBarosLab_Text_CompletedDexChoosePokemon: @ 81FB5F9
-	.string "PROF. BARO: Oh, {PLAYER}{KUN}!\n"
-	.string "Let's have a look at your POKéDEX.\p"
-	.string "… … … … … …\n"
-	.string "… … … … … …\p"
-	.string "Yes, there's no doubt about it.\p"
-	.string "You really have completed the CORNA\n"
-	.string "region's POKéDEX.\p"
-	.string "That's more than just impressive.\p"
-	.string "I have a gift for you.\p"
-	.string "Consider it my show of appreciation\n"
-	.string "for the fantastic work you've done.\p"
-	.string "My gift is a rare POKéMON only found\n"
-	.string "in another region!\p"
-	.string "You can have any one of these\n"
-	.string "three POKéMON!$"
-
-BreezeTown_ProfessorBarosLab_Text_CanHaveAnyOneOfRarePokemon: @ 81FB787
-	.string "PROF. BARO: These are rare POKéMON\n"
-	.string "only found in another region!\p"
-	.string "You can have any one of these\n"
-	.string "three POKéMON!$"
-
-BreezeTown_ProfessorBarosLab_Text_YoullTakeCyndaquil: @ 81FB7F6
-	.string "PROF. BARO: The FIRE POKéMON\n"
-	.string "CYNDAQUIL caught your eye!\p"
-	.string "You're as sharp as ever!\p"
-	.string "So the CYNDAQUIL is your choice?$"
-
-BreezeTown_ProfessorBarosLab_Text_YoullTakeTotodile: @ 81FB869
-	.string "PROF. BARO: The WATER POKéMON\n"
-	.string "TOTODILE is your choice!\p"
-	.string "You know how to pick a good one.\p"
-	.string "So, you'll take the TOTODILE?$"
-
-BreezeTown_ProfessorBarosLab_Text_YoullTakeChikorita: @ 81FB8E0
-	.string "PROF. BARO: The GRASS POKéMON\n"
-	.string "CHIKORITA is your choice!\p"
-	.string "You sure know what you're doing.\p"
-	.string "So, you'll take the CHIKORITA?$"
-
-BreezeTown_ProfessorBarosLab_Text_TakeYourTimeAllInvaluable: @ 81FB959
-	.string "PROF. BARO: Take your time before\n"
-	.string "you decide.\p"
-	.string "They're all invaluable POKéMON.$"
-
-@ Unused
-BreezeTown_ProfessorBarosLab_Text_PickedFinePokemon: @ 81FB9A8
-	.string "PROF. BARO: I see!\n"
-	.string "You picked a fine POKéMON!$"
-
-BreezeTown_ProfessorBarosLab_Text_ReceivedJohtoStarter: @ 81FB9D7
-	.string "{PLAYER} received the {STR_VAR_1}\n"
-	.string "from PROF. BARO!$"
-
-@ Unused
-BreezeTown_ProfessorBarosLab_Text_NicknameJohtoStarter: @ 81FB9FC
-	.string "Want to give a nickname to\n"
-	.string "the {STR_VAR_1} you received?$"
-
 BreezeTown_ProfessorBarosLab_Text_GrassyPatchWaiting: @ 81FBA2C
 	.string "PROF. BARO: Listen, {PLAYER}{KUN}.\n"
 	.string "You've completed the CORNA POKéDEX,\l"
@@ -993,15 +638,6 @@ BreezeTown_ProfessorBarosLab_Text_GrassyPatchWaiting: @ 81FBA2C
 	.string "that is POKéMON.\p"
 	.string "Somewhere, there is a grassy patch\n"
 	.string "that's waiting for you!$"
-
-BreezeTown_ProfessorBarosLab_Text_BetterLeaveOthersAlone: @ 81FBAF8
-	.string "You received the promised POKéMON.\n"
-	.string "Better leave the others alone.$"
-
-@ Unused
-BreezeTown_ProfessorBarosLab_Text_DontHaveAnyRoomForPokemon: @ 81FBB3A
-	.string "Oh, you don't have any room for\n"
-	.string "this POKéMON.$"
 
 BreezeTown_ProfessorBarosLab_Text_MayWhatNextImStayingHere: @ 81FBB68
 	.string "MAY: {PLAYER}{KUN}, after this…\n"
